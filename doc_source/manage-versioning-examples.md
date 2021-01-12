@@ -1,0 +1,203 @@
+--------
+
+Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
+
+--------
+
+# Enabling versioning on buckets<a name="manage-versioning-examples"></a>
+
+You can use S3 Versioning to keep multiple versions of an object in one bucket\. This section provides examples of how to enable versioning on a bucket using the console, REST API, AWS SDKs, and AWS Command Line Interface \(AWS CLI\)\. 
+
+For more information about S3 Versioning, see [Using versioning in S3 buckets](Versioning.md)\. For information about working with objects that are in a versioning\-enabled bucket, see [Working with objects in a versioning\-enabled bucket](manage-objects-versioned-bucket.md)\.
+
+Each S3 bucket that you create has a *versioning* subresource associated with it\. \(For more information, see [Bucket configuration options](UsingBucket.md#bucket-config-options-intro)\.\) By default, your bucket is *unversioned*, and the versioning subresource stores the empty versioning configuration, as follows\.
+
+```
+<VersioningConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/"> 
+</VersioningConfiguration>
+```
+
+To enable versioning, you can send a request to Amazon S3 with a versioning configuration that includes a status\. 
+
+```
+<VersioningConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/"> 
+  <Status>Enabled</Status> 
+</VersioningConfiguration>
+```
+
+To suspend versioning, you set the status value to `Suspended`\.
+
+The bucket owner and all authorized IAM users can enable versioning\. The bucket owner is the AWS account that created the bucket \(the root account\)\. For more information about permissions, see [Identity and access management in Amazon S3](s3-access-control.md)\.
+
+The following sections provide more detail about enabling S3 Versioning using the console, AWS CLI, and the AWS SDKs\.
+
+## Using the S3 console<a name="enable-versioning"></a>
+
+Follow these steps to use the AWS Management Console to enable versioning on an S3 bucket\.
+
+**To enable or disable versioning on an S3 bucket**
+
+1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the **Buckets** list, choose the name of the bucket that you want to enable versioning for\.
+
+1. Choose **Properties**\.
+
+1. Under **Bucket Versioning**, choose **Edit**\.
+
+1. Choose **Suspend** or **Enable**, and then choose **Save changes**\.
+
+**Note**  
+You can use AWS multi\-factor authentication \(MFA\) with versioning\. When you use MFA with versioning, you must provide your AWS account’s access keys and a valid code from the account’s MFA device to permanently delete an object version or suspend or reactivate versioning\.   
+To use MFA with versioning, you enable `MFA Delete`\. However, you can't enable `MFA Delete` using the AWS Management Console\. You must use the AWS Command Line Interface \(AWS CLI\) or the API\. For more information, see [Configuring MFA delete](MultiFactorAuthenticationDelete.md)\.
+
+## Using the AWS CLI<a name="manage-versioning-examples-cli"></a>
+
+The following example enables versioning on an S3 bucket\. 
+
+```
+aws s3api put-bucket-versioning --bucket DOC-EXAMPLE-BUCKET1 --versioning-configuration Status=Enabled
+```
+
+The following example enables versioning and multi\-factor authentication \(MFA\) delete on a bucket\.
+
+```
+aws s3api put-bucket-versioning --bucket DOC-EXAMPLE-BUCKET1 --versioning-configuration Status=Enabled,MFADelete=Enabled --mfa "SERIAL 123456"
+```
+
+**Note**  
+Using MFA delete requires an approved physical or virtual authentication device\. For more information about using MFA delete in Amazon S3, see [Configuring MFA delete](MultiFactorAuthenticationDelete.md)\.
+
+For more information about enabling versioning using the AWS CLI, see [put\-bucket\-versioning](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-versioning.html) in the *AWS CLI Command Reference*\.
+
+## Using the AWS SDKs<a name="manage-versioning-examples-sdk"></a>
+
+The following examples enable versioning on a bucket and then retrieve versioning status using the AWS SDK for Java and the AWS SDK for \.NET\. For information about using other AWS SDKs, see [Sample Code and Libraries](https://aws.amazon.com/code/)\.
+
+------
+#### [ Java ]
+
+For instructions on how to create and test a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\. 
+
+```
+import java.io.IOException;
+
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.services.s3.model.BucketVersioningConfiguration;
+import com.amazonaws.services.s3.model.SetBucketVersioningConfigurationRequest;
+
+public class BucketVersioningConfigurationExample {
+    public static String bucketName = "*** bucket name ***"; 
+    public static AmazonS3Client s3Client;
+
+    public static void main(String[] args) throws IOException {
+        s3Client = new AmazonS3Client(new ProfileCredentialsProvider());
+        s3Client.setRegion(Region.getRegion(Regions.US_EAST_1));
+        try {
+
+            // 1. Enable versioning on the bucket.
+        	BucketVersioningConfiguration configuration = 
+        			new BucketVersioningConfiguration().withStatus("Enabled");
+            
+			SetBucketVersioningConfigurationRequest setBucketVersioningConfigurationRequest = 
+					new SetBucketVersioningConfigurationRequest(bucketName,configuration);
+			
+			s3Client.setBucketVersioningConfiguration(setBucketVersioningConfigurationRequest);
+			
+			// 2. Get bucket versioning configuration information.
+			BucketVersioningConfiguration conf = s3Client.getBucketVersioningConfiguration(bucketName);
+			 System.out.println("bucket versioning configuration status:    " + conf.getStatus());
+
+        } catch (AmazonS3Exception amazonS3Exception) {
+            System.out.format("An Amazon S3 error occurred. Exception: %s", amazonS3Exception.toString());
+        } catch (Exception ex) {
+            System.out.format("Exception: %s", ex.toString());
+        }        
+    }
+}
+```
+
+------
+#### [ \.NET ]
+
+For information about how to create and test a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\. 
+
+```
+using System;
+using Amazon.S3;
+using Amazon.S3.Model;
+
+namespace s3.amazon.com.docsamples
+{
+    class BucketVersioningConfiguration
+    {
+        static string bucketName = "*** bucket name ***";
+
+        public static void Main(string[] args)
+        {
+            using (var client = new AmazonS3Client(Amazon.RegionEndpoint.USEast1))
+            {
+                try
+                {
+                    EnableVersioningOnBucket(client);
+                    string bucketVersioningStatus = RetrieveBucketVersioningConfiguration(client);
+                }
+                catch (AmazonS3Exception amazonS3Exception)
+                {
+                    if (amazonS3Exception.ErrorCode != null &&
+                        (amazonS3Exception.ErrorCode.Equals("InvalidAccessKeyId")
+                        ||
+                        amazonS3Exception.ErrorCode.Equals("InvalidSecurity")))
+                    {
+                        Console.WriteLine("Check the provided AWS Credentials.");
+                        Console.WriteLine(
+                        "To sign up for service, go to http://aws.amazon.com/s3");
+                    }
+                    else
+                    {
+                        Console.WriteLine(
+                         "Error occurred. Message:'{0}' when listing objects",
+                         amazonS3Exception.Message);
+                    }
+                }
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+
+        static void EnableVersioningOnBucket(IAmazonS3 client)
+        {
+
+                PutBucketVersioningRequest request = new PutBucketVersioningRequest
+                {
+                    BucketName = bucketName,
+                    VersioningConfig = new S3BucketVersioningConfig 
+                    {
+                        Status = VersionStatus.Enabled
+                    }
+                };
+
+                PutBucketVersioningResponse response = client.PutBucketVersioning(request);
+        }
+
+
+        static string RetrieveBucketVersioningConfiguration(IAmazonS3 client)
+        {
+                GetBucketVersioningRequest request = new GetBucketVersioningRequest
+                {
+                    BucketName = bucketName
+                };
+ 
+                GetBucketVersioningResponse response = client.GetBucketVersioning(request);
+                return response.VersioningConfig.Status;
+            }
+    }
+}
+```
+
+------

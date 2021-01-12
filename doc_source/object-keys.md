@@ -1,0 +1,83 @@
+--------
+
+Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
+
+--------
+
+# Creating object key names<a name="object-keys"></a>
+
+The *object key* \(or key name\) uniquely identifies the object in an Amazon S3 bucket\. *Object metadata* is a set of name\-value pairs\.
+
+When you create an object, you specify the key name, which uniquely identifies the object in the bucket\. For example, on the [Amazon S3 console](https://console.aws.amazon.com/s3/home), when you highlight a bucket, a list of objects in your bucket appears\. These names are the *object keys*\. The name for a key is a sequence of Unicode characters whose UTF\-8 encoding is at most 1,024 bytes long\. 
+
+The Amazon S3 data model is a flat structure: You create a bucket, and the bucket store objects\. There is no hierarchy of subbuckets or subfolders\. However, you can infer logical hierarchy using key name prefixes and delimiters as the Amazon S3 console does\. The Amazon S3 console supports a concept of folders\. For more information about how to edit metadata from the Amazon S3 console, see [Editing object metadata in the Amazon S3 console](UsingMetadata.md#add-object-metadata)\.
+
+Suppose that your bucket \(`admin-created`\) has four objects with the following object keys:
+
+`Development/Projects.xls`
+
+`Finance/statement1.pdf`
+
+`Private/taxdocument.pdf`
+
+`s3-dg.pdf`
+
+The console uses the key name prefixes \(`Development/`, `Finance/`, and `Private/`\) and delimiter \('/'\) to present a folder structure\. The `s3-dg.pdf` key does not have a prefix, so its object appears directly at the root level of the bucket\. If you open the `Development/` folder, you see the `Projects.xlsx` object in it\. 
++ Amazon S3 supports buckets and objects, and there is no hierarchy\. However, by using prefixes and delimiters in an object key name, the Amazon S3 console and the AWS SDKs can infer hierarchy and introduce the concept of folders\.
++ The Amazon S3 console implements folder object creation by creating a zero\-byte object with the folder *prefix and delimiter* value as the key\. These folder objects don't appear in the console\. Otherwise they behave like any other objects and can be viewed and manipulated through the REST API, AWS CLI, and AWS SDKs\.
+
+## Object key naming guidelines<a name="object-key-guidelines"></a>
+
+You can use any UTF\-8 character in an object key name\. However, using certain characters in key names can cause problems with some applications and protocols\. The following guidelines help you maximize compliance with DNS, web\-safe characters, XML parsers, and other APIs\. 
+
+### Safe characters<a name="object-key-guidelines-safe-characters"></a>
+
+The following character sets are generally safe for use in key names\.
+
+
+|  |  | 
+| --- |--- |
+| Alphanumeric characters |    0\-9   a\-z   A\-Z    | 
+| Special characters |    Forward slash \(`/`\)   Exclamation point \(`!`\)   Hyphen \(`-`\)   Underscore \(`_`\)   Period \(`.`\)   Asterisk \(`*`\)   Single quote \(`'`\)   Open parenthesis \(`(`\)   Close parenthesis \(`)`\)    | 
+
+The following are examples of valid object key names:
++ `4my-organization`
++ `my.great_photos-2014/jan/myvacation.jpg`
++ `videos/2014/birthday/video1.wmv`
+
+**Important**  
+If an object key name ends with a single period \(\.\), or two periods \(\.\.\), you can’t download the object using the Amazon S3 console\. To download an object with a key name ending with “\.” or “\.\.”, you must use the AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\.
+
+### Characters that might require special handling<a name="object-key-guidelines-special-handling"></a>
+
+The following characters in a key name might require additional code handling and likely need to be URL encoded or referenced as HEX\. Some of these are non\-printable characters that your browser might not handle, which also requires special handling:
++ Ampersand \("&"\) 
++ Dollar \("$"\) 
++ ASCII character ranges 00–1F hex \(0–31 decimal\) and 7F \(127 decimal\) 
++ 'At' symbol \("@"\) 
++ Equals \("="\) 
++ Semicolon \(";"\) 
++ Colon \(":"\) 
++ Plus \("\+"\) 
++ Space – Significant sequences of spaces might be lost in some uses \(especially multiple spaces\) 
++ Comma \(","\) 
++ Question mark \("?"\) 
+
+### Characters to avoid<a name="object-key-guidelines-avoid-characters"></a>
+
+Avoid the following characters in a key name because of significant special handling for consistency across all applications\. 
++ Backslash \("\\"\) 
++ Left curly brace \("\{"\) 
++ Non\-printable ASCII characters \(128–255 decimal characters\)
++ Caret \("^"\) 
++ Right curly brace \("\}"\) 
++ Percent character \("%"\) 
++ Grave accent / back tick \("`"\) 
++ Right square bracket \("\]"\) 
++ Quotation marks 
++ 'Greater Than' symbol \(">"\) 
++ Left square bracket \("\["\) 
++ Tilde \("\~"\) 
++ 'Less Than' symbol \("<"\) 
++ 'Pound' character \("\#"\) 
++ Vertical bar / pipe \("\|"\) 

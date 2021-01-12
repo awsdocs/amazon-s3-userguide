@@ -1,0 +1,69 @@
+--------
+
+Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
+
+--------
+
+# Buckets overview<a name="UsingBucket"></a>
+
+To upload your data \(photos, videos, documents, etc\.\) to Amazon S3, you must first create an S3 bucket in one of the AWS Regions\. You can then upload any number of objects to the bucket\. 
+
+In terms of implementation, buckets and objects are AWS resources, and Amazon S3 provides APIs for you to manage them\. For example, you can create a bucket and upload objects using the Amazon S3 API\. You can also use the Amazon S3 console to perform these operations\. The console uses the Amazon S3 APIs to send requests to Amazon S3\. 
+
+This section describes how to work with buckets\. For information about working with objects, see [Amazon S3 objects overview](UsingObjects.md)\.
+
+An Amazon S3 bucket name is globally unique, and the namespace is shared by all AWS accounts\. This means that after a bucket is created, the name of that bucket cannot be used by another AWS account in any AWS Region until the bucket is deleted\. You should not depend on specific bucket naming conventions for availability or security verification purposes\. For bucket naming guidelines, see [Bucket naming rules](bucketnamingrules.md)\.
+
+Amazon S3 creates buckets in a Region that you specify\. To optimize latency, minimize costs, or address regulatory requirements, choose any AWS Region that is geographically close to you\. For example, if you reside in Europe, you might find it advantageous to create buckets in the Europe \(Ireland\) or Europe \(Frankfurt\) Regions\. For a list of Amazon S3 Regions, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
+
+**Note**  
+Objects that belong to a bucket that you create in a specific AWS Region never leave that Region, unless you explicitly transfer them to another Region\. For example, objects that are stored in the Europe \(Ireland\) Region never leave it\. 
+
+**Topics**
++ [About permissions](#about-access-permissions-create-bucket)
++ [Managing public access to buckets](#block-public-access-intro)
++ [Bucket configuration options](#bucket-config-options-intro)
+
+## About permissions<a name="about-access-permissions-create-bucket"></a>
+
+You can use your AWS account root user credentials to create a bucket and perform any other Amazon S3 operation\. However, we recommend that you do not use the root user credentials of your AWS account to make requests, such as to create a bucket\. Instead, create an AWS Identity and Access Management \(IAM\) user, and grant that user full access \(users by default have no permissions\)\. 
+
+These users are referred to as *administrators*\. You can use the administrator user credentials, instead of the root user credentials of your account, to interact with AWS and perform tasks, such as create a bucket, create users, and grant them permissions\. 
+
+For more information, see [AWS account root user credentials and IAM user credentials](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) in the *AWS General Reference* and [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
+
+The AWS account that creates a resource owns that resource\. For example, if you create an IAM user in your AWS account and grant the user permission to create a bucket, the user can create a bucket\. But the user does not own the bucket; the AWS account that the user belongs to owns the bucket\. The user needs additional permission from the resource owner to perform any other bucket operations\. For more information about managing permissions for your Amazon S3 resources, see [Identity and access management in Amazon S3](s3-access-control.md)\.
+
+## Managing public access to buckets<a name="block-public-access-intro"></a>
+
+Public access is granted to buckets and objects through access control lists \(ACLs\), bucket policies, or both\. To help you manage public access to Amazon S3 resources, Amazon S3 provides settings to block public access\. Amazon S3 Block Public Access settings can override ACLs and bucket policies so that you can enforce uniform limits on public access to these resources\. You can apply Block Public Access settings to individual buckets or to all buckets in your account\.
+
+To help ensure that all of your Amazon S3 buckets and objects have their public access blocked, we recommend that you turn on all four settings for Block Public Access for your account\. These settings block all public access for all current and future buckets\.
+
+Before applying these settings, verify that your applications will work correctly without public access\. If you require some level of public access to your buckets or objects—for example, to host a static website as described at [Hosting a static website using Amazon S3](WebsiteHosting.md)—you can customize the individual settings to suit your storage use cases\. For more information, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
+
+## Bucket configuration options<a name="bucket-config-options-intro"></a>
+
+Amazon S3 supports various options for you to configure your bucket\. For example, you can configure your bucket for website hosting, add a configuration to manage the lifecycle of objects in the bucket, and configure the bucket to log all access to the bucket\. Amazon S3 supports subresources for you to store and manage the bucket configuration information\. You can use the Amazon S3 API to create and manage these subresources\. However, you can also use the console or the AWS SDKs\. 
+
+**Note**  
+There are also object\-level configurations\. For example, you can configure object\-level permissions by configuring an access control list \(ACL\) specific to that object\.
+
+These are referred to as subresources because they exist in the context of a specific bucket or object\. The following table lists subresources that enable you to manage bucket\-specific configurations\. 
+
+
+| Subresource | Description | 
+| --- | --- | 
+|   *cors* \(cross\-origin resource sharing\)   |   You can configure your bucket to allow cross\-origin requests\. For more information, see [Configuring and using cross\-origin resource sharing \(CORS\)](cors.md)\.  | 
+|   *event notification*   |  You can enable your bucket to send you notifications of specified bucket events\.  For more information, see [Configuring Amazon S3 event notifications](NotificationHowTo.md)\.  | 
+| lifecycle |  You can define lifecycle rules for objects in your bucket that have a well\-defined lifecycle\. For example, you can define a rule to archive objects one year after creation, or delete an object 10 years after creation\.  For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.   | 
+|   *location*   |   When you create a bucket, you specify the AWS Region where you want Amazon S3 to create the bucket\. Amazon S3 stores this information in the location subresource and provides an API for you to retrieve this information\.   | 
+|   *logging*   |  Logging enables you to track requests for access to your bucket\. Each access log record provides details about a single access request, such as the requester, bucket name, request time, request action, response status, and error code, if any\. Access log information can be useful in security and access audits\. It can also help you learn about your customer base and understand your Amazon S3 bill\.   For more information, see [Logging requests with server access logging](ServerLogs.md)\.   | 
+|   *object locking*   |  To use S3 Object Lock, you must enable it for a bucket\. You can also optionally configure a default retention mode and period that applies to new objects that are placed in the bucket\.  For more information, see [Bucket configuration](object-lock-overview.md#object-lock-bucket-config)\.   | 
+|   *policy* and *ACL* \(access control list\)   |  All your resources \(such as buckets and objects\) are private by default\. Amazon S3 supports both bucket policy and access control list \(ACL\) options for you to grant and manage bucket\-level permissions\. Amazon S3 stores the permission information in the *policy* and *acl* subresources\. For more information, see [Identity and access management in Amazon S3](s3-access-control.md)\.  | 
+|   *replication*   |  Replication is the automatic, asynchronous copying of objects across buckets in different or the same AWS Regions\. For more information, see [Replicating objects](replication.md)\.  | 
+|   *requestPayment*   |  By default, the AWS account that creates the bucket \(the bucket owner\) pays for downloads from the bucket\. Using this subresource, the bucket owner can specify that the person requesting the download will be charged for the download\. Amazon S3 provides an API for you to manage this subresource\. For more information, see [Configuring Requester Pays buckets for storage transfers and usage](RequesterPaysBuckets.md)\.  | 
+|   *tagging*   |  You can add cost allocation tags to your bucket to categorize and track your AWS costs\. Amazon S3 provides the *tagging* subresource to store and manage tags on a bucket\. Using tags you apply to your bucket, AWS generates a cost allocation report with usage and costs aggregated by your tags\.  For more information, see [Billing and usage reporting for S3 buckets](BucketBilling.md)\.   | 
+|   *transfer acceleration*   |  Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket\. Transfer Acceleration takes advantage of the globally distributed edge locations of Amazon CloudFront\. For more information, see [Configuring fast, secure file transfers using Amazon S3 Transfer Acceleration](transfer-acceleration.md)\.  | 
+| versioning |  Versioning helps you recover accidental overwrites and deletes\.  We recommend versioning as a best practice to recover objects from being deleted or overwritten by mistake\.  For more information, see [Using versioning in S3 buckets](Versioning.md)\.  | 
+|  website |  You can configure your bucket for static website hosting\. Amazon S3 stores this configuration by creating a *website* subresource\. For more information, see [Hosting a static website using Amazon S3](WebsiteHosting.md)\.   | 

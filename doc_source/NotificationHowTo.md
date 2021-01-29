@@ -14,7 +14,7 @@ If two writes are made to a single non\-versioned object at the same time, it is
 
 ## Enabling event notifications<a name="how-to-enable-disable-notification-intro"></a>
 
-Enabling notifications is a bucket\-level operation; that is, you store notification configuration information in the *notification* subresource ssociated with a bucket\. After creating or changing the bucket notification configuration, typically you need to wait 5 minutes for the changes to take effect\. You can use any of the following methods to manage notification configuration:
+Enabling notifications is a bucket\-level operation; that is, you store notification configuration information in the *notification* subresource associated with a bucket\. After creating or changing the bucket notification configuration, typically you need to wait 5 minutes for the changes to take effect\. You can use any of the following methods to manage notification configuration:
 + **Using the Amazon S3 console**
 
   The console UI enables you to set a notification configuration on a bucket without having to write any code\. For more information, see [Enabling and configuring event notifications using the Amazon S3 console](enable-event-notifications.md)\.

@@ -32,13 +32,13 @@ To see the benefit of using bucket owner condition, consider the following scena
 
 Bea can help protect against situations like this by using bucket owner condition\. With bucket owner condition, Bea can include the AWS account ID of the expected bucket owner in her requests\. Amazon S3 then checks the account ID of the bucket owner before processing each request\. If the actual bucket owner doesn't match the expected bucket owner, the request fails\.
 
-If Bea uses bucket owner condition, the scenario described earlier won't result in Bea's application inadvertently writing to a test bucket\. Instead, the requests that her application makes at step 3 will fail with a descriptive error message\. By using bucket owner condition, Bea helps eliminate the risk of accidentally interacting with buckets in the wrong AWS account\.
+If Bea uses bucket owner condition, the scenario described earlier won't result in Bea's application inadvertently writing to a test bucket\. Instead, the requests that her application makes at step 3 will fail with an `(Access Denied)` error message\. By using bucket owner condition, Bea helps eliminate the risk of accidentally interacting with buckets in the wrong AWS account\.
 
 ## Verifying a bucket owner<a name="bucket-owner-condition-use"></a>
 
 To use bucket owner condition, you include a parameter with your request that specifies the expected bucket owner\. Most S3 operations involve only a single bucket, and require only this single parameter to use bucket owner condition\. For `CopyObject` operations, this first parameter specifies the expected owner of the destination bucket, and you include a second parameter to specify the expected owner of the source bucket\.
 
-When you make a request that includes a bucket owner condition parameter, S3 checks the account ID of the bucket owner against the specified parameter before processing the request\. If the parameter matches the bucket owner's account ID, S3 processes the request\. If the parameter doesn't match the bucket owner's account ID, the request fails with a descriptive error message\.
+When you make a request that includes a bucket owner condition parameter, S3 checks the account ID of the bucket owner against the specified parameter before processing the request\. If the parameter matches the bucket owner's account ID, S3 processes the request\. If the parameter doesn't match the bucket owner's account ID, the request fails with an `(Access Denied)` error message\.
 
 You can use bucket owner condition with the AWS Command Line Interface \(AWS CLI\), AWS SDKs, and Amazon S3 REST APIs\. When using bucket owner condition with the AWS CLI and Amazon S3 REST APIs, use the following parameter names\.
 

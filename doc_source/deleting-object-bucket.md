@@ -6,7 +6,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Step 5: Delete your objects and bucket<a name="deleting-object-bucket"></a>
 
-When you no longer need an object or a bucket, we recommend that you delete them to prevent further charges\. If you completed this getting started walkthrough as a learning exercise, and you don'tt plan to use your bucket or objects, we recommend that you delete your bucket and objects so that charges no longer accrue\. 
+When you no longer need an object or a bucket, we recommend that you delete them to prevent further charges\. If you completed this getting started walkthrough as a learning exercise, and you don't plan to use your bucket or objects, we recommend that you delete your bucket and objects so that charges no longer accrue\. 
 
 Before you delete your bucket, empty the bucket or delete the objects in the bucket\. After you delete your objects and bucket, they are no longer available\.
 

@@ -9,10 +9,11 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 S3 Batch Operations supports several different operations\. The topics in this section describe each of these operations\.
 
 **Topics**
-+ [Put object copy](batch-ops-copy-object.md)
-+ [Initiate restore object](batch-ops-initiate-restore-object.md)
-+ [Invoking a Lambda function from Amazon S3 batch operations](batch-ops-invoke-lambda.md)
-+ [Put object ACL](batch-ops-put-object-acl.md)
-+ [Put object tagging](batch-ops-put-object-tagging.md)
-+ [S3 Object Lock retention date](batch-ops-retention-date.md)
++ [Copy](batch-ops-copy-object.md)
++ [Invoke AWS Lambda function](batch-ops-invoke-lambda.md)
++ [Replace all object tags](batch-ops-put-object-tagging.md)
++ [Delete all object tags](batch-ops-delete-object-tagging.md)
++ [Replace access control list](batch-ops-put-object-acl.md)
++ [Restore](batch-ops-initiate-restore-object.md)
++ [S3 Object Lock retention](batch-ops-retention-date.md)
 + [S3 Object Lock legal hold](batch-ops-legal-hold.md)

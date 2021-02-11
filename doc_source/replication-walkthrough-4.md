@@ -10,11 +10,11 @@ By default, Amazon S3 doesn't replicate objects that are stored at rest using se
 
 **Topics**
 
-## Replicate encrypted objects \(console\)<a name="replication-ex4-console"></a>
+## Using the S3 console<a name="replication-ex4-console"></a>
 
 For step\-by\-step instructions, see [Configuring replication for source and destination buckets owned by the same account](replication-walkthrough1.md)\. This topic provides instructions for setting replication configuration when buckets are owned by same and different AWS accounts\.
 
-## Replicate encrypted objects \(AWS CLI\)<a name="replication-ex4-cli"></a>
+## Using the AWS CLI<a name="replication-ex4-cli"></a>
 
 To replicate encrypted objects with the AWS CLI, you create buckets, enable versioning on the buckets, create an IAM role that gives Amazon S3 permission to replicate objects, and add the replication configuration to the source bucket\. The replication configuration provides information related to replicating objects encrypted using KMS keys\. The IAM role permissions include necessary permissions to replicate the encrypted objects\. You also test the setup\.
 
@@ -269,8 +269,8 @@ In the replication configuration you specify the IAM role that Amazon S3 can ass
 
    1. Verify that the *destination* bucket contains the object replicas and that they are encrypted using the AWS KMS CMK that you specified in the configuration\.
 
-## Replicate encrypted objects \(AWS SDK\)<a name="replication-ex4-sdk"></a>
+## Using the AWS SDKs<a name="replication-ex4-sdk"></a>
 
- For a code example to add replication configuration, see [Configure replication when buckets are owned by the same account \(AWS SDK\)](replication-walkthrough1.md#replication-ex1-sdk)\. You need to modify the replication configuration appropriately\. 
+ For a code example to add replication configuration, see [Using the AWS SDKs](replication-walkthrough1.md#replication-ex1-sdk)\. You need to modify the replication configuration appropriately\. 
 
 For conceptual information, see [Replicating objects created with server\-side encryption \(SSE\) using AWS KMS CMKs](replication-config-for-kms-objects.md)\. 

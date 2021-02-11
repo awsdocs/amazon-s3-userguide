@@ -62,7 +62,7 @@ All the tasks of creating users and granting permissions are done in the AWS Man
    + If using the AWS CLI, create two profiles, AccountAadmin and AccountBadmin, in the config file\.
    + If using the AWS Tools for Windows PowerShell, make sure you store credentials for the session as AccountAadmin and AccountBadmin\.
 
-   For instructions, see [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)\. 
+   For instructions, see [Setting up the tools for the example walkthroughs](policy-eval-walkthrough-download-awscli.md)\. 
 
 ## Step 1: Do the account a tasks<a name="access-policies-walkthrough-cross-account-acl-acctA-tasks"></a>
 
@@ -162,7 +162,7 @@ Now verify user Dave in Account A can access the object owned by Account B\.
 
 **Using the AWS CLI**
 
-1. Add user Dave credentials to the AWS CLI config file and create a new profile, `UserDaveAccountA`\. For more information, see [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)\.
+1. Add user Dave credentials to the AWS CLI config file and create a new profile, `UserDaveAccountA`\. For more information, see [Setting up the tools for the example walkthroughs](policy-eval-walkthrough-download-awscli.md)\.
 
    ```
    [profile UserDaveAccountA]

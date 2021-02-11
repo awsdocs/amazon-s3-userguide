@@ -25,18 +25,14 @@ You can enable block public access settings only for access points, buckets, and
 When you apply block public access settings to an account, the settings apply to all AWS Regions globally\. The settings might not take effect in all Regions immediately or simultaneously, but they eventually propagate to all Regions\.
 
 **Topics**
-+ [Enable block public access on the Amazon S3 console](#console-block-public-access-options)
 + [Block public access settings](#access-control-block-public-access-options)
++ [Performing block public access operations on an access point](#access-control-block-public-access-examples-access-point)
 + [The meaning of "public"](#access-control-block-public-access-policy-status)
 + [Using Access Analyzer for S3 to review public buckets](#access-analyzer-public-info)
 + [Permissions](#access-control-block-public-access-permissions)
 + [Configuring block public access](#configuring-block-public-access)
 + [Configuring block public access settings for your account](configuring-block-public-access-account.md)
 + [Configuring block public access settings for your S3 buckets](configuring-block-public-access-bucket.md)
-
-## Enable block public access on the Amazon S3 console<a name="console-block-public-access-options"></a>
-
-Amazon S3 Block Public Access provides four settings\. You can apply these settings in any combination to individual access points, buckets, or entire AWS accounts\. For more information, see [Configuring block public access settings for your account](configuring-block-public-access-account.md)\.
 
 ## Block public access settings<a name="access-control-block-public-access-options"></a>
 
@@ -55,6 +51,10 @@ The following table contains the available settings\.
 **Important**  
 Calls to GET Bucket acl and GET Object acl always return the effective permissions in place for the specified bucket or object\. For example, suppose that a bucket has an ACL that grants public access, but the bucket also has the `IgnorePublicAcls` setting enabled\. In this case, GET Bucket acl returns an ACL that reflects the access permissions that Amazon S3 is enforcing, rather than the actual ACL that is associated with the bucket\.
 Block public access settings don't alter existing policies or ACLs\. Therefore, removing a block public access setting causes a bucket or object with a public policy or ACL to again be publicly accessible\. 
+
+## Performing block public access operations on an access point<a name="access-control-block-public-access-examples-access-point"></a>
+
+To perform block public access operations on an access point, use the AWS CLI service `s3control`\. Note that it isn't currently possible to change an access point's block public access settings after creating the access point\. Thus, the only way to specify block public access settings for an access point is by including them when creating the access point\.
 
 ## The meaning of "public"<a name="access-control-block-public-access-policy-status"></a>
 

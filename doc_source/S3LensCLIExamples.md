@@ -29,8 +29,8 @@ Additional charges apply for Advanced Metrics and Recommendations\. For more inf
 
 ```
         {
-     "Id": "SampleS3StorageLensConfiguration",//Use this property to identify S3 Storage Lens configuration.
-     "AwsOrg": {//Use this property when enabling S3 Storage Lens for AWS Organizations
+     "Id": "SampleS3StorageLensConfiguration", //Use this property to identify S3 Storage Lens configuration.
+     "AwsOrg": { //Use this property when enabling S3 Storage Lens for AWS Organizations
         "Arn": "arn:aws:organizations::222222222222:organization/o-abcdefgh"
      },
      "AccountLevel": {
@@ -39,11 +39,11 @@ Additional charges apply for Advanced Metrics and Recommendations\. For more inf
         },
         "BucketLevel": {
            "ActivityMetrics": {
-              "IsEnabled":true//Mark this as false if you only want Free Metrics metrics.
+              "IsEnabled":true //Mark this as false if you only want Free Metrics metrics.
            },
            "PrefixLevel":{
               "StorageMetrics":{
-                 "IsEnabled":true,//Mark this as false if you only want Free Metrics metrics.
+                 "IsEnabled":true, //Mark this as false if you only want Free Metrics metrics.
                  "SelectionCriteria":{
                     "MaxDepth":5,
                     "MinStorageBytesPercentage":1.25,
@@ -53,21 +53,21 @@ Additional charges apply for Advanced Metrics and Recommendations\. For more inf
            }
         }
      },
-     "Exclude": {//Replace with include if you prefer to include regions.
+     "Exclude": { //Replace with include if you prefer to include regions.
         "Regions": [
            "eu-west-1"
         ],
-        "Buckets": [/This attribute is not supported for  Organizations-level configurations.
+        "Buckets": [ //This attribute is not supported for  Organizations-level configurations.
            "arn:aws:s3:::source_bucket1" 
         ]
      },
-     "IsEnabled": true,//Whether the configuration is enabled
-     "DataExport": {//Details about the metrics export
+     "IsEnabled": true, //Whether the configuration is enabled
+     "DataExport": { //Details about the metrics export
         "S3BucketDestination": {
            "OutputSchemaVersion": "V_1",
-           "Format": "CSV",//You can add "Parquet" if you prefer.
+           "Format": "CSV", //You can add "Parquet" if you prefer.
            "AccountId": "ExampleAWSAccountNo8",
-           "Arn": "arn:aws:s3:::destination-bucket-name",
+           "Arn": "arn:aws:s3:::destination-bucket-name", // The destination bucket for your metrics export must be in the same Region as your S3 Storage Lens configuration. 
            "Prefix": "prefix-for-your-export-destination",
            "Encryption": {
               "SSES3": {}

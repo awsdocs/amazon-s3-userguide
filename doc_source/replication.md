@@ -29,7 +29,7 @@ Additional configuration options are available\. For more information, see [Addi
 + [Setting up replication](replication-how-setup.md)
 + [Walkthroughs: Configuring replication](replication-example-walkthroughs.md)
 + [Additional replication configurations](replication-additional-configs.md)
-+ [Gettinging replication status information](replication-status.md)
++ [Getting replication status information](replication-status.md)
 + [Troubleshooting replication](replication-troubleshoot.md)
 + [Additional considerations](replication-and-other-bucket-configs.md)
 
@@ -53,7 +53,7 @@ S3 Cross\-Region Replication \(CRR\) is used to copy objects across Amazon S3 bu
 
 Same\-Region Replication \(SRR\) is used to copy objects across Amazon S3 buckets in the same AWS Region\. SRR can help you do the following:
 + **Aggregate logs into a single bucket** — If you store logs in multiple buckets or across multiple accounts, you can easily replicate logs into a single, in\-Region bucket\. This allows for simpler processing of logs in a single location\.
-+ **Configure live replication between production and test accounts** — If you or your customers have production and test accounts that use the same data, you can replicate objects between those multiple accounts, while maintaining  object metadata\.
++ **Configure live replication between production and test accounts** — If you or your customers have production and test accounts that use the same data, you can replicate objects between those multiple accounts, while maintaining object metadata\.
 + **Abide by data sovereignty laws** — You might be required to store multiple copies of your data in separate AWS accounts within a certain Region\. Same\-Region replication can help you automatically replicate critical data when compliance regulations don't allow the data to leave your country\.
 
 ## Requirements for replication<a name="replication-requirements"></a>
@@ -73,8 +73,6 @@ For more information, see [Setting up replication](replication-how-setup.md)\.
 
 If you are setting the replication configuration in a *cross\-account scenario*, where source and destination buckets are owned by different AWS accounts, the following additional requirement applies:
 + The owner of the destination buckets must grant the owner of the source bucket permissions to replicate objects with a bucket policy\. For more information, see [Granting permissions when source and destination buckets are owned by different AWS accounts](setting-repl-config-perm-overview.md#setting-repl-config-crossacct)\.
-
-  For more information, see [Granting permissions when source and destination buckets are owned by different AWS accounts](setting-repl-config-perm-overview.md#setting-repl-config-crossacct)\.
 + The destination buckets cannot be configured as Requester Pays buckets\. For more information, see [Configuring Requester Pays buckets for storage transfers and usage](RequesterPaysBuckets.md)\.
 
 **Topics**
@@ -86,6 +84,6 @@ If you are setting the replication configuration in a *cross\-account scenario*,
 + [Setting up replication](replication-how-setup.md)
 + [Walkthroughs: Configuring replication](replication-example-walkthroughs.md)
 + [Additional replication configurations](replication-additional-configs.md)
-+ [Gettinging replication status information](replication-status.md)
++ [Getting replication status information](replication-status.md)
 + [Troubleshooting replication](replication-troubleshoot.md)
 + [Additional considerations](replication-and-other-bucket-configs.md)

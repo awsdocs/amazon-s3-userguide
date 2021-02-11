@@ -22,4 +22,4 @@ You can use this method to free up space by explicitly deleting data, using a li
 
 Your Amazon S3 on Outposts management events are available via AWS CloudTrail logs\. For more information, see [Logging Amazon S3 API calls using CloudTrail](https://docs.aws.amazon.com/AmazonS3/latest/dev/cloudtrail-logging.html)\. 
 
-In addition, you can optionally enable logging for data events in CloudTrail\. For more information, see [How do I enable object\-level logging for an S3 bucket with AWS CloudTrail data events?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/enable-cloudtrail-events.html) 
+In addition, you can optionally enable logging for data events in CloudTrail\. For more information, see [Using the Amazon S3 console](enable-cloudtrail-logging-for-s3.md#enable-cloudtrail-events)\. 

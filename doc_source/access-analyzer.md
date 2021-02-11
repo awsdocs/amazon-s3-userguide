@@ -143,8 +143,7 @@ If a bucket grants access to the public or other AWS accounts, including account
 
 1. To acknowledge your intent for this bucket to be accessed by the public or other AWS accounts, including accounts outside of your organization, choose **Archive**\.
 
-1. Enter **confirm**, and choose **Archive**\.  
-![\[Console screenshot of the allow public access for selected bucket dialog box.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/archive-public-bucket-findings-access-analyzer.png)
+1. Enter **confirm**, and choose **Archive**\.
 
 ## Activating an archived bucket finding<a name="activating-buckets"></a>
 

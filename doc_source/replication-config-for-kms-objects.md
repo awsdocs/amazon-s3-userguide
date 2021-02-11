@@ -95,10 +95,25 @@ We recommend that you use the `s3:GetObjectVersionForReplication` action instead
   + `kms:Decrypt` permissions for the AWS KMS CMK used to decrypt the source object
   + `kms:Encrypt` permissions for the AWS KMS CMK used to encrypt the object replica
 
-**Important**  
-To use replication with an S3 Bucket Key, your IAM policy must include `kms:Decrypt` and `kms:Encrypt` permissions on the CMK used to encrypt the object replica\. The call to `kms:Decrypt` verifies the integrity of the S3 Bucket Key before using it\. 
-
 We recommend that you restrict these permissions only to the destination buckets and objects using AWS KMS condition keys\. The AWS account that owns the IAM role must have permissions for these AWS KMS actions \(`kms:Encrypt` and `kms:Decrypt`\) for AWS KMS CMKs listed in the policy\. If the AWS KMS CMKs are owned by another AWS account, the CMK owner must grant these permissions to the AWS account that owns the IAM role\. For more information about managing access to these CMKs, see [Using IAM Policies with AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html) in the* AWS Key Management Service Developer Guide*\.
+
+### Amazon S3 Bucket Keys and replication<a name="bk-replication"></a>
+
+To use replication with an S3 Bucket Key, the AWS KMS key policy for the CMK used to encrypt the object replica must include `kms:Decrypt` permissions for the calling principal\. The call to `kms:Decrypt` verifies the integrity of the S3 Bucket Key before using it\. For more information, see [Using an S3 Bucket Key with replication](bucket-key.md#bucket-key-replication)\.
+
+When an S3 Bucket Key is enabled for the source or destination bucket, the encryption context will be the bucket Amazon Resource Name \(ARN\) and not the object ARN, for example, `arn:aws:s3:::bucket_ARN`\. You need to update your IAM policies to use the bucket ARN for the encryption context:
+
+```
+"kms:EncryptionContext:aws:s3:arn": [
+"arn:aws:s3:::bucket_ARN"
+]
+```
+
+For more information, see [Encryption context \(x\-amz\-server\-side\-encryption\-context\)](specifying-kms-encryption.md#s3-kms-encryption-context) and [Changes to note before enabling an S3 Bucket Key](bucket-key.md#bucket-key-changes)\.
+
+### Example policies \- Using AWS KMS server\-side\-encryption \(SSE\-KMS\) with replication<a name="kms-replication-examples"></a>
+
+The following example IAM policies show statements for using AWS KMS sever\-side encryption with replication\.
 
 **Example Using AWS KMS server\-side\-encryption \(SSE\-KMS\) – separate destination buckets**  
 The following example policy shows statements for using AWS KMS with separate destination buckets\.   
@@ -142,71 +157,6 @@ The following example policy shows statements for using AWS KMS with separate de
             "kms:ViaService": "s3.destination-bucket-2-region.amazonaws.com",
             "kms:EncryptionContext:aws:s3:arn": [
                 "arn:aws:s3:::destination-bucket-2-name/key-prefix1*",
-            ]
-        }
-    },
-    "Resource": [
-         "AWS KMS key ARNs (for the AWS Region of destination bucket 2). Used to encrypt object replicas created in destination bucket 2.",
-    ]
-}
-```
-
-**Example Using SSE\-KMS with an S3 Bucket Key enabled – separate destination buckets**  
-When an S3 Bucket Key is enabled for the source or destination bucket, the encryption context will be the bucket Amazon Resource Name \(ARN\) and not the object ARN, for example, `arn:aws:s3:::bucket_ARN`\. You need to update your IAM policies to use the bucket ARN for the encryption context:  
-
-```
-"kms:EncryptionContext:aws:s3:arn": [
-"arn:aws:s3:::bucket_ARN"
-]
-```
-For more information, see [Encryption context \(x\-amz\-server\-side\-encryption\-context\)](specifying-kms-encryption.md#s3-kms-encryption-context) and [Changes to note before enabling an S3 Bucket Key](bucket-key.md#bucket-key-changes)\.  
-The following example policy shows statements for using AWS KMS with an S3 Bucket Key enabled on separate destination buckets\.   
-
-```
-{
-    "Action": ["kms:Decrypt"],
-    "Effect": "Allow",
-    "Condition": {
-        "StringLike": {
-            "kms:ViaService": "s3.source-bucket-region.amazonaws.com",
-            "kms:EncryptionContext:aws:s3:arn": [
-                "arn:aws:s3:::source-bucket-name",
-            ]
-        }
-    },
-    "Resource": [
-        "List of AWS KMS key ARNs used to encrypt source objects.", 
-    ]
-},
-{
-    "Action": [
-    "kms:Encrypt",
-    "kms:Decrypt"
-    ],
-    "Effect": "Allow",
-    "Condition": {
-        "StringLike": {
-            "kms:ViaService": "s3.destination-bucket-1-region.amazonaws.com",
-            "kms:EncryptionContext:aws:s3:arn": [
-                "arn:aws:s3:::destination-bucket-name-1",
-            ]
-        }
-    },
-    "Resource": [
-         "AWS KMS key ARNs (for the AWS Region of the destination bucket 1). Used to encrypt object replicas created in destination bucket 1.", 
-    ]
-},
-{
-    "Action": [
-    "kms:Encrypt",
-    "kms:Decrypt"
-    ],
-    "Effect": "Allow",
-    "Condition": {
-        "StringLike": {
-            "kms:ViaService": "s3.destination-bucket-2-region.amazonaws.com",
-            "kms:EncryptionContext:aws:s3:arn": [
-                "arn:aws:s3:::destination-bucket-2-name",
             ]
         }
     },
@@ -289,8 +239,6 @@ Objects created with server\-side encryption using customer\-provided \(SSE\-C\)
    ]
 }
 ```
-
-
 
 ## Granting additional permissions for cross\-account scenarios<a name="replication-kms-cross-acct-scenario"></a>
 

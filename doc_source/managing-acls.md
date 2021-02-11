@@ -17,13 +17,7 @@ Each permission you grant for a user or group adds an entry in the ACL that is a
 **Warning**  
 We highly recommend that you avoid granting write access to the **Everyone \(public access\)** or **Authenticated Users group \(all AWS authenticated users\)** groups\. For more information about the effects of granting write access to these groups, see [Amazon S3 predefined groups](acl_overview.md#specifying-grantee-predefined-groups)\.
 
-## Using the S3 console<a name="manage-acls-using-console"></a>
-
-**Topics**
-+ [Set ACL permissions for a bucket](#set-bucket-permissions)
-+ [Set ACL permissions for an object](#set-object-permissions)
-
-### Set ACL permissions for a bucket<a name="set-bucket-permissions"></a>
+## Using the S3 console to set ACL permissions for a bucket<a name="set-bucket-permissions"></a>
 
 To set ACL permissions for a bucket, follow these steps\.
 
@@ -71,9 +65,9 @@ When you grant other AWS accounts access to your resources, be aware that the AW
 
 1. To save your changes, choose **Save changes**\.
 
-### Set ACL permissions for an object<a name="set-object-permissions"></a>
+## Using the S3 console to set ACL permissions for an object<a name="set-object-permissions"></a>
 
-To set ACL permissions for a bucket, follow these steps\.
+To set ACL permissions for an object, follow these steps\.
 
 **To set permissions for an object**
 

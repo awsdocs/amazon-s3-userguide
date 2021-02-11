@@ -139,6 +139,9 @@ To specify a rule filter with a combination of a key prefix and object tags, use
 ...
 ```
 
+**Note**  
+If you specify a rule with an empty filter tag your rule will apply to all objects in your bucket\.
+
 ## Additional destination configurations<a name="replication-config-optional-dest-config"></a>
 
 In the destination configuration, you specify the bucket or buckets where you want Amazon S3 to replicate objects\. You can set configurations to replicate objects from one source bucket to one or more destination buckets\. 

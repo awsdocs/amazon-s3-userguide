@@ -186,21 +186,21 @@ When you enable static website hosting for your bucket, you enter the name of th
 
 ## Step 6: Configure an error document<a name="step6-upload-error-doc"></a>
 
-When you enable static website hosting for your bucket, you enter the name of the error document \(for example, **error\.html**\)\. After you enable static website hosting for the bucket, you upload an HTML file with this error document name to your bucket\.
+When you enable static website hosting for your bucket, you enter the name of the error document \(for example, **404\.html**\)\. After you enable static website hosting for the bucket, you upload an HTML file with this error document name to your bucket\.
 
 **To configure an error document**
 
-1. Create an error document, for example `error.html`\.
+1. Create an error document, for example `404.html`\.
 
 1. Save the error document file locally\.
 
-   The error document name is case sensitive and must exactly match the name that you enter when you enable static website hosting\. For example, if you enter `error.html` for the **Error document** name in the **Static website hosting** dialog box, your error document file name must also be `error.html` and not `Error.html`\.
+   The error document name is case sensitive and must exactly match the name that you enter when you enable static website hosting\. For example, if you enter `404.html` for the **Error document** name in the **Static website hosting** dialog box, your error document file name must also be `404.html`\.
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the **Buckets** list, choose the name of the bucket that you want to use to host a static website\.
 
-1. Enable static website hosting for your bucket, and enter the exact name of your error document \(for example, `error.html`\)\. For more information, see [Enabling website hosting](EnableWebsiteHosting.md)\.
+1. Enable static website hosting for your bucket, and enter the exact name of your error document \(for example, `404.html`\)\. For more information, see [Enabling website hosting](EnableWebsiteHosting.md)\.
 
    After enabling static website hosting, proceed to step 6\. 
 

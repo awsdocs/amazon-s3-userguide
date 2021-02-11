@@ -6,9 +6,9 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Enabling S3 Object Lock using S3 Batch Operations<a name="batch-ops-object-lock"></a>
 
-You can use S3 Batch Operations with S3 Object Lock to manage retention or enable a legal hold for many Amazon S3 objects at once\. You specify the list of target objects in your manifest and submit it to Batch Operations for completion\. For more information, see [S3 Object Lock retention date](batch-ops-retention-date.md) and [S3 Object Lock legal hold](batch-ops-legal-hold.md)\. 
+You can use S3 Batch Operations with S3 Object Lock to manage retention or enable a legal hold for many Amazon S3 objects at once\. You specify the list of target objects in your manifest and submit it to Batch Operations for completion\. For more information, see [S3 Object Lock retention](batch-ops-retention-date.md) and [S3 Object Lock legal hold](batch-ops-legal-hold.md)\. 
 
-The following examples show how to create an IAM role with S3 Batch Operations permissions and update the role permissions to create jobs that enable Object Lock\. In the examples, replace any variable values with those that suit your needs\. You must also have a `CSV` manifest identifying the objects for your S3 Batch Operations job\. For more information, see [Specifying a manifest](batch-ops-basics.md#specify-batchjob-manifest)\.
+The following examples show how to create an IAM role with S3 Batch Operations permissions and update the role permissions to create jobs that enable Object Lock\. In the examples, replace any variable values with those that suit your needs\. You must also have a `CSV` manifest identifying the objects for your S3 Batch Operations job\. For more information, see [Specifying a manifest](batch-ops-create-job.md#specify-batchjob-manifest)\.
 
 ## Using the AWS CLI<a name="batchops-example-cli-object-lock"></a>
 
@@ -90,7 +90,7 @@ The following examples show how to create an IAM role with S3 Batch Operations p
 
 ## Using the AWS SDK Java<a name="batchops-examples-java-object-lock"></a>
 
-The following examples show how to create an IAM role with S3 Batch Operations permissions, and update the role permissions to create jobs that enable object lock using the AWS SDK for Java\. In the code, replace any variable values with those that suit your needs\. You must also have a `CSV` manifest identifying the objects for your S3 Batch Operations job\. For more information, see [Specifying a manifest](batch-ops-basics.md#specify-batchjob-manifest)\.
+The following examples show how to create an IAM role with S3 Batch Operations permissions, and update the role permissions to create jobs that enable object lock using the AWS SDK for Java\. In the code, replace any variable values with those that suit your needs\. You must also have a `CSV` manifest identifying the objects for your S3 Batch Operations job\. For more information, see [Specifying a manifest](batch-ops-create-job.md#specify-batchjob-manifest)\.
 
 You perform the following steps:
 

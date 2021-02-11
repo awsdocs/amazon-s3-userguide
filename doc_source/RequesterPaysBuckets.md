@@ -27,7 +27,9 @@ Requester Pays buckets do not support the following:
 
 **Topics**
 + [How Requester Pays charges work](#ChargeDetails)
-+ [Enabling Requester Pays on a bucket](RequesterPaysExamples.md)
++ [Configuring Requester Pays on a bucket](RequesterPaysExamples.md)
++ [Retrieving the requestPayment configuration using the REST API](BucketPayerValues.md)
++ [Downloading objects in Requester Pays buckets using the REST API](ObjectsinRequesterPaysBuckets.md)
 
 ## How Requester Pays charges work<a name="ChargeDetails"></a>
 
@@ -37,4 +39,4 @@ The charge for successful Requester Pays requests is straightforward: The reques
 + The request is anonymous \(HTTP code 403\)\.
 + The request is a SOAP request\.
 
-For more information about configuring Requester Pays buckets, see [Enabling Requester Pays on a bucket](RequesterPaysExamples.md)\.
+For more information about configuring Requester Pays buckets, see [Configuring Requester Pays on a bucket](RequesterPaysExamples.md)\.

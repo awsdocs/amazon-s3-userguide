@@ -10,7 +10,7 @@ In this example, you set up replication for source and destination buckets that 
 
 **Topics**
 
-## Configure replication when buckets are owned by the same account \(AWS CLI\)<a name="replication-ex1-cli"></a>
+## Using the AWS CLI<a name="replication-ex1-cli"></a>
 
 To use the AWS CLI to set up replication when the source and destination buckets are owned by the same AWS account, you create source and destination buckets, enable versioning on the buckets, create an IAM role that gives Amazon S3 permission to replicate objects, and add the replication configuration to the source bucket\. To verify your setup, you test it\.
 
@@ -192,7 +192,7 @@ To set up replication configuration when both source and destination buckets are
 
    1. Add sample objects to the `Tax` folder in the *source* bucket\. 
 **Note**  
-The amount of time it takes for Amazon S3 to replicate an object depends on the size of the object\. For information about how to see the status of replication, see [Gettinging replication status information](replication-status.md)\.
+The amount of time it takes for Amazon S3 to replicate an object depends on the size of the object\. For information about how to see the status of replication, see [Getting replication status information](replication-status.md)\.
 
       In the *destination* bucket, verify the following:
       + That Amazon S3 replicated the objects\.
@@ -206,7 +206,7 @@ The amount of time it takes for Amazon S3 to replicate an object depends on the 
 
       For instructions, see [Configuring ACLs](managing-acls.md)\.
 
-## Configure replication when buckets are owned by the same account \(AWS SDK\)<a name="replication-ex1-sdk"></a>
+## Using the AWS SDKs<a name="replication-ex1-sdk"></a>
 
 Use the following code examples to add a replication configuration to a bucket with the AWS SDK for Java and AWS SDK for \.NET, respectively\.
 

@@ -50,21 +50,22 @@ To allow the S3 Batch Operations service principal to assume the IAM role, attac
 
 Depending on the type of operations, you can attach one of the following policies\.
 
-Before you configure permissions, please note the following:
+Before you configure permissions, note the following:
 + Regardless of the operation, Amazon S3 needs permissions to read your manifest object from your S3 bucket and optionally write a report to your bucket\. Therefore, all of the following policies include these permissions\.
 + For Amazon S3 inventory report manifests, S3 Batch Operations require permission to read the manifest\.json object and all associated CSV data files\.
 + Version\-specific permissions such as `s3:GetObjectVersion` are only required when you are specifying the version ID of the objects\.
 + If you are running S3 Batch Operations on encrypted objects, the IAM role must also have access to the AWS KMS keys used to encrypt them\.
 
 **Topics**
-+ [PUT copy object](#batch-ops-put-copy-object-policy)
-+ [PUT object tagging](#batch-ops-put-object-tagging-policy)
-+ [PUT object ACL](#batch-ops-put-object-acl-policy)
-+ [Initiate S3 Glacier restore](#batch-ops-initiate-restore-policy)
-+ [PUT S3 Object Lock retention](#batch-ops-put-object-lock-policy)
-+ [PUT S3 Object Lock legal hold](#batch-ops-put-object-legal-hold-policy)
++ [Copy objects: PutObject](#batch-ops-put-copy-object-policy)
++ [Replace object tagging: PutObjectTagging](#batch-ops-put-object-tagging-policy)
++ [Delete object tagging: DeleteObjectTagging](#batch-ops-delete-object-tagging-policy)
++ [Replace access control list: PutObjectAcl](#batch-ops-put-object-acl-policy)
++ [Restore objects: RestoreObject](#batch-ops-initiate-restore-policy)
++ [Apply Object Lock retention: PutObjectRetention](#batch-ops-put-object-lock-policy)
++ [Apply Object Lock legal hold: PutObjectLegalHold](#batch-ops-put-object-legal-hold-policy)
 
-### PUT copy object<a name="batch-ops-put-copy-object-policy"></a>
+### Copy objects: PutObject<a name="batch-ops-put-copy-object-policy"></a>
 
 ```
 {
@@ -113,7 +114,7 @@ Before you configure permissions, please note the following:
 }
 ```
 
-### PUT object tagging<a name="batch-ops-put-object-tagging-policy"></a>
+### Replace object tagging: PutObjectTagging<a name="batch-ops-put-object-tagging-policy"></a>
 
 ```
 {
@@ -152,7 +153,48 @@ Before you configure permissions, please note the following:
 }
 ```
 
-### PUT object ACL<a name="batch-ops-put-object-acl-policy"></a>
+### Delete object tagging: DeleteObjectTagging<a name="batch-ops-delete-object-tagging-policy"></a>
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+              "s3:DeleteObjectTagging",
+              "s3:DeleteObjectVersionTagging"
+            ],
+            "Resource": [
+                "arn:aws:s3:::{{TargetResource}}/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion",
+                "s3:GetBucketLocation"
+            ],
+            "Resource": [
+                "arn:aws:s3:::{{ManifestBucket}}/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetBucketLocation"
+            ],
+            "Resource": [
+                "arn:aws:s3:::{{ReportBucket}}/*"
+            ]
+        }
+    ]
+}
+```
+
+### Replace access control list: PutObjectAcl<a name="batch-ops-put-object-acl-policy"></a>
 
 ```
 {
@@ -191,7 +233,7 @@ Before you configure permissions, please note the following:
 }
 ```
 
-### Initiate S3 Glacier restore<a name="batch-ops-initiate-restore-policy"></a>
+### Restore objects: RestoreObject<a name="batch-ops-initiate-restore-policy"></a>
 
 ```
 {
@@ -229,7 +271,7 @@ Before you configure permissions, please note the following:
 }
 ```
 
-### PUT S3 Object Lock retention<a name="batch-ops-put-object-lock-policy"></a>
+### Apply Object Lock retention: PutObjectRetention<a name="batch-ops-put-object-lock-policy"></a>
 
 ```
 {
@@ -239,7 +281,7 @@ Before you configure permissions, please note the following:
             "Effect": "Allow",
             "Action": "s3:GetBucketObjectLockConfiguration",
             "Resource": [
-                "arn:aws:s3:::{{TargetResource}}"
+                "arn:aws:s3:::{{TargetResource}}/*"
             ]
         },
         {
@@ -277,7 +319,7 @@ Before you configure permissions, please note the following:
 }
 ```
 
-### PUT S3 Object Lock legal hold<a name="batch-ops-put-object-legal-hold-policy"></a>
+### Apply Object Lock legal hold: PutObjectLegalHold<a name="batch-ops-put-object-legal-hold-policy"></a>
 
 ```
 {
@@ -287,7 +329,7 @@ Before you configure permissions, please note the following:
             "Effect": "Allow",
             "Action": "s3:GetBucketObjectLockConfiguration",
             "Resource": [
-                "arn:aws:s3:::{{TargetResource}}"
+                "arn:aws:s3:::{{TargetResource}}/*"
             ]
         },
         {

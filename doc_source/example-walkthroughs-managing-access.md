@@ -29,7 +29,7 @@ This topic provides the following introductory walkthrough examples for granting
 
 ## Before you try the example walkthroughs<a name="before-you-try-example-walkthroughs-manage-access"></a>
 
-These examples use the AWS Management Console to create resources and grant permissions\. And to test permissions, the examples use the command line tools, AWS Command Line Interface \(CLI\) and AWS Tools for Windows PowerShell, so you don't need to write any code\. To test permissions you will need to set up one of these tools\. For more information, see [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)\. 
+These examples use the AWS Management Console to create resources and grant permissions\. And to test permissions, the examples use the command line tools, AWS Command Line Interface \(CLI\) and AWS Tools for Windows PowerShell, so you don't need to write any code\. To test permissions you will need to set up one of these tools\. For more information, see [Setting up the tools for the example walkthroughs](policy-eval-walkthrough-download-awscli.md)\. 
 
 In addition, when creating resources these examples don't use root credentials of an AWS account\. Instead, you create an administrator user in these accounts to perform these tasks\. 
 

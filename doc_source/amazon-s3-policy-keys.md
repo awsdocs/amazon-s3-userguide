@@ -364,7 +364,7 @@ Suppose that Account A, represented by account ID 123456789012, owns a bucket\. 
 
 ### Example 6: Granting permissions based on object tags<a name="example-object-tagging-access-control"></a>
 
-For examples on how to use object tagging condition keys with Amazon S3 operations, see [Access control policies](object-tagging.md#tagging-and-policies)\.
+For examples on how to use object tagging condition keys with Amazon S3 operations, see [Tagging and access control policies](tagging-and-policies.md)\.
 
 ## Examples — Amazon S3 condition keys for bucket operations<a name="bucket-keys-in-amazon-s3-policies"></a>
 

@@ -16,6 +16,13 @@ BitTorrent addresses this problem by recruiting the very clients that are downlo
  Amazon S3 does not support the BitTorrent protocol in AWS Regions launched after May 30, 2016\.
 You can only get a torrent file for objects that are less than 5 GBs in size\.
 
+For more information, see the topics below\.
+
+**Topics**
++ [How you are charged for BitTorrent delivery](#S3TorrentCharge)
++ [Using BitTorrent to retrieve objects stored in Amazon S3](#S3TorrentRetrieve)
++ [Publishing content using Amazon S3 and BitTorrent](#S3TorrentPublish)
+
 ## How you are charged for BitTorrent delivery<a name="S3TorrentCharge"></a>
 
 There is no extra charge for use of BitTorrent with Amazon S3\. Data transfer via the BitTorrent protocol is metered at the same rate as client/server delivery\. To be precise, whenever a downloading BitTorrent client requests a "piece" of an object from the Amazon S3 "seeder," charges accrue just as if an anonymous request for that piece had been made using the REST or SOAP protocol\. These charges will appear on your Amazon S3 bill and usage reports in the same way\. The difference is that if a lot of clients are requesting the same object simultaneously via BitTorrent, then the amount of data Amazon S3 must serve to satisfy those clients will be lower than with client/server delivery\. This is because the BitTorrent clients are simultaneously uploading and downloading amongst themselves\.

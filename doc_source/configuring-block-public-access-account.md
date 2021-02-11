@@ -12,7 +12,7 @@ For more information, see [Blocking public access to your Amazon S3 storage](acc
 
 You can use the S3 console, AWS CLI, AWS SDKs, and REST API to configure block public access settings for your all the buckets in your account\. For more information, see the sections below\.
 
-To configure block public access settings for your buckets and access points, see [Configuring block public access settings for your S3 buckets](configuring-block-public-access-bucket.md)
+To configure block public access settings for your buckets, see [Configuring block public access settings for your S3 buckets](configuring-block-public-access-bucket.md)\. For information about access points, see [Performing block public access operations on an access point](access-control-block-public-access.md#access-control-block-public-access-examples-access-point)\.
 
 ## Using the S3 console<a name="block-public-access-account"></a>
 
@@ -30,7 +30,7 @@ Amazon S3 block public access prevents the application of any settings that allo
 
 1. When you're asked for confirmation, enter **confirm**\. Then choose **Confirm** to save your changes\.
 
-## Using the AWS CLI \(account\)<a name="access-control-block-public-access-examples-cli"></a>
+## Using the AWS CLI<a name="access-control-block-public-access-examples-cli"></a>
 
 You can use Amazon S3 Block Public Access through the AWS CLI\. For more information about setting up and using the AWS CLI, see [What is the AWS Command Line Interface?](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
 
@@ -40,11 +40,7 @@ You can use Amazon S3 Block Public Access through the AWS CLI\. For more informa
   + GET PublicAccessBlock \(for an account\)
   + DELETE PublicAccessBlock \(for an account\)
 
-## Using the AWS CLI \(access point\)<a name="access-control-block-public-access-examples-access-point"></a>
-
-To perform block public access operations on an access point, use the AWS CLI service `s3control`\. Note that it isn't currently possible to change an access point's block public access settings after creating the access point\. Thus, the only way to specify block public access settings for an access point is by including them when creating the access point\.
-
-## Using the AWS SDKs \(account\)<a name="access-control-block-public-access-examples-sdk"></a>
+## Using the AWS SDKs<a name="access-control-block-public-access-examples-sdk"></a>
 
 ------
 #### [ Java ]
@@ -76,7 +72,7 @@ For information about using the other AWS SDKs, see [Developing with Amazon S3 u
 
 ------
 
-## Using the REST API \(account\)<a name="access-control-block-public-access-examples-api"></a>
+## Using the REST API<a name="access-control-block-public-access-examples-api"></a>
 
 For information about using Amazon S3 Block Public Access through the REST APIs, see the following topics in the *Amazon Simple Storage Service API Reference*\.
 + Account\-level operations

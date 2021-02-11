@@ -45,3 +45,4 @@ The following sections describe how to get started and use Amazon S3 Transfer Ac
 + [Requirements for using Transfer Acceleration](#transfer-acceleration-requirements)
 + [Getting started with Amazon S3 Transfer Acceleration](transfer-acceleration-getting-started.md)
 + [Enabling and using S3 Transfer Acceleration](transfer-acceleration-examples.md)
++ [Using the Amazon S3 Transfer Acceleration Speed Comparison tool](transfer-acceleration-speed-comparison.md)

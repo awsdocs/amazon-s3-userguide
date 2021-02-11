@@ -62,7 +62,7 @@ All the tasks of creating users and granting permissions are done in the AWS Man
    + If using the AWS CLI, create a profile, AccountAadmin, in the config file\.
    + If using the AWS Tools for Windows PowerShell, make sure you store credentials for the session as AccountAadmin\.
 
-   For instructions, see [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)\. 
+   For instructions, see [Setting up the tools for the example walkthroughs](policy-eval-walkthrough-download-awscli.md)\. 
 
 ## Step 1: Create resources \(a bucket and an IAM user\) in account a and grant permissions<a name="grant-permissions-to-user-in-your-account-step1"></a>
 
@@ -157,7 +157,7 @@ Using Dave's credentials, verify that the permissions work\. You can use either 
 
 **Test using the AWS CLI**
 
-1. Update the AWS CLI config file by adding the following UserDaveAccountA profile\. For more information, see [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)\.
+1. Update the AWS CLI config file by adding the following UserDaveAccountA profile\. For more information, see [Setting up the tools for the example walkthroughs](policy-eval-walkthrough-download-awscli.md)\.
 
    ```
    [profile UserDaveAccountA]

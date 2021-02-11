@@ -38,10 +38,17 @@ The first column in the following table lists usage types that appear in your bi
 
 | Usage Type | Units | Granularity | Description | 
 | --- | --- | --- | --- | 
-|  *region1*\-*region2*\-AWS\-In\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred in to AWS Region1 from AWS Region2  | 
+|  *region1*\-*region2*\-AWS\-In\-ABytes  |  Bytes  |  Hourly  | The amount of accelerated data transferred to AWS Region1 from AWS Region2 | 
+|  *region1*\-*region2*\-AWS\-In\-ABytes\-T1  |  Bytes  |  Hourly  | The amount of T1 accelerated data transferred to AWS Region1 from AWS Region2 | 
+|  *region1*\-*region2*\-AWS\-In\-ABytes\-T2  |  Bytes  |  Hourly  | The amount of T2 accelerated data transferred to AWS Region1 from AWS Region2 | 
+|  *region1*\-*region2*\-AWS\-In\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred to AWS Region1 from AWS Region2  | 
+|  *region1*\-*region2*\-AWS\-Out\-ABytes  |  Bytes  |  Hourly  | The amount of accelerated data transferred from AWS Region1 to AWS Region2 | 
+|  *region1*\-*region2*\-AWS\-Out\-ABytes\-T1  |  Bytes  |  Hourly  | The amount of T1 accelerated data transferred from AWS Region1 from AWS Region2 | 
+|  *region1*\-*region2*\-AWS\-Out\-ABytes\-T2  |  Bytes  |  Hourly  | The amount of T2 accelerated data transferred from AWS Region1 to AWS Region2 | 
 |  *region1*\-*region2*\-AWS\-Out\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred from AWS Region1 to AWS Region2  | 
-|  *region*\-BatchOperations\-Jobs   |  Count   |  Hourly  |  The number of S3 Batch Operations jobs performed\.  | 
-|  *region*\-BatchOperations\-Objects   |  Count   |  Hourly  |  The number of object operations performed by S3 Batch Operations\.  | 
+|  *region*\-BatchOperations\-Jobs   |  Count   |  Hourly  |  The number of S3 Batch Operations jobs performed  | 
+|  *region*\-BatchOperations\-Objects   |  Count   |  Hourly  |  The number of object operations performed by S3 Batch Operations  | 
+|  *region*\-Bulk\-Retrieval\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data retrieved with Bulk S3 Glacier or S3 Glacier Deep Archive requests  | 
 |  *region*\-BytesDeleted\-GDA  |  Bytes  |  Monthly  |  The amount of data deleted by a DeleteObject operation from S3 Glacier Deep Archive storage  | 
 |  *region*\-BytesDeleted\-GLACIER  |  Bytes  |  Monthly  |  The amount of data deleted by a DeleteObject operation from S3 Glacier storage  | 
 |  *region*\-BytesDeleted\-INT  |  Bytes  |  Monthly  |  The amount of data deleted by a DeleteObject operation from INTELLIGENT\_TIERING storage  | 
@@ -49,23 +56,23 @@ The first column in the following table lists usage types that appear in your bi
 |  *region*\-BytesDeleted\-SIA  |  Bytes  |  Monthly  |  The amount of data deleted by a DeleteObject operation from STANDARD\_IA storage  | 
 |  *region*\-BytesDeleted\-STANDARD  |  Bytes  |  Monthly  |  The amount of data deleted by a DeleteObject operation from STANDARD storage  | 
 |  *region*\-BytesDeleted\-ZIA  |  Bytes  |  Monthly  |  The amount of data deleted by a DeleteObject operation from ONEZONE\_IA storage  | 
-|  *region*\-DataTransfer\-In\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred into Amazon S3 from the internet  | 
-|  *region*\-DataTransfer\-Out\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred from Amazon S3 to the internet1  | 
 |  *region*\-C3DataTransfer\-In\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred into Amazon S3 from Amazon EC2 within the same AWS Region  | 
 |  *region*\-C3DataTransfer\-Out\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred from Amazon S3 to Amazon EC2 within the same AWS Region  | 
-|  *region*\-S3G\-DataTransfer\-In\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred into Amazon S3 to restore objects from S3 Glacier or S3 Glacier Deep Archive storage  | 
-|  *region*\-S3G\-DataTransfer\-Out\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred from Amazon S3 to transition objects to S3 Glacier or S3 Glacier Deep Archive storage  | 
-|  *region*\-DataTransfer\-Regional\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred from Amazon S3 to AWS resources within the same AWS Region  | 
-|  StorageObjectCount  |  Count  |  Daily  |  The number of objects stored within a given bucket  | 
 |  *region*\-CloudFront\-In\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred into an AWS Region from a CloudFront distribution  | 
 |  *region*\-CloudFront\-Out\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred from an AWS Region to a CloudFront distribution  | 
+|  *region*\-DataTransfer\-In\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred into Amazon S3 from the internet  | 
+|  *region*\-DataTransfer\-Out\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred from Amazon S3 to the internet1  | 
+|  *region*\-DataTransfer\-Regional\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred from Amazon S3 to AWS resources within the same AWS Region  | 
 |  *region*\-EarlyDelete\-ByteHrs  |  Byte\-Hours2  |  Hourly  |  Prorated storage usage for objects deleted from, S3 Glacier storage before the 90\-day minimum commitment ended3  | 
 |  *region*\-EarlyDelete\-GDA  |  Byte\-Hours2  |  Hourly  |  Prorated storage usage for objects deleted from S3 Glacier Deep Archive storage before the 180\-day minimum commitment ended 3  | 
+|  *region*\-EarlyDelete\-INT  |  Byte\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from INTELLIGENT\_TIERING before the 30\-day minimum commitment ended  | 
 |  *region*\-EarlyDelete\-SIA  |  Byte\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from STANDARD\_IA before the 30\-day minimum commitment ended4  | 
-|  *region*\-EarlyDelete\-ZIA  |  Byte\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from ONEZONE\_IA before the 30\-day minimum commitment ended4  | 
 |  *region*\-EarlyDelete\-SIA\-SmObjects  |  Byte\-Hours  |  Hourly  |  Prorated storage usage for small objects \(smaller than 128 KB\) that were deleted from STANDARD\_IA before the 30\-day minimum commitment ended4  | 
+|  *region*\-EarlyDelete\-ZIA  |  Byte\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from ONEZONE\_IA before the 30\-day minimum commitment ended4  | 
 |  *region*\-EarlyDelete\-ZIA\-SmObjects  |  Byte\-Hours  |  Hourly  |  Prorated storage usage for small objects \(smaller than 128 KB\) that were deleted from ONEZONE\_IA before the 30\-day minimum commitment ended4  | 
+|  *region*\-Expedited\-Retrieval\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data retrieved with Expedited S3 Glacier requests  | 
 |  *region*\-Inventory\-ObjectsListed  |  Objects  |  Hourly  |  The number of objects listed for an object group \(objects are grouped by bucket or prefix\) with an inventory list  | 
+|  *region*\-Monitoring\-Automation\-INT  |  Objects  |  Hourly  |  The number of unique objects monitored and auto\-tiered in the INTELLIGENT\_TIERING storage class  | 
 |  *region*\-OverwriteBytes\-Copy\-GDA  |  Bytes  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Glacier Deep Archive storage  | 
 |  *region*\-OverwriteBytes\-Copy\-GLACIER  |  Bytes  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Glacier storage  | 
 |  *region*\-OverwriteBytes\-Copy\-INT  |  Bytes  |  Monthly  |  The amount of data overwritten by a CopyObject operation from INTELLIGENT\_TIERING storage  | 
@@ -80,53 +87,52 @@ The first column in the following table lists usage types that appear in your bi
 |  *region*\-OverwriteBytes\-Put\-SIA  |  Bytes  |  Monthly  |  The amount of data overwritten by a PutObject operation from STANDARD\_IA storage  | 
 |  *region*\-OverwriteBytes\-Put\-STANDARD  |  Bytes  |  Monthly  |  The amount of data overwritten by a PutObject operation from STANDARD storage  | 
 |  *region*\-OverwriteBytes\-Put\-ZIA  |  Bytes  |  Monthly  |  The amount of data overwritten by a PutObject operation from ONEZONE\_IA storage  | 
-|  *region*\-Requests\-S3 Glacier\-Tier1  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on S3 Glacier objects  | 
-|  *region*\-Requests\-S3 Glacier\-Tier2  |  Count  |  Hourly  | The number of GET and all other requests not listed on S3 Glacier objects | 
-|  *region*\-Requests\-SIA\-Tier1  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on STANDARD\_IA objects  | 
-|  *region*\-Requests\-ZIA\-Tier1  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on ONEZONE\_IA objects  | 
-|  *region*\-Requests\-SIA\-Tier2  |  Count  |  Hourly  |  The number of GET and all other non\-SIA\-Tier1 requests on STANDARD\_IA objects  | 
-|  *region*\-Requests\-ZIA\-Tier2  |  Count  |  Hourly  |  The number of GET and all other non\-ZIA\-Tier1 requests on ONEZONE\_IA objects  | 
-|  *region*\-Requests\-Tier1  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests for STANDARD, RRS, and tags  | 
-|  *region*\-Requests\-Tier2  |  Count  |  Hourly  |  The number of GET and all other non\-Tier1 requests  | 
-|  *region*\-Requests\-Tier3  |  Count  |  Hourly  |  The number of lifecycle requests to S3 Glacier or S3 Glacier Deep Archive and standard S3 Glacier restore requests  | 
-|  *region*\-Requests\-Tier4  |  Count  |  Hourly  |  The number of lifecycle transitions to INTELLIGENT\_TIERING, STANDARD\_IA, or ONEZONE\_IA storage  | 
-|  *region*\-Requests\-Tier5  |  Count  |  Hourly  |  The number of Bulk S3 Glacier restore requests  | 
 |  *region*\-Requests\-GDA\-Tier1  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on DEEP Archive objects  | 
 |  *region*\-Requests\-GDA\-Tier2  |  Count  |  Hourly  |  The number of GET, HEAD, and LIST requests  | 
 |  *region*\-Requests\-GDA\-Tier3  |  Count  |  Hourly  |  The number of S3 Glacier Deep Archive standard restore requests  | 
 |  *region*\-Requests\-GDA\-Tier5  |  Count  |  Hourly  |  The number of Bulk S3 Glacier Deep Archive restore requests  | 
-|  *region*\-Requests\-Tier6  |  Count  |  Hourly  |  The number of Expedited S3 Glacier restore requests  | 
-|  *region*\-Bulk\-Retrieval\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data retrieved with Bulk S3 Glacier or S3 Glacier Deep Archive requests  | 
 |  *region*\-Requests\-INT\-Tier1  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on INTELLIGENT\_TIERING objects  | 
 |  *region*\-Requests\-INT\-Tier2  |  Count  |  Hourly  |  The number of GET and all other non\-Tier1 requests for INTELLIGENT\_TIERING objects  | 
-|  *region*\-Select\-Returned\-INT\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data returned with Select requests from INTELLIGENT\_TIERING storage  | 
-|  *region*\-Select\-Scanned\-INT\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data scanned with Select requests from INTELLIGENT\_TIERING storage  | 
-|  *region*\-EarlyDelete\-INT  |  Byte\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from INTELLIGENT\_TIERING before the 30\-day minimum commitment ended  | 
-|  *region*\-Monitoring\-Automation\-INT  |  Objects  |  Hourly  |  The number of unique objects monitored and auto\-tiered in the INTELLIGENT\_TIERING storage class  | 
-|  *region*\-Expedited\-Retrieval\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data retrieved with Expedited S3 Glacier requests  | 
-|  *region*\-Standard\-Retrieval\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data retrieved with standard S3 Glacier or S3 Glacier Deep Archive requests  | 
+|  *region*\-Requests\-SIA\-Tier1  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on STANDARD\_IA objects  | 
+|  *region*\-Requests\-SIA\-Tier2  |  Count  |  Hourly  |  The number of GET and all other non\-SIA\-Tier1 requests on STANDARD\_IA objects  | 
+|  *region*\-Requests\-Tier1  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests for STANDARD, RRS, and tags  | 
+|  *region*\-Requests\-GLACIER\-Tier1  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on S3 Glacier objects  | 
+|  *region*\-Requests\-Tier2  |  Count  |  Hourly  |  The number of GET and all other non\-Tier1 requests  | 
+|  *region*\-Requests\-GLACIER\-Tier2  |  Count  |  Hourly  | The number of GET and all other requests not listed on S3 Glacier objects | 
+|  *region*\-Requests\-Tier3  |  Count  |  Hourly  |  The number of lifecycle requests to S3 Glacier or S3 Glacier Deep Archive and standard S3 Glacier restore requests  | 
+|  *region*\-Requests\-Tier4  |  Count  |  Hourly  |  The number of lifecycle transitions to INTELLIGENT\_TIERING, STANDARD\_IA, or ONEZONE\_IA storage  | 
+|  *region*\-Requests\-Tier5  |  Count  |  Hourly  |  The number of Bulk S3 Glacier restore requests  | 
+|  *region*\-Requests\-Tier6  |  Count  |  Hourly  |  The number of Expedited S3 Glacier restore requests  | 
+|  *region*\-Requests\-ZIA\-Tier1  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on ONEZONE\_IA objects  | 
+|  *region*\-Requests\-ZIA\-Tier2  |  Count  |  Hourly  |  The number of GET and all other non\-ZIA\-Tier1 requests on ONEZONE\_IA objects  | 
 |  *region*\-Retrieval\-SIA  |  Bytes  |  Hourly  |  The number of bytes of data retrieved from STANDARD\_IA storage  | 
 |  *region*\-Retrieval\-ZIA  |  Bytes  |  Hourly  |  The number of bytes of data retrieved from ONEZONE\_IA storage  | 
-|  *region*\-StorageAnalytics\-ObjCount  |  Objects  |  Hourly  |  The number of unique objects in each object group \(where objects are grouped by bucket or prefix\) tracked by storage analytics  | 
-|  *region*\-Select\-Scanned\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data scanned with Select requests from STANDARD storage  | 
-|  *region*\-Select\-Scanned\-SIA\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data scanned with Select requests from STANDARD\_IA storage  | 
-|  *region*\-Select\-Scanned\-ZIA\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data scanned with Select requests from ONEZONE\_IA storage  | 
+|  *region*\-S3G\-DataTransfer\-In\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred into Amazon S3 to restore objects from S3 Glacier or S3 Glacier Deep Archive storage  | 
+|  *region*\-S3G\-DataTransfer\-Out\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred from Amazon S3 to transition objects to S3 Glacier or S3 Glacier Deep Archive storage  | 
 |  *region*\-Select\-Returned\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data returned with Select requests from STANDARD storage  | 
+|  *region*\-Select\-Returned\-INT\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data returned with Select requests from INTELLIGENT\_TIERING storage  | 
 |  *region*\-Select\-Returned\-SIA\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data returned with Select requests from STANDARD\_IA storage  | 
 |  *region*\-Select\-Returned\-ZIA\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data returned with Select requests from ONEZONE\_IA storage  | 
+|  *region*\-Select\-Scanned\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data scanned with Select requests from STANDARD storage  | 
+|  *region*\-Select\-Scanned\-INT\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data scanned with Select requests from INTELLIGENT\_TIERING storage  | 
+|  *region*\-Select\-Scanned\-SIA\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data scanned with Select requests from STANDARD\_IA storage  | 
+|  *region*\-Select\-Scanned\-ZIA\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data scanned with Select requests from ONEZONE\_IA storage  | 
+|  *region*\-Standard\-Retrieval\-Bytes  |  Bytes  |  Hourly  |  The number of bytes of data retrieved with standard S3 Glacier or S3 Glacier Deep Archive requests  | 
+|  *region*\-StorageAnalytics\-ObjCount  |  Objects  |  Hourly  |  The number of unique objects in each object group \(where objects are grouped by bucket or prefix\) tracked by storage analytics  | 
 |  *region*\-TagStorage\-TagHrs  |  Tag\-Hours  |  Daily  |  The total of tags on all objects in the bucket reported by hour  | 
 |  *region*\-TimedStorage\-ByteHrs  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in STANDARD storage  | 
-|  *region*\-TimedStorage\-S3 GlacierByteHrs  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in S3 Glacier storage  | 
-|  *region*\-TimedStorage\-GlacierStaging  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in S3 Glacier staging storage  | 
+|  *region*\-TimedStorage\-GlacierByteHrs  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in S3 Glacier storage  | 
 |  *region*\-TimedStorage\-GDA\-ByteHrs  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in S3 Glacier Deep Archive storage  | 
 |  *region*\-TimedStorage\-GDA\-Staging  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in S3 Glacier Deep Archive staging storage  | 
+|  *region*\-TimedStorage\-GlacierStaging  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in S3 Glacier staging storage  | 
 |  *region*\-TimedStorage\-INT\-FA\-ByteHrs  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in the frequent access tier of INTELLIGENT\_TIERING storage  | 
 |  *region*\-TimedStorage\-INT\-IA\-ByteHrs  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in the infrequent access tier of INTELLIGENT\_TIERING storage  | 
 |  *region*\-TimedStorage\-RRS\-ByteHrs  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in Reduced Redundancy Storage \(RRS\) storage  | 
 |  *region*\-TimedStorage\-SIA\-ByteHrs  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in STANDARD\_IA storage  | 
-|  *region*\-TimedStorage\-ZIA\-ByteHrs  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in ONEZONE\_IA storage  | 
 |  *region*\-TimedStorage\-SIA\-SmObjects  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that small objects \(smaller than 128 KB\) were stored in STANDARD\_IA storage  | 
+|  *region*\-TimedStorage\-ZIA\-ByteHrs  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that data was stored in ONEZONE\_IA storage  | 
 |  *region*\-TimedStorage\-ZIA\-SmObjects  |  Byte\-Hours  |  Daily  |  The number of byte\-hours that small objects \(smaller than 128 KB\) were stored in ONEZONE\_IA storage  | 
+|  StorageObjectCount  |  Count  |  Daily  |  The number of objects stored within a given bucket  | 
 
 **Notes:**
 

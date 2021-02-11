@@ -43,7 +43,7 @@ Your management and delegated administrator accounts will still be able to see t
 
 You can create organization\-level dashboards using your organization’s management account or a delegated administrator account\. Delegated administrator accounts allow other accounts besides your management account to create organization\-level dashboards\. Only the management account of an organization can register and deregister other accounts as delegated administrators for the organization\.
 
-To register a delegated administrator using the Amazon S3 console, see [](storage_lens_console_organizations_registering_delegated_admins.md)\.
+To register a delegated administrator using the Amazon S3 console, see [Registering delegated administrators for S3 Storage Lens](storage_lens_console_organizations_registering_delegated_admins.md)\.
 
 You can also register a delegated administrator using the AWS Organizations REST API, AWS CLI, or SDKs from the management account\. For more information, see [RegisterDelegatedAdministrator](https://docs.aws.amazon.com/organizations/latest/APIReference/API_RegisterDelegatedAdministrator.html) in the *AWS Organizations API Reference*\.
 

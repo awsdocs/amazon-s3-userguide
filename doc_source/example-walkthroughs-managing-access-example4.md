@@ -110,7 +110,7 @@ The canonical user ID is the Amazon S3–only concept\. It is a 64\-character ob
    + If using the AWS CLI, create profiles, AccountAadmin and AccountBadmin, in the config file\.
    + If using the AWS Tools for Windows PowerShell, make sure you store credentials for the session as AccountAadmin and AccountBadmin\.
 
-   For instructions, see [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)\.
+   For instructions, see [Setting up the tools for the example walkthroughs](policy-eval-walkthrough-download-awscli.md)\.
 
 ## Step 1: Do the account a tasks<a name="access-policies-walkthrough-example4-step1"></a>
 

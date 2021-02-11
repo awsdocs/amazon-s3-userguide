@@ -215,7 +215,7 @@ You cannot specify this Lifecycle action in a rule that specifies a filter based
 In a versioning\-enabled bucket, you can have multiple versions of an object, there is always one current version, and zero or more noncurrent versions\. Each time you upload an object, the current version is retained as the noncurrent version and the newly added version, the successor, becomes the current version\. To determine the number of days an object is noncurrent, Amazon S3 looks at when its successor was created\. Amazon S3 uses the number of days since its successor was created as the number of days an object is noncurrent\.
 
 **Restoring previous versions of an object when using lifecycle configurations**  
- As explained in detail in the topic [Restoring previous versions](RetrievingObjectVersions.md#RestoringPreviousVersions), you can use either of the following two methods to retrieve previous versions of an object:  
+ As explained in detail in the topic [Restoring previous versions](RestoringPreviousVersions.md), you can use either of the following two methods to retrieve previous versions of an object:  
 By copying a noncurrent version of the object into the same bucket\. The copied object becomes the current version of that object, and all object versions are preserved\.
 By permanently deleting the current version of the object\. When you delete the current object version, you, in effect, turn the noncurrent version into the current version of that object\. 
 When you are using S3 Lifecycle configuration rules with versioning\-enabled buckets, we recommend as a best practice that you use the first method\.   

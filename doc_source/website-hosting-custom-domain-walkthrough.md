@@ -32,7 +32,7 @@ This AWS CloudFormation template is available for you to download and use\. For 
 + [Step 4: Configure your subdomain bucket for website redirect](#root-domain-walkthrough-configure-redirect)
 + [Step 5: Configure logging for website traffic](#root-domain-walkthrough-configure-logging)
 + [Step 6: Upload index and website content](#upload-website-content)
-+ [Step 7: Upload an error document](#w651aac24c27c11c33)
++ [Step 7: Upload an error document](#configure-error-document-root-domain)
 + [Step 7: Edit S3 Block Public Access settings](#root-domain-walkthrough-configure-bucket-permissions)
 + [Step 8: Attach a bucket policy](#add-bucket-policy-root-domain)
 + [Step 9: Test your domain endpoint](#root-domain-walkthrough-test-website)
@@ -233,23 +233,23 @@ When you enable static website hosting for your bucket, you enter the name of th
 
 1. \(Optional\) Upload other website content to your bucket\.
 
-## Step 7: Upload an error document<a name="w651aac24c27c11c33"></a>
+## Step 7: Upload an error document<a name="configure-error-document-root-domain"></a>
 
-When you enable static website hosting for your bucket, you enter the name of the error document \(for example, **error\.html**\)\. After you enable static website hosting for the bucket, you upload an HTML file with this error document name to your bucket\.
+When you enable static website hosting for your bucket, you enter the name of the error document \(for example, **404\.html**\)\. After you enable static website hosting for the bucket, you upload an HTML file with this error document name to your bucket\.
 
 **To configure an error document**
 
-1. Create an error document, for example `error.html`\.
+1. Create an error document, for example `404.html`\.
 
 1. Save the error document file locally\.
 
-   The error document name is case sensitive and must exactly match the name that you enter when you enable static website hosting\. For example, if you enter `error.html` for the **Error document** name in the **Static website hosting** dialog box, your error document file name must also be `error.html` and not `Error.html`\.
+   The error document name is case sensitive and must exactly match the name that you enter when you enable static website hosting\. For example, if you enter `404.html` for the **Error document** name in the **Static website hosting** dialog box, your error document file name must also be `404.html`\.
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the **Buckets** list, choose the name of the bucket that you want to use to host a static website\.
 
-1. Enable static website hosting for your bucket, and enter the exact name of your error document \(for example, `error.html`\)\. For more information, see [Enabling website hosting](EnableWebsiteHosting.md)\.
+1. Enable static website hosting for your bucket, and enter the exact name of your error document \(for example, `404.html`\)\. For more information, see [Enabling website hosting](EnableWebsiteHosting.md)\.
 
    After enabling static website hosting, proceed to step 6\. 
 
@@ -367,6 +367,8 @@ If you don't already use Route 53, see [Step 1: Register a domain](https://docs
 
 1. Choose **Create record**\.
 
+1. Choose **Switch to wizard**\.
+
 1. Choose **Simple routing**, and choose **Next**\.
 
 1. Choose **Define simple record**\.
@@ -379,12 +381,14 @@ If you don't already use Route 53, see [Step 1: Register a domain](https://docs
 
 1. Choose the S3 bucket\.
 
-   The bucket name should match the name that appears in the **Name** box\. In the **Alias Target** listing, the bucket name is followed by the Amazon S3 website endpoint for the Region where the bucket was created, for example `example.com (s3-website-us-west-2.amazonaws.com)`\. **Alias Target** lists a bucket if:
+   The bucket name should match the name that appears in the **Name** box\. In the **Choose S3 bucket** list, the bucket name appears with the Amazon S3 website endpoint for the Region where the bucket was created, for example, `s3-website-us-west-1.amazonaws.com (example.com)`\.
+
+   **Choose S3 bucket** lists a bucket if:
    + You configured the bucket as a static website\.
    + The bucket name is the same as the name of the record that you're creating\.
    + The current AWS account created the bucket\.
 
-   If your bucket does not appear in the **Alias Target** listing, enter the Amazon S3 website endpoint for the Region where the bucket was created, for example, **s3\-website\-us\-west\-2**\. For a complete list of Amazon S3 website endpoints, see [Amazon S3 Website endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_website_region_endpoints)\. For more information about the alias target, see [Value/route traffic to](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-alias.html#rrsets-values-alias-alias-target) in the *Amazon Route 53 Developer Guide*\.
+   If your bucket does not appear in the **Choose S3 bucket** list, enter the Amazon S3 website endpoint for the Region where the bucket was created, for example, **s3\-website\-us\-west\-2\.amazonaws\.com**\. For a complete list of Amazon S3 website endpoints, see [Amazon S3 Website endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_website_region_endpoints)\. For more information about the alias target, see [Value/route traffic to](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-alias.html#rrsets-values-alias-alias-target) in the *Amazon Route 53 Developer Guide*\.
 
 1. In **Record type**, choose **A ‐ Routes traffic to an IPv4 address and some AWS resources**\.
 
@@ -394,7 +398,7 @@ If you don't already use Route 53, see [Step 1: Register a domain](https://docs
 
 **To add an alias record for your subdomain \(`www.example.com`\)**
 
-1. In the hosted zone for your root domain \(`example.com`\), choose **Create record**\.
+1. Under **Configure records**, choose **Define simple record**\.
 
 1. In **Record name** for your subdomain, type `www`\.
 
@@ -402,13 +406,17 @@ If you don't already use Route 53, see [Step 1: Register a domain](https://docs
 
 1. Choose the Region\.
 
-1. Choose the S3 bucket, for example `example.com (s3-website-us-west-2.amazonaws.com)`\.
+1. Choose the S3 bucket, for example, `s3-website-us-west-2.amazonaws.com (example.com)`\.
+
+   If your bucket does not appear in the **Choose S3 bucket** list, enter the Amazon S3 website endpoint for the Region where the bucket was created, for example, **s3\-website\-us\-west\-2\.amazonaws\.com**\. For a complete list of Amazon S3 website endpoints, see [Amazon S3 Website endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_website_region_endpoints)\. For more information about the alias target, see [Value/route traffic to](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-alias.html#rrsets-values-alias-alias-target) in the *Amazon Route 53 Developer Guide*\.
 
 1. In **Record type**, choose **A ‐ Routes traffic to an IPv4 address and some AWS resources**\.
 
 1. For **Evaluate target health**, choose **No**\.
 
 1. Choose **Define simple record**\.
+
+1. On the **Configure records** page, choose **Create records**\.
 
 **Note**  
 Changes generally propagate to all Route 53 servers within 60 seconds\. When propagation is done, you can route traffic to your Amazon S3 bucket by using the names of the alias records that you created in this procedure\.

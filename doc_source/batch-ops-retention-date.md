@@ -4,7 +4,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# S3 Object Lock retention date<a name="batch-ops-retention-date"></a>
+# S3 Object Lock retention<a name="batch-ops-retention-date"></a>
 
 You can use S3 Object Lock with retention dates for your object using two modes: *governance* mode and *compliance* mode\. These retention modes apply different levels of protection to your objects\. You can apply either retention mode to any object version\. Retention dates, like legal holds, prevent an object from being overwritten or deleted\. Amazon S3 stores the *retain until date* specified in the object’s metadata and protects the specified version of the object version until the retention period expires\.
 

@@ -25,7 +25,7 @@ Bucket subresources include the following:
 + `versioning` – Stores versioning configuration\. For more information, see [PUT Bucket versioning](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html) in the *Amazon Simple Storage Service API Reference*\. 
 + `policy` and `acl` \(access control list\) – Store access permission information for the bucket\. 
 + `cors` \(cross\-origin resource sharing\) – Supports configuring your bucket to allow cross\-origin requests\. For more information, see [Configuring and using cross\-origin resource sharing \(CORS\)](cors.md)\.
-+ `object ownership` – Enables the bucket owner to take ownership of new objects in the bucket, regardless of who uploads them\. For more information, see [Controlling object ownership of uploaded objects using S3 Object Ownership](about-object-ownership.md)\.
++ `object ownership` – Enables the bucket owner to take ownership of new objects in the bucket, regardless of who uploads them\. For more information, see [Controlling ownership of uploaded objects using S3 Object Ownership](about-object-ownership.md)\.
 + `logging` – Enables you to request Amazon S3 to save bucket access logs\.
 
 Object subresources include the following:

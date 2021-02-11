@@ -18,4 +18,3 @@ For more information about using the REST API to develop with Amazon S3, see the
 
 **Topics**
 + [Request routing](UsingRouting.md)
-+ [Handling REST and SOAP errors](HandlingErrors.md)

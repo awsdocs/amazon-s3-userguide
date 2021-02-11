@@ -10,13 +10,13 @@ S3 Object Lock enables you to place a legal hold on an object version\. Like set
 
 You can use S3 Batch Operations with Object Lock to add legal holds to *many* Amazon S3 objects at once\. You can do this by listing the target objects in your manifest and submitting that list to Batch Operations\. Your S3 Batch Operations job with Object Lock legal hold runs until completion, until cancellation, or until a failure state is reached\.
 
-S3 Batch Operations verifies that Object Lock is enabled on your S3 bucket before processing any keys in the manifest\. To perform the object operations and bucket level validation, S3 Batch Operations needs `s3:GetBucketObjectLockConfiguration`, and `s3:PutObjectLegalHold` in an IAM role allowing S3 Batch Operations to call S3 Object Lock on your behalf\. 
+S3 Batch Operations verifies that Object Lock is enabled on your S3 bucket before processing any keys in the manifest\. To perform the object operations and bucket level validation, S3 Batch Operations needs `s3:PutObjectLegalHold` and `s3:GetBucketObjectLockConfiguration` in an IAM role allowing S3 Batch Operations to call S3 Object Lock on your behalf\. 
 
 When you create the S3 Batch Operations job to remove the legal hold, you just need to specify *Off* as the legal hold status\. For more information, see [Managing Amazon S3 object locks](object-lock-managing.md)\.
 
-For information about how to use this operation with the REST API, see `S3PutObjectRetention` in the [CreateJob](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html) operation in the *Amazon Simple Storage Service API Reference*\. 
+For information about how to use this operation with the REST API, see `S3PutObjectLegalHold` in the [CreateJob](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html) operation in the *Amazon Simple Storage Service API Reference*\. 
 
-For examples of using this operation, see [Managing S3 Object Lock using S3 Batch Operations](managing-object-lock-batchops.md)\. 
+For an example use of this operation, see [Using the AWS SDK Java](batch-ops-legal-hold-off.md#batch-ops-examples-java-object-lock-legalhold)\. 
 
 ## Restrictions and limitations<a name="batch-ops-legal-hold-restrictions"></a>
 + S3 Batch Operations does not make any bucket level changes\.

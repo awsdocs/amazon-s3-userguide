@@ -4,19 +4,18 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Put object tagging<a name="batch-ops-put-object-tagging"></a>
+# Replace all object tags<a name="batch-ops-put-object-tagging"></a>
 
-The Put Object Tagging operation replaces the Amazon S3 object tags of each object listed in the manifest\. An Amazon S3 object tag is a key\-value pair of strings that you can use to store metadata about an object\.
+The **Replace all object tags **operation replaces the Amazon S3 object tags on every object listed in the manifest\. An Amazon S3 object tag is a key\-value pair of strings that you can use to store metadata about an object\.
 
-To create a Put Object Tagging job, you provide a set of tags that you want to apply\. S3 Batch Operations apply the same set of tags to each object\. The tag set that you provide replaces whatever tag sets are already associated with the objects in the manifest\. S3 Batch Operations do not support adding tags to objects while leaving the existing tags in place\.
+To create a Replace all object tags job, you provide a set of tags that you want to apply\. S3 Batch Operations applies the same set of tags to every object\. The tag set that you provide replaces whatever tag sets are already associated with the objects in the manifest\. S3 Batch Operations does not support adding tags to objects while leaving the existing tags in place\.
 
-If the objects in your manifest are in a versioned bucket, you can apply the tag set to specific versions of each object\. You do this by specifying a version ID for each object in the manifest\. If you don't include a version ID for any object, then S3 Batch Operations will apply the tag set to the latest version of each object\. 
+If the objects in your manifest are in a versioned bucket, you can apply the tag set to specific versions of every object\. You do this by specifying a version ID for every object in the manifest\. If you don't include a version ID for any object, then S3 Batch Operations applies the tag set to the latest version of every object\.
 
 ## Restrictions and limitations<a name="batch-ops-set-tagging-restrictions"></a>
-+ The role that you specify to run the Put Object Tagging job must have permissions to perform the underlying Amazon S3 PUT Object tagging operation\. For more information about the permissions required, see [PUT Object tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTtagging.html) in the *Amazon Simple Storage Service API Reference*\.
-+ S3 Batch Operations use the Amazon S3 PUT Object tagging operation to apply tags to each object in the manifest\. Therefore, all restrictions and limitations that apply to the underlying PUT Object tagging operation also apply to S3 Batch Operations Put Object Tagging jobs\. For more information, see the [Related resources](#batch-ops-put-object-tagging-related-resources) section of this page\.
++ The IAM role that you specify to run the Batch Operations job must have permissions to perform the underlying Amazon S3 Replace all object tags operation\. For more information about the permissions required, see [ PutObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html) in the *Amazon Simple Storage Service API Reference*\.
++ S3 Batch Operations uses the Amazon S3 [ PutObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html) operation to apply tags to each object in the manifest\. All restrictions and limitations that apply to the underlying operation also apply to S3 Batch Operations jobs\.
 
-## Related resources<a name="batch-ops-put-object-tagging-related-resources"></a>
-+ [Categorizing your storage using tags](object-tagging.md)
-+ [GET Object tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGETtagging.html) in the *Amazon Simple Storage Service API Reference*
-+ [PUT Object tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTtagging.html) in the *Amazon Simple Storage Service API Reference*
+For more information about [Creating an S3 batch operations job](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/batch-ops-create-job.html) from the console, see the *Amazon Simple Storage Service Console User Guide*\.
+
+For more details about object tagging, see [Categorizing your storage using tags](object-tagging.md) in this guide as well as [PutObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html), [GetObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html), and [DeleteObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectTagging.html) in the *Amazon Simple Storage Service API Reference*\.

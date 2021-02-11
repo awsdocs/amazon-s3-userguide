@@ -4,7 +4,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Gettinging replication status information<a name="replication-status"></a>
+# Getting replication status information<a name="replication-status"></a>
 
 Replication status can help you determine the current state of an object being replicated\. The replication status of a source object will return either `PENDING`, `COMPLETED`, or `FAILED`\. The replication status of a replica will return `REPLICA`\.
 

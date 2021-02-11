@@ -10,7 +10,7 @@ The *object key* \(or key name\) uniquely identifies the object in an Amazon S3 
 
 When you create an object, you specify the key name, which uniquely identifies the object in the bucket\. For example, on the [Amazon S3 console](https://console.aws.amazon.com/s3/home), when you highlight a bucket, a list of objects in your bucket appears\. These names are the *object keys*\. The name for a key is a sequence of Unicode characters whose UTF\-8 encoding is at most 1,024 bytes long\. 
 
-The Amazon S3 data model is a flat structure: You create a bucket, and the bucket store objects\. There is no hierarchy of subbuckets or subfolders\. However, you can infer logical hierarchy using key name prefixes and delimiters as the Amazon S3 console does\. The Amazon S3 console supports a concept of folders\. For more information about how to edit metadata from the Amazon S3 console, see [Editing object metadata in the Amazon S3 console](UsingMetadata.md#add-object-metadata)\.
+The Amazon S3 data model is a flat structure: You create a bucket, and the bucket store objects\. There is no hierarchy of subbuckets or subfolders\. However, you can infer logical hierarchy using key name prefixes and delimiters as the Amazon S3 console does\. The Amazon S3 console supports a concept of folders\. For more information about how to edit metadata from the Amazon S3 console, see [Editing object metadata in the Amazon S3 console](add-object-metadata.md)\.
 
 Suppose that your bucket \(`admin-created`\) has four objects with the following object keys:
 
@@ -81,3 +81,25 @@ Avoid the following characters in a key name because of significant special hand
 + 'Less Than' symbol \("<"\) 
 + 'Pound' character \("\#"\) 
 + Vertical bar / pipe \("\|"\) 
+
+### XML related object key constraints<a name="object-key-xml-related-constraints"></a>
+
+As specified by the [XML standard on end\-of\-line handling](https://www.w3.org/TR/REC-xml/#sec-line-ends), all XML text is normalized such that single carriage returns \(ASCII code 13\) and carriage returns immediately followed by a line feed \(ASCII code 10\) are replaced by a single line feed character\. To ensure the correct parsing of object keys in XML requests, carriage returns and [other special characters must be replaced with their equivalent XML entity code](https://www.w3.org/TR/xml/#syntax) when they are inserted within XML tags\. The following is a list of such special characters and their equivalent entity codes:
++ ' as `&apos;`
++ ” as `&quot;`
++ & as `&amp;`
++ < as `&lt;`
++ > as `&gt;`
++ \\r as `&#13;` or `&#x0D;`
++ \\n as `&#10;` or `&#x0A;`
+
+**Example**  
+The following example illustrates the use of an XML entity code as a substitution for a carriage return\. This `DeleteObjects` request deletes an object with the `key` parameter: `/some/prefix/objectwith\rcarriagereturn` \(where the \\r is the carriage return\)\.  
+
+```
+<Delete xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+  <Object>
+    <Key>/some/prefix/objectwith&#13;carriagereturn</Key>
+  </Object>
+</Delete>
+```

@@ -24,7 +24,7 @@ The following table lists the subset of HTTP response codes that Amazon S3 retur
 | --- | --- | 
 | 301 Moved Permanently | When a user sends a request directly to the Amazon S3 website endpoint \(http://s3\-website\.Region\.amazonaws\.com/\), Amazon S3 returns a 301 Moved Permanently response and redirects those requests to https://aws\.amazon\.com/s3/\. | 
 | 302 Found |  When Amazon S3 receives a request for a key `x`, `http://bucket-name.s3-website.Region.amazonaws.com/x`, without a trailing slash, it first looks for the object with the key name `x`\. If the object is not found, Amazon S3 determines that the request is for subfolder `x` and redirects the request by adding a slash at the end, and returns **302 Found**\.   | 
-| 304 Not Modified |  Amazon S3 users request headers `If-Modified-Since`, `If-Unmodified-Since`, `If-Match` and/or `If-None-Match` to determine whether the requested object is same as the cached copy held by the client\. If the object is the same, the website endpoint returns a **304 Not Modified** response\.  | 
+| 304 Not Modified |  Amazon S3 uses request headers `If-Modified-Since`, `If-Unmodified-Since`, `If-Match` and/or `If-None-Match` to determine whether the requested object is same as the cached copy held by the client\. If the object is the same, the website endpoint returns a **304 Not Modified** response\.  | 
 | 400 Malformed Request |  The website endpoint responds with a **400 Malformed Request** when a user attempts to access a bucket through the incorrect regional endpoint\.   | 
 | 403 Forbidden |  The website endpoint responds with a **403 Forbidden** when a user request translates to an object that is not publicly readable\. The object owner must make the object publicly readable using a bucket policy or an ACL\.   | 
 | 404 Not Found |  The website endpoint responds with **404 Not Found** for the following reasons: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/CustomErrorDocSupport.html) You can create a custom document that is returned for **404 Not Found**\. Make sure that the document is uploaded to the bucket configured as a website, and that the website hosting configuration is set to use the document\. For information on how Amazon S3 interprets the URL as a request for an object or an index document, see [Configuring an index document](IndexDocumentSupport.md)\.   | 
@@ -44,21 +44,21 @@ To configure a custom error document using the S3 console, follow the steps belo
 + [AWS::S3::Bucket WebsiteConfiguration](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration.html) in the *AWS CloudFormation User Guide*
 + [put\-bucket\-website](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-website.html) in the *AWS CLI Command Reference*
 
-When you enable static website hosting for your bucket, you enter the name of the error document \(for example, **error\.html**\)\. After you enable static website hosting for the bucket, you upload an HTML file with this error document name to your bucket\.
+When you enable static website hosting for your bucket, you enter the name of the error document \(for example, **404\.html**\)\. After you enable static website hosting for the bucket, you upload an HTML file with this error document name to your bucket\.
 
 **To configure an error document**
 
-1. Create an error document, for example `error.html`\.
+1. Create an error document, for example `404.html`\.
 
 1. Save the error document file locally\.
 
-   The error document name is case sensitive and must exactly match the name that you enter when you enable static website hosting\. For example, if you enter `error.html` for the **Error document** name in the **Static website hosting** dialog box, your error document file name must also be `error.html` and not `Error.html`\.
+   The error document name is case sensitive and must exactly match the name that you enter when you enable static website hosting\. For example, if you enter `404.html` for the **Error document** name in the **Static website hosting** dialog box, your error document file name must also be `404.html`\.
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the **Buckets** list, choose the name of the bucket that you want to use to host a static website\.
 
-1. Enable static website hosting for your bucket, and enter the exact name of your error document \(for example, `error.html`\)\. For more information, see [Enabling website hosting](EnableWebsiteHosting.md)\.
+1. Enable static website hosting for your bucket, and enter the exact name of your error document \(for example, `404.html`\)\. For more information, see [Enabling website hosting](EnableWebsiteHosting.md)\.
 
    After enabling static website hosting, proceed to step 6\. 
 

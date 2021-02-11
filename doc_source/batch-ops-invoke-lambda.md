@@ -4,9 +4,9 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Invoking a Lambda function from Amazon S3 batch operations<a name="batch-ops-invoke-lambda"></a>
+# Invoke AWS Lambda function<a name="batch-ops-invoke-lambda"></a>
 
-S3 Batch Operations can invoke AWS Lambda functions to perform custom actions on objects that are listed in a manifest\. This section describes how to create a Lambda function to use with S3 Batch Operations and how to create a job to invoke the function\. The S3 Batch Operations job uses the `LambdaInvoke` operation to run a Lambda function on each object listed in a manifest\. 
+S3 Batch Operations can invoke AWS Lambda functions to perform custom actions on objects that are listed in a manifest\. This section describes how to create a Lambda function to use with S3 Batch Operations and how to create a job to invoke the function\. The S3 Batch Operations job uses the `LambdaInvoke` operation to run a Lambda function on every object listed in a manifest\. 
 
 You can work with S3 Batch Operations for Lambda using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST APIs\. For more information about using Lambda, see [ Getting Started with AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html) in the *AWS Lambda Developer Guide*\. 
 
@@ -139,7 +139,7 @@ The following is a JSON example of a response for the Lambda function\.
 
 ### Example Lambda function for S3 Batch Operations<a name="batch-ops-invoke-lambda-custom-functions-example"></a>
 
-The following example Python Lambda function iterates through the manifest, copying and renaming each object\.
+The following example Python Lambda function iterates through the manifest, copying and renaming every object\.
 
 As the example shows, keys from S3 Batch Operations are URL encoded\. To use Amazon S3 with other AWS services, it's important that you URL decode the key that is passed from S3 Batch Operations\.
 

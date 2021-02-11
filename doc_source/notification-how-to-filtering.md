@@ -4,7 +4,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Configuring notifications with object key name filtering<a name="notification-how-to-filtering"></a>
+# Configuring event notifications using object key name filtering<a name="notification-how-to-filtering"></a>
 
 You can configure notifications to be filtered by the prefix and suffix of the key name of objects\. For example, you can set up a configuration so that you are sent a notification only when image files with a "`.jpg`" file name extension are added to a bucket\. Or, you can have a configuration that delivers a notification to an Amazon SNS topic when an object with the prefix "`images/`" is added to the bucket, while having notifications for objects with a "`logs/`" prefix in the same bucket delivered to an AWS Lambda function\. 
 
@@ -153,7 +153,7 @@ Your notification configurations that use `Filter` cannot define filtering rules
 
 ## Examples of notification configurations with invalid Prefix/Suffix overlapping<a name="notification-how-to-filtering-examples-invalid"></a>
 
-For the most part, your notification configurations that use `Filter` cannot define filtering rules with overlapping prefixes, overlapping suffixes, or overlapping combinations of prefixes and suffixes for the same event types\. \(You can have overlapping prefixes as long as the suffixes do not overlap\. For an example, see [Configuring notifications with object key name filtering](#notification-how-to-filtering)\.\)
+For the most part, your notification configurations that use `Filter` cannot define filtering rules with overlapping prefixes, overlapping suffixes, or overlapping combinations of prefixes and suffixes for the same event types\. \(You can have overlapping prefixes as long as the suffixes do not overlap\. For an example, see [Configuring event notifications using object key name filtering](#notification-how-to-filtering)\.\)
 
 You can use overlapping object key name filters with different event types\. For example, you could create a notification configuration that uses the prefix `image/` for the `ObjectCreated:Put` event type and the prefix `image/` for the `ObjectRemoved:*` event type\. 
 

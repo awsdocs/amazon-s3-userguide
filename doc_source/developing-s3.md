@@ -13,4 +13,5 @@ This section covers developer\-related topics for using Amazon S3\. For more inf
 + [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)
 + [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)
 + [Developing with Amazon S3 using the REST API](developing-rest-api.md)
++ [Handling REST and SOAP errors](HandlingErrors.md)
 + [Developer reference](Appendices.md)

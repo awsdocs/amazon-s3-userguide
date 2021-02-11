@@ -35,7 +35,7 @@ If the bucket contains any objects, empty the bucket before deleting it by selec
 
 ## Using the AWS CLI<a name="delete-bucket-awscli"></a>
 
-You can delete a bucket that cotnains objects with the AWS CLI if it doesn't have versioning enabled\. When you delete a bucket that contains objects, all the objects in the bucket are permanently deleted, including objects that are transitioned to the `S3 Glacier` storage class\.
+You can delete a bucket that contains objects with the AWS CLI if it doesn't have versioning enabled\. When you delete a bucket that contains objects, all the objects in the bucket are permanently deleted, including objects that are transitioned to the `S3 Glacier` storage class\.
 
 If your bucket does not have versioning enabled, you can use the `rb` \(remove bucket\) AWS CLI command with the `--force` parameter to delete the bucket and all the objects in it\. This command deletes all objects first and then deletes the bucket\.
 

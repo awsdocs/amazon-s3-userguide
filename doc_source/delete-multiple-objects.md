@@ -12,7 +12,7 @@ For information about Amazon S3 features and pricing, see [Amazon S3 pricing](ht
 
 You can use the Amazon S3 console or the Multi\-Object Delete API to delete multiple objects simultaneously from an S3 bucket\.
 
-## Deleting multiple objects using the console<a name="delete-objects-console"></a>
+## Using the S3 console<a name="delete-objects-console"></a>
 
 Follow these steps to use the Amazon S3 console to delete multiple objects from a bucket\.
 

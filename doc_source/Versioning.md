@@ -40,4 +40,4 @@ For information about working with S3 Versioning, see the following topics\.
 + [Configuring MFA delete](MultiFactorAuthenticationDelete.md)
 + [Working with objects in a versioning\-enabled bucket](manage-objects-versioned-bucket.md)
 + [Working with objects in a versioning\-suspended bucket](VersionSuspendedBehavior.md)
-+ [Working with archived objects](restoring-objects.md)
++ [Working with archived objects](archived-objects.md)

@@ -12,10 +12,6 @@ You can delete object versions from Amazon S3 buckets whenever you want\. You ca
 
 For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 
-**Topics**
-+ [Delete request use cases](#delete-request-use-cases)
-+ [To delete object versions](#delete-object-version)
-
 ## Delete request use cases<a name="delete-request-use-cases"></a>
 
 A `DELETE` request has the following use cases:
@@ -80,3 +76,10 @@ The following example shows how to delete version `UIORUnfnd89493jJFJ` of `photo
 5. Content-Type: text/plain
 6. Content-Length: 0
 ```
+
+## Related topics<a name="delete-object-version-more-info"></a>
+
+For more information about deleting object versions, see the topics below:
++ [Working with delete markers](DeleteMarker.md)
++ [Removing delete markers](RemDelMarker.md)
++ [Deleting an object from an MFA delete\-enabled bucket](UsingMFADelete.md)

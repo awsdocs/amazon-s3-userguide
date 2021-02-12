@@ -12,11 +12,11 @@ With S3 RTC, you can monitor the total number and size of objects that are pendi
 
 **Topics**
 
-## Using the AWS CLI<a name="replication-ex5-console"></a>
+## Using the S3 console<a name="replication-ex5-console"></a>
 
 For step\-by\-step instructions, see [Configuring replication for source and destination buckets owned by the same account](replication-walkthrough1.md)\. This topic provides instructions for enabling S3 RTC in your replication configuration when buckets are owned by same and different AWS accounts\.
 
-## Replicate objects with S3 Replication Time Control \(S3 RTC\) \(AWS CLI\)<a name="replication-ex5-cli"></a>
+## Using the AWS CLI<a name="replication-ex5-cli"></a>
 
 To use the AWS CLI to replicate objects with S3 RTC enabled, you create buckets, enable versioning on the buckets, create an IAM role that gives Amazon S3 permission to replicate objects, and add the replication configuration to the source bucket\. The replication configuration needs to have S3 Replication Time Control \(S3 RTC\) enabled\. 
 

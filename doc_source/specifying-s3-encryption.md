@@ -12,7 +12,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 ## Using the S3 console<a name="add-object-encryption-s3"></a>
 
- This topic describes how to set or change the type of encryption an object using the AWS Management Console\. When you copy and object using the console, it copies the object as is\. That manes if the source is encrypted, the target object is also encrypted\. The console also allows you to add or change encryption for an object\. 
+ This topic describes how to set or change the type of encryption an object using the AWS Management Console\. When you copy and object using the console, it copies the object as is\. That means if the source is encrypted, the target object is also encrypted\. The console also allows you to add or change encryption for an object\. 
 
 **Note**  
 If you change an object's encryption, a new object is created to replace the old one\. If S3 Versioning is enabled, a new version of the object is created, and the existing object becomes an older version\. The role that changes the property also becomes the owner of the new object or \(object version\)\. 
@@ -503,6 +503,8 @@ rescue StandardError => e
 end
 ```
 
-For a sample of how to copy an object without encryption, see [Copying objects](copy-object.md)\. 
-
 ------
+
+For examples of setting up encryption using AWS CloudFormation, see [Create a bucket with default encryption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_with_default_encryption) and [Create a bucket using AWS KMS server\-side encryption with an S3 Bucket Key](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_using_AWS_KMS_server-side_encryption_with_an_S3_Bucket_Key) in the *AWS CloudFormation User Guide*\. 
+
+For a sample of how to copy an object without encryption, see [Copying objects](copy-object.md)\. 

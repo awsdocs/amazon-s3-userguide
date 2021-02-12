@@ -49,7 +49,7 @@ Organization\-level dashboards can only be limited to a regional scope\.
 
 ### Metrics export<a name="storage_lens_basics_metrics_export"></a>
 
-An S3 Storage Lens *metrics export* is a file that contains all the metrics identified in your S3 Storage Lens configuration\. This information is generated daily in CSV or Parquet format in an S3 bucket of your choice for further analysis\. You can generate an S3 Storage Lens metrics export from the S3 console by editing your dashboard configuration, or by using the AWS CLI and SDKs\.
+An S3 Storage Lens *metrics export* is a file that contains all the metrics identified in your S3 Storage Lens configuration\. This information is generated daily in CSV or Parquet format in an S3 bucket of your choice for further analysis\. The S3 bucket for your metrics export must be in the same Region as your S3 Storage Lens configuration\. You can generate an S3 Storage Lens metrics export from the S3 console by editing your dashboard configuration, or by using the AWS CLI and SDKs\.
 
 ### Home Region<a name="storage_lens_basics_home_region"></a>
 

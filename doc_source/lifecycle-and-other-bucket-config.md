@@ -4,7 +4,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Using lifecycle with other bucket configurations<a name="lifecycle-and-other-bucket-config"></a>
+# Lifecycle and other bucket configurations<a name="lifecycle-and-other-bucket-config"></a>
 
 In addition to S3 Lifecycle configurations, you can associate other configurations with your bucket\. This section explains how S3 Lifecycle configuration relates to other bucket configurations\.
 

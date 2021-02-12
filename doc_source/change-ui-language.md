@@ -4,7 +4,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# How do I change the language of the AWS Management Console?<a name="change-ui-language"></a>
+# Changing the language of the AWS Management Console?<a name="change-ui-language"></a>
 
 You can change the display language of the AWS Management Console\. Several languages are supported\.
 

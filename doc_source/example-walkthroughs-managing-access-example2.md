@@ -68,9 +68,9 @@ All the tasks of creating users and granting permissions are done in the AWS Man
    + If using the AWS CLI, create two profiles, AccountAadmin and AccountBadmin, in the config file\.
    + If using the AWS Tools for Windows PowerShell, make sure you store credentials for the session as AccountAadmin and AccountBadmin\.
 
-   For instructions, see [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)\. 
+   For instructions, see [Setting up the tools for the example walkthroughs](policy-eval-walkthrough-download-awscli.md)\. 
 
-1. Save the administrator user credentials, also referred to as profiles\. You can use the profile name instead of specifying credentials for each command you enter\. For more information, see [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)\. 
+1. Save the administrator user credentials, also referred to as profiles\. You can use the profile name instead of specifying credentials for each command you enter\. For more information, see [Setting up the tools for the example walkthroughs](policy-eval-walkthrough-download-awscli.md)\. 
 
    1. Add profiles in the AWS CLI credentials file for each of the administrator users in the two accounts\. 
 
@@ -199,7 +199,7 @@ Now Dave in Account B can list the contents of `examplebucket` owned by Account 
 
 **Test using the AWS CLI**
 
-1. Add the UserDave profile to the AWS CLI config file\. For more information about the config file, see [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)\.
+1. Add the UserDave profile to the AWS CLI config file\. For more information about the config file, see [Setting up the tools for the example walkthroughs](policy-eval-walkthrough-download-awscli.md)\.
 
    ```
    [profile UserDave]

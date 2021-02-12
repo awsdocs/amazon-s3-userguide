@@ -127,7 +127,33 @@ To add redirection rules for a bucket that already has static website hosting en
 
 ### Routing rule elements<a name="configure-bucket-as-website-routing-rule-syntax"></a>
 
-The following is general syntax for defining the routing rules in a website configuration in XML To configure redirection rules in the new S3 console, you must use JSON\. For JSON examples, see [Redirection rules examples](#redirect-rule-examples)\.
+The following is general syntax for defining the routing rules in a website configuration in JSON and XML To configure redirection rules in the new S3 console, you must use JSON\. For JSON examples, see [Redirection rules examples](#redirect-rule-examples)\.
+
+------
+#### [ JSON ]
+
+```
+[
+    {
+      "Condition": {
+        "HttpErrorCodeReturnedEquals": "string",
+        "KeyPrefixEquals": "string"
+      },
+      "Redirect": {
+        "HostName": "string",
+        "HttpRedirectCode": "string",
+        "Protocol": "http"|"https",
+        "ReplaceKeyPrefixWith": "string",
+        "ReplaceKeyWith": "string"
+      }
+    }
+  ]
+ 
+Note: Redirect must each have at least one child element. You can have either ReplaceKeyPrefix with or ReplaceKeyWith but not both.
+```
+
+------
+#### [ XML ]
 
 ```
 <RoutingRules> =
@@ -158,10 +184,11 @@ The following is general syntax for defining the routing rules in a website conf
       [ <ReplaceKeyWith>...</ReplaceKeyWith> ]
       [ <HttpRedirectCode>...</HttpRedirectCode> ]
    </Redirect>
-    Note: <Redirect> must have at least one child element. 
-           Also, you can have either ReplaceKeyPrefix with or ReplaceKeyWith, 
-           but not both.
+
+Note: <Redirect> must have at least one child element. You can have either ReplaceKeyPrefix with or ReplaceKeyWith but not both.
 ```
+
+------
 
 The following table describes the elements in the routing rule\.
 

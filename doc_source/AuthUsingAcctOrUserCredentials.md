@@ -10,9 +10,16 @@ You can use your AWS account or IAM user security credentials to send authentica
 
 Each of these AWS SDKs uses an SDK\-specific credentials provider chain to find and use credentials and perform actions on behalf of the credentials owner\. What all these credentials provider chains have in common is that they all look for your local AWS credentials file\. 
 
-The easiest way to configure credentials for your AWS SDKs is to use an AWS credentials file\. If you use the AWS Command Line Interface \(AWS CLI\), you may already have a local AWS credentials file configured\. Otherwise, use the following procedure to set up a credentials file:
+For more information, see the topics below:
 
-**To create a local AWS credentials file**
+**Topics**
++ [To create a local AWS credentials file](#create-local-aws-credentials-file)
++ [Sending authenticated requests using the AWS SDKs](#send-authenticated-request-SDKs)
++ [Related resources](#RelatedResources002)
+
+## To create a local AWS credentials file<a name="create-local-aws-credentials-file"></a>
+
+The easiest way to configure credentials for your AWS SDKs is to use an AWS credentials file\. If you use the AWS Command Line Interface \(AWS CLI\), you may already have a local AWS credentials file configured\. Otherwise, use the following procedure to set up a credentials file:
 
 1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -46,7 +53,7 @@ The easiest way to configure credentials for your AWS SDKs is to use an AWS cred
 
 Your shared credentials file is now configured on your local computer, and it's ready to be used with the AWS SDKs\.
 
-## Send authenticated requests using the AWS SDKs<a name="w651aac26b7c22b7c15"></a>
+## Sending authenticated requests using the AWS SDKs<a name="send-authenticated-request-SDKs"></a>
 
 Use the AWS SDKs to send authenticated requests\.
 

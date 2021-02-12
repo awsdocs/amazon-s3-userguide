@@ -22,6 +22,6 @@ For more information about managing access to your Amazon S3 objects and buckets
 + [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)
 + [Managing data access with Amazon S3 access points](access-points.md)
 + [Reviewing bucket access using Access Analyzer for S3](access-analyzer.md)
-+ [Controlling object ownership of uploaded objects using S3 Object Ownership](about-object-ownership.md)
++ [Controlling ownership of uploaded objects using S3 Object Ownership](about-object-ownership.md)
 + [Verifying bucket ownership with bucket owner condition](bucket-owner-condition.md)
 + [Example walkthroughs: Managing access to your Amazon S3 resources](example-walkthroughs-managing-access.md)

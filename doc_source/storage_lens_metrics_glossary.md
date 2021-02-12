@@ -10,6 +10,9 @@ By default, all dashboards are configured with *free metrics*, which include *us
 
 *Advanced metrics and recommendations* include *usage* metrics that can be aggregated by prefix and *activity* metrics\. Activity metrics can be aggregated by bucket with a 15\-month data retention policy\. There are additional charges when you use S3 Storage Lens with advanced metrics and recommendations\. For more information, see [ Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)\.
 
+**Note**  
+S3 Storage Lens metrics unit multiples are written using prefix symbols that are represented using the International System of Units \(SI\) symbols that are standardized by the International Bureau of Weights and Measures \(BIPM\)\. They are also used in the Unified Code for Units of Measure \(UCUM\)\. For more information, see [List of SI prefixes symbols](https://www.bipm.org/en/measurement-units/#si-prefixes)\. 
+
 
 ****  
 
@@ -18,7 +21,7 @@ By default, all dashboards are configured with *free metrics*, which include *us
 |  Total Storage  | The total storage |  Y  |  Usage  |  Summary |  N  |   | 
 |  Object Count  | The total object count |  Y  |  Usage  |  Summary |  N  |   | 
 |  \# Avg Object Size  | The average object size |  Y  |  Usage  |  Summary |  Y  | Sum\(StorageBytes\)/ sum\(ObjectCount\)  | 
-| \# Buckets  | The total number of active buckets |  Y  |  Usage  |  Summary |  Y  | DistinctCount\[Bucketname\]  | 
+| \# of Active Buckets  | The total number of active buckets |  Y  |  Usage  |  Summary |  Y  | DistinctCount\[Bucketname\]  | 
 | \# Accounts  | The number of accounts whose storage is in scope |  Y  |  Usage  |  Summary |  Y  | DistinctCount\[AccountID\]  | 
 | Current Version Storage Bytes  | The number of bytes that are a current version  |  Y  |  Usage  | Data Protection, Cost Efficiency  |  N  |   | 
 | % Current Version Bytes  | The percentage of bytes in scope that are current version |  Y  |  Usage  | Data Protection, Cost Efficiency  |  Y  | Sum\(CurrentVersion Bytes\) /sum\(Storage Bytes\)  | 

@@ -18,6 +18,4 @@ The topics in this section explain various object operations in a versioning\-en
 + [Listing objects in a versioning\-enabled bucket](list-obj-version-enabled-bucket.md)
 + [Retrieving object versions from a versioning\-enabled bucket](RetrievingObjectVersions.md)
 + [Deleting object versions from a versioning\-enabled bucket](DeletingObjectVersions.md)
-+ [Working with delete markers](DeleteMarker.md)
-+ [Deleting an object from an MFA delete\-enabled bucket](UsingMFADelete.md)
 + [Configuring versioned object permissions](VersionedObjectPermissionsandACLs.md)

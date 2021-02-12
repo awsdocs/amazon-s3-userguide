@@ -31,7 +31,7 @@ Spreading requests across many connections is a common design pattern to horizon
 
 ## Use Byte\-Range Fetches<a name="optimizing-performance-guidelines-get-range"></a>
 
-Using the `Range` HTTP header in a [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) request, you can fetch a byte\-range from an object, transferring only the specified portion\. You can use concurrent connections to Amazon S3 to fetch different byte ranges from within the same object\. This helps you achieve higher aggregate throughput versus a single whole\-object request\. Fetching smaller ranges of a large object also allows your application to improve retry times when requests are interrupted\. For more information, see [Downloading an objectDownloading an object using the Amazon S3 console](download-objects.md)\.
+Using the `Range` HTTP header in a [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) request, you can fetch a byte\-range from an object, transferring only the specified portion\. You can use concurrent connections to Amazon S3 to fetch different byte ranges from within the same object\. This helps you achieve higher aggregate throughput versus a single whole\-object request\. Fetching smaller ranges of a large object also allows your application to improve retry times when requests are interrupted\. For more information, see [Downloading an object](download-objects.md)\.
 
 Typical sizes for byte\-range requests are 8 MB or 16 MB\. If objects are PUT using a multipart upload, it’s a good practice to GET them in the same part sizes \(or at least aligned to part boundaries\) for best performance\. GET requests can directly address individual parts; for example, `GET ?partNumber=N.`
 

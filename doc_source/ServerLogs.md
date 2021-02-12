@@ -31,7 +31,7 @@ To enable log delivery, follow these steps:
 
    The key prefix can also help when you delete the logs\. For example, you can set a lifecycle configuration rule for Amazon S3 to delete objects with a specific key prefix\. For more information, see [Deleting Amazon S3 log files](deleting-log-files-lifecycle.md)\.
 
-1. \(Optional\) Set permissions so that others can access the generated logs\. By default, only the bucket owner always has full access to the log objects\. 
+1. \(Optional\) Set permissions so that others can access the generated logs\. By default, only the bucket owner always has full access to the log objects\. For more information, see [Identity and access management in Amazon S3](s3-access-control.md)\.
 
 For more information about enabling server access logging, see [Enabling Amazon S3 server access logging](enable-server-access-logging.md)\. 
 

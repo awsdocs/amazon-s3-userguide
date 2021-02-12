@@ -19,7 +19,10 @@ S3 Batch Operations operate asynchronously and the tasks don't necessarily run i
 
 ## Notifications and logging<a name="batch-ops-notifications"></a>
 
- In addition to requesting completion reports, you can also capture, review, and audit Batch Operations activity using AWS CloudTrail\. Because Batch Operations use existing Amazon S3 APIs to perform tasks, those tasks also emit the same events that they would if you called them directly\. Thus, you can track and record the progress of your job and all of its tasks using the same notification, logging, and auditing tools and processes that you already use with Amazon S3\. For more information, see [Tracking an S3 Batch Operations job in Amazon EventBridge through AWS CloudTrail](batch-ops-examples-event-bridge-cloud-trail.md)\.
+In addition to requesting completion reports, you can also capture, review, and audit Batch Operations activity using AWS CloudTrail\. Because Batch Operations use existing Amazon S3 APIs to perform tasks, those tasks also emit the same events that they would if you called them directly\. Thus, you can track and record the progress of your job and all of its tasks using the same notification, logging, and auditing tools and processes that you already use with Amazon S3\. For more information, see [Tracking an S3 Batch Operations job in Amazon EventBridge through AWS CloudTrail](batch-ops-examples-event-bridge-cloud-trail.md)\.
+
+**Note**  
+Amazon S3 Batch Operations generates both management and data events in CloudTrail during job execution\. The volume of these events scale with the number of keys in each job’s manifest\. Refer to the [CloudTrail pricing](http://aws.amazon.com/cloudtrail/pricing/) page for details, which includes examples of how pricing changes depending on the number of CloudTrails you have configured in your account\. To learn how to configure and log events to fit your needs, see [Create your first trail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-tutorial.html#tutorial-step2) in the *AWS CloudTrail User Guide*\.
 
 For more information about Amazon S3 events, see [Configuring Amazon S3 event notifications](NotificationHowTo.md)\. 
 

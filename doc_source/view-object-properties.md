@@ -28,7 +28,7 @@ If you change the **Storage Class**, ** Encryption**, or **Metadata** properties
 
    1. **Server\-side encryption settings** – You can use server\-side encryption to encrypt your S3 objects\. For more information, see [Specifying server\-side encryption with AWS KMS \(SSE\-KMS\)](specifying-kms-encryption.md) or [Specifying Amazon S3 encryption](specifying-s3-encryption.md)\. 
 
-   1. **Metadata** – Each object in Amazon S3 has a set of name\-value pairs that represents its metadata\. For information about adding metadata to an S3 object, see [Editing object metadata in the Amazon S3 console](UsingMetadata.md#add-object-metadata)\.
+   1. **Metadata** – Each object in Amazon S3 has a set of name\-value pairs that represents its metadata\. For information about adding metadata to an S3 object, see [Editing object metadata in the Amazon S3 console](add-object-metadata.md)\.
 
    1. **Tags** – You categorize storage by adding tags to an S3 object\. For more information, see [Categorizing your storage using tags](object-tagging.md)\.
 

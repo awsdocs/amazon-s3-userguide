@@ -10,11 +10,11 @@ When the *source* and *destination* buckets in a replication configuration are o
 
 **Topics**
 
-## Change the replica owner when buckets are owned by different accounts \(console\)<a name="replication-ex3-console"></a>
+## Using the S3 console<a name="replication-ex3-console"></a>
 
 For step\-by\-step instructions, see [Configuring replication for source and destination buckets owned by the same account](replication-walkthrough1.md)\. This topic provides instructions for setting replication configuration when buckets are owned by same and different AWS accounts\.
 
-## Change the replica owner when buckets are owned by different accounts \(AWS CLI\)<a name="replication-ex3-cli"></a>
+## Using the AWS CLI<a name="replication-ex3-cli"></a>
 
 To change replica ownership using the AWS CLI, you create buckets, enable versioning on the buckets, create an IAM role that gives Amazon S3 permission to replicate objects, and add the replication configuration to the source bucket\. In the replication configuration you direct Amazon S3 to change replica owner\. You also test the setup\.
 
@@ -225,6 +225,6 @@ The profiles you use for this exercise must have the necessary permissions\. For
 
    1. Add objects to the *source* bucket\. Verify that the *destination* bucket contains the object replicas and that the ownership of the replicas has changed to the AWS account that owns the *destination* bucket\.
 
-## Change the replica owner when buckets are owned by different accounts \(AWS SDK\)<a name="replication-ex3-sdk"></a>
+## Using the AWS SDKs<a name="replication-ex3-sdk"></a>
 
- For a code example to add replication configuration, see [Configure replication when buckets are owned by the same account \(AWS SDK\)](replication-walkthrough1.md#replication-ex1-sdk)\. You need to modify the replication configuration appropriately\. For conceptual information, see [Changing the replica owner](replication-change-owner.md)\. 
+ For a code example to add replication configuration, see [Using the AWS SDKs](replication-walkthrough1.md#replication-ex1-sdk)\. You need to modify the replication configuration appropriately\. For conceptual information, see [Changing the replica owner](replication-change-owner.md)\. 

@@ -97,4 +97,4 @@ If an AWS account owns a resource, it can grant those permissions to another AWS
 
 We recommend you first review all introductory topics that explain how you manage access to your Amazon S3 resources and related guidelines\. For more information, see [Identity and access management in Amazon S3](s3-access-control.md)\. You can then use the following topics for more information about specific access policy options\. 
 + [Managing access with ACLs](acl-overview.md)
-+ [Controlling object ownership of uploaded objects using S3 Object Ownership](about-object-ownership.md)
++ [Controlling ownership of uploaded objects using S3 Object Ownership](about-object-ownership.md)

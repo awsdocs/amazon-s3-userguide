@@ -13,3 +13,8 @@ This section contains information specific to the Amazon S3 SOAP API\.
 
 **Note**  
 SOAP requests, both authenticated and anonymous, must be sent to Amazon S3 using SSL\. Amazon S3 returns an error when you send a SOAP request over HTTP\. 
+
+**Topics**
++ [Common SOAP API elements](UsingSOAPOperations.md)
++ [Authenticating SOAP requests](SOAPAuthentication.md)
++ [Setting access policy with SOAP](SOAPAccessPolicy.md)

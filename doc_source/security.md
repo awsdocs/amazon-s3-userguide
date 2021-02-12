@@ -18,6 +18,7 @@ This documentation will help you understand how to apply the shared responsibili
 + [Data protection in Amazon S3](DataDurability.md)
 + [Protecting data using encryption](UsingEncryption.md)
 + [Internetwork traffic privacy](inter-network-traffic-privacy.md)
++ [AWS PrivateLink for Amazon S3](privatelink-interface-endpoints.md)
 + [Identity and access management in Amazon S3](s3-access-control.md)
 + [Logging and monitoring in Amazon S3](s3-incident-response.md)
 + [Compliance Validation for Amazon S3](s3-compliance.md)

@@ -47,7 +47,7 @@ Each S3 Lifecycle rule includes a filter that you can use to identify a subset o
   ```
 
   Instead of specifying object age in terms of days after creation, you can specify a date for each action\. However, you can't use both `Date` and `Days` in the same rule\. 
-+ If you want the Lifecycle rule to apply to all objects in the bucket, specify an empty prefix\. In the following configuration, the rule specifies a `Transition` action directing Amazon S3 to transition objects to the S3 Glacier storage class 0 days after creation in which case objects are eligible for archival to Amazon S3 Glacier at midnight UTC following creation\. 
++ If you want the Lifecycle rule to apply to all objects in the bucket, specify an empty prefix\. In the following configuration, the rule specifies a `Transition` action directing Amazon S3 to transition objects to the S3 Glacier storage class 0 days after creation in which case objects are eligible for archival to Amazon S3 Glacier at midnight UTC following creation\. For more information about lifecycle constraints, see [Constraints](lifecycle-transition-general-considerations.md#lifecycle-configuration-constraints)\.
 
   ```
   <LifecycleConfiguration>

@@ -8,13 +8,6 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 This section contains information on how to make requests to Amazon S3 endpoints by using the REST API\. For a list of Amazon S3 endpoints, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
 
-**Topics**
-+ [Constructing S3 hostnames for REST API requests](#constructing-hostname-rest-api-requests)
-+ [Virtual hosted‐style and path‐style requests](#virtual-hosted-path-style-requests)
-+ [Making requests to dual\-stack endpoints by using the REST API](#rest-api-dual-stack)
-+ [Virtual hosting of buckets](VirtualHosting.md)
-+ [Request redirection and the REST API](RESTRedirect.md)
-
 ## Constructing S3 hostnames for REST API requests<a name="constructing-hostname-rest-api-requests"></a>
 
 Amazon S3 endpoints follow the structure shown below:
@@ -85,3 +78,12 @@ Or you can use a path\-style endpoint in your request as shown in the following 
 ```
 
 For more information about dual\-stack endpoints, see [Using Amazon S3 dual\-stack endpoints](dual-stack-endpoints.md)\.
+
+For more information about making requests using the REST API, see the topics beldow\.
+
+**Topics**
++ [Constructing S3 hostnames for REST API requests](#constructing-hostname-rest-api-requests)
++ [Virtual hosted‐style and path‐style requests](#virtual-hosted-path-style-requests)
++ [Making requests to dual\-stack endpoints by using the REST API](#rest-api-dual-stack)
++ [Virtual hosting of buckets](VirtualHosting.md)
++ [Request redirection and the REST API](RESTRedirect.md)

@@ -65,7 +65,7 @@ public class CreateAndUpdateDashboard {
         String configurationId = "ConfigurationId";
         String sourceAccountId = "Source Account ID";
         String exportAccountId = "Destination Account ID";
-        String exportBucketArn = "arn:aws:s3:::destBucketName";
+        String exportBucketArn = "arn:aws:s3:::destBucketName"; // The destination bucket for your metrics export must be in the same Region as your S3 Storage Lens configuration.
         String awsOrgARN = "arn:aws:organizations::222222222222:organization/o-abcdefgh";
         Format exportFormat = Format.CSV;
 

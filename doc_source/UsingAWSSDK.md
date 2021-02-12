@@ -21,6 +21,7 @@ This section provides an overview of using AWS SDKs for developing Amazon S3 app
 + [Using the AWS SDK for Python \(Boto\)](UsingTheBotoAPI.md)
 + [Using the AWS Mobile SDKs for iOS and Android](using-mobile-sdks.md)
 + [Using the AWS Amplify JavaScript Library](using-aws-amplify.md)
++ [Using the AWS SDK for JavaScript](using-aws-javascript.md)
 
 In addition to the AWS SDKs, AWS Explorers are available for Visual Studio and Eclipse for Java IDE\. In this case, the SDKs and the explorers are available bundled together as AWS Toolkits\. 
 

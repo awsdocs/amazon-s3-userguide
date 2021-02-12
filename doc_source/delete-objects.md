@@ -12,7 +12,7 @@ Because all objects in your S3 bucket incur storage costs, you should delete obj
 
 For information about Amazon S3 features and pricing, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing)\.
 
-## Deleting an object using the Amazon S3 console<a name="delete-object-console"></a>
+## Using the S3 console<a name="delete-object-console"></a>
 
 Follow these steps to use the Amazon S3 console to delete a single object from a bucket\.
 
@@ -305,7 +305,7 @@ namespace Amazon.DocSamples.S3
 ------
 #### [ PHP ]
 
-This example shows how to use classes from version 3 of the AWS SDK for PHP to delete an object from a non\-versioned bucket\. For information about deleting an object from a versioned bucket, see [Deleting an object using the REST API](DeletingAnObjectsUsingREST.md)\. 
+This example shows how to use classes from version 3 of the AWS SDK for PHP to delete an object from a non\-versioned bucket\. For information about deleting an object from a versioned bucket, see [Using the REST API](DeletingAnObjectsUsingREST.md)\. 
 
 This example assumes that you are already following the instructions for [Using the AWS SDK for PHP and Running PHP Examples](UsingTheMPphpAPI.md) and have the AWS SDK for PHP properly installed\. For information about running the PHP examples in this guide, see [Running PHP Examples](UsingTheMPphpAPI.md#running-php-samples)\.
 
@@ -367,10 +367,8 @@ catch (S3Exception $e) {
 
 ------
 
-## Deleting an object using the AWS CLI<a name="delete-object-cli"></a>
+## Using the AWS CLI<a name="delete-object-cli"></a>
 
 
 
-To delete one object per request, use the `DELETE` API\. For more information, see [DELETE Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectDELETE.html)\. To learn more about object deletion, see [Deleting Amazon S3 objects](DeletingObjects.md)\. 
-
-You can use either the REST API directly or the wrapper libraries provided by the AWS SDKs that simplify application development\. 
+To delete one object per request, use the `DELETE` API\. For more information, see [DELETE Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectDELETE.html)\. For more information about using the CLI to delete an object, see [delete\-object](https://awscli.amazonaws.com/v2/documentation/api/2.0.34/reference/s3api/delete-object.html)\.

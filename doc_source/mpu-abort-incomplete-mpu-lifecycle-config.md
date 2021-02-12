@@ -4,9 +4,9 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Using a bucket lifecycle policy<a name="mpu-abort-incomplete-mpu-lifecycle-config"></a>
+# Configuring a bucket lifecycle policy to abort incomplete multipart uploads<a name="mpu-abort-incomplete-mpu-lifecycle-config"></a>
 
-As a best practice, we recommend you configure a lifecycle rule using the `AbortIncompleteMultipartUpload` action to minimize your storage costs\.
+As a best practice, we recommend you configure a lifecycle rule using the `AbortIncompleteMultipartUpload` action to minimize your storage costs\. For more information about aborting a multipart upload, see [Aborting a multipart upload](abort-mpu.md)\.
 
 Amazon S3 supports a bucket lifecycle rule that you can use to direct Amazon S3 to stop multipart uploads that don't complete within a specified number of days after being initiated\. When a multipart upload is not completed within the timeframe, it becomes eligible for an abort operation and Amazon S3 stops the multipart upload \(and deletes the parts associated with the multipart upload\)\.
 

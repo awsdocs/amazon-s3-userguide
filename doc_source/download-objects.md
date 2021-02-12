@@ -19,7 +19,7 @@ When you download an object programmatically, its metadata is returned in the re
 
 When retrieving objects that are stored encrypted using server\-side encryption, you must provide appropriate request headers\. For more information, see [Protecting data using encryption](UsingEncryption.md)\.
 
-## Downloading an object using the Amazon S3 console<a name="download-objects-console"></a>
+## Using the S3 console<a name="download-objects-console"></a>
 
 This section explains how to use the Amazon S3 console to download objects from an S3 bucket\.
 
@@ -45,7 +45,7 @@ If an object key name consists of a single period \(\.\), or two periods \(\.\.\
    + Choose the name of the object that you want to download and then choose **Download** or **Download as** from the **Action** menu\.
    + Choose the name of the object that you want to download\. Choose **Latest version** and then choose the download icon\.
 
-## Downloading an object using the AWS SDKs<a name="download-object-sdk"></a>
+## Using the AWS SDKs<a name="download-object-sdk"></a>
 
 ------
 #### [ Java ]
@@ -61,7 +61,7 @@ Your network connection remains open until you read all of the data or close the
 
 The following are some variations you might use:
 + Instead of reading the entire object, you can read only a portion of the object data by specifying the byte range that you want in the request\.
-+ You can optionally override the response header values \(see [Downloading an objectDownloading an object using the Amazon S3 console](#download-objects)\) by using a `ResponseHeaderOverrides` object and setting the corresponding request property\. For example, you can use this feature to indicate that the object should be downloaded into a file with a different file name than the object key name\.
++ You can optionally override the response header values by using a `ResponseHeaderOverrides` object and setting the corresponding request property\. For example, you can use this feature to indicate that the object should be downloaded into a file with a different file name than the object key name\.
 
 The following example retrieves an object from an Amazon S3 bucket three ways: first, as a complete object, then as a range of bytes from the object, then as a complete object with overridden response header values\. For more information about getting objects from Amazon S3, see [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html)\. For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.
 
@@ -170,7 +170,7 @@ The following are some variations you might use:
   5.     ByteRange = new ByteRange(0, 10)
   6. };
   ```
-+ When retrieving an object, you can optionally override the response header values \(see [Downloading an objectDownloading an object using the Amazon S3 console](#download-objects)\) by using the `ResponseHeaderOverrides` object and setting the corresponding request property\. The following C\# code example shows how to do this\. For example, you can use this feature to indicate that the object should be downloaded into a file with a different file name than the object key name\.   
++ When retrieving an object, you can optionally override the response header values \(see [Downloading an object](#download-objects)\) by using the `ResponseHeaderOverrides` object and setting the corresponding request property\. The following C\# code example shows how to do this\. For example, you can use this feature to indicate that the object should be downloaded into a file with a different file name than the object key name\.   
 **Example**  
 
   ```
@@ -274,7 +274,7 @@ When retrieving an object, you can optionally override the response header value
 9. ]);
 ```
 
-For more information about retrieving objects, see [Downloading an objectDownloading an object using the Amazon S3 console](#download-objects)\. 
+For more information about retrieving objects, see [Downloading an object](#download-objects)\. 
 
 The following PHP example retrieves an object and displays the content of the object in the browser\. The example shows how to use the `getObject()` method\. For information about running the PHP examples in this guide, see [Running PHP Examples](UsingTheMPphpAPI.md#running-php-samples)\. 
 
@@ -309,7 +309,7 @@ try {
 
 ------
 
-## Downloading an object using the REST API<a name="download-object-rest"></a>
+## Using the REST API<a name="download-object-rest"></a>
 
 You can use the AWS SDK to retrieve object keys from a bucket\. However, if your application requires it, you can send REST requests directly\. You can send a GET request to retrieve object keys\. 
 

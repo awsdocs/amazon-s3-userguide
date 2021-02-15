@@ -9,7 +9,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with customer master keys \(CMKs\) stored in AWS KMS\. This section explains additional configuration that you add to direct Amazon S3 to replicate these objects\. 
 
 **Important**  
-Replication of encrypted data is a server\-side process that occurs entirely within Amazon S3\. Replication does not support client\-side encryption\. 
+Replication of encrypted data is a server\-side process that occurs entirely within Amazon S3\.
 
 For an example with step\-by\-step instructions, see [Replicating encrypted objects](replication-walkthrough-4.md)\. For information about creating a replication configuration, see [Replicating objects](replication.md)\. 
 

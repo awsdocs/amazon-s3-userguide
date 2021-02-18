@@ -83,7 +83,7 @@ The following instructions provide an overview of how to create your buckets for
 
    1. Choose **Create bucket**\.
 
-   1. Enter the **Bucket name** \(for example, **example\.com**\)\.
+   1. Enter the **Bucket name** \(for example, **www\.example\.com**\)\.
 
    1. Choose the Region where you want to create the bucket\. 
 

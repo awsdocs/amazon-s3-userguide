@@ -39,7 +39,7 @@ Amazon S3 is intentionally built with a minimal feature set that focuses on simp
 + **Creating buckets** – Create and name a bucket that stores data\. Buckets are the fundamental containers in Amazon S3 for data storage\.
 + **Storing data** – Store an infinite amount of data in a bucket\. Upload as many objects as you like into an Amazon S3 bucket\. Each object can contain up to 5 TB of data\. Each object is stored and retrieved using a unique developer\-assigned key\.
 + **Downloading data** – Download your data or enable others to do so\. Download your data anytime you like, or allow others to do the same\.
-+ **Permissions** – Grant or deny access to others who want to upload or download data into your Amazon S3 bucket\. Grant upload and download permissions to three types of users\. Authentication mechanisms can help keep data secure from unauthorized access\.
++ **Permissions** – Grant or deny access to others who want to upload data into or download data from your Amazon S3 bucket\. Grant upload and download permissions to three types of users\. Authentication mechanisms can help keep data secure from unauthorized access\.
 + **Standard interfaces** – Use standards\-based REST and SOAP interfaces designed to work with any internet\-development toolkit\.
 **Note**  
  SOAP support over HTTP is deprecated, but it is still available over HTTPS\. New Amazon S3 features will not be supported for SOAP\. We recommend that you use either the REST API or the AWS SDKs\. 

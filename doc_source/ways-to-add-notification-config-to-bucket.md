@@ -6,7 +6,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Walkthrough: Configuring a bucket for notifications \(SNS topic or SQS queue\)<a name="ways-to-add-notification-config-to-bucket"></a>
 
-You can receive Amazon S3 notifications using Amazon Simple Notification Service; or Amazon Simple Queue Service\. In the following walkthrough, you will add a notification configuration to your bucket using an Amazon SNS topic and Amazon SQS queue\.
+You can receive Amazon S3 notifications using Amazon Simple Notification Service \(Amazon SNS\) or Amazon Simple Queue Service \(Amazon SQS\)\. In this walkthrough, you add a notification configuration to your bucket using an Amazon SNS topic and an Amazon SQS queue\.
 
 **Topics**
 + [Walkthrough summary](#notification-walkthrough-summary)
@@ -16,14 +16,16 @@ You can receive Amazon S3 notifications using Amazon Simple Notification Service
 + [Step 4: Test the setup](#notification-walkthrough-1-test)
 
 ## Walkthrough summary<a name="notification-walkthrough-summary"></a>
+
+This walkhrough helps you do the following:
 + Publish events of the `s3:ObjectCreated:*` type to an Amazon SQS queue\.
 + Publish events of the `s3:ReducedRedundancyLostObject` type to an Amazon SNS topic\.
 
-For information about notification configuration, see [Configuring Amazon S3 event notifications](NotificationHowTo.md)\.
+For information about notification configuration, see [Enabling event notifications](how-to-enable-disable-notification-intro.md)\.
 
 You can do all these steps using the console, without writing any code\. In addition, code examples using AWS SDKs for Java and \.NET are also provided to help you add notification configurations programmatically\.
 
-You can do the following with this walkthrough:
+The procedure includes the following steps:
 
 1. Create an Amazon SQS queue\.
 
@@ -33,7 +35,7 @@ You can do the following with this walkthrough:
 
 1. Create an Amazon SNS topic\.
 
-   Using the Amazon SNS console, you create an SNS topic and subscribe to the topic so that any events posted to it are delivered to you\. You specify email as the communications protocol\. After you create a topic, Amazon SNS sends an email\. You must click a link in the email to confirm the topic subscription\. 
+   Using the Amazon SNS console, you create an SNS topic and subscribe to the topic so that any events posted to it are delivered to you\. You specify email as the communications protocol\. After you create a topic, Amazon SNS sends an email\. You must use the link in the email to confirm the topic subscription\. 
 
    You attach an access policy to the topic to grant Amazon S3 permission to post messages\. 
 
@@ -45,7 +47,7 @@ Follow the steps to create and subscribe to an Amazon Simple Queue Service \(Ama
 
 1. Using the Amazon SQS console, create a queue\. For instructions, see [Getting Started with Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) in the *Amazon Simple Queue Service Developer Guide*\. 
 
-1. Replace the access policy attached to the queue with the following policy\. \(In the Amazon SQS console, select the queue, and in the **Permissions** tab, choose **Edit Policy Document \(Advanced\)**\.
+1. Replace the access policy attached to the queue with the following policy\. In the Amazon SQS console, select the queue, and in the **Permissions** tab, choose **Edit Policy Document \(Advanced\)**\.
 
    ```
    {
@@ -71,7 +73,7 @@ Follow the steps to create and subscribe to an Amazon Simple Queue Service \(Ama
    }
    ```
 
-1. \(Optional\) If the Amazon SQS queue or the Amazon SNS topic are server\-side encryption enabled with AWS Key Management Service \(AWS KMS\), add the following policy to the associated symmetric customer managed AWS KMS CMK\. 
+1. \(Optional\) If the Amazon SQS queue or the Amazon SNS topic is server\-side encryption enabled with AWS Key Management Service \(AWS KMS\), add the following policy to the associated symmetric customer managed AWS KMS CMK\. 
 
    You must add the policy to a customer managed CMK because you cannot modify the AWS managed CMK for Amazon SQS or Amazon SNS\. 
 
@@ -97,8 +99,8 @@ Follow the steps to create and subscribe to an Amazon Simple Queue Service \(Ama
    ```
 
    For more information about using SSE for Amazon SQS and Amazon SNS with AWS KMS, see the following:
-   + [Configuring AWS KMS Permissions for Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html) in the *Amazon Simple Notification Service Developer Guide*\.
-   + [Configuring AWS KMS Permissions for Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html) in the *Amazon Simple Queue Service Developer Guide*\.
+   + [Key management](https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html) in the *Amazon Simple Notification Service Developer Guide*\.
+   + [Key management](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html) in the *Amazon Simple Queue Service Developer Guide*\.
 
 1. Note the queue ARN\. 
 
@@ -110,15 +112,15 @@ Follow the steps to create and subscribe to an Amazon Simple Queue Service \(Ama
 
 ## Step 2: Create an Amazon SNS topic<a name="step1-create-sns-topic-for-notification"></a>
 
-Follow the steps to create and subscribe to an Amazon Simple Notification Service \(Amazon SNS\) topic\.
+Follow the steps to create and subscribe to an Amazon SNS topic\.
 
-1. Using Amazon SNS console create a topic\. For instructions, see [Create a Topic](https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) in the *Amazon Simple Notification Service Developer Guide*\. 
+1. Using Amazon SNS console, create a topic\. For instructions, see [Creating an Amazon SNS topic](https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) in the *Amazon Simple Notification Service Developer Guide*\. 
 
-1. Subscribe to the topic\. For this exercise, use email as the communications protocol\. For instructions, see [Subscribe to a Topic](https://docs.aws.amazon.com/sns/latest/dg/SubscribeTopic.html) in the *Amazon Simple Notification Service Developer Guide*\. 
+1. Subscribe to the topic\. For this exercise, use email as the communications protocol\. For instructions, see [Subscribing to an Amazon SNS topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-subscribe-endpoint-to-topic.html) in the *Amazon Simple Notification Service Developer Guide*\. 
 
    You will get email requesting you to confirm your subscription to the topic\. Confirm the subscription\. 
 
-1. Replace the access policy attached to the topic with the following policy\. You must update the policy by providing your SNS topic Amazon Resource Name \(ARN\), bucket name, and bucket owner's account ID\.
+1. Replace the access policy attached to the topic with the following policy\. You must update the policy by providing your SNS topic ARN, bucket name, and bucket owner's account ID\.
 
    ```
    {
@@ -146,7 +148,7 @@ Follow the steps to create and subscribe to an Amazon Simple Notification Servic
 
 1. Note the topic ARN\.
 
-   The SNS topic you created is another resource in your AWS account, and it has a unique Amazon Resource Name \(ARN\)\. You will need this ARN in the next step\. The ARN will be of the following format:
+   The SNS topic you created is another resource in your AWS account, and it has a unique ARN\. You will need this ARN in the next step\. The ARN will be of the following format:
 
    ```
    arn:aws:sns:aws-region:account-id:topic-name
@@ -158,7 +160,7 @@ You can enable bucket notifications either by using the Amazon S3 console or pro
 
 ### Option A: Enable notifications on a bucket using the console<a name="step2-enable-notification-using-console"></a>
 
-Using the Amazon S3 console, add a notification configuration requesting Amazon S3 to:
+Using the Amazon S3 console, add a notification configuration requesting Amazon S3 to do the following:
 + Publish events of the **All object create events** type to your Amazon SQS queue\.
 + Publish events of the **Object in RRS lost** type to your Amazon SNS topic\.
 

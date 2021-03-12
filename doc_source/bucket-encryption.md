@@ -22,7 +22,7 @@ To encrypt your existing Amazon S3 objects with a single request, you can use Am
 You can also encrypt existing objects using the Copy Object API\. For more information, see the *AWS Storage Blog* post [Encrypting existing Amazon S3 objects with the AWS CLI](http://aws.amazon.com/blogs/storage/encrypting-existing-amazon-s3-objects-with-the-aws-cli/)\.
 
 **Note**  
-Amazon S3 buckets with default bucket encryption using SSE\-KMS cannot be used as destination buckets for [Logging requests with server access logging](ServerLogs.md)\. Only SSE\-S3 default encryption is supported for server access log destination buckets\.
+Amazon S3 buckets with default bucket encryption using SSE\-KMS cannot be used as destination buckets for [Logging requests using server access logging](ServerLogs.md)\. Only SSE\-S3 default encryption is supported for server access log destination buckets\.
 
 ## Using encryption for cross\-account operations<a name="bucket-encryption-update-bucket-policy"></a>
 

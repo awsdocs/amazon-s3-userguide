@@ -14,7 +14,7 @@ You can use the select type of restore with the AWS SDKs, the S3 Glacier REST AP
 
 **Topics**
 + [Requirements and limits when using select](#glacier-select-requirements-and-limits)
-+ [How do I query data using select?](#glacier-select-restrictions)
++ [Querying data using select](#glacier-select-restrictions)
 + [Error handling](#glacier-select-access-control)
 + [Data access tiers](#querying-glacier-archives-access-tiers)
 
@@ -22,7 +22,7 @@ You can use the select type of restore with the AWS SDKs, the S3 Glacier REST AP
 
 The following are requirements for using select:
 + Archive objects that are queried by select must be formatted as uncompressed comma\-separated values \(CSV\)\. 
-+ An S3 bucket for output\. The AWS account that you use to initiate an S3 Glacier select job must have write permissions for the S3 bucket\. The Amazon S3 bucket must be in the same AWS Region as the bucket that contains the archived object that is being queried\.
++ You need an S3 bucket for output\. The AWS account that you use to initiate an S3 Glacier select job must have write permissions for the S3 bucket\. The bucket must be in the same AWS Region as the bucket that contains the archived object that is being queried\.
 + The requesting AWS account must have permissions to perform the `s3:RestoreObject` and `s3:GetObject` actions\. For more information about these permissions, see [Example — Bucket subresource operations](using-with-s3-actions.md#using-with-s3-actions-related-to-bucket-subresources)\. 
 + The archive must not be encrypted with SSE\-C or client\-side encryption\. 
 
@@ -31,7 +31,7 @@ The following limits apply when using select:
 + There is no limit on the size of your final result\. However, your results are broken into multiple parts\. 
 + An SQL expression is limited to 128 KB\.
 
-## How do I query data using select?<a name="glacier-select-restrictions"></a>
+## Querying data using select<a name="glacier-select-restrictions"></a>
 
 Using select, you can use SQL commands to query S3 Glacier archive objects that are in encrypted uncompressed CSV format\. With this restriction, you can perform simple query operations on your text\-based data in S3 Glacier\. For example, you might look for a specific name or ID among a set of archived text files\. 
 
@@ -47,7 +47,7 @@ S3 Glacier Select supports a subset of the ANSI SQL language\. It supports commo
 
 ### Select output<a name="glacier-select-output"></a>
 
-When you initiate a select request, you define an output location for the results of your select query\. This location must be an Amazon S3 bucket in the same AWS Region as the bucket that contains the archived object that is being queried\. The AWS account that initiates the job must have permissions to write to the S3 bucket\. 
+When you initiate a select request, you define an output location for the results of your select query\. This location must be an S3 bucket in the same AWS Region as the bucket that contains the archived object that is being queried\. The AWS account that initiates the job must have permissions to write to the bucket\. 
 
 You can specify the Amazon S3 storage class and encryption for the output objects stored in Amazon S3\. Select supports AWS Key Management Service \(SSE\-KMS\) and Amazon S3 \(SSE\-S3\) encryption\. Select doesn't support SSE\-C and client\-side encryption\. For more information about Amazon S3 storage classes and encryption, see [Using Amazon S3 storage classes](storage-class-intro.md) and [Protecting data using server\-side encryption](serv-side-encryption.md)\.
 
@@ -72,20 +72,20 @@ The select query results are broken into multiple parts\. In the example, select
 Presence of a `result_manifest.txt` file along with the absence of `error_manifest.txt` guarantees that the job finished successfully\. There is no guarantee provided on how results are ordered\.
 
 **Note**  
-The length of an Amazon S3 object name, also referred to as the *key*, can be no more than 1,024 bytes\. S3 Glacier select reserves 128 bytes for prefixes\. And, the length of your Amazon S3 location path cannot be more than 512 bytes\. A request with a length greater than 512 bytes returns an exception, and the request is not accepted\.
+The length of an Amazon S3 object name, also referred to as the *key*, can be no more than 1,024 bytes\. S3 Glacier Select reserves 128 bytes for prefixes\. And, the length of your Amazon S3 location path cannot be more than 512 bytes\. A request with a length greater than 512 bytes returns an exception, and the request is not accepted\.
 
 ## Error handling<a name="glacier-select-access-control"></a>
 
 Select notifies you of two kinds of errors\. The first set of errors is sent to you synchronously when you submit the query in [POST Object restore](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html)\. These errors are sent to you as part of the HTTP response\. Another set of errors can occur after the query has been accepted successfully, but they happen during query execution\. In this case, the errors are written to the specified output location under the `errors` prefix\.
 
-Select stops executing the query after encountering an error\. To run the query successfully, you must resolve all errors\. You can check the logs to identify which records caused a failure\. 
+Select stops running the query after encountering an error\. To run the query successfully, you must resolve all errors\. You can check the logs to identify which records caused a failure\. 
 
 Because queries run in parallel across multiple compute nodes, the errors that you get are not in sequential order\. For example, if your query fails with an error in row 6,234, it does not mean that all rows before row 6,234 were successfully processed\. The next run of the query might show an error in a different row\. 
 
 ## Data access tiers<a name="querying-glacier-archives-access-tiers"></a>
 
 You can specify one of the following data access tiers when querying an archived object: 
-+ **`Expedited`** – Allows you to quickly access your data when occasional urgent requests for a subset of archives are required\. For all but the largest archived object \(250 MB\+\), data accessed using `Expedited` retrievals are typically made available within 1–5 minutes\. There are two types of `Expedited` data access: On\-Demand and Provisioned\. On\-Demand requests are similar to EC2 On\-Demand instances and are available most of the time\. Provisioned requests are guaranteed to be available when you need them\. For more information, see [Provisioned Capacity](#querying-glacier-archives-expedited-capacity)\. 
++ **`Expedited`** – Allows you to quickly access your data when occasional urgent requests for a subset of archives are required\. For all but the largest archived object \(250 MB\+\), data accessed using `Expedited` retrievals are typically made available within 1–5 minutes\. There are two types of `Expedited` data access: On\-Demand and Provisioned\. On\-Demand requests are similar to EC2 On\-Demand instances and are available most of the time\. Provisioned requests are guaranteed to be available when you need them\. For more information, see [Provisioned capacity](#querying-glacier-archives-expedited-capacity)\. 
 + **`Standard`** – Allows you to access any of your archived objects within several hours\. Standard retrievals typically finish within 3–5 hours\. This is the default tier\.
 + **`Bulk`** – The lowest\-cost data access option in S3 Glacier, enabling you to retrieve large amounts, even petabytes, of data inexpensively in a day\. `Bulk` access typically finishes within 5–12 hours\. 
 
@@ -93,6 +93,6 @@ To make an `Expedited`, `Standard`, or `Bulk` request, set the `Tier` request el
 
 
 
-### Provisioned Capacity<a name="querying-glacier-archives-expedited-capacity"></a>
+### Provisioned capacity<a name="querying-glacier-archives-expedited-capacity"></a>
 
-Provisioned capacity helps ensure that your retrieval capacity for expedited retrievals is available when you need it\. Each unit of capacity ensures that at least three expedited retrievals can be performed every five minutes and provides up to 150 MB/s of retrieval throughput\. For more information, see [Provisioned capacity](restoring-objects-retrieval-options.md#restoring-objects-expedited-capacity)\.
+Provisioned capacity helps ensure that your retrieval capacity for expedited retrievals is available when you need it\. Each unit of capacity ensures that at least three expedited retrievals can be performed every 5 minutes and provides up to 150 MB/s of retrieval throughput\. For more information, see [Provisioned capacity](restoring-objects-retrieval-options.md#restoring-objects-expedited-capacity)\.

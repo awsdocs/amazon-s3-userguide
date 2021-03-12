@@ -24,7 +24,7 @@ Setting up replication when *source* and *destination* buckets are owned by diff
       "Id":"",
       "Statement":[
          {
-            "Sid":"1",
+            "Sid":"Set permissions for objects",
             "Effect":"Allow",
             "Principal":{
                "AWS":"arn:aws:iam::source-bucket-acct-ID:source-acct-IAM-role"
@@ -33,7 +33,7 @@ Setting up replication when *source* and *destination* buckets are owned by diff
             "Resource":"arn:aws:s3:::destination/*"
          },
          {
-            "Sid":"2",
+            "Sid":"Set permissions on bucket",
             "Effect":"Allow",
             "Principal":{
                "AWS":"arn:aws:iam::source-bucket-acct-ID:source-acct-IAM-role"

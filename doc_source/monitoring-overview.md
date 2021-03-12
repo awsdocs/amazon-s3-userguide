@@ -14,12 +14,12 @@ Monitoring is an important part of maintaining the reliability, availability, an
 + Who will perform the monitoring tasks?
 + Who should be notified when something goes wrong?
 
-For more information about logging and monitoring in Amazon S3, see the topics below\.
+For more information about logging and monitoring in Amazon S3, see the following topics\.
 
 **Topics**
 + [Monitoring tools](monitoring-automated-manual.md)
-+ [Logging with Amazon S3](logging-with-S3.md)
++ [Logging options for Amazon S3](logging-with-S3.md)
 + [Logging Amazon S3 API calls using AWS CloudTrail](cloudtrail-logging.md)
-+ [Logging requests with server access logging](ServerLogs.md)
++ [Logging requests using server access logging](ServerLogs.md)
 + [Monitoring metrics with Amazon CloudWatch](cloudwatch-monitoring.md)
-+ [Configuring Amazon S3 event notifications](NotificationHowTo.md)
++ [Amazon S3 Event Notifications](NotificationHowTo.md)

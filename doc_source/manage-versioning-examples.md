@@ -8,7 +8,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 You can use S3 Versioning to keep multiple versions of an object in one bucket\. This section provides examples of how to enable versioning on a bucket using the console, REST API, AWS SDKs, and AWS Command Line Interface \(AWS CLI\)\. 
 
-For more information about S3 Versioning, see [Using versioning in S3 buckets](Versioning.md)\. For information about working with objects that are in a versioning\-enabled bucket, see [Working with objects in a versioning\-enabled bucket](manage-objects-versioned-bucket.md)\.
+For more information about S3 Versioning, see [Using versioning in S3 buckets](Versioning.md)\. For information about working with objects that are in versioning\-enabled buckets, see [Working with objects in a versioning\-enabled bucket](manage-objects-versioned-bucket.md)\.
 
 Each S3 bucket that you create has a *versioning* subresource associated with it\. \(For more information, see [Bucket configuration options](UsingBucket.md#bucket-config-options-intro)\.\) By default, your bucket is *unversioned*, and the versioning subresource stores the empty versioning configuration, as follows\.
 
@@ -72,7 +72,7 @@ For more information about enabling versioning using the AWS CLI, see [put\-buck
 
 ## Using the AWS SDKs<a name="manage-versioning-examples-sdk"></a>
 
-The following examples enable versioning on a bucket and then retrieve versioning status using the AWS SDK for Java and the AWS SDK for \.NET\. For information about using other AWS SDKs, see [Sample Code and Libraries](https://aws.amazon.com/code/)\.
+The following examples enable versioning on a bucket and then retrieve versioning status using the AWS SDK for Java and the AWS SDK for \.NET\. For information about using other AWS SDKs, see the [AWS Developer Center](https://aws.amazon.com/code/)\.
 
 ------
 #### [ Java ]

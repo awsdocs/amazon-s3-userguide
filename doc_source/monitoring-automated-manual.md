@@ -16,13 +16,13 @@ You can use the following automated monitoring tools to watch Amazon S3 and repo
 
 ## Manual monitoring tools<a name="monitoring-manual-tools"></a>
 
-Another important part of monitoring Amazon S3 involves manually monitoring those items that the CloudWatch alarms don't cover\. The Amazon S3, CloudWatch, Trusted Advisor, and other AWS Management Console dashboards provide an at\-a\-glance view of the state of your AWS environment\. You might want to enable server access logging, which tracks requests for access to your bucket\. Each access log record provides details about a single access request, such as the requester, bucket name, request time, request action, response status, and error code, if any\. For more information, see [Logging requests with server access logging](ServerLogs.md)\.
-+ Amazon S3 dashboard shows:
-  + Your buckets and the objects and properties they contain\.
-+ CloudWatch home page shows:
-  + Current alarms and status\.
-  + Graphs of alarms and resources\.
-  + Service health status\.
+Another important part of monitoring Amazon S3 involves manually monitoring those items that the CloudWatch alarms don't cover\. The Amazon S3, CloudWatch, Trusted Advisor, and other AWS Management Console dashboards provide an at\-a\-glance view of the state of your AWS environment\. You might want to enable *server access logging*, which tracks requests for access to your bucket\. Each access log record provides details about a single access request, such as the requester, bucket name, request time, request action, response status, and error code, if any\. For more information, see [Logging requests using server access logging](ServerLogs.md)\.
++ The Amazon S3 dashboard shows the following:
+  + Your buckets and the objects and properties they contain
++ The CloudWatch home page shows the following:
+  + Current alarms and status
+  + Graphs of alarms and resources
+  + Service health status
 
   In addition, you can use CloudWatch to do the following: 
   + Create [customized dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CloudWatch_Dashboards.html) to monitor the services you care about\.

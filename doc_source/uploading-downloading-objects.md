@@ -22,5 +22,5 @@ With Amazon S3, you pay only for what you use\. For more information about Amazo
 + [Downloading an object](download-objects.md)
 + [Deleting Amazon S3 objects](DeletingObjects.md)
 + [Organizing, listing, and working with your objects](organizing-objects.md)
-+ [Accessing an object using a presigned URL](ShareObjectPreSignedURL.md)
++ [Using presigned URLs](using-presigned-url.md)
 + [Retrieving Amazon S3 objects using BitTorrent](S3Torrent.md)

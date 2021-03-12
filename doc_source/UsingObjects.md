@@ -26,7 +26,7 @@ Amazon S3 uses the subresource mechanism to store object\-specific additional in
 
 Access control information  
 You can control access to the objects you store in Amazon S3\. Amazon S3 supports both the resource\-based access control, such as an access control list \(ACL\) and bucket policies, and user\-based access control\. For more information, see [Identity and access management in Amazon S3](s3-access-control.md)\.   
-Your Amazon S3 resources \(for example, buckets and objects\) are private by default\. You must explicitly grant permission for others to access these resources\. For more information about sharing objects, see [Accessing an object using a presigned URL](ShareObjectPreSignedURL.md)\.
+Your Amazon S3 resources \(for example, buckets and objects\) are private by default\. You must explicitly grant permission for others to access these resources\. For more information about sharing objects, see [Sharing an object with a presigned URL](ShareObjectPreSignedURL.md)\.
 
 ## Object subresources<a name="ObjectAndSubResource"></a>
 

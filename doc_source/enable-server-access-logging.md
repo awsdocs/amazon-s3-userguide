@@ -6,32 +6,32 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Enabling Amazon S3 server access logging<a name="enable-server-access-logging"></a>
 
-You can enable or disable server access logging by using the Amazon S3 console, Amazon S3 API, AWS CLI, or AWS SDKs\. 
+Server access logging provides detailed records for the requests that are made to an Amazon S3 bucket\. Server access logs are useful for many applications\. For example, access log information can be useful in security and access audits\. It can also help you learn about your customer base and understand your Amazon S3 bill\.
 
-By default, Amazon Simple Storage Service \(Amazon S3\) doesn't collect server access logs\. When you enable logging, Amazon S3 delivers access logs for a source bucket to a target bucket that you choose\. The target bucket must be in the same AWS Region as the source bucket and must not have a default retention period configuration\. 
+By default, Amazon S3 doesn't collect server access logs\. When you enable logging, Amazon S3 delivers access logs for a source bucket to a target bucket that you choose\. The target bucket must be in the same AWS Region as the source bucket and must not have a default retention period configuration\. 
 
-Server access logging provides detailed records for the requests that are made to an S3 bucket\. Server access logs are useful for many applications\. For example, access log information can be useful in security and access audits\. It can also help you learn about your customer base and understand your Amazon S3 bill\. 
-
-An access log record contains details about the requests that are made to a bucket\. This information can include the request type, the resources that are specified in the request, and the time and date that the request was processed\. For more information about logging basics, see [Logging requests with server access logging](ServerLogs.md)\. 
+An access log record contains details about the requests that are made to a bucket\. This information can include the request type, the resources that are specified in the request, and the time and date that the request was processed\. For more information about logging basics, see [Logging requests using server access logging](ServerLogs.md)\. 
 
 **Important**  
 There is no extra charge for enabling server access logging on an Amazon S3 bucket\. However, any log files that the system delivers to you will accrue the usual charges for storage\. \(You can delete the log files at any time\.\) We do not assess data transfer charges for log file delivery, but we do charge the normal data transfer rate for accessing the log files\.
 
+You can enable or disable server access logging by using the Amazon S3 console, Amazon S3 API, the AWS Command Line Interface \(AWS CLI\), or AWS SDKs\. 
+
 Before you enable server access logging, consider the following:
-+ In Amazon S3 you can grant permission to deliver access logs through bucket access control lists \(ACLs\), but not through bucket policy\.
++ In Amazon S3, you can grant permission to deliver access logs through bucket access control lists \(ACLs\), but not through bucket policy\.
 + Adding *deny* conditions to a bucket policy might prevent Amazon S3 from delivering access logs\.
-+ [Default bucket encryption](bucket-encryption.html) on the target bucket *can only be used* if **AES256 \(SSE\-S3\)** is selected\. SSE\-KMS encryption is not supported\. 
-+ S3 Object Lock cannot be enabled on the target bucket\.
++ You can use [default bucket encryption](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-bucket-encryption.html) on the target bucket *only* if **AES256 \(SSE\-S3\)** is selected\. SSE\-KMS encryption is not supported\. 
++ You can't enable S3 Object Lock on the target bucket\.
 
 To enable logging, follow these steps\.
 
 **Topics**
 + [Step 1: Enable server access logging](#enable-sever-access-logs)
-+ [Step 2: Granting the log delivery group WRITE and READ\_ACP permissions](#grant-log-delivery-permissions-general)
++ [Step 2: Grant the log delivery group WRITE and READ\_ACP permissions](#grant-log-delivery-permissions-general)
 
 ## Step 1: Enable server access logging<a name="enable-sever-access-logs"></a>
 
-Use these examples to enable server access logging\.
+You can enable logging using the console, API, AWS CLI, or AWS SDKs\.
 
 ### Using the S3 console<a name="server-access-logging"></a>
 
@@ -51,14 +51,15 @@ Use these examples to enable server access logging\.
 
 When you enable logging on a bucket, the console both enables logging on the source bucket and adds a grant in the target bucket's access control list \(ACL\) granting write permission to the Log Delivery group\. 
 
-**More Info**  
- [Viewing the properties for an S3 bucket](view-bucket-properties.md)
+For more information, see [Viewing the properties for an S3 bucket](view-bucket-properties.md)\.
 
 ### Using the REST API<a name="enable-logging-rest"></a>
 
 
 
-To enable logging, you submit a [PUT Bucket logging](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlogging.html) request to add the logging configuration on the source bucket\. The request specifies the target bucket and, optionally, the prefix to be used with all log object keys\. The following example identifies `logbucket` as the target bucket and `logs/` as the prefix\. 
+To enable logging, you submit a [PUT Bucket logging](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlogging.html) request to add the logging configuration on the source bucket\. The request specifies the target bucket and, optionally, the prefix to be used with all log object keys\. 
+
+The following example identifies `logbucket` as the target bucket and `logs/` as the prefix\. 
 
 ```
 1. <BucketLoggingStatus xmlns="http://doc.s3.amazonaws.com/2006-03-01">
@@ -85,7 +86,7 @@ You can use either the Amazon S3 API or the AWS SDK wrapper libraries to enable 
 ------
 #### [ \.NET ]
 
-The following C\# example enables logging on a bucket\. You need to create two buckets, a source bucket and a target bucket\. The example first grants the Log Delivery group the necessary permission to write logs to the target bucket and then enables logging on the source bucket\.
+The following C\# example enables logging on a bucket\. You must create two buckets, a source bucket and a target bucket\. The example first grants the Log Delivery group the necessary permission to write logs to the target bucket and then enables logging on the source bucket\.
 
 ------
 
@@ -173,7 +174,7 @@ The following C\# example enables logging on a bucket\. You need to create two b
 
 We recommend that you create a dedicated logging bucket in each AWS Region that you have S3 buckets in\. Then have the Amazon S3 access log delivered to that S3 bucket\.
 
-**Example — enable access logs with five buckets across two Regions**  
+**Example — Enable access logs with five buckets across two Regions**  
 In this example, you have the following five buckets:  
 + `1-awsexamplebucket1-us-east-1`
 + `2-awsexamplebucket1-us-east-1`
@@ -196,19 +197,19 @@ In this example, you have the following five buckets:
    + Using the [Enabling Amazon S3 server access logging](#enable-server-access-logging) or,
    + Using the [AWS CLI put\-bucket\-logging command](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-logging.html) to programmatically enable access logs on a bucket using the following commands:
 
-   1. First, grant Amazon S3 permission using `put-bucket-acl`:
+   1. First, grant Amazon S3 permission using `put-bucket-acl`\.
 
       ```
       1.  aws s3api put-bucket-acl --bucket awsexamplebucket1-logs  --grant-write URI=http://acs.amazonaws.com/groups/s3/LogDelivery --grant-read-acp URI=http://acs.amazonaws.com/groups/s3/LogDelivery 
       ```
 
-   1. Then, apply the logging policy:
+   1. Then, apply the logging policy\.
 
       ```
       1. aws s3api put-bucket-logging --bucket awsexamplebucket1 --bucket-logging-status file://logging.json 
       ```
 
-      `Logging.json` is a JSON document in the current folder that contains the logging policy:
+      `Logging.json` is a JSON document in the current folder that contains the logging policy\.
 
       ```
         {
@@ -230,7 +231,7 @@ In this example, you have the following five buckets:
 **Note**  
 The `put-bucket-acl` command is required to grant the Amazon S3 log delivery system the necessary permissions \(write and read\-acp permissions\)\. 
 
-   1. Use a bash script to add access logging for all the buckets in your account:
+   1. Use a bash script to add access logging for all the buckets in your account\.
 
       ```
         loggingBucket='awsexamplebucket1-logs'
@@ -264,7 +265,7 @@ The `put-bucket-acl` command is required to grant the Amazon S3 log delivery sys
 **Note**  
 This only works if all your buckets are in the same Region\. If you have buckets in multiple Regions, you must adjust the script\. 
 
-## Step 2: Granting the log delivery group WRITE and READ\_ACP permissions<a name="grant-log-delivery-permissions-general"></a>
+## Step 2: Grant the log delivery group WRITE and READ\_ACP permissions<a name="grant-log-delivery-permissions-general"></a>
 
 Amazon S3 writes the log files to the target bucket as a member of the predefined Amazon S3 group Log Delivery\. These writes are subject to the usual access control restrictions\. You must grant `s3:GetObjectAcl` and `s3:PutObject` permissions to this group by adding grants to the access control list \(ACL\) of the target bucket\. The Log Delivery group is represented by the following URL\. 
 

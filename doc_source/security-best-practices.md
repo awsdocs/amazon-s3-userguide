@@ -105,7 +105,7 @@ Monitoring is an important part of maintaining the reliability, security, availa
 For a second example, see [Example: Amazon S3 Bucket Activity](http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html#cloudwatch-alarms-for-cloudtrail-s3-bucket-activity)\. This example describes how to create an Amazon CloudWatch alarm that is triggered when an Amazon S3 API call is made to PUT or DELETE bucket policy, bucket lifecycle, or bucket replication, or to PUT a bucket ACL\.
 
 **Enable Amazon S3 server access logging**  
-Server access logging provides detailed records of the requests that are made to a bucket\. Server access logs can assist you in security and access audits, help you learn about your customer base, and understand your Amazon S3 bill\. For instructions on enabling server access logging, see [Logging requests with server access logging](ServerLogs.md)\.  
+Server access logging provides detailed records of the requests that are made to a bucket\. Server access logs can assist you in security and access audits, help you learn about your customer base, and understand your Amazon S3 bill\. For instructions on enabling server access logging, see [Logging requests using server access logging](ServerLogs.md)\.  
 Also consider implementing on\-going detective controls using the [s3\-bucket\-logging\-enabled](https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-logging-enabled.html) AWS Config managed rule\. 
 
 **Use AWS CloudTrail**  

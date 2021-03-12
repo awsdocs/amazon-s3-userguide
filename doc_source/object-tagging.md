@@ -72,7 +72,7 @@ To add object tag sets to more than one Amazon S3 object with a single request, 
 
 The S3 Batch Operations feature tracks progress, sends notifications, and stores a detailed completion report of all actions, providing a fully managed, auditable, serverless experience\. You can use S3 Batch Operations through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\. For more information, see [S3 Batch Operations basics](batch-ops-basics.md)\.
 
-For more information about object tabs, see [Managing object tags](tagging-managing.md)\.
+For more information about object tags, see [Managing object tags](tagging-managing.md)\.
 
 ## API operations related to object tagging<a name="tagging-apis"></a>
 
@@ -124,8 +124,10 @@ For more information, see [Managing your storage lifecycle](object-lifecycle-mgm
 
 If you configured Replication on your bucket, Amazon S3 replicates tags, provided you grant Amazon S3 permission to read the tags\. For more information, see [Setting up replication](replication-how-setup.md)\.
 
-For more information abuot object tagging, see the following topics:
+For more information about object tagging, see the following topics:
 
 **Topics**
-+ [Object tagging and lifecycle management](#tagging-and-lifecycle)
-+ [Object tagging and replication](#tagging-and-replication)
++ [API operations related to object tagging](#tagging-apis)
++ [Additional configurations](#tagging-other-configs)
++ [Tagging and access control policies](tagging-and-policies.md)
++ [Managing object tags](tagging-managing.md)

@@ -6,9 +6,9 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Enabling and configuring event notifications using the Amazon S3 console<a name="enable-event-notifications"></a>
 
-You can enable certain Amazon S3 bucket events to send a notification message to a destination whenever the events occur\. This section explains how to use the Amazon S3 console to enable event notifications\. For information about using event notifications with the AWS SDKs and the Amazon S3 REST APIs, see [Configuring Amazon S3 event notifications](NotificationHowTo.md)\. 
+You can enable certain Amazon S3 bucket events to send a notification message to a destination whenever the events occur\. This section explains how to use the Amazon S3 console to enable event notifications\. For information about using event notifications with the AWS SDKs and the Amazon S3 REST APIs, see [Configuring event notifications programmatically](how-to-enable-disable-notification-intro.md#event-notification-configuration)\. 
 
-**Prerequisites**: Before you can enable event notifications for your bucket, you must set up one of the destination types and then configure permissions\. For more information, see [Supported destinations ](NotificationHowTo.md#supported-notification-destinations) and [Granting permissions to publish event notification messages to a destination](grant-destinations-permissions-to-s3.md)\.
+**Prerequisites**: Before you can enable event notifications for your bucket, you must set up one of the destination types and then configure permissions\. For more information, see [Supported event destinations](notification-how-to-event-types-and-destinations.md#supported-notification-destinations) and [Granting permissions to publish event notification messages to a destination](grant-destinations-permissions-to-s3.md)\.
 
 **To enable and configure event notifications for an S3 bucket**
 
@@ -16,13 +16,15 @@ You can enable certain Amazon S3 bucket events to send a notification message to
 
 1. In the **Buckets** list, choose the name of the bucket that you want to enable events for\.
 
+1. Choose **Properties**\.
+
 1. Navigate to the **Event Notifications** section and choose **Create event notification**\.
 
 1. In the **General configuration** section, specify descriptive event name for your event notification\. Optionally, you can also specify a prefix and a suffix to limit the notifications to objects with keys ending in the specified characters\.
 
    1. Enter a description for the **Event name**\.
 
-      If you don't enter a name, a Globally Unique Identifier \(GUID\) will be generated and used for the name\. 
+      If you don't enter a name, a globally unique identifier \(GUID\) is generated and used for the name\. 
 
    1. To optionally filter event notifications by prefix, enter a **Prefix**\. 
 
@@ -34,7 +36,7 @@ You can enable certain Amazon S3 bucket events to send a notification message to
 
 1. In the **Event types** section, select one or more event types for which you want to receive notifications\. 
 
-   For a listing of the event types, see [Supported event types](NotificationHowTo.md#supported-notification-event-types)\.
+   For a listing of the event types, see [Supported event types](notification-how-to-event-types-and-destinations.md#supported-notification-event-types)\.
 
 1. In the **Destination** section, choose the event notification destination\. 
 **Note**  
@@ -42,10 +44,10 @@ Before you can publish event notifications, you must grant the Amazon S3 princip
 
    1. Select the destination type: **Lambda Function**, **SNS Topic**, or **SQS Queue**\.
 
-   1. After you choose your destination type, choose a function, topic, or queue from the dropdown list\.
+   1. After you choose your destination type, choose a function, topic, or queue from the list\.
 
-   1. Alternatively, if you would prefer to specify an Amazon Resource Name \(ARN\), select **Enter ARN** and enter the ARN\.
+   1. Or, if you prefer to specify an Amazon Resource Name \(ARN\), select **Enter ARN** and enter the ARN\.
 
-   For more information, see [Supported destinations ](NotificationHowTo.md#supported-notification-destinations)\.
+   For more information, see [Supported event destinations](notification-how-to-event-types-and-destinations.md#supported-notification-destinations)\.
 
-1. Choose **Save changes** and Amazon S3 sends a test message to the event notification destination\.
+1. Choose **Save changes**, and Amazon S3 sends a test message to the event notification destination\.

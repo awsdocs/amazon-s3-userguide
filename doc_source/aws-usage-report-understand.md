@@ -6,7 +6,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Understanding your AWS billing and usage reports for Amazon S3<a name="aws-usage-report-understand"></a>
 
-Amazon S3 billing and usage reports use codes and abbreviations\. For example, for usage type, which is defined in the following table, *region* is replaced with one of the following abbreviations:
+Amazon S3 billing and usage reports use codes and abbreviations\. For usage types in the table that follows, replace *region*, *region1*, and *region2* with abbreviations from this list:
 + **APE1:** Asia Pacific \(Hong Kong\)
 + **APN1:** Asia Pacific \(Tokyo\)
 + **APN2:** Asia Pacific \(Seoul\)
@@ -39,12 +39,12 @@ The first column in the following table lists usage types that appear in your bi
 | Usage Type | Units | Granularity | Description | 
 | --- | --- | --- | --- | 
 |  *region1*\-*region2*\-AWS\-In\-ABytes  |  Bytes  |  Hourly  | The amount of accelerated data transferred to AWS Region1 from AWS Region2 | 
-|  *region1*\-*region2*\-AWS\-In\-ABytes\-T1  |  Bytes  |  Hourly  | The amount of T1 accelerated data transferred to AWS Region1 from AWS Region2 | 
-|  *region1*\-*region2*\-AWS\-In\-ABytes\-T2  |  Bytes  |  Hourly  | The amount of T2 accelerated data transferred to AWS Region1 from AWS Region2 | 
+|  *region1*\-*region2*\-AWS\-In\-ABytes\-T1  |  Bytes  |  Hourly  | The amount of T1 accelerated data transferred to AWS Region1 from AWS Region2, where T1 refers to CloudFront requests to POPs in the United States, Europe, and Japan | 
+|  *region1*\-*region2*\-AWS\-In\-ABytes\-T2  |  Bytes  |  Hourly  | The amount of T2 accelerated data transferred to AWS Region1 from AWS Region2, where T2 refers to CloudFront requests to POPs in all other AWS edge locations | 
 |  *region1*\-*region2*\-AWS\-In\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred to AWS Region1 from AWS Region2  | 
 |  *region1*\-*region2*\-AWS\-Out\-ABytes  |  Bytes  |  Hourly  | The amount of accelerated data transferred from AWS Region1 to AWS Region2 | 
-|  *region1*\-*region2*\-AWS\-Out\-ABytes\-T1  |  Bytes  |  Hourly  | The amount of T1 accelerated data transferred from AWS Region1 from AWS Region2 | 
-|  *region1*\-*region2*\-AWS\-Out\-ABytes\-T2  |  Bytes  |  Hourly  | The amount of T2 accelerated data transferred from AWS Region1 to AWS Region2 | 
+|  *region1*\-*region2*\-AWS\-Out\-ABytes\-T1  |  Bytes  |  Hourly  | The amount of T1 accelerated data transferred from AWS Region1 from AWS Region2, where T1 refers to CloudFront requests to POPs in the United States, Europe, and Japan | 
+|  *region1*\-*region2*\-AWS\-Out\-ABytes\-T2  |  Bytes  |  Hourly  | The amount of T2 accelerated data transferred from AWS Region1 to AWS Region2, where T2 refers to CloudFront requests to POPs in all other AWS edge locations | 
 |  *region1*\-*region2*\-AWS\-Out\-Bytes  |  Bytes  |  Hourly  |  The amount of data transferred from AWS Region1 to AWS Region2  | 
 |  *region*\-BatchOperations\-Jobs   |  Count   |  Hourly  |  The number of S3 Batch Operations jobs performed  | 
 |  *region*\-BatchOperations\-Objects   |  Count   |  Hourly  |  The number of object operations performed by S3 Batch Operations  | 

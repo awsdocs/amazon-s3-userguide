@@ -49,7 +49,7 @@ You can't remove objects from a bucket that has versioning enabled\. Amazon S3 a
 
 You can use the AWS SDKs to empty a bucket or remove a subset of objects that have a specific key name prefix\.
 
-For an example of how to empty a bucket using AWS SDK for Java, see [Using the AWS SDK Java](delete-empty-bucket.md)\. The code deletes all objects, regardless of whether the bucket has versioning enabled, and then it deletes the bucket\. To just empty the bucket, make sure that you remove the statement that deletes the bucket\. 
+For an example of how to empty a bucket using AWS SDK for Java, see [Deleting a bucket](delete-bucket.md)\. The code deletes all objects, regardless of whether the bucket has versioning enabled, and then it deletes the bucket\. To just empty the bucket, make sure that you remove the statement that deletes the bucket\. 
 
 For more information about using other AWS SDKs, see [Tools for Amazon Web Services](https://aws.amazon.com/tools/)\.
 

@@ -6,13 +6,15 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Creating a CloudWatch metrics configuration for all the objects in your bucket<a name="configure-request-metrics-bucket"></a>
 
-When you configure request metrics, you can create a CloudWatch metrics configuration for all the objects in your bucket, or you can filter by prefix or object tag\. For more information about creating a configuration for all the objects in your bucket, see below\. To create a configuration that filters by object tag or prefix, see [Creating a metrics configuration that filters by object key name prefix or tag](metrics-configurations-filter.md)\.
+When you configure request metrics, you can create a CloudWatch metrics configuration for all the objects in your bucket, or you can filter by prefix or object tag\. 
+
+The procedures in this topic show you how to create a configuration for all the objects in your bucket\. To create a configuration that filters by object tag or prefix, see [Creating a metrics configuration that filters by object key name prefix or tag](metrics-configurations-filter.md)\.
 
 There are three types of Amazon CloudWatch metrics for Amazon S3: storage metrics, request metrics, and replication metrics\. Storage metrics are reported once per day and are provided to all customers at no additional cost\. Request metrics are available at one\-minute intervals after some latency to process\. Request metrics are billed at the standard CloudWatch rate\. You must opt into request metrics by configuring them in the console or using the Amazon S3 API\.
 
 For more information about CloudWatch metrics for Amazon S3, see [Monitoring metrics with Amazon CloudWatch](cloudwatch-monitoring.md)\. 
 
-You can add metrics configurations to a bucket using the Amazon S3 console, the AWS CLI, or the Amazon S3 REST API\.
+You can add metrics configurations to a bucket using the Amazon S3 console, the AWS Command Line Interface \(AWS CLI\), or the Amazon S3 REST API\.
 
 ## Using the S3 console<a name="configure-metrics"></a>
 
@@ -34,7 +36,7 @@ You can add metrics configurations to a bucket using the Amazon S3 console, the 
 
 1. Under **Choose a filter scope**, choose **This filter applies to all objects in the bucket**\.
 
-   You can also define a filter so that the metrics are only collected and reported on a subset of objects in the bucket\. For more information, see [Using the S3 console](metrics-configurations-filter.md#configure-metrics-filter)
+   You can also define a filter so that the metrics are only collected and reported on a subset of objects in the bucket\. For more information, see [Creating a metrics configuration that filters by object key name prefix or tag](metrics-configurations-filter.md)\.
 
 1. Choose **Create filter**\.
 
@@ -44,7 +46,7 @@ You can add metrics configurations to a bucket using the Amazon S3 console, the 
 
 ## Using the AWS CLI<a name="add-metrics-configurations"></a>
 
-1. Install and set up the AWS CLI\. For instructions, see [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
+1. Install and set up the AWS CLI\. For instructions, see [Installing, updating, and uninstalling the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
 
 1. Open a terminal\.
 

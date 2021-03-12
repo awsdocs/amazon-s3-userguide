@@ -44,7 +44,7 @@ An AWS account that owns a bucket can grant another AWS account permission to ma
 
 ### When to use a bucket ACL<a name="when-to-use-bucket-acl"></a>
 
-The only recommended use case for the bucket ACL is to grant write permission to the Amazon S3 Log Delivery group to write access log objects to your bucket\. For more information, see [Logging requests with server access logging](ServerLogs.md)\. 
+The only recommended use case for the bucket ACL is to grant write permission to the Amazon S3 Log Delivery group to write access log objects to your bucket\. For more information, see [Logging requests using server access logging](ServerLogs.md)\. 
 
 If you want Amazon S3 to deliver access logs to your bucket, you must grant write permission on the bucket to the Log Delivery group\. The only way you can grant necessary permissions to the Log Delivery group is via a bucket ACL, as shown in the following bucket ACL fragment\.
 

@@ -125,7 +125,7 @@ If you did not intend to grant access to the public or other AWS accounts, inclu
 
    1. Review or change access as required\. 
 
-      For more information, see [Managing and using Amazon S3 access points in the Amazon S3 console](access-points-manage.md)\.
+      For more information, see [Using Amazon S3 access points with the Amazon S3 console](access-points-manage.md)\.
 
    If you edit or remove a bucket ACL, a bucket policy, or an access point policy to remove public or shared access, the status for the bucket findings updates to resolved\. The resolved bucket findings disappear from the Access Analyzer for S3 listing, but you can view them in IAM Access Analyzer\.
 

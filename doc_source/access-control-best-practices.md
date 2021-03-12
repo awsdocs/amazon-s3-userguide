@@ -90,7 +90,7 @@ For more information, see [Allowing an IAM user access to one of your buckets](e
 **Access control lists**  
 As a general rule, we recommend that you use S3 bucket policies or IAM policies for access control\. Amazon S3 access control lists \(ACLs\) are a legacy access control mechanism that predates IAM\. If you already use S3 ACLs and you find them sufficient, there is no need to change\. However, certain access control scenarios require the use of ACLs\. For example, when a bucket owner wants to grant permission to objects, but not all objects are owned by the bucket owner, the object owner must first grant permission to the bucket owner\. This is done using an object ACL\.
 
-For more information, see [Example 3: Bucket owner granting its users permissions to objects it does not own ](example-walkthroughs-managing-access-example3.md)\.
+For more information, see [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)\.
 
 **Prefixes**  
 When trying to share specific resources from a bucket, you can replicate folder\-level permissions using prefixes\. The Amazon S3 console supports the folder concept as a means of grouping objects by using a shared name prefix for objects\. You can then specify a prefix within the conditions of an IAM user's policy to grant them explicit permission to access the resources associated with that prefix\. 

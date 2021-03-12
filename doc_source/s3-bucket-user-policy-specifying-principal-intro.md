@@ -52,13 +52,17 @@ To grant permission to an IAM user within your account, you must provide an `"AW
 "Principal":{"AWS":"arn:aws:iam::account-number-without-hyphens:user/username"}
 ```
 
+For detailed examples that provide step\-by\-step instructions, see [Example 1: Bucket owner granting its users bucket permissions ](example-walkthroughs-managing-access-example1.md) and [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)\.
+
 ## Grant anonymous permissions<a name="s3-anonymous-permissions"></a>
 
-To grant permission to everyone, also referred as anonymous access, you set the wildcard \(`"*"`\) as the `Principal` value\. For example, if you configure your bucket as a website, you want all the objects in the bucket to be publicly accessible\. The following are equivalent\.
+To grant permission to everyone, also referred as anonymous access, you set the wildcard \(`"*"`\) as the `Principal` value\. For example, if you configure your bucket as a website, you want all the objects in the bucket to be publicly accessible, and you would use the following principal:
 
 ```
 "Principal":"*"
 ```
+
+If you don't want to grant access to everyone on the internet but you still want to grant anonymous access to all AWS accounts, you can use the wildcard with "AWS\." The following principal grants access to all AWS accounts:
 
 ```
 "Principal":{"AWS":"*"}

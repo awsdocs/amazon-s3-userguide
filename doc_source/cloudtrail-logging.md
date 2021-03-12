@@ -14,9 +14,9 @@ To learn more about CloudTrail, including how to configure and enable it, see th
 
 ## Using CloudTrail logs with Amazon S3 server access logs and CloudWatch Logs<a name="cloudtrail-logging-vs-server-logs"></a>
 
-AWS CloudTrail logs provide a record of actions taken by a user, role, or an AWS service in Amazon S3, while Amazon S3 server access logs provide detailed records for the requests that are made to an S3 bucket\. For more information about how the different logs work, and their properties, performance and costs, see [Logging with Amazon S3](logging-with-S3.md)\. 
+AWS CloudTrail logs provide a record of actions taken by a user, role, or an AWS service in Amazon S3, while Amazon S3 server access logs provide detailed records for the requests that are made to an S3 bucket\. For more information about how the different logs work, and their properties, performance, and costs, see [Logging options for Amazon S3](logging-with-S3.md)\. 
 
-You can use AWS CloudTrail logs together with server access logs for Amazon S3\. CloudTrail logs provide you with detailed API tracking for Amazon S3 bucket\-level and object\-level operations\. Server access logs for Amazon S3 provide you visibility into object\-level operations on your data in Amazon S3\. For more information about server access logs, see [Logging requests with server access logging](ServerLogs.md)\.
+You can use AWS CloudTrail logs together with server access logs for Amazon S3\. CloudTrail logs provide you with detailed API tracking for Amazon S3 bucket\-level and object\-level operations\. Server access logs for Amazon S3 provide you visibility into object\-level operations on your data in Amazon S3\. For more information about server access logs, see [Logging requests using server access logging](ServerLogs.md)\.
 
 You can also use CloudTrail logs together with CloudWatch for Amazon S3\. CloudTrail integration with CloudWatch Logs delivers S3 bucket\-level API activity captured by CloudTrail to a CloudWatch log stream in the CloudWatch log group that you specify\. You can create CloudWatch alarms for monitoring specific API activity and receive email notifications when the specific API activity occurs\. For more information about CloudWatch alarms for monitoring specific API activity, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\. For more information about using CloudWatch with Amazon S3, see [Monitoring metrics with Amazon CloudWatch](cloudwatch-monitoring.md)\.
 
@@ -45,7 +45,7 @@ Newer Amazon S3 features are not supported for SOAP\. We recommend that you use 
 **Topics**
 + [Using CloudTrail logs with Amazon S3 server access logs and CloudWatch Logs](#cloudtrail-logging-vs-server-logs)
 + [CloudTrail tracking with Amazon S3 SOAP API calls](#cloudtrail-s3-soap)
-+ [Amazon S3 CloudTrail Events](cloudtrail-logging-s3-info.md)
++ [Amazon S3 CloudTrail events](cloudtrail-logging-s3-info.md)
 + [CloudTrail log file entries for Amazon S3 and Amazon S3 on Outposts](cloudtrail-logging-understanding-s3-entries.md)
 + [Enabling CloudTrail event logging for S3 buckets and objects](enable-cloudtrail-logging-for-s3.md)
 + [Identifying Amazon S3 requests using CloudTrail](cloudtrail-request-identification.md)

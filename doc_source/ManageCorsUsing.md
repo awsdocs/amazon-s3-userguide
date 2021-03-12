@@ -4,333 +4,192 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Enabling cross\-origin resource sharing \(CORS\)<a name="ManageCorsUsing"></a>
+# Creating a cross\-origin resource sharing \(CORS\) configuration<a name="ManageCorsUsing"></a>
+
+To configure your bucket to allow cross\-origin requests, you create a CORS configuration\. The CORS configuration is a document with rules that identify the origins that you will allow to access your bucket, the operations \(HTTP methods\) that will support for each origin, and other operation\-specific information\. You can add up to 100 rules to the configuration\. You can add the CORS configuration as the `cors` subresource to the bucket\.
+
+If you are configuring CORS in the S3 console, you must use JSON to create a CORS configuration\. The new S3 console only supports JSON CORS configurations\. 
+
+For more information about the CORS configuration and the elements in it, see the topics below\. For instructions on how to add a CORS configuration, see [Configuring cross\-origin resource sharing \(CORS\)](enabling-cors-examples.md)\.
 
 **Important**  
-In the new S3 console, the CORS configuration must be JSON\. For JSON examples, see [Configuring and using cross\-origin resource sharing \(CORS\)](cors.md)
+In the new S3 console, the CORS configuration must be JSON\.
 
-Enable cross\-origin resource sharing by setting a CORS configuration on your bucket using the AWS Management Console, the REST API, or the AWS SDKs\.
+**Topics**
++ [Example 1](#cors-example-1)
++ [Example 2](#cors-example-2)
++ [AllowedMethod element](#cors-allowed-methods)
++ [AllowedOrigin element](#cors-allowed-origin)
++ [AllowedHeader element](#cors-allowed-headers)
++ [ExposeHeader element](#cors-expose-headers)
++ [MaxAgeSeconds element](#cors-max-age)
 
-## Using the S3 console<a name="add-cors-configuration"></a>
+## Example 1<a name="cors-example-1"></a>
 
-This section explains how to use the Amazon S3 console to add a cross\-origin resource sharing \(CORS\) configuration to an S3 bucket\. CORS allows client web applications that are loaded in one domain to interact with resources in another domain\. 
+Instead of accessing a website by using an Amazon S3 website endpoint, you can use your own domain, such as `example1.com` to serve your content\. For information about using your own domain, see [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)\. 
 
-To configure your bucket to allow cross\-origin requests, you add CORS configuration to the bucket\. A CORS configuration is a document that defines rules that identify the origins that you will allow to access your bucket, the operations \(HTTP methods\) supported for each origin, and other operation\-specific information\. In the S3 console, the CORS configuration must be a JSON document\. For more information about CORS and examples, see [Configuring and using cross\-origin resource sharing \(CORS\)](cors.md)\.
-
-When you enable CORS on the bucket, the access control lists \(ACLs\) and other access permission policies continue to apply\.
-
-**Important**  
-In the new S3 console, the CORS configuration must be JSON\. 
-
-**To add a CORS configuration to an S3 bucket**
-
-1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
-
-1. In the **Buckets** list, choose the name of the bucket that you want to create a bucket policy for\.
-
-1. Choose **Permissions**\.
-
-1. In the **Cross\-origin resource sharing \(CORS\)** section, choose **Edit**\.
-
-1. In the **CORS configuration editor** text box, type or copy and paste a new CORS configuration, or edit an existing configuration\. The CORS configuration is an XML file\. The text that you type in the editor must be valid XML\. For more information, see [How do I configure CORS on my bucket?](cors.md#how-do-i-enable-cors)\.
-
-1. Choose **Save changes**\.
-**Note**  
-Amazon S3 displays the Amazon Resource Name \(ARN\) for the bucket next to the **CORS configuration editor** title\. For more information about ARNs, see [Amazon Resource Names \(ARNs\) and AWS Service Namespaces](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *Amazon Web Services General Reference*\.
-
-### More info<a name="add-cors-configuration-moreinfo"></a>
-+  [Identity and access management in Amazon S3](s3-access-control.md)
-+ [Configuring ACLs](managing-acls.md)
-+ [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)
-
-## Using the AWS SDKs<a name="ManageCorsUsingSDK"></a>
-
-You can use the AWS SDK to manage cross\-origin resource sharing \(CORS\) for a bucket\. For more information about CORS, see [Configuring and using cross\-origin resource sharing \(CORS\)](cors.md)\.
-
- The following examples:
-+ Creates a CORS configuration and sets the configuration on a bucket
-+ Retrieves the configuration and modifies it by adding a rule
-+ Adds the modified configuration to the bucket
-+ Deletes the configuration
+The following example `cors` configuration has three rules, which are specified as `CORSRule` elements:
++ The first rule allows cross\-origin PUT, POST, and DELETE requests from the `http://www.example1.com` origin\. The rule also allows all headers in a preflight OPTIONS request through the `Access-Control-Request-Headers` header\. In response to preflight OPTIONS requests, Amazon S3 returns requested headers\.
++ The second rule allows the same cross\-origin requests as the first rule, but the rule applies to another origin, `http://www.example2.com`\. 
++ The third rule allows cross\-origin GET requests from all origins\. The `*` wildcard character refers to all origins\. 
 
 ------
-#### [ Java ]
-
-**Example**  
-
-**Example**  
- For instructions on how to create and test a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.   
+#### [ XML ]
 
 ```
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.SdkClientException;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.BucketCrossOriginConfiguration;
-import com.amazonaws.services.s3.model.CORSRule;
+<CORSConfiguration>
+ <CORSRule>
+   <AllowedOrigin>http://www.example1.com</AllowedOrigin>
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+   <AllowedMethod>PUT</AllowedMethod>
+   <AllowedMethod>POST</AllowedMethod>
+   <AllowedMethod>DELETE</AllowedMethod>
 
-public class CORS {
+   <AllowedHeader>*</AllowedHeader>
+ </CORSRule>
+ <CORSRule>
+   <AllowedOrigin>http://www.example2.com</AllowedOrigin>
 
-    public static void main(String[] args) throws IOException {
-        Regions clientRegion = Regions.DEFAULT_REGION;
-        String bucketName = "*** Bucket name ***";
+   <AllowedMethod>PUT</AllowedMethod>
+   <AllowedMethod>POST</AllowedMethod>
+   <AllowedMethod>DELETE</AllowedMethod>
 
-        // Create two CORS rules.
-        List<CORSRule.AllowedMethods> rule1AM = new ArrayList<CORSRule.AllowedMethods>();
-        rule1AM.add(CORSRule.AllowedMethods.PUT);
-        rule1AM.add(CORSRule.AllowedMethods.POST);
-        rule1AM.add(CORSRule.AllowedMethods.DELETE);
-        CORSRule rule1 = new CORSRule().withId("CORSRule1").withAllowedMethods(rule1AM)
-                .withAllowedOrigins(Arrays.asList("http://*.example.com"));
-
-        List<CORSRule.AllowedMethods> rule2AM = new ArrayList<CORSRule.AllowedMethods>();
-        rule2AM.add(CORSRule.AllowedMethods.GET);
-        CORSRule rule2 = new CORSRule().withId("CORSRule2").withAllowedMethods(rule2AM)
-                .withAllowedOrigins(Arrays.asList("*")).withMaxAgeSeconds(3000)
-                .withExposedHeaders(Arrays.asList("x-amz-server-side-encryption"));
-
-        List<CORSRule> rules = new ArrayList<CORSRule>();
-        rules.add(rule1);
-        rules.add(rule2);
-
-        // Add the rules to a new CORS configuration.
-        BucketCrossOriginConfiguration configuration = new BucketCrossOriginConfiguration();
-        configuration.setRules(rules);
-
-        try {
-            AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-                    .withCredentials(new ProfileCredentialsProvider())
-                    .withRegion(clientRegion)
-                    .build();
-
-            // Add the configuration to the bucket.
-            s3Client.setBucketCrossOriginConfiguration(bucketName, configuration);
-
-            // Retrieve and display the configuration.
-            configuration = s3Client.getBucketCrossOriginConfiguration(bucketName);
-            printCORSConfiguration(configuration);
-
-            // Add another new rule.
-            List<CORSRule.AllowedMethods> rule3AM = new ArrayList<CORSRule.AllowedMethods>();
-            rule3AM.add(CORSRule.AllowedMethods.HEAD);
-            CORSRule rule3 = new CORSRule().withId("CORSRule3").withAllowedMethods(rule3AM)
-                    .withAllowedOrigins(Arrays.asList("http://www.example.com"));
-
-            rules = configuration.getRules();
-            rules.add(rule3);
-            configuration.setRules(rules);
-            s3Client.setBucketCrossOriginConfiguration(bucketName, configuration);
-
-            // Verify that the new rule was added by checking the number of rules in the configuration.
-            configuration = s3Client.getBucketCrossOriginConfiguration(bucketName);
-            System.out.println("Expected # of rules = 3, found " + configuration.getRules().size());
-
-            // Delete the configuration.
-            s3Client.deleteBucketCrossOriginConfiguration(bucketName);
-            System.out.println("Removed CORS configuration.");
-
-            // Retrieve and display the configuration to verify that it was
-            // successfully deleted.
-            configuration = s3Client.getBucketCrossOriginConfiguration(bucketName);
-            printCORSConfiguration(configuration);
-        } catch (AmazonServiceException e) {
-            // The call was transmitted successfully, but Amazon S3 couldn't process 
-            // it, so it returned an error response.
-            e.printStackTrace();
-        } catch (SdkClientException e) {
-            // Amazon S3 couldn't be contacted for a response, or the client
-            // couldn't parse the response from Amazon S3.
-            e.printStackTrace();
-        }
-    }
-
-    private static void printCORSConfiguration(BucketCrossOriginConfiguration configuration) {
-        if (configuration == null) {
-            System.out.println("Configuration is null.");
-        } else {
-            System.out.println("Configuration has " + configuration.getRules().size() + " rules\n");
-
-            for (CORSRule rule : configuration.getRules()) {
-                System.out.println("Rule ID: " + rule.getId());
-                System.out.println("MaxAgeSeconds: " + rule.getMaxAgeSeconds());
-                System.out.println("AllowedMethod: " + rule.getAllowedMethods());
-                System.out.println("AllowedOrigins: " + rule.getAllowedOrigins());
-                System.out.println("AllowedHeaders: " + rule.getAllowedHeaders());
-                System.out.println("ExposeHeader: " + rule.getExposedHeaders());
-                System.out.println();
-            }
-        }
-    }
-}
+   <AllowedHeader>*</AllowedHeader>
+ </CORSRule>
+ <CORSRule>
+   <AllowedOrigin>*</AllowedOrigin>
+   <AllowedMethod>GET</AllowedMethod>
+ </CORSRule>
+</CORSConfiguration>
 ```
 
 ------
-#### [ \.NET ]
-
-**Example**  
-For information about creating and testing a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\.   
+#### [ JSON ]
 
 ```
-using Amazon;
-using Amazon.S3;
-using Amazon.S3.Model;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Amazon.DocSamples.S3
-{
-    class CORSTest
+[
     {
-        private const string bucketName = "*** bucket name ***";
-        // Specify your bucket region (an example region is shown).
-        private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USWest2; 
-        private static IAmazonS3 s3Client;
-
-        public static void Main()
-        {
-            s3Client = new AmazonS3Client(bucketRegion);
-            CORSConfigTestAsync().Wait();
-        }
-        private static async Task CORSConfigTestAsync()
-        {
-            try
-            {
-                // Create a new configuration request and add two rules    
-                CORSConfiguration configuration = new CORSConfiguration
-                {
-                    Rules = new System.Collections.Generic.List<CORSRule>
-                        {
-                          new CORSRule
-                          {
-                            Id = "CORSRule1",
-                            AllowedMethods = new List<string> {"PUT", "POST", "DELETE"},
-                            AllowedOrigins = new List<string> {"http://*.example.com"}
-                          },
-                          new CORSRule
-                          {
-                            Id = "CORSRule2",
-                            AllowedMethods = new List<string> {"GET"},
-                            AllowedOrigins = new List<string> {"*"},
-                            MaxAgeSeconds = 3000,
-                            ExposeHeaders = new List<string> {"x-amz-server-side-encryption"}
-                          }
-                        }
-                };
-
-                // Add the configuration to the bucket. 
-                await PutCORSConfigurationAsync(configuration);
-
-                // Retrieve an existing configuration. 
-                configuration = await RetrieveCORSConfigurationAsync();
-
-                // Add a new rule.
-                configuration.Rules.Add(new CORSRule
-                {
-                    Id = "CORSRule3",
-                    AllowedMethods = new List<string> { "HEAD" },
-                    AllowedOrigins = new List<string> { "http://www.example.com" }
-                });
-
-                // Add the configuration to the bucket. 
-                await PutCORSConfigurationAsync(configuration);
-
-                // Verify that there are now three rules.
-                configuration = await RetrieveCORSConfigurationAsync();
-                Console.WriteLine();
-                Console.WriteLine("Expected # of rulest=3; found:{0}", configuration.Rules.Count);
-                Console.WriteLine();
-                Console.WriteLine("Pause before configuration delete. To continue, click Enter...");
-                Console.ReadKey();
-
-                // Delete the configuration.
-                await DeleteCORSConfigurationAsync();
-
-                // Retrieve a nonexistent configuration.
-                configuration = await RetrieveCORSConfigurationAsync();
-            }
-            catch (AmazonS3Exception e)
-            {
-                Console.WriteLine("Error encountered on server. Message:'{0}' when writing an object", e.Message);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unknown encountered on server. Message:'{0}' when writing an object", e.Message);
-            }
-        }
-
-        static async Task PutCORSConfigurationAsync(CORSConfiguration configuration)
-        {
-
-            PutCORSConfigurationRequest request = new PutCORSConfigurationRequest
-            {
-                BucketName = bucketName,
-                Configuration = configuration
-            };
-
-            var response = await s3Client.PutCORSConfigurationAsync(request);
-        }
-
-        static async Task<CORSConfiguration> RetrieveCORSConfigurationAsync()
-        {
-            GetCORSConfigurationRequest request = new GetCORSConfigurationRequest
-            {
-                BucketName = bucketName
-
-            };
-            var response = await s3Client.GetCORSConfigurationAsync(request);
-            var configuration = response.Configuration;
-            PrintCORSRules(configuration);
-            return configuration;
-        }
-
-        static async Task DeleteCORSConfigurationAsync()
-        {
-            DeleteCORSConfigurationRequest request = new DeleteCORSConfigurationRequest
-            {
-                BucketName = bucketName
-            };
-            await s3Client.DeleteCORSConfigurationAsync(request);
-        }
-
-        static void PrintCORSRules(CORSConfiguration configuration)
-        {
-            Console.WriteLine();
-
-            if (configuration == null)
-            {
-                Console.WriteLine("\nConfiguration is null");
-                return;
-            }
-
-            Console.WriteLine("Configuration has {0} rules:", configuration.Rules.Count);
-            foreach (CORSRule rule in configuration.Rules)
-            {
-                Console.WriteLine("Rule ID: {0}", rule.Id);
-                Console.WriteLine("MaxAgeSeconds: {0}", rule.MaxAgeSeconds);
-                Console.WriteLine("AllowedMethod: {0}", string.Join(", ", rule.AllowedMethods.ToArray()));
-                Console.WriteLine("AllowedOrigins: {0}", string.Join(", ", rule.AllowedOrigins.ToArray()));
-                Console.WriteLine("AllowedHeaders: {0}", string.Join(", ", rule.AllowedHeaders.ToArray()));
-                Console.WriteLine("ExposeHeader: {0}", string.Join(", ", rule.ExposeHeaders.ToArray()));
-            }
-        }
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "PUT",
+            "POST",
+            "DELETE"
+        ],
+        "AllowedOrigins": [
+            "http://www.example1.com"
+        ],
+        "ExposeHeaders": []
+    },
+    {
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "PUT",
+            "POST",
+            "DELETE"
+        ],
+        "AllowedOrigins": [
+            "http://www.example2.com"
+        ],
+        "ExposeHeaders": []
+    },
+    {
+        "AllowedHeaders": [],
+        "AllowedMethods": [
+            "GET"
+        ],
+        "AllowedOrigins": [
+            "*"
+        ],
+        "ExposeHeaders": []
     }
-}
+]
 ```
 
 ------
 
-## Using the REST API<a name="EnableCorsUsingREST"></a>
+## Example 2<a name="cors-example-2"></a>
 
-To set a CORS configuration on your bucket, you can use the AWS Management Console\. If your application requires it, you can also send REST requests directly\. The following sections in the *Amazon Simple Storage Service API Reference* describe the REST API actions related to the CORS configuration: 
-+ [PutBucketCors](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTcors.html)
-+ [GetBucketCors](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETcors.html)
-+ [DeleteBucketCors](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEcors.html)
-+ [OPTIONS object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTOPTIONSobject.html)
+The CORS configuration also allows optional configuration parameters, as shown in the following CORS configuration\. In this example, the CORS configuration allows cross\-origin PUT, POST, and DELETE requests from the `http://www.example.com` origin\.
+
+------
+#### [ XML ]
+
+```
+<CORSConfiguration>
+ <CORSRule>
+   <AllowedOrigin>http://www.example.com</AllowedOrigin>
+   <AllowedMethod>PUT</AllowedMethod>
+   <AllowedMethod>POST</AllowedMethod>
+   <AllowedMethod>DELETE</AllowedMethod>
+   <AllowedHeader>*</AllowedHeader>
+  <MaxAgeSeconds>3000</MaxAgeSeconds>
+  <ExposeHeader>x-amz-server-side-encryption</ExposeHeader>
+  <ExposeHeader>x-amz-request-id</ExposeHeader>
+  <ExposeHeader>x-amz-id-2</ExposeHeader>
+ </CORSRule>
+</CORSConfiguration>
+```
+
+------
+#### [ JSON ]
+
+```
+[
+    {
+        "AllowedHeaders": [
+            "*"
+        ],
+        "AllowedMethods": [
+            "PUT",
+            "POST",
+            "DELETE"
+        ],
+        "AllowedOrigins": [
+            "http://www.example.com"
+        ],
+        "ExposeHeaders": [
+            "x-amz-server-side-encryption",
+            "x-amz-request-id",
+            "x-amz-id-2"
+        ],
+        "MaxAgeSeconds": 3000
+    }
+]
+```
+
+------
+
+The `CORSRule` element in the preceding configuration includes the following optional elements:
++ `MaxAgeSeconds`—Specifies the amount of time in seconds \(in this example, 3000\) that the browser caches an Amazon S3 response to a preflight OPTIONS request for the specified resource\. By caching the response, the browser does not have to send preflight requests to Amazon S3 if the original request will be repeated\. 
++ `ExposeHeader`—Identifies the response headers \(in this example, `x-amz-server-side-encryption`, `x-amz-request-id`, and `x-amz-id-2`\) that customers are able to access from their applications \(for example, from a JavaScript `XMLHttpRequest` object\)\.
+
+## AllowedMethod element<a name="cors-allowed-methods"></a>
+
+In the CORS configuration, you can specify the following values for the `AllowedMethod` element\.
++ GET
++ PUT
++ POST
++ DELETE
++ HEAD
+
+## AllowedOrigin element<a name="cors-allowed-origin"></a>
+
+In the `AllowedOrigin` element, you specify the origins that you want to allow cross\-domain requests from, for example,` http://www.example.com`\. The origin string can contain only one `*` wildcard character, such as `http://*.example.com`\. You can optionally specify `*` as the origin to enable all the origins to send cross\-origin requests\. You can also specify `https` to enable only secure origins\.
+
+## AllowedHeader element<a name="cors-allowed-headers"></a>
+
+The `AllowedHeader` element specifies which headers are allowed in a preflight request through the `Access-Control-Request-Headers` header\. Each header name in the `Access-Control-Request-Headers` header must match a corresponding entry in the rule\. Amazon S3 will send only the allowed headers in a response that were requested\. For a sample list of headers that can be used in requests to Amazon S3, go to [Common Request Headers](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonRequestHeaders.html) in the *Amazon Simple Storage Service API Reference* guide\.
+
+Each AllowedHeader string in the rule can contain at most one \* wildcard character\. For example, `<AllowedHeader>x-amz-*</AllowedHeader>` will enable all Amazon\-specific headers\.
+
+## ExposeHeader element<a name="cors-expose-headers"></a>
+
+Each `ExposeHeader` element identifies a header in the response that you want customers to be able to access from their applications \(for example, from a JavaScript `XMLHttpRequest` object\)\. For a list of common Amazon S3 response headers, go to [Common Response Headers](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html) in the *Amazon Simple Storage Service API Reference* guide\.
+
+## MaxAgeSeconds element<a name="cors-max-age"></a>
+
+The `MaxAgeSeconds` element specifies the time in seconds that your browser can cache the response for a preflight request as identified by the resource, the HTTP method, and the origin\.

@@ -32,7 +32,7 @@ The Amazon S3 usage report includes the following information:
   + The amount of data associated with restorations from S3 Glacier Deep Archive, S3 Glacier, STANDARD\_IA, or ONEZONE\_IA storage, in bytes
 
 **Tip**  
-For detailed information about every request that Amazon S3 receives for your objects, turn on server access logging for your buckets\. For more information, see [Logging requests with server access logging](ServerLogs.md)\. 
+For detailed information about every request that Amazon S3 receives for your objects, turn on server access logging for your buckets\. For more information, see [Logging requests using server access logging](ServerLogs.md)\. 
 
 You can download a usage report as an XML or a comma\-separated values \(CSV\) file\. The following is an example CSV usage report opened in a spreadsheet application\.
 

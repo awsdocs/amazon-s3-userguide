@@ -99,7 +99,7 @@ We recommend that you restrict these permissions only to the destination buckets
 
 ### Amazon S3 Bucket Keys and replication<a name="bk-replication"></a>
 
-To use replication with an S3 Bucket Key, the AWS KMS key policy for the CMK used to encrypt the object replica must include `kms:Decrypt` permissions for the calling principal\. The call to `kms:Decrypt` verifies the integrity of the S3 Bucket Key before using it\. For more information, see [Using an S3 Bucket Key with replication](bucket-key.md#bucket-key-replication)\.
+To use replication with an S3 Bucket Key, the AWS KMS key policy for the CMK used to encrypt the object replica must include `kms:Decrypt` permissions for the calling principal\. The call to `kms:Decrypt` verifies the integrity of the S3 Bucket Key before using it\. For more information, see [`kms:Decrypt` permissions for copy and upload](bucket-key.md#kms-decrypt)\.
 
 When an S3 Bucket Key is enabled for the source or destination bucket, the encryption context will be the bucket Amazon Resource Name \(ARN\) and not the object ARN, for example, `arn:aws:s3:::bucket_ARN`\. You need to update your IAM policies to use the bucket ARN for the encryption context:
 
@@ -109,11 +109,15 @@ When an S3 Bucket Key is enabled for the source or destination bucket, the encry
 ]
 ```
 
-For more information, see [Encryption context \(x\-amz\-server\-side\-encryption\-context\)](specifying-kms-encryption.md#s3-kms-encryption-context) and [Changes to note before enabling an S3 Bucket Key](bucket-key.md#bucket-key-changes)\.
+For more information, see [Encryption context](UsingKMSEncryption.md#encryption-context) and [Changes to note before enabling an S3 Bucket Key](bucket-key.md#bucket-key-changes)\.
 
 ### Example policies \- Using AWS KMS server\-side\-encryption \(SSE\-KMS\) with replication<a name="kms-replication-examples"></a>
 
 The following example IAM policies show statements for using AWS KMS sever\-side encryption with replication\.
+
+In this example, the encryption context is the object ARN\. If you use SSE\-KMS with an S3 Bucket Key *enabled*, you must use the bucket ARN as the encryption context\. For more information, see [Encryption context](UsingKMSEncryption.md#encryption-context)\.
+
+If the 
 
 **Example Using AWS KMS server\-side\-encryption \(SSE\-KMS\) – separate destination buckets**  
 The following example policy shows statements for using AWS KMS with separate destination buckets\.   

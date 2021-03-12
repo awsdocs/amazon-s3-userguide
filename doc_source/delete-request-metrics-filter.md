@@ -6,9 +6,13 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Deleting a metrics filter<a name="delete-request-metrics-filter"></a>
 
-You can delete a request metrics filter\. When you delete a filter, you are no longer charged for request metrics that use that *specific filter*\. However, you will continue to be charged for any other filter configurations that exist\. When you delete a filter, you can no longer use the filter for request metrics\. Deleting a filter cannot be undone\. 
+You can delete an Amazon CloudWatch request metrics filter if you no longer need it\. When you delete a filter, you are no longer charged for request metrics that use that *specific filter*\. However, you will continue to be charged for any other filter configurations that exist\. 
 
-For more information about creating a request metrics filter, see [Creating a CloudWatch metrics configuration for all the objects in your bucket](configure-request-metrics-bucket.md) and [Creating a metrics configuration that filters by object key name prefix or tag](metrics-configurations-filter.md)\.
+When you delete a filter, you can no longer use the filter for request metrics\. Deleting a filter cannot be undone\. 
+
+For information about creating a request metrics filter, see the following topics:
++ [Creating a CloudWatch metrics configuration for all the objects in your bucket](configure-request-metrics-bucket.md)
++ [Creating a metrics configuration that filters by object key name prefix or tag](metrics-configurations-filter.md)
 
 ## Using the S3 console<a name="delete-request-metrics-filter-console"></a>
 

@@ -21,9 +21,9 @@ If you upload an object with a key name that already exists in a versioning\-ena
 
 When uploading an object, you can optionally request that Amazon S3 encrypt it before saving it to disk, and decrypt it when you download it\. For more information, see [Protecting data using encryption](UsingEncryption.md)\. 
 
-## Using the S3 console to upload a single object<a name="upload-objects-by-file-selection"></a>
+## Using the S3 console<a name="upload-objects-by-drag-and-drop"></a>
 
-This procedure explains how to upload a single object to an S3 bucket using the console\. 
+This procedure explains how to upload objects and folders to an S3 bucket using the console\. 
 
 When you upload an object, the object key name is the file name and any optional prefixes\. In the Amazon S3 console, you can create folders to organize your objects\. In Amazon S3, folders are represented as prefixes that appear in the object key name\. If you upload an individual object to a folder in the Amazon S3 console, the folder name is included in the object key name\. 
 
@@ -32,89 +32,78 @@ For example, if you upload an object named `sample1.jpg` to a folder named `back
 **Note**  
 If you rename an object or change any of the properties in the S3 console, for example **Storage Class**, ** Encryption**, **Metadata**, a new object is created to replace the old one\. If S3 Versioning is enabled, a new version of the object is created, and the existing object becomes an older version\. The role that changes the property also becomes the owner of the new object or \(object version\)\.
 
-**Topics**
+When you upload a folder, Amazon S3 uploads all of the files and subfolders from the specified folder to your bucket\. It then assigns an object key name that is a combination of the uploaded file name and the folder name\. For example, if you upload a folder named `/images` that contains two files, `sample1.jpg` and `sample2.jpg`, Amazon S3 uploads the files and then assigns the corresponding key names, `images/sample1.jpg` and `images/sample2.jpg`\. The key names include the folder name as a prefix\. The Amazon S3 console displays only the part of the key name that follows the last “/”\. For example, within an images folder the `images/sample1.jpg` and `images/sample2.jpg` objects are displayed as `sample1.jpg` and a `sample2.jpg`\.<a name="upload-files-folders"></a>
 
-**To upload a file to an S3 bucket**
+**To upload folders and files to an S3 bucket**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
-1. In the **Buckets** list, choose the name of the bucket that you want to upload your files to\.
+1. In the **Buckets** list, choose the name of the bucket that you want to upload your folders or files to\.
 
 1. Choose **Upload**\.
 
-1. On the **Upload** page, choose **Add files** or **Add folder**\.
+1. In the **Upload** window, do one of the following: 
+   + Drag and drop files and folders to the **Upload** window\.
+   + Choose **Add file** or **Add folder**, choose files or folders to upload, and choose **Open**\.
 
-1. Choose one or more files to upload, and then choose **Open**\.
+1. To enable versioning, under **Destination**, choose **Enable Bucket Versioning**\.
 
-1. After you see the files that you chose listed in the **Upload** dialog box, continue with **Step 5** of [Using the S3 console to upload folders or multiple objects](#upload-objects-by-drag-and-drop)\.
+1. To upload the listed files and folders without configuring additional upload options, at the bottom of the page, choose **Upload**\.
 
-## Using the S3 console to upload folders or multiple objects<a name="upload-objects-by-drag-and-drop"></a>
+   Amazon S3 uploads your objects and folders\. When the upload completes, you can see a success message on the **Upload: status** page\.
 
-If you are using the Chrome or Firefox browsers, you can choose folders and files to upload and then drag and drop them into the destination bucket\. Dragging and dropping is the *only* way that you can upload folders\. For information about which Chrome and Firefox browser versions are supported, see [ What browsers are supported for use with the AWS Management Console?](https://aws.amazon.com/premiumsupport/knowledge-center/browsers-management-console/) 
+1. To configure additional object properties before uploading, see [To configure additional object properties](#configure-additional-properties)\.<a name="configure-additional-properties"></a>
 
-When you upload a folder, Amazon S3 uploads all of the files and subfolders from the specified folder to your bucket\. It then assigns an object key name that is a combination of the uploaded file name and the folder name\. For example, if you upload a folder named `/images` that contains two files, `sample1.jpg` and `sample2.jpg`, Amazon S3 uploads the files and then assigns the corresponding key names, `images/sample1.jpg` and `images/sample2.jpg`\. The key names include the folder name as a prefix\. The Amazon S3 console displays only the part of the key name that follows the last “/”\. For example, within an images folder the `images/sample1.jpg` and `images/sample2.jpg` objects are displayed as `sample1.jpg` and a `sample2.jpg`\.
+**To configure additional object properties**
 
-**To upload folders and files to an S3 bucket using a drag\-and\-drop process**
+1. To configure additional object properties, choose **Additional upload options**\.
 
-1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+1. Under **Storage class**, choose the storage class for the files you're uploading\.
 
-1. In the **Bucket name** list, choose the name of the bucket that you want to upload your folders or files to\.
+   For more information about storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md)\.
 
-1. In a window other than the console window, select the files and folders that you want to upload\. Then drag and drop your selections into the console window that lists the objects in the destination bucket\. 
+1. To update the encryption settings for your objects, under **Server\-side encryption settings**, do the following\.
 
-   The files you chose are listed in the **Upload** dialog box\.
+   1. Choose **Override default encryption bucket settings**\.
 
-1. In the **Upload** dialog box, do one of the following: 
+   1. To encrypt the uploaded files using keys that are managed by Amazon S3, choose **Amazon S3 key \(SSE\-S3\)**\.
 
-   1. Drag and drop more files and folders to the console window that displays the **Upload** dialog box\. To add more files, you can also choose **Add more files**\. This option works *only* for files, not folders\.
+      For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
 
-   1. To immediately upload the listed files and folders without granting or removing permissions for specific users or setting public permissions for all of the files that you're uploading, choose **Upload**\. For information about object access permissions, see [Configuring ACLs](managing-acls.md)\. 
+   1. To encrypt the uploaded files using the AWS Key Management Service \(AWS KMS\), choose **AWS Key Management Service key \(SSE\-KMS\)**\. Then choose an option for **AWS KMS key**\.
+      + AWS managed key \(aws/s3\) \- Choose an [AWS managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)\.
+      + Choose from your KMS master keys \- Choose a [customer managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) from a list of CMKs in the same Region as your bucket\.
 
-   1. To set permissions or properties for the files that you are uploading, choose **Next**\.
+        For more information about creating a customer managed AWS KMS CMK, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/UsingServerSideEncryption.html) in the *AWS Key Management Service Developer Guide*\. For more information about protecting data with AWS KMS, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+      + Enter KMS master key ARN \- Specify the AWS KMS key ARN for a customer managed CMK, and enter the Amazon Resource Name \(ARN\)\.
 
-1. On the **Set Permissions** page, under **Manage users** you can change the permissions for the AWS account owner\. The *owner* refers to the AWS account root user, and not an AWS Identity and Access Management \(IAM\) user\. For more information about the root user, see [AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) in the *IAM User Guide*\. 
-
-   Choose **Add account** to grant access to another AWS account\. For more information about granting permissions to another AWS account, see [Configuring ACLs](managing-acls.md)\.
-
-   Under **Manage public permissions**, you can grant read access to your objects to the general public \(everyone in the world\), for all of the files that you're uploading\. Granting public read access is applicable to a small subset of use cases, such as when buckets are used for websites\. We recommend that you do not change the default setting of **Do not grant public read access to this object\(s\)**\. You can always make changes to object permissions after you upload the object\. For information about object access permissions, see [Configuring ACLs](managing-acls.md)\. 
-
-   When you're done configuring permissions, choose **Next**\. 
-
-1. <a name="UsingServerSideEncryption.title"></a>On the **Set Properties** page, choose the storage class and encryption method to use for the files that you are uploading\. You can also add or modify metadata\. 
-
-   1. Choose a storage class for the files you're uploading\. For more information about storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md)\.
-
-   1. Choose the type of encryption for the files that you're uploading\. If you don't want to encrypt them, choose **None**\. 
-
-      1. To encrypt the uploaded files using keys that are managed by Amazon S3, choose **Amazon S3 master\-key**\. For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
-
-      1. To encrypt the uploaded files using the AWS Key Management Service \(AWS KMS\), choose **AWS KMS master\-key**\. Then choose a customer master key \(CMK\) from the list of AWS KMS CMKs\.
+        You can use the KMS master key ARN to give an external account the ability to use an object that is protected by an AWS KMS CMK\. To do this, choose **Enter KMS master key ARN**, and enter the Amazon Resource Name \(ARN\) for the external account\. Administrators of an external account that have usage permissions to an object protected by your AWS KMS CMK can further restrict access by creating a resource\-level IAM policy\. 
 **Note**  
 To encrypt objects in a bucket, you can use only CMKs that are available in the same AWS Region as the bucket\. 
 
-         You can give an external account the ability to use an object that is protected by an AWS KMS CMK\. To do this, select **Custom KMS ARN** from the list and enter the Amazon Resource Name \(ARN\) for the external account\. Administrators of an external account that have usage permissions to an object protected by your AWS KMS CMK can further restrict access by creating a resource\-level IAM policy\. 
+1. To change access control list permissions, under **Access control list \(ACL\)**, edit permissions\. 
 
-         For more information about creating an AWS KMS CMK, see [Creating keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\. For more information about protecting data with AWS KMS, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+   For information about object access permissions, see [Using the S3 console to set ACL permissions for an object](managing-acls.md#set-object-permissions)\. You can grant read access to your objects to the general public \(everyone in the world\) for all of the files that you're uploading\. We recommend that you do not change the default setting for public read access\. Granting public read access is applicable to a small subset of use cases such as when buckets are used for websites\. You can always make changes to object permissions after you upload the object\. 
 
-   1. Metadata for Amazon S3 objects is represented by a name\-value \(key\-value\) pair\. There are two kinds of metadata: system\-defined metadata and user\-defined metadata\.
+1. To add tags to all of the objects that you are uploading, choose **Add tag**\. Type a tag name in the **Key** field\. Type a value for the tag\.
 
-      If you want to add Amazon S3 system\-defined metadata to all of the objects you are uploading, for **Header**, select a header\. You can select common HTTP headers, such as **Content\-Type** and **Content\-Disposition**\. Type a value for the header, and then choose **Save**\. For a list of system\-defined metadata and information about whether you can add the value, see [System\-defined object metadata](UsingMetadata.md#SysMetadata)\.
+   Object tagging gives you a way to categorize storage\. Each tag is a key\-value pair\. Key and tag values are case sensitive\. You can have up to 10 tags per object\. A tag key can be up to 128 Unicode characters in length and tag values can be up to 255 Unicode characters in length\. For more information about object tags, see [Categorizing your storage using tags](object-tagging.md)\.
 
-   1. Any metadata starting with prefix `x-amz-meta-` is treated as user\-defined metadata\. User\-defined metadata is stored with the object, and is returned when you download the object\. 
+1. To add metadata, choose **Add metadata**\.
 
-      To add user\-defined metadata to all of the objects that you are uploading, type `x-amz-meta-` plus a custom metadata name in the **Header** field\. Type a value for the header, and then choose **Save**\. Both the keys and their values must conform to US\-ASCII standards\. User\-defined metadata can be as large as 2 KB\. For more information about user\-defined metadata, see [User\-defined object metadata](UsingMetadata.md#UserMetadata)\.
+   1. Under **Type**, choose **System defined** or **User defined**\.
 
-   1. Object tagging gives you a way to categorize storage\. Each tag is a key\-value pair\. Key and tag values are case sensitive\. You can have up to 10 tags per object\. 
+      For system\-defined metadata, you can select common HTTP headers, such as **Content\-Type** and **Content\-Disposition**\. For a list of system\-defined metadata and information about whether you can add the value, see [System\-defined object metadata](UsingMetadata.md#SysMetadata)\. Any metadata starting with prefix `x-amz-meta-` is treated as user\-defined metadata\. User\-defined metadata is stored with the object and is returned when you download the object\. Both the keys and their values must conform to US\-ASCII standards\. User\-defined metadata can be as large as 2 KB\. For more information about system defined and user defined metadata, see [Working with object metadata](UsingMetadata.md)\.
 
-      To add tags to all of the objects that you are uploading, type a tag name in the **Key** field\. Type a value for the tag, and then choose **Save**\. A tag key can be up to 128 Unicode characters in length and tag values can be up to 255 Unicode characters in length\. For more information about object tags, see [Categorizing your storage using tags](object-tagging.md)\.
+   1. For **Key**, choose a key\.
 
-1. Choose **Next**\.
+   1. Type a value for the key\. 
 
-1. On the **Upload** review page, verify that your settings are correct, and then choose **Upload**\. To make changes, choose **Previous**\.
+1. To upload your objects, choose **Upload**\.
 
-1. To see the progress of the upload, choose **In progress** at the bottom of the browser window\.
+   Amazon S3 uploads your object\. When the upload completes, you can see a success message on the **Upload: status** page\.
 
-   To see a history of your uploads and other operations, choose **Success**\.
+1. Choose **Exit**\.
 
 ## Using the AWS SDKs<a name="UploadInSingleOp"></a>
 

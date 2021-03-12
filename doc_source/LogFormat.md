@@ -4,16 +4,13 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Amazon S3 Server Access Log Format<a name="LogFormat"></a>
+# Amazon S3 server access log format<a name="LogFormat"></a>
 
-This section describes the Amazon S3 server access log files\.
+Server access logging provides detailed records for the requests that are made to an Amazon S3 bucket\. You can use server access logs for security and access audits, learn about your customer base, or understand your Amazon S3 bill\. This section describes the format and other details about Amazon S3 server access log files\.
 
-**Topics**
-+ [Additional Logging for Copy Operations](#AdditionalLoggingforCopyOperations)
-+ [Custom Access Log Information](#LogFormatCustom)
-+ [Programming Considerations for Extensible Server Access Log Format](#LogFormatExtensible)
+Server access log files consist of a sequence of newline\-delimited log records\. Each log record represents one request and consists of space\-delimited fields\. 
 
-The server access log files consist of a sequence of newline\-delimited log records\. Each log record represents one request and consists of space\-delimited fields\. The following is an example log consisting of five log records\. 
+The following is an example log consisting of five log records\. 
 
 ```
 1. 79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be awsexamplebucket1 [06/Feb/2019:00:00:38 +0000] 192.0.2.3 79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be 3E57427F3EXAMPLE REST.GET.VERSIONING - "GET /awsexamplebucket1?versioning HTTP/1.1" 200 - 113 - 7 - "-" "S3Console/0.4" - s9lzHYrFp76ZVxRcpX9+5cjAnEH2ROuNkd2BHfIa6UkFVdtjf5mKR3/eTPFvsiP/XV/VLi31234= SigV2 ECDHE-RSA-AES128-GCM-SHA256 AuthHeader awsexamplebucket1.s3.us-west-1.amazonaws.com TLSV1.1
@@ -26,11 +23,19 @@ The server access log files consist of a sequence of newline\-delimited log reco
 **Note**  
 Any field can be set to `-` to indicate that the data was unknown or unavailable, or that the field was not applicable to this request\. 
 
+**Topics**
++ [Log record fields](#log-record-fields)
++ [Additional logging for copy operations](#AdditionalLoggingforCopyOperations)
++ [Custom access log information](#LogFormatCustom)
++ [Programming considerations for extensible server access log format](#LogFormatExtensible)
+
+## Log record fields<a name="log-record-fields"></a>
+
 The following list describes the log record fields\.
 
 **Bucket Owner**  
-The canonical user ID of the owner of the source bucket\. The canonical user ID is another form of the AWS account ID\. For more information about the canonical user ID, see [AWS Account Identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html)\. For information about how to find the canonical user ID for your account, see [Finding Your Account Canonical User ID](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingCanonicalId)\.  
-**Example Entry**  
+The canonical user ID of the owner of the source bucket\. The canonical user ID is another form of the AWS account ID\. For more information about the canonical user ID, see [AWS account identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) in the *AWS General Reference*\. For information about how to find the canonical user ID for your account, see [Finding the canonical user ID for your AWS account](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingCanonicalId)\.  
+**Example entry**  
 
 ```
 79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be
@@ -38,15 +43,15 @@ The canonical user ID of the owner of the source bucket\. The canonical user ID 
 
 **Bucket**  
 The name of the bucket that the request was processed against\. If the system receives a malformed request and cannot determine the bucket, the request will not appear in any server access log\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 awsexamplebucket1
 ```
 
 **Time**  
-The time at which the request was received; these dates and times are in Coordinated Universal time \(UTC\)\. The format, using `strftime()` terminology, is as follows: `[%d/%b/%Y:%H:%M:%S %z]`  
-**Example Entry**  
+The time at which the request was received; these dates and times are in Coordinated Universal Time \(UTC\)\. The format, using `strftime()` terminology, is as follows: `[%d/%b/%Y:%H:%M:%S %z]`  
+**Example entry**  
 
 ```
 [06/Feb/2019:00:00:38 +0000]
@@ -54,7 +59,7 @@ The time at which the request was received; these dates and times are in Coordin
 
 **Remote IP**  
 The apparent internet address of the requester\. Intermediate proxies and firewalls might obscure the actual address of the machine making the request\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 192.0.2.3
@@ -62,7 +67,7 @@ The apparent internet address of the requester\. Intermediate proxies and firewa
 
 **Requester**  
 The canonical user ID of the requester, or a `-` for unauthenticated requests\. If the requester was an IAM user, this field returns the requester's IAM user name along with the AWS root account that the IAM user belongs to\. This identifier is the same one used for access control purposes\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be
@@ -70,7 +75,7 @@ The canonical user ID of the requester, or a `-` for unauthenticated requests\. 
 
 **Request ID**  
 A string generated by Amazon S3 to uniquely identify each request\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 3E57427F33A59F07
@@ -78,7 +83,7 @@ A string generated by Amazon S3 to uniquely identify each request\.
 
 **Operation**  
 The operation listed here is declared as `SOAP.operation`, `REST.HTTP_method.resource_type`, `WEBSITE.HTTP_method.resource_type`, or `BATCH.DELETE.OBJECT`, or `S3.action.resource_type` for [Lifecycle and logging](lifecycle-and-other-bucket-config.md#lifecycle-general-considerations-logging)\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 REST.PUT.OBJECT
@@ -86,7 +91,7 @@ REST.PUT.OBJECT
 
 **Key**  
 The "key" part of the request, URL encoded, or "\-" if the operation does not take a key parameter\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 /photos/2019/08/puppy.jpg
@@ -102,7 +107,7 @@ The Request\-URI part of the HTTP request message\.
 
 **HTTP status**  
 The numeric HTTP status code of the response\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 200
@@ -110,7 +115,7 @@ The numeric HTTP status code of the response\.
 
 **Error Code**  
 The Amazon S3 [Error code](UsingRESTError.md#ErrorCode), or "\-" if no error occurred\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 NoSuchBucket
@@ -118,7 +123,7 @@ NoSuchBucket
 
 **Bytes Sent**  
 The number of response bytes sent, excluding HTTP protocol overhead, or "\-" if zero\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 2662992
@@ -126,7 +131,7 @@ The number of response bytes sent, excluding HTTP protocol overhead, or "\-" if 
 
 **Object Size**  
 The total size of the object in question\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 3462992
@@ -134,7 +139,7 @@ The total size of the object in question\.
 
 **Total Time**  
 The number of milliseconds the request was in flight from the server's perspective\. This value is measured from the time your request is received to the time that the last byte of the response is sent\. Measurements made from the client's perspective might be longer due to network latency\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 70
@@ -142,7 +147,7 @@ The number of milliseconds the request was in flight from the server's perspecti
 
 **Turn\-Around Time**  
 The number of milliseconds that Amazon S3 spent processing your request\. This value is measured from the time the last byte of your request was received until the time the first byte of the response was sent\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 10
@@ -150,7 +155,7 @@ The number of milliseconds that Amazon S3 spent processing your request\. This v
 
 **Referer**  
 The value of the HTTP Referer header, if present\. HTTP user\-agents \(for example, browsers\) typically set this header to the URL of the linking or embedding page when making a request\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 "http://www.amazon.com/webservices"
@@ -158,7 +163,7 @@ The value of the HTTP Referer header, if present\. HTTP user\-agents \(for examp
 
 **User\-Agent**  
 The value of the HTTP User\-Agent header\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 "curl/7.15.1"
@@ -166,7 +171,7 @@ The value of the HTTP User\-Agent header\.
 
 **Version Id**  
 The version ID in the request, or "\-" if the operation does not take a `versionId` parameter\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 3HL4kqtJvjVBH40Nrjfkd
@@ -174,7 +179,7 @@ The version ID in the request, or "\-" if the operation does not take a `version
 
 **Host Id**  
 The x\-amz\-id\-2 or Amazon S3 extended request ID\.   
-**Example Entry**  
+**Example entry**  
 
 ```
 s9lzHYrFp76ZVxRcpX9+5cjAnEH2ROuNkd2BHfIa6UkFVdtjf5mKR3/eTPFvsiP/XV/VLi31234=
@@ -182,7 +187,7 @@ s9lzHYrFp76ZVxRcpX9+5cjAnEH2ROuNkd2BHfIa6UkFVdtjf5mKR3/eTPFvsiP/XV/VLi31234=
 
 **Signature Version**  
 The signature version, `SigV2` or `SigV4`, that was used to authenticate the request or a `-` for unauthenticated requests\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 SigV2
@@ -190,7 +195,7 @@ SigV2
 
 **Cipher Suite**  
 The Secure Sockets Layer \(SSL\) cipher that was negotiated for HTTPS request or a `-` for HTTP\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 ECDHE-RSA-AES128-GCM-SHA256
@@ -198,36 +203,36 @@ ECDHE-RSA-AES128-GCM-SHA256
 
 **Authentication Type**  
 The type of request authentication used, `AuthHeader` for authentication headers, `QueryString` for query string \(pre\-signed URL\) or a `-` for unauthenticated requests\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 AuthHeader
 ```
 
 **Host Header**  
-The endpoint used to connect to Amazon S3  
-**Example Entry**  
+The endpoint used to connect to Amazon S3\.  
+**Example entry**  
 
 ```
 s3.us-west-2.amazonaws.com
 ```
-Some older Regions support legacy endpoints\. You may see these endpoints in your server access logs or CloudTrail logs\. For more information, see [Legacy Endpoints](VirtualHosting.md#s3-legacy-endpoints)\. For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
+Some older Regions support legacy endpoints\. You may see these endpoints in your server access logs or AWS CloudTrail logs\. For more information, see [Legacy Endpoints](VirtualHosting.md#s3-legacy-endpoints)\. For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
 
 **TLS version**  
 The Transport Layer Security \(TLS\) version negotiated by the client\. The value is one of following: `TLSv1`, `TLSv1.1`, `TLSv1.2`; or `-` if TLS wasn't used\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 TLSv1.2
 ```
 
-## Additional Logging for Copy Operations<a name="AdditionalLoggingforCopyOperations"></a>
+## Additional logging for copy operations<a name="AdditionalLoggingforCopyOperations"></a>
 
-A copy operation involves a `GET` and a `PUT`\. For that reason, we log two records when performing a copy operation\. The previous table describes the fields related to the `PUT` part of the operation\. The following list describes the fields in the record that relate to the `GET` part of the copy operation\.
+A copy operation involves a `GET` and a `PUT`\. For that reason, we log two records when performing a copy operation\. The previous section describes the fields related to the `PUT` part of the operation\. The following list describes the fields in the record that relate to the `GET` part of the copy operation\.
 
 **Bucket Owner**  
-The canonical user ID of the bucket that stores the object being copied\. The canonical user ID is another form of the AWS account ID\. For more information about the canonical user ID, see [AWS Account Identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html)\. For information about how to find the canonical user ID for your account, see [Finding Your Account Canonical User ID](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingCanonicalId)\.  
-**Example Entry**  
+The canonical user ID of the bucket that stores the object being copied\. The canonical user ID is another form of the AWS account ID\. For more information about the canonical user ID, see [AWS account identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) in the *AWS General Reference*\. For information about how to find the canonical user ID for your account, see [Finding the canonical user ID for your AWS account](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingCanonicalId)\.  
+**Example entry**  
 
 ```
 79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be
@@ -235,7 +240,7 @@ The canonical user ID of the bucket that stores the object being copied\. The ca
 
 **Bucket**  
 The name of the bucket that stores the object being copied\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 awsexamplebucket1
@@ -243,7 +248,7 @@ awsexamplebucket1
 
 **Time**  
 The time at which the request was received; these dates and times are in Coordinated Universal time \(UTC\)\. The format, using `strftime()` terminology, is as follows: `[%d/%B/%Y:%H:%M:%S %z]`  
-**Example Entry**  
+**Example entry**  
 
 ```
 [06/Feb/2019:00:00:38 +0000]
@@ -251,7 +256,7 @@ The time at which the request was received; these dates and times are in Coordin
 
 **Remote IP**  
 The apparent internet address of the requester\. Intermediate proxies and firewalls might obscure the actual address of the machine making the request\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 192.0.2.3
@@ -259,7 +264,7 @@ The apparent internet address of the requester\. Intermediate proxies and firewa
 
 **Requester**  
 The canonical user ID of the requester, or a `-` for unauthenticated requests\. If the requester was an IAM user, this field will return the requester's IAM user name along with the AWS root account that the IAM user belongs to\. This identifier is the same one used for access control purposes\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be
@@ -267,7 +272,7 @@ The canonical user ID of the requester, or a `-` for unauthenticated requests\. 
 
 **Request ID**  
 A string generated by Amazon S3 to uniquely identify each request\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 3E57427F33A59F07
@@ -275,7 +280,7 @@ A string generated by Amazon S3 to uniquely identify each request\.
 
 **Operation**  
 The operation listed here is declared as `SOAP.operation`, `REST.HTTP_method.resource_type`, `WEBSITE.HTTP_method.resource_type`, or `BATCH.DELETE.OBJECT`\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 REST.COPY.OBJECT_GET
@@ -283,7 +288,7 @@ REST.COPY.OBJECT_GET
 
 **Key**  
 The "key" of the object being copied or "\-" if the operation does not take a key parameter\.   
-**Example Entry**  
+**Example entry**  
 
 ```
 /photos/2019/08/puppy.jpg
@@ -291,7 +296,7 @@ The "key" of the object being copied or "\-" if the operation does not take a ke
 
 **Request\-URI**  
 The Request\-URI part of the HTTP request message\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 "GET /awsexamplebucket1/photos/2019/08/puppy.jpg?x-foo=bar"
@@ -299,7 +304,7 @@ The Request\-URI part of the HTTP request message\.
 
 **HTTP status**  
 The numeric HTTP status code of the `GET` portion of the copy operation\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 200
@@ -307,7 +312,7 @@ The numeric HTTP status code of the `GET` portion of the copy operation\.
 
 **Error Code**  
 The Amazon S3 [Error code](UsingRESTError.md#ErrorCode), of the `GET` portion of the copy operation or "\-" if no error occurred\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 NoSuchBucket
@@ -315,7 +320,7 @@ NoSuchBucket
 
 **Bytes Sent**  
 The number of response bytes sent, excluding HTTP protocol overhead, or "\-" if zero\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 2662992
@@ -323,7 +328,7 @@ The number of response bytes sent, excluding HTTP protocol overhead, or "\-" if 
 
 **Object Size**  
 The total size of the object in question\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 3462992
@@ -331,7 +336,7 @@ The total size of the object in question\.
 
 **Total Time**  
 The number of milliseconds the request was in flight from the server's perspective\. This value is measured from the time your request is received to the time that the last byte of the response is sent\. Measurements made from the client's perspective might be longer due to network latency\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 70
@@ -339,7 +344,7 @@ The number of milliseconds the request was in flight from the server's perspecti
 
 **Turn\-Around Time**  
 The number of milliseconds that Amazon S3 spent processing your request\. This value is measured from the time the last byte of your request was received until the time the first byte of the response was sent\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 10
@@ -347,7 +352,7 @@ The number of milliseconds that Amazon S3 spent processing your request\. This v
 
 **Referer**  
 The value of the HTTP Referer header, if present\. HTTP user\-agents \(for example, browsers\) typically set this header to the URL of the linking or embedding page when making a request\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 "http://www.amazon.com/webservices"
@@ -355,7 +360,7 @@ The value of the HTTP Referer header, if present\. HTTP user\-agents \(for examp
 
 **User\-Agent**  
 The value of the HTTP User\-Agent header\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 "curl/7.15.1"
@@ -371,7 +376,7 @@ The version ID of the object being copied or "\-" if the `x-amz-copy-source` hea
 
 **Host Id**  
 The x\-amz\-id\-2 or Amazon S3 extended request ID\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 s9lzHYrFp76ZVxRcpX9+5cjAnEH2ROuNkd2BHfIa6UkFVdtjf5mKR3/eTPFvsiP/XV/VLi31234=
@@ -379,7 +384,7 @@ s9lzHYrFp76ZVxRcpX9+5cjAnEH2ROuNkd2BHfIa6UkFVdtjf5mKR3/eTPFvsiP/XV/VLi31234=
 
 **Signature Version**  
 The signature version, `SigV2` or `SigV4`, that was used to authenticate the request or a `-` for unauthenticated requests\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 SigV2
@@ -387,15 +392,15 @@ SigV2
 
 **Cipher Suite**  
 The Secure Sockets Layer \(SSL\) cipher that was negotiated for HTTPS request or a `-` for HTTP\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 ECDHE-RSA-AES128-GCM-SHA256
 ```
 
 **Authentication Type**  
-The type of request authentication used, `AuthHeader` for authentication headers, `QueryString` for query string \(pre\-signed URL\) or a `-` for unauthenticated requests\.  
-**Example Entry**  
+The type of request authentication used, `AuthHeader` for authentication headers, `QueryString` for query string \(presigned URL\) or a `-` for unauthenticated requests\.  
+**Example entry**  
 
 ```
 AuthHeader
@@ -403,25 +408,27 @@ AuthHeader
 
 **Host Header**  
 The endpoint used to connect to Amazon S3\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 s3.us-west-2.amazonaws.com
 ```
-Some older Regions support legacy endpoints\. You may see these endpoints in your server access logs or CloudTrail logs\. For more information, see [Legacy Endpoints](VirtualHosting.md#s3-legacy-endpoints)\. For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
+Some older Regions support legacy endpoints\. You might see these endpoints in your server access logs or AWS CloudTrail logs\. For more information, see [Legacy Endpoints](VirtualHosting.md#s3-legacy-endpoints)\. For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
 
 **TLS version**  
 The Transport Layer Security \(TLS\) version negotiated by the client\. The value is one of following: `TLSv1`, `TLSv1.1`, `TLSv1.2`; or `-` if TLS wasn't used\.  
-**Example Entry**  
+**Example entry**  
 
 ```
 TLSv1.2
 ```
 
-## Custom Access Log Information<a name="LogFormatCustom"></a>
+## Custom access log information<a name="LogFormatCustom"></a>
 
-You can include custom information to be stored in the access log record for a request by adding a custom query\-string parameter to the URL for the request\. Amazon S3 ignores query\-string parameters that begin with "x\-", but includes those parameters in the access log record for the request, as part of the `Request-URI` field of the log record\. For example, a `GET` request for "s3\.amazonaws\.com/awsexamplebucket1/photos/2019/08/puppy\.jpg?x\-user=johndoe" works the same as the same request for "s3\.amazonaws\.com/awsexamplebucket1/photos/2019/08/puppy\.jpg", except that the "x\-user=johndoe" string is included in the `Request-URI` field for the associated log record\. This functionality is available in the REST interface only\.
+You can include custom information to be stored in the access log record for a request\. To do this, add a custom query\-string parameter to the URL for the request\. Amazon S3 ignores query\-string parameters that begin with "x\-", but includes those parameters in the access log record for the request, as part of the `Request-URI` field of the log record\. 
 
-## Programming Considerations for Extensible Server Access Log Format<a name="LogFormatExtensible"></a>
+For example, a `GET` request for `"s3.amazonaws.com/awsexamplebucket1/photos/2019/08/puppy.jpg?x-user=johndoe"` works the same as the request for `"s3.amazonaws.com/awsexamplebucket1/photos/2019/08/puppy.jpg"`, except that the `"x-user=johndoe"` string is included in the `Request-URI` field for the associated log record\. This functionality is available in the REST interface only\.
 
-From time to time, we might extend the access log record format by adding new fields to the end of each line\. Code that parses server access logs must be written to handle trailing fields that it does not understand\. 
+## Programming considerations for extensible server access log format<a name="LogFormatExtensible"></a>
+
+Occasionally we might extend the access log record format by adding new fields to the end of each line\. Therefore, you should write any code that parses server access logs to handle trailing fields that it might not understand\. 

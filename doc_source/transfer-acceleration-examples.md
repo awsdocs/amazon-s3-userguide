@@ -71,7 +71,7 @@ $ aws configure set default.s3.use_accelerate_endpoint true
 ```
 
 If you want to use the accelerate endpoint for some AWS CLI commands but not others, you can use either one of the following two methods: 
-+ Use the accelerate endpoint per command by setting the `--endpoint-url` parameter to `https://s3-accelerate.amazonaws.com` or `http://s3-accelerate.amazonaws.com` for any s3 or s3api command\.
++ Use the accelerate endpoint for any s3 or s3api command by setting the `--endpoint-url` parameter to `https://s3-accelerate.amazonaws.com`\.
 + Set up separate profiles in your AWS Config file\. For example, create one profile that sets `use_accelerate_endpoint` to `true` and a profile that does not set `use_accelerate_endpoint`\. When you run a command, specify which profile you want to use, depending upon whether you want to use the accelerate endpoint\. 
 
 ### Uploading an object to a bucket enabled for Transfer Acceleration<a name="transfer-acceleration-examples-aws-cli-3"></a>
@@ -90,7 +90,7 @@ The following example uploads a file to a bucket enabled for Transfer Accelerati
 
 ```
 $ aws configure set s3.addressing_style virtual
-$ aws s3 cp file.txt s3://bucketname/keyname --region region --endpoint-url http://s3-accelerate.amazonaws.com
+$ aws s3 cp file.txt s3://bucketname/keyname --region region --endpoint-url https://s3-accelerate.amazonaws.com
 ```
 
 ## Using the AWS SDKs<a name="transfer-acceleration-examples-sdk"></a>

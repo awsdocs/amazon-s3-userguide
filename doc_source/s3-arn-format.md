@@ -31,7 +31,7 @@ For a complete list of Amazon S3 resources, see [Actions, resources, and conditi
 
 To find the ARN for an S3 bucket, you can look at the Amazon S3 console **Bucket Policy** or **CORS configuration** permissions pages\. For more information, see the following topics:
 + [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)
-+ [Enabling cross\-origin resource sharing \(CORS\)](ManageCorsUsing.md)
++ [Creating a cross\-origin resource sharing \(CORS\) configuration](ManageCorsUsing.md)
 
 ## Amazon S3 ARN examples<a name="s3-arn-examples"></a>
 

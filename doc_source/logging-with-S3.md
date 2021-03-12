@@ -4,11 +4,13 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Logging with Amazon S3<a name="logging-with-S3"></a>
+# Logging options for Amazon S3<a name="logging-with-S3"></a>
 
-You can record the actions that are taken by users, roles, or AWS services on Amazon S3 resources and maintain log records for auditing and compliance purposes\. To do this, you can use server access logging AWS CloudTrail logging, or a combination of both\. We recommend that you use AWS CloudTrail for logging bucket and object\-level actions for your Amazon S3 resources\. For more information, see [Logging requests with server access logging](ServerLogs.md) and [Logging Amazon S3 API calls using AWS CloudTrail](cloudtrail-logging.md)\.
+You can record the actions that are taken by users, roles, or AWS services on Amazon S3 resources and maintain log records for auditing and compliance purposes\. To do this, you can use server access logging, AWS CloudTrail logging, or a combination of both\. We recommend that you use AWS CloudTrail for logging bucket and object\-level actions for your Amazon S3 resources\. For more information about each option, see the following sections:
++ [Logging requests using server access logging](ServerLogs.md)
++ [Logging Amazon S3 API calls using AWS CloudTrail](cloudtrail-logging.md)
 
-The following table lists the key properties of AWS CloudTrail logs and Amazon S3 server access logs\. Review the table and notes to ensure AWS CloudTrail meets your security requirements\.
+The following table lists the key properties of AWS CloudTrail logs and Amazon S3 server access logs\. Review the table and notes to ensure that AWS CloudTrail meets your security requirements\.
 
 
 | Log properties | AWS CloudTrail | Amazon S3 server logs | 
@@ -22,7 +24,7 @@ The following table lists the key properties of AWS CloudTrail logs and Amazon S
 |  Object operations \(using Amazon S3 APIs\)  |  Yes  |  Yes  | 
 |  Bucket operations \(using Amazon S3 APIs\)  |  Yes  |  Yes  | 
 |  Searchable UI for logs  |  Yes  |  | 
-|  Fields for Object Lock parameters, Amazon S3 select properties for log records  |  Yes  |  | 
+|  Fields for Object Lock parameters, Amazon S3 Select properties for log records  |  Yes  |  | 
 |  Fields for `Object Size`, `Total Time`, `Turn-Around Time`, and `HTTP Referer` for log records  |  |  Yes  | 
 |  Lifecycle transitions, expirations, restores  |  |  Yes  | 
 |  Logging of keys in a batch delete operation  |  |  Yes  | 

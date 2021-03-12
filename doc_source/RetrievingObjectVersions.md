@@ -14,16 +14,9 @@ To retrieve a specific version, you have to specify its version ID\. The followi
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/versioning_GET_Versioned.png)
 
-**Topics**
-+ [Retrieving object versions](#retrieving-object-versions)
-+ [Retrieving the metadata of an object version](RetMetaOfObjVersion.md)
-+ [Restoring previous versions](RestoringPreviousVersions.md)
-
-## Retrieving object versions<a name="retrieving-object-versions"></a>
-
 You can retrieve object versions in Amazon S3 using the console, AWS SDKs, or REST API\.
 
-### Using the S3 console<a name="retrieving-object-versions"></a>
+## Using the S3 console<a name="retrieving-object-versions"></a>
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -44,13 +37,13 @@ You also can view, download, and delete object versions in the object overview p
 **Important**  
 You can undelete an object only if it was deleted as the latest \(current\) version\. You can't undelete a previous version of an object that was deleted\. For more information, see [Using versioning in S3 buckets](Versioning.md)\.
 
-### Using the AWS SDKs<a name="retrieve-obj-version-sdks"></a>
+## Using the AWS SDKs<a name="retrieve-obj-version-sdks"></a>
 
 The examples for uploading objects in nonversioned and versioning\-enabled buckets are the same\. However, for versioning\-enabled buckets, Amazon S3 assigns a version number\. Otherwise, the version number is null\.
 
 For examples of downloading objects using AWS SDKs for Java, \.NET, and PHP, see [Downloading objects](https://docs.aws.amazon.com/AmazonS3/latest/userguide/download-objects.html)\.
 
-### Using the REST API<a name="retrieve-obj-version-rest"></a>
+## Using the REST API<a name="retrieve-obj-version-rest"></a>
 
 **To retrieve a specific object version**
 
@@ -67,3 +60,7 @@ The following request retrieves version `L4kqtJlcpXroDTDmpUMLUo` of `my-image.jp
 3. Date: Wed, 28 Oct 2009 22:32:00 GMT
 4. Authorization: AWS AKIAIOSFODNN7EXAMPLE:0RQf4/cRonhpaBX5sCYVf1bNRuU=
 ```
+
+You can retrieve just the metadata of an object \(not the content\)\. For information, see [Retrieving the metadata of an object version](RetMetaOfObjVersion.md)\.
+
+For information about restoring a previous object version, see [Restoring previous versions](RestoringPreviousVersions.md)\.

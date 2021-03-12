@@ -20,7 +20,7 @@ This topic provides the following introductory walkthrough examples for granting
   The AWS account that creates a bucket is called the bucket owner\. The owner can grant other AWS accounts permission to upload objects, and the AWS accounts that create objects own them\. The bucket owner has no permissions on those objects created by other AWS accounts\. If the bucket owner writes a bucket policy granting access to objects, the policy does not apply to objects that are owned by other accounts\. 
 
   In this case, the object owner must first grant permissions to the bucket owner using an object ACL\. The bucket owner can then delegate those object permissions to others, to users in its own account, or to another AWS account, as illustrated by the following examples\.
-  + [Example 3: Bucket owner granting its users permissions to objects it does not own ](example-walkthroughs-managing-access-example3.md)
+  + [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)
 
     In this exercise, the bucket owner first gets permissions from the object owner\. The bucket owner then delegates those permissions to users in its own account\.
   + [Example 4: Bucket owner granting cross\-account permission to objects it does not own](example-walkthroughs-managing-access-example4.md)

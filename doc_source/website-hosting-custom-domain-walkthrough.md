@@ -155,7 +155,7 @@ After you configure your root domain bucket for website hosting, you can configu
 
 ## Step 5: Configure logging for website traffic<a name="root-domain-walkthrough-configure-logging"></a>
 
-If you want to track the number of visitors accessing your website, you can optionally enable logging for your root domain bucket\. For more information, see [Logging requests with server access logging](ServerLogs.md)\. If you plan to use Amazon CloudFront to speed up your website, you can also use CloudFront logging\.
+If you want to track the number of visitors accessing your website, you can optionally enable logging for your root domain bucket\. For more information, see [Logging requests using server access logging](ServerLogs.md)\. If you plan to use Amazon CloudFront to speed up your website, you can also use CloudFront logging\.
 
 **To enable server access logging for your root domain bucket**
 
@@ -368,6 +368,8 @@ If you don't already use Route 53, see [Step 1: Register a domain](https://docs
 1. Choose **Create record**\.
 
 1. Choose **Switch to wizard**\.
+**Note**  
+If you want to use quick create to create your alias records, see [Configuring Route 53 to route traffic to an S3 Bucket](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/RoutingToS3Bucket.html#routing-to-s3-bucket-configuring)\.
 
 1. Choose **Simple routing**, and choose **Next**\.
 

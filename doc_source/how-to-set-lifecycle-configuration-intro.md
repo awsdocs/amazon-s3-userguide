@@ -16,7 +16,7 @@ Before you set a lifecycle configuration, note the following:
 When you add an S3 Lifecycle configuration to a bucket, there is usually some lag before a new or updated Lifecycle configuration is fully propagated to all the Amazon S3 systems\. Expect a delay of a few minutes before the configuration fully takes effect\. This delay can also occur when you delete an S3 Lifecycle configuration\.
 
 **Disabling or deleting Lifecycle rules**  
-When you disable or delete a Lifecycle rules Amazon S3 stops scheduling new objects for deletion or transition after a small delay\. Any objects that were already scheduled are unscheduled and are not deleted or transitioned\.
+When you disable or delete Lifecycle rules, Amazon S3 stops scheduling new objects for deletion or transition after a small delay\. Any objects that were already scheduled are unscheduled and are not deleted or transitioned\.
 
 **Existing and new objects**  
 When you add a Lifecycle configuration to a bucket, the configuration rules apply to both existing objects and objects that you add later\. For example, if you add a Lifecycle configuration rule today with an expiration action that causes objects with a specific prefix to expire 30 days after creation, Amazon S3 will queue for removal any existing objects that are more than 30 days old\.

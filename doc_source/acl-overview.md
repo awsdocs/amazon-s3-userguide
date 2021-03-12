@@ -10,8 +10,9 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 For example, you can grant permissions only to other AWS accounts; you cannot grant permissions to users in your account\. You cannot grant conditional permissions, nor can you explicitly deny permissions\. ACLs are suitable for specific scenarios\. For example, if a bucket owner allows other AWS accounts to upload objects, permissions to these objects can only be managed using object ACL by the AWS account that owns the object\.
 
-For more information about access policy options, see [Access policy guidelines](access-policy-alternatives-guidelines.md)\. For more information about ACLs, see the topics below\.
+For more information about access policy options, see [Access policy guidelines](access-policy-alternatives-guidelines.md)\. For more information about ACLs, see the following topics\.
 
 **Topics**
 + [Access control list \(ACL\) overview](acl_overview.md)
++ [Finding the canonical user ID for your AWS account](finding-canonical-user-id.md)
 + [Configuring ACLs](managing-acls.md)

@@ -50,7 +50,7 @@ To request more complex filtering, choose two or more elements\. Only objects th
 
    You have now created a filter that limits the request metrics scope by object tags and prefixes\. About 15 minutes after CloudWatch begins tracking these request metrics, you can see charts for the metrics on both the Amazon S3 and CloudWatch consoles\. Request metrics are billed at the standard CloudWatch rate\. For more information, see [Amazon CloudWatch pricing](http://aws.amazon.com/cloudwatch/pricing/)\. 
 
-   You can also configure request metrics at the bucket level\. For information, see [Using the S3 console](configure-request-metrics-bucket.md#configure-metrics)
+   You can also configure request metrics at the bucket level\. For information, see [Creating a CloudWatch metrics configuration for all the objects in your bucket](configure-request-metrics-bucket.md)\.
 
 ## Using the REST API<a name="configure-cw-filter-rest"></a>
 

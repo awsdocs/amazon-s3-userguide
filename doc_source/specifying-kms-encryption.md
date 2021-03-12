@@ -202,7 +202,7 @@ AmazonS3Client s3client = new AmazonS3Client(
 ...
 ```
 
-For a code example, see [Accessing an object using a presigned URL](ShareObjectPreSignedURL.md)\. 
+For a code example, see [Sharing an object with a presigned URL](ShareObjectPreSignedURL.md)\. 
 
 ------
 #### [ \.NET ]
@@ -213,6 +213,6 @@ When creating a presigned URL for an object encrypted using an AWS KMS CMK, you 
 AWSConfigs.S3Config.UseSignatureVersion4 = true;
 ```
 
-For a code example, see [Accessing an object using a presigned URL](ShareObjectPreSignedURL.md)\.
+For a code example, see [Sharing an object with a presigned URL](ShareObjectPreSignedURL.md)\.
 
 ------

@@ -6,7 +6,11 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Granting permissions to publish event notification messages to a destination<a name="grant-destinations-permissions-to-s3"></a>
 
-Before Amazon S3 can publish messages to a destination, you must grant the Amazon S3 principal the necessary permissions to call the relevant API to publish messages to an SNS topic, an SQS queue, or a Lambda function\. 
+Before Amazon S3 can publish event notification messages to a destination, you must grant the Amazon S3 principal the necessary permissions to call the relevant API to publish messages to an SNS topic, an SQS queue, or a Lambda function\. 
+
+**Topics**
++ [Granting permissions to invoke an AWS Lambda function](#grant-lambda-invoke-permission-to-s3)
++ [Granting permissions to publish messages to an SNS topic or an SQS queue](#grant-sns-sqs-permission-for-s3)
 
 ## Granting permissions to invoke an AWS Lambda function<a name="grant-lambda-invoke-permission-to-s3"></a>
 
@@ -21,12 +25,12 @@ You can also grant Amazon S3 permissions from AWS Lambda to invoke your Lambda f
 To grant Amazon S3 permissions to publish messages to the SNS topic or SQS queue, you attach an AWS Identity and Access Management \(IAM\) policy to the destination SNS topic or SQS queue\. 
 
 For an example of how to attach a policy to an SNS topic or an SQS queue, see [Walkthrough: Configuring a bucket for notifications \(SNS topic or SQS queue\)](ways-to-add-notification-config-to-bucket.md)\. For more information about permissions, see the following topics:
-+ [Example Cases for Amazon SNS Access Control](https://docs.aws.amazon.com/sns/latest/dg/AccessPolicyLanguage_UseCases_Sns.html) in the *Amazon Simple Notification Service Developer Guide*
-+ [Access Control Using AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/UsingIAM.html) in the *Amazon Simple Queue Service Developer Guide*
++ [Example cases for Amazon SNS access control](https://docs.aws.amazon.com/sns/latest/dg/AccessPolicyLanguage_UseCases_Sns.html) in the *Amazon Simple Notification Service Developer Guide*
++ [Identity and access management in Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/UsingIAM.html) in the *Amazon Simple Queue Service Developer Guide*
 
 ### IAM policy for a destination SNS topic<a name="sns-topic-policy"></a>
 
-The following is an example of an IAM policy that you attach to the destination SNS topic\.
+The following is an example of an AWS Identity and Access Management \(IAM\) policy that you attach to the destination SNS topic\.
 
 ```
 {
@@ -90,7 +94,7 @@ Note that for both the Amazon SNS and Amazon SQS IAM policies, you can specify t
 
 ### AWS KMS key policy<a name="key-policy-sns-sqs"></a>
 
-If the SQS queue or SNS topics are encrypted with an AWS Key Management Service \(AWS KMS\) customer managed customer master key \(CMK\), you must grant the Amazon S3 service principal permission to work with the encrypted topics and or queue\. To grant the Amazon S3 service principal permission, add the following statement to the key policy for the customer managed CMK:
+If the SQS queue or SNS topics are encrypted with an AWS Key Management Service \(AWS KMS\) customer managed customer master key \(CMK\), you must grant the Amazon S3 service principal permission to work with the encrypted topics or queue\. To grant the Amazon S3 service principal permission, add the following statement to the key policy for the customer managed CMK\.
 
 ```
 {
@@ -113,7 +117,9 @@ If the SQS queue or SNS topics are encrypted with an AWS Key Management Service 
 }
 ```
 
-For more information about AWS KMS key policies, see [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\. For more information about using server\-side encryption with AWS KMS for Amazon SQS and Amazon SNS, see the following:
-+ [Configuring AWS KMS Permissions for Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html) in the *Amazon Simple Notification Service Developer Guide*\.
-+ [Configuring AWS KMS Permissions for Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html) in the *Amazon Simple Queue Service Developer Guide*\.
+For more information about AWS KMS key policies, see [Using key policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) in the *AWS Key Management Service Developer Guide*\. 
+
+For more information about using server\-side encryption with AWS KMS for Amazon SQS and Amazon SNS, see the following:
++ [Key management](https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html) in the *Amazon Simple Notification Service Developer Guide*\.
++ [Key management](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html) in the *Amazon Simple Queue Service Developer Guide*\.
 + [Encrypting messages published to Amazon SNS with AWS KMS](http://aws.amazon.com/blogs/compute/encrypting-messages-published-to-amazon-sns-with-aws-kms/) in the *AWS Compute Blog*\.

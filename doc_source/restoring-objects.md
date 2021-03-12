@@ -6,19 +6,23 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Restoring an archived object<a name="restoring-objects"></a>
 
-You can restore an archived object using the Amazon S3 console, the REST API, the AWS SDKs, and the AWS CLI\. 
+Amazon S3 objects that are stored in the S3 Glacier or S3 Glacier Deep Archive storage classes are not immediately accessible\. To access an object in these storage classes, you must restore a temporary copy of it to its S3 bucket for a specified duration \(number of days\)\. For information about using these storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md) and [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 
-When you restore an archive, you are paying for both the archive and a copy that you restored temporarily\. For information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\. 
+Restored objects from S3 Glacier or S3 Glacier Deep Archive are stored only for the number of days that you specify\. If you want a permanent copy of the object, create a copy of it in your Amazon S3 bucket\.
+
+To calculate the expiry date, Amazon S3 adds the number of days that you specify to the time you request to restore the object, and then rounds to the next day at midnight UTC\. This calculation applies to the initial restoration of the object and to any extensions to availability that you request\. For example, if an object was restored on Oct 15, 2012 10:30 AM UTC, and the number of days that you specified is **3**, the object is available until Oct 19, 2012 00:00 UTC\. If, on Oct 16, 2012 11:00 AM UTC, you change the number of days that you want it to be accessible to **1**, Amazon S3 makes the restored object available until Oct 18, 2012 00:00 UTC\.
+
+When you restore an archived object, you are paying for both the archive and a copy that you restored temporarily\. For information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\. 
+
+You can restore an archived object using the Amazon S3 console, the REST API, the AWS SDKs, and the AWS Command Line Interface \(AWS CLI\)\. 
 
 ## Using the S3 console<a name="restore-archived-objects"></a>
 
-This section explains how to use the Amazon S3 console to restore an object that has been archived to the S3 Glacier or S3 Glacier Deep Archive storage classes\. Objects stored in the S3 Glacier or S3 Glacier Deep Archive are not immediately accessible\. To access an object in this class, you must restore a temporary copy of it to its S3 bucket for the duration \(number of days\) that you specify\. For information about the S3 Glacier or S3 Glacier Deep Archive storage classes, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\. 
 
-When you restore an archive, you pay for both the archive and the restored copy\. Because there is a storage cost for the copy, restore objects only for the duration you need them\. If you want a permanent copy of the object, create a copy of it in your S3 bucket\. For information about Amazon S3 features and pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 
-After restoring an object, you can download it from the **Object overview** page\. For more information, see [Viewing an object overview in the Amazon S3 console](view-object-overview.md)\.
+Use the following steps to restore an object that has been archived to the S3 Glacier or S3 Glacier Deep Archive storage classes, to check the status, and to upgrade an in\-progress restore\. \(The console uses the names **Glacier** and **Glacier Deep Archive** for these storage classes\.\)
 
-Use the following steps to restore an object that has been archived to the S3 Glacier or S3 Glacier Deep Archive storage classes\. \(The console uses the names **Glacier** and **Glacier Deep Archive** for these storage classes\.\)
+**To restore an archived object**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -38,8 +42,6 @@ Use the following steps to restore an object that has been archived to the S3 Gl
    + If you don't have provisioned capacity and you don't want to buy it, choose **Restore**\. 
    + If you don't have provisioned capacity, but you want to buy it, choose **Add capacity unit**, and then choose **Buy**\. When you get the **Purchase succeeded** message, choose **Restore** to start provisioned retrieval\.
 
-### Upgrading an in\-progress restore<a name="restore-archived-objects-upgrade"></a>
-
 You can upgrade the speed of your restoration while it is in progress\.
 
 **To upgrade an in\-progress restore to a faster tier**
@@ -48,7 +50,7 @@ You can upgrade the speed of your restoration while it is in progress\.
 
 1. In the **Bucket name** list, choose the name of the bucket that contains the objects that you want to restore\.
 
-1. In the **Objects** list, select one or more of the objects that you are restoring, choose **Actions**, and then choose **Restore from Glacier**\. For information about checking the restoration status of an object, see [Check archive restore status and expiration date](#restore-archived-objects-status)\. 
+1. In the **Objects** list, select one or more of the objects that you are restoring, choose **Actions**, and then choose **Restore from Glacier**\. For information about checking the restoration status of an object, see [Checking restore status and expiration date](#restore-archived-objects-status)\. 
 
 1. Choose the tier that you want to upgrade to, and then choose **Restore**\. 
 
@@ -56,17 +58,13 @@ You can upgrade the speed of your restoration while it is in progress\.
 **Note**  
 Standard and bulk restores for S3 Intelligent\-Tiering are free of charge\. However, subsequent restore requests called on an object that is already being restored are billed as a GET request\.
 
-### Check archive restore status and expiration date<a name="restore-archived-objects-status"></a>
+### Checking restore status and expiration date<a name="restore-archived-objects-status"></a>
 
-To check the progress of the restoration, see the object overview in the console\. For more information, see [Viewing an object overview in the Amazon S3 console](view-object-overview.md)\.
-
-The **Object overview** shows that the restoration is **In progress**\. 
+You can check the progress of the restoration on the **Object overview** page\. For more information, see [Viewing an object overview in the Amazon S3 console](view-object-overview.md)\. This page will show that the restoration is **In progress**\.
 
 If you're restoring from S3 Glacier or S3 Glacier Deep Archive, the temporary copy of the **Object overview** shows the **Restoration expiry date**\. Amazon S3 will remove the restored copy of your archive on this date\.
 
 Restored objects from S3 Glacier or S3 Glacier Deep Archive are stored only for the number of days that you specify\. If you want a permanent copy of the object, create a copy of it in your Amazon S3 bucket\. 
-
-Amazon S3 calculates the expiry date by adding the number of days that you specify to the time you request to restore the object, and then rounding to the next day at midnight UTC\. This calculation applies to the initial restoration of the object and to any extensions to availability that you request\. For example, if an object was restored on Oct 15, 2012 10:30 AM UTC, and the number of days that you specified is **3**, the object is available until Oct 19, 2012 00:00 UTC\. If, on Oct 16, 2012 11:00 AM UTC, you change the number of days that you want it to be accessible to **1**, Amazon S3 makes the restored object available until Oct 18, 2012 00:00 UTC\.
 
 After restoring an object, you can download it from the **Overview** page\. For more information, see [Viewing an object overview in the Amazon S3 console](view-object-overview.md)\.
 
@@ -75,9 +73,9 @@ After restoring an object, you can download it from the **Overview** page\. For 
 ------
 #### [ Java ]
 
-The following example shows how to restore a copy of an object that has been archived using the AWS SDK for Java\. The example initiates a restoration request for the specified archived object and checks its restoration status\. 
+The following example restores a copy of an object that has been archived using the AWS SDK for Java\. The example initiates a restoration request for the specified archived object and checks its restoration status\. 
 
-For more information about restoring archived objects, see [Restoring an archived object](#restoring-objects)\. For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.
+For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.
 
 ```
 import com.amazonaws.AmazonServiceException;
@@ -199,4 +197,4 @@ namespace Amazon.DocSamples.S3
 
 ## Using the REST API<a name="restoring-objects-rest"></a>
 
-Amazon S3 provides an API for you to initiate an archive restoration\. For more information, see [POST Object restore](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html) in the *Amazon Simple Storage Service API Reference*\.
+Amazon S3 provides an API for you to initiate an archive restoration\. For more information, see [RestoreObject](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html) in the *Amazon Simple Storage Service API Reference*\.

@@ -112,7 +112,7 @@ When source and destination buckets aren't owned by the same accounts, the owner
          "Sid":"Permissions on objects",
          "Effect":"Allow",
          "Principal":{
-            "AWS":"arn:aws:iam::SourceBucket-AcctID:root"
+            "AWS":"arn:aws:iam::SourceBucket-AcctID:source-acct-IAM-role"
          },
          "Action":[
             "s3:ReplicateDelete",
@@ -124,7 +124,7 @@ When source and destination buckets aren't owned by the same accounts, the owner
          "Sid":"Permissions on bucket",
          "Effect":"Allow",
          "Principal":{
-            "AWS":"arn:aws:iam::SourceBucket-AcctID:root"
+            "AWS":"arn:aws:iam::SourceBucket-AcctID:source-acct-IAM-role"
          },
          "Action": [
             "s3:List*",
@@ -149,7 +149,7 @@ If objects in the source bucket are tagged, note the following:
         {
            "Effect":"Deny",
            "Principal":{
-              "AWS":"arn:aws:iam::SourceBucket-AcctID:root"
+              "AWS":"arn:aws:iam::SourceBucket-AcctID:source-acct-IAM-role"
            },
            "Action":"s3:ReplicateTags",
            "Resource":"arn:aws:s3:::DestinationBucket/*"

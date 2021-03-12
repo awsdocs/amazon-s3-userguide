@@ -4,11 +4,9 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Managing Amazon S3 object locks<a name="object-lock-managing"></a>
+# Managing Object Lock<a name="object-lock-managing"></a>
 
-S3 Object Lock lets you store objects in Amazon S3 using a *write\-once\-read\-many* \(WORM\) model\. You can use it to view, configure, and manage the object lock status of your Amazon S3 objects\. For more information about S3 Object Lock capabilities, see [S3 Object Lock overview](object-lock-overview.md)\.
-
-This section provides information about how you can use the AWS CLI, AWS SDKs, and the Amazon S3 REST APIs to configure and view lock information, set retention limits, manage deletes and lifecycles, and more\. To configure S3 Object Lock using the AWS Management Console, see [Configuring S3 Object Lock using the S3 console](object-lock-console.md)\.
+You can use the AWS CLI, AWS SDKs, and the Amazon S3 REST APIs to configure and view lock information, set retention limits, manage deletes and lifecycles, and more\. 
 
 **Topics**
 + [Viewing the lock information for an object](#object-lock-managing-view)
@@ -30,7 +28,7 @@ You can configure Amazon S3 inventory reports on your buckets to include the `Re
 
 ## Bypassing governance mode<a name="object-lock-managing-bypass"></a>
 
-You can perform operations on object versions that are locked in governance mode as if they were unprotected if you have the `s3:BypassGovernanceRetention` permission\. These operations include deleting an object version, shortening the retention period, or removing the Object Lock by placing a new lock with empty parameters\. 
+You can perform operations on object versions that are locked in governance mode as if they were unprotected if you have the `s3:BypassGovernanceRetention` permission\. These operations include deleting an object version, shortening the retention period, or removing the object lock by placing a new lock with empty parameters\. 
 
 To bypass governance mode, you must explicitly indicate in your request that you want to bypass this mode\. To do this, include the `x-amz-bypass-governance-retention:true` header with your request, or use the equivalent parameter with requests made through the AWS CLI, or AWS SDKs\. The AWS Management Console automatically applies this header for requests made through the console if you have the permission required to bypass governance mode\.
 
@@ -39,11 +37,11 @@ Bypassing governance mode doesn't affect an object version's legal hold status\.
 
 ## Configuring events and notifications<a name="object-lock-managing-events"></a>
 
-You can configure Amazon S3 events for object\-level operations in an S3 Object Lock S3 bucket\. When `PUT Object`, `HEAD Object`, and `GET Object` calls include Object Lock metadata, events for these calls include those metadata values\. When Object Lock metadata is added to or updated for an object, those actions also trigger events\. These events occur whenever you `PUT` or `GET` object retention or legal\-hold information\.
+You can configure Amazon S3 events for object\-level operations in an S3 Object Lock bucket\. When `PUT Object`, `HEAD Object`, and `GET Object` calls include Object Lock metadata, events for these calls include those metadata values\. When Object Lock metadata is added to or updated for an object, those actions also trigger events\. These events occur whenever you `PUT` or `GET` object retention or legal\-hold information\.
 
-For more information about Amazon S3 events, see [Configuring Amazon S3 event notifications](NotificationHowTo.md)\.
+For more information about Amazon S3 events, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
 
-You can use Amazon S3 event notifications to track access and changes to your Object Lock configurations and data using AWS CloudTrail\. For information about CloudTrail, see the [AWS CloudTrail documentation](https://docs.aws.amazon.com/cloudtrail/index.html)\. 
+You can use Amazon S3 Event Notifications to track access and changes to your Object Lock configurations and data using AWS CloudTrail\. For information about CloudTrail, see the [AWS CloudTrail documentation](https://docs.aws.amazon.com/cloudtrail/index.html)\. 
 
 You can also use Amazon CloudWatch to generate alerts based on this data\. For information about CloudWatch, see the [Amazon CloudWatch documentation](https://docs.aws.amazon.com/cloudwatch/index.html)\.
 
@@ -51,7 +49,9 @@ You can also use Amazon CloudWatch to generate alerts based on this data\. For i
 
 ## Setting retention limits<a name="object-lock-managing-retention-limits"></a>
 
-You can set minimum and maximum allowable retention periods for a bucket using a bucket policy\. You do this using the `s3:object-lock-remaining-retention-days` condition key\. The following example shows a bucket policy that uses the `s3:object-lock-remaining-retention-days` condition key to set a maximum retention period of 10 days\.
+You can set minimum and maximum allowable retention periods for a bucket using a bucket policy\. You do this using the `s3:object-lock-remaining-retention-days` condition key\. The maximum retention period is 100 years\.
+
+The following example shows a bucket policy that uses the `s3:object-lock-remaining-retention-days` condition key to set a maximum retention period of 10 days\.
 
 ```
 {
@@ -117,4 +117,4 @@ Before you contact AWS Support, review the following requirements for setting up
 + The Amazon S3 destination bucket must have Object Lock enabled on it\.
 + You must grant two new permissions on the source S3 bucket in the AWS Identity and Access Management \(IAM\) role that you use to set up replication\. The two new permissions are `s3:GetObjectRetention` and `s3:GetObjectLegalHold`\. If the role has an `s3:Get*` permission, it satisfies the requirement\. For more information, see [Setting up permissions](setting-repl-config-perm-overview.md)\.
 
-For more information about S3 Object Lock, see [Using S3 Object Lock](object-lock.md)\.
+For more information about S3 Object Lock, see [How S3 Object Lock works](object-lock-overview.md)\.

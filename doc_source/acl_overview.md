@@ -32,7 +32,7 @@ When you create a bucket or an object, Amazon S3 creates a default ACL that gran
 17. </AccessControlPolicy>
 ```
 
-The sample ACL includes an `Owner` element that identifies the owner by the AWS account's canonical user ID\. For instructions on finding your canonical user id, see [Finding an AWS Account canonical user ID](#finding-canonical-id)\. The `Grant` element identifies the grantee \(either an AWS account or a predefined group\) and the permission granted\. This default ACL has one `Grant` element for the owner\. You grant permissions by adding `Grant` elements, with each grant identifying the grantee and the permission\. 
+The sample ACL includes an `Owner` element that identifies the owner by the AWS account's canonical user ID\. For instructions on finding your canonical user id, see [Finding an AWS account canonical user ID](#finding-canonical-id)\. The `Grant` element identifies the grantee \(either an AWS account or a predefined group\) and the permission granted\. This default ACL has one `Grant` element for the owner\. You grant permissions by adding `Grant` elements, with each grant identifying the grantee and the permission\. 
 
 **Note**  
 An ACL can have up to 100 grants\.
@@ -74,11 +74,11 @@ x-amz-grant-read: emailAddress="xyz@amazon.com", emailAddress="abc@amazon.com"
 **Warning**  
 When you grant other AWS accounts access to your resources, be aware that the AWS accounts can delegate their permissions to users under their accounts\. This is known as *cross\-account access*\. For information about using cross\-account access, see [ Creating a Role to Delegate Permissions to an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\. 
 
-### Finding an AWS Account canonical user ID<a name="finding-canonical-id"></a>
+### Finding an AWS account canonical user ID<a name="finding-canonical-id"></a>
 
-The canonical user ID is associated with your AWS account\. It is a long string, such as `79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be`\. For information about how to find the canonical user ID for your account, see [Finding Your Account Canonical User ID](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingCanonicalId)\. 
+The canonical user ID is associated with your AWS account\. This ID is a long string of characters, such as `79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be`\. For information about how to find the canonical user ID for your account, see [Finding the canonical user ID for your AWS account](finding-canonical-user-id.md)\. 
 
-You can also look up the canonical user ID of an AWS account by reading the ACL of a bucket or an object to which the AWS account has access permissions\. When an individual AWS account is granted permissions by a grant request, a grant entry is added to the ACL with the AWS account's canonical user ID\. 
+You can also look up the canonical user ID of an AWS account by reading the ACL of a bucket or an object to which the AWS account has access permissions\. When an individual AWS account is granted permissions by a grant request, a grant entry is added to the ACL with the account's canonical user ID\. 
 
 **Note**  
 If you make your bucket public \(not recommended\) any unauthenticated user can upload objects to the bucket\. These anonymous users don't have an AWS account\. When an anonymous user uploads an object to your bucket Amazon S3 adds a special canonical user ID \(`65a011a29cdf8ec533ec3d1ccaae921c`\) as the object owner in the ACL\. For more information, see [Amazon S3 bucket and object ownership](access-control-overview.md#about-resource-owner)\.
@@ -98,7 +98,7 @@ When you grant access to the **Authenticated Users group** any AWS authenticated
 We highly recommend that you never grant the **All Users group** `WRITE`, `WRITE_ACP`, or `FULL_CONTROL` permissions\. For example, `WRITE` permissions allow anyone to store objects in your bucket, for which you are billed\. It also allows others to delete objects that you might want to keep\. For more details about these permissions, see the following section [What permissions can I grant?](#permissions)\.
 + ****Log Delivery group**** – Represented by `http://acs.amazonaws.com/groups/s3/LogDelivery`\.
 
-  WRITE permission on a bucket enables this group to write server access logs \(see [Logging requests with server access logging](ServerLogs.md)\) to the bucket\.
+  WRITE permission on a bucket enables this group to write server access logs \(see [Logging requests using server access logging](ServerLogs.md)\) to the bucket\.
 
 **Note**  
 When using ACLs, a grantee can be an AWS account or one of the predefined Amazon S3 groups\. However, the grantee cannot be an IAM user\. For more information about AWS users and permissions within IAM, go to [Using AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
@@ -107,6 +107,8 @@ When using ACLs, a grantee can be an AWS account or one of the predefined Amazon
 
 The following table lists the set of permissions that Amazon S3 supports in an ACL\. The set of ACL permissions is the same for an object ACL and a bucket ACL\. However, depending on the context \(bucket ACL or object ACL\), these ACL permissions grant permissions for specific buckets or object operations\. The table lists the permissions and describes what they mean in the context of objects and buckets\. 
 
+
+**ACL permissions**  
 
 | Permission | When granted on a bucket | When granted on an object | 
 | --- | --- | --- | 
@@ -215,7 +217,7 @@ Amazon S3 supports a set of predefined grants, known as *canned ACLs*\. Each can
 | authenticated\-read | Bucket and object | Owner gets FULL\_CONTROL\. The AuthenticatedUsers group gets READ access\. | 
 | bucket\-owner\-read | Object | Object owner gets FULL\_CONTROL\. Bucket owner gets READ access\. If you specify this canned ACL when creating a bucket, Amazon S3 ignores it\. | 
 | bucket\-owner\-full\-control | Object  | Both the object owner and the bucket owner get FULL\_CONTROL over the object\. If you specify this canned ACL when creating a bucket, Amazon S3 ignores it\. | 
-| log\-delivery\-write | Bucket  | The LogDelivery group gets WRITE and READ\_ACP permissions on the bucket\. For more information about logs, see \([Logging requests with server access logging](ServerLogs.md)\)\. | 
+| log\-delivery\-write | Bucket  | The LogDelivery group gets WRITE and READ\_ACP permissions on the bucket\. For more information about logs, see \([Logging requests using server access logging](ServerLogs.md)\)\. | 
 
 **Note**  
 You can specify only one of these canned ACLs in your request\.

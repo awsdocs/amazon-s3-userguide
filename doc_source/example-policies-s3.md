@@ -6,7 +6,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # User policy examples<a name="example-policies-s3"></a>
 
-This section shows several IAM user policies for controlling user access to Amazon S3\. For information about access policy language, see [Bucket policies and user policies](using-iam-policies.md)\.
+This section shows several IAM user policies for controlling user access to Amazon S3\. For example *bucket policies*, see [Using bucket policies](bucket-policies.md)\. For information about access policy language, see [Bucket policies and user policies](using-iam-policies.md)\.
 
 The following example policies will work if you test them programmatically\. However, to use them with the Amazon S3 console, you must grant additional permissions that are required by the console\. For information about using policies such as these with the Amazon S3 console, see [Controlling access to a bucket with user policies](walkthrough1.md)\. 
 

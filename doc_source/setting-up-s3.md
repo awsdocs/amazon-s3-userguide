@@ -12,7 +12,7 @@ With Amazon S3, you pay only for what you use\. For more information about Amazo
 
 To set up Amazon S3, use the steps in the following sections\.
 
-When you sign up for AWS and set up Amazon S3, you can optionally change the display language in the AWS Management Console\. For more information, see [Changing the language of the AWS Management Console?](change-ui-language.md)\.
+When you sign up for AWS and set up Amazon S3, you can optionally change the display language in the AWS Management Console\. For more information, see [Changing the language of the AWS Management Console](change-ui-language.md)\.
 
 **Topics**
 + [Sign up for AWS](#sign-up-for-aws-gsg)

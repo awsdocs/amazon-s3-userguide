@@ -6,7 +6,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Managing your storage lifecycle<a name="object-lifecycle-mgmt"></a>
 
-To manage your objects so that they are stored cost effectively throughout their lifecycle, configure their *Amazon S3 Lifecycle*\.An *S3 Lifecycle configuration* is a set of rules that define actions that Amazon S3 applies to a group of objects\. There are two types of actions:
+To manage your objects so that they are stored cost effectively throughout their lifecycle, configure their *Amazon S3 Lifecycle*\. An *S3 Lifecycle configuration* is a set of rules that define actions that Amazon S3 applies to a group of objects\. There are two types of actions:
 + **Transition actions**—Define when objects transition to another [Using Amazon S3 storage classes](storage-class-intro.md)\. For example, you might choose to transition objects to the S3 Standard\-IA storage class 30 days after you created them, or archive objects to the S3 Glacier storage class one year after creating them\. 
 
   There are costs associated with the lifecycle transition requests\. For pricing information, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.

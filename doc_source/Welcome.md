@@ -6,9 +6,11 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # What is Amazon S3?<a name="Welcome"></a>
 
-This introduction to Amazon Simple Storage Service \(Amazon S3\) provides a detailed summary of this web service\. After reading this section, you should have a good idea of what it offers and how it can fit in with your business\.
+Amazon Simple Storage Service is storage for the Internet\. It is designed to make web\-scale computing easier for developers\.
 
-Amazon S3 has a simple web services interface that you can use to store and retrieve any amount of data, at any time, from anywhere on the web\.
+Amazon S3 has a simple web services interface that you can use to store and retrieve any amount of data, at any time, from anywhere on the web\. It gives any developer access to the same highly scalable, reliable, fast, inexpensive data storage infrastructure that Amazon uses to run its own global network of web sites\. The service aims to maximize benefits of scale and to pass those benefits on to developers\.
+
+This introduction to Amazon Simple Storage Service \(Amazon S3\) provides a detailed summary of this web service\. After reading this section, you should have a good idea of what it offers and how it can fit in with your business\.
 
 This guide describes how you send requests to create buckets, store and retrieve your objects, and manage permissions on your resources\. The guide also describes access control and the authentication process\. Access control defines who can access objects and buckets within Amazon S3, and the type of access \(for example, READ and WRITE\)\. The authentication process verifies the identity of a user who is trying to access Amazon Web Services \(AWS\)\.
 

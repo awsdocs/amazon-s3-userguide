@@ -106,7 +106,8 @@ To set up replication configuration when both *source* and *destination* buckets
                      "s3:ListBucket",
                      "s3:GetReplicationConfiguration",
                      "s3:GetObjectVersionForReplication",
-                     "s3:GetObjectVersionAcl"
+                     "s3:GetObjectVersionAcl",
+                     "s3:GetObjectVersionTagging"
                   ],
                   "Effect":"Allow",
                   "Resource":[
@@ -118,8 +119,7 @@ To set up replication configuration when both *source* and *destination* buckets
                   "Action":[
                      "s3:ReplicateObject",
                      "s3:ReplicateDelete",
-                     "s3:ReplicateTags",
-                     "s3:GetObjectVersionTagging"
+                     "s3:ReplicateTags"
                   ],
                   "Effect":"Allow",
                   "Condition":{

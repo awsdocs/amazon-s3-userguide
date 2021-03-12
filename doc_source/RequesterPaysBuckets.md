@@ -4,7 +4,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Configuring Requester Pays buckets for storage transfers and usage<a name="RequesterPaysBuckets"></a>
+# Using Requester Pays buckets for storage transfers and usage<a name="RequesterPaysBuckets"></a>
 
 In general, bucket owners pay for all Amazon S3 storage and data transfer costs that are associated with their bucket\. However, you can configure a bucket to be a *Requester Pays* bucket\. With Requester Pays buckets, the requester instead of the bucket owner pays the cost of the request and the data download from the bucket\. The bucket owner always pays the cost of storing data\. 
 
@@ -25,12 +25,6 @@ Requester Pays buckets do not support the following:
 + SOAP requests
 + Using a Requester Pays bucket as the target bucket for end\-user logging, or vice versa\. However, you can turn on end\-user logging on a Requester Pays bucket where the target bucket is not a Requester Pays bucket\. 
 
-**Topics**
-+ [How Requester Pays charges work](#ChargeDetails)
-+ [Configuring Requester Pays on a bucket](RequesterPaysExamples.md)
-+ [Retrieving the requestPayment configuration using the REST API](BucketPayerValues.md)
-+ [Downloading objects in Requester Pays buckets using the REST API](ObjectsinRequesterPaysBuckets.md)
-
 ## How Requester Pays charges work<a name="ChargeDetails"></a>
 
 The charge for successful Requester Pays requests is straightforward: The requester pays for the data transfer and the request, and the bucket owner pays for the data storage\. However, the bucket owner is charged for the request under the following conditions:
@@ -39,4 +33,10 @@ The charge for successful Requester Pays requests is straightforward: The reques
 + The request is anonymous \(HTTP code 403\)\.
 + The request is a SOAP request\.
 
-For more information about configuring Requester Pays buckets, see [Configuring Requester Pays on a bucket](RequesterPaysExamples.md)\.
+For more information Requester Pays, see the topics below\.
+
+**Topics**
++ [How Requester Pays charges work](#ChargeDetails)
++ [Configuring Requester Pays on a bucket](RequesterPaysExamples.md)
++ [Retrieving the requestPayment configuration using the REST API](BucketPayerValues.md)
++ [Downloading objects in Requester Pays buckets](ObjectsinRequesterPaysBuckets.md)

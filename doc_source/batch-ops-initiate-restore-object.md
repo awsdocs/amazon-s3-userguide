@@ -15,7 +15,7 @@ S3 Batch Operations can run operations on a list of Amazon S3 objects that you s
 Using an S3 Initiate Restore Object operation in your S3 Batch Operations job results in a restore request for every object that is specified in the manifest\.
 
 **Important**  
-The S3 Initiate Restore Object job only *initiates* the request to restore objects\. S3 Batch Operations reports the job as complete for each object after the request is initiated for that object\. Amazon S3 doesn't update the job or otherwise notify you when the objects have been restored\. However, you can use event notifications to receive notifications when the objects are available in Amazon S3\. For more information, see [Configuring Amazon S3 event notifications](NotificationHowTo.md)\.
+The S3 Initiate Restore Object job only *initiates* the request to restore objects\. S3 Batch Operations reports the job as complete for each object after the request is initiated for that object\. Amazon S3 doesn't update the job or otherwise notify you when the objects have been restored\. However, you can use event notifications to receive notifications when the objects are available in Amazon S3\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
 
 Restoring archived files from the S3 Glacier or S3 Glacier Deep Archive storage classes differs from restoring files from the S3 Intelligent\-Tiering storage class in the Archive Access or Deep Archive Access tiers\.
 + When you restore from S3 Glacier or S3 Glacier Deep Archive, a temporary *copy* of the object is created\. Amazon S3 deletes this copy after `ExpirationInDays` days have elapsed\. After this copy is deleted, you must submit an additional restore request to access it\.

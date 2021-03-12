@@ -6,15 +6,11 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Working with object metadata<a name="UsingMetadata"></a>
 
-You can set object metadata in Amazon S3 at the time you upload the object\. After you upload the object, you cannot modify object metadata\. The only way to modify object metadata is to make a copy of the object and set the metadata\. 
+You can set object metadata in Amazon S3 at the time you upload the object\. Object metadata is a set of name\-value pairs\. After you upload the object, you cannot modify object metadata\. The only way to modify object metadata is to make a copy of the object and set the metadata\. 
 
-There are two kinds of metadata in Amazon S3: *system\-defined metadata* and *user\-defined metadata*\. The sections below provide more information about system\-defined and user\-defined metadata\. For more information about editing metadata using the Amazon S3 console, see [Editing object metadata in the Amazon S3 console](#add-object-metadata)\.
+When you create an object, you also specify the key name, which uniquely identifies the object in the bucket\. The object key \(or key name\) uniquely identifies the object in an Amazon S3 bucket\. For more information, see [Creating object key names](object-keys.md)\.
 
-Each object in Amazon S3 can have a set of key\-value pairs that provide *metadata*, which is additional information about the object\. You can set an object's metadata in Amazon S3 at the time you upload it\. 
-
-After you upload an object programmatically using the REST API, AWS CLI, or AWS SDKs, you cannot modify object metadata\. The only way to modify object metadata is to make a copy of the object and set the metadata\. However, you can use the Amazon S3 console to edit some metadata for existing S3 objects\. For more information, see [Editing object metadata in the Amazon S3 console](#add-object-metadata)\.
-
-The sections below provide more information about system\-defined and user\-defined metadata\. For more information about editing metadata using the Amazon S3 console, see [Editing object metadata in the Amazon S3 console](add-object-metadata.md)\.
+There are two kinds of metadata in Amazon S3: *system\-defined metadata* and *user\-defined metadata*\. The sections below provide more information about system\-defined and user\-defined metadata\. For more information about editing metadata using the Amazon S3 console, see [Editing object metadata in the Amazon S3 console](add-object-metadata.md)\.
 
 ## System\-defined object metadata<a name="SysMetadata"></a>
 

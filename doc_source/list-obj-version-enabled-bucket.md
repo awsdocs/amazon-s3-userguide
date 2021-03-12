@@ -38,7 +38,7 @@ To show how pagination works, the examples limit each response to two object ver
 **Note**  
 The following examples also work with a bucket that isn't versioning\-enabled, or for objects that don't have individual versions\. In those cases, Amazon S3 returns the object listing with a version ID of `null`\.
 
- For information about using other AWS SDKs, see [Sample Code and Libraries](https://aws.amazon.com/code/)\. 
+ For information about using other AWS SDKs, see the [AWS Developer Center](https://aws.amazon.com/code/)\. 
 
 ------
 #### [ Java ]
@@ -221,8 +221,8 @@ You can use the other request parameters to retrieve a subset of all versions of
 
 **Example — Retrieving a listing of additional objects if the response is truncated**  
 If the number of objects that could be returned in a `GET` request exceeds the value of `max-keys`, the response contains `<isTruncated>true</isTruncated>`, and includes the first key \(in `NextKeyMarker`\) and the first version ID \(in `NextVersionIdMarker`\) that satisfy the request, but were not returned\. You use those returned values as the starting position in a subsequent request to retrieve the additional objects that satisfy the `GET` request\.   
-Use the following process to retrieve additional objects that satisfy the original `GET Bucket versions` request from a bucket\. For more information about `key-marker`, `version-id-marker`, `NextKeyMarker`, and `NextVersionIdMarker`, see [GET Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGET.html) in the *Amazon Simple Storage Service API Reference*\.  
-The following are additional responses that satisy the original GET request:  
+Use the following process to retrieve additional objects that satisfy the original `GET Bucket versions` request from a bucket\. For more information about `key-marker`, `version-id-marker`, `NextKeyMarker`, and `NextVersionIdMarker`, see [GET Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGET.html)\. in the *Amazon Simple Storage Service API Reference*\.  
+The following are additional responses that satisfy the original GET request:  
 + Set the value of `key-marker` to the key returned in `NextKeyMarker` in the previous response\.
 + Set the value of `version-id-marker` to the version ID returned in `NextVersionIdMarker` in the previous response\.
 + Send a `GET Bucket versions` request using `key-marker` and `version-id-marker`\.

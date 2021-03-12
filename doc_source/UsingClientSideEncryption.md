@@ -21,7 +21,7 @@ The following AWS SDKs support client\-side encryption:
 ## Option 1: Using a CMK stored in AWS KMS<a name="client-side-encryption-kms-managed-master-key-intro"></a>
 
 With this option, you use an AWS KMS CMK for client\-side encryption when uploading or downloading data in Amazon S3\.
-+ **When uploading an object** — Using the CMK ID, the client first sends a request to AWS KMS for a CMK that it can use to encrypt your object data\. AWS KMS returns two versions of a randomly generated data key:
++ **When uploading an object** — Using the CMK ID, the client first sends a request to AWS KMS for a new symmetric key that it can use to encrypt your object data\. AWS KMS returns two versions of a randomly generated data key:
   + A plaintext version of the data key that the client uses to encrypt the object data\.
   + A cipher blob of the same data key that the client uploads to Amazon S3 as object metadata\.
 **Note**  

@@ -6,19 +6,21 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Using S3 Object Lock<a name="object-lock"></a>
 
-With S3 Object Lock, you can store objects using a *write\-once\-read\-many* \(WORM\) model\. You can use it to prevent an object from being deleted or overwritten for a fixed amount of time or indefinitely\. Object Lock helps you meet regulatory requirements that require WORM storage, or simply add another layer of protection against object changes and deletion\.
+With S3 Object Lock, you can store objects using a *write\-once\-read\-many* \(WORM\) model\. Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely\. You can use Object Lock to help meet regulatory requirements that require WORM storage, or to simply add another layer of protection against object changes and deletion\.
 
 S3 Object Lock has been assessed by Cohasset Associates for use in environments that are subject to SEC 17a\-4, CFTC, and FINRA regulations\. For more information about how Object Lock relates to these regulations, see the [Cohasset Associates Compliance Assessment](https://d1.awsstatic.com/r2018/b/S3-Object-Lock/Amazon-S3-Compliance-Assessment.pdf)\.
 
-Object Lock provides two ways to manage object retention: retention periods and legal holds\.
-+ A *retention period* specifies a fixed period of time during which an object remains locked\. During this period, your object is WORM\-protected and can't be overwritten or deleted\.
-+ A *legal hold* provides the same protection as a retention period, but it has no expiration date\. Instead, a legal hold remains in place until you explicitly remove it\. Legal holds are independent from retention periods\.
+Object Lock provides two ways to manage object retention: *retention periods* and *legal holds*\.
++ **Retention period** — Specifies a fixed period of time during which an object remains locked\. During this period, your object is WORM\-protected and can't be overwritten or deleted\. For more information, see [Retention periods](object-lock-overview.md#object-lock-retention-periods)
++ **Legal hold** — Provides the same protection as a retention period, but it has no expiration date\. Instead, a legal hold remains in place until you explicitly remove it\. Legal holds are independent from retention periods\. For more information, see [Legal holds](object-lock-overview.md#object-lock-legal-holds)\.
 
-An object version can have both a retention period and a legal hold, one but not the other, or neither\. For more information, see [S3 Object Lock overview](object-lock-overview.md)\. 
+An object version can have both a retention period and a legal hold, one but not the other, or neither\. For more information, see [How S3 Object Lock works](object-lock-overview.md)\. 
 
-Object Lock works only in versioned buckets, and retention periods and legal holds apply to individual object versions\. When you lock an object version, Amazon S3 stores the lock information in the metadata for that object version\. Placing a retention period or legal hold on an object protects only the version specified in the request\. It doesn't prevent new versions of the object from being created\. If you put an object into a bucket that has the same key name as an existing, protected object, Amazon S3 creates a new version of that object, stores it in the bucket as requested, and reports the request as completed successfully\. The existing, protected version of the object remains locked according to its retention configuration\.
+Object Lock works only in versioned buckets, and retention periods and legal holds apply to individual object versions\. When you lock an object version, Amazon S3 stores the lock information in the metadata for that object version\. Placing a retention period or legal hold on an object protects only the version specified in the request\. It doesn't prevent new versions of the object from being created\. 
 
-To use S3 Object Lock, follow these basic steps:
+If you put an object into a bucket that has the same key name as an existing protected object, Amazon S3 creates a new version of that object, stores it in the bucket as requested, and reports the request as completed successfully\. The existing protected version of the object remains locked according to its retention configuration\.
+
+To use S3 Object Lock, you follow these basic steps:
 
 1. Create a new bucket with Object Lock enabled\.
 
@@ -28,11 +30,9 @@ To use S3 Object Lock, follow these basic steps:
 
 1. Apply a retention period, a legal hold, or both, to the objects that you want to protect\.
 
-For information about using Object Lock on the AWS Management Console, see [Configuring S3 Object Lock using the S3 console](object-lock-console.md)\.
-
-For information about locking objects using the AWS CLI, AWS SDKs, and the Amazon S3 REST APIs, see [[Managing Amazon S3 object locks](object-lock-managing.md)Managing Amazon S3 object locks](object-lock-managing.md)\.
+For information about configuring and managing S3 Object Lock, see the following sections:
 
 **Topics**
-+ [S3 Object Lock overview](object-lock-overview.md)
-+ [Configuring S3 Object Lock using the S3 console](object-lock-console.md)
-+ [Managing Amazon S3 object locks](object-lock-managing.md)
++ [How S3 Object Lock works](object-lock-overview.md)
++ [Configuring S3 Object Lock using the console](object-lock-console.md)
++ [Managing Object Lock](object-lock-managing.md)

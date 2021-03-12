@@ -17,7 +17,7 @@ Using Amazon CloudWatch alarms, you watch a single metric over a time period tha
 CloudTrail provides a record of actions taken by a user, role, or an AWS service in Amazon S3\. Using the information collected by CloudTrail, you can determine the request that was made to Amazon S3, the IP address from which the request was made, who made the request, when it was made, and additional details\. For more information, see [Logging Amazon S3 API calls using AWS CloudTrail](cloudtrail-logging.md)\.
 
 **Amazon S3 Access Logs**  
-Server access logs provide detailed records about requests that are made to a bucket\. Server access logs are useful for many applications\. For example, access log information can be useful in security and access audits\. For more information, see [Logging requests with server access logging](ServerLogs.md)\.
+Server access logs provide detailed records about requests that are made to a bucket\. Server access logs are useful for many applications\. For example, access log information can be useful in security and access audits\. For more information, see [Logging requests using server access logging](ServerLogs.md)\.
 
 **AWS Trusted Advisor**  
 Trusted Advisor draws upon best practices learned from serving hundreds of thousands of AWS customers\. Trusted Advisor inspects your AWS environment and then makes recommendations when opportunities exist to save money, improve system availability and performance, or help close security gaps\. All AWS customers have access to five Trusted Advisor checks\. Customers with a Business or Enterprise support plan can view all Trusted Advisor checks\.   

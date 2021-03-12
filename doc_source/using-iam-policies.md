@@ -15,9 +15,7 @@ Bucket policies are limited to 20 KB in size\.
 
 **Topics**
 + [Policies and Permissions in Amazon S3](access-policy-language-overview.md)
-+ [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)
-+ [Controlling access from VPC endpoints with bucket policies](example-bucket-policies-vpc-endpoint.md)
-+ [Controlling access to a bucket with user policies](walkthrough1.md)
-+ [Bucket policy examples](example-bucket-policies.md)
-+ [User policy examples](example-policies-s3.md)
++ [Using bucket policies](bucket-policies.md)
++ [Using IAM user policies](user-policies.md)
++ [Example walkthroughs: Managing access to your Amazon S3 resources](example-walkthroughs-managing-access.md)
 + [Using service\-linked roles for Amazon S3 Storage Lens](using-service-linked-roles.md)

@@ -14,7 +14,7 @@ Workloads that access millions or billions of objects encrypted with SSE\-KMS ca
 
 When you configure your bucket to use an S3 Bucket Key for SSE\-KMS on new objects, AWS KMS generates a bucket\-level key that is used to create unique data keys for objects in the bucket\. This S3 Bucket Key is used for a time\-limited period within Amazon S3, reducing the need for Amazon S3 to make requests to AWS KMS to complete encryption operations\. This reduces traffic from S3 to AWS KMS, allowing you to access AWS KMS\-encrypted objects in S3 at a fraction of the previous cost\. 
 
-Amazon S3 will only share an S3 Bucket Key for objects accessed by the same AWS KMS customer master key \(CMK\)\.
+Amazon S3 will only share an S3 Bucket Key for objects encrypted by the same AWS KMS customer master key \(CMK\)\.
 
 ![\[Diagram showing AWS KMS generating a bucket key that creates data keys for objects in a bucket in S3.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/S3-Bucket-Keys.png)
 
@@ -58,7 +58,7 @@ For more information, see [Using AWS CloudFormation](configuring-bucket-key.md#
 
 Before you enable an S3 Bucket Key, please note the following related changes:
 
-### `kms:Decrypt` permissions<a name="kms-decrypt"></a>
+### `kms:Decrypt` permissions for copy and upload<a name="kms-decrypt"></a>
 
 **Important**  
 To copy or upload objects with S3 Bucket Keys, the AWS KMS key policy for the CMK must include the `kms:Decrypt` permission for the calling principal\.

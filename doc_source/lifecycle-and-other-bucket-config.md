@@ -22,7 +22,7 @@ Lifecycle configuration on multi\-factor authentication \(MFA\)\-enabled buckets
 
 ## Lifecycle and logging<a name="lifecycle-general-considerations-logging"></a>
 
-Amazon S3 Lifecycle actions are not captured by AWS CloudTrail object level logging\. CloudTrail captures API requests made to external Amazon S3 endpoints, whereas S3 Lifecycle actions are performed using internal Amazon S3 endpoints\. Amazon S3 server access logs can be enabled in an S3 bucket to capture S3 Lifecycle\-related actions such as object transition to another storage class and object expiration resulting in permanent deletion or logical deletion\. For more information, see [Logging requests with server access logging](ServerLogs.md)\.
+Amazon S3 Lifecycle actions are not captured by AWS CloudTrail object level logging\. CloudTrail captures API requests made to external Amazon S3 endpoints, whereas S3 Lifecycle actions are performed using internal Amazon S3 endpoints\. Amazon S3 server access logs can be enabled in an S3 bucket to capture S3 Lifecycle\-related actions such as object transition to another storage class and object expiration resulting in permanent deletion or logical deletion\. For more information, see [Logging requests using server access logging](ServerLogs.md)\.
 
 If you have logging enabled on your bucket, Amazon S3 server access logs report the results of the following operations\.
 

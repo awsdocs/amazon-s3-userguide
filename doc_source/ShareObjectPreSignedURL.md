@@ -4,49 +4,164 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Accessing an object using a presigned URL<a name="ShareObjectPreSignedURL"></a>
+# Sharing an object with a presigned URL<a name="ShareObjectPreSignedURL"></a>
 
-A presigned URL gives you access to the object identified in the URL, provided that the creator of the presigned URL has permissions to access that object\. That is, if you receive a presigned URL to upload an object, you can upload the object only if the creator of the presigned URL has the necessary permissions to upload that object\. 
+All objects by default are private\. Only the object owner has permission to access these objects\. However, the object owner can optionally share objects with others by creating a presigned URL, using their own security credentials, to grant time\-limited permission to download the objects\. 
 
-All objects and buckets by default are private\. The presigned URLs are useful if you want your user/customer to be able to upload a specific object to your bucket, but you don't require them to have AWS security credentials or permissions\. 
+When you create a presigned URL for your object, you must provide your security credentials, specify a bucket name, an object key, specify the HTTP method \(GET to download the object\) and expiration date and time\. The presigned URLs are valid only for the specified duration\. 
 
-When you create a presigned URL, you must provide your security credentials and then specify a bucket name, an object key, an HTTP method \(PUT for uploading objects\), and an expiration date and time\. The presigned URLs are valid only for the specified duration\. That is, you must start the action before the expiration date and time\. If the action consists of multiple steps, such as a multipart upload, all steps must be started before the expiration, otherwise you will receive an error when Amazon S3 attempts to start a step with an expired URL\.
-
-You can use the presigned URL multiple times, up to the expiration date and time\.
+Anyone who receives the presigned URL can then access the object\. For example, if you have a video in your bucket and both the bucket and the object are private, you can share the video with others by generating a presigned URL\. 
 
 **Note**  
-Anyone with valid security credentials can create a presigned URL\. However, for you to successfully upload an object, the presigned URL must be created by someone who has permission to perform the operation that the presigned URL is based upon\.
+Anyone with valid security credentials can create a presigned URL\. However, in order to successfully access an object, the presigned URL must be created by someone who has permission to perform the operation that the presigned URL is based upon\.
+The credentials that you can use to create a presigned URL include:  
+IAM instance profile: Valid up to 6 hours
+AWS Security Token Service : Valid up to 36 hours when signed with permanent credentials, such as the credentials of the AWS account root user or an IAM user
+IAM user: Valid up to 7 days when using AWS Signature Version 4  
+To create a presigned URL that's valid for up to 7 days, first designate IAM user credentials \(the access key and secret access key\) to the SDK that you're using\. Then, generate a presigned URL using AWS Signature Version 4\.
+If you created a presigned URL using a temporary token, then the URL expires when the token expires, even if the URL was created with a later expiration time\.
+Since presigned URLs grant access to your Amazon S3 buckets to whoever has the URL, we recommend that you protect them appropriately\. For more details about protecting presigned URLs, see [Limiting presigned URL capabilities](using-presigned-url.md#PresignedUrlUploadObject-LimitCapabilities)\.
 
-You can generate a presigned URL programmatically using the AWS SDK for Java, \.NET, Ruby, PHP, [Node\.js](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), and [Python](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
+## Generating a presigned URL<a name="generating-presigned-url"></a>
 
- If you are using Microsoft Visual Studio, you can also use AWS Explorer to generate a presigned object URL without writing any code\. Anyone who receives a valid presigned URL can then programmatically upload an object\. For more information, see [Using Amazon S3 from AWS Explorer](https://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/using-s3.html)\. For instructions on how to install AWS Explorer, see [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)\.
+You can generate a presigned URL programmatically using the [REST API](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html#query-string-auth-v4-signing-example), the [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/reference/s3/presign.html), and the AWS SDK for Java, \.NET, [Ruby](https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Presigner.html), [PHP](https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.S3.S3Client.html#_createPresignedRequest), [Node\.js](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), [Python](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url), and [Go](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/s3-example-presigned-urls.html)\.
 
-## Limiting presigned URL capabilities<a name="PresignedUrlUploadObject-LimitCapabilities"></a>
+### Using AWS Explorer for Visual Studio<a name="ShareObjectPreSignedURLVSExplorer"></a>
 
-You can use presigned URLs to generate a URL that can be used to access your S3 buckets\. When you create a presigned URL, you associate it with a specific action\. You can share the URL, and anyone with access to it can perform the action embedded in the URL as if they were the original signing user\. The URL will expire and no longer work when it reaches its expiration time\. The capabilities of the URL are limited by the permissions of the user who created the presigned URL\. 
+If you are using Visual Studio, you can generate a presigned URL for an object without writing any code by using AWS Explorer for Visual Studio\. Anyone with this URL can download the object\. For more information, go to [Using Amazon S3 from AWS Explorer](https://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/using-s3.html)\. 
 
-In essence, presigned URLs are a bearer token that grants access to customers who possess them\. As such, we recommend that you protect them appropriately\.
+For instructions about how to install the AWS Explorer, see [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)\.
 
-If you want to restrict the use of presigned URLs and all S3 access to particular network paths, you can write AWS Identity and Access Management \(IAM\) policies that require a particular network path\. These policies can be set on the IAM principal that makes the call, the Amazon S3 bucket, or both\. A network\-path restriction on the principal requires the user of those credentials to make requests from the specified network\. A restriction on the bucket limits access to that bucket only to requests originating from the specified network\. Realize that these restrictions also apply outside of the presigned URL scenario\.
+### Using the AWS SDKs<a name="ShareObjectPreSignedURLSDK"></a>
 
-The IAM global condition that you use depends on the type of endpoint\. If you are using the public endpoint for Amazon S3, use `aws:SourceIp`\. If you are using a VPC endpoint to Amazon S3, use `aws:SourceVpc` or `aws:SourceVpce`\.
+The following examples generates a presigned URL that you can give to others so that they can retrieve an object\. For more information, see [Sharing an object with a presigned URL](#ShareObjectPreSignedURL)\. 
 
-The following IAM policy statement requires the principal to access AWS from only the specified network range\. With this policy statement in place, all access is required to originate from that range\. This includes the case of someone using a presigned URL for S3\.
+------
+#### [ Java ]
+
+**Example**  
+The following example generates a presigned URL that you can give to others so that they can retrieve an object from an S3 bucket\. For more information, see [Sharing an object with a presigned URL](#ShareObjectPreSignedURL)\.   
+ For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.   
 
 ```
-{
-  "Sid": "NetworkRestrictionForIAMPrincipal",
-  "Effect": "Deny",
-  "Action": "",
-  "Resource": "",
-  "Condition": {
-    "NotIpAddressIfExists": { "aws:SourceIp": "IP-address" },
-    "BoolIfExists": { "aws:ViaAWSService": "false" }
-  }
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.HttpMethod;
+import com.amazonaws.SdkClientException;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+
+import java.io.IOException;
+import java.net.URL;
+
+public class GeneratePresignedURL {
+
+    public static void main(String[] args) throws IOException {
+        Regions clientRegion = Regions.DEFAULT_REGION;
+        String bucketName = "*** Bucket name ***";
+        String objectKey = "*** Object key ***";
+
+        try {
+            AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+                    .withRegion(clientRegion)
+                    .withCredentials(new ProfileCredentialsProvider())
+                    .build();
+
+            // Set the presigned URL to expire after one hour.
+            java.util.Date expiration = new java.util.Date();
+            long expTimeMillis = expiration.getTime();
+            expTimeMillis += 1000 * 60 * 60;
+            expiration.setTime(expTimeMillis);
+
+            // Generate the presigned URL.
+            System.out.println("Generating pre-signed URL.");
+            GeneratePresignedUrlRequest generatePresignedUrlRequest =
+                    new GeneratePresignedUrlRequest(bucketName, objectKey)
+                            .withMethod(HttpMethod.GET)
+                            .withExpiration(expiration);
+            URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
+
+            System.out.println("Pre-Signed URL: " + url.toString());
+        } catch (AmazonServiceException e) {
+            // The call was transmitted successfully, but Amazon S3 couldn't process 
+            // it, so it returned an error response.
+            e.printStackTrace();
+        } catch (SdkClientException e) {
+            // Amazon S3 couldn't be contacted for a response, or the client
+            // couldn't parse the response from Amazon S3.
+            e.printStackTrace();
+        }
+    }
 }
 ```
 
-**Topics**
-+ [Limiting presigned URL capabilities](#PresignedUrlUploadObject-LimitCapabilities)
-+ [Generating a presigned object URL](generate-presigned-url.md)
-+ [Uploading objects using presigned URLs](PresignedUrlUploadObject.md)
+------
+#### [ \.NET ]
+
+**Example**  
+The following example generates a presigned URL that you can give to others so that they can retrieve an object\. For more information, see [Sharing an object with a presigned URL](#ShareObjectPreSignedURL)\.   
+For instructions about how to create and test a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\.  
+
+```
+using Amazon;
+using Amazon.S3;
+using Amazon.S3.Model;
+using System;
+
+namespace Amazon.DocSamples.S3
+{
+    class GenPresignedURLTest
+    {
+        private const string bucketName = "*** bucket name ***"; 
+        private const string objectKey = "*** object key ***";
+        // Specify how long the presigned URL lasts, in hours
+        private const double timeoutDuration = 12;
+        // Specify your bucket region (an example region is shown).
+        private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USWest2;
+        private static IAmazonS3 s3Client;
+
+        public static void Main()
+        {
+            s3Client = new AmazonS3Client(bucketRegion);
+            string urlString = GeneratePreSignedURL(timeoutDuration);
+        }
+        static string GeneratePreSignedURL(double duration)
+        {
+            string urlString = "";
+            try
+            {
+                GetPreSignedUrlRequest request1 = new GetPreSignedUrlRequest
+                {
+                    BucketName = bucketName,
+                    Key = objectKey,
+                    Expires = DateTime.UtcNow.AddHours(duration)
+                };
+                urlString = s3Client.GetPreSignedURL(request1);
+            }
+            catch (AmazonS3Exception e)
+            {
+                Console.WriteLine("Error encountered on server. Message:'{0}' when writing an object", e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unknown encountered on server. Message:'{0}' when writing an object", e.Message);
+            }
+            return urlString;
+        }
+    }
+}
+```
+
+------
+#### [ Go ]
+
+You can use SDK for Go to upload an object\. You can send a PUT request to upload data in a single operation\. For more information, see [Generate a Pre\-Signed URL for an Amazon S3 PUT Operation with a Specific Payload](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/s3-example-presigned-urls.html) in the *AWS SDK for Go Developer Guide*\.
+
+------
+#### [ PHP ]
+
+For more information about using AWS SDK for PHP Version 3 to generate a presigned URL, see [Amazon S3 pre\-signed URL with AWS SDK for PHP Version 3](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/s3-presigned-url.html) in the *AWS SDK for PHP Developer Guide*\.
+
+------

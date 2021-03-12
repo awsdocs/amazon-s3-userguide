@@ -19,7 +19,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 Now, suppose as a bucket owner, you need to grant cross\-account permission on objects, regardless of who the owner is, to a user in another account\. For example, that user could be a billing application that needs to access object metadata\. There are two core issues:
 + The bucket owner has no permissions on those objects created by other AWS accounts\. So for the bucket owner to grant permissions on objects it does not own, the object owner, the AWS account that created the objects, must first grant permission to the bucket owner\. The bucket owner can then delegate those permissions\.
-+ Bucket owner account can delegate permissions to users in its own account \(see [Example 3: Bucket owner granting its users permissions to objects it does not own ](example-walkthroughs-managing-access-example3.md)\), but it cannot delegate permissions to other AWS accounts, because cross\-account delegation is not supported\. 
++ Bucket owner account can delegate permissions to users in its own account \(see [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)\), but it cannot delegate permissions to other AWS accounts, because cross\-account delegation is not supported\. 
 
 In this scenario, the bucket owner can create an AWS Identity and Access Management \(IAM\) role with permission to access objects, and grant another AWS account permission to assume the role temporarily enabling it to access objects in the bucket\. 
 

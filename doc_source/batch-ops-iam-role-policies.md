@@ -329,7 +329,7 @@ Before you configure permissions, note the following:
             "Effect": "Allow",
             "Action": "s3:GetBucketObjectLockConfiguration",
             "Resource": [
-                "arn:aws:s3:::{{TargetResource}}/*"
+                "arn:aws:s3:::{{TargetResource}}/"
             ]
         },
         {

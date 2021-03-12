@@ -47,7 +47,7 @@ Athena can query Amazon S3 inventory files in ORC, Parquet, or CSV format\. When
    ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
    ```
 
-    When using Athena to query a CSV\-formatted inventory report, use the following Parquet SerDe in place of the ORC SerDe in the `ROW FORMAT SERDE` statement\.
+    When using Athena to query a CSV\-formatted inventory report, use the following CSV SerDe in place of the ORC SerDe in the `ROW FORMAT SERDE` statement\.
 
    ```
    ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'

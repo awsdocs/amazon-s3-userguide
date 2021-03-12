@@ -6,7 +6,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Creating object key names<a name="object-keys"></a>
 
-The *object key* \(or key name\) uniquely identifies the object in an Amazon S3 bucket\. *Object metadata* is a set of name\-value pairs\.
+The *object key* \(or key name\) uniquely identifies the object in an Amazon S3 bucket\. *Object metadata* is a set of name\-value pairs\. For more information about object metadata, see [Working with object metadata](UsingMetadata.md)\.
 
 When you create an object, you specify the key name, which uniquely identifies the object in the bucket\. For example, on the [Amazon S3 console](https://console.aws.amazon.com/s3/home), when you highlight a bucket, a list of objects in your bucket appears\. These names are the *object keys*\. The name for a key is a sequence of Unicode characters whose UTF\-8 encoding is at most 1,024 bytes long\. 
 

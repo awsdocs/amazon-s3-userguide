@@ -25,5 +25,5 @@ The topics in this section provide an overview of working with buckets in Amazon
 + [Deleting a bucket](delete-bucket.md)
 + [Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)
 + [Configuring fast, secure file transfers using Amazon S3 Transfer Acceleration](transfer-acceleration.md)
-+ [Configuring Requester Pays buckets for storage transfers and usage](RequesterPaysBuckets.md)
++ [Using Requester Pays buckets for storage transfers and usage](RequesterPaysBuckets.md)
 + [Bucket restrictions and limitations](BucketRestrictions.md)

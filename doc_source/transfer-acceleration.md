@@ -31,7 +31,7 @@ The following are required when you are using Transfer Acceleration on an S3 buc
 Transfer Acceleration is currently not supported for buckets located in the following Regions:  
 Africa \(Cape Town\) \(af\-south\-1\)
 Asia Pacific \(Hong Kong\) \(ap\-east\-1\)
-Asia Pacific \(Osaka\-Local\) \(ap\-northeast\-3\)
+Asia Pacific \(Osaka\) \(ap\-northeast\-3\)
 Europe \(Stockholm\) \(eu\-north\-1\)
 Europe \(Milan\) \(eu\-south\-1\)
 Middle East \(Bahrain\) \(me\-south\-1\)

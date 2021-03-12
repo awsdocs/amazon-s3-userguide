@@ -8,7 +8,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
  A trail is a configuration that enables delivery of events as log files to an Amazon S3 bucket that you specify\. CloudTrail log files contain one or more log entries\. An event represents a single request from any source\. It includes information about the requested action, the date and time of the action, request parameters, and so on\. CloudTrail log files are not an ordered stack trace of the public API calls, so they do not appear in any specific order\.
 
-For more information, see the examples below\.
+For more information, see the following examples\.
 
 **Topics**
 + [Example: CloudTrail log file entry for Amazon S3](#example-ct-log-s3)

@@ -11,7 +11,7 @@ You can track default encryption configuration requests for Amazon S3 buckets us
 + `GetBucketEncryption`
 + `DeleteBucketEncryption`
 
-You can also create Amazon CloudWatch Events with S3 bucket\-level operations as the event type\. For more information about CloudTrail events, see [Using the Amazon S3 console](enable-cloudtrail-logging-for-s3.md#enable-cloudtrail-events)\.
+You can also create Amazon CloudWatch Events with S3 bucket\-level operations as the event type\. For more information about CloudTrail events, see [Enable logging for objects in a bucket using the console](enable-cloudtrail-logging-for-s3.md#enable-cloudtrail-events)\.
 
 You can use CloudTrail logs for object\-level Amazon S3 actions to track `PUT` and `POST` requests to Amazon S3\. You can use these actions to verify whether default encryption is being used to encrypt objects when incoming `PUT` requests don't have encryption headers\.
 

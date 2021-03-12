@@ -22,7 +22,7 @@ Amazon S3 Inventory generates inventories of the objects in a bucket\. The resul
 
 The Amazon S3 inventory report can be configured to be delivered to another AWS account\. This allows S3 Batch Operations to read the inventory report when the job is created in the destination AWS account\. 
 
-For more information about Amazon S3 Inventory source and destination buckets, see [Configuring Amazon S3 inventory](storage-inventory.md#storage-inventory-how-to-set-up)\. 
+For more information about Amazon S3 Inventory source and destination buckets, see [Source and destination buckets](storage-inventory.md#storage-inventory-buckets)\. 
 
 The easiest way to set up an inventory is by using the AWS Management Console, but you can also use the REST API, AWS Command Line Interface \(AWS CLI\), or AWS SDKs\.
 
@@ -40,7 +40,7 @@ The following console procedure contains the high\-level steps for setting up pe
 
    Configure an inventory list for a source bucket\. When you do this, you specify the destination bucket where you want the list to be stored\. The inventory report for the source bucket is published to the destination bucket\. In this procedure, the *source account* is the account that owns the source bucket\. 
 
-   For information about how to use the console to configure an inventory, see [Configuring a new Amazon S3 inventory in the S3 console](configure-inventory.md)\.
+   For information about how to use the console to configure an inventory, see [Configuring Amazon S3 inventory](configure-inventory.md)\.
 
    Choose **CSV** for the output format\. 
 

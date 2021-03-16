@@ -67,7 +67,7 @@ This section describes key concepts and terminology you need to understand to us
 + They play a role in access control\.
 + They serve as the unit of aggregation for usage reporting\.
 
-You can configure buckets so that they are created in a specific AWS Region\. For more information, see [Accessing a Bucket](access-bucket-intro.md)\. You can also configure a bucket so that every time an object is added to it, Amazon S3 generates a unique version ID and assigns it to the object\. For more information, see [Using Versioning](Versioning.md)\.
+You can create a bucket in a specific AWS Region\. For more information, see [Creating a Bucket](create-bucket-overview.md)\. You can also configure a bucket so that every time an object is added to it, Amazon S3 generates a unique version ID and assigns it to the object\. For more information, see [Using Versioning](Versioning.md)\.
 
  For more information about buckets, see [Buckets overview](UsingBucket.md)\. 
 

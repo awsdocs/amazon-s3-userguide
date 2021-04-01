@@ -123,7 +123,7 @@ The following policy is an example only and allows full access to the contents o
                    "s3:GetObject"
                ],
                "Resource": [
-                   "arn:aws:s3:::example.com/*"
+                   "arn:aws:s3:::Bucket-Name/*"
                ]
            }
        ]
@@ -132,7 +132,7 @@ The following policy is an example only and allows full access to the contents o
 
 1. Update the `Resource` to your bucket name\.
 
-   In the preceding example bucket policy, *example\.com* is the bucket name\. To use this bucket policy with your own bucket, you must update this name to match your bucket name\.
+   In the preceding example bucket policy, *Bucket\-Name* is a placeholder for the bucket name\. To use this bucket policy with your own bucket, you must update this name to match your bucket name\.
 
 1. Choose **Save changes**\.
 

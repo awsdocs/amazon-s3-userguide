@@ -29,7 +29,7 @@ Bucket subresources include the following:
 + `logging` – Enables you to request Amazon S3 to save bucket access logs\.
 
 Object subresources include the following:
-+ `acl` – Stores a list of access permissions on the object\. For more information, see [Managing access with ACLs](acl-overview.md)\.
++ `acl` – Stores a list of access permissions on the object\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\.
 + `restore` – Supports temporarily restoring an archived object\. For more information, see [POST Object restore](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html) in the *Amazon Simple Storage Service API Reference*\. 
 
   An object in the S3 Glacier storage class is an archived object\. To access the object, you must first initiate a restore request, which restores a copy of the archived object\. In the request, you specify the number of days that you want the restored copy to exist\. For more information about archiving objects, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
@@ -53,7 +53,7 @@ All unauthenticated requests are made by the anonymous user\. This user is repre
 
 To prevent objects from being modified by the anonymous user, we recommend that you do not implement bucket policies that allow anonymous public writes to your bucket or use ACLs that allow the anonymous user write access to your bucket\. You can enforce this recommended behavior by using Amazon S3 Block Public Access\. 
 
-For more information about blocking public access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\. For more information about ACLs, see [Managing access with ACLs](acl-overview.md)\.
+For more information about blocking public access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\. For more information about ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
 **Important**  
 We recommend that you don't use the AWS account root user credentials to make authenticated requests\. Instead, create an IAM user and grant that user full access\. We refer to these users as *administrator users*\. You can use the administrator user credentials, instead of AWS account root user credentials, to interact with AWS and perform tasks, such as create a bucket, create users, and grant permissions\. For more information, see [AWS account root user credentials and IAM user credentials](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) in the *AWS General Reference* and [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.

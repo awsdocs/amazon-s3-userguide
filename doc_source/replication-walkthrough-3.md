@@ -8,7 +8,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 When the *source* and *destination* buckets in a replication configuration are owned by different AWS accounts, you can tell Amazon S3 to change replica ownership to the AWS account that owns the *destination* bucket\. This example explains how to use the Amazon S3 console and the AWS CLI to change replica ownership\. For more information, see [Changing the replica owner](replication-change-owner.md)\. 
 
-**Topics**
+For more information about configuring replication using sever\-side encryption with AWS Key Management Service in cross\-account scenarios, see [Granting additional permissions for cross\-account scenarios](replication-config-for-kms-objects.md#replication-kms-cross-acct-scenario)\.
 
 ## Using the S3 console<a name="replication-ex3-console"></a>
 
@@ -100,7 +100,7 @@ The profiles you use for this exercise must have the necessary permissions\. For
 
    1. Create an IAM role\.
 
-      1. Copy the following trust policy and save it to a file named `S3-role-trust-policy.json` in the current directory on your local computer\. This policy grants Amazon S3 permissions to assume the role\.
+      1. Copy the following trust policy and save it to a file named `s3-role-trust-policy.json` in the current directory on your local computer\. This policy grants Amazon S3 permissions to assume the role\.
 
          ```
          {

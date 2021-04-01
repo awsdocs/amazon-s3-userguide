@@ -4,117 +4,27 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 --------
 
-# Amazon S3 condition keys<a name="amazon-s3-policy-keys"></a>
+# Amazon S3 condition key examples<a name="amazon-s3-policy-keys"></a>
 
-The access policy language enables you to specify conditions when granting permissions\. To specify conditions for when a policy is in effect, you can use the optional `Condition` element, or `Condition` block, to specify conditions for when a policy is in effect\. You can use predefined AWS‐wide keys and Amazon S3‐specific keys to specify conditions in an Amazon S3 access policy\.
+You can use access policy language to specify conditions when you grant permissions\. You can use the optional `Condition` element, or `Condition` block to specify conditions for when a policy is in effect\. 
 
-In the `Condition` element, you build expressions in which you use Boolean operators \(equal, less than, etc\.\) to match your condition against values in the request\. For example, when granting a user permission to upload an object, the bucket owner can require that the object be publicly readable by adding the `StringEquals` condition, as shown here\.
-
-```
-{ 
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "statement1",
-      "Effect": "Allow",
-      "Action": "s3:PutObject",
-      "Resource": [
-        "arn:aws:s3:::awsexamplebucket1/*"
-      ],
-      "Condition": {
-        "StringEquals": {
-          "s3:x-amz-acl": "public-read"
-        }
-      }
-    }
-  ]
-}
-```
-
-In the example, the `Condition` block specifies the `StringEquals` condition that is applied to the specified key\-value pair, `"s3:x-amz-acl":["public-read"]`\. There is a set of predefined keys that you can use in expressing a condition\. The example uses the `s3:x-amz-acl` condition key\. This condition requires the user to include the `x-amz-acl` header with value `public-read` in every PUT object request\.
-
-**Topics**
-+ [AWS‐wide condition keys](#AvailableKeys-iamV2)
-+ [Amazon S3‐specific condition keys](#s3-specific-keys)
-+ [Examples — Amazon S3 condition keys for object operations](#object-keys-in-amazon-s3-policies)
-+ [Examples — Amazon S3 condition keys for bucket operations](#bucket-keys-in-amazon-s3-policies)
-
-## AWS‐wide condition keys<a name="AvailableKeys-iamV2"></a>
-
-AWS provides a set of common keys that are supported by all AWS services that support policies\. These keys are called *AWS‐wide keys* and use the prefix `aws:`\. For a complete list of AWS‐wide condition keys, see [Available AWS Keys for Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html) in the *IAM User Guide*\.
-
-You can use AWS‐wide condition keys in Amazon S3\. The following example bucket policy allows authenticated users permission to use the `s3:GetObject` action if the request originates from a specific range of IP addresses \(192\.0\.2\.0\.\*\), unless the IP address is 192\.0\.2\.188\. In the condition block, the `IpAddress` and the `NotIpAddress` are conditions, and each condition is provided a key\-value pair for evaluation\. Both the key\-value pairs in this example use the `aws:SourceIp` AWS‐wide key\.
-
-**Note**  
-The `IPAddress` and `NotIpAddress` key values specified in the condition uses CIDR notation as described in RFC 4632\. For more information, see [http://www\.rfc\-editor\.org/rfc/rfc4632\.txt](http://www.rfc-editor.org/rfc/rfc4632.txt)\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Id": "S3PolicyId1",
-    "Statement": [
-        {
-            "Sid": "statement1",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action":"s3:GetObject",
-            "Resource": "arn:aws:s3:::awsexamplebucket1/*",
-            "Condition" : {
-                "IpAddress" : {
-                    "aws:SourceIp": "192.0.2.0/24" 
-                },
-                "NotIpAddress" : {
-                    "aws:SourceIp": "192.0.2.188/32" 
-                } 
-            } 
-        } 
-    ]
-}
-```
-
-You can also use other AWS‐wide condition keys in Amazon S3 policies\. For example, you can specify the `aws:SourceVpce` and `aws:SourceVpc` condition keys in bucket policies for VPC endpoints\. For examples, see [Controlling access from VPC endpoints with bucket policies](example-bucket-policies-vpc-endpoint.md)\.
-
-## Amazon S3‐specific condition keys<a name="s3-specific-keys"></a>
-
-You can use Amazon S3 condition keys with specific Amazon S3 actions\. Each condition key maps to the same name request header allowed by the API on which the condition can be set\. Amazon S3‐specific condition keys dictate the behavior of the same name request headers\. For a complete list of Amazon S3‐specific condition keys, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\.
-
-For example, the condition key `s3:x-amz-acl` that you can use to grant condition permission for the `s3:PutObject` permission defines behavior of the `x-amz-acl` request header that the PUT Object API supports\. The condition key `s3:VersionId` that you can use to grant conditional permission for the `s3:GetObjectVersion` permission defines behavior of the `versionId` query parameter that you set in a GET Object request\.
-
-The following bucket policy grants the `s3:PutObject` permission for two AWS accounts if the request includes the `x-amz-acl` header making the object publicly readable\. The `Condition` block uses the `StringEquals` condition, and it is provided a key\-value pair, `"s3:x-amz-acl":["public-read"`, for evaluation\. In the key\-value pair, the `s3:x-amz-acl` is an Amazon S3–specific key, as indicated by the prefix `s3:`\. 
-
-```
-{
-    "Version":"2012-10-17",
-    "Statement": [ 
-        {
-	        "Sid":"AddCannedAcl",
-            "Effect":"Allow",
-	        "Principal": {
-                "AWS": [
-                "arn:aws:iam::Account1-ID:root",
-				"arn:aws:iam::Account2-ID:root"
-				]
-            },
-	        "Action":"s3:PutObject",
-            "Resource": ["arn:aws:s3:::awsexamplebucket1/*"],
-            "Condition": {
-                "StringEquals": {
-                    "s3:x-amz-acl":["public-read"]
-                }
-            }
-        }
-    ]
-}
-```
-
-**Important**  
-Not all conditions make sense for all actions\. For example, it makes sense to include an `s3:LocationConstraint` condition on a policy that grants the `s3:CreateBucket` Amazon S3 permission\. However, it does not make sense to include this condition on a policy that grants the `s3:GetObject` permission\. Amazon S3 can test for semantic errors of this type that involve Amazon S3–specific conditions\. However, if you are creating a policy for an IAM user and you include a semantically invalid Amazon S3 condition, no error is reported because IAM cannot validate Amazon S3 conditions\. 
+For policies that use Amazon S3 condition keys for object and bucket operations, see the following examples\. For more information about condition keys, see [Amazon S3 condition keys](amazon-s3-condition-keys.md)\. For a complete list of Amazon S3 actions, condition keys, and resources that you can specify in policies, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\.
 
 ## Examples — Amazon S3 condition keys for object operations<a name="object-keys-in-amazon-s3-policies"></a>
 
 This section provides examples that show you how you can use Amazon S3‐specific condition keys for object operations\. For a complete list of Amazon S3 actions, condition keys, and resources that you can specify in policies, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\.
 
-Several of the example policies show how you can use conditions keys with [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html) operations\. PUT Object operations allow access control list \(ACL\)–specific headers that you can use to grant ACL\-based permissions\. Using these keys, the bucket owner can set a condition to require specific access permissions when the user uploads an object\. You can also grant ACL–based permissions with the PutObjectAcl operation\. For more information, see [PutObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html) in the *Amazon S3 Amazon Simple Storage Service API Reference*\. For more information about ACLs, see [Managing access with ACLs](acl-overview.md)\.
+Several of the example policies show how you can use conditions keys with [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html) operations\. PUT Object operations allow access control list \(ACL\)–specific headers that you can use to grant ACL\-based permissions\. Using these keys, the bucket owner can set a condition to require specific access permissions when the user uploads an object\. You can also grant ACL–based permissions with the PutObjectAcl operation\. For more information, see [PutObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html) in the *Amazon S3 Amazon Simple Storage Service API Reference*\. For more information about ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
+
+**Topics**
++ [Example 1: Granting s3:PutObject permission with a condition requiring the bucket owner to get full control](#grant-putobject-conditionally-1)
++ [Example 2: Granting s3:PutObject permission requiring objects stored using server\-side encryption](#putobject-require-sse-2)
++ [Example 3: Granting s3:PutObject permission to copy objects with a restriction on the copy source](#putobject-limit-copy-source-3)
++ [Example 4: Granting access to a specific version of an object](#getobjectversion-limit-access-to-specific-version-3)
++ [Example 5: Restricting object uploads to objects with a specific storage class](#example-storage-class-condition-key)
++ [Example 6: Granting permissions based on object tags](#example-object-tagging-access-control)
++ [Example 7: Restricting access by the AWS Account ID of the bucket owner](#example-object-resource-account)
++ [Example 8: Requiring a minimum TLS version](#example-object-tls-version)
 
 ### Example 1: Granting s3:PutObject permission with a condition requiring the bucket owner to get full control<a name="grant-putobject-conditionally-1"></a>
 
@@ -366,9 +276,76 @@ Suppose that Account A, represented by account ID 123456789012, owns a bucket\. 
 
 For examples on how to use object tagging condition keys with Amazon S3 operations, see [Tagging and access control policies](tagging-and-policies.md)\.
 
+### Example 7: Restricting access by the AWS Account ID of the bucket owner<a name="example-object-resource-account"></a>
+
+You can use the s3:ResourceAccount condition key to write IAM or Virtual Private Cloud Endpoint policies that restrict user or application access to the Amazon S3 buckets that are owned by a specific AWS Account ID\. You can use this condition key to restrict clients within your VPC from accessing buckets that you do not own\.
+
+For information and examples, see the following resources:
++ [Restricting access to buckets in a specified AWS account](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html#vpc-endpoints-policies-s3) in the *AWS PrivateLink Guide*
++ [Limit access to AWSowned by specific AWS accounts](http://aws.amazon.com/blogs/storage/limit-access-to-amazon-s3-buckets-owned-by-specific-aws-accounts/) in the *AWS Storage Blog*
+
+### Example 8: Requiring a minimum TLS version<a name="example-object-tls-version"></a>
+
+You can use the s3:TlsVersion condition key to write IAM, Virtual Private Cloud Endpoint \(VPCE\), or bucket policies that restrict user or application access to Amazon S3 buckets based on the TLS version used by the client\. You can use this condition key to write policies that require a minimum TLS version\. 
+
+**Example**  
+This example bucket policy *denies* PutObject requests by clients that have a TLS version lower than 1\.2, for example, 1\.1 or 1\.0\.  
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:PutObject",
+            "Resource": [
+                "arn:aws:s3:::mybucket",
+                "arn:aws:::mybucket/*"
+            ],
+            "Condition": {
+                "NumericLessThan": {
+                    "s3:TlsVersion": 1.2
+                }
+            }
+        }
+    ]
+}
+```
+
+**Example**  
+This example bucket policy *allows* PutObject requests by clients that have a TLS version higher than 1\.1, for example, 1\.2, 1\.3 or higher\.  
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:PutObject",
+            "Resource": [
+                "arn:aws:s3:::mybucket",
+                "arn:aws:::mybucket/*"
+            ],
+            "Condition": {
+                "NumericGreaterThan": {
+                    "s3:TlsVersion": 1.1
+                }
+            }
+        }
+    ]
+}
+```
+
 ## Examples — Amazon S3 condition keys for bucket operations<a name="bucket-keys-in-amazon-s3-policies"></a>
 
 This section provides example policies that show you how you can use Amazon S3‐specific condition keys for bucket operations\.
+
+**Topics**
++ [Example 1: Granting a user permission to create a bucket only in a specific Region](#condition-key-bucket-ops-1)
++ [Example 2: Getting a list of objects in a bucket with a specific prefix](#condition-key-bucket-ops-2)
++ [Example 3: Setting the maximum number of keys](#example-numeric-condition-operators)
 
 ### Example 1: Granting a user permission to create a bucket only in a specific Region<a name="condition-key-bucket-ops-1"></a>
 

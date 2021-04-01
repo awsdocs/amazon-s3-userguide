@@ -14,7 +14,7 @@ You can grant permissions to other AWS account users or to predefined groups\. T
 
 Each permission you grant for a user or group adds an entry in the ACL that is associated with the bucket\. The ACL lists grants, which identify the grantee and the permission granted\.
 
-The table below summarizes ACL permissions\. For more information about ACLs, see [Access control list \(ACL\) overview](acl_overview.md)\.
+The table below summarizes ACL permissions\. For more information about ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
 
 **ACL permissions**  
@@ -28,7 +28,7 @@ The table below summarizes ACL permissions\. For more information about ACLs, se
 | FULL\_CONTROL | Allows grantee the READ, WRITE, READ\_ACP, and WRITE\_ACP permissions on the bucket | Allows grantee the READ, READ\_ACP, and WRITE\_ACP permissions on the object | 
 
 **Warning**  
-We highly recommend that you avoid granting write access to the **Everyone \(public access\)** or **Authenticated Users group \(all AWS authenticated users\)** groups\. For more information about the effects of granting write access to these groups, see [Amazon S3 predefined groups](acl_overview.md#specifying-grantee-predefined-groups)\.
+We highly recommend that you avoid granting write access to the **Everyone \(public access\)** or **Authenticated Users group \(all AWS authenticated users\)** groups\. For more information about the effects of granting write access to these groups, see [Amazon S3 predefined groups](acl-overview.md#specifying-grantee-predefined-groups)\.
 
 ## Using the S3 console to set ACL permissions for a bucket<a name="set-bucket-permissions"></a>
 
@@ -153,7 +153,7 @@ This section provides examples of how to configure access control list \(ACL\) g
 ------
 #### [ Java ]
 
-This section provides examples of how to configure access control list \(ACL\) grants on buckets and objects\. The first example creates a bucket with a canned ACL \(see [Canned ACL](acl_overview.md#canned-acl)\), creates a list of custom permission grants, and then replaces the canned ACL with an ACL containing the custom grants\. The second example shows how to modify an ACL using the `AccessControlList.grantPermission()` method\.
+This section provides examples of how to configure access control list \(ACL\) grants on buckets and objects\. The first example creates a bucket with a canned ACL \(see [Canned ACL](acl-overview.md#canned-acl)\), creates a list of custom permission grants, and then replaces the canned ACL with an ACL containing the custom grants\. The second example shows how to modify an ACL using the `AccessControlList.grantPermission()` method\.
 
 **Example Create a bucket and specify a canned ACL that grants permission to the S3 log delivery group**  
 This example creates a bucket\. In the request, the example specifies a canned ACL that grants the Log Delivery group permission to write logs to the bucket\.   
@@ -225,7 +225,7 @@ public class CreateBucketWithACL {
 This example updates the ACL on an object\. The example performs the following tasks:   
 + Retrieves an object's ACL
 + Clears the ACL by removing all existing permissions
-+ Adds two permissions: full access to the owner, and WRITE\_ACP \(see [What permissions can I grant?](acl_overview.md#permissions)\) to a user identified by an email address
++ Adds two permissions: full access to the owner, and WRITE\_ACP \(see [What permissions can I grant?](acl-overview.md#permissions)\) to a user identified by an email address
 + Saves the ACL to the object
 
 ```
@@ -450,11 +450,11 @@ For information on the REST API support for managing ACLs, see the following sec
 
 ### Access Control List \(ACL\)\-Specific Request Headers<a name="acl-headers-rest-api"></a>
 
-You can use headers to grant access control list \(ACL\)\-based permissions\. By default, all objects are private\. Only the owner has full access control\. When adding a new object, you can grant permissions to individual AWS accounts or to predefined groups defined by Amazon S3\. These permissions are then added to the Access Control List \(ACL\) on the object\. For more information, see [Managing access with ACLs](acl-overview.md)\.
+You can use headers to grant access control list \(ACL\)\-based permissions\. By default, all objects are private\. Only the owner has full access control\. When adding a new object, you can grant permissions to individual AWS accounts or to predefined groups defined by Amazon S3\. These permissions are then added to the Access Control List \(ACL\) on the object\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
 With this operation, you can grant access permissions using one these two methods:
-+ **Canned ACL \(`x-amz-acl`\)** — Amazon S3 supports a set of predefined ACLs, known as canned ACLs\. Each canned ACL has a predefined set of grantees and permissions\. For more information, see [Canned ACL](acl_overview.md#canned-acl)\.
-+ **Access Permissions** — To explicitly grant access permissions to specific AWS accounts or groups, use the following headers\. Each header maps to specific permissions that Amazon S3 supports in an ACL\. For more information, see [Managing access with ACLs](acl-overview.md)\. In the header, you specify a list of grantees who get the specific permission\. 
++ **Canned ACL \(`x-amz-acl`\)** — Amazon S3 supports a set of predefined ACLs, known as canned ACLs\. Each canned ACL has a predefined set of grantees and permissions\. For more information, see [Canned ACL](acl-overview.md#canned-acl)\.
++ **Access Permissions** — To explicitly grant access permissions to specific AWS accounts or groups, use the following headers\. Each header maps to specific permissions that Amazon S3 supports in an ACL\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\. In the header, you specify a list of grantees who get the specific permission\. 
   + x\-amz\-grant\-read
   + x\-amz\-grant\-write
   + x\-amz\-grant\-read\-acp

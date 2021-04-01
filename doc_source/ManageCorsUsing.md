@@ -13,7 +13,7 @@ If you are configuring CORS in the S3 console, you must use JSON to create a COR
 For more information about the CORS configuration and the elements in it, see the topics below\. For instructions on how to add a CORS configuration, see [Configuring cross\-origin resource sharing \(CORS\)](enabling-cors-examples.md)\.
 
 **Important**  
-In the new S3 console, the CORS configuration must be JSON\.
+In the S3 console, the CORS configuration must be JSON\. 
 
 **Topics**
 + [Example 1](#cors-example-1)
@@ -32,36 +32,6 @@ The following example `cors` configuration has three rules, which are specified 
 + The first rule allows cross\-origin PUT, POST, and DELETE requests from the `http://www.example1.com` origin\. The rule also allows all headers in a preflight OPTIONS request through the `Access-Control-Request-Headers` header\. In response to preflight OPTIONS requests, Amazon S3 returns requested headers\.
 + The second rule allows the same cross\-origin requests as the first rule, but the rule applies to another origin, `http://www.example2.com`\. 
 + The third rule allows cross\-origin GET requests from all origins\. The `*` wildcard character refers to all origins\. 
-
-------
-#### [ XML ]
-
-```
-<CORSConfiguration>
- <CORSRule>
-   <AllowedOrigin>http://www.example1.com</AllowedOrigin>
-
-   <AllowedMethod>PUT</AllowedMethod>
-   <AllowedMethod>POST</AllowedMethod>
-   <AllowedMethod>DELETE</AllowedMethod>
-
-   <AllowedHeader>*</AllowedHeader>
- </CORSRule>
- <CORSRule>
-   <AllowedOrigin>http://www.example2.com</AllowedOrigin>
-
-   <AllowedMethod>PUT</AllowedMethod>
-   <AllowedMethod>POST</AllowedMethod>
-   <AllowedMethod>DELETE</AllowedMethod>
-
-   <AllowedHeader>*</AllowedHeader>
- </CORSRule>
- <CORSRule>
-   <AllowedOrigin>*</AllowedOrigin>
-   <AllowedMethod>GET</AllowedMethod>
- </CORSRule>
-</CORSConfiguration>
-```
 
 ------
 #### [ JSON ]
@@ -110,29 +80,40 @@ The following example `cors` configuration has three rules, which are specified 
 ```
 
 ------
-
-## Example 2<a name="cors-example-2"></a>
-
-The CORS configuration also allows optional configuration parameters, as shown in the following CORS configuration\. In this example, the CORS configuration allows cross\-origin PUT, POST, and DELETE requests from the `http://www.example.com` origin\.
-
-------
 #### [ XML ]
 
 ```
 <CORSConfiguration>
  <CORSRule>
-   <AllowedOrigin>http://www.example.com</AllowedOrigin>
+   <AllowedOrigin>http://www.example1.com</AllowedOrigin>
+
    <AllowedMethod>PUT</AllowedMethod>
    <AllowedMethod>POST</AllowedMethod>
    <AllowedMethod>DELETE</AllowedMethod>
+
    <AllowedHeader>*</AllowedHeader>
-  <MaxAgeSeconds>3000</MaxAgeSeconds>
-  <ExposeHeader>x-amz-server-side-encryption</ExposeHeader>
-  <ExposeHeader>x-amz-request-id</ExposeHeader>
-  <ExposeHeader>x-amz-id-2</ExposeHeader>
+ </CORSRule>
+ <CORSRule>
+   <AllowedOrigin>http://www.example2.com</AllowedOrigin>
+
+   <AllowedMethod>PUT</AllowedMethod>
+   <AllowedMethod>POST</AllowedMethod>
+   <AllowedMethod>DELETE</AllowedMethod>
+
+   <AllowedHeader>*</AllowedHeader>
+ </CORSRule>
+ <CORSRule>
+   <AllowedOrigin>*</AllowedOrigin>
+   <AllowedMethod>GET</AllowedMethod>
  </CORSRule>
 </CORSConfiguration>
 ```
+
+------
+
+## Example 2<a name="cors-example-2"></a>
+
+The CORS configuration also allows optional configuration parameters, as shown in the following CORS configuration\. In this example, the CORS configuration allows cross\-origin PUT, POST, and DELETE requests from the `http://www.example.com` origin\.
 
 ------
 #### [ JSON ]
@@ -159,6 +140,25 @@ The CORS configuration also allows optional configuration parameters, as shown i
         "MaxAgeSeconds": 3000
     }
 ]
+```
+
+------
+#### [ XML ]
+
+```
+<CORSConfiguration>
+ <CORSRule>
+   <AllowedOrigin>http://www.example.com</AllowedOrigin>
+   <AllowedMethod>PUT</AllowedMethod>
+   <AllowedMethod>POST</AllowedMethod>
+   <AllowedMethod>DELETE</AllowedMethod>
+   <AllowedHeader>*</AllowedHeader>
+  <MaxAgeSeconds>3000</MaxAgeSeconds>
+  <ExposeHeader>x-amz-server-side-encryption</ExposeHeader>
+  <ExposeHeader>x-amz-request-id</ExposeHeader>
+  <ExposeHeader>x-amz-id-2</ExposeHeader>
+ </CORSRule>
+</CORSConfiguration>
 ```
 
 ------

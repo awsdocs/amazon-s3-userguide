@@ -31,7 +31,7 @@ When granting permissions, you decide who is getting what permissions to which A
 The following tools are available to implement least privilege access:  
 + [Amazon S3 actions](using-with-s3-actions.md) and [Permissions Boundaries for IAM Entities](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html)
 + [Bucket policies and user policies](using-iam-policies.md)
-+ [Managing access with ACLs](acl-overview.md)
++ [Access control list \(ACL\) overview](acl-overview.md)
 + [Service Control Policies](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
 For guidance on what to consider when choosing one or more of the preceding mechanisms, see [Access policy guidelines](access-policy-alternatives-guidelines.md)\.
 

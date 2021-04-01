@@ -30,6 +30,7 @@ You can add up to 50 tags to your dashboard configuration\.
    1.  Update the Regions and buckets that you want S3 Storage Lens to include or exclude in the dashboard\. 
 **Note**  
 You can either include or exclude Regions and buckets\. This option is limited to Regions only when creating organization\-level dashboards across member accounts in your organization\. 
+You can choose up to 50 buckets to include or exclude\.
 
      Update the buckets in your selected Regions that you want S3 Storage Lens to include or exclude\. You can either include or exclude buckets, but not both\. This option is not present when creating organization\-level dashboards\.
 

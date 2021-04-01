@@ -83,7 +83,7 @@ S3 Storage Lens provides automated *recommendations* to help you optimize your s
 S3 Storage Lens recommendations come in the following forms:
 + **Suggestions**
 
-  *Suggestions* alert you to trends within your storage usage and activity that might indicate a storage cost optimization opportunity or data protection best practice\. You can use the suggested topics in the *Amazon S3 Developer Guide* and the S3 Storage Lens dashboard to drill down for more details about the specific Regions, buckets, or prefixes to further assist you\.
+  *Suggestions* alert you to trends within your storage usage and activity that might indicate a storage cost optimization opportunity or data protection best practice\. You can use the suggested topics in the *Amazon S3 User Guide* and the S3 Storage Lens dashboard to drill down for more details about the specific Regions, buckets, or prefixes to further assist you\.
 + **Call\-outs**
 
   Call\-outs are recommendations that alert you to interesting anomalies within your storage usage and activity over a period that might need further attention or monitoring\.

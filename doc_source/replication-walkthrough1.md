@@ -6,9 +6,15 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Configuring replication for source and destination buckets owned by the same account<a name="replication-walkthrough1"></a>
 
-In this example, you set up replication for source and destination buckets that are owned by the same AWS account\. Examples are provided for using the Amazon S3 console, the AWS Command Line Interface \(AWS CLI\), and the AWS SDK for Java and AWS SDK for \.NET\.
+Replication is the automatic, asynchronous copying of objects across buckets in the same or different AWS Regions\. Replication copies newly created objects and object updates from a source bucket to a destination bucket or buckets\. For more information see [Replicating objects](replication.md)\.
 
-**Topics**
+When you configure replication, you add replication rules to the source bucket\. Replication rules define which source bucket objects to replicate and the destination bucket or buckets where the replicated objects are stored\. You can create a rule to replicate all the objects in a bucket or a subset of objects with a specific key name prefix, one or more object tags, or both\. A destination bucket can be in the same AWS account as the source bucket, or it can be in a different account\.
+
+If you specify an object version ID to delete, Amazon S3 deletes that object version in the source bucket\. But it doesn't replicate the deletion in the destination bucket\. In other words, it doesn't delete the same object version from the destination bucket\. This protects data from malicious deletions\.
+
+When you add a replication rule to a bucket, the rule is enabled by default, so it starts working as soon as you save it\. 
+
+In this example, you set up replication for source and destination buckets that are owned by the same AWS account\. Examples are provided for using the Amazon S3 console, the AWS Command Line Interface \(AWS CLI\), and the AWS SDK for Java and AWS SDK for \.NET\.
 
 ## Using the AWS CLI<a name="replication-ex1-cli"></a>
 
@@ -103,7 +109,8 @@ To set up replication configuration when both source and destination buckets are
                   "Effect":"Allow",
                   "Action":[
                      "s3:GetObjectVersionForReplication",
-                     "s3:GetObjectVersionAcl"
+                     "s3:GetObjectVersionAcl",
+                     "s3:GetObjectVersionTagging"
                   ],
                   "Resource":[
                      "arn:aws:s3:::source-bucket/*"
@@ -124,9 +131,7 @@ To set up replication configuration when both source and destination buckets are
                   "Action":[
                      "s3:ReplicateObject",
                      "s3:ReplicateDelete",
-                     "s3:ReplicateTags",
-                     "s3:GetObjectVersionTagging"
-         
+                     "s3:ReplicateTags"
                   ],
                   "Resource":"arn:aws:s3:::destination-bucket/*"
                }

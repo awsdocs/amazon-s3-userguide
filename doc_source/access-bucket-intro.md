@@ -58,7 +58,7 @@ Amazon S3 has a set of dual\-stack endpoints, which support requests to S3 bucke
 
 ## Accessing a bucket through S3 Access Points<a name="accessing-bucket-through-s3-access-point"></a>
 
-In addition to accessing a bucket directly, you can access a bucket through an access point\. For more information about the S3 Access Points feature, see [Managing data access with Amazon S3 access points ](access-points.md)\.
+In addition to accessing a bucket directly, you can access a bucket through an access point\. For more information about the S3 Access Points feature, see [Managing data access with Amazon S3 access points](access-points.md)\.
 
 S3 Access Points only support virtual\-host\-style addressing\. To address a bucket through an access point, use the following format\.
 

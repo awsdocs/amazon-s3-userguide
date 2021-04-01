@@ -55,7 +55,7 @@ Amazon S3 periodically collects access log records, consolidates the records in 
 
 Amazon S3 uses a special log delivery account, called the *Log Delivery* group, to write access logs\. These writes are subject to the usual access control restrictions\. You must grant the Log Delivery group write permission on the target bucket by adding a grant entry in the bucket's access control list \(ACL\)\. 
 
-If you use the Amazon S3 console to enable logging on a bucket, the console both enables logging on the source bucket and updates the ACL on the target bucket to grant write permission to the Log Delivery group\. For more information, see [Managing access with ACLs](acl-overview.md)\.
+If you use the Amazon S3 console to enable logging on a bucket, the console both enables logging on the source bucket and updates the ACL on the target bucket to grant write permission to the Log Delivery group\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
 ## Best effort server log delivery<a name="LogDeliveryBestEffort"></a>
 

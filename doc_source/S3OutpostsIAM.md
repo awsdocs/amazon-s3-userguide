@@ -29,7 +29,7 @@ S3 on Outposts uses the service prefix `s3-outposts:<ACTION>`\. For more informa
 | Amazon S3 on Outposts ARN | ARN format | Example | 
 | --- | --- | --- | 
 | Bucket ARN | arn:<partition>:s3\-outposts:<region>:<account\_id>:outpost/<outpost\_id>/bucket/<bucket\_name | arn:aws:s3\-outposts:us\-west\-2:123456789012:outpost/op\-01ac5d28a6a232904/bucket/DOC\-EXAMPLE\-BUCKET1 | 
-| accesspoint ARN | arn:<partition>:s3\-outposts:<region>:<account\_id>:outpost/<outpost\_id>/accesspoint/<accesspoint\_name> | arn:aws:s3\-outposts:us\-west\-2:123456789012:outpost/op\-01ac5d28a6a232904/accesspoint/example\-access\-point | 
+| accesspoint ARN | arn:<partition>:s3\-outposts:<region>:<account\_id>:outpost/<outpost\_id>/accesspoint/<accesspoint\_name> | arn:aws:s3\-outposts:us\-west\-2:123456789012:outpost/op\-01ac5d28a6a232904/accesspoint/ | 
 | Object ARN | arn:<partition>:s3\-outposts:<region>:<account\_id>:outpost/<outpost\_id>/bucket/<bucket\_name>/object/<object\_key> | arn:aws:s3\-outposts:us\-west\-2:123456789012:outpost/op\-01ac5d28a6a232904/bucket/DOC\-EXAMPLE\-BUCKET1/object/myobject | 
-| S3 on Outposts AP object ARN \(used in policies\) | arn:<partition>:s3\-outposts:<region>:<account\_id>:outpost/<outpost\_id>/accesspoint/<accesspoint\_name>/object/<object\_key> | arn:aws:s3\-outposts:us\-west\-2:123456789012:outpost/op\-01ac5d28a6a232904/accesspoint/example\-access\-point/object/myobject | 
+| S3 on Outposts AP object ARN \(used in policies\) | arn:<partition>:s3\-outposts:<region>:<account\_id>:outpost/<outpost\_id>/accesspoint/<accesspoint\_name>/object/<object\_key> | arn:aws:s3\-outposts:us\-west\-2:123456789012:outpost/op\-01ac5d28a6a232904/accesspoint//object/myobject | 
 | S3 on Outposts ARN | arn:<partition>:s3\-outposts:<region>:<account\_id>:outpost/<outpost\_id> | arn:aws:s3\-outposts:us\-west\-2:123456789012:outpost/op\-01ac5d28a6a232904 | 

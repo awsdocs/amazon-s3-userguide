@@ -139,92 +139,105 @@ The following is a JSON example of a response for the Lambda function\.
 
 ### Example Lambda function for S3 Batch Operations<a name="batch-ops-invoke-lambda-custom-functions-example"></a>
 
-The following example Python Lambda function iterates through the manifest, copying and renaming every object\.
+The following example Python Lambda removes a delete marker from a versioned object\.
 
 As the example shows, keys from S3 Batch Operations are URL encoded\. To use Amazon S3 with other AWS services, it's important that you URL decode the key that is passed from S3 Batch Operations\.
 
 ```
+import logging
+from urllib import parse
 import boto3
-import urllib
 from botocore.exceptions import ClientError
 
+logger = logging.getLogger(__name__)
+logger.setLevel('INFO')
+
+s3 = boto3.client('s3')
+
+
 def lambda_handler(event, context):
-    # Instantiate boto client
-    s3Client = boto3.client('s3')
-    
-    # Parse job parameters from S3 Batch Operations
-    jobId = event['job']['id']
-    invocationId = event['invocationId']
-    invocationSchemaVersion = event['invocationSchemaVersion']
-    
-    # Prepare results
+    """
+    Removes a delete marker from the specified versioned object.
+
+    :param event: The S3 batch event that contains the ID of the delete marker
+                  to remove.
+    :param context: Context about the event.
+    :return: A result structure that Amazon S3 uses to interpret the result of the
+             operation. When the result code is TemporaryFailure, S3 retries the
+             operation.
+    """
+    # Parse job parameters from Amazon S3 batch operations
+    invocation_id = event['invocationId']
+    invocation_schema_version = event['invocationSchemaVersion']
+
     results = []
-    
-    # Parse Amazon S3 Key, Key Version, and Bucket ARN
-    taskId = event['tasks'][0]['taskId']
-    s3Key = urllib.unquote(event['tasks'][0]['s3Key']).decode('utf8')
-    s3VersionId = event['tasks'][0]['s3VersionId']
-    s3BucketArn = event['tasks'][0]['s3BucketArn']
-    s3Bucket = s3BucketArn.split(':::')[-1]
-    
-    # Construct CopySource with VersionId
-    copySrc = {'Bucket': s3Bucket, 'Key': s3Key}
-    if s3VersionId is not None:
-        copySrc['VersionId'] = s3VersionId
-        
-    # Copy object to new bucket with new key name
+    result_code = None
+    result_string = None
+
+    task = event['tasks'][0]
+    task_id = task['taskId']
+
     try:
-        # Prepare result code and string
-        resultCode = None
-        resultString = None
-        
-        # Construct New Key
-        newKey = rename_key(s3Key)
-        newBucket = 'destination-bucket-name'
-        
-        # Copy Object to New Bucket
-        response = s3Client.copy_object(
-            CopySource = copySrc,
-            Bucket = newBucket,
-            Key = newKey
-        )
-        
-        # Mark as succeeded
-        resultCode = 'Succeeded'
-        resultString = str(response)
-    except ClientError as e:
-        # If request timed out, mark as a temp failure
-        # and S3 Batch Operations will make the task for retry. If
-        # any other exceptions are received, mark as permanent failure.
-        errorCode = e.response['Error']['Code']
-        errorMessage = e.response['Error']['Message']
-        if errorCode == 'RequestTimeout':
-            resultCode = 'TemporaryFailure'
-            resultString = 'Retry request to Amazon S3 due to timeout.'
-        else:
-            resultCode = 'PermanentFailure'
-            resultString = '{}: {}'.format(errorCode, errorMessage)
-    except Exception as e:
-        # Catch all exceptions to permanently fail the task
-        resultCode = 'PermanentFailure'
-        resultString = 'Exception: {}'.format(e.message)
+        obj_key = parse.unquote(task['s3Key'], encoding='utf-8')
+        obj_version_id = task['s3VersionId']
+        bucket_name = task['s3BucketArn'].split(':')[-1]
+
+        logger.info("Got task: remove delete marker %s from object %s.",
+                    obj_version_id, obj_key)
+
+        try:
+            # If this call does not raise an error, the object version is not a delete
+            # marker and should not be deleted.
+            response = s3.head_object(
+                Bucket=bucket_name, Key=obj_key, VersionId=obj_version_id)
+            result_code = 'PermanentFailure'
+            result_string = f"Object {obj_key}, ID {obj_version_id} is not " \
+                            f"a delete marker."
+
+            logger.debug(response)
+            logger.warning(result_string)
+        except ClientError as error:
+            delete_marker = error.response['ResponseMetadata']['HTTPHeaders'] \
+                .get('x-amz-delete-marker', 'false')
+            if delete_marker == 'true':
+                logger.info("Object %s, version %s is a delete marker.",
+                            obj_key, obj_version_id)
+                try:
+                    s3.delete_object(
+                        Bucket=bucket_name, Key=obj_key, VersionId=obj_version_id)
+                    result_code = 'Succeeded'
+                    result_string = f"Successfully removed delete marker " \
+                                    f"{obj_version_id} from object {obj_key}."
+                    logger.info(result_string)
+                except ClientError as error:
+                    # Mark request timeout as a temporary failure so it will be retried.
+                    if error.response['Error']['Code'] == 'RequestTimeout':
+                        result_code = 'TemporaryFailure'
+                        result_string = f"Attempt to remove delete marker from  " \
+                                        f"object {obj_key} timed out."
+                        logger.info(result_string)
+                    else:
+                        raise
+            else:
+                raise ValueError(f"The x-amz-delete-marker header is either not "
+                                 f"present or is not 'true'.")
+    except Exception as error:
+        # Mark all other exceptions as permanent failures.
+        result_code = 'PermanentFailure'
+        result_string = str(error)
+        logger.exception(error)
     finally:
         results.append({
-            'taskId': taskId,
-            'resultCode': resultCode,
-            'resultString': resultString
+            'taskId': task_id,
+            'resultCode': result_code,
+            'resultString': result_string
         })
-    
     return {
-        'invocationSchemaVersion': invocationSchemaVersion,
+        'invocationSchemaVersion': invocation_schema_version,
         'treatMissingKeysAs': 'PermanentFailure',
-        'invocationId': invocationId,
+        'invocationId': invocation_id,
         'results': results
     }
-
-def rename_key(s3Key):
-    # Rename the key by adding additional suffix
-    return s3Key + '_new_suffix'
 ```
 
 ## Creating an S3 Batch Operations job that invokes a Lambda function<a name="batch-ops-invoke-lambda-create-job"></a>
@@ -278,86 +291,92 @@ my-bucket,%7B%22origKey%22%3A%20%22object3key%22%2C%20%22newKey%22%3A%20%22newOb
 ```
 
 **Example — Lambda function with manifest format writing results to the job report**  
- This Lambda function shows how to parse JSON that is encoded into the S3 Batch Operations manifest\.  
+ This Lambda function shows how to parse a pipe\-delimited task that is encoded into the S3 Batch Operations manifest\. The task indicates which revision operation is applied to the specified object\.  
 
 ```
-import json
-from urllib.parse import unquote_plus
+import logging
+from urllib import parse
+import boto3
+from botocore.exceptions import ClientError
+
+logger = logging.getLogger(__name__)
+logger.setLevel('INFO')
+
+s3 = boto3.resource('s3')
 
 
-# This example Lambda function shows how to parse JSON that is encoded into the Amazon S3 batch
-# operations manifest containing lines like this:
-#
-# bucket,encoded-json
-# bucket,encoded-json
-# bucket,encoded-json
-#
-# For example, if we wanted to send the following JSON to this Lambda function:
-#
-# bucket,{"origKey": "object1key", "newKey": "newObject1Key"}
-# bucket,{"origKey": "object2key", "newKey": "newObject2Key"}
-# bucket,{"origKey": "object3key", "newKey": "newObject3Key"}
-#
-# We would simply URL-encode the JSON like this to create the real manifest to create a batch
-# operations job with:
-#
-# my-bucket,%7B%22origKey%22%3A%20%22object1key%22%2C%20%22newKey%22%3A%20%22newObject1Key%22%7D
-# my-bucket,%7B%22origKey%22%3A%20%22object2key%22%2C%20%22newKey%22%3A%20%22newObject2Key%22%7D
-# my-bucket,%7B%22origKey%22%3A%20%22object3key%22%2C%20%22newKey%22%3A%20%22newObject3Key%22%7D
-#
 def lambda_handler(event, context):
-    # Parse job parameters from S3 batch operations
-    jobId = event['job']['id']
-    invocationId = event['invocationId']
-    invocationSchemaVersion = event['invocationSchemaVersion']
+    """
+    Applies the specified revision to the specified object.
 
-    # Prepare results
+    :param event: The Amazon S3 batch event that contains the ID of the object to
+                  revise and the revision type to apply.
+    :param context: Context about the event.
+    :return: A result structure that Amazon S3 uses to interpret the result of the
+             operation.
+    """
+    # Parse job parameters from Amazon S3 batch operations
+    invocation_id = event['invocationId']
+    invocation_schema_version = event['invocationSchemaVersion']
+
     results = []
+    result_code = None
+    result_string = None
 
-    # S3 batch operations currently only passes a single task at a time in the array of tasks.
     task = event['tasks'][0]
+    task_id = task['taskId']
+    # The revision type is packed with the object key as a pipe-delimited string.
+    obj_key, revision = \
+        parse.unquote(task['s3Key'], encoding='utf-8').split('|')
+    bucket_name = task['s3BucketArn'].split(':')[-1]
 
-    # Extract the task values we might want to use
-    taskId = task['taskId']
-    s3Key = task['s3Key']
-    s3VersionId = task['s3VersionId']
-    s3BucketArn = task['s3BucketArn']
-    s3BucketName = s3BucketArn.split(':::')[-1]
+    logger.info("Got task: apply revision %s to %s.", revision, obj_key)
 
     try:
-        # Assume it will succeed for now
-        resultCode = 'Succeeded'
-        resultString = ''
+        stanza_obj = s3.Bucket(bucket_name).Object(obj_key)
+        stanza = stanza_obj.get()['Body'].read().decode('utf-8')
+        if revision == 'lower':
+            stanza = stanza.lower()
+        elif revision == 'upper':
+            stanza = stanza.upper()
+        elif revision == 'reverse':
+            stanza = stanza[::-1]
+        elif revision == 'delete':
+            pass
+        else:
+            raise TypeError(f"Can't handle revision type '{revision}'.")
 
-        # Decode the JSON string that was encoded into the S3 Key value and convert the
-        # resulting string into a JSON structure.
-        s3Key_decoded = unquote_plus(s3Key)
-        keyJson = json.loads(s3Key_decoded)
+        if revision == 'delete':
+            stanza_obj.delete()
+            result_string = f"Deleted stanza {stanza_obj.key}."
+        else:
+            stanza_obj.put(Body=bytes(stanza, 'utf-8'))
+            result_string = f"Applied revision type '{revision}' to " \
+                            f"stanza {stanza_obj.key}."
 
-        # Extract some values from the JSON that we might want to operate on.  In this example
-        # we won't do anything except return the concatenated string as a fake result.
-        newKey = keyJson['newKey']
-        origKey = keyJson['origKey']
-        resultString = origKey + " --> " + newKey
-
-    except Exception as e:
-        # If we run into any exceptions, fail this task so batch operations does not retry it and
-        # return the exception string so we can see the failure message in the final report
-        # created by batch operations.
-        resultCode = 'PermanentFailure'
-        resultString = 'Exception: {}'.format(e)
+        logger.info(result_string)
+        result_code = 'Succeeded'
+    except ClientError as error:
+        if error.response['Error']['Code'] == 'NoSuchKey':
+            result_code = 'Succeeded'
+            result_string = f"Stanza {obj_key} not found, assuming it was deleted " \
+                            f"in an earlier revision."
+            logger.info(result_string)
+        else:
+            result_code = 'PermanentFailure'
+            result_string = f"Got exception when applying revision type '{revision}' " \
+                            f"to {obj_key}: {error}."
+            logger.exception(result_string)
     finally:
-        # Send back the results for this task.
         results.append({
-            'taskId': taskId,
-            'resultCode': resultCode,
-            'resultString': resultString
+            'taskId': task_id,
+            'resultCode': result_code,
+            'resultString': result_string
         })
-
     return {
-        'invocationSchemaVersion': invocationSchemaVersion,
+        'invocationSchemaVersion': invocation_schema_version,
         'treatMissingKeysAs': 'PermanentFailure',
-        'invocationId': invocationId,
+        'invocationId': invocation_id,
         'results': results
     }
 ```

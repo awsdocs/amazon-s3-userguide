@@ -97,11 +97,12 @@ Several Amazon S3 features are currently not supported by Amazon S3 on Outposts\
 + Website access
 
 ## Amazon S3 on Outposts network restrictions<a name="S3OnOutpostsConnectivityRestrictions"></a>
-+ To route requests to an Amazon S3 on Outposts access point, you must create and configure an endpoint\. The following limits apply to endpoints for S3 on Outposts:
++ You cannot create Amazon S3 on Outposts access point for virtual private clouds \(VPCs\) associated with more than one associated CIDR block\.
++ To route requests to an S3 on Outposts access point, you must create and configure an endpoint\. The following limits apply to endpoints for S3 on Outposts:
   + Each virtual private cloud \(VPC\) on your AWS Outposts can have one associated endpoint, and you can have up to three endpoints per Outpost\.
   + Multiple access points can be mapped to the same endpoint\.
   + Endpoints can only be added to VPCs with CIDR blocks in the subspaces of the following CIDR ranges:
-    + 10\.0\.10\.0/8
+    + 10\.0\.0\.0/8
     + 172\.16\.0\.0/12
     + 192\.168\.0\.0/16
 + An endpoint can only be created within a single CIDR block\.

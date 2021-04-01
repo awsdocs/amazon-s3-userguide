@@ -56,13 +56,11 @@ For detailed examples that provide step\-by\-step instructions, see [Example 1: 
 
 ## Grant anonymous permissions<a name="s3-anonymous-permissions"></a>
 
-To grant permission to everyone, also referred as anonymous access, you set the wildcard \(`"*"`\) as the `Principal` value\. For example, if you configure your bucket as a website, you want all the objects in the bucket to be publicly accessible, and you would use the following principal:
+To grant permission to everyone, also referred as anonymous access, you set the wildcard \(`"*"`\) as the `Principal` value\. For example, if you configure your bucket as a website, you want all the objects in the bucket to be publicly accessible\. The following are equivalent\.
 
 ```
 "Principal":"*"
 ```
-
-If you don't want to grant access to everyone on the internet but you still want to grant anonymous access to all AWS accounts, you can use the wildcard with "AWS\." The following principal grants access to all AWS accounts:
 
 ```
 "Principal":{"AWS":"*"}

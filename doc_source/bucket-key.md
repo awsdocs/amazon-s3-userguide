@@ -12,7 +12,9 @@ Amazon S3 Bucket Keys reduce the cost of Amazon S3 server\-side encryption using
 
 Workloads that access millions or billions of objects encrypted with SSE\-KMS can generate large volumes of requests to AWS KMS\. When you use SSE\-KMS to protect your data without an S3 Bucket Key, Amazon S3 uses an individual AWS KMS [data key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) for every object\. It makes a call to AWS KMS every time a request is made against a KMS\-encrypted object\. For information about how SSE\-KMS works, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\. 
 
-When you configure your bucket to use an S3 Bucket Key for SSE\-KMS on new objects, AWS KMS generates a bucket\-level key that is used to create unique data keys for objects in the bucket\. This S3 Bucket Key is used for a time\-limited period within Amazon S3, reducing the need for Amazon S3 to make requests to AWS KMS to complete encryption operations\. This reduces traffic from S3 to AWS KMS, allowing you to access AWS KMS\-encrypted objects in S3 at a fraction of the previous cost\. 
+When you configure your bucket to use an S3 Bucket Key for SSE\-KMS, AWS KMS generates a bucket\-level key that is used to create unique data keys for *new* objects that you add to the bucket\. This S3 Bucket Key is used for a time\-limited period within Amazon S3, reducing the need for Amazon S3 to make requests to AWS KMS to complete encryption operations\. This reduces traffic from S3 to AWS KMS, allowing you to access AWS KMS\-encrypted objects in S3 at a fraction of the previous cost\.
+
+When you configure an S3 Bucket Key, objects that are already in the bucket do not use the S3 Bucket Key\. To configure an S3 Bucket Key for existing objects, you can use a COPY operation\. For more information, see [Configuring an S3 Bucket Key at the object level using the REST API, AWS SDKs, or AWS CLI](configuring-bucket-key-object.md)\.
 
 Amazon S3 will only share an S3 Bucket Key for objects encrypted by the same AWS KMS customer master key \(CMK\)\.
 

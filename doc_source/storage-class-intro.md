@@ -35,7 +35,7 @@ S3 Intelligent\-Tiering is an Amazon S3 storage class designed to optimize stora
 
 For a small monthly object monitoring and automation fee, S3 Intelligent\-Tiering monitors the access patterns and moves the objects automatically from one tier to another\. It works by storing objects in four access tiers: two low latency access tiers optimized for frequent and infrequent access, and two opt\-in archive access tiers designed for asynchronous access that are optimized for rare access\. 
 
-Objects that are uploaded or transitioned to S3 Intelligent\-Tiering are automatically stored in the *Frequent Access* tier\. S3 Intelligent\-Tiering works by monitoring access patterns and then moving the objects that have not been accessed in 30 consecutive days to the *Infrequent Access* tier\. You can also choose to activate one or both of the archive access tiers using the API with [PutBucketInventoryConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketInventoryConfiguration.html), the CLI, or the Amazon S3 console\. After you activate one or both of the archive access tiers, S3 Intelligent\-Tiering automatically moves objects that haven’t been accessed for 90 consecutive days to the *Archive Access* tier, and after 180 consecutive days of no access, to the *Deep Archive Access* tier\. 
+Objects that are uploaded or transitioned to S3 Intelligent\-Tiering are automatically stored in the *Frequent Access* tier\. S3 Intelligent\-Tiering works by monitoring access patterns and then moving the objects that have not been accessed in 30 consecutive days to the *Infrequent Access* tier\. You can also choose to activate one or both of the archive access tiers using the API with [PutBucketIntelligentTieringConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html), the CLI, or the Amazon S3 console\. After you activate one or both of the archive access tiers, S3 Intelligent\-Tiering automatically moves objects that haven’t been accessed for 90 consecutive days to the *Archive Access* tier, and after 180 consecutive days of no access, to the *Deep Archive Access* tier\. 
 
 If the objects are accessed later, the objects are moved back to the *Frequent Access* tier\. There are no retrieval fees, so you won’t see unexpected increases in storage bills when access patterns change\.
 
@@ -140,4 +140,4 @@ When you grant access policy permissions for Amazon S3 operations, you can use t
 
 For more information about using conditions in policies and a complete list of Amazon S3 condition keys, see the following:
 + [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)
-+ [Amazon S3 condition keys](amazon-s3-policy-keys.md)
++ [Amazon S3 condition key examples](amazon-s3-policy-keys.md)

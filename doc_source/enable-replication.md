@@ -6,20 +6,6 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Using the S3 console<a name="enable-replication"></a>
 
-Replication is the automatic, asynchronous copying of objects across buckets in the same or different AWS Regions\. Replication copies newly created objects and object updates from a source bucket to a destination bucket or buckets\. For more information see [Replicating objects](replication.md)\.
-
-You use the Amazon S3 console to add replication rules to the source bucket\. Replication rules define which source bucket objects to replicate and the destination bucket or buckets where the replicated objects are stored\. You can create a rule to replicate all the objects in a bucket or a subset of objects with a specific key name prefix, one or more object tags, or both\. A destination bucket can be in the same AWS account as the source bucket, or it can be in a different account\.
-
-If you specify an object version ID to delete, Amazon S3 deletes that object version in the source bucket\. But it doesn't replicate the deletion in the destination bucket\. In other words, it doesn't delete the same object version from the destination bucket\. This protects data from malicious deletions\.
-
-When you add a replication rule to a bucket, the rule is enabled by default, so it starts working as soon as you save it\. 
-
-**Topics**
-+ [Adding a replication rule](#enable-replication-add-rule)
-+ [Grant the source bucket owner permission to encrypt using the AWS KMS CMK](#enable-replication-kms-key-policy)
-
-## Adding a replication rule<a name="enable-replication-add-rule"></a>
-
 Follow these steps to configure a replication rule when the destination bucket is in the same AWS account as the source bucket\.
 
 If the destination bucket is in a different account from the source bucket, you must add a bucket policy to the destination bucket to grant the owner of the source bucket account permission to replicate objects in the destination bucket\. For more information, see [Granting permissions when source and destination buckets are owned by different AWS accounts](setting-repl-config-perm-overview.md#setting-repl-config-crossacct)\.
@@ -37,7 +23,7 @@ If the destination bucket is in a different account from the source bucket, you 
 1. Set up an AWS Identity and Access Management \(IAM\) role that Amazon S3 can assume to replicate objects on your behalf\.
 
    To set up an IAM role, on the **Replication rule configuration** section, under **IAM role**, do one of the following:
-   + We highly recommend that you choose **Create new role** to have Amazon S3 create a new IAM role for you\. When you save the rule, a new policy is generated for the IAM role that matches the source and destination buckets that you choose\. The name of the generated role is based on the bucket names and uses the following naming convention: **replication\_role\_for\_*source\-bucket*\_to\_*destination\-bucket***\.
+   + We highly recommend that you choose **Create new role** to have Amazon S3 create a new IAM role for you\. When you save the rule, a new policy is generated for the IAM role that matches the source and destination buckets that you choose\.
    + You can choose to use an existing IAM role\. If you do, you must choose a role that grants Amazon S3 the necessary permissions for replication\. Replication fails if this role does not grant Amazon S3 sufficient permissions to follow your replication rule\.
 **Important**  
 When you add a replication rule to a bucket, you must have the `iam:PassRole` permission to be able to pass the IAM role that grants Amazon S3 replication permissions\. For more information, see [Granting a user permissions to pass a role to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\.
@@ -53,7 +39,7 @@ When you add a replication rule to a bucket, you must have the `iam:PassRole` pe
 If you enter a prefix that is the name of a folder, you must use **/** \(forward slash\) as the last character \(for example, `pictures/`\)\.
    + To replicate all objects with one or more object tags, select **Add tag** and enter the key\-value pair in the boxes\. Repeat the procedure to add another tag\. You can combine a prefix and tags\. For more information about object tags, see [Categorizing your storage using tags](object-tagging.md)\.
 
-   The new schema supports prefix and tag filtering and the prioritization of rules\. For more information about the new schema, see [Backward compatibility](replication-add-config.md#replication-backward-compat-considerations)\. The developer guide describes the XML used with the Amazon S3 API that works behind the user interface\. In the developer guide, the new schema is described as *replication configuration XML V2*\.
+   The new schema supports prefix and tag filtering and the prioritization of rules\. For more information about the new schema, see [Backward compatibility](replication-add-config.md#replication-backward-compat-considerations)\. For more information about the XML used with the Amazon S3 API that works behind the user interface, see [Replication configuration](replication-add-config.md)\. The new schema is described as *replication configuration XML V2*\.
 
 1. Under **Destination**, select the bucket where you want Amazon S3 to replicate objects\.
 **Note**  
@@ -92,21 +78,3 @@ The Amazon S3 console lists only 100 AWS KMS CMKs per AWS Region\. If you have m
 1. To finish, choose **Save**\.
 
 1. After you save your rule, you can edit, enable, disable, or delete your rule by selecting your rule and choosing **Edit rule**\. 
-
-## Grant the source bucket owner permission to encrypt using the AWS KMS CMK<a name="enable-replication-kms-key-policy"></a>
-
-You must grant permissions to the account of the source bucket owner to encrypt using your AWS KMS CMK with a key policy\. The following procedure describes how to use the AWS Identity and Access Management \(IAM\) console to modify the key policy for the AWS KMS CMK that is being used to encrypt the replica objects in the destination bucket\.
-
-**To grant permissions to encrypt using your AWS KMS CMK**
-
-1. Sign in to the AWS Management Console using the AWS account that owns the AWS KMS CMK\. Open the AWS KMS console at [https://console\.aws\.amazon\.com/kms](https://console.aws.amazon.com/kms)\.
-
-1. Choose the alias of the CMK that you want to encrypt with\.
-
-1. In the **Key Policy** section of the page, choose **Switch to policy view**\.
-
-1. Choose **Edit** to edit **Key Policy**\.
-
-1. Using the **Key Policy** editor, insert the key policy provided by Amazon S3 into the existing key policy, and then choose **Save Changes**\. You might want to add the policy to the end of the existing policy\. 
-
-For more information about creating and editing AWS KMS CMKs, see [Getting Started](https://docs.aws.amazon.com/kms/latest/developerguide/getting-started.html) in the *AWS Key Management Service Developer Guide*\. 

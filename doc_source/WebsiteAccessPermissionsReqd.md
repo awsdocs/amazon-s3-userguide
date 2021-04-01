@@ -70,7 +70,7 @@ The following policy is an example only and allows full access to the contents o
                    "s3:GetObject"
                ],
                "Resource": [
-                   "arn:aws:s3:::example.com/*"
+                   "arn:aws:s3:::Bucket-Name/*"
                ]
            }
        ]
@@ -79,7 +79,7 @@ The following policy is an example only and allows full access to the contents o
 
 1. Update the `Resource` to your bucket name\.
 
-   In the preceding example bucket policy, *example\.com* is the bucket name\. To use this bucket policy with your own bucket, you must update this name to match your bucket name\.
+   In the preceding example bucket policy, *Bucket\-Name* is a placeholder for the bucket name\. To use this bucket policy with your own bucket, you must update this name to match your bucket name\.
 
 1. Choose **Save changes**\.
 
@@ -93,7 +93,7 @@ The following policy is an example only and allows full access to the contents o
 
 You can use a bucket policy to grant public read permission to your objects\. However, the bucket policy applies only to objects that are owned by the bucket owner\. If your bucket contains objects that aren't owned by the bucket owner, the bucket owner should use the object access control list \(ACL\) to grant public READ permission on those objects\.
 
-To make an object publicly readable using an ACL, grant READ permission to the `AllUsers` group, as shown in the following grant element\. Add this grant element to the object ACL\. For information about managing ACLs, see [Managing access with ACLs](acl-overview.md)\.
+To make an object publicly readable using an ACL, grant READ permission to the `AllUsers` group, as shown in the following grant element\. Add this grant element to the object ACL\. For information about managing ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
 ```
 1. <Grant>

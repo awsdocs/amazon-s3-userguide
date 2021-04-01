@@ -12,7 +12,7 @@ AWS Amplify is an open source JavaScript library for web and mobile developers w
 + [Getting Started with the AWS Amplify Library for the Web](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/web-getting-started.html)
 + [Getting Started with the AWS Amplify Library for React Native ](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/react-native-getting-started.html)
 
-For more information about AWS Amplify, see [AWS Amplify](https://github.com/aws/aws-amplify) on [GitHub](https://github.com/about)\.
+For more information about AWS Amplify, see [AWS Amplify](https://github.com/aws/aws-amplify) on GitHub\.
 
 ## More Info<a name="using-aws-amplify-moreinfo"></a>
 

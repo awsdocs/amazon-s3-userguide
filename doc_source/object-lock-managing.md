@@ -82,7 +82,7 @@ If your bucket is the destination bucket for a replication policy and you want t
 For more information, see the following topics:
 + [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)
 + [Example — Object operations](using-with-s3-actions.md#using-with-s3-actions-related-to-objects)
-+ [Amazon S3 condition keys](amazon-s3-policy-keys.md)
++ [Amazon S3 condition key examples](amazon-s3-policy-keys.md)
 
 ## Managing delete markers and object lifecycles<a name="object-lock-managing-lifecycle"></a>
 

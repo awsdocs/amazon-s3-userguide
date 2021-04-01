@@ -131,6 +131,8 @@ In this step, you configure your root domain bucket \(`example.com`\) as a websi
 
    The **Endpoint** is the Amazon S3 website endpoint for your bucket\. After you finish configuring your bucket as a static website, you can use this endpoint to test your website\.
 
+After you [edit block public access settings](https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html#root-domain-walkthrough-configure-bucket-permissions) and [add a bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html#add-bucket-policy-root-domain) that allows public read access, you can use the website endpoint to access your website\. 
+
 In the next step, you configure your subdomain \(`www.example.com`\) to redirect requests to your domain \(`example.com`\)\. 
 
 ## Step 4: Configure your subdomain bucket for website redirect<a name="root-domain-walkthrough-configure-redirect"></a>
@@ -285,6 +287,8 @@ Before you complete this step, review [Blocking public access to your Amazon S3 
 
 ## Step 8: Attach a bucket policy<a name="add-bucket-policy-root-domain"></a>
 
+In this example, you attach a bucket policy to the domain bucket \(`example.com`\) to allow public read access\. You replace the *Bucket\-Name* in the example bucket policy with the name of your domain bucket, for example `example.com`\.
+
 After you edit S3 Block Public Access settings, you can add a bucket policy to grant public read access to your bucket\. When you grant public read access, anyone on the internet can access your bucket\.
 
 **Important**  
@@ -310,7 +314,7 @@ The following policy is an example only and allows full access to the contents o
                    "s3:GetObject"
                ],
                "Resource": [
-                   "arn:aws:s3:::example.com/*"
+                   "arn:aws:s3:::Bucket-Name/*"
                ]
            }
        ]
@@ -319,7 +323,7 @@ The following policy is an example only and allows full access to the contents o
 
 1. Update the `Resource` to your bucket name\.
 
-   In the preceding example bucket policy, *example\.com* is the bucket name\. To use this bucket policy with your own bucket, you must update this name to match your bucket name\.
+   In the preceding example bucket policy, *Bucket\-Name* is a placeholder for the bucket name\. To use this bucket policy with your own bucket, you must update this name to match your bucket name\.
 
 1. Choose **Save changes**\.
 

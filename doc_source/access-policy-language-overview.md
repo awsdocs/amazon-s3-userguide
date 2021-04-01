@@ -19,7 +19,7 @@ In its most basic sense, a policy contains the following elements:
 
   If you do not explicitly grant access to \(allow\) a resource, access is implicitly denied\. You can also explicitly deny access to a resource\. You might do this to make sure that a user can't access the resource, even if a different policy grants access\. For more information, see [IAM JSON Policy Elements: Effect](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_effect.html)\.
 + [Principal](s3-bucket-user-policy-specifying-principal-intro.md) – The account or user who is allowed access to the actions and resources in the statement\. In a bucket policy, the principal is the user, account, service, or other entity that is the recipient of this permission\. For more information, see [Principals](s3-bucket-user-policy-specifying-principal-intro.md)\.
-+ [Condition](amazon-s3-policy-keys.md) – Conditions for when a policy is in effect\. You can use AWS‐wide keys and Amazon S3‐specific keys to specify conditions in an Amazon S3 access policy\. For more information, see [Amazon S3 condition keys](amazon-s3-policy-keys.md)\.
++ [Condition](amazon-s3-policy-keys.md) – Conditions for when a policy is in effect\. You can use AWS‐wide keys and Amazon S3‐specific keys to specify conditions in an Amazon S3 access policy\. For more information, see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\.
 
 The following example bucket policy shows the effect, principal, action, and resource elements\. The policy allows Dave, a user in account *Account\-ID*, `s3:GetObject`, `s3:GetBucketLocation`, and `s3:ListBucket` Amazon S3 permissions on the `awsexamplebucket1` bucket\.
 
@@ -54,5 +54,5 @@ The following example bucket policy shows the effect, principal, action, and res
 + [Amazon S3 resources](s3-arn-format.md)
 + [Principals](s3-bucket-user-policy-specifying-principal-intro.md)
 + [Amazon S3 actions](using-with-s3-actions.md)
-+ [Amazon S3 condition keys](amazon-s3-policy-keys.md)
++ [Amazon S3 condition keys](amazon-s3-condition-keys.md)
 + [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)

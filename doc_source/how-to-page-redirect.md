@@ -223,19 +223,6 @@ You decide to rename the folder from `docs/` to `documents/`\. After you make th
 In this case, you add the following routing rule to the website configuration\.  
 
 ```
-  <RoutingRules>
-    <RoutingRule>
-    <Condition>
-      <KeyPrefixEquals>docs/</KeyPrefixEquals>
-    </Condition>
-    <Redirect>
-      <ReplaceKeyPrefixWith>documents/</ReplaceKeyPrefixWith>
-    </Redirect>
-    </RoutingRule>
-  </RoutingRules>
-```
-
-```
 [
     {
         "Condition": {
@@ -248,21 +235,21 @@ In this case, you add the following routing rule to the website configuration\.
 ]
 ```
 
-**Example 2: Redirect requests for a deleted folder to a page**  
-Suppose that you delete the `images/` folder \(that is, you delete all objects with the key prefix `images/`\)\. You can add a routing rule that redirects requests for any object with the key prefix `images/` to a page named `folderdeleted.html`\.  
-
 ```
   <RoutingRules>
     <RoutingRule>
     <Condition>
-       <KeyPrefixEquals>images/</KeyPrefixEquals>
+      <KeyPrefixEquals>docs/</KeyPrefixEquals>
     </Condition>
     <Redirect>
-      <ReplaceKeyWith>folderdeleted.html</ReplaceKeyWith>
+      <ReplaceKeyPrefixWith>documents/</ReplaceKeyPrefixWith>
     </Redirect>
     </RoutingRule>
   </RoutingRules>
 ```
+
+**Example 2: Redirect requests for a deleted folder to a page**  
+Suppose that you delete the `images/` folder \(that is, you delete all objects with the key prefix `images/`\)\. You can add a routing rule that redirects requests for any object with the key prefix `images/` to a page named `folderdeleted.html`\.  
 
 ```
 [
@@ -277,23 +264,22 @@ Suppose that you delete the `images/` folder \(that is, you delete all objects w
 ]
 ```
 
-**Example 3: Redirect for an HTTP error**  
-Suppose that when a requested object is not found, you want to redirect requests to an Amazon Elastic Compute Cloud \(Amazon EC2\) instance\. Add a redirection rule so that when an HTTP status code 404 \(Not Found\) is returned, the site visitor is redirected to an Amazon EC2 instance that handles the request\.   
-The following example also inserts the object key prefix `report-404/` in the redirect\. For example, if you request a page `ExamplePage.html` and it results in an HTTP 404 error, the request is redirected to a page `report-404/ExamplePage.html` on the specified Amazon EC2 instance\. If there is no routing rule and the HTTP error 404 occurs, the error document that is specified in the configuration is returned\.  
-
 ```
   <RoutingRules>
     <RoutingRule>
     <Condition>
-      <HttpErrorCodeReturnedEquals>404</HttpErrorCodeReturnedEquals >
+       <KeyPrefixEquals>images/</KeyPrefixEquals>
     </Condition>
     <Redirect>
-      <HostName>ec2-11-22-333-44.compute-1.amazonaws.com</HostName>
-      <ReplaceKeyPrefixWith>report-404/</ReplaceKeyPrefixWith>
+      <ReplaceKeyWith>folderdeleted.html</ReplaceKeyWith>
     </Redirect>
     </RoutingRule>
   </RoutingRules>
 ```
+
+**Example 3: Redirect for an HTTP error**  
+Suppose that when a requested object is not found, you want to redirect requests to an Amazon Elastic Compute Cloud \(Amazon EC2\) instance\. Add a redirection rule so that when an HTTP status code 404 \(Not Found\) is returned, the site visitor is redirected to an Amazon EC2 instance that handles the request\.   
+The following example also inserts the object key prefix `report-404/` in the redirect\. For example, if you request a page `ExamplePage.html` and it results in an HTTP 404 error, the request is redirected to a page `report-404/ExamplePage.html` on the specified Amazon EC2 instance\. If there is no routing rule and the HTTP error 404 occurs, the error document that is specified in the configuration is returned\.  
 
 ```
 [
@@ -307,4 +293,18 @@ The following example also inserts the object key prefix `report-404/` in the re
         }
     }
 ]
+```
+
+```
+  <RoutingRules>
+    <RoutingRule>
+    <Condition>
+      <HttpErrorCodeReturnedEquals>404</HttpErrorCodeReturnedEquals >
+    </Condition>
+    <Redirect>
+      <HostName>ec2-11-22-333-44.compute-1.amazonaws.com</HostName>
+      <ReplaceKeyPrefixWith>report-404/</ReplaceKeyPrefixWith>
+    </Redirect>
+    </RoutingRule>
+  </RoutingRules>
 ```

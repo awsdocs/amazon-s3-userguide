@@ -19,6 +19,9 @@ To create an Amazon S3 Batch Operations job, the `s3:CreateJob` permission is re
 
 ## Creating an S3 Batch Operations IAM role<a name="batch-ops-iam-role-policies-create"></a>
 
+**Topics**
++ [Trust policy](#batch-ops-iam-role-policies-trust)
+
 Amazon S3 must have your permissions to perform S3 Batch Operations on your behalf\. You grant these permissions through an AWS Identity and Access Management \(IAM\) role\. This section provides examples of the trust and permissions policies you use when creating an IAM role\. For more information, see [IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)\. For examples, see [Controlling permissions for S3 Batch Operations using job tags](batch-ops-job-tags-examples.md) and [Copying objects across AWS accounts using S3 Batch Operations](batch-ops-examples-xcopy.md)\.
 
 In your IAM policies, you can also use condition keys to filter access permissions for S3 Batch Operations jobs\. For more information and a complete list of Amazon S3‐specific condition keys, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\.
@@ -84,10 +87,14 @@ Before you configure permissions, note the following:
             "Action": [
                 "s3:GetObject",
                 "s3:GetObjectAcl",
-                "s3:GetObjectTagging"
+                "s3:GetObjectTagging",
+                "s3:ListBucket"
             ],
             "Effect": "Allow",
-            "Resource": "arn:aws:s3:::{{SourceBucket}}/*"
+            "Resource": [
+                "arn:aws:s3:::{{SourceBucket}}",
+                "arn:aws:s3:::{{SourceBucket}}/*"
+            ]
         },
         {
             "Effect": "Allow",
@@ -97,6 +104,7 @@ Before you configure permissions, note the following:
                 "s3:GetBucketLocation"
             ],
             "Resource": [
+                "arn:aws:s3:::{{ManifestBucket}}",
                 "arn:aws:s3:::{{ManifestBucket}}/*"
             ]
         },
@@ -107,6 +115,7 @@ Before you configure permissions, note the following:
                 "s3:GetBucketLocation"
             ],
             "Resource": [
+                "arn:aws:s3:::{{ReportBucket}}",
                 "arn:aws:s3:::{{ReportBucket}}/*"
             ]
         }
@@ -136,6 +145,7 @@ Before you configure permissions, note the following:
         "s3:GetBucketLocation"
       ],
       "Resource": [
+        "arn:aws:s3:::{{ManifestBucket}}",
         "arn:aws:s3:::{{ManifestBucket}}/*"
       ]
     },
@@ -146,6 +156,7 @@ Before you configure permissions, note the following:
         "s3:GetBucketLocation"
       ],
       "Resource":[
+        "arn:aws:s3:::{{ReportBucket}}",
         "arn:aws:s3:::{{ReportBucket}}/*"
       ]
     }
@@ -177,6 +188,7 @@ Before you configure permissions, note the following:
                 "s3:GetBucketLocation"
             ],
             "Resource": [
+                "arn:aws:s3:::{{ManifestBucket}}",
                 "arn:aws:s3:::{{ManifestBucket}}/*"
             ]
         },
@@ -187,6 +199,7 @@ Before you configure permissions, note the following:
                 "s3:GetBucketLocation"
             ],
             "Resource": [
+                "arn:aws:s3:::{{ReportBucket}}",
                 "arn:aws:s3:::{{ReportBucket}}/*"
             ]
         }
@@ -216,6 +229,7 @@ Before you configure permissions, note the following:
         "s3:GetBucketLocation"
       ],
       "Resource": [
+        "arn:aws:s3:::{{ManifestBucket}}",
         "arn:aws:s3:::{{ManifestBucket}}/*"
       ]
     },
@@ -226,6 +240,7 @@ Before you configure permissions, note the following:
         "s3:GetBucketLocation"
       ],
       "Resource":[
+        "arn:aws:s3:::{{ReportBucket}}",
         "arn:aws:s3:::{{ReportBucket}}/*"
       ]
     }
@@ -254,6 +269,7 @@ Before you configure permissions, note the following:
         "s3:GetBucketLocation"
       ],
       "Resource": [
+        "arn:aws:s3:::{{ManifestBucket}}",
         "arn:aws:s3:::{{ManifestBucket}}/*"
       ]
     },
@@ -264,6 +280,7 @@ Before you configure permissions, note the following:
         "s3:GetBucketLocation"
       ],
       "Resource":[
+        "arn:aws:s3:::{{ReportBucket}}",
         "arn:aws:s3:::{{ReportBucket}}/*"
       ]
     }
@@ -281,7 +298,7 @@ Before you configure permissions, note the following:
             "Effect": "Allow",
             "Action": "s3:GetBucketObjectLockConfiguration",
             "Resource": [
-                "arn:aws:s3:::{{TargetResource}}/*"
+                "arn:aws:s3:::{{TargetResource}}"
             ]
         },
         {
@@ -302,6 +319,7 @@ Before you configure permissions, note the following:
                 "s3:GetBucketLocation"
             ],
             "Resource": [
+                "arn:aws:s3:::{{ManifestBucket}}",
                 "arn:aws:s3:::{{ManifestBucket}}/*"
             ]
         },
@@ -312,6 +330,7 @@ Before you configure permissions, note the following:
                 "s3:GetBucketLocation"
             ],
             "Resource": [
+                "arn:aws:s3:::{{ReportBucket}}",
                 "arn:aws:s3:::{{ReportBucket}}/*"
             ]
         }
@@ -329,7 +348,7 @@ Before you configure permissions, note the following:
             "Effect": "Allow",
             "Action": "s3:GetBucketObjectLockConfiguration",
             "Resource": [
-                "arn:aws:s3:::{{TargetResource}}/"
+                "arn:aws:s3:::{{TargetResource}}"
             ]
         },
         {
@@ -347,6 +366,7 @@ Before you configure permissions, note the following:
                 "s3:GetBucketLocation"
             ],
             "Resource": [
+                "arn:aws:s3:::{{ManifestBucket}}",
                 "arn:aws:s3:::{{ManifestBucket}}/*"
             ]
         },
@@ -357,6 +377,7 @@ Before you configure permissions, note the following:
                 "s3:GetBucketLocation"
             ],
             "Resource": [
+                "arn:aws:s3:::{{ReportBucket}}",
                 "arn:aws:s3:::{{ReportBucket}}/*"
             ]
         }

@@ -68,7 +68,7 @@ aws s3control list-regional-buckets --account-id 123456789012 --outpost-id op-01
 The following AWS CLI example creates an access point for an Outposts bucket\.
 
 ```
-aws s3control create-access-point --account-id 123456789012 --name example-access-point --bucket "arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket" --vpc-configuration VpcId=example-vpc-12345
+aws s3control create-access-point --account-id 123456789012 --name example-Outposts-Access-Point --bucket "arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket" --vpc-configuration VpcId=example-vpc-12345
 ```
 
 
@@ -78,7 +78,7 @@ aws s3control create-access-point --account-id 123456789012 --name example-acces
 The following AWS CLI example gets an access point for an Outposts bucket\.
 
 ```
-aws s3control get-access-point --account-id 123456789012 --name arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-access-point
+aws s3control get-access-point --account-id 123456789012 --name arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point
 ```
 
 
@@ -190,14 +190,14 @@ aws s3control get-bucket-policy --account-id 123456789012 --bucket arn:aws:s3-ou
 
 ### Put a policy on an S3 on Outposts access point<a name="S3OutpostsPutAccessPointPolicyCLI"></a>
 
-The following AWS CLI example puts policy for an Outposts bucket\.
+The following AWS CLI example puts policy for an Outposts access point\.
 
-1. Save the access point policy to a JSON file\.
+1. Save the access point policy to a JSON file called *appolicy1\.json*\.
 
    ```
    {
       "Version":"2012-10-17",
-      "Id":"testBucketPolicy",
+      "Id":"exampleAccessPointPolicy",
       "Statement":[
          {
             "Sid":"st1",
@@ -206,16 +206,16 @@ The following AWS CLI example puts policy for an Outposts bucket\.
                "AWS":"123456789012"
             },
             "Action":"s3-outposts:*",
-            "Resource":"arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket"
+            "Resource":"arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point
          }
       ]
    }
    ```
 
-1. Submit the JSON file as part of the put bucket policy CLI command\.
+1. Submit the JSON file as part of the put access point policy CLI command\.
 
    ```
-   aws s3control put-access-point-policy --account-id 123456789012 --name arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-access-point --policy file://appolicy1.json
+   aws s3control put-access-point-policy --account-id 123456789012 --name arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point --policy file://appolicy1.json
    ```
 
 
@@ -227,7 +227,7 @@ The following AWS CLI example gets a policy for an Outposts bucket\.
 
 
 ```
-aws s3control get-access-point-policy --account-id 123456789012 --name arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-access-point
+aws s3control get-access-point-policy --account-id 123456789012 --name arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point
 ```
 
 ### Create an endpoint on an Outpost<a name="S3OutpostsCreateEndpointCLI"></a>
@@ -270,7 +270,7 @@ You can use the AWS CLI to put and manage your S3 on Outposts objects\. From the
 The following example put an S3 on Outposts `s3-outposts:PutObeject` using the AWS CLI\. 
 
 ```
-aws s3api put-object --bucket arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-access-point --key testkey --body sample-object.xml
+aws s3api put-object --bucket arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point --key testkey --body sample-object.xml
 ```
 
 ### Get the S3 on Outposts bucket<a name="S3OutpostsGetObjectCLI"></a>
@@ -278,7 +278,7 @@ aws s3api put-object --bucket arn:aws:s3-outposts:<your-region>:123456789012:out
 The following S3 on Outposts example gets a bucket using the AWS CLI\. 
 
 ```
-aws s3api get-object --bucket arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-access-point --key testkey sample-object.xml
+aws s3api get-object --bucket arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point --key testkey sample-object.xml
 ```
 
 
@@ -288,5 +288,5 @@ aws s3api get-object --bucket arn:aws:s3-outposts:<your-region>:123456789012:out
 The following example list S3 on Outposts `s3-outposts:ListObjectsV2` using the AWS CLI\. 
 
 ```
-aws s3api list-objects-v2 --bucket arn:aws:s3-outposts:us-west-2:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-access-point
+aws s3api list-objects-v2 --bucket arn:aws:s3-outposts:us-west-2:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point
 ```

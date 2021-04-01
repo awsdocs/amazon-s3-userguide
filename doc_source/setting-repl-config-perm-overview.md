@@ -96,7 +96,7 @@ Permissions for the `s3:ReplicateObject` action on the *destination* buckets als
   For a list of Amazon S3 actions, see [Amazon S3 actions](using-with-s3-actions.md)\.
 **Important**  
 The AWS account that owns the IAM role must have permissions for the actions that it grants to the IAM role\.   
-For example, suppose that the source bucket contains objects owned by another AWS account\. The owner of the objects must explicitly grant the AWS account that owns the IAM role the required permissions through the object ACL\. Otherwise, Amazon S3 can't access the objects, and replication of the objects fails\. For information about ACL permissions, see [Managing access with ACLs](acl-overview.md)\.  
+For example, suppose that the source bucket contains objects owned by another AWS account\. The owner of the objects must explicitly grant the AWS account that owns the IAM role the required permissions through the object ACL\. Otherwise, Amazon S3 can't access the objects, and replication of the objects fails\. For information about ACL permissions, see [Access control list \(ACL\) overview](acl-overview.md)\.  
 The permissions described here are related to minimum replication configuration\. If you choose to add optional replication configurations, you must grant additional permissions to Amazon S3\. For more information, see [Additional replication configurations](replication-additional-configs.md)\. 
 
 ## Granting permissions when source and destination buckets are owned by different AWS accounts<a name="setting-repl-config-crossacct"></a>

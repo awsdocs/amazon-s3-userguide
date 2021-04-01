@@ -273,7 +273,7 @@ Amazon S3 writes the log files to the target bucket as a member of the predefine
 1. http://acs.amazonaws.com/groups/s3/LogDelivery
 ```
 
-To grant `WRITE` and `READ_ACP` permissions, add the following grants\. For information about ACLs, see [Managing access with ACLs](acl-overview.md)\.
+To grant `WRITE` and `READ_ACP` permissions, add the following grants\. For information about ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
 ```
  1. <Grant>

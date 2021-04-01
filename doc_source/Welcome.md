@@ -6,7 +6,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # What is Amazon S3?<a name="Welcome"></a>
 
-Amazon Simple Storage Service is storage for the Internet\. It is designed to make web\-scale computing easier for developers\.
+Amazon Simple Storage Service \(Amazon S3\) is storage for the Internet\. It is designed to make web\-scale computing easier for developers\.
 
 Amazon S3 has a simple web services interface that you can use to store and retrieve any amount of data, at any time, from anywhere on the web\. It gives any developer access to the same highly scalable, reliable, fast, inexpensive data storage infrastructure that Amazon uses to run its own global network of web sites\. The service aims to maximize benefits of scale and to pass those benefits on to developers\.
 
@@ -30,7 +30,7 @@ This guide describes how you send requests to create buckets, store and retrieve
 | --- | --- | 
 |  General product overview and pricing  |  [Amazon S3](https://aws.amazon.com/s3/)  | 
 |  How do I work with buckets?  |  [Buckets overview](UsingBucket.md)  | 
-| How do I work with access points? | [Managing data access with Amazon S3 access points ](access-points.md) | 
+| How do I work with access points? | [Managing data access with Amazon S3 access points](access-points.md) | 
 |  How do I work with objects?  |  [Amazon S3 objects overview](UsingObjects.md)  | 
 |  How do I make requests?  |  [Making requests](MakingRequests.md)  | 
 |  How do I manage access to my resources?  |  [Identity and access management in Amazon S3](s3-access-control.md)  | 
@@ -189,7 +189,7 @@ For more information about IAM, see the following:
 
 ### Access control lists<a name="S3_ACLs"></a>
 
-You can control access to each of your buckets and objects using an access control list \(ACL\)\. For more information, see [Managing access with ACLs](acl-overview.md)\.
+You can control access to each of your buckets and objects using an access control list \(ACL\)\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
 ### Versioning<a name="Versions"></a>
 

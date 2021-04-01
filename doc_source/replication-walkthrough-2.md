@@ -8,6 +8,8 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 Setting up replication when *source* and *destination* buckets are owned by different AWS accounts is similar to setting replication when both buckets are owned by the same account\. The only difference is that the *destination* bucket owner must grant the *source* bucket owner permission to replicate objects by adding a bucket policy\. 
 
+For more information about configuring replication using sever\-side encryption with AWS Key Management Service in cross\-account scenarios, see [Granting additional permissions for cross\-account scenarios](replication-config-for-kms-objects.md#replication-kms-cross-acct-scenario)\.
+
 **To configure replication when the source and destination buckets are owned by different AWS accounts**
 
 1. In this example, you create *source* and *destination* buckets in two different AWS accounts\. You need to have two credential profiles set for the AWS CLI \(in this example, we use `acctA` and `acctB` for profile names\)\. For more information about setting credential profiles, see [Named Profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html) in the *AWS Command Line Interface User Guide*\. 
@@ -46,3 +48,5 @@ Setting up replication when *source* and *destination* buckets are owned by diff
    ```
 
 Choose the bucket and add the bucket policy\. For instructions, see [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)\.
+
+In replication, the owner of the source object owns the replica by default\. When source and destination buckets are owned by different AWS accounts, you can add optional configuration settings to change replica ownership to the AWS account that owns the destination buckets\. For more information, see [Changing the replica owner](replication-change-owner.md)\.

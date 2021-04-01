@@ -17,7 +17,7 @@ When granting permissions for the `PUT Object` and `DELETE Object` operations, t
 + `s3:RequestObjectTagKeys` – Use this condition key to restrict the tag keys that you want to allow on objects\. This is useful when adding tags to objects using the PutObjectTagging and PutObject, and POST object requests\.
 + `s3:RequestObjectTag/<tag-key>` – Use this condition key to restrict the tag keys and values that you want to allow on objects\. This is useful when adding tags to objects using the PutObjectTagging and PutObject, and POST Bucket requests\.
 
-For a complete list of Amazon S3 service\-specific condition keys, see [Amazon S3 condition keys](amazon-s3-policy-keys.md)\. The following permissions policies illustrate how object tagging enables fine grained access permissions management\.
+For a complete list of Amazon S3 service\-specific condition keys, see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\. The following permissions policies illustrate how object tagging enables fine grained access permissions management\.
 
 **Example 1: Allow a user to read only the objects that have a specific tag**  
 The following permissions policy grants a user permission to read objects, but the condition limits the read permission to only objects that have the following specific tag key and value\.  

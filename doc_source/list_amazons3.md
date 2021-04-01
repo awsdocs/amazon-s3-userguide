@@ -67,8 +67,8 @@ To view the global condition keys that are available to all services, see [Avail
 |   [ s3:RequestJobPriority ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-job-tags-examples.html)  | Filters access to creating new jobs by priority range | Numeric | 
 |   [ s3:RequestObjectTag/<key> ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/tagging-and-policies.html)  | Filters access by the tag keys and values to be added to objects | String | 
 |   [ s3:RequestObjectTagKeys ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/tagging-and-policies.html)  | Filters access by the tag keys to be added to objects | String | 
-|   [ s3:ResourceAccount ](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-s3.html#vpc-endpoints-policies-s3)  | Filters access by the resource owner AWS account ID | String | 
-|   [ s3:TlsVersion ](https://docs.aws.amazon.com/AmazonS3/latest/API/bucket-policy-s3-sigv4-conditions.html)  | Filters access by the TLS version used by the client | Numeric | 
+|   [ s3:ResourceAccount ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#example-object-resource-account)  | Filters access by the resource owner AWS account ID | String | 
+|   [ s3:TlsVersion ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#example-object-tls-version)  | Filters access by the TLS version used by the client | Numeric | 
 |   [ s3:VersionId ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#getobjectversion-limit-access-to-specific-version-3)  | Filters access by a specific object version | String | 
 |   [ s3:authType ](https://docs.aws.amazon.com/AmazonS3/latest/API/bucket-policy-s3-sigv4-conditions.html)  | Filters access by authentication method | String | 
 |   [ s3:delimiter ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/walkthrough1.html)  | Filters access by delimiter parameter | String | 

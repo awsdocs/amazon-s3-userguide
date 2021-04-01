@@ -45,7 +45,7 @@ When you enable S3 Versioning on an existing bucket, objects that are already st
 
 Only Amazon S3 generates version IDs, and they cannot be edited\. Version IDs are Unicode, UTF\-8 encoded, URL\-ready, opaque strings that are no more than 1,024 bytes long\. The following is an example:
 
-`3/L4kqtJlcpXroDTDmJ+rmSpXd3dIbrHY+MTRCxf3vjVBH40Nr8X8gdRQBpUMLUo`
+`3sL4kqtJlcpXroDTDmJ+rmSpXd3dIbrHY+MTRCxf3vjVBH40Nr8X8gdRQBpUMLUo`
 
 **Note**  
 For simplicity, the other examples in this topic use much shorter IDs\.
@@ -79,6 +79,8 @@ You can permanently delete an object by specifying the version you want to delet
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/versioning_DELETE_versioningEnabled2.png)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/)![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/)
 
 You can add more security by configuring a bucket to enable MFA \(multi\-factor authentication\) delete\. When you do, the bucket owner must include two forms of authentication in any request to delete a version or change the versioning state of the bucket\. For more information, see [Configuring MFA delete](MultiFactorAuthenticationDelete.md)\.
+
+ New versions are created only when you `PUT` a new object\. Be aware that certain actions like `COPY` work by implementing `PUT`\. Taking actions that modify the current object will not create a new version because they do not `PUT` a new object\. This includes actions such as changing the tags on an object\. 
 
 **Important**  
 If you notice a significant increase in the number of HTTP 503\-slow down responses received for Amazon S3 PUT or DELETE object requests to a bucket that has S3 Versioning enabled, you might have one or more objects in the bucket for which there are millions of versions\. For more information, see [Significant Increases in HTTP 503 Responses to Amazon S3 Requests to Buckets with Versioning Enabled](troubleshooting-by-symptom.md#troubleshooting-by-symptom-increase-503-reponses) in the Troubleshooting section\.

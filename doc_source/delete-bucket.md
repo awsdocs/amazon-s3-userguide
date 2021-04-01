@@ -6,13 +6,8 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Deleting a bucket<a name="delete-bucket"></a>
 
-You can delete an empty Amazon S3 bucket, and when you're using the AWS Management Console, you can delete a bucket that contains objects\. If you delete a bucket that contains objects, all the objects in the bucket are permanently deleted\. 
-
-When you delete a bucket that has S3 Bucket Versioning enabled, all versions of all the objects in the bucket are permanently deleted\. For more information about versioning, see [Working with objects in a versioning\-enabled bucket](manage-objects-versioned-bucket.md)\.
-
-Before deleting a bucket, consider the following:
+You can delete an empty Amazon S3 bucket\. Before deleting a bucket, consider the following:
 + Bucket names are unique\. If you delete a bucket, another AWS user can use the name\. 
-+ When you delete a bucket that contains objects, all the objects in the bucket are permanently deleted, including objects that transitioned to the `S3 Glacier` storage class\.
 + If the bucket hosts a static website, and you created and configured an Amazon Route 53 hosted zone as described in [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md), you must clean up the Route 53 hosted zone settings that are related to the bucket\. For more information, see [Step 2: Delete the Route 53 hosted zone](getting-started-cleanup.md#getting-started-cleanup-route53)\.
 + If the bucket receives log data from Elastic Load Balancing \(ELB\): We recommend that you stop the delivery of ELB logs to the bucket before deleting it\. After you delete the bucket, if another user creates a bucket using the same name, your log data could potentially be delivered to that bucket\. For information about ELB access logs, see [Access logs](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html) in the *User Guide for Classic Load Balancers* and [Access logs](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html) in the *User Guide for Application Load Balancers*\.
 

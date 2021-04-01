@@ -79,7 +79,7 @@ To require that a particular AWS KMS CMK be used to encrypt the objects in a buc
 **Note**  
 When you upload an object, you can specify the AWS KMS CMK using the `x-amz-server-side-encryption-aws-kms-key-id` header\. If the header is not present in the request, Amazon S3 assumes the AWS managed CMK\. Regardless, the AWS KMS key ID that Amazon S3 uses for object encryption must match the AWS KMS key ID in the policy, otherwise Amazon S3 denies the request\.
 
-For a complete list of Amazon S3‐specific condition keys and more information about specifying condition keys, see [Amazon S3 condition keys](amazon-s3-policy-keys.md)\.
+For a complete list of Amazon S3‐specific condition keys and more information about specifying condition keys, see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\.
 
 ## Encryption context<a name="encryption-context"></a>
 

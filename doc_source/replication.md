@@ -64,7 +64,7 @@ Replication requires the following:
   For more information about enabling or disabling an AWS Region, see [AWS Service Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *AWS General Reference*\.
 + Both source and destination buckets must have versioning enabled\. For more information about versioning, see [Using versioning in S3 buckets](Versioning.md)\.
 + Amazon S3 must have permissions to replicate objects from the source bucket to the destination bucket or buckets on your behalf\. 
-+ If the owner of the source bucket doesn't own the object in the bucket, the object owner must grant the bucket owner `READ` and `READ_ACP` permissions with the object access control list \(ACL\)\. For more information, see [Managing access with ACLs](acl-overview.md)\.
++ If the owner of the source bucket doesn't own the object in the bucket, the object owner must grant the bucket owner `READ` and `READ_ACP` permissions with the object access control list \(ACL\)\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\.
 + If the source bucket has S3 Object Lock enabled, the destination buckets must also have S3 Object Lock enabled\. 
 
   For more information, see [Using S3 Object Lock](object-lock.md)\. To enable replication on a bucket that has Object Lock enabled, contact [AWS Support](https://console.aws.amazon.com/support/home)\.

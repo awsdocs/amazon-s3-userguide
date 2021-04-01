@@ -35,13 +35,13 @@ For more information, see [Example 1: Bucket owner granting its users bucket per
 **Bucket policies**  
 With bucket policies, you can personalize bucket access to help ensure that only those users you have approved can access resources and perform actions within them\. In addition to bucket policies, you should use bucket\-level Block Public Access settings to further limit public access to your data\. 
 
-For more information, see [Bucket policies and user policies](using-iam-policies.md)\.
+For more information, see [Using bucket policies](bucket-policies.md)\.
 
 When creating policies, avoid the use of wildcards in the `Principal` element because it effectively allows anyone to access your Amazon S3 resources\. It's better to explicitly list users or groups that are allowed to access the bucket\. Rather than including a wildcard for their actions, grant them specific permissions when applicable\. 
 
 To further maintain the practice of least privileges, Deny statements in the `Effect` element should be as broad as possible and Allow statements should be as narrow as possible\. Deny effects paired with the "`s3:*`" action are another good way to implement opt\-in best practices for the users included in policy condition statements\.
 
-For more information about specifying conditions for when a policy is in effect, see [Amazon S3 condition keys](amazon-s3-policy-keys.md)\.
+For more information about specifying conditions for when a policy is in effect, see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\.
 
 **Buckets in a VPC setting**  
 When adding users in a corporate setting, you can use a virtual private cloud \(VPC\) endpoint to allow any users in your virtual network to access your Amazon S3 resources\. VPC endpoints enable developers to provide specific access and permissions to groups of users based on the network the user is connected to\. Rather than adding each user to an IAM role or group, you can use VPC endpoints to deny bucket access if the request doesn’t originate from the specified endpoint\.

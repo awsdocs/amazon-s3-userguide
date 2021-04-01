@@ -20,5 +20,5 @@ If you want to limit public access to all objects in a bucket, you should use Am
 + S3 Batch Operations uses the Amazon S3 PutObjectAcl operation to apply the specified ACL to every object in the manifest\. Therefore, all restrictions and limitations that apply to the underlying PutObjectAcl operation also apply to S3 Batch Operations Replace access control list jobs\. For more information, see the [Related resources](#batch-ops-put-object-acl-related-resources) section of this page\.
 
 ## Related resources<a name="batch-ops-put-object-acl-related-resources"></a>
-+ [Managing access with ACLs](acl-overview.md)
++ [Access control list \(ACL\) overview](acl-overview.md)
 + [GetObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html) in the *Amazon Simple Storage Service API Reference*

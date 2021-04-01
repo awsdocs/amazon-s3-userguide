@@ -198,3 +198,27 @@ namespace Amazon.DocSamples.S3
 ## Using the REST API<a name="restoring-objects-rest"></a>
 
 Amazon S3 provides an API for you to initiate an archive restoration\. For more information, see [RestoreObject](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html) in the *Amazon Simple Storage Service API Reference*\.
+
+## Using the AWS CLI<a name="restoring-objects-cli"></a>
+
+Use the `restore-object` command to restore objects from S3 Glacier\.
+
+The following example restores object *dir1/example\.obj* in *awsexamplebucket* for 25 days\.
+
+```
+aws s3api restore-object --bucket awsexamplebucket --key dir1/example.obj --restore-request '{"Days":25,"GlacierJobParameters":{"Tier":"Standard"}}'
+```
+
+If the JSON syntax used in the example results in an error on a Windows client, replace the restore request with the following syntax:
+
+```
+--restore-request Days=25,GlacierJobParameters={"Tier"="Standard"}
+```
+
+You can use the following command to monitor the status of your `restore-object` request:
+
+```
+aws s3api head-object --bucket awsexamplebucket --key dir1/example.obj
+```
+
+For more information, see [restore\-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/restore-object.html) in the AWS CLI Command Reference\.

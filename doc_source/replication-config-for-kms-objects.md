@@ -124,49 +124,42 @@ The following example policy shows statements for using AWS KMS with separate de
 
 ```
 {
-    "Action": ["kms:Decrypt"],
-    "Effect": "Allow",
-    "Condition": {
-        "StringLike": {
-            "kms:ViaService": "s3.source-bucket-region.amazonaws.com",
-            "kms:EncryptionContext:aws:s3:arn": [
-                "arn:aws:s3:::source-bucket-name/key-prefix1*",
-            ]
-        }
-    },
-    "Resource": [
-        "List of AWS KMS key ARNs used to encrypt source objects.", 
-    ]
-},
-{
-    "Action": ["kms:Encrypt"],
-    "Effect": "Allow",
-    "Condition": {
-        "StringLike": {
-            "kms:ViaService": "s3.destination-bucket-1-region.amazonaws.com",
-            "kms:EncryptionContext:aws:s3:arn": [
-                "arn:aws:s3:::destination-bucket-name-1/key-prefix1*",
-            ]
-        }
-    },
-    "Resource": [
-         "AWS KMS key ARNs (for the AWS Region of the destination bucket 1). Used to encrypt object replicas created in destination bucket 1.", 
-    ]
-},
-{
-    "Action": ["kms:Encrypt"],
-    "Effect": "Allow",
-    "Condition": {
-        "StringLike": {
-            "kms:ViaService": "s3.destination-bucket-2-region.amazonaws.com",
-            "kms:EncryptionContext:aws:s3:arn": [
-                "arn:aws:s3:::destination-bucket-2-name/key-prefix1*",
-            ]
-        }
-    },
-    "Resource": [
-         "AWS KMS key ARNs (for the AWS Region of destination bucket 2). Used to encrypt object replicas created in destination bucket 2.",
-    ]
+	"Version": "2012-10-17",
+	"Statement": [{
+			"Action": ["kms:Decrypt"],
+			"Effect": "Allow",
+			"Resource": "List of AWS KMS key ARNs used to encrypt source objects.",
+			"Condition": {
+				"StringLike": {
+					"kms:ViaService": "s3.source-bucket-region.amazonaws.com",
+					"kms:EncryptionContext:aws:s3:arn": "arn:aws:s3:::source-bucket-name/key-prefix1/*"
+				}
+			}
+		},
+
+		{
+			"Action": ["kms:Encrypt"],
+			"Effect": "Allow",
+			"Resource": "AWS KMS key ARNs (for the AWS Region of the destination bucket 1). Used to encrypt object replicas created in destination bucket 1.",
+			"Condition": {
+				"StringLike": {
+					"kms:ViaService": "s3.destination-bucket-1-region.amazonaws.com",
+					"kms:EncryptionContext:aws:s3:arn": "arn:aws:s3:::destination-bucket-name-1/key-prefix1/*"
+				}
+			}
+		},
+		{
+			"Action": ["kms:Encrypt"],
+			"Effect": "Allow",
+			"Resource": "AWS KMS key ARNs (for the AWS Region of destination bucket 2). Used to encrypt object replicas created in destination bucket 2.",
+			"Condition": {
+				"StringLike": {
+					"kms:ViaService": "s3.destination-bucket-2-region.amazonaws.com",
+					"kms:EncryptionContext:aws:s3:arn": "arn:aws:s3:::destination-bucket-2-name/key-prefix1*"
+				}
+			}
+		}
+	]
 }
 ```
 

@@ -11,5 +11,6 @@ With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and e
 This section contains the following examples of creating, managing Outposts buckets and performing object operations with S3 on Outposts\. In the examples, replace any variable values with those that suit your needs\.
 
 **Topics**
++ [Using Amazon S3 on Outposts with the Amazon S3 console](outposts-console.md)
 + [Amazon S3 on Outposts examples using the AWS CLI](S3OutpostsCLIExamples.md)
 + [Amazon S3 on Outposts examples using the SDK for Java](S3OutpostsJavaExamples.md)

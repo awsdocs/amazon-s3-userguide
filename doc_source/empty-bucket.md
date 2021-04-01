@@ -22,7 +22,7 @@ You can use the Amazon S3 console to empty a bucket, which deletes all of the ob
 
 1. On the **Empty bucket** page, confirm that you want to empty the bucket by entering the bucket name into the text field, and then choose **Empty**\.
 
-1. \(Optional\) Monitor the progress of the bucket emptying process on the **Empty bucket: Status** page\.
+1. Monitor the progress of the bucket emptying process on the **Empty bucket: Status** page\.
 
 ## Using the AWS CLI<a name="empty-bucket-awscli"></a>
 

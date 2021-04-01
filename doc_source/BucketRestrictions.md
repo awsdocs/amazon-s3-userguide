@@ -21,6 +21,8 @@ If a bucket is empty, you can delete it\. After a bucket is deleted, the name be
 
 For example, when you delete the bucket and the name becomes available for reuse, another AWS account might create a bucket with that name\. In addition, some time might pass before you can reuse the name of a deleted bucket\. If you want to use the same bucket name, we recommend that you don't delete the bucket\.
 
+For more information about bucket names, see [Bucket naming rules](bucketnamingrules.md)
+
 **Objects and buckets**  
 There is no limit to the number of objects that you can store in a bucket\. You can store all of your objects in a single bucket, or you can organize them across several buckets\. However, you can't create a bucket from within another bucket\.
 

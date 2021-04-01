@@ -9,9 +9,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 You can use the Amazon S3 Event Notifications feature to receive notifications when certain events happen in your S3 bucket\. To enable notifications, you must first add a notification configuration that identifies the events you want Amazon S3 to publish and the destinations where you want Amazon S3 to send the notifications\. You store this configuration in the *notification* subresource that is associated with a bucket\. For more information, see [Bucket configuration options](UsingBucket.md#bucket-config-options-intro)\. Amazon S3 provides an API for you to manage this subresource\. 
 
 **Important**  
-In Amazon S3, event notifications are designed to be delivered at least once\. Typically, they are delivered in seconds but can sometimes take a minute or longer\.  
-If two writes are made to a single non\-versioned object at the same time, it is possible that only a single event notification will be sent\. If you want to ensure that an event notification is sent for every successful write, you can enable versioning on your bucket\. With versioning, every successful write will create a new version of your object and will also send an event notification\.  
-For more information, see [Using versioning in S3 buckets](Versioning.md)\.
+Amazon S3 event notifications are designed to be delivered at least once\. Typically, event notifications are delivered in seconds but can sometimes take a minute or longer\. 
 
 ## Overview of Amazon S3 Event Notifications<a name="notification-how-to-overview"></a>
 

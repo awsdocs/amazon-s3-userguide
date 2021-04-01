@@ -16,7 +16,7 @@ There are no additional charges for using default encryption for S3 buckets\. Re
 
 You can enable Amazon S3 default encryption for an S3 bucket using the Amazon S3 console, the AWS SDKs, the Amazon S3 REST API, and the AWS Command Line Interface \(AWS CLI\)\.
 
-## Using the console<a name="bucket-encryption-how-to-set-up-console"></a>
+## Using the S3 console<a name="bucket-encryption-how-to-set-up-console"></a>
 
 **To enable default encryption on an Amazon S3 bucket**
 
@@ -56,7 +56,45 @@ When you use an AWS KMS CMK for server\-side encryption in Amazon S3, you must c
 
 1. Choose **Save changes**\.
 
-## Using the API<a name="bucket-encryption-how-to-set-up-api"></a>
+## Using the AWS CLI<a name="default-bucket-encryption-cli"></a>
+
+These examples show you how to configure default encryption using Amazon S3\-managed encryption \(SSE\-S3\) or AWS KMS encryption \(SSE\-KMS\) with an S3 Bucket Key\.
+
+For more information about default encryption, see [ Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\. For more information about using the AWS CLI to configure default encryption, see [put\-bucket\-encryption](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-encryption.html)\.
+
+**Example – Default encryption with SSE\-S3**  
+This example configures default bucket encryption with Amazon S3\-managed encryption\.  
+
+```
+aws s3api put-bucket-encryption --bucket bucket-name --server-side-encryption-configuration '{
+    "Rules": [
+        {
+            "ApplyServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+            }
+        }
+    ]
+}'
+```
+
+**Example – Default encryption with SSE\-KMS using an S3 Bucket Key**  
+This example configures default bucket encryption with SSE\-KMS using an S3 Bucket Key\.   
+
+```
+aws s3api put-bucket-encryption --bucket bucket-name --server-side-encryption-configuration '{
+    "Rules": [
+            {
+                "ApplyServerSideEncryptionByDefault": {
+                    "SSEAlgorithm": "aws:kms",
+                    "KMSMasterKeyID": "KMS-Key-ARN"
+                },
+                "BucketKeyEnabled": true
+            }
+        ]
+    }'
+```
+
+## Using the REST API<a name="bucket-encryption-how-to-set-up-api"></a>
 
 Use the REST API PUT Bucket encryption operation to enable default encryption and to set the type of server\-side encryption to use—SSE\-S3 or SSE\-KMS\. 
 

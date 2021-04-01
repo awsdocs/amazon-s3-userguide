@@ -1,7 +1,7 @@
 # Amazon Simple Storage Service User Guide
 
 -----
-*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy;  Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -26,7 +26,6 @@ Amazon's trademarks and trade dress may not be used in
       + [Common use scenarios](S3-gsg-CommonUseScenarios.md)
       + [Considerations going forward](s3-gsg-ConsiderationsGoingForward.md)
       + [Advanced Amazon S3 features](S3-gsg-AdvancedAmazonS3Features.md)
-      + [Changing the language of the AWS Management Console](change-ui-language.md)
       + [Access control best practices](access-control-best-practices.md)
       + [Development resources](S3-gsg-DevelopmentResources.md)
 + [Creating, configuring, and working with Amazon S3 buckets](creating-buckets-s3.md)
@@ -78,6 +77,13 @@ Amazon's trademarks and trade dress may not be used in
    + [Using presigned URLs](using-presigned-url.md)
       + [Sharing an object with a presigned URL](ShareObjectPreSignedURL.md)
       + [Uploading objects using presigned URLs](PresignedUrlUploadObject.md)
+   + [Transforming objects with S3 Object Lambda](transforming-objects.md)
+      + [Creating Object Lambda Access Points](olap-create.md)
+      + [Configuring IAM policies for Object Lambda access points](olap-policies.md)
+      + [Writing and debugging Lambda functions for S3 Object Lambda Access Points](olap-writing-lambda.md)
+      + [Using AWS built Lambda functions](olap-examples.md)
+      + [Best practices and guidelines for S3 Object Lambda](olap-best-practices.md)
+      + [Security considerations for S3 Object Lambda access points](olap-security.md)
    + [Retrieving Amazon S3 objects using BitTorrent](S3Torrent.md)
 + [Amazon S3 Security](security.md)
    + [Data protection in Amazon S3](DataDurability.md)
@@ -107,7 +113,8 @@ Amazon's trademarks and trade dress may not be used in
             + [Amazon S3 resources](s3-arn-format.md)
             + [Principals](s3-bucket-user-policy-specifying-principal-intro.md)
             + [Amazon S3 actions](using-with-s3-actions.md)
-            + [Amazon S3 condition keys](amazon-s3-policy-keys.md)
+            + [Amazon S3 condition keys](amazon-s3-condition-keys.md)
+               + [Amazon S3 condition key examples](amazon-s3-policy-keys.md)
             + [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)
          + [Using bucket policies](bucket-policies.md)
             + [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)
@@ -123,8 +130,8 @@ Amazon's trademarks and trade dress may not be used in
             + [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)
             + [Example 4: Bucket owner granting cross-account permission to objects it does not own](example-walkthroughs-managing-access-example4.md)
          + [Using service-linked roles for Amazon S3 Storage Lens](using-service-linked-roles.md)
-      + [Managing access with ACLs](acl-overview.md)
-         + [Access control list (ACL) overview](acl_overview.md)
+      + [Managing access with ACLs](acls.md)
+         + [Access control list (ACL) overview](acl-overview.md)
          + [Finding the canonical user ID for your AWS account](finding-canonical-user-id.md)
          + [Configuring ACLs](managing-acls.md)
       + [Using cross-origin resource sharing (CORS)](cors.md)
@@ -396,6 +403,15 @@ Amazon's trademarks and trade dress may not be used in
       + [Accessing Amazon S3 on Outposts using virtual private cloud (VPC) only access points](AccessingS3Outposts.md)
       + [Monitoring Amazon S3 on Outposts](MonitoringS3Outposts.md)
    + [Amazon S3 on Outposts examples](S3OutpostsExamples.md)
+      + [Using Amazon S3 on Outposts with the Amazon S3 console](outposts-console.md)
+         + [Creating an Amazon S3 on Outposts bucket with Amazon S3 console](s3-outposts-create-bucket.md)
+         + [View and edit the properties of the Amazon S3 on Outposts buckets with Amazon S3 console](s3-outposts-edit-bucket-properties.md)
+            + [Add and remove tag for the Amazon S3 on Outposts buckets with Amazon S3 console](s3-outposts-add-bucket-tags.md)
+            + [Add your Amazon S3 on Outposts bucket to AWS CloudTrail with Amazon S3 console](s3-outposts-add-bucket-events-cloudtrail.md)
+            + [Managing your Amazon S3 on Outposts bucket permissions with Amazon S3 console](s3-outposts-bucket-edit-permissions.md)
+            + [Managing your Amazon S3 on Outposts bucket access points with Amazon S3 console](s3-outposts-bucket-edit-outpost-access-point.md)
+         + [Deleting an Amazon S3 on Outposts with Amazon S3 console](s3-outposts-delete-bucket.md)
+         + [Managing your Amazon S3 on Outposts access points with Amazon S3 console](s3-outposts-bucket-manage-outpost-access-points.md)
       + [Amazon S3 on Outposts examples using the AWS CLI](S3OutpostsCLIExamples.md)
       + [Amazon S3 on Outposts examples using the SDK for Java](S3OutpostsJavaExamples.md)
          + [Creating and managing Amazon S3 on Outposts bucket](S3OutpostsBucketJava.md)

@@ -58,26 +58,16 @@ It is possible for some other request received between the time you initiated a 
 
 After you initiate a multipart upload, Amazon S3 retains all the parts until you either complete or stop the upload\. Throughout its lifetime, you are billed for all storage, bandwidth, and requests for this multipart upload and its associated parts\. If you stop the multipart upload, Amazon S3 deletes upload artifacts and any parts that you have uploaded, and you are no longer billed for them\. For more information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 
-## API support for multipart upload<a name="sdksupportformpu"></a>
-
-
-
-You can use an AWS SDKs to upload an object in parts\. The following AWS SDK libraries support multipart upload:
-+ [AWS SDK for Java ](https://aws.amazon.com/sdk-for-java/)
-+ [AWS SDK for \.NET](https://aws.amazon.com/sdk-for-net/)
-+ [AWS SDK for PHP](https://aws.amazon.com/sdk-for-php/)
-+ [AWS SDK for Ruby](https://aws.amazon.com/sdk-for-ruby/)
-+ [AWS SDK for Python \(Boto\)](https://aws.amazon.com/sdk-for-python/)
-+ [AWS SDK for JavaScript in Node\.js](https://aws.amazon.com/sdk-for-node-js/)
+## API support for multipart upload<a name="apisupportformpu"></a>
 
 These libraries provide a high\-level abstraction that makes uploading multipart objects easy\. However, if your application requires, you can use the REST API directly\. The following sections in the *Amazon Simple Storage Service API Reference* describe the REST API for multipart upload\. 
-+ [Initiate Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html)
-+ [Upload Part](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPart.html)
-+ [Upload Part \(Copy\)](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPartCopy.html)
-+ [Complete Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadComplete.html)
-+ [Abort Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadAbort.html)
-+ [List Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListParts.html)
-+ [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListMPUpload.html)
++ [Create Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html)
++ [Upload Part](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
++ [Upload Part \(Copy\)](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html)
++ [Complete Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html)
++ [Abort Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html)
++ [List Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)
++ [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html)
 
 The following sections in the AWS Command Line Interface describe the operations for multipart upload\. 
 + [Initiate Multipart Upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/create-multipart-upload.html)
@@ -87,6 +77,19 @@ The following sections in the AWS Command Line Interface describe the operations
 + [Abort Multipart Upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/abort-multipart-upload.html)
 + [List Parts](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-parts.html)
 + [List Multipart Uploads](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-multipart-uploads.html)
+
+## AWS SDK support for multipart upload<a name="sdksupportformpu"></a>
+
+
+
+You can use an AWS SDKs to upload an object in parts\. For a list of AWS SDKs supported by API action see:
++ [Create Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html#API_CreateMultipartUpload_SeeAlso)
++ [Upload Part](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html#API_UploadPart_SeeAlso)
++ [Upload Part \(Copy\)](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html)
++ [Complete Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html#API_CompleteMultipartUpload_SeeAlso)
++ [Abort Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html#API_AbortMultipartUpload_SeeAlso)
++ [List Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html#API_ListParts_SeeAlso)
++ [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html#API_ListMultipartUploads_SeeAlso.html)
 
 ## Multipart upload API and permissions<a name="mpuAndPermissions"></a>
 
@@ -106,13 +109,14 @@ A user must must have the necessary permissions to use the multipart upload oper
 | List Multipart Uploads | You must be allowed to perform the `s3:ListBucketMultipartUploads` action on a bucket to list multipart uploads in progress to that bucket\. In addition to the default, the bucket owner can allow other principals to perform the `s3:ListBucketMultipartUploads` action on the bucket\. | 
 | AWS KMS Encrypt and Decrypt related permissions |  To perform a multipart upload with encryption using an AWS Key Management Service \(AWS KMS\) customer master key \(CMK\), the requester must have permission to the `kms:Decrypt` and `kms:GenerateDataKey*` actions on the key\. These permissions are required because Amazon S3 must decrypt and read data from the encrypted file parts before it completes the multipart upload\.  For more information, see [Uploading a large file to Amazon S3 with encryption using an AWS KMS CMK](http://aws.amazon.com/premiumsupport/knowledge-center/s3-large-file-encryption-kms-key/) in the *AWS Knowledge Center*\. If your IAM user or role is in the same AWS account as the AWS KMS CMK, then you must have these permissions on the key policy\. If your IAM user or role belongs to a different account than the CMK, then you must have the permissions on both the key policy and your IAM user or role\.>  | 
 
-For information on the relationship between ACL permissions and permissions in access policies, see [Mapping of ACL permissions and access policy permissions](acl_overview.md#acl-access-policy-permission-mapping)\. For information on IAM users, go to [Working with Users and Groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
+For information on the relationship between ACL permissions and permissions in access policies, see [Mapping of ACL permissions and access policy permissions](acl-overview.md#acl-access-policy-permission-mapping)\. For information on IAM users, go to [Working with Users and Groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
 **Topics**
 + [Multipart upload process](#mpu-process)
 + [Concurrent multipart upload operations](#distributedmpupload)
 + [Multipart upload and pricing](#mpuploadpricing)
-+ [API support for multipart upload](#sdksupportformpu)
++ [API support for multipart upload](#apisupportformpu)
++ [AWS SDK support for multipart upload](#sdksupportformpu)
 + [Multipart upload API and permissions](#mpuAndPermissions)
 + [Configuring a bucket lifecycle policy to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)
 + [Uploading an object using multipart upload](mpu-upload-object.md)

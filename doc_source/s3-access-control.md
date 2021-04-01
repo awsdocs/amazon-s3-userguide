@@ -17,7 +17,7 @@ For more information about managing access to your Amazon S3 objects and buckets
 + [Access policy guidelines](access-policy-alternatives-guidelines.md)
 + [How Amazon S3 authorizes a request](how-s3-evaluates-access-control.md)
 + [Bucket policies and user policies](using-iam-policies.md)
-+ [Managing access with ACLs](acl-overview.md)
++ [Managing access with ACLs](acls.md)
 + [Using cross\-origin resource sharing \(CORS\)](cors.md)
 + [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)
 + [Managing data access with Amazon S3 access points](access-points.md)

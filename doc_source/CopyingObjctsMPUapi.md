@@ -244,4 +244,4 @@ The following sections in the *Amazon Simple Storage Service API Reference* desc
 + [List Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListParts.html)
 + [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListMPUpload.html)
 
-You can use these APIs to make your own REST requests, or you can use one the SDKs we provide\. For more information about using Multipart Upload with the AWS CLI, see [Using the AWS CLI](mpu-upload-object.md#UsingCLImpUpload)\. For more information about the SDKs, see [API support for multipart upload](mpuoverview.md#sdksupportformpu)\.
+You can use these APIs to make your own REST requests, or you can use one the SDKs we provide\. For more information about using Multipart Upload with the AWS CLI, see [Using the AWS CLI](mpu-upload-object.md#UsingCLImpUpload)\. For more information about the SDKs, see [AWS SDK support for multipart upload](mpuoverview.md#sdksupportformpu)\.

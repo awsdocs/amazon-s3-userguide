@@ -9,7 +9,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 Amazon S3 also supports bucket configurations for the following:
 + Versioning — For more information, see [Using versioning in S3 buckets](Versioning.md)\.
 + Website hosting — For more information, see [Hosting a static website using Amazon S3](WebsiteHosting.md)\.
-+ Bucket access through a bucket policy or access control list \(ACL\) — For more information, see [Bucket policies and user policies](using-iam-policies.md) and see [Managing access with ACLs](acl-overview.md)\.
++ Bucket access through a bucket policy or access control list \(ACL\) — For more information, see [Bucket policies and user policies](using-iam-policies.md) and see [Access control list \(ACL\) overview](acl-overview.md)\.
 + Log storage — For more information, [Logging requests using server access logging](ServerLogs.md)\.
 + Lifecycle management for objects in a bucket — For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 

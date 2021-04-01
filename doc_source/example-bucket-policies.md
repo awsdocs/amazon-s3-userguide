@@ -6,7 +6,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # Bucket policy examples<a name="example-bucket-policies"></a>
 
-This section presents a few examples of typical use cases for bucket policies\. The policies use *bucket* and *examplebucket* strings in the resource value\. To test these policies, replace these strings with your bucket name\. For information about access policy language, see [Managing access with ACLs](acl-overview.md)\.
+This section presents a few examples of typical use cases for bucket policies\. The policies use *bucket* and *examplebucket* strings in the resource value\. To test these policies, replace these strings with your bucket name\. For information about access policy language, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
 **Note**  
 Bucket policies are limited to 20 KB in size\.
@@ -29,7 +29,7 @@ When testing permissions using the Amazon S3 console, you will need to grant add
 
 ## Granting permissions to multiple accounts with added conditions<a name="example-bucket-policies-use-case-1"></a>
 
-The following example policy grants the `s3:PutObject` and `s3:PutObjectAcl` permissions to multiple AWS accounts and requires that any request for these operations include the `public-read` canned access control list \(ACL\)\. For more information, see [Amazon S3 actions](using-with-s3-actions.md) and [Amazon S3 condition keys](amazon-s3-policy-keys.md)\.
+The following example policy grants the `s3:PutObject` and `s3:PutObjectAcl` permissions to multiple AWS accounts and requires that any request for these operations include the `public-read` canned access control list \(ACL\)\. For more information, see [Amazon S3 actions](using-with-s3-actions.md) and [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\.
 
 ```
  1. {
@@ -75,7 +75,7 @@ The following example denies permissions to any user to perform any Amazon S3 op
 
 This statement identifies the 54\.240\.143\.0/24 as the range of allowed Internet Protocol version 4 \(IPv4\) IP addresses\. 
 
-The `Condition` block uses the `NotIpAddress` condition and the `aws:SourceIp` condition key, which is an AWS\-wide condition key\. For more information about these condition keys, see [Amazon S3 condition keys](amazon-s3-policy-keys.md)\. The `aws:SourceIp` IPv4 values use the standard CIDR notation\. For more information, see [IAM JSON Policy Elements Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#Conditions_IPAddress) in the *IAM User Guide*\. 
+The `Condition` block uses the `NotIpAddress` condition and the `aws:SourceIp` condition key, which is an AWS\-wide condition key\. For more information about these condition keys, see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\. The `aws:SourceIp` IPv4 values use the standard CIDR notation\. For more information, see [IAM JSON Policy Elements Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#Conditions_IPAddress) in the *IAM User Guide*\. 
 
 **Important**  
 Replace the IP address range in this example with an appropriate value for your use case before using this policy\. Otherwise, you will lose the ability to access your bucket\.
@@ -287,7 +287,7 @@ You can optionally use a numeric condition to limit the duration for which the `
 
 ## Granting cross\-account permissions to upload objects while ensuring the bucket owner has full control<a name="example-bucket-policies-use-case-8"></a>
 
-The following example shows how to allow another AWS account to upload objects to your bucket while taking full control of the uploaded objects\. This policy enforces that a specific AWS account \(`123456789012`\) be granted the ability to upload objects only if that account includes the bucket\-owner\-full\-control canned ACL on upload\. The StringEquals condition in the policy specifies the s3:x\-amz\-acl condition key to express the requirement \(see [Amazon S3 condition keys](amazon-s3-policy-keys.md)\)\. 
+The following example shows how to allow another AWS account to upload objects to your bucket while taking full control of the uploaded objects\. This policy enforces that a specific AWS account \(`123456789012`\) be granted the ability to upload objects only if that account includes the bucket\-owner\-full\-control canned ACL on upload\. The StringEquals condition in the policy specifies the s3:x\-amz\-acl condition key to express the requirement \(see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\)\. 
 
 ```
  1. {

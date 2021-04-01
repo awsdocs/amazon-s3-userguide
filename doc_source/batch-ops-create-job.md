@@ -176,6 +176,7 @@ The following example creates an S3 Batch Operations `S3PutObjectTagging` job us
               "s3:GetBucketLocation"
             ],
             "Resource": [
+              "arn:aws:s3:::{{ManifestBucket}}",
               "arn:aws:s3:::{{ManifestBucket}}/*"
             ]
           },
@@ -186,6 +187,7 @@ The following example creates an S3 Batch Operations `S3PutObjectTagging` job us
               "s3:GetBucketLocation"
             ],
             "Resource":[
+              "arn:aws:s3:::{{ReportBucket}}",
               "arn:aws:s3:::{{ReportBucket}}/*"
             ]
           }

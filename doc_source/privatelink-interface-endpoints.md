@@ -6,7 +6,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # AWS PrivateLink for Amazon S3<a name="privatelink-interface-endpoints"></a>
 
-With AWS PrivateLink for Amazon S3, you can provision *interface VPC endpoints* \(interface endpoints\) in your virtual private cloud \(VPC\) instead of connecting over the internet\. These endpoints are directly accessible from applications that are on premises or in a different AWS Region\. 
+With AWS PrivateLink for Amazon S3, you can provision *interface VPC endpoints* \(interface endpoints\) in your virtual private cloud \(VPC\) instead of connecting over the internet\. These endpoints are directly accessible from applications that are on premises (over VPN and Direct Connect) or in a different AWS Region (over VPC Peering)\. 
 
 Interface endpoints are represented by one or more elastic network interfaces \(ENIs\) that are assigned private IP addresses from subnets in your VPC\. Requests that are made to interface endpoints for Amazon S3 are automatically routed to Amazon S3 on the Amazon network\. You can also access interface endpoints in your VPC from on\-premises applications through AWS Direct Connect or AWS Virtual Private Network \(AWS VPN\)\. For more information about how to connect your VPC with your on\-premises network, see the [AWS Direct Connect User Guide](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html) and the [AWS Site\-to\-Site VPN User Guide](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)\. 
 

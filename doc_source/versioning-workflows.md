@@ -6,7 +6,7 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 # How S3 Versioning works<a name="versioning-workflows"></a>
 
-You can use S3 Versioning to keep multiple versions of an object in one bucket and prevent objects from being accidentally deleted or overwritten\. For example, if you delete an object, instead of removing it permanently, Amazon S3 inserts a delete marker, which becomes the current object version\. You can then restore the previous version\. For more information, see [Deleting object versions from a versioning\-enabled bucket](DeletingObjectVersions.md)\. If you overwrite an object, it results in a new object version in the bucket\. You can always restore the previous version\.
+You can use S3 Versioning to keep multiple versions of an object in one bucket and enable you to restore objects that are accidentally deleted or overwritten\. For example, if you delete an object, instead of removing it permanently, Amazon S3 inserts a delete marker, which becomes the current object version\. You can then restore the previous version\. For more information, see [Deleting object versions from a versioning\-enabled bucket](DeletingObjectVersions.md)\. If you overwrite an object, it results in a new object version in the bucket\. You can always restore the previous version\.
 
 Each S3 bucket that you create has a *versioning* subresource associated with it\. \(For more information, see [Bucket configuration options](UsingBucket.md#bucket-config-options-intro)\.\) By default, your bucket is *unversioned*, and the versioning subresource stores the empty versioning configuration, as follows\.
 

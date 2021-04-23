@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using Amazon S3 on Outposts<a name="S3onOutposts"></a>
 
 AWS Outposts is a fully managed service that extends AWS infrastructure, services, APIs, and tools to your premises\. By providing local access to AWS managed infrastructure, AWS Outposts helps you build and run applications on\-premises using the same programming interfaces as in AWS Regions, while using local compute and storage resources for lower latency and local data processing needs\. For more information, see [What is AWS Outposts?](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.htm) in the *AWS Outposts User Guide*\.
@@ -18,5 +12,6 @@ For on\-premises applications that require high\-throughput local processing, S3
 + [Getting started with Amazon S3 on Outposts](S3OutpostsGS.md)
 + [Amazon S3 on Outposts restrictions and limitations](S3OnOutpostsRestrictionsLimitations.md)
 + [Using AWS Identity and Access Management with Amazon S3 on Outposts](S3OutpostsIAM.md)
-+ [Working with Amazon S3 on Outposts](WorkingWithS3Outposts.md)
++ [Accessing Amazon S3 on Outposts](WorkingWithS3Outposts.md)
++ [Monitoring Amazon S3 on Outposts](MonitoringS3Outposts.md)
 + [Amazon S3 on Outposts examples](S3OutpostsExamples.md)

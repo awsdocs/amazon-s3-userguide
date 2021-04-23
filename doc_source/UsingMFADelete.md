@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Deleting an object from an MFA delete\-enabled bucket<a name="UsingMFADelete"></a>
 
 If a bucket's versioning configuration is MFA delete enabled, the bucket owner must include the `x-amz-mfa` request header in requests to permanently delete an object version or change the versioning state of the bucket\. Requests that include `x-amz-mfa` must use HTTPS\. 

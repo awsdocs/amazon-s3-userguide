@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)<a name="UsingKMSEncryption"></a>
 
 Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses AWS KMS customer master keys \(CMKs\) to encrypt your Amazon S3 objects\. AWS KMS encrypts only the object data\. Any object metadata is not encrypted\. 
@@ -13,7 +7,7 @@ If you use CMKs, you use AWS KMS via the [AWS Management Console](https://consol
 There are additional charges for using AWS KMS CMKs\. For more information, see [AWS KMS concepts \- Customer master keys \(CMKs\)](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys) in the *AWS Key Management Service Developer Guide* and [AWS KMS pricing](https://aws.amazon.com/kms/pricing)\.
 
 **Important**  
-You need the `kms:Decrypt` permission when you upload or download an Amazon S3 object encrypted with an AWS KMS CMK\. This is in addition to the `kms:ReEncrypt`, `kms:GenerateDataKey`, and `kms:DescribeKey` permissions\. For more information, see [Failure to upload a large file to Amazon S3 with encryption using an AWS KMS key](https://aws.amazon.com/premiumsupport/knowledge-center/s3-large-file-encryption-kms-key/)\.
+To upload an object encrypted with an AWS KMS CMK to Amazon S3, you need `kms:Decrypt` and `kms:GenerateDataKey` permissions on the key\. To download, an object encrypted with an AWS KMS CMK, you need `kms:Decrypt` permissions\. For information about AWS KMS permissions and multipart upload, see [Multipart upload API and permissions](mpuoverview.md#mpuAndPermissions)\.
 
 ## AWS managed CMKs and customer managed CMKs<a name="aws-managed-customer-managed-cmks"></a>
 

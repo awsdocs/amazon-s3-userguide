@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Listing jobs<a name="batch-ops-list-jobs"></a>
 
 You can retrieve a list of your S3 Batch Operations jobs\. The list includes jobs that haven't yet finished and jobs that finished within the last 90 days\. The job list includes information for each job, such as its ID, description, priority, current status, and the number of tasks that have succeeded and failed\. You can filter your job list by status\. When you retrieve a job list through the console, you can also search your jobs by description or ID and filter them by AWS Region\.

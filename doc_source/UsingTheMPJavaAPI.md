@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using the AWS SDK for Java<a name="UsingTheMPJavaAPI"></a>
 
 The AWS SDK for Java provides an API for the Amazon S3 bucket and object operations\. For object operations, in addition to providing the API to upload objects in a single operation, the SDK provides an API to upload large objects in parts\. For more information, see [Uploading and copying objects using multipart upload](mpuoverview.md)\. 

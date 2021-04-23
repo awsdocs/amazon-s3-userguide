@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using an AWS KMS CMK to encrypt your metrics exports<a name="storage_lens_encrypt_permissions"></a>
 
 To grant Amazon S3 Storage Lens permission to encrypt using a customer managed AWS Key Management Service \(AWS KMS\) customer master key \(CMK\), you must use a key policy\. To update your key policy so that you can use an AWS KMS CMK to encrypt your S3 Storage Lens metrics exports, follow these steps\. 

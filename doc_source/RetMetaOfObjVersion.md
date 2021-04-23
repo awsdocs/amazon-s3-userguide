@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Retrieving the metadata of an object version<a name="RetMetaOfObjVersion"></a>
 
 If you only want to retrieve the metadata of an object \(and not its content\), you use the `HEAD` operation\. By default, you get the metadata of the most recent version\. To retrieve the metadata of a specific object version, you specify its version ID\.

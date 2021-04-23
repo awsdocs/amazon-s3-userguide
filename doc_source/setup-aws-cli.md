@@ -1,19 +1,14 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Developing with Amazon S3 using the AWS CLI<a name="setup-aws-cli"></a>
 
-Follow the steps to download and configure AWS Command Line Interface \(AWS CLI\)\.
+Follow these steps to download and configure AWS Command Line Interface \(AWS CLI\)\. 
+
+For a list of Amazon S3 AWS CLI commands, see the following pages in the *AWS CLI Command Reference*:
++ [s3](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/index.html)
++ [s3api](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/index.html)
++ [s3control](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3control/index.html)
 
 **Note**  
 Services in AWS, such as Amazon S3, require that you provide credentials when you access them\. The service can then determine whether you have permissions to access the resources that it owns\. The console requires your password\. You can create access keys for your AWS account to access the AWS CLI or API\. However, we don't recommend that you access AWS using the credentials for your AWS account\. Instead, we recommend that you use AWS Identity and Access Management \(IAM\)\. Create an IAM user, add the user to an IAM group with administrative permissions, and then grant administrative permissions to the IAM user that you created\. You can then access AWS using a special URL and that IAM user's credentials\. For instructions, go to [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
-
-
-
-
 
 **To set up the AWS CLI**
 

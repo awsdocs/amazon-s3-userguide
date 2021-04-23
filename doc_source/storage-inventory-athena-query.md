@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Querying Amazon S3 inventory with Amazon Athena<a name="storage-inventory-athena-query"></a>
 
 You can query Amazon S3 inventory using standard SQL by using Amazon Athena in all Regions where Athena is available\. To check for AWS Region availability, see the [AWS Region Table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)\. 
@@ -24,14 +18,14 @@ Athena can query Amazon S3 inventory files in ORC, Parquet, or CSV format\. When
      is_latest boolean,
      is_delete_marker boolean,
      size bigint,
-     last_modified_date timestamp,
+     last_modified_date string,
      e_tag string,
      storage_class string,
      is_multipart_uploaded boolean,
      replication_status string,
      encryption_status string,
      intelligent_tiering_tier string,
-     object_lock_retain_until_date timestamp,
+     object_lock_retain_until_date string,
      object_lock_mode string,
      object_lock_legal_hold_status string
      )

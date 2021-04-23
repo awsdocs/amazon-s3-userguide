@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring fast, secure file transfers using Amazon S3 Transfer Acceleration<a name="transfer-acceleration"></a>
 
 Amazon S3 Transfer Acceleration is a bucket\-level feature that enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket\. Transfer Acceleration takes advantage of the globally distributed edge locations in Amazon CloudFront\. As the data arrives at an edge location, the data is routed to Amazon S3 over an optimized network path\.

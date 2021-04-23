@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Overview of managing access<a name="access-control-overview"></a>
 
 When granting permissions in Amazon S3, you decide who is getting the permissions, which Amazon S3 resources they are getting permissions for, and the specific actions you want to allow on those resources\. The following sections provide an overview of Amazon S3 resources and how to determine the best method to control access to them\.

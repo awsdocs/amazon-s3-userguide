@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Identity and access management in Amazon S3<a name="s3-access-control"></a>
 
 By default, all Amazon S3 resources—buckets, objects, and related subresources \(for example, `lifecycle` configuration and `website` configuration\)—are private\. Only the resource owner, the AWS account that created it, can access the resource\. The resource owner can optionally grant access permissions to others by writing an access policy\. 

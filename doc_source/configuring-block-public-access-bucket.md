@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring block public access settings for your S3 buckets<a name="configuring-block-public-access-bucket"></a>
 
 Amazon S3 Block Public Access provides settings for access points, buckets, and accounts to help you manage public access to Amazon S3 resources\. By default, new buckets, access points, and objects do not allow public access\.
@@ -21,6 +15,8 @@ To perform block public access operations on a bucket, use the AWS CLI service `
 + GET PublicAccessBlock \(for a bucket\)
 + DELETE PublicAccessBlock \(for a bucket\)
 + GET BucketPolicyStatus
+
+For more information and examples, see [put\-public\-access\-block](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-public-access-block.html) in the *AWS CLI Reference*\.
 
 ## Using the AWS SDKs<a name="configuring-block-public-access-bucket-sdk"></a>
 

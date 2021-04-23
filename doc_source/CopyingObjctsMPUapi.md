@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Copying an object using multipart upload<a name="CopyingObjctsMPUapi"></a>
 
  The examples in this section show you how to copy objects greater than 5 GB using the multipart upload API\. You can copy objects less than 5 GB in a single operation\. For more information, see [Copying objects](copy-object.md)\. 

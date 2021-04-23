@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Additional replication configurations<a name="replication-additional-configs"></a>
 
 This section describes additional replication configuration options that are available in Amazon S3\. For information about core replication configuration, see [Setting up replication](replication-how-setup.md)\.

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Downloading an object<a name="download-objects"></a>
 
 This section explains how to download objects from an S3 bucket\.
@@ -314,3 +308,11 @@ try {
 You can use the AWS SDK to retrieve object keys from a bucket\. However, if your application requires it, you can send REST requests directly\. You can send a GET request to retrieve object keys\. 
 
 For more information about the request and response format, see [Get Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html)\.
+
+## Using the AWS CLI<a name="download-object-cli"></a>
+
+The example below shows you how you can use the AWS CLI to download an object from Amazon S3\. For more information and examples, see [get\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-object.html) in the *AWS CLI Command Reference*\.
+
+```
+aws s3api get-object --bucket DOC-EXAMPLE-BUCKET1 --key dir/my_images.tar.bz2 my_images.tar.bz2
+```

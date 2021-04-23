@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Access control list \(ACL\) overview<a name="acl-overview"></a>
 
 Amazon S3 access control lists \(ACLs\) enable you to manage access to buckets and objects\. Each bucket and object has an ACL attached to it as a subresource\. It defines which AWS accounts or groups are granted access and the type of access\. When a request is received against a resource, Amazon S3 checks the corresponding ACL to verify that the requester has the necessary access permissions\. 
@@ -107,6 +101,8 @@ When using ACLs, a grantee can be an AWS account or one of the predefined Amazon
 
 The following table lists the set of permissions that Amazon S3 supports in an ACL\. The set of ACL permissions is the same for an object ACL and a bucket ACL\. However, depending on the context \(bucket ACL or object ACL\), these ACL permissions grant permissions for specific buckets or object operations\. The table lists the permissions and describes what they mean in the context of objects and buckets\. 
 
+For more information about ACL permissions in the Amazon S3 console, see [Configuring ACLs](managing-acls.md)\.
+
 
 **ACL permissions**  
 
@@ -126,6 +122,8 @@ Use caution when granting access permissions to your S3 buckets and objects\. Fo
 As shown in the preceding table, an ACL allows only a finite set of permissions, compared to the number of permissions you can set in an access policy \(see [Amazon S3 actions](using-with-s3-actions.md)\)\. Each of these permissions allows one or more Amazon S3 operations\.
 
 The following table shows how each ACL permission maps to the corresponding access policy permissions\. As you can see, access policy allows more permissions than an ACL does\. You use ACLs primarily to grant basic read/write permissions, similar to file system permissions\. For more information about when to use an ACL, see [Access policy guidelines](access-policy-alternatives-guidelines.md)\.
+
+For more information about ACL permissions in the Amazon S3 console, see [Configuring ACLs](managing-acls.md)\.
 
 
 | ACL permission | Corresponding access policy permissions when the ACL permission is granted on a bucket  | Corresponding access policy permissions when the ACL permission is granted on an object | 

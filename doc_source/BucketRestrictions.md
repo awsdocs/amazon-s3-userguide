@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Bucket restrictions and limitations<a name="BucketRestrictions"></a>
 
 An Amazon S3 bucket is owned by the AWS account that created it\. Bucket ownership is not transferable to another account\.

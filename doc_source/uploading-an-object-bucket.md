@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Step 2: Upload an object to your bucket<a name="uploading-an-object-bucket"></a>
 
 After creating a bucket in Amazon S3, you're ready to upload an object to the bucket\. An object can be any kind of file: a text file, a photo, a video, and so on\. 

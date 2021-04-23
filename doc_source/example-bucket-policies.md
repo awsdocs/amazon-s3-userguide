@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Bucket policy examples<a name="example-bucket-policies"></a>
 
 This section presents a few examples of typical use cases for bucket policies\. The policies use *bucket* and *examplebucket* strings in the resource value\. To test these policies, replace these strings with your bucket name\. For information about access policy language, see [Access control list \(ACL\) overview](acl-overview.md)\.

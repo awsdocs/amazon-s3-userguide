@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Finding the canonical user ID for your AWS account<a name="finding-canonical-user-id"></a>
 
 The canonical user ID is an alpha\-numeric identifier, such as `79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be`, that is an obfuscated form of the AWS account ID\. You can use this ID to identify an AWS account when granting cross\-account access to buckets and objects using Amazon S3\. You can retrieve the canonical user ID for your AWS account as either the root user or an IAM user\. 

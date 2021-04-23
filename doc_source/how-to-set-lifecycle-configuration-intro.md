@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Setting lifecycle configuration on a bucket<a name="how-to-set-lifecycle-configuration-intro"></a>
 
 This section explains how you can set a S3 Lifecycle configuration on a bucket using AWS SDKs, the AWS CLI, or the S3 console\. For information about S3 Lifecycle configuration, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
@@ -28,11 +22,8 @@ For example, after the object expiration time, you are not charged for storage, 
 
 ## Using the S3 console<a name="create-lifecycle"></a>
 
-You can define a lifecycle rules for all objects or a subset of objects in the bucket by using a shared prefix \(objects names that begin with a common string\) or a tag\. 
-
-Using a lifecycle rule you can define actions specific to current and non\-current object versions\. For more information, see the following:
+You can define a lifecycle rules for all objects or a subset of objects in the bucket by using a shared prefix \(objects names that begin with a common string\) or a tag\. Using a lifecycle rule you can define actions specific to current and non\-current object versions\. For more information, see the following:
 + [Managing your storage lifecycle](object-lifecycle-mgmt.md)
-+ [Using versioning in S3 buckets](Versioning.md)
 + [Using versioning in S3 buckets](Versioning.md)
 
 **To create a lifecycle rule**

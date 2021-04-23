@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Reserved Keywords<a name="s3-glacier-select-sql-reference-keyword-list"></a>
 
 Below is the list of reserved keywords for Amazon S3 Select and S3 Glacier Select\. These include function names, data types, operators, etc\., that needed to run the SQL expressions used to query object content\.

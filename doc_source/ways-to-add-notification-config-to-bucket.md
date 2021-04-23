@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Walkthrough: Configuring a bucket for notifications \(SNS topic or SQS queue\)<a name="ways-to-add-notification-config-to-bucket"></a>
 
 You can receive Amazon S3 notifications using Amazon Simple Notification Service \(Amazon SNS\) or Amazon Simple Queue Service \(Amazon SQS\)\. In this walkthrough, you add a notification configuration to your bucket using an Amazon SNS topic and an Amazon SQS queue\.
@@ -58,7 +52,7 @@ Follow the steps to create and subscribe to an Amazon Simple Queue Service \(Ama
       "Sid": "example-statement-ID",
       "Effect": "Allow",
       "Principal": {
-       "AWS":"*"  
+       "Service": "s3.amazonaws.com"  
       },
       "Action": [
        "SQS:SendMessage"
@@ -131,7 +125,7 @@ Follow the steps to create and subscribe to an Amazon SNS topic\.
       "Sid": "example-statement-ID",
       "Effect": "Allow",
       "Principal": {
-       "AWS":"*"  
+       "Service": "s3.amazonaws.com"  
       },
       "Action": [
        "SNS:Publish"

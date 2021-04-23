@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Managing replication rules using the Amazon S3 console<a name="disable-replication"></a>
 
 Replication is the automatic, asynchronous copying of objects across buckets in the same or different AWS Regions\. It replicates newly created objects and object updates from a source bucket to a specified destination bucket\. 

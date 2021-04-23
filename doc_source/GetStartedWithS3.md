@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Getting started with Amazon S3<a name="GetStartedWithS3"></a>
 
 You can get started with Amazon S3 by working with buckets and objects\. A *bucket* is a container for objects\. An *object* is a file and any metadata that describes that file\.

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Best practices design patterns: optimizing Amazon S3 performance<a name="optimizing-performance"></a>
 
 Your applications can easily achieve thousands of transactions per second in request performance when uploading and retrieving storage from Amazon S3\. Amazon S3 automatically scales to high request rates\. For example, your application can achieve at least 3,500 PUT/COPY/POST/DELETE or 5,500 GET/HEAD requests per second per [prefix](https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#keyprefix) in a bucket\. There are no limits to the number of prefixes in a bucket\. You can increase your read or write performance by parallelizing reads\. For example, if you create 10 prefixes in an Amazon S3 bucket to parallelize reads, you could scale your read performance to 55,000 read requests per second\. Similarly, you can scale write operations by writing to multiple prefixes\.

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Hosting a static website using Amazon S3<a name="WebsiteHosting"></a>
 
 You can use Amazon S3 to host a static website\. On a *static* website, individual webpages include static content\. They might also contain client\-side scripts\.

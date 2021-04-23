@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Authenticating requests using the REST API<a name="S3_Authentication2"></a>
 
 When accessing Amazon S3 using REST, you must provide the following items in your request so the request can be authenticated: 

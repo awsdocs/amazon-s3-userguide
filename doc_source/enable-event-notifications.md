@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Enabling and configuring event notifications using the Amazon S3 console<a name="enable-event-notifications"></a>
 
 You can enable certain Amazon S3 bucket events to send a notification message to a destination whenever the events occur\. This section explains how to use the Amazon S3 console to enable event notifications\. For information about using event notifications with the AWS SDKs and the Amazon S3 REST APIs, see [Configuring event notifications programmatically](how-to-enable-disable-notification-intro.md#event-notification-configuration)\. 

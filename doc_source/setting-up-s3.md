@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Prerequisite: Setting up Amazon S3<a name="setting-up-s3"></a>
 
 When you sign up for AWS, your AWS account is automatically signed up for all services in AWS, including Amazon S3\. You are charged only for the services that you use\.

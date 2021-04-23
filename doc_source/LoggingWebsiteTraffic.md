@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # \(Optional\) Logging web traffic<a name="LoggingWebsiteTraffic"></a>
 
 You can optionally enable Amazon S3 server access logging for a bucket that is configured as a static website\. Server access logging provides detailed records for the requests that are made to your bucket\. For more information, see [Logging requests using server access logging](ServerLogs.md)\. If you plan to use Amazon CloudFront to [speed up your website](website-hosting-cloudfront-walkthrough.md), you can also use CloudFront logging\. For more information, see [Configuring and Using Access Logs](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html) in the *Amazon CloudFront Developer Guide*\.

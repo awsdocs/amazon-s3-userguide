@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Principals<a name="s3-bucket-user-policy-specifying-principal-intro"></a>
 
 The `Principal` element specifies the user, account, service, or other entity that is allowed or denied access to a resource\. The following are examples of specifying `Principal`\. For more information, see [Principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html) in the *IAM User Guide*\.

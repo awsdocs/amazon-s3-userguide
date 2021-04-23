@@ -1,17 +1,11 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Actions, resources, and condition keys for Amazon S3<a name="list_amazons3"></a>
 
 Amazon S3 \(service prefix: `s3`\) provides the following service\-specific resources, actions, and condition context keys for use in IAM permission policies\.
 
 References:
-+ Learn how to [configure this service](https://docs.aws.amazon.com/AmazonS3/latest/userguide/)\.
++ Learn how to [configure this service](https://docs.aws.amazon.com/AmazonS3/latest/dev/)\.
 + View a list of the [API operations available for this service](https://docs.aws.amazon.com/AmazonS3/latest/API/)\.
-+ Learn how to secure this service and its resources by [using IAM](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-overview.html) permission policies\.
++ Learn how to secure this service and its resources by [using IAM](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-overview.html) permission policies\.
 
 **Topics**
 + [Actions defined by Amazon S3](#amazons3-actions-as-permissions)
@@ -30,20 +24,23 @@ The **Resource types** column indicates whether each action supports resource\-l
 
 ## Resource types defined by Amazon S3<a name="amazons3-resources-for-iam-policies"></a>
 
+The following resource types are defined by this service and can be used in the `Resource` element of IAM permission policy statements\. Each action in the [Actions table](#amazons3-actions-as-permissions) identifies the resource types that can be specified with that action\. A resource type can also define which condition keys you can include in a policy\. These keys are displayed in the last column of the table\.
+
 
 ****  
 
 | Resource types | ARN | Condition keys | 
 | --- | --- | --- | 
-|   [ accesspoint ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html)  |  arn:$\{Partition\}:s3:$\{Region\}:$\{Account\}:accesspoint/$\{AccessPointName\}  |  | 
-|   [ bucket ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html)  |  arn:$\{Partition\}:s3:::$\{BucketName\}  |  | 
-|   [ object ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingObjects.html)  |  arn:$\{Partition\}:s3:::$\{BucketName\}/$\{ObjectName\}  |  | 
-|   [ job ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-managing-jobs.html)  |  arn:$\{Partition\}:s3:$\{Region\}:$\{Account\}:job/$\{JobId\}  |  | 
-|   [ storagelensconfiguration ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)  |  arn:$\{Partition\}:s3:$\{Region\}:$\{Account\}:storage\-lens/$\{ConfigId\}  |   [ aws:ResourceTag/$\{TagKey\} ](#amazons3-aws_ResourceTag___TagKey_)   | 
+|   [ accesspoint ](https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points.html)  |  arn:$\{Partition\}:s3:$\{Region\}:$\{Account\}:accesspoint/$\{AccessPointName\}  |  | 
+|   [ bucket ](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html)  |  arn:$\{Partition\}:s3:::$\{BucketName\}  |  | 
+|   [ object ](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingObjects.html)  |  arn:$\{Partition\}:s3:::$\{BucketName\}/$\{ObjectName\}  |  | 
+|   [ job ](https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html)  |  arn:$\{Partition\}:s3:$\{Region\}:$\{Account\}:job/$\{JobId\}  |  | 
+|   [ storagelensconfiguration ](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)  |  arn:$\{Partition\}:s3:$\{Region\}:$\{Account\}:storage\-lens/$\{ConfigId\}  |   [ aws:ResourceTag/$\{TagKey\} ](#amazons3-aws_ResourceTag___TagKey_)   | 
+|   [ objectlambdaaccesspoint ](https://docs.aws.amazon.com/AmazonS3/latest/dev/transforming-objects.html)  |  arn:$\{Partition\}:s3\-object\-lambda:$\{Region\}:$\{Account\}:accesspoint/$\{AccessPointName\}  |  | 
 
 ## Condition keys for Amazon S3<a name="amazons3-policy-keys"></a>
 
-Amazon S3 defines the following condition keys that can be used in the `Condition` element of an IAM policy\. You can use these keys to further refine the conditions under which the policy statement applies\.
+Amazon S3 defines the following condition keys that can be used in the `Condition` element of an IAM policy\. You can use these keys to further refine the conditions under which the policy statement applies\. 
 
 To view the global condition keys that are available to all services, see [Available global condition keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#AvailableKeys)\.
 
@@ -55,43 +52,43 @@ To view the global condition keys that are available to all services, see [Avail
 |   [ aws:RequestTag/$\{TagKey\} ](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-requesttag)  | Filters actions based on the tags that are passed in the request | String | 
 |   [ aws:ResourceTag/$\{TagKey\} ](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-resourcetag)  | Filters actions based on the tags associated with the resource | String | 
 |   [ aws:TagKeys ](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-tagkeys)  | Filters actions based on the tag keys that are passed in the request | String | 
-|   [ s3:AccessPointNetworkOrigin ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-policies.html)  | Filters access by the network origin \(Internet or VPC\) | String | 
-|   [ s3:DataAccessPointAccount ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-policies.html)  | Filters access by the AWS Account ID that owns the access point | String | 
-|   [ s3:DataAccessPointArn](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points-policies.html)  | Filters access by an access point Amazon Resource Name \(ARN\) | String | 
-|   [ s3:ExistingJobOperation ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-job-tags-examples.html)  | Filters access to updating the job priority by operation | String | 
-|   [ s3:ExistingJobPriority ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-job-tags-examples.html)  | Filters access to cancelling existing jobs by priority range | Numeric | 
-|   [ s3:ExistingObjectTag/<key> ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/tagging-and-policies.html)  | Filters access by existing object tag key and value | String | 
-|   [ s3:JobSuspendedCause ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-job-tags-examples.html)  | Filters access to cancelling suspended jobs by a specific job suspended cause \(for example, AWAITING\_CONFIRMATION\) | String | 
-|   [ s3:LocationConstraint ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#condition-key-bucket-ops-1)  | Filters access by a specific Region | String | 
-|   [ s3:RequestJobOperation ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-job-tags-examples.html)  | Filters access to creating jobs by operation | String | 
-|   [ s3:RequestJobPriority ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-job-tags-examples.html)  | Filters access to creating new jobs by priority range | Numeric | 
-|   [ s3:RequestObjectTag/<key> ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/tagging-and-policies.html)  | Filters access by the tag keys and values to be added to objects | String | 
-|   [ s3:RequestObjectTagKeys ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/tagging-and-policies.html)  | Filters access by the tag keys to be added to objects | String | 
-|   [ s3:ResourceAccount ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#example-object-resource-account)  | Filters access by the resource owner AWS account ID | String | 
+|   [ s3:AccessPointNetworkOrigin ](https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies)  | Filters access by the network origin \(Internet or VPC\) | String | 
+|   [ s3:DataAccessPointAccount ](https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies)  | Filters access by the AWS Account ID that owns the access point | String | 
+|   [ s3:DataAccessPointArn ](https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies)  | Filters access by an access point Amazon Resource Name \(ARN\) | String | 
+|   [ s3:ExistingJobOperation ](https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-job-tags-examples.html)  | Filters access to updating the job priority by operation | String | 
+|   [ s3:ExistingJobPriority ](https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-job-tags-examples.html)  | Filters access to cancelling existing jobs by priority range | Numeric | 
+|   [ s3:ExistingObjectTag/<key> ](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-tagging.html#tagging-and-policies)  | Filters access by existing object tag key and value | String | 
+|   [ s3:JobSuspendedCause ](https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-job-tags-examples.html)  | Filters access to cancelling suspended jobs by a specific job suspended cause \(for example, AWAITING\_CONFIRMATION\) | String | 
+|   [ s3:LocationConstraint ](https://docs.aws.amazon.com/AmazonS3/latest/dev/amazon-s3-policy-keys.html#condition-key-bucket-ops-1)  | Filters access by a specific Region | String | 
+|   [ s3:RequestJobOperation ](https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-job-tags-examples.html)  | Filters access to creating jobs by operation | String | 
+|   [ s3:RequestJobPriority ](https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-job-tags-examples.html)  | Filters access to creating new jobs by priority range | Numeric | 
+|   [ s3:RequestObjectTag/<key> ](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-tagging.html#tagging-and-policies)  | Filters access by the tag keys and values to be added to objects | String | 
+|   [ s3:RequestObjectTagKeys ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#example-object-resource-account)  | Filters access by the tag keys to be added to objects | String | 
+|   [ s3:ResourceAccount ](https://docs.aws.amazon.com/AmazonS3/latest/dev/amazon-s3-policy-keys.html#condition-key-bucket-ops-2)  | Filters access by the resource owner AWS account ID | String | 
 |   [ s3:TlsVersion ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#example-object-tls-version)  | Filters access by the TLS version used by the client | Numeric | 
-|   [ s3:VersionId ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#getobjectversion-limit-access-to-specific-version-3)  | Filters access by a specific object version | String | 
+|   [ s3:VersionId ](https://docs.aws.amazon.com/AmazonS3/latest/dev/amazon-s3-policy-keys.html#getobjectversion-limit-access-to-specific-version-3)  | Filters access by a specific object version | String | 
 |   [ s3:authType ](https://docs.aws.amazon.com/AmazonS3/latest/API/bucket-policy-s3-sigv4-conditions.html)  | Filters access by authentication method | String | 
-|   [ s3:delimiter ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/walkthrough1.html)  | Filters access by delimiter parameter | String | 
-|   [ s3:locationconstraint ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#condition-key-bucket-ops-1)  | Filters access by a specific Region | String | 
-|   [ s3:max\-keys ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#example-numeric-condition-operators)  | Filters access by maximum number of keys returned in a ListBucket request | Numeric | 
-|   [ s3:object\-lock\-legal\-hold ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-overview.html#object-lock-legal-holds)  | Filters access by object legal hold status | String | 
-|   [ s3:object\-lock\-mode ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-overview.html#object-lock-retention-modes)  | Filters access by object retention mode \(COMPLIANCE or GOVERNANCE\) | String | 
-|   [ s3:object\-lock\-remaining\-retention\-days ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html#object-lock-managing-retention-limits)  | Filters access by remaining object retention days | String | 
-|   [ s3:object\-lock\-retain\-until\-date ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-overview.html#object-lock-retention-periods)  | Filters access by object retain\-until date | String | 
-|   [ s3:prefix ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#condition-key-bucket-ops-2)  | Filters access by key name prefix | String | 
+|   [ s3:delimiter ](https://docs.aws.amazon.com/AmazonS3/latest/dev/walkthrough1.html)  | Filters access by delimiter parameter | String | 
+|   [ s3:locationconstraint ](https://docs.aws.amazon.com/AmazonS3/latest/dev/amazon-s3-policy-keys.html#condition-key-bucket-ops-1)  | Filters access by a specific Region | String | 
+|   [ s3:max\-keys ](https://docs.aws.amazon.com/AmazonS3/latest/dev/amazon-s3-policy-keys.html#example-numeric-condition-operators)  | Filters access by maximum number of keys returned in a ListBucket request | Numeric | 
+|   [ s3:object\-lock\-legal\-hold ](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html#object-lock-legal-holds)  | Filters access by object legal hold status | String | 
+|   [ s3:object\-lock\-mode ](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html#object-lock-retention-modes)  | Filters access by object retention mode \(COMPLIANCE or GOVERNANCE\) | String | 
+|   [ s3:object\-lock\-remaining\-retention\-days ](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-managing.html#object-lock-managing-retention-limits)  | Filters access by remaining object retention days | String | 
+|   [ s3:object\-lock\-retain\-until\-date ](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html#object-lock-retention-periods)  | Filters access by object retain\-until date | String | 
+|   [ s3:prefix ](https://docs.aws.amazon.com/AmazonS3/latest/dev/amazon-s3-policy-keys.html#condition-key-bucket-ops-2)  | Filters access by key name prefix | String | 
 |   [ s3:signatureAge ](https://docs.aws.amazon.com/AmazonS3/latest/API/bucket-policy-s3-sigv4-conditions.html)  | Filters access by the age in milliseconds of the request signature | Numeric | 
 |   [ s3:signatureversion ](https://docs.aws.amazon.com/AmazonS3/latest/API/bucket-policy-s3-sigv4-conditions.html)  | Filters access by the version of AWS Signature used on the request | String | 
-|   [ s3:versionid ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#getobjectversion-limit-access-to-specific-version-3)  | Filters access by a specific object version | String | 
-|   [ s3:x\-amz\-acl ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#permissions)  | Filters access by canned ACL in the request's x\-amz\-acl header | String | 
+|   [ s3:versionid ](https://docs.aws.amazon.com/AmazonS3/latest/dev/amazon-s3-policy-keys.html#getobjectversion-limit-access-to-specific-version-3)  | Filters access by a specific object version | String | 
+|   [ s3:x\-amz\-acl ](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#permissions)  | Filters access by canned ACL in the request's x\-amz\-acl header | String | 
 |   [ s3:x\-amz\-content\-sha256 ](https://docs.aws.amazon.com/AmazonS3/latest/API/bucket-policy-s3-sigv4-conditions.html)  | Filters access to unsigned content in your bucket | String | 
-|   [ s3:x\-amz\-copy\-source ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/amazon-s3-policy-keys.html#putobject-limit-copy-source-3)  | Filters access to requests with a specific bucket, prefix, or object as the copy source | String | 
-|   [ s3:x\-amz\-grant\-full\-control ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#permissions)  | Filters access to requests with the x\-amz\-grant\-full\-control \(full control\) header | String | 
-|   [ s3:x\-amz\-grant\-read ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#permissions)  | Filters access to requests with the x\-amz\-grant\-read \(read access\) header | String | 
-|   [ s3:x\-amz\-grant\-read\-acp ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#permissions)  | Filters access to requests with the x\-amz\-grant\-read\-acp \(read permissions for the ACL\) header | String | 
-|   [ s3:x\-amz\-grant\-write ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#permissions)  | Filters access to requests with the x\-amz\-grant\-write \(write access\) header | String | 
-|   [ s3:x\-amz\-grant\-write\-acp ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#permissions)  | Filters access to requests with the x\-amz\-grant\-write\-acp \(write permissions for the ACL\) header | String | 
+|   [ s3:x\-amz\-copy\-source ](https://docs.aws.amazon.com/AmazonS3/latest/dev/amazon-s3-policy-keys.html#putobject-limit-copy-source-3)  | Filters access to requests with a specific bucket, prefix, or object as the copy source | String | 
+|   [ s3:x\-amz\-grant\-full\-control ](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#permissions)  | Filters access to requests with the x\-amz\-grant\-full\-control \(full control\) header | String | 
+|   [ s3:x\-amz\-grant\-read ](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#permissions)  | Filters access to requests with the x\-amz\-grant\-read \(read access\) header | String | 
+|   [ s3:x\-amz\-grant\-read\-acp ](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#permissions)  | Filters access to requests with the x\-amz\-grant\-read\-acp \(read permissions for the ACL\) header | String | 
+|   [ s3:x\-amz\-grant\-write ](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#permissions)  | Filters access to requests with the x\-amz\-grant\-write \(write access\) header | String | 
+|   [ s3:x\-amz\-grant\-write\-acp ](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#permissions)  | Filters access to requests with the x\-amz\-grant\-write\-acp \(write permissions for the ACL\) header | String | 
 |   [ s3:x\-amz\-metadata\-directive ](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html)  | Filters access by object metadata behavior \(COPY or REPLACE\) when objects are copied | String | 
-|   [ s3:x\-amz\-server\-side\-encryption ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html)  | Filters access by server\-side encryption | String | 
-|   [ s3:x\-amz\-server\-side\-encryption\-aws\-kms\-key\-id ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html#require-sse-kms)  | Filters access by AWS KMS customer managed CMK for server\-side encryption | String | 
-|   [ s3:x\-amz\-storage\-class ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html#sc-howtoset)  | Filters access by storage class | String | 
-|   [ s3:x\-amz\-website\-redirect\-location ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-page-redirect.html#page-redirect-using-rest-api)  | Filters access by a specific website redirect location for buckets that are configured as static websites | String | 
+|   [ s3:x\-amz\-server\-side\-encryption ](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)  | Filters access by server\-side encryption | String | 
+|   [ s3:x\-amz\-server\-side\-encryption\-aws\-kms\-key\-id ](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html#require-sse-kms)  | Filters access by AWS KMS customer managed CMK for server\-side encryption | String | 
+|   [ s3:x\-amz\-storage\-class ](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-howtoset)  | Filters access by storage class | String | 
+|   [ s3:x\-amz\-website\-redirect\-location ](https://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html#page-redirect-using-rest-api)  | Filters access by a specific website redirect location for buckets that are configured as static websites | String | 

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Amazon S3 objects overview<a name="UsingObjects"></a>
 
 Amazon S3 is an object store that uses unique key\-values to store as many objects as you want\. You store these objects in one or more buckets, and each object can be up to 5 TB in size\. An object consists of the following:

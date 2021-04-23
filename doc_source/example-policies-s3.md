@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # User policy examples<a name="example-policies-s3"></a>
 
 This section shows several IAM user policies for controlling user access to Amazon S3\. For example *bucket policies*, see [Using bucket policies](bucket-policies.md)\. For information about access policy language, see [Bucket policies and user policies](using-iam-policies.md)\.

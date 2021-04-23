@@ -1,14 +1,8 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Emptying a bucket<a name="empty-bucket"></a>
 
 You can empty a bucket's contents using the Amazon S3 console, AWS SDKs, or AWS Command Line Interface \(AWS CLI\)\. When you empty a bucket, you delete all the content, but you keep the bucket\. 
 
-You can also specify a lifecycle configuration on a bucket to expire objects so that Amazon S3 can delete them\. However, there are limitations on this method based on the number of objects in your bucket and the bucket's versioning status\.
+You can also specify a lifecycle configuration on a bucket to expire objects so that Amazon S3 can delete them\. However, there are limitations on this method based on the number of objects in your bucket and the bucket's versioning status\. For more information, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)
 
 ## Using the S3 console<a name="empty-bucket-console"></a>
 
@@ -55,8 +49,12 @@ For more information about using other AWS SDKs, see [Tools for Amazon Web Servi
 
 ## Using a lifecycle configuration<a name="empty-bucket-lifecycle"></a>
 
+If use a lifecycle policy to empty your bucket, the lifecycle policy should include non\-current versions, delete markers, and incomplete multipart uploads\.
+
 You can configure lifecycle on your bucket to expire objects and request that Amazon S3 delete expired objects\. You can add lifecycle configuration rules to expire all or a subset of objects that have a specific key name prefix\. For example, to remove all objects in a bucket, you can set a lifecycle rule to expire objects one day after creation\.
 
-If your bucket has versioning enabled, you can also configure the rule to expire noncurrent objects\. To fully empty the contents of a versioning\-enabled bucket, you must configure an expiration policy on both current and noncurrent objects in the bucket\.
+If your bucket has versioning enabled, you can also configure the rule to expire noncurrent objects\. To fully empty the contents of a versioning\-enabled bucket, you must configure an expiration policy on both current and noncurrent objects in the bucket\. 
 
-For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md) and [Expiring objects](lifecycle-expire-general-considerations.md)\.
+Amazon S3 supports a bucket lifecycle rule that you can use to direct Amazon S3 to stop multipart uploads that don't complete within a specified number of days after being initiated\. We recommend that you configure this lifecycle rule to minimize your storage costs\. For more information, see [Configuring a bucket lifecycle policy to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)\.
+
+For more information about using a lifecycle configuration to empty a bucket, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md) and [Expiring objects](lifecycle-expire-general-considerations.md)\.

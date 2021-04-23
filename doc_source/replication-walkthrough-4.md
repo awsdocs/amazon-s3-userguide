@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Replicating encrypted objects<a name="replication-walkthrough-4"></a>
 
 By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with AWS Key Management Service \(AWS KMS\) customer master keys \(CMKs\)\. To replicate encrypted objects, you modify the bucket replication configuration to tell Amazon S3 to replicate these objects\. This example explains how to use the Amazon S3 console and the AWS Command Line Interface \(AWS CLI\) to change the bucket replication configuration to enable replicating encrypted objects\. For more information, see [Replicating objects created with server\-side encryption \(SSE\) using AWS KMS CMKs](replication-config-for-kms-objects.md)\. 
@@ -95,7 +89,7 @@ To set up replication configuration when both *source* and *destination* buckets
 
       1. Copy the following permissions policy and save it to a file named `s3-role-permissions-policykmsobj.json` in the current directory on your local computer\. You create an IAM role and attach the policy to it later\. 
 **Important**  
- In the permissions policy, you specify the AWS KMS key IDs that will be used for encryption of *source* and `destination` buckets\. You must create two separate AWS KMS CMKs for the `source` and `destination` buckets\. AWS KMS CMKs are never shared outside the AWS Region in which they were created\. 
+In the permissions policy, you specify the AWS KMS key IDs that will be used for encryption of *source* and `destination` buckets\. You must create two separate AWS KMS CMKs for the `source` and `destination` buckets\. AWS KMS CMKs are never shared outside the AWS Region in which they were created\. 
 
          ```
          {

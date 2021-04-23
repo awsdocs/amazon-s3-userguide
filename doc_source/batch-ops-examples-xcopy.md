@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Copying objects across AWS accounts using S3 Batch Operations<a name="batch-ops-examples-xcopy"></a>
 
 You can use S3 Batch Operations to create a PUT copy job to copy objects to a different AWS account \(the *destination account*\)\. The following sections explain how to store and use a manifest that is in a different AWS account\. In the first section, you can use Amazon S3 Inventory to deliver the inventory report to the destination account for use during job creation or, you can use a comma\-separated values \(CSV\) manifest in the source or destination account as shown in the second section\. 

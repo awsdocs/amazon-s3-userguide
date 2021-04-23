@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Managing your Amazon S3 on Outposts access points with Amazon S3 console<a name="s3-outposts-bucket-manage-outpost-access-points"></a>
 
 **Topics**
@@ -21,9 +15,9 @@ Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines 
 
 1. Choose **Create Outposts access points** from the left navigation menu\.
 
-1. In the section **Outposts access point settings**, enter a **Access point name** for the access point and choose the Virtual Private \(VPC\)\.
+1. In the section **Outposts access point settings**, enter a **access point name** for the access point and choose the Virtual Private \(VPC\)\.
 **Note**  
-To use an access point with a VPC, you must modify the access policy for your VPC endpoint\. For more information, see [Accessing Amazon S3 on Outposts using virtual private cloud \(VPC\) only access points](AccessingS3Outposts.md)\.
+To use an access point with a VPC, you must modify the access policy for your VPC endpoint\. For more information, see [Accessing Amazon S3 on Outposts using VPC\-only access points](WorkingWithS3Outposts.md#AccessingS3Outposts)\.
 
 1. If you want to add a policy for your access point, you can do so by entering it in the **Outposts access point policy** section\. For more information, see [Using AWS Identity and Access Management with Amazon S3 on Outposts](S3OutpostsIAM.md)\.
 

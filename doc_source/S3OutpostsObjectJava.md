@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Working with objects using Amazon S3 on Outposts<a name="S3OutpostsObjectJava"></a>
 
 You can use the SDK for Java to put and manage your S3 on Outposts objects\. From these examples, you can put objects and get objects from an Outpost bucket\. 
@@ -38,7 +32,7 @@ import java.io.File;
 
 public class PutObject {
     public static void main(String[] args) {
-        String accessPointArn = "*** Access point ARN ***";
+        String accessPointArn = "*** access point ARN ***";
         String stringObjKeyName = "*** String object key name ***";
         String fileObjKeyName = "*** File object key name ***";
         String fileName = "*** Path to file to upload ***";
@@ -93,7 +87,7 @@ import java.io.InputStreamReader;
 
 public class GetObject {
     public static void main(String[] args) throws IOException {
-        String accessPointArn = "*** Access point ARN ***";
+        String accessPointArn = "*** access point ARN ***";
         String key = "*** Object key ***";
 
         S3Object fullObject = null, objectPortion = null, headerOverrideObject = null;
@@ -175,7 +169,7 @@ import com.amazonaws.services.s3.model.CopyObjectRequest;
 
 public class CopyObject {
     public static void main(String[] args) {
-        String accessPointArn = "*** Access point ARN ***";
+        String accessPointArn = "*** access point ARN ***";
         String sourceKey = "*** Source object key ***";
         String destinationKey = "*** Destination object key ***";
 
@@ -216,7 +210,7 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 
 public class DeleteObject {
     public static void main(String[] args) {
-        String accessPointArn = "*** Access point ARN ***";
+        String accessPointArn = "*** access point ARN ***";
         String keyName = "*** Key name ****";
 
         try {
@@ -260,7 +254,7 @@ import java.util.ArrayList;
 public class DeleteObjects {
 
     public static void main(String[] args) {
-//        String accessPointArn = "*** Access point ARN ***";
+//        String accessPointArn = "*** access point ARN ***";
         String accessPointArn = "arn:aws:s3-outposts:us-east-1:785856369849:outpost/ec2/accesspoint/mig-test-60";
 
         try {
@@ -322,7 +316,7 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 public class ListObjectsV2 {
 
     public static void main(String[] args) {
-        String accessPointArn = "*** Access point ARN ***";
+        String accessPointArn = "*** access point ARN ***";
 
         try {
             // This code expects that you have AWS credentials set up per:
@@ -566,7 +560,7 @@ import java.util.List;
 
 public class ListParts {
     public static void main(String[] args) {
-        String accessPointArn = "*** Access point ARN ***";
+        String accessPointArn = "*** access point ARN ***";
         String keyName = "*** Key name ***";
         String uploadId = "*** Upload ID ***";
 
@@ -618,7 +612,7 @@ import java.util.List;
 
 public class ListMultipartUploads {
     public static void main(String[] args) {
-                String accessPointArn = "*** Access point ARN ***";
+                String accessPointArn = "*** access point ARN ***";
 
         try {
             // This code expects that you have AWS credentials set up per:
@@ -669,7 +663,7 @@ import java.util.List;
 
 public class ListMultipartUploads {
     public static void main(String[] args) {
-                String accessPointArn = "*** Access point ARN ***";
+                String accessPointArn = "*** access point ARN ***";
 
         try {
             // This code expects that you have AWS credentials set up per:
@@ -716,7 +710,7 @@ import com.amazonaws.services.s3.model.HeadBucketRequest;
 
 public class HeadBucket {
     public static void main(String[] args) {
-        String accessPointArn = "*** Access point ARN ***";
+        String accessPointArn = "*** access point ARN ***";
 
         try {
             // This code expects that you have AWS credentials set up per:

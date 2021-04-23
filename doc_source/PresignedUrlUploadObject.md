@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Uploading objects using presigned URLs<a name="PresignedUrlUploadObject"></a>
 
 A presigned URL gives you access to the object identified in the URL, provided that the creator of the presigned URL has permissions to access that object\. That is, if you receive a presigned URL to upload an object, you can upload the object only if the creator of the presigned URL has the necessary permissions to upload that object\. 
@@ -20,7 +14,7 @@ Since presigned URLs grant access to your Amazon S3 buckets to whoever has the U
 Anyone with valid security credentials can create a presigned URL\. However, for you to successfully upload an object, the presigned URL must be created by someone who has permission to perform the operation that the presigned URL is based upon\.
 
 **Generate a presigned URL for object upload**  
-You can generate a presigned URL programmatically using the AWS SDK for Java, \.NET, Ruby, PHP, [Node\.js](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), and [Python](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
+You can generate a presigned URL programmatically using the \.NET, AWS SDK for Java, Ruby, [Node\.js](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, , and [Python](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
 
 If you are using Microsoft Visual Studio, you can also use AWS Explorer to generate a presigned object URL without writing any code\. Anyone who receives a valid presigned URL can then programmatically upload an object\. For more information, see [Using Amazon S3 from AWS Explorer](https://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/using-s3.html)\. For instructions on how to install AWS Explorer, see [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)\.
 
@@ -29,6 +23,77 @@ You can use the AWS SDK to generate a presigned URL that you, or anyone you give
 ## Examples<a name="presigned-urls-upload-examples"></a>
 
 The following examples show how to upload objects using presigned URLs\.
+
+------
+#### [ \.NET ]
+
+The following C\# example shows how to use the AWS SDK for \.NET to upload an object to an S3 bucket using a presigned URL\.
+
+This example generates a presigned URL for a specific object and uses it to upload a file\. For information about the example's compatibility with a specific version of the AWS SDK for \.NET and instructions about how to create and test a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\.
+
+```
+using Amazon;
+using Amazon.S3;
+using Amazon.S3.Model;
+using System;
+using System.IO;
+using System.Net;
+
+namespace Amazon.DocSamples.S3
+{
+    class UploadObjectUsingPresignedURLTest
+    {
+        private const string bucketName = "*** provide bucket name ***";
+        private const string objectKey  = "*** provide the name for the uploaded object ***";
+        private const string filePath   = "*** provide the full path name of the file to upload ***";
+        // Specify how long the presigned URL lasts, in hours
+        private const double timeoutDuration = 12;
+        // Specify your bucket region (an example region is shown).
+        private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USWest2; 
+        private static IAmazonS3 s3Client;
+
+        public static void Main()
+        {
+            s3Client = new AmazonS3Client(bucketRegion);
+            var url = GeneratePreSignedURL(timeoutDuration);
+            UploadObject(url);
+        }
+
+        private static void UploadObject(string url)
+        {
+            HttpWebRequest httpRequest = WebRequest.Create(url) as HttpWebRequest;
+            httpRequest.Method = "PUT";
+            using (Stream dataStream = httpRequest.GetRequestStream())
+            {
+                var buffer = new byte[8000];
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    int bytesRead = 0;
+                    while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        dataStream.Write(buffer, 0, bytesRead);
+                    }
+                }
+            }
+            HttpWebResponse response = httpRequest.GetResponse() as HttpWebResponse;
+        }
+
+        private static string GeneratePreSignedURL(double duration)
+        {
+            var request = new GetPreSignedUrlRequest
+            {
+                BucketName = bucketName,
+                Key        = objectKey,
+                Verb       = HttpVerb.PUT,
+                Expires    = DateTime.UtcNow.AddHours(duration)
+            };
+
+           string url = s3Client.GetPreSignedURL(request);
+           return url;
+        }
+    }
+}
+```
 
 ------
 #### [ Java ]
@@ -112,75 +177,19 @@ public class GeneratePresignedUrlAndUploadObject {
 ```
 
 ------
-#### [ \.NET ]
+#### [ Python ]
 
-The following C\# example shows how to use the AWS SDK for \.NET to upload an object to an S3 bucket using a presigned URL\.
-
-This example generates a presigned URL for a specific object and uses it to upload a file\. For information about the example's compatibility with a specific version of the AWS SDK for \.NET and instructions about how to create and test a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\.
+Generate a presigned URL to share an object by using the SDK for Python \(Boto3\)\. For example, use a Boto3 client and the `generate_presigned_url` function to generate a presigned URL that PUTs an object\.
 
 ```
-using Amazon;
-using Amazon.S3;
-using Amazon.S3.Model;
-using System;
-using System.IO;
-using System.Net;
-
-namespace Amazon.DocSamples.S3
-{
-    class UploadObjectUsingPresignedURLTest
-    {
-        private const string bucketName = "*** provide bucket name ***";
-        private const string objectKey  = "*** provide the name for the uploaded object ***";
-        private const string filePath   = "*** provide the full path name of the file to upload ***";
-        // Specify how long the presigned URL lasts, in hours
-        private const double timeoutDuration = 12;
-        // Specify your bucket region (an example region is shown).
-        private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USWest2; 
-        private static IAmazonS3 s3Client;
-
-        public static void Main()
-        {
-            s3Client = new AmazonS3Client(bucketRegion);
-            var url = GeneratePreSignedURL(timeoutDuration);
-            UploadObject(url);
-        }
-
-        private static void UploadObject(string url)
-        {
-            HttpWebRequest httpRequest = WebRequest.Create(url) as HttpWebRequest;
-            httpRequest.Method = "PUT";
-            using (Stream dataStream = httpRequest.GetRequestStream())
-            {
-                var buffer = new byte[8000];
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    int bytesRead = 0;
-                    while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
-                    {
-                        dataStream.Write(buffer, 0, bytesRead);
-                    }
-                }
-            }
-            HttpWebResponse response = httpRequest.GetResponse() as HttpWebResponse;
-        }
-
-        private static string GeneratePreSignedURL(double duration)
-        {
-            var request = new GetPreSignedUrlRequest
-            {
-                BucketName = bucketName,
-                Key        = objectKey,
-                Verb       = HttpVerb.PUT,
-                Expires    = DateTime.UtcNow.AddHours(duration)
-            };
-
-           string url = s3Client.GetPreSignedURL(request);
-           return url;
-        }
-    }
-}
+import boto3
+    url = boto3.client('s3').generate_presigned_url(
+    ClientMethod='get_object', 
+    Params={'Bucket': 'BUCKET_NAME', 'Key': 'OBJECT_KEY'},
+    ExpiresIn=3600)
 ```
+
+For a complete example that shows how to generate presigned URLs and how to use the Requests package to upload and download objects, see the [ PHP presigned URL](https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html) example on GitHub\. For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](http://amazonaws.com/http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for PHP API Reference*\.
 
 ------
 #### [ Ruby ]

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using access points with compatible Amazon S3 operations<a name="access-points-usage-examples"></a>
 
 The following examples demonstrate how to use access points with compatible operations in Amazon S3\.
@@ -23,7 +17,7 @@ Access points in Amazon S3 are compatible with a subset of S3 operations and oth
 
 **AWS Services**
 
-You can use S3 Access Points with AWS CloudFormation\.
+You can use S3 access points with AWS CloudFormation\.
 
 For more information about AWS CloudFormation, see [What is AWS CloudFormation?](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) in the *AWS CloudFormation User Guide*\.
 

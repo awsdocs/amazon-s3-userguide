@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Troubleshooting Amazon S3 by Symptom<a name="troubleshooting-by-symptom"></a>
 
 The following topics list symptoms to help you troubleshoot some of the issues that you might encounter when working with Amazon S3\.

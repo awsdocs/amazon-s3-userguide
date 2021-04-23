@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Managing access with ACLs<a name="acls"></a>
 
  Access control lists \(ACLs\) are one of the resource\-based access policy options \(see [Overview of managing access](access-control-overview.md)\) that you can use to manage access to your buckets and objects\. You can use ACLs to grant basic read/write permissions to other AWS accounts\. There are limits to managing permissions using ACLs\.

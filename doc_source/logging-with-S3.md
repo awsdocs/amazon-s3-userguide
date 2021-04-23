@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Logging options for Amazon S3<a name="logging-with-S3"></a>
 
 You can record the actions that are taken by users, roles, or AWS services on Amazon S3 resources and maintain log records for auditing and compliance purposes\. To do this, you can use server access logging, AWS CloudTrail logging, or a combination of both\. We recommend that you use AWS CloudTrail for logging bucket and object\-level actions for your Amazon S3 resources\. For more information about each option, see the following sections:

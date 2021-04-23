@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Tracking an S3 Batch Operations job in Amazon EventBridge through AWS CloudTrail<a name="batch-ops-examples-event-bridge-cloud-trail"></a>
 
 Amazon S3 Batch Operations job activity is recorded as events in AWS CloudTrail\. You can create a custom rule in Amazon EventBridge and send these events to the target notification resource of your choice, such as Amazon Simple Notification Service \(Amazon SNS\)\. 

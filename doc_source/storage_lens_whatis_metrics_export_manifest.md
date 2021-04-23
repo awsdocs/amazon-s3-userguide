@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # What is an S3 Storage Lens export manifest?<a name="storage_lens_whatis_metrics_export_manifest"></a>
 
 Given the large amount of data aggregated, an S3 Storage Lens daily metrics export can be split into multiple files\. The manifest file `manifest.json` describes where the metrics export files for that day are located\. Whenever a new export is delivered, it is accompanied by a new manifest\. Each manifest contained in the `manifest.json` file provides metadata and other basic information about the export\. 

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using AWS Identity and Access Management with Amazon S3 on Outposts<a name="S3OutpostsIAM"></a>
 
 AWS Identity and Access Management \(IAM\) is an AWS service that administrators can use to securely control access to AWS Outposts resources\. To allow IAM users to manage AWS Outposts resources, you create an IAM policy that explicitly grants them permissions\.You then attach the policy to the IAM users or groups that require those permissions\. For more information, see [Identity and Access Management for AWS Outposts](https://docs.aws.amazon.com/outposts/latest/userguide/identity-access-management.html) in the *AWS Outposts User Guide*\. 

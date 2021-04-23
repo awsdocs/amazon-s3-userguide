@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # What is Amazon S3?<a name="Welcome"></a>
 
 Amazon Simple Storage Service \(Amazon S3\) is storage for the Internet\. It is designed to make web\-scale computing easier for developers\.

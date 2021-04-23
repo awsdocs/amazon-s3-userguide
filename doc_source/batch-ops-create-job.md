@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Creating an S3 Batch Operations job<a name="batch-ops-create-job"></a>
 
 With S3 Batch Operations, you can perform large\-scale Batch Operations on a list of specific Amazon S3 objects\. You can create S3 Batch Operations jobs using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\. 

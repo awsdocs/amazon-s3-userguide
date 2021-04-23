@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Changing the replica owner<a name="replication-change-owner"></a>
 
 In replication, the owner of the source object also owns the replica by default\. When source and destination buckets are owned by different AWS accounts, you can add optional configuration settings to change replica ownership to the AWS account that owns the destination buckets\. You might do this, for example, to restrict access to object replicas\. This is referred to as the *owner override* option of the replication configuration\. This section explains only the relevant additional configuration settings\. For information about setting the replication configuration, see [Replicating objects](replication.md)\. 

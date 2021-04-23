@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Metrics and dimensions<a name="metrics-dimensions"></a>
 
 The storage metrics and dimensions that Amazon S3 sends to CloudWatch are listed below\.

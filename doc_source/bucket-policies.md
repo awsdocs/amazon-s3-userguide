@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using bucket policies<a name="bucket-policies"></a>
 
 You can create and configure bucket policies to grant permission to your Amazon S3 resources\. Bucket policies use JSON\-based access policy language\. 

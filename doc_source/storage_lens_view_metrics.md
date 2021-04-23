@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Viewing storage usage and activity metrics with Amazon S3 Storage Lens<a name="storage_lens_view_metrics"></a>
 
 By default, all dashboards are configured with **free metrics**, which include [usage metrics](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_metrics_types) aggregated down to the bucket level with a 14\-day data retention\. This means that you can see all the usage metrics that S3 Storage Lens aggregates, and your data will be available 14 days from the day it was aggregated\. 

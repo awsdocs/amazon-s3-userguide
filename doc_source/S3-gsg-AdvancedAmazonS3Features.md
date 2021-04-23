@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Advanced Amazon S3 features<a name="S3-gsg-AdvancedAmazonS3Features"></a>
 
 The examples in this guide show how to accomplish the basic tasks of creating a bucket, uploading and downloading data to and from it, and moving and deleting the data\. The following table summarizes some of the most common advanced functionality offered by Amazon S3\. Note that some advanced functionality is not available in the AWS Management Console and requires that you use the Amazon S3 API\.

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # How Amazon S3 authorizes a request<a name="how-s3-evaluates-access-control"></a>
 
 When Amazon S3 receives a request—for example, a bucket or an object operation—it first verifies that the requester has the necessary permissions\. Amazon S3 evaluates all the relevant access policies, user policies, and resource\-based policies \(bucket policy, bucket ACL, object ACL\) in deciding whether to authorize the request\. 

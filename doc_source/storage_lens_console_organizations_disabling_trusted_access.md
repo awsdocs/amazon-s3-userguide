@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Disabling S3 Storage Lens trusted access in your organization<a name="storage_lens_console_organizations_disabling_trusted_access"></a>
 
  Disabling trusted access will limit S3 Storage Lens to only work on an account level\. Each account holder will only be able to see the benefits of S3 Storage Lens limited to the scope of their account, and not their organization\. Any dashboards requiring trusted access will no longer be updated, but they will retain their historic data per their respective [retention periods](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_retention_period)\. 

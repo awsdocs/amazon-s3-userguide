@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Resilience in Amazon S3<a name="disaster-recovery-resiliency"></a>
 
 The AWS global infrastructure is built around Regions and Availability Zones\. AWS Regions provide multiple, physically separated and isolated Availability Zones that are connected with low latency, high throughput, and highly redundant networking\. These Availability Zones offer you an effective way to design and operate applications and databases\. They are more highly available, fault tolerant, and scalable than traditional single data center infrastructures or multi\-data center infrastructures\. If you specifically need to replicate your data over greater geographic distances, you can use [Replicating objects](replication.md), which enables automatic, asynchronous copying of objects across buckets in different AWS Regions\.

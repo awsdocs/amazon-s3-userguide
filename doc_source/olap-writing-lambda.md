@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Writing and debugging Lambda functions for S3 Object Lambda Access Points<a name="olap-writing-lambda"></a>
 
 This section details about writing and debugging Lambda functions for use with Object Lambda access points\.
@@ -184,7 +178,7 @@ These parameters are required to connect the WriteGetObjectResult with the origi
 
 ## Debugging S3 Object Lambda<a name="olap-debugging-lambda"></a>
 
-Get Object requests to S3 Object Lambda Access Points may result in a new error responses when something goes wrong with the Lambda invocation or execution\. These errors follow the same format as the standard S3 errors\. For information about S3 Object Lambda errors, see [S3 Object Lambda Error Code List](https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3ObjectLambdaErrorCodeList) in the *Amazon Simple Storage Service API Reference*\.
+Get Object requests to S3 Object Lambda access points may result in a new error responses when something goes wrong with the Lambda invocation or execution\. These errors follow the same format as the standard S3 errors\. For information about S3 Object Lambda errors, see [S3 Object Lambda Error Code List](https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3ObjectLambdaErrorCodeList) in the *Amazon Simple Storage Service API Reference*\.
 
 For more information on general Lambda function debugging see, [Monitoring and troubleshooting Lambda applications](https://docs.aws.amazon.com/lambda/latest/dg/lambda-monitoring.html ) in the *AWS Lambda Developer Guide*\.
 

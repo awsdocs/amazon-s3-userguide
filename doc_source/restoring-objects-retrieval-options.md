@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Archive retrieval options<a name="restoring-objects-retrieval-options"></a>
 
 The following are the available retrieval options when restoring an archived object in Amazon S3: 

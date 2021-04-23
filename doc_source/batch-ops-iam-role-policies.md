@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Granting permissions for Amazon S3 Batch Operations<a name="batch-ops-iam-role-policies"></a>
 
 This section describes how to grant the necessary permissions required for creating and performing S3 Batch Operations jobs\.
@@ -55,7 +49,7 @@ Depending on the type of operations, you can attach one of the following policie
 
 Before you configure permissions, note the following:
 + Regardless of the operation, Amazon S3 needs permissions to read your manifest object from your S3 bucket and optionally write a report to your bucket\. Therefore, all of the following policies include these permissions\.
-+ For Amazon S3 inventory report manifests, S3 Batch Operations require permission to read the manifest\.json object and all associated CSV data files\.
++ For Amazon S3 inventory report manifests, S3 Batch Operations requires permission to read the manifest\.json object and all associated CSV data files\.
 + Version\-specific permissions such as `s3:GetObjectVersion` are only required when you are specifying the version ID of the objects\.
 + If you are running S3 Batch Operations on encrypted objects, the IAM role must also have access to the AWS KMS keys used to encrypt them\.
 
@@ -100,22 +94,18 @@ Before you configure permissions, note the following:
             "Effect": "Allow",
             "Action": [
                 "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketLocation"
+                "s3:GetObjectVersion"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ManifestBucket}}",
                 "arn:aws:s3:::{{ManifestBucket}}/*"
             ]
         },
         {
             "Effect": "Allow",
             "Action": [
-                "s3:PutObject",
-                "s3:GetBucketLocation"
+                "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ReportBucket}}",
                 "arn:aws:s3:::{{ReportBucket}}/*"
             ]
         }
@@ -141,22 +131,18 @@ Before you configure permissions, note the following:
       "Effect": "Allow",
       "Action": [
         "s3:GetObject",
-        "s3:GetObjectVersion",
-        "s3:GetBucketLocation"
+        "s3:GetObjectVersion"
       ],
       "Resource": [
-        "arn:aws:s3:::{{ManifestBucket}}",
         "arn:aws:s3:::{{ManifestBucket}}/*"
       ]
     },
     {
       "Effect":"Allow",
       "Action":[
-        "s3:PutObject",
-        "s3:GetBucketLocation"
+        "s3:PutObject"
       ],
       "Resource":[
-        "arn:aws:s3:::{{ReportBucket}}",
         "arn:aws:s3:::{{ReportBucket}}/*"
       ]
     }
@@ -184,22 +170,18 @@ Before you configure permissions, note the following:
             "Effect": "Allow",
             "Action": [
                 "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketLocation"
+                "s3:GetObjectVersion"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ManifestBucket}}",
                 "arn:aws:s3:::{{ManifestBucket}}/*"
             ]
         },
         {
             "Effect": "Allow",
             "Action": [
-                "s3:PutObject",
-                "s3:GetBucketLocation"
+                "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ReportBucket}}",
                 "arn:aws:s3:::{{ReportBucket}}/*"
             ]
         }
@@ -225,22 +207,18 @@ Before you configure permissions, note the following:
       "Effect": "Allow",
       "Action": [
         "s3:GetObject",
-        "s3:GetObjectVersion",
-        "s3:GetBucketLocation"
+        "s3:GetObjectVersion"
       ],
       "Resource": [
-        "arn:aws:s3:::{{ManifestBucket}}",
         "arn:aws:s3:::{{ManifestBucket}}/*"
       ]
     },
     {
       "Effect":"Allow",
       "Action":[
-        "s3:PutObject",
-        "s3:GetBucketLocation"
+        "s3:PutObject"
       ],
       "Resource":[
-        "arn:aws:s3:::{{ReportBucket}}",
         "arn:aws:s3:::{{ReportBucket}}/*"
       ]
     }
@@ -265,22 +243,18 @@ Before you configure permissions, note the following:
       "Effect": "Allow",
       "Action": [
         "s3:GetObject",
-        "s3:GetObjectVersion",
-        "s3:GetBucketLocation"
+        "s3:GetObjectVersion"
       ],
       "Resource": [
-        "arn:aws:s3:::{{ManifestBucket}}",
         "arn:aws:s3:::{{ManifestBucket}}/*"
       ]
     },
     {
       "Effect":"Allow",
       "Action":[
-        "s3:PutObject",
-        "s3:GetBucketLocation"
+        "s3:PutObject"
       ],
       "Resource":[
-        "arn:aws:s3:::{{ReportBucket}}",
         "arn:aws:s3:::{{ReportBucket}}/*"
       ]
     }
@@ -315,22 +289,18 @@ Before you configure permissions, note the following:
             "Effect": "Allow",
             "Action": [
                 "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketLocation"
+                "s3:GetObjectVersion"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ManifestBucket}}",
                 "arn:aws:s3:::{{ManifestBucket}}/*"
             ]
         },
         {
             "Effect": "Allow",
             "Action": [
-                "s3:PutObject",
-                "s3:GetBucketLocation"
+                "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ReportBucket}}",
                 "arn:aws:s3:::{{ReportBucket}}/*"
             ]
         }
@@ -362,22 +332,18 @@ Before you configure permissions, note the following:
             "Effect": "Allow",
             "Action": [
                 "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketLocation"
+                "s3:GetObjectVersion"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ManifestBucket}}",
                 "arn:aws:s3:::{{ManifestBucket}}/*"
             ]
         },
         {
             "Effect": "Allow",
             "Action": [
-                "s3:PutObject",
-                "s3:GetBucketLocation"
+                "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ReportBucket}}",
                 "arn:aws:s3:::{{ReportBucket}}/*"
             ]
         }

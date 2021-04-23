@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring event notifications using object key name filtering<a name="notification-how-to-filtering"></a>
 
 When configuring an Amazon S3 event notification, you must specify which supported Amazon S3 event types cause Amazon S3 to send the notification\. If an event type that you didn't specify occurs in your S3 bucket, Amazon S3 doesn't send the notification\.

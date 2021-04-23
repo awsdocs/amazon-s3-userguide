@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring an index document<a name="IndexDocumentSupport"></a>
 
 When you enable website hosting, you must also configure and upload an index document\. An *index document* is a webpage that Amazon S3 returns when a request is made to the root of a website or any subfolder\. For example, if a user enters `http://www.example.com` in the browser, the user is not requesting any specific page\. In that case, Amazon S3 serves up the index document, which is sometimes referred to as the *default page*\.

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Viewing replication metrics using the Amazon S3 console<a name="viewing-replication-metrics"></a>
 
 There are three types of Amazon CloudWatch metrics for Amazon S3: storage metrics, request metrics, and replication metrics\. *Replication* metrics are turned on automatically when you enable replication with S3 Replication Time Control \(S3 RTC\) using the AWS Management Console or the Amazon S3 API\. Replication metrics are available 15 minutes after you enable a replication rule with S3 Replication Time Control \(S3 RTC\) \(S3 RTC\)\.

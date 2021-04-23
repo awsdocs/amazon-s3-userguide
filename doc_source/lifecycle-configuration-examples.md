@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Examples of lifecycle configuration<a name="lifecycle-configuration-examples"></a>
 
 This section provides examples of S3 Lifecycle configuration\. Each example shows how you can specify the XML in each of the example scenarios\.

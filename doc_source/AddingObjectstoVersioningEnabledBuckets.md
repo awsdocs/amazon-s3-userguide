@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Adding objects to versioning\-enabled buckets<a name="AddingObjectstoVersioningEnabledBuckets"></a>
 
 After you enable versioning on a bucket, Amazon S3 automatically adds a unique version ID to every object stored \(using `PUT`, `POST`, or `COPY`\) in the bucket\. 

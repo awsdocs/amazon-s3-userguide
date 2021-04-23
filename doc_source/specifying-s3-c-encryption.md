@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Specifying server\-side encryption with customer\-provided keys \(SSE\-C\)<a name="specifying-s3-c-encryption"></a>
 
 At the time of object creation with the REST API, you can specify server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. When you use SSE\-C, you must provide encryption key information using the following request headers\. 

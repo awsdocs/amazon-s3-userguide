@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Deleting a metrics filter<a name="delete-request-metrics-filter"></a>
 
 You can delete an Amazon CloudWatch request metrics filter if you no longer need it\. When you delete a filter, you are no longer charged for request metrics that use that *specific filter*\. However, you will continue to be charged for any other filter configurations that exist\. 

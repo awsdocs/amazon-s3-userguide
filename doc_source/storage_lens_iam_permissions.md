@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Setting permissions to use Amazon S3 Storage Lens<a name="storage_lens_iam_permissions"></a>
 
 Amazon S3 Storage Lens requires new permissions in AWS Identity and Access Management \(IAM\) to authorize access to S3 Storage Lens actions\. You can attach the policy to IAM users, groups, or roles to grant them permissions to enable or disable S3 Storage Lens, or to access any S3 Storage Lens dashboard or configuration\. 

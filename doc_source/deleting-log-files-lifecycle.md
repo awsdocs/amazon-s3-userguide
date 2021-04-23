@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Deleting Amazon S3 log files<a name="deleting-log-files-lifecycle"></a>
 
 An Amazon S3 bucket with server access logging enabled can accumulate many server log objects over time\. Your application might need these access logs for a specific period after they are created, and after that, you might want to delete them\. You can use Amazon S3 Lifecycle configuration to set rules so that S3 automatically queues these objects for deletion at the end of their life\. 

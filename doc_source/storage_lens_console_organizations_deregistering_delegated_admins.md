@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Deregistering delegated administrators for S3 Storage Lens<a name="storage_lens_console_organizations_deregistering_delegated_admins"></a>
 
 You can deregister delegate administrator access to accounts in your organization\. When an account is deregistered as a delegated administrator, the account loses authorization to access all read\-only AWS Organizations APIs that provide visibility to the members and structures of your organization\.

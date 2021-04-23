@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Monitoring Amazon S3<a name="monitoring-overview"></a>
 
 Monitoring is an important part of maintaining the reliability, availability, and performance of Amazon S3 and your AWS solutions\. You should collect monitoring data from all of the parts of your AWS solution so that you can more easily debug a multipoint failure if one occurs\. But before you start monitoring Amazon S3, you should create a monitoring plan that includes answers to the following questions:

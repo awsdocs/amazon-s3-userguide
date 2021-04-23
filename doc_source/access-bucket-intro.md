@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Accessing a bucket<a name="access-bucket-intro"></a>
 
 You can access your bucket using the Amazon S3 console\. Using the console UI, you can perform almost all bucket operations without having to write any code\. 
@@ -56,11 +50,11 @@ Update \(September 23, 2020\) – We have decided to delay the deprecation of pa
 
 Amazon S3 has a set of dual\-stack endpoints, which support requests to S3 buckets over both Internet Protocol version 6 \(IPv6\) and IPv4\. For more information, see [Making requests over IPv6](ipv6-access.md)\.
 
-## Accessing a bucket through S3 Access Points<a name="accessing-bucket-through-s3-access-point"></a>
+## Accessing a bucket through S3 access points<a name="accessing-bucket-through-s3-access-point"></a>
 
-In addition to accessing a bucket directly, you can access a bucket through an access point\. For more information about the S3 Access Points feature, see [Managing data access with Amazon S3 access points](access-points.md)\.
+In addition to accessing a bucket directly, you can access a bucket through an access point\. For more information about the S3 access points feature, see [Managing data access with Amazon S3 access points](access-points.md)\.
 
-S3 Access Points only support virtual\-host\-style addressing\. To address a bucket through an access point, use the following format\.
+S3 access points only support virtual\-host\-style addressing\. To address a bucket through an access point, use the following format\.
 
 ```
 https://AccessPointName-AccountId.s3-accesspoint.region.amazonaws.com.
@@ -68,7 +62,7 @@ https://AccessPointName-AccountId.s3-accesspoint.region.amazonaws.com.
 
 **Note**  
 If your access point name includes dash \(\-\) characters, include the dashes in the URL and insert another dash before the account ID\. For example, to use an access point named `finance-docs` owned by account `123456789012` in Region `us-west-2`, the appropriate URL would be `https://finance-docs-123456789012.s3-accesspoint.us-west-2.amazonaws.com`\.
-S3 Access Points don't support access by HTTP, only secure access by HTTPS\.
+S3 access points don't support access by HTTP, only secure access by HTTPS\.
 
 ## Accessing a bucket using S3://<a name="accessing-a-bucket-using-S3-format"></a>
 

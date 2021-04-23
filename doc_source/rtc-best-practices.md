@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Best practices and guidelines for S3 RTC<a name="rtc-best-practices"></a>
 
 When replicating data in Amazon S3 using S3 Replication Time Control \(S3 RTC\), follow these best practice guidelines to optimize replication performance for your workloads\. 

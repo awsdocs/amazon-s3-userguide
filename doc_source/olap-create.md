@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Creating Object Lambda Access Points<a name="olap-create"></a>
 
 An Object Lambda access point is associated with exactly one standard access point and thus one Amazon S3 bucket\. To create an Object Lambda access point, you need the following resources:
@@ -32,7 +26,7 @@ For information about how to create access points using the REST API, see [Creat
 
    As with standard access points, there are rules for naming\. For more information, see [Rules for naming Amazon S3 access points](creating-access-points.md#access-points-names)\.
 
-1. For **Supporting Access Point**, enter or browse to the standard access point that you want to use\. The access point must be in the same AWS Region as the objects you want to transform\.
+1. For **Supporting access point**, enter or browse to the standard access point that you want to use\. The access point must be in the same AWS Region as the objects you want to transform\.
 
 1. For **Invoke Lambda function**, you can choose to use a prebuilt function or enter the Amazon Resource Name \(ARN\) of an AWS Lambda function in your AWS account\. 
 

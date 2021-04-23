@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Event notification types and destinations<a name="notification-how-to-event-types-and-destinations"></a>
 
 Amazon S3 supports several event notification types and destinations where the notifications can be published\. You can specify the event type and destination when configuring your event notifications\.

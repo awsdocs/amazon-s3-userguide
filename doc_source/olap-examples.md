@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using AWS built Lambda functions<a name="olap-examples"></a>
 
 AWS provides some prebuilt Lambda functions that you can use with S3 Object Lambda to detect and redact personally identifiable information \(PII\) and decompress S3 objects\. These Lambda functions are available in the AWS Serverless Application Repository and can be selected through the AWS Management Console when you create your Object Lambda access point\. 

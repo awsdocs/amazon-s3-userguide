@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Viewing an object overview in the Amazon S3 console<a name="view-object-overview"></a>
 
 You can use the Amazon S3 console to view an overview of an object\. The object overview in the console provides all the essential information for an object in one place\.

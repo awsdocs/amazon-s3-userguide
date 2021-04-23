@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Listing object keys programmatically<a name="ListingKeysUsingAPIs"></a>
 
 In Amazon S3, keys can be listed by prefix\. You can choose a common prefix for the names of related keys and mark these keys with a special character that delimits hierarchy\. You can then use the list operation to select and browse keys hierarchically\. This is similar to how files are stored in directories within a file system\. 

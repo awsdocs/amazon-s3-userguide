@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Querying archived objects<a name="querying-glacier-archives"></a>
 
 With the select type of [POST Object restore](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html), you can perform filtering operations using simple Structured Query Language \(SQL\) statements directly on your data that is archived by Amazon S3 to S3 Glacier\. When you provide an SQL query for an archived object, select runs the query in place and writes the output results to an S3 bucket\. You can run queries and custom analytics on your data that is stored in S3 Glacier, without having to restore your entire object to Amazon S3\.

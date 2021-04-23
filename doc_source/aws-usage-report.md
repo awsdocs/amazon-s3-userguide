@@ -1,35 +1,27 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # AWS usage report for Amazon S3<a name="aws-usage-report"></a>
 
-For more detail about your Amazon S3 storage usage, download dynamically generated AWS usage reports\. You can choose which usage type, operation, and time period to include\. You can also choose how the data is aggregated\. 
-
-When you download a usage report, you can choose to aggregate usage data by hour, day, or month\. The Amazon S3 usage report lists operations by usage type and AWS Region, for example, the amount of data transferred out of the Asia Pacific \(Sydney\) Region\.
+When you download a usage report, you can choose to aggregate usage data by hour, day, or month\. The Amazon S3 usage report lists operations by usage type and AWS Region\. For more detailed reports about your Amazon S3 storage usage, download dynamically generated AWS usage reports\. You can choose which usage type, operation, and time period to include\. You can also choose how the data is aggregated\. 
 
 The Amazon S3 usage report includes the following information:
-+ **Service** – `Amazon Simple Storage Service`
++ **Service** – Amazon S3
 + **Operation** – The operation performed on your bucket or object\. For a detailed explanation of Amazon S3 operations, see [Tracking Operations in Your Usage Reports](aws-usage-report-understand.md#aws-usage-report-understand-operations)\.
 + **UsageType** – One of the following values:
   + A code that identifies the type of storage
   + A code that identifies the type of request
   + A code that identifies the type of retrieval
   + A code that identifies the type of data transfer
-  + A code that identifies early deletions from INTELLIGENT\_TIERING, STANDARD\_IA, ONEZONE\_IA, S3 Glacier, or S3 Glacier Deep Archive storage
+  + A code that identifies early deletions from S3 Intelligent\-Tiering, S3 Standard\-IA, S3 One Zone\-Infrequent Access \(S3 One Zone\-IA\), S3 Glacier, or S3 Glacier Deep Archive storage
   + `StorageObjectCount` – The count of objects stored within a given bucket
 
   For a detailed explanation of Amazon S3 usage types, see [Understanding your AWS billing and usage reports for Amazon S3](aws-usage-report-understand.md)\.
 + **Resource** – The name of the bucket associated with the listed usage\.
 + **StartTime** – Start time of the day that the usage applies to, in Coordinated Universal Time \(UTC\)\.
-+ **EndTime ** – End time of the day that the usage applies to, in Coordinated Universal Time \(UTC\)\. 
-+ **UsageValue** – One of the following volume values:
++ **EndTime** – End time of the day that the usage applies to, in Coordinated Universal Time \(UTC\)\. 
++ **UsageValue** – One of the following volume values\. The typical unit of measurement for data is gigabytes \(GB\)\. However, depending on the service and the report, terabytes \(TB\) might appear instead\.
   + The number of requests during the specified time period
-  + The amount of data transferred, in bytes
-  + The amount of data stored, in byte\-hours, which is the number of bytes stored in a given hour
-  + The amount of data associated with restorations from S3 Glacier Deep Archive, S3 Glacier, STANDARD\_IA, or ONEZONE\_IA storage, in bytes
+  + The amount of data transferred
+  + The amount of data stored in a given hour
+  + The amount of data associated with restorations from S3 Standard\-IA, S3 One Zone\-IA, S3 Glacier, or S3 Glacier Deep Archive storage
 
 **Tip**  
 For detailed information about every request that Amazon S3 receives for your objects, turn on server access logging for your buckets\. For more information, see [Logging requests using server access logging](ServerLogs.md)\. 
@@ -57,9 +49,9 @@ You can download a usage report as an \.xml or a \.csv file\.
 1. For **Services**, choose **Amazon Simple Storage Service**\.
 
 1. For **Download Usage Report**, choose the following settings:
-   + ****Usage Types **** – For a detailed explanation of Amazon S3 usage types, see [Understanding your AWS billing and usage reports for Amazon S3](aws-usage-report-understand.md)\.
-   + ****Operation **** – For a detailed explanation of Amazon S3 operations, see [Tracking Operations in Your Usage Reports](aws-usage-report-understand.md#aws-usage-report-understand-operations)\.
-   + ****Time Period **** – The time period that you want the report to cover\. 
+   + ****Usage Types**** – For a detailed explanation of Amazon S3 usage types, see [Understanding your AWS billing and usage reports for Amazon S3](aws-usage-report-understand.md)\.
+   + ****Operation**** – For a detailed explanation of Amazon S3 operations, see [Tracking Operations in Your Usage Reports](aws-usage-report-understand.md#aws-usage-report-understand-operations)\.
+   + ****Time Period**** – The time period that you want the report to cover\. 
    + ****Report Granularity**** – Whether you want the report to include subtotals by the hour, by the day, or by the month\.
 
 1. Choose the **Download** format and follow the prompts to open or save the report\.

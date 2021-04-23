@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Protecting data using server\-side encryption<a name="serv-side-encryption"></a>
 
 Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. Amazon S3 encrypts your data at the object level as it writes it to disks in its data centers and decrypts it for you when you access it\. As long as you authenticate your request and you have access permissions, there is no difference in the way you access encrypted or unencrypted objects\. For example, if you share your objects using a presigned URL, that URL works the same way for both encrypted and unencrypted objects\. Additionally, when you list objects in your bucket, the list API returns a list of all objects, regardless of whether they are encrypted\.

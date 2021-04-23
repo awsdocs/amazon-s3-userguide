@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # How Amazon S3 authorizes a request for an object operation<a name="access-control-auth-workflow-object-operation"></a>
 
 When Amazon S3 receives a request for an object operation, it converts all the relevant permissions—resource\-based  permissions \(object access control list \(ACL\), bucket policy, bucket ACL\) and IAM user policies—into a set of policies to be evaluated at run time\. It then evaluates the resulting set of policies in a series of steps\. In each step, it evaluates a subset of policies in three specific contexts—user context, bucket context, and object context\.

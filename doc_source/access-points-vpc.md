@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Creating access points restricted to a virtual private cloud<a name="access-points-vpc"></a>
 
 When you create an access point, you can choose to make the access point accessible from the internet, or you can specify that all requests made through that access point must originate from a specific virtual private cloud \(VPC\)\. An access point that's accessible from the internet is said to have a network origin of `Internet`\. It can be used from anywhere on the internet, subject to any other access restrictions in place for the access point, underlying bucket, and related resources, such as the requested objects\. An access point that's only accessible from a specified VPC has a network origin of `VPC`, and Amazon S3 rejects any request made to the access point that doesn't originate from that VPC\.
@@ -16,7 +10,7 @@ To restrict an access point to VPC\-only access, you include the `VpcConfigurati
 You can retrieve an access point's network origin using the AWS CLI, AWS SDKs, or REST APIs\. If an access point has a VPC configuration specified, its network origin is `VPC`\. Otherwise, the access point's network origin is `Internet`\.
 
 **Example**  
-***Example: Create an Access Point Restricted to VPC Access***  
+***Example: Create an access point Restricted to VPC Access***  
 The following example creates an access point named `example-vpc-ap` for bucket `example-bucket` in account `123456789012` that allows access only from VPC `vpc-1a2b3c`\. The example then verifies that the new access point has a network origin of `VPC`\.  
 
 ```

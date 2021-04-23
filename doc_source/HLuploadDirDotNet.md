@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Uploading a directory using the high\-level \.NET `TransferUtility` class<a name="HLuploadDirDotNet"></a>
 
 You can use the `TransferUtility` class to upload an entire directory\. By default, the API uploads only the files at the root of the specified directory\. You can, however, specify recursively uploading files in all of the subdirectories\. 

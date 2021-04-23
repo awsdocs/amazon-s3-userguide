@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Working with archived objects<a name="archived-objects"></a>
 
 When you archive Amazon S3 objects to the S3 Glacier or S3 Glacier Deep Archive storage class, or when objects are archived to the S3 Intelligent\-Tiering Archive Access or Deep Archive Access tiers, the objects are not accessible in real time\. To restore the objects, you must do the following:

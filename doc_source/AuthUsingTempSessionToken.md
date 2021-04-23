@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Making requests using IAM user temporary credentials<a name="AuthUsingTempSessionToken"></a>
 
  An AWS Account or an IAM user can request temporary security credentials and use them to send authenticated requests to Amazon S3\. This section provides examples of how to use the AWS SDK for Java, \.NET, and PHP to obtain temporary security credentials and use them to authenticate your requests to Amazon S3\.

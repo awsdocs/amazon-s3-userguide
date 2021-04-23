@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Monitoring progress with replication metrics and Amazon S3 event notifications<a name="replication-metrics"></a>
 
 S3 replication metrics provide detailed metrics for the replication rules in your replication configuration\. With replication metrics, you can monitor minute\-by\-minute progress of replication by tracking bytes pending, operations pending, and replication latency\. Additionally, you can set up Amazon S3 Event Notifications to receive replication failure events to assist in troubleshooting any configuration issues\.

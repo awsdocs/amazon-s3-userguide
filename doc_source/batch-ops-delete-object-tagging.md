@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Delete all object tags<a name="batch-ops-delete-object-tagging"></a>
 
 The **Delete all object tags** operation removes all Amazon S3 object tag sets currently associated with the objects that are listed in the manifest\. S3 Batch Operations does not support deleting tags from objects while keeping other tags in place\. 

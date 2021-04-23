@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Use S3 Batch Operations with S3 Object Lock retention compliance mode<a name="batch-ops-compliance-mode"></a>
 
 The following example builds on the previous examples of creating a trust policy and setting S3 Batch Operations and S3 Object Lock configuration permissions on your objects\. This example sets the retention mode to `COMPLIANCE` and the `retain until date` to January 1, 2020\. It creates a job that targets objects in the manifest bucket and reports the results in the reports bucket that you identified\.

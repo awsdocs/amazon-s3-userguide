@@ -1,12 +1,6 @@
---------
+# Examples of using Amazon S3 Select on objects<a name="using-select"></a>
 
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
-# Selecting content from objects<a name="using-select"></a>
-
-You can use the Amazon S3 REST API and the AWS SDK to select content from objects\. For more information, see the topics below\.
+You can use S3 Select with the Amazon S3 REST API and the AWS SDK to select content from objects\. 
 
 ## Using the REST API<a name="SelectObjectContentUsingRestApi"></a>
 
@@ -14,7 +8,7 @@ You can use the AWS SDK to select content from objects\. However, if your applic
 
 ## Using the AWS SDKs<a name="SelectObjectContentUsingSDK"></a>
 
-You use Amazon S3 Select to select contents of an object using the `selectObjectContent` method, which on success returns the results of the SQL expression\. The specified bucket and object key must exist, or an error results\.
+You can use Amazon S3 Select to select contents of an object using the `selectObjectContent` method, which on success returns the results of the SQL expression\.
 
 ------
 #### [ Java ]
@@ -123,10 +117,13 @@ public class RecordInputStreamExample {
 ```
 
 ------
-#### [ Other SDKs ]
+#### [ JavaScript ]
 
-You can also select the contents of an object with Amazon S3 Select using other SDKs\. For more information, see the following:
-+ Python: [Using the AWS SDK for Python \(Boto\)](UsingTheBotoAPI.md)\.
-+ Ruby: [Using the AWS SDK for Ruby \- Version 3](UsingTheMPRubyAPI.md)\.
+For a JavaScript example using the AWS SDK for JavaScript with the S3 SelectObjectContent API to select records from JSON and CSV files stored in Amazon S3, see the blog post [ Querying data without servers or databases using Amazon S3 Select](http://aws.amazon.com/blogs/storage/querying-data-without-servers-or-databases-using-amazon-s3-select/)\. 
+
+------
+#### [ Python ]
+
+For a Python example on using structured query language \(SQL\) queries to search through data loaded to Amazon S3 as a comma\-separated value \(CSV\) file using S3 Select, see the blog post [ Querying data without servers or databases using Amazon S3 Select](http://aws.amazon.com/blogs/storage/querying-data-without-servers-or-databases-using-amazon-s3-select/)\. 
 
 ------

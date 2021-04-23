@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Aborting a multipart upload<a name="abort-mpu"></a>
 
 After you initiate a multipart upload, you begin uploading parts\. Amazon S3 stores these parts, but it creates the object from the parts only after you upload all of them and send a `successful` request to complete the multipart upload \(you should verify that your request to complete multipart upload is successful\)\. Upon receiving the complete multipart upload request, Amazon S3 assembles the parts and creates an object\. If you don't send the complete multipart upload request successfully, Amazon S3 does not assemble the parts and does not create any object\. 

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring storage class analysis<a name="configure-analytics-storage-class"></a>
 
 By using the Amazon S3 analytics storage class analysis tool, you can analyze storage access patterns to help you decide when to transition the right data to the right storage class\. Storage class analysis observes data access patterns to help you determine when to transition less frequently accessed STANDARD storage to the STANDARD\_IA \(IA, for infrequent access\) storage class\. For more information about STANDARD\_IA, see the [Amazon S3 FAQ](https://aws.amazon.com/s3/faqs/#sia) and [Using Amazon S3 storage classes](storage-class-intro.md)\.
@@ -22,7 +16,8 @@ You set up storage class analysis by configuring what object data you want to an
 You can use the Amazon S3 console, the REST API, or the AWS CLI or AWS SDKs to configure storage class analysis\.
 
 **Important**  
-Storage class analysis does not give recommendations for transitions to the ONEZONE\_IA or S3 Glacier storage classes\.
+Storage class analysis does not give recommendations for transitions to the ONEZONE\_IA or S3 Glacier storage classes\.  
+If you want to configure storage class analysis to export your findings as a \.csv file and the destination bucket uses default bucket encryption with a AWS KMS customer master key \(CMK\), you must update the AWS KMS key policy to grant Amazon S3 permission to encrypt the \.csv file\. For instructions, see [Granting Amazon S3 permission to use your AWS KMS CMK for encryption](configure-inventory.md#configure-inventory-kms-key-policy)\.
 
 For more information about analytics, see [Amazon S3 analytics – Storage Class Analysis](analytics-storage-class.md)\.
 
@@ -45,6 +40,8 @@ For more information about analytics, see [Amazon S3 analytics – Storage Class
 1. To add a tag, choose **Add tag**\. Enter a key and value for the tag\. You can enter one prefix and multiple tags\.
 
 1. Optionally, you can choose **Enable** under **Export CSV** to export analysis reports to a comma\-separated values \(\.csv\) flat file\. Choose a destination bucket where the file can be stored\. You can type a prefix for the destination bucket\. The destination bucket must be in the same AWS Region as the bucket for which you are setting up the analysis\. The destination bucket can be in a different AWS account\. 
+
+   If the destination bucket for the \.csv file uses default bucket encryption with a AWS KMS CMK, you must update the AWS KMS key policy to grant Amazon S3 permission to encrypt the \.csv file\. For instructions, see [Granting Amazon S3 permission to use your AWS KMS CMK for encryption](configure-inventory.md#configure-inventory-kms-key-policy)\.
 
 1. Choose **Create Configuration**\.
 

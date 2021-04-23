@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Setting permissions for website access<a name="WebsiteAccessPermissionsReqd"></a>
 
 When you configure a bucket as a static website, if you want your website to be public, you can grant public read access\. To make your bucket publicly readable, you must disable block public access settings for the bucket and write a bucket policy that grants public read access\. If your bucket contains objects that are not owned by the bucket owner, you might also need to add an object access control list \(ACL\) that grants everyone read access\.

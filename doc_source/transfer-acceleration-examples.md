@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Enabling and using S3 Transfer Acceleration<a name="transfer-acceleration-examples"></a>
 
 You can use Amazon S3 Transfer Acceleration transfer files quickly and securely over long distances between your client and an S3 bucket\. You can enable Transfer Acceleration using the S3 console, the AWS Command Line Interface \(AWS CLI\), or the AWS SDKs\.

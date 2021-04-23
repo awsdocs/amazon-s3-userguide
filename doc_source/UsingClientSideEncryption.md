@@ -1,15 +1,17 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Protecting data using client\-side encryption<a name="UsingClientSideEncryption"></a>
 
-*Client\-side encryption* is the act of encrypting data before sending it to Amazon S3\. To enable client\-side encryption, you have the following options:
+*Client\-side encryption* is the act of encrypting data before sending it to Amazon S3\. 
+
+To enable client\-side encryption, you have the following options:
 + Use a customer master key \(CMK\) stored in AWS Key Management Service \(AWS KMS\)\.
 + Use a master key that you store within your application\.
 
+**AWS Encryption SDK**  
+The [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/) is a client\-side encryption library that is separate from the language–specific SDKs\. You can use this encryption library to more easily implement encryption best practices in Amazon S3\. Unlike the Amazon S3 encryption clients in the language–specific AWS SDKs, the AWS Encryption SDK is not tied to Amazon S3 and can be used to encrypt or decrypt data to be stored anywhere\. 
+
+The AWS Encryption SDK and the Amazon S3 encryption clients are not compatible because they produce ciphertexts with different data formats\. For more information about the AWS Encryption SDK, see the [AWS Encryption SDK Developer Guide](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/)\. 
+
+**AWS SDK support for Amazon S3 client\-side encryption**  
 The following AWS SDKs support client\-side encryption:
 + [AWS SDK for \.NET](https://aws.amazon.com/sdk-for-net/)
 + [AWS SDK for Go](https://aws.amazon.com/sdk-for-go/)

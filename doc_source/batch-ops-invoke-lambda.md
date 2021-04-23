@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Invoke AWS Lambda function<a name="batch-ops-invoke-lambda"></a>
 
 S3 Batch Operations can invoke AWS Lambda functions to perform custom actions on objects that are listed in a manifest\. This section describes how to create a Lambda function to use with S3 Batch Operations and how to create a job to invoke the function\. The S3 Batch Operations job uses the `LambdaInvoke` operation to run a Lambda function on every object listed in a manifest\. 

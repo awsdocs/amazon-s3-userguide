@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Controlling ownership of uploaded objects using S3 Object Ownership<a name="about-object-ownership"></a>
 
  S3 Object Ownership is an Amazon S3 bucket setting that you can use to control ownership of new objects that are uploaded to your buckets\. By default, when other AWS accounts upload objects to your bucket, the objects remain owned by the uploading account\. With S3 Object Ownership, any new objects that are written by other accounts with the `bucket-owner-full-control` canned access control list \(ACL\) automatically become owned by the bucket owner, who then has full control of the objects\. 

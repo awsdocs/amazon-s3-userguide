@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring your bucket to use an S3 Bucket Key with SSE\-KMS for new objects<a name="configuring-bucket-key"></a>
 
 When you configure server\-side encryption using SSE\-KMS, you can configure your bucket to use an S3 Bucket Key for SSE\-KMS on new objects\. S3 Bucket Keys decrease the request traffic from Amazon S3 to AWS Key Management Service \(AWS KMS\) and reduce the cost of SSE\-KMS\. For more information, see [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)\.

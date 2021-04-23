@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using the S3 console<a name="enable-replication"></a>
 
 Follow these steps to configure a replication rule when the destination bucket is in the same AWS account as the source bucket\.

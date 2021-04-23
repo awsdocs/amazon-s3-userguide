@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)<a name="ServerSideEncryptionCustomerKeys"></a>
 
 Server\-side encryption is about protecting data at rest\. Server\-side encryption encrypts only the object data, not object metadata\. Using server\-side encryption with customer\-provided encryption keys \(SSE\-C\) allows you to set your own encryption keys\. With the encryption key you provide as part of your request, Amazon S3 manages the encryption as it writes to disks and decryption when you access your objects\. Therefore, you don't need to maintain any code to perform data encryption and decryption\. The only thing you do is manage the encryption keys you provide\. 

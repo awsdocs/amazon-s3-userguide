@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Specifying server\-side encryption with AWS KMS \(SSE\-KMS\)<a name="specifying-kms-encryption"></a>
 
 When you create an object, you can specify the use of server\-side encryption with AWS Key Management Service \(AWS KMS\) customer master keys \(CMKs\) to encrypt your data\. This is true when you are either uploading a new object or copying an existing object\. This encryption is known as SSE\-KMS\. 

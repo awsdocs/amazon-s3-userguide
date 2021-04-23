@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Access control best practices<a name="access-control-best-practices"></a>
 
 Amazon S3 provides a variety of security features and tools\. The following scenarios should serve as a guide to what tools and settings you might want to use when performing certain tasks or operating in specific environments\. Proper application of these tools can help maintain the integrity of your data and help ensure that your resources are accessible to the intended users\. 

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Replicating objects<a name="replication"></a>
 
 Replication enables automatic, asynchronous copying of objects across Amazon S3 buckets\. Buckets that are configured for object replication can be owned by the same AWS account or by different accounts\. Object may be replicated to a single destination bucket or multiple destination buckets\. Destination buckets can be in different AWS Regions or within the same Region as the source bucket\. 
@@ -74,16 +68,3 @@ For more information, see [Setting up replication](replication-how-setup.md)\.
 If you are setting the replication configuration in a *cross\-account scenario*, where source and destination buckets are owned by different AWS accounts, the following additional requirement applies:
 + The owner of the destination buckets must grant the owner of the source bucket permissions to replicate objects with a bucket policy\. For more information, see [Granting permissions when source and destination buckets are owned by different AWS accounts](setting-repl-config-perm-overview.md#setting-repl-config-crossacct)\.
 + The destination buckets cannot be configured as Requester Pays buckets\. For more information, see [Using Requester Pays buckets for storage transfers and usage](RequesterPaysBuckets.md)\.
-
-**Topics**
-+ [Why use replication](#replication-scenario)
-+ [When to use Cross\-Region Replication](#crr-scenario)
-+ [When to use Same\-Region Replication](#srr-scenario)
-+ [Requirements for replication](#replication-requirements)
-+ [What does Amazon S3 replicate?](replication-what-is-isnot-replicated.md)
-+ [Setting up replication](replication-how-setup.md)
-+ [Walkthroughs: Configuring replication](replication-example-walkthroughs.md)
-+ [Additional replication configurations](replication-additional-configs.md)
-+ [Getting replication status information](replication-status.md)
-+ [Troubleshooting replication](replication-troubleshoot.md)
-+ [Additional considerations](replication-and-other-bucket-configs.md)

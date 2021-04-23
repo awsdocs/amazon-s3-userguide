@@ -1,12 +1,6 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # AWS PrivateLink for Amazon S3<a name="privatelink-interface-endpoints"></a>
 
-With AWS PrivateLink for Amazon S3, you can provision *interface VPC endpoints* \(interface endpoints\) in your virtual private cloud \(VPC\) instead of connecting over the internet\. These endpoints are directly accessible from applications that are on premises over VPN and AWS Direct Connect, or in a different AWS Region over VPC peering\. 
+With AWS PrivateLink for Amazon S3, you can provision *interface VPC endpoints* \(interface endpoints\) in your virtual private cloud \(VPC\) instead of connecting over the internet\. These endpoints are directly accessible from applications that are on premises over VPN and AWS Direct Connect, or in a different AWS Region over VPC peering\.
 
 Interface endpoints are represented by one or more elastic network interfaces \(ENIs\) that are assigned private IP addresses from subnets in your VPC\. Requests that are made to interface endpoints for Amazon S3 are automatically routed to Amazon S3 on the Amazon network\. You can also access interface endpoints in your VPC from on\-premises applications through AWS Direct Connect or AWS Virtual Private Network \(AWS VPN\)\. For more information about how to connect your VPC with your on\-premises network, see the [AWS Direct Connect User Guide](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html) and the [AWS Site\-to\-Site VPN User Guide](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)\. 
 
@@ -70,27 +64,27 @@ For more about how to view your endpoint\-specific DNS names, see [Viewing endpo
 
 ### AWS CLI examples<a name="privatelink-aws-cli-examples"></a>
 
-Use the `--endpoint-url` parameter to access S3 buckets, S3 access points, or S3 control APIs through S3 interface endpoints\. 
+Use the `--region` and `--endpoint-url` parameters to access S3 buckets, S3 access points, or S3 control APIs through S3 interface endpoints\. 
 
 **Example: Use the endpoint URL to list objects in your bucket**  
-In the following example, replace the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` and bucket name `my-bucket` with appropriate information\.
+In the following example, replace the region `us-east-1`, VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com`, and bucket name `my-bucket` with appropriate information\.
 
 ```
-aws s3 --endpoint-url https://bucket.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com ls s3://my-bucket/
+aws s3 --region us-east-1 --endpoint-url https://bucket.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com ls s3://my-bucket/
 ```
 
 **Example: Use the endpoint URL to list objects from an access point**  
-In the following example, replace the ARN `us-east-1:123456789012:accesspoint/test` and VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\.
+In the following example, replace the ARN `us-east-1:123456789012:accesspoint/test`, region `us-east-1`, and VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\.
 
 ```
-aws s3api list-objects-v2 --bucket arn:aws:s3:us-east-1:123456789012:accesspoint/test --endpoint-url https://accesspoint.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com
+aws s3api list-objects-v2 --bucket arn:aws:s3:us-east-1:123456789012:accesspoint/test --region us-east-1 --endpoint-url https://accesspoint.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com
 ```
 
 **Example: Use the endpoint URL to list jobs with S3 control**  
-In the following example, replace the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` and account ID `12345678` with appropriate information\.
+In the following example, replace the region `us-east-1`, VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com`, and account ID `12345678` with appropriate information\.
 
 ```
-aws s3control --endpoint-url https://control.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com list-jobs --account-id 12345678
+aws s3control --region us-east-1 --endpoint-url https://control.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com list-jobs --account-id 12345678
 ```
 
 ### AWS SDK examples<a name="privatelink-aws-sdk-examples"></a>
@@ -101,31 +95,34 @@ Update your SDKs to the latest version, and configure your clients to use an end
 #### [ SDK for Python \(Boto3\) ]
 
 **Example: Use an endpoint URL to access an S3 bucket**  
-In the following example, replace the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\. 
+In the following example, replace the region `us-east-1` and VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\. 
 
 ```
 s3_client = session.client(
 service_name='s3',
+region_name='us-east-1',
 endpoint_url='https://bucket.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com'
 )
 ```
 
 **Example: Use an endpoint URL to access an S3 access point**  
-In the following example, replace the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\. 
+In the following example, replace the region `us-east-1` and VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\. 
 
 ```
 ap_client = session.client(
 service_name='s3',
+region_name='us-east-1',
 endpoint_url='https://accesspoint.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com'
 )
 ```
 
 **Example: Use an endpoint URL to access the S3 control API**  
-In the following example, replace the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\. 
+In the following example, replace the region `us-east-1` and VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\. 
 
 ```
 control_client = session.client(
 service_name='s3control',
+region_name='us-east-1',
 endpoint_url='https://control.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com'
 )
 ```

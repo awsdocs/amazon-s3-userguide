@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring S3 Object Lock using the console<a name="object-lock-console"></a>
 
 With S3 Object Lock, you can store objects in Amazon S3 using a *write\-once\-read\-many* \(WORM\) model\. You can use S3 Object Lock to prevent an object from being deleted or overwritten for a fixed amount of time or indefinitely\. For more information about S3 Object Lock capabilities, see [How S3 Object Lock works](object-lock-overview.md)\.

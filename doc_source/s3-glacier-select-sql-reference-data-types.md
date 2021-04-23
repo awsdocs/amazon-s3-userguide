@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Data Types<a name="s3-glacier-select-sql-reference-data-types"></a>
 
 Amazon S3 Select and S3 Glacier Select support several primitive data types\.

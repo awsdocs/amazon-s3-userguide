@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Lifecycle configuration elements<a name="intro-lifecycle-rules"></a>
 
 **Topics**
@@ -230,8 +224,8 @@ The following table summarizes the behavior of the S3 Lifecycle configuration ru
 | --- | --- | --- | --- | 
 |  `Transition` When a specified date or time period in the object's lifetime is reached\.  | Amazon S3 transitions the object to the specified storage class\. | Amazon S3 transitions the current version of the object to the specified storage class\. | Same behavior as a versioning\-enabled bucket\. | 
 |  `Expiration` When a specified date or time period in the object's lifetime is reached\.  | Expiration deletes the object, and the deleted object cannot be recovered\. | If the current version is not a delete marker, Amazon S3 creates a delete marker, which becomes the current version, and the existing current version is retained as a noncurrent version\. | The lifecycle creates a delete marker with null version ID, which becomes the current version\. If the version ID of the current version of the object is null, the Expiration action permanently deletes this version\. Otherwise, the current version is retained as a noncurrent version\. | 
-|  `NoncurrentVersionTransition` When the specified number of days from when the object becomes noncurrent is reached\.  | NoncurrentVersionTransition has no effect\. |  Amazon S3 transitions the noncurrent object versions to the specified storage class\.  | Same behavior as a versioning\-enabled bucket\. | 
-|  `NoncurrentVersionExpiration` When the specified number of days from when the object becomes noncurrent is reached\.  | NoncurrentVersionExpiration has no effect\. | NoncurrentVersionExpiration action deletes the noncurrent version of the object, and the deleted object cannot be recovered\. | Same behavior as a versioning\-enabled bucket\. | 
+|  `NoncurrentVersionTransition` When the object has been classified as noncurrent for the specified number of days\.  | NoncurrentVersionTransition has no effect\. |  Amazon S3 transitions the noncurrent object versions to the specified storage class\.  | Same behavior as a versioning\-enabled bucket\. | 
+|  `NoncurrentVersionExpiration` When the object has been classified as noncurrent for the specified number of days\.  | NoncurrentVersionExpiration has no effect\. | NoncurrentVersionExpiration action deletes the noncurrent version of the object, and the deleted object cannot be recovered\. | Same behavior as a versioning\-enabled bucket\. | 
 
 ### Lifecycle rules: Based on an object's age<a name="intro-lifecycle-rules-number-of-days"></a>
 
@@ -245,7 +239,7 @@ When you specify the number of days in the `Transition` and `Expiration` actions
 Amazon S3 maintains only the last modified date for each object\. For example, the Amazon S3 console shows the **Last Modified** date in the object **Properties** pane\. When you initially create a new object, this date reflects the date the object is created\. If you replace the object, the date changes accordingly\. So when we use the term *creation date*, it is synonymous with the term *last modified date*\. 
 
 When specifying the number of days in the `NoncurrentVersionTransition` and `NoncurrentVersionExpiration` actions in a Lifecycle configuration, note the following:
-+ It is the number of days from when the version of the object becomes noncurrent \(that is, when the object is overwritten or deleted\), that Amazon S3 will perform the action on the specified object or objects\.
++ It is the number of days from when the version of the object becomes noncurrent \(that is, when the object is overwritten or deleted\) that Amazon S3 will perform the action on the specified object or objects\.
 + Amazon S3 calculates the time by adding the number of days specified in the rule to the time when the new successor version of the object is created and rounding the resulting time to the next day midnight UTC\. For example, in your bucket, suppose that you have a current version of an object that was created at 1/1/2014 10:30 AM UTC\. If the new version of the object that replaces the current version is created at 1/15/2014 10:30 AM UTC, and you specify 3 days in a transition rule, the transition date of the object is calculated as 1/19/2014 00:00 UTC\. 
 
 ### Lifecycle rules: Based on a specific date<a name="intro-lifecycle-rules-date"></a>

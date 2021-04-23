@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Enabling trusted access for S3 Storage Lens in your organization<a name="storage_lens_console_organizations_enabling_trusted_access"></a>
 
 Enabling trusted access allows Amazon S3 Storage Lens to access your AWS Organizations hierarchy, membership, and structure through AWS Organization APIs\. S3 Storage Lens becomes a trusted service for your entire organization’s structure\. It can create service\-linked roles in your organization’s management or delegated administrator accounts whenever a dashboard configuration is created\. 

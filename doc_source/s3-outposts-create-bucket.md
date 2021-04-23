@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Creating an Amazon S3 on Outposts bucket with Amazon S3 console<a name="s3-outposts-create-bucket"></a>
 
 With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and easily store and retrieve objects on\-premises for applications that require local data access, local data processing, and data residency\. S3 on Outposts provides a new storage class, `OUTPOSTS` which uses the S3 APIs, and is designed to durably and redundantly store data across multiple devices and servers on your AWS Outposts\. You communicate with your Outposts bucket using an access point and endpoint connection over a virtual private cloud \(VPC\)\. You can use the same APIs and features on Outposts buckets as you do on Amazon S3, such as access policies, encryption, and tagging\. You can use S3 on Outposts through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\. For more information, see [Using Amazon S3 on Outposts](S3onOutposts.md)\.
@@ -43,7 +37,7 @@ Avoid including sensitive information, such as account numbers, in the bucket na
 
 1. All objects stored in your Outposts bucket are stored using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\) by default\. You can also explicitly choose to store objects using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. For that you will need to use the REST API, AWS CLI, or AWS SDKs\.
 
-1. In the **Outposts access point settings** section, enter the **Access Point name**\. S3 on Outposts access points simplify managing data access at scale for shared datasets in S3 on Outposts\. Access points are named network endpoints that are attached to Outposts buckets that you can use to perform S3 object operations\. For more information, see [API operations supported by Amazon S3 on Outposts Amazon S3 features not supported by Amazon S3 on Outposts ](S3OnOutpostsRestrictionsLimitations.md#S3OnOutpostsAPILimitations)\. 
+1. In the **Outposts access point settings** section, enter the **access point name**\. S3 on Outposts access points simplify managing data access at scale for shared datasets in S3 on Outposts\. Access points are named network endpoints that are attached to Outposts buckets that you can use to perform S3 object operations\. For more information, see [API operations supported by Amazon S3 on Outposts Amazon S3 features not supported by Amazon S3 on Outposts ](S3OnOutpostsRestrictionsLimitations.md#S3OnOutpostsAPILimitations)\. 
 
    Access point names must be unique within the account for this Region and Outpost, and comply with the [Access points restrictions and limitations](access-points-restrictions-limitations.md)\.
 

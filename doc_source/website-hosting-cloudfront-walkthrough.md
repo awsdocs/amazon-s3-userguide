@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Speeding up your website with Amazon CloudFront<a name="website-hosting-cloudfront-walkthrough"></a>
 
 You can use [Amazon CloudFront](http://aws.amazon.com/cloudfront) to improve the performance of your Amazon S3 website\. CloudFront makes your website files \(such as HTML, images, and video\) available from data centers around the world \(known as *edge locations*\)\. When a visitor requests a file from your website, CloudFront automatically redirects the request to a copy of the file at the nearest edge location\. This results in faster download times than if the visitor had requested the content from a data center that is located farther away\.

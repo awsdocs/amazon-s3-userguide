@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using the AWS SDK for PHP and Running PHP Examples<a name="UsingTheMPphpAPI"></a>
 
 The AWS SDK for PHP provides access to the API for Amazon S3 bucket and object operations\. The SDK gives you the option of using the service's low\-level API or using higher\-level abstractions\.

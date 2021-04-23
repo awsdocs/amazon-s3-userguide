@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Performance Guidelines for Amazon S3<a name="optimizing-performance-guidelines"></a>
 
 When building applications that upload and retrieve objects from Amazon S3, follow our best practices guidelines to optimize performance\. We also offer more detailed [Performance Design Patterns](optimizing-performance-design-patterns.md)\. 

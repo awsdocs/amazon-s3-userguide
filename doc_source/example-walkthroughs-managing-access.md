@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Example walkthroughs: Managing access to your Amazon S3 resources<a name="example-walkthroughs-managing-access"></a>
 
 This topic provides the following introductory walkthrough examples for granting access to Amazon S3 resources\. These examples use the AWS Management Console to create resources \(buckets, objects, users\) and grant them permissions\. The examples then show you how to verify permissions using the command line tools, so you don't have to write any code\. We provide commands using both the AWS Command Line Interface \(CLI\) and the AWS Tools for Windows PowerShell\.

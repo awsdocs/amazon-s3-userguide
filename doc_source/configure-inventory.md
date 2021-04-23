@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring Amazon S3 inventory<a name="configure-inventory"></a>
 
 Amazon S3 inventory provides a flat file list of your objects and metadata, which is a scheduled alternative to the Amazon S3 synchronous `List` API operation\. Amazon S3 inventory provides comma\-separated values \(CSV\) or [Apache optimized row columnar \(ORC\)](https://orc.apache.org/) or [Apache Parquet \(Parquet\)](https://parquet.apache.org/) output files that list your objects and their corresponding metadata on a daily or weekly basis for an S3 bucket or for objects that share a prefix \(objects that have names that begin with the same string\)\. For more information, see [ Amazon S3 inventory](storage-inventory.md)\.
@@ -50,7 +44,7 @@ In this case, the destination bucket owner must add the displayed bucket policy 
 
 ## Granting Amazon S3 permission to use your AWS KMS CMK for encryption<a name="configure-inventory-kms-key-policy"></a>
 
-To grant Amazon S3 permission to encrypt using a customer managed AWS Key Management Service \(AWS KMS\) customer master key \(CMK\), you must use a key policy\. To update your key policy so that you can use an AWS KMS customer managed CMK to encrypt the inventory file, follow the steps below\.
+To grant Amazon S3 permission to encrypt using a customer managed AWS Key Management Service \(AWS KMS\) customer master key \(CMK\), you must use a key policy\. To update your key policy so that you can use an AWS KMS customer managed CMK, follow the steps below\.
 
 **To grant permissions to encrypt using your AWS KMS CMK**
 

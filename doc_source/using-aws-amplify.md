@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using the AWS Amplify JavaScript Library<a name="using-aws-amplify"></a>
 
 AWS Amplify is an open source JavaScript library for web and mobile developers who build cloud\-enabled applications\. AWS Amplify provides customizable UI components and a declarative interface to work with an S3 bucket, along with other high\-level categories for AWS services\. 

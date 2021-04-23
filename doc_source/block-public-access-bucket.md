@@ -1,20 +1,12 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using the S3 console<a name="block-public-access-bucket"></a>
 
 Amazon S3 Block Public Access prevents the application of any settings that allow public access to data within S3 buckets\. This section describes how to edit Block Public Access settings for one or more S3 buckets\. For information about blocking public access using the AWS CLI, AWS SDKs, and the Amazon S3 REST APIs, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
 
-The list buckets view shows whether your bucket is publicly accessible\. Amazon S3 labels the permissions for a bucket as follows:
+You can see if your bucket is publicly accessible in the **Buckets** list\. In the **Access** column, Amazon S3 labels the permissions for a bucket as follows:
 + **Public** – Everyone has access to one or more of the following: List objects, Write objects, Read and write permissions\. 
 + **Objects can be public** – The bucket is not public, but anyone with the appropriate permissions can grant public access to objects\. 
 + **Buckets and objects not public** – The bucket and objects do not have any public access\.
 + **Only authorized users of this account** – Access is isolated to IAM users and roles in this account and AWS service principals because there is a policy that grants public access\.
-
-The access column shows the access status of the listed buckets\.
 
 You can also filter bucket searches by access type\. Choose an access type from the drop\-down list that is next to the **Search for buckets** bar\. 
 

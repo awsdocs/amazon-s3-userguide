@@ -1,15 +1,14 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Deleting a bucket<a name="delete-bucket"></a>
 
 You can delete an empty Amazon S3 bucket\. Before deleting a bucket, consider the following:
 + Bucket names are unique\. If you delete a bucket, another AWS user can use the name\. 
 + If the bucket hosts a static website, and you created and configured an Amazon Route 53 hosted zone as described in [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md), you must clean up the Route 53 hosted zone settings that are related to the bucket\. For more information, see [Step 2: Delete the Route 53 hosted zone](getting-started-cleanup.md#getting-started-cleanup-route53)\.
 + If the bucket receives log data from Elastic Load Balancing \(ELB\): We recommend that you stop the delivery of ELB logs to the bucket before deleting it\. After you delete the bucket, if another user creates a bucket using the same name, your log data could potentially be delivered to that bucket\. For information about ELB access logs, see [Access logs](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html) in the *User Guide for Classic Load Balancers* and [Access logs](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-access-logs.html) in the *User Guide for Application Load Balancers*\.
+
+**Troubleshooting**  
+If you are unable to delete an Amazon S3 bucket, consider the following:
++ **s3:DeleteBucket permissions** – If you cannot delete a bucket, work with your IAM administrator to confirm that you have `s3:DeleteBucket` permissions in your IAM user policy\.
++ **s3:DeleteBucket deny statement** – If you have `s3:DeleteBucket` permissions in your IAM policy and you cannot delete a bucket, the bucket policy might include a deny statement for `s3:DeleteBucket`\. Buckets created by ElasticBeanstalk have a policy containing this statement by default\. Before you can delete the bucket, you must delete this statement or the bucket policy\.
 
 **Important**  
 Bucket names are unique\. If you delete a bucket, another AWS user can use the name\. If you want to continue to use the same bucket name, don't delete the bucket\. We recommend that you empty the bucket and keep it\.

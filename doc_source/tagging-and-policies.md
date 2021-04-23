@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Tagging and access control policies<a name="tagging-and-policies"></a>
 
 You can also use permissions policies \(bucket and user policies\) to manage permissions related to object tagging\. For policy actions see the following topics: 

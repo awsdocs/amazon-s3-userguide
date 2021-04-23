@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Browser\-based uploads using POST \(AWS signature version 2\)<a name="UsingHTTPPOST"></a>
 
 Amazon S3 supports POST, which allows your users to upload content directly to Amazon S3\. POST is designed to simplify uploads, reduce upload latency, and save you money on applications where users upload data to store in Amazon S3\.

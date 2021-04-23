@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Uploading objects<a name="upload-objects"></a>
 
 When you upload a file to Amazon S3, it is stored as an S3 object\. Objects consist of the file data and metadata that describes the object\. You can have an unlimited number of objects in a bucket\. Before you can upload files to an Amazon S3 bucket, you need write permissions for the bucket\. For more information about access permissions, see [Identity and access management in Amazon S3](s3-access-control.md)\. 

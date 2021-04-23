@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Access policy guidelines<a name="access-policy-alternatives-guidelines"></a>
 
 Amazon S3 supports resource\-based policies and user policies to manage access to your Amazon S3 resources\. For more information, see [Managing access to resources](access-control-overview.md#access-control-resources-manage-permissions-basics)\. Resource\-based policies include bucket policies, bucket access control lists \(ACLs\), and object ACLs\. This section describes specific scenarios for using resource\-based access policies to manage access to your Amazon S3 resources\. 

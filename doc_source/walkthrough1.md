@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Controlling access to a bucket with user policies<a name="walkthrough1"></a>
 
 This walkthrough explains how user permissions work with Amazon S3\. In this example, you create a bucket with folders\. You then create AWS Identity and Access Management \(IAM\) users in your AWS account and grant those users incremental permissions on your Amazon S3 bucket and the folders in it\. 

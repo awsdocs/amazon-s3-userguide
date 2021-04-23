@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Adding objects to versioning\-suspended buckets<a name="AddingObjectstoVersionSuspendedBuckets"></a>
 
 You can add objects to versioning\-suspended buckets in Amazon S3 to create the object with a null version ID or overwrite any object version with a matching version ID\.

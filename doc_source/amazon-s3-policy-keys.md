@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Amazon S3 condition key examples<a name="amazon-s3-policy-keys"></a>
 
 You can use access policy language to specify conditions when you grant permissions\. You can use the optional `Condition` element, or `Condition` block to specify conditions for when a policy is in effect\. 

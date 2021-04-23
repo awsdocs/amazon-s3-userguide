@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Expiring objects<a name="lifecycle-expire-general-considerations"></a>
 
  When an object reaches the end of its lifetime, Amazon S3 queues it for removal and removes it asynchronously\. There might be a delay between the expiration date and the date at which Amazon S3 removes an object\. You are not charged for storage time associated with an object that has expired\. 

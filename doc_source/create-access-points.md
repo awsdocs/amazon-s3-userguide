@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Creating an access point<a name="create-access-points"></a>
 
 An access point is associated with exactly one Amazon S3 bucket\. Before you begin, make sure that you have created a bucket that you want to use with this access point\. For more information about creating buckets, see [Creating, configuring, and working with Amazon S3 buckets](creating-buckets-s3.md)\. Amazon S3 access points support AWS Identity and Access Management \(IAM\) resource policies that allow you to control the use of the access point by resource, user, or other conditions\. For more information, see [Configuring IAM policies for using access points](access-points-policies.md)\.
@@ -32,11 +26,11 @@ The following examples demonstrate how to create an access point with the AWS CL
 
    For more information about network origins for access points, see [Creating access points restricted to a virtual private cloud](access-points-vpc.md)\.
 
-1. Under **Access point settings for Block Public Access**, select the block public access settings that you want to apply to the access point\. All block public access settings are enabled by default for new access points, and we recommend that you leave all settings enabled unless you know you have a specific need to disable any of them\. Amazon S3 currently doesn't support changing an access point's block public access settings after the access point has been created\.
+1. Under **Block Public Access settings for this Access Point**, select the block public access settings that you want to apply to the access point\. All block public access settings are enabled by default for new access points, and we recommend that you leave all settings enabled unless you know you have a specific need to disable any of them\. Amazon S3 currently doesn't support changing an access point's block public access settings after the access point has been created\.
 
    For more information about using Amazon S3 Block Public Access with access points, see [Managing public access to access points](access-points-bpa-settings.md)\.
 
-1. \(Optional\) Under **Access point policy \- *optional***, specify the access point policy\. For more information about specifying an access point policy, see [Access point policy examples](access-points-policies.md#access-points-policy-examples)\.
+1. \(Optional\) Under **Access Point policy \- *optional***, specify the access point policy\. For more information about specifying an access point policy, see [Access point policy examples](access-points-policies.md#access-points-policy-examples)\.
 
 1. Choose **Create access point**\.
 

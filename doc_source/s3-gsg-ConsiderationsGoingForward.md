@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Considerations going forward<a name="s3-gsg-ConsiderationsGoingForward"></a>
 
 This section introduces you to topics you should consider before launching your own Amazon S3 product\.

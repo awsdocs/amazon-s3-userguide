@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Step 4: Copy your object to a folder<a name="copying-an-object"></a>
 
 You've already added an object to a bucket and downloaded the object\. Now, you create a folder and copy the object and paste it into the folder\.

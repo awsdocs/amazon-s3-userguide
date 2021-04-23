@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring block public access settings for your account<a name="configuring-block-public-access-account"></a>
 
 Amazon S3 Block Public Access provides settings for access points, buckets, and accounts to help you manage public access to Amazon S3 resources\. By default, new buckets, access points, and objects do not allow public access\.
@@ -32,13 +26,15 @@ Amazon S3 block public access prevents the application of any settings that allo
 
 ## Using the AWS CLI<a name="access-control-block-public-access-examples-cli"></a>
 
-You can use Amazon S3 Block Public Access through the AWS CLI\. For more information about setting up and using the AWS CLI, see [What is the AWS Command Line Interface?](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+You can use Amazon S3 Block Public Access through the AWS CLI\. For more information about setting up and using the AWS CLI, see [What is the AWS Command Line Interface?](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) 
 
 **Account**
 + To perform block public access operations on an account, use the AWS CLI service `s3control`\. The account\-level operations that use this service are as follows:
   + PUT PublicAccessBlock \(for an account\)
   + GET PublicAccessBlock \(for an account\)
   + DELETE PublicAccessBlock \(for an account\)
+
+For additional information and examples, see [put\-public\-access\-block](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3control/put-public-access-block.html) in the *AWS CLI Reference*\.
 
 ## Using the AWS SDKs<a name="access-control-block-public-access-examples-sdk"></a>
 

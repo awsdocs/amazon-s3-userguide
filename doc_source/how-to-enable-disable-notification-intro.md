@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Enabling event notifications<a name="how-to-enable-disable-notification-intro"></a>
 
 Enabling notifications is a bucket\-level operation\. You store notification configuration information in the *notification* subresource associated with a bucket\. After creating or changing the bucket notification configuration, typically you must wait 5 minutes for the changes to take effect\. An `s3:TestEvent` occurs when the notification is first enabled\. You can use any of the following methods to manage notification configuration:

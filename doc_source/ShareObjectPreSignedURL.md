@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Sharing an object with a presigned URL<a name="ShareObjectPreSignedURL"></a>
 
 All objects by default are private\. Only the object owner has permission to access these objects\. However, the object owner can optionally share objects with others by creating a presigned URL, using their own security credentials, to grant time\-limited permission to download the objects\. 
@@ -35,67 +29,6 @@ For instructions about how to install the AWS Explorer, see [Developing with Ama
 ### Using the AWS SDKs<a name="ShareObjectPreSignedURLSDK"></a>
 
 The following examples generates a presigned URL that you can give to others so that they can retrieve an object\. For more information, see [Sharing an object with a presigned URL](#ShareObjectPreSignedURL)\. 
-
-------
-#### [ Java ]
-
-**Example**  
-The following example generates a presigned URL that you can give to others so that they can retrieve an object from an S3 bucket\. For more information, see [Sharing an object with a presigned URL](#ShareObjectPreSignedURL)\.   
- For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.   
-
-```
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.HttpMethod;
-import com.amazonaws.SdkClientException;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
-
-import java.io.IOException;
-import java.net.URL;
-
-public class GeneratePresignedURL {
-
-    public static void main(String[] args) throws IOException {
-        Regions clientRegion = Regions.DEFAULT_REGION;
-        String bucketName = "*** Bucket name ***";
-        String objectKey = "*** Object key ***";
-
-        try {
-            AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-                    .withRegion(clientRegion)
-                    .withCredentials(new ProfileCredentialsProvider())
-                    .build();
-
-            // Set the presigned URL to expire after one hour.
-            java.util.Date expiration = new java.util.Date();
-            long expTimeMillis = expiration.getTime();
-            expTimeMillis += 1000 * 60 * 60;
-            expiration.setTime(expTimeMillis);
-
-            // Generate the presigned URL.
-            System.out.println("Generating pre-signed URL.");
-            GeneratePresignedUrlRequest generatePresignedUrlRequest =
-                    new GeneratePresignedUrlRequest(bucketName, objectKey)
-                            .withMethod(HttpMethod.GET)
-                            .withExpiration(expiration);
-            URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
-
-            System.out.println("Pre-Signed URL: " + url.toString());
-        } catch (AmazonServiceException e) {
-            // The call was transmitted successfully, but Amazon S3 couldn't process 
-            // it, so it returned an error response.
-            e.printStackTrace();
-        } catch (SdkClientException e) {
-            // Amazon S3 couldn't be contacted for a response, or the client
-            // couldn't parse the response from Amazon S3.
-            e.printStackTrace();
-        }
-    }
-}
-```
 
 ------
 #### [ \.NET ]
@@ -160,8 +93,84 @@ namespace Amazon.DocSamples.S3
 You can use SDK for Go to upload an object\. You can send a PUT request to upload data in a single operation\. For more information, see [Generate a Pre\-Signed URL for an Amazon S3 PUT Operation with a Specific Payload](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/s3-example-presigned-urls.html) in the *AWS SDK for Go Developer Guide*\.
 
 ------
+#### [ Java ]
+
+**Example**  
+The following example generates a presigned URL that you can give to others so that they can retrieve an object from an S3 bucket\. For more information, see [Sharing an object with a presigned URL](#ShareObjectPreSignedURL)\.   
+ For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.   
+
+```
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.HttpMethod;
+import com.amazonaws.SdkClientException;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+
+import java.io.IOException;
+import java.net.URL;
+
+public class GeneratePresignedURL {
+
+    public static void main(String[] args) throws IOException {
+        Regions clientRegion = Regions.DEFAULT_REGION;
+        String bucketName = "*** Bucket name ***";
+        String objectKey = "*** Object key ***";
+
+        try {
+            AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+                    .withRegion(clientRegion)
+                    .withCredentials(new ProfileCredentialsProvider())
+                    .build();
+
+            // Set the presigned URL to expire after one hour.
+            java.util.Date expiration = new java.util.Date();
+            long expTimeMillis = expiration.getTime();
+            expTimeMillis += 1000 * 60 * 60;
+            expiration.setTime(expTimeMillis);
+
+            // Generate the presigned URL.
+            System.out.println("Generating pre-signed URL.");
+            GeneratePresignedUrlRequest generatePresignedUrlRequest =
+                    new GeneratePresignedUrlRequest(bucketName, objectKey)
+                            .withMethod(HttpMethod.GET)
+                            .withExpiration(expiration);
+            URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
+
+            System.out.println("Pre-Signed URL: " + url.toString());
+        } catch (AmazonServiceException e) {
+            // The call was transmitted successfully, but Amazon S3 couldn't process 
+            // it, so it returned an error response.
+            e.printStackTrace();
+        } catch (SdkClientException e) {
+            // Amazon S3 couldn't be contacted for a response, or the client
+            // couldn't parse the response from Amazon S3.
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+------
 #### [ PHP ]
 
 For more information about using AWS SDK for PHP Version 3 to generate a presigned URL, see [Amazon S3 pre\-signed URL with AWS SDK for PHP Version 3](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/s3-presigned-url.html) in the *AWS SDK for PHP Developer Guide*\.
+
+------
+#### [ Python ]
+
+Generate a presigned URL to share an object by using the SDK for Python \(Boto3\)\. For example, use a Boto3 client and the `generate_presigned_url` function to generate a presigned URL that GETs an object\.
+
+```
+import boto3
+    url = boto3.client('s3').generate_presigned_url(
+    ClientMethod='get_object', 
+    Params={'Bucket': 'BUCKET_NAME', 'Key': 'OBJECT_KEY'},
+    ExpiresIn=3600)
+```
+
+For a complete example that shows how to generate presigned URLs and how to use the Requests package to upload and download objects, see the [ PHP presigned URL](https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html) example on GitHub\. For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](http://amazonaws.com/http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for PHP API Reference*\.
 
 ------

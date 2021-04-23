@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Creating and managing Amazon S3 on Outposts bucket<a name="S3OutpostsBucketJava"></a>
 
 You can use the SDK for Java to create and manage your S3 on Outposts buckets\. From these examples, you can create and get an Outposts bucket, list buckets for an Outpost, create and manage access points, lifecycleconfiguration, and policy for the Outpost bucket\. 

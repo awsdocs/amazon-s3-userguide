@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Setting Object Lock retention using Batch Operations<a name="batch-ops-object-lock-retention"></a>
 
 The following example allows the rule to set S3 Object Lock retention for your objects in the manifest bucket\.

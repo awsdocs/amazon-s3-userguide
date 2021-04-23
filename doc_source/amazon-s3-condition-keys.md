@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Amazon S3 condition keys<a name="amazon-s3-condition-keys"></a>
 
 The access policy language enables you to specify conditions when granting permissions\. To specify conditions for when a policy is in effect, you can use the optional `Condition` element, or `Condition` block, to specify conditions for when a policy is in effect\. You can use predefined AWS‐wide keys and Amazon S3‐specific keys to specify conditions in an Amazon S3 access policy\.

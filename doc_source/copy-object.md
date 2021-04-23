@@ -1,12 +1,10 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Copying objects<a name="copy-object"></a>
 
-The copy operation creates a copy of an object that is already stored in Amazon S3\. You can create a copy of your object up to 5 GB in a single atomic operation\. However, for copying an object that is greater than 5 GB, you must use the multipart upload API\. Using the `copy` operation, you can:
+The copy operation creates a copy of an object that is already stored in Amazon S3\.
+
+You can create a copy of your object up to 5 GB in a single atomic operation\. However, to copy an object that is greater than 5 GB, you must use the multipart upload API\.
+
+Using the `copy` operation, you can:
 + Create additional copies of objects 
 +  Rename objects by copying them and deleting the original ones 
 +  Move objects across Amazon S3 locations \(e\.g\., us\-west\-1 and Europe\) 

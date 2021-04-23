@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Amazon S3 resources<a name="s3-arn-format"></a>
 
 The following common Amazon Resource Name \(ARN\) format identifies resources in AWS:
@@ -31,7 +25,7 @@ For a complete list of Amazon S3 resources, see [Actions, resources, and conditi
 
 To find the ARN for an S3 bucket, you can look at the Amazon S3 console **Bucket Policy** or **CORS configuration** permissions pages\. For more information, see the following topics:
 + [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)
-+ [Creating a cross\-origin resource sharing \(CORS\) configuration](ManageCorsUsing.md)
++ [CORS configuration](ManageCorsUsing.md)
 
 ## Amazon S3 ARN examples<a name="s3-arn-examples"></a>
 

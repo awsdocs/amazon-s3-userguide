@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # How S3 Object Lock works<a name="object-lock-overview"></a>
 
 You can use S3 Object Lock to store objects using a *write\-once\-read\-many* \(WORM\) model\. Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely\. You can use S3 Object Lock to meet regulatory requirements that require WORM storage, or add an extra layer of protection against object changes and deletion\. 

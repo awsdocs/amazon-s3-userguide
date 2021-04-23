@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using the AWS SDK for Ruby \- Version 3<a name="UsingTheMPRubyAPI"></a>
 
 The AWS SDK for Ruby provides an API for Amazon S3 bucket and object operations\. For object operations, you can use the API to upload objects in a single operation or upload large objects in parts \(see [Uploading an object using multipart upload](mpu-upload-object.md)\)\. However, the API for a single operation upload can also accept large objects and behind the scenes manage the upload in parts for you, thereby reducing the amount of script you need to write\.

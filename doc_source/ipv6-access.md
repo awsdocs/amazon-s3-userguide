@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Making requests to Amazon S3 over IPv6<a name="ipv6-access"></a>
 
 Amazon Simple Storage Service \(Amazon S3\) supports the ability to access S3 buckets using the Internet Protocol version 6 \(IPv6\), in addition to the IPv4 protocol\. Amazon S3 dual\-stack endpoints support requests to S3 buckets over IPv6 and IPv4\. There are no additional charges for accessing Amazon S3 over IPv6\. For more information about pricing, see [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.

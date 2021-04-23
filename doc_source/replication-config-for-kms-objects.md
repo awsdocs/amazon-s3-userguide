@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Replicating objects created with server\-side encryption \(SSE\) using AWS KMS CMKs<a name="replication-config-for-kms-objects"></a>
 
 By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with customer master keys \(CMKs\) stored in AWS KMS\. This section explains additional configuration that you add to direct Amazon S3 to replicate these objects\. 
@@ -99,7 +93,7 @@ We recommend that you restrict these permissions only to the destination buckets
 
 ### Amazon S3 Bucket Keys and replication<a name="bk-replication"></a>
 
-To use replication with an S3 Bucket Key, the AWS KMS key policy for the CMK used to encrypt the object replica must include `kms:Decrypt` permissions for the calling principal\. The call to `kms:Decrypt` verifies the integrity of the S3 Bucket Key before using it\. For more information, see [`kms:Decrypt` permissions for copy and upload](bucket-key.md#kms-decrypt)\.
+To use replication with an S3 Bucket Key, the AWS KMS key policy for the CMK used to encrypt the object replica must include `kms:Decrypt` permissions for the calling principal\. The call to `kms:Decrypt` verifies the integrity of the S3 Bucket Key before using it\. 
 
 When an S3 Bucket Key is enabled for the source or destination bucket, the encryption context will be the bucket Amazon Resource Name \(ARN\) and not the object ARN, for example, `arn:aws:s3:::bucket_ARN`\. You need to update your IAM policies to use the bucket ARN for the encryption context:
 

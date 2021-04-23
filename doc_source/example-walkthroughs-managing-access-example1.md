@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Example 1: Bucket owner granting its users bucket permissions<a name="example-walkthroughs-managing-access-example1"></a>
 
 **Topics**
@@ -30,7 +24,8 @@ For this example, you will need an AWS account\. Instead of using the root crede
 | --- | --- | --- | 
 |  *1111\-1111\-1111*  |  Account A  |  AccountAadmin  | 
 
-
+**Note**  
+The administrator user in this example is **AccountAadmin**, which refers to Account A, and not **AccountAdmin**\.
 
 All the tasks of creating users and granting permissions are done in the AWS Management Console\. To verify permissions, the walkthrough uses the command line tools, AWS Command Line Interface \(CLI\) and AWS Tools for Windows PowerShell, to verify the permissions, so you don't need to write any code\.
 

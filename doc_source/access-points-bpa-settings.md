@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Managing public access to access points<a name="access-points-bpa-settings"></a>
 
 Amazon S3 access points support independent *block public access* settings for each access point\. When you create an access point, you can specify block public access settings that apply to that access point\. For any request made through an access point, Amazon S3 evaluates the block public access settings for that access point, the underlying bucket, and the bucket owner's account\. If any of these settings indicate that the request should be blocked, Amazon S3 rejects the request\.
@@ -15,7 +9,7 @@ All block public access settings are enabled by default for access points\. You 
 Amazon S3 currently doesn't support changing an access point's block public access settings after the access point has been created\.
 
 **Example**  
-***Example: Create an Access Point with Custom Block Public Access Settings***  
+***Example: Create an access point with Custom Block Public Access Settings***  
 This example creates an access point named `example-ap` for bucket `example-bucket` in account `123456789012` with non\-default Block Public Access settings\. The example then retrieves the new access point's configuration to verify its Block Public Access settings\.  
 
 ```

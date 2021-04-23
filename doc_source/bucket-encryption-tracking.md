@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Monitoring default encryption with CloudTrail and CloudWatch<a name="bucket-encryption-tracking"></a>
 
 You can track default encryption configuration requests for Amazon S3 buckets using AWS CloudTrail events\. The following API event names are used in CloudTrail logs:

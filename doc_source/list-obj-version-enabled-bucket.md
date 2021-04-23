@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Listing objects in a versioning\-enabled bucket<a name="list-obj-version-enabled-bucket"></a>
 
 This section provides examples of listing object versions from a versioning\-enabled bucket\. Amazon S3 stores object version information in the *versions* subresource that is associated with the bucket\. For more information, see [Bucket configuration options](UsingBucket.md#bucket-config-options-intro)\.

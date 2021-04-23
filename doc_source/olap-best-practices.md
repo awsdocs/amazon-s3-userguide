@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Best practices and guidelines for S3 Object Lambda<a name="olap-best-practices"></a>
 
 When using S3 Object Lambda, follow these best practices and guidelines to optimize operations and performance\.
@@ -16,7 +10,7 @@ When using S3 Object Lambda, follow these best practices and guidelines to optim
 
 ## Working with S3 Object Lambda<a name="olap-working-with"></a>
 
-S3 Object Lambda only support processing GET requests\. Any non\-GET requests, such as LIST or HEAD, will not invoke Lambda and return standard, non\-transformed API responses\. You can create a maximum of 1,000 Object Lambda Access Points per AWS account per Region\. The AWS Lambda function that you use must be in the same AWS account and Region as the Object Lambda Access Point\.
+S3 Object Lambda only support processing GET requests\. Any non\-GET requests, such as LIST or HEAD, will not invoke Lambda and return standard, non\-transformed API responses\. You can create a maximum of 1,000 Object Lambda access points per AWS account per Region\. The AWS Lambda function that you use must be in the same AWS account and Region as the Object Lambda access point\.
 
 S3 Object Lambda allows up to 60 seconds to stream a complete response to its caller\. Your function is also subject to Lambda default quotas\. For more information, see [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) in the *AWS Lambda Developer Guide*\. Using S3 Object Lambda invokes your specified Lambda function and you are responsible for ensuring that any data overwritten or deleted from S3 by your specified Lambda function or application is intended and correct\.
 

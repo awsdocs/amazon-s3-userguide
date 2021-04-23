@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Viewing S3 Storage Lens metrics on the dashboards<a name="storage_lens_view_metrics_dashboard"></a>
 
 S3 Storage Lens provides you with a dashboard containing usage metrics at no additional cost\. If you want to receive advanced metrics and recommendations, including usage and activity metrics, prefix aggregations, and contextual recommendations in the dashboard, you must select it from the dashboard configuration page on the Amazon S3 console\.

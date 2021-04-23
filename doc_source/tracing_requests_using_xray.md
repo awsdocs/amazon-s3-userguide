@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Tracing Amazon S3 requests using AWS X\-Ray<a name="tracing_requests_using_xray"></a>
 
 AWS X\-Ray collects data about requests that your application serves\. You can then view and filter the data to identify and troubleshoot performance issues and errors in your distributed applications and micro\-services architecture\. For any traced request to your application, it shows you detailed information about the request, the response, and the calls that your application makes to downstream AWS resources, micro\-services, databases, and HTTP web APIs\. 

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring IAM policies for using access points<a name="access-points-policies"></a>
 
 Amazon S3 access points support AWS Identity and Access Management \(IAM\) resource policies that allow you to control the use of the access point by resource, user, or other conditions\. For an application or user to be able to access objects through an access point, both the access point and the underlying bucket must permit the request\.
@@ -167,6 +161,7 @@ The following service control policy requires all new access points to be create
     "Statement": [
     {
         "Effect": "Deny",
+        "Principal": "*",
         "Action": "s3:CreateAccessPoint",
         "Resource": "*",
         "Condition": {

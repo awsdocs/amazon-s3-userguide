@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Buckets overview<a name="UsingBucket"></a>
 
 To upload your data \(photos, videos, documents, etc\.\) to Amazon S3, you must first create an S3 bucket in one of the AWS Regions\. You can then upload any number of objects to the bucket\. 

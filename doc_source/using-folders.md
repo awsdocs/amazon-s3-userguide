@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Organizing objects in the Amazon S3 console using folders<a name="using-folders"></a>
 
 In Amazon S3, buckets and objects are the primary resources, and objects are stored in buckets\. Amazon S3 has a flat structure instead of a hierarchy like you would see in a file system\. However, for the sake of organizational simplicity, the Amazon S3 console supports the *folder* concept as a means of grouping objects\. It does this by using a shared name prefix for objects \(that is, objects have names that begin with a common string\)\. Object names are also referred to as *key names*\.

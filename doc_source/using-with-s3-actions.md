@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Amazon S3 actions<a name="using-with-s3-actions"></a>
 
 Amazon S3 defines a set of permissions that you can specify in a policy\. These are keywords, each of which maps to a specific Amazon S3 operation\. For more information about Amazon S3 operations, see [Actions](https://docs.aws.amazon.com/AmazonS3/latest/API/API_Operations.html) in the *Amazon Simple Storage Service API Reference*\. 

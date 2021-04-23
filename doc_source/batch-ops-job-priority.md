@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Assigning job priority<a name="batch-ops-job-priority"></a>
 
 You can assign each job a numeric priority, which can be any positive integer\. S3 Batch Operations prioritize jobs according to the assigned priority\. Jobs with a higher priority \(or a higher numeric value for the priority parameter\) are evaluated first\. Priority is determined in descending order\. For example, a job queue with a priority value of 10 is given scheduling preference over a job queue with a priority value of 1\. 

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Creating a metrics configuration that filters by object key name prefix or tag<a name="metrics-configurations-filter"></a>
 
 There are three types of Amazon CloudWatch metrics for Amazon S3: storage metrics, request metrics, and replication metrics\. Storage metrics are reported once per day and are provided to all customers at no additional cost\. Request metrics are available at one\-minute intervals after some latency to process\. Request metrics are billed at the standard CloudWatch rate\. You must opt into request metrics by configuring them in the console or using the Amazon S3 API\.

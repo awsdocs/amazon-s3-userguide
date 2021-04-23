@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Editing object metadata in the Amazon S3 console<a name="add-object-metadata"></a>
 
 You can use the Amazon S3 console to edit metadata of existing S3 objects\. Some metadata is set by Amazon S3 when you upload the object\. For example, `Content-Length` is the *key* \(name\) and the *value* is the size of the object in bytes\.

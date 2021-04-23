@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Retrieving object versions from a versioning\-enabled bucket<a name="RetrievingObjectVersions"></a>
 
 Versioning in Amazon S3 is a way of keeping multiple variants of an object in the same bucket\. A simple `GET` request retrieves the current version of an object\. The following figure shows how `GET` returns the current version of the object, `photo.gif`\.

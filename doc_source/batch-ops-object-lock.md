@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Enabling S3 Object Lock using S3 Batch Operations<a name="batch-ops-object-lock"></a>
 
 You can use S3 Batch Operations with S3 Object Lock to manage retention or enable a legal hold for many Amazon S3 objects at once\. You specify the list of target objects in your manifest and submit it to Batch Operations for completion\. For more information, see [S3 Object Lock retention](batch-ops-retention-date.md) and [S3 Object Lock legal hold](batch-ops-legal-hold.md)\. 

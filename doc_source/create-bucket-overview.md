@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Creating a bucket<a name="create-bucket-overview"></a>
 
 To upload your data to Amazon S3, you must first create an Amazon S3 bucket in one of the AWS Regions\. When you create a bucket, you must choose a bucket name and Region\. You can optionally choose other storage management options for the bucket\. After you create a bucket, you cannot change the bucket name or Region\. For information about naming buckets, see [Bucket naming rules](bucketnamingrules.md)\.

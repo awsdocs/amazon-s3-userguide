@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Getting started with Amazon S3 on Outposts<a name="S3OutpostsGS"></a>
 
 With Amazon S3 on Outposts, you can use the Amazon S3 APIs and features, such as object storage, access policies, encryption, and tagging, on AWS Outposts as you do on Amazon S3\. For information about AWS Outposts, see [ What is AWS Outposts?](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.html) in the *AWS Outposts User Guide*\. 
@@ -28,8 +22,8 @@ If AWS Outposts is already on your site, depending on your current Outpost confi
 
 ## Setting up S3 on Outposts<a name="SettingUpS3Outposts"></a>
 
-After your S3 on Outposts capacity is provisioned, you can create buckets and S3 access points on your Outpost using the [ AWS Outposts console](https://console.aws.amazon.com/outposts), the Amazon S3 on Outposts REST API, the AWS Command Line Interface \(AWS CLI\), or the AWS SDKs\. You can then use APIs to store and retrieve objects from these buckets\. You can also use AWS DataSync to transfer data between your Outpost and the AWS Region\. For more information, see [Working with Amazon S3 on Outposts](WorkingWithS3Outposts.md)\.
+After your S3 on Outposts capacity is provisioned, you can create buckets and S3 access points on your Outpost using the [ AWS Outposts console](https://console.aws.amazon.com/outposts), the Amazon S3 on Outposts REST API, the AWS Command Line Interface \(AWS CLI\), or the AWS SDKs\. You can then use APIs to store and retrieve objects from these buckets\. You can also use AWS DataSync to transfer data between your Outpost and the AWS Region\. For more information, see [Accessing Amazon S3 on Outposts](WorkingWithS3Outposts.md)\.
 
-You can manage your Amazon S3 storage on Outposts using the same services that you use in\-Region today\. These include AWS Identity and Access Management \(IAM\) and Amazon S3 Access Points to control access to objects and buckets, Amazon CloudWatch to monitor operational health, and AWS CloudTrail to track and report on object\-level and bucket\-level activity\.
+You can manage your Amazon S3 storage on Outposts using the same services that you use in\-Region today\. These include AWS Identity and Access Management \(IAM\) and Amazon S3 access points to control access to objects and buckets, Amazon CloudWatch to monitor operational health, and AWS CloudTrail to track and report on object\-level and bucket\-level activity\.
 
 After AWS enables your S3 on Outposts capacity, you can access S3 on Outposts using the AWS Outposts or Amazon S3 consoles, the Amazon S3 REST API, the AWS CLI, or the AWS SDKs\.

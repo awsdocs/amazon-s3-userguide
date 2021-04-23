@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using cross\-origin resource sharing \(CORS\)<a name="cors"></a>
 
 Cross\-origin resource sharing \(CORS\) defines a way for client web applications that are loaded in one domain to interact with resources in a different domain\. With CORS support, you can build rich client\-side web applications with Amazon S3 and selectively allow cross\-origin access to your Amazon S3 resources\. 
@@ -41,6 +35,6 @@ For more information about using CORS, see the following topics\.
 **Topics**
 + [Cross\-origin resource sharing: Use\-case scenarios](#example-scenarios-cors)
 + [How does Amazon S3 evaluate the CORS configuration on a bucket?](#cors-eval-criteria)
-+ [Creating a cross\-origin resource sharing \(CORS\) configuration](ManageCorsUsing.md)
++ [CORS configuration](ManageCorsUsing.md)
 + [Configuring cross\-origin resource sharing \(CORS\)](enabling-cors-examples.md)
 + [Troubleshooting CORS](cors-troubleshooting.md)

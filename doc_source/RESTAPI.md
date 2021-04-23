@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Making requests using the REST API<a name="RESTAPI"></a>
 
 This section contains information on how to make requests to Amazon S3 endpoints by using the REST API\. For a list of Amazon S3 endpoints, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
@@ -16,8 +10,8 @@ Amazon S3 endpoints follow the structure shown below:
 s3.Region.amazonaws.com
 ```
 
-Amazon S3 Access Points endpoints and dual\-stack endpoints also follow the standard structure:
-+ **Amazon S3 Access Points** ‐`s3-accesspoint.Region.amazonaws.com`
+Amazon S3 access points endpoints and dual\-stack endpoints also follow the standard structure:
++ **Amazon S3 access points** ‐`s3-accesspoint.Region.amazonaws.com`
 + **Dual\-stack** ‐ `s3.dualstack.Region.amazonaws.com` 
 
 For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Use S3 Batch Operations with S3 Object Lock retention governance mode<a name="batch-ops-governance-mode"></a>
 
 The following example builds on the previous example of creating a trust policy, and setting S3 Batch Operations and S3 Object Lock configuration permissions\. It shows how to apply S3 Object Lock retention governance with the `retain until date` of January 30, 2025, across multiple objects\. It creates a Batch Operations job that uses the manifest bucket and reports the results in the reports bucket\.

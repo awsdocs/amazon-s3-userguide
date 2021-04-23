@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Using Amazon S3 storage classes<a name="storage-class-intro"></a>
 
 Each object in Amazon S3 has a storage class associated with it\. For example, if you list the objects in an S3 bucket, the console shows the storage class for all the objects in the list\. Amazon S3 offers a range of storage classes for the objects that you store\. You choose a class depending on your use case scenario and performance access requirements\. All of these storage classes offer high durability\. 
@@ -37,7 +31,7 @@ For a small monthly object monitoring and automation fee, S3 Intelligent\-Tierin
 
 Objects that are uploaded or transitioned to S3 Intelligent\-Tiering are automatically stored in the *Frequent Access* tier\. S3 Intelligent\-Tiering works by monitoring access patterns and then moving the objects that have not been accessed in 30 consecutive days to the *Infrequent Access* tier\. You can also choose to activate one or both of the archive access tiers using the API with [PutBucketIntelligentTieringConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html), the CLI, or the Amazon S3 console\. After you activate one or both of the archive access tiers, S3 Intelligent\-Tiering automatically moves objects that haven’t been accessed for 90 consecutive days to the *Archive Access* tier, and after 180 consecutive days of no access, to the *Deep Archive Access* tier\. 
 
-If the objects are accessed later, the objects are moved back to the *Frequent Access* tier\. There are no retrieval fees, so you won’t see unexpected increases in storage bills when access patterns change\.
+In order to access archived objects later, you first need to restore them\. For more information, see [Working with archived objects](archived-objects.md)\.
 
 **Note**  
 The S3 Intelligent\-Tiering storage class is suitable for objects larger than 128 KB that you plan to store for at least 30 days\. If the size of an object is less than 128 KB, it is not eligible for auto\-tiering\. Smaller objects can be stored, but they are always charged at the frequent access tier rates in the S3 Intelligent\-Tiering storage class\.   

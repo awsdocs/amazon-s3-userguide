@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Retrieving the requestPayment configuration using the REST API<a name="BucketPayerValues"></a>
 
 You can determine the `Payer` value that is set on a bucket by requesting the resource `requestPayment`\.

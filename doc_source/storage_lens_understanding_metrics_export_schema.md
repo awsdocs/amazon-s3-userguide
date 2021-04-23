@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Understanding the Amazon S3 Storage Lens export schema<a name="storage_lens_understanding_metrics_export_schema"></a>
 
 The following table contains the schema of your S3 Storage Lens metrics export\.

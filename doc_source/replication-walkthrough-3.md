@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Changing the replica owner for source and destination buckets are owned by different accounts<a name="replication-walkthrough-3"></a>
 
 When the *source* and *destination* buckets in a replication configuration are owned by different AWS accounts, you can tell Amazon S3 to change replica ownership to the AWS account that owns the *destination* bucket\. This example explains how to use the Amazon S3 console and the AWS CLI to change replica ownership\. For more information, see [Changing the replica owner](replication-change-owner.md)\. 

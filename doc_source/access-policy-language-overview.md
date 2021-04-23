@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Policies and Permissions in Amazon S3<a name="access-policy-language-overview"></a>
 
 This page provides an overview of bucket and user policies in Amazon S3 and describes the basic elements of a policy\. Each listed element links to more details about that element and examples of how to use it\. 

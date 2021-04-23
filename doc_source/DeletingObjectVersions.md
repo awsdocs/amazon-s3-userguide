@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Deleting object versions from a versioning\-enabled bucket<a name="DeletingObjectVersions"></a>
 
 You can delete object versions from Amazon S3 buckets whenever you want\. You can also define lifecycle configuration rules for objects that have a well\-defined lifecycle to request Amazon S3 to expire current object versions or permanently remove noncurrent object versions\. When your bucket is version\-enabled or versioning is suspended, the lifecycle configuration actions work as follows:

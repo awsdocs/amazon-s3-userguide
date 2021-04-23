@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Website endpoints<a name="WebsiteEndpoints"></a>
 
 When you configure your bucket as a static website, the website is available at the AWS Region\-specific website endpoint of the bucket\. Website endpoints are different from the endpoints where you send REST API requests\. For more information about the differences between the endpoints, see [Key differences between a website endpoint and a REST API endpoint](#WebsiteRestEndpointDiff)\.

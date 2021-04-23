@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Amazon S3 error best practices<a name="ErrorBestPractices"></a>
 
 When designing an application for use with Amazon S3, it is important to handle Amazon S3 errors appropriately\. This section describes issues to consider when designing your application\.

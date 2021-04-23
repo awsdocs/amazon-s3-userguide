@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring a custom error document<a name="CustomErrorDocSupport"></a>
 
 After you configure your bucket as a static website, when an error occurs, Amazon S3 returns an HTML error document\. You can optionally configure your bucket with a custom error document so that Amazon S3 returns that document when an error occurs\. 

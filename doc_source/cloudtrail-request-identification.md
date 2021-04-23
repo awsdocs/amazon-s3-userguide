@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Identifying Amazon S3 requests using CloudTrail<a name="cloudtrail-request-identification"></a>
 
 In Amazon S3, you can identify requests using an AWS CloudTrail event log\. AWS CloudTrail is the preferred way of identifying Amazon S3 requests, but if you are using Amazon S3 server access logs, see [Using Amazon S3 access logs to identify requests](using-s3-access-logs-to-identify-requests.md)\.

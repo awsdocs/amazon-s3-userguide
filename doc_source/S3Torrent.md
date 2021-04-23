@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Retrieving Amazon S3 objects using BitTorrent<a name="S3Torrent"></a>
 
 BitTorrent is an open, peer\-to\-peer protocol for distributing files\. You can use the BitTorrent protocol to retrieve any publicly\-accessible object in Amazon S3\. This section describes why you might want to use BitTorrent to distribute your data out of Amazon S3 and how to do so\.

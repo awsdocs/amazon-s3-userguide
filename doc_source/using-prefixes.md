@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Organizing objects using prefixes<a name="using-prefixes"></a>
 
 You can use prefixes to organize the data that you store in Amazon S3 buckets\. A prefix value is similar to a directory name that enables you to group similar objects together in a bucket\. When you programmatically upload objects, you can use prefixes to organize your data\.

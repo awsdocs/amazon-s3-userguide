@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys<a name="bucket-key"></a>
 
 Amazon S3 Bucket Keys reduce the cost of Amazon S3 server\-side encryption using AWS Key Management Service \(SSE\-KMS\)\. This new bucket\-level key for SSE can reduce AWS KMS request costs by up to 99 percent by decreasing the request traffic from Amazon S3 to AWS KMS\. With a few clicks in the AWS Management Console, and without any changes to your client applications, you can configure your bucket to use an S3 Bucket Key for AWS KMS\-based encryption on new objects\.

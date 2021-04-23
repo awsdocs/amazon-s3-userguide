@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Replace access control list<a name="batch-ops-put-object-acl"></a>
 
 The **Replace access control list \(ACL\)** operation replaces the Amazon S3 access control lists \(ACLs\) for every object that is listed in the manifest\. Using ACLs, you can define who can access an object and what actions they can perform\.

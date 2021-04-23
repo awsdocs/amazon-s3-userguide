@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Listing multipart uploads<a name="list-mpu"></a>
 
 You can use the AWS SDKs \(low\-level API\) to retrieve a list of in\-progress multipart uploads in Amazon S3\.

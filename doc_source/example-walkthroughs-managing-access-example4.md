@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Example 4: Bucket owner granting cross\-account permission to objects it does not own<a name="example-walkthroughs-managing-access-example4"></a>
 
 **Topics**

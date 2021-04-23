@@ -1,16 +1,10 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring cross\-origin resource sharing \(CORS\)<a name="enabling-cors-examples"></a>
 
 Cross\-origin resource sharing \(CORS\) defines a way for client web applications that are loaded in one domain to interact with resources in a different domain\. With CORS support, you can build rich client\-side web applications with Amazon S3 and selectively allow cross\-origin access to your Amazon S3 resources\. 
 
 This section shows you how to enable CORS using the Amazon S3 console, the Amazon S3 REST API, and the AWS SDKs\. To configure your bucket to allow cross\-origin requests, you add a CORS configuration to the bucket\. A CORS configuration is a document that defines rules that identify the origins that you will allow to access your bucket, the operations \(HTTP methods\) supported for each origin, and other operation\-specific information\. In the S3 console, the CORS configuration must be a JSON document\.
 
-For examples CORS configurations in JSON and XML, see [Creating a cross\-origin resource sharing \(CORS\) configuration](ManageCorsUsing.md)\.
+For examples CORS configurations in JSON and XML, see [CORS configuration](ManageCorsUsing.md)\.
 
 ## Using the S3 console<a name="add-cors-configuration"></a>
 
@@ -19,7 +13,7 @@ This section explains how to use the Amazon S3 console to add a cross\-origin re
 When you enable CORS on the bucket, the access control lists \(ACLs\) and other access permission policies continue to apply\.
 
 **Important**  
-In the new S3 console, the CORS configuration must be JSON\. For examples CORS configurations in JSON and XML, see [Creating a cross\-origin resource sharing \(CORS\) configuration](ManageCorsUsing.md)\.
+In the new S3 console, the CORS configuration must be JSON\. For examples CORS configurations in JSON and XML, see [CORS configuration](ManageCorsUsing.md)\.
 
 **To add a CORS configuration to an S3 bucket**
 
@@ -33,7 +27,7 @@ In the new S3 console, the CORS configuration must be JSON\. For examples CORS c
 
 1. In the **CORS configuration editor** text box, type or copy and paste a new CORS configuration, or edit an existing configuration\.
 
-   The CORS configuration is a JSON file\. The text that you type in the editor must be valid JSON\. For more information, see [Creating a cross\-origin resource sharing \(CORS\) configuration](ManageCorsUsing.md)\.
+   The CORS configuration is a JSON file\. The text that you type in the editor must be valid JSON\. For more information, see [CORS configuration](ManageCorsUsing.md)\.
 
 1. Choose **Save changes**\.
 **Note**  

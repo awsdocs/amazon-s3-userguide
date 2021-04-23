@@ -1,12 +1,6 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Configuring IAM policies for Object Lambda access points<a name="olap-policies"></a>
 
-S3 Access Points support AWS Identity and Access Management \(IAM\) resource policies that allow you to control the use of the access point by resource, user, or other conditions\.
+S3 access points support AWS Identity and Access Management \(IAM\) resource policies that allow you to control the use of the access point by resource, user, or other conditions\.
 
 In the case of a single AWS account, the following four resources must have permissions granted to work with Object Lambda access points:
 + The IAM user or role

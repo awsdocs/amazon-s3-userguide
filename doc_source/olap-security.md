@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Security considerations for S3 Object Lambda access points<a name="olap-security"></a>
 
 S3 Object Lambda allows customers the ability to perform custom transformations on data as it leaves S3 using the scale and flexibility of AWS Lambda as a compute platform\. S3 and Lambda remain secure by default, but special consideration by the Lambda author is required in order to maintain this security\. S3 Object Lambda requires that all access be made by authenticated principals \(no anonymous access\) and over HTTPS\.
@@ -12,7 +6,7 @@ To mitigate this risk we recommend that the Lambda execution role be carefully s
 
 ## Configuring IAM policies<a name="olap-iam-policies"></a>
 
-S3 Access Points support AWS Identity and Access Management \(IAM\) resource policies that allow you to control the use of the access point by resource, user, or other conditions\. For more information, see [Configuring IAM policies for Object Lambda access points](olap-policies.md)\.
+S3 access points support AWS Identity and Access Management \(IAM\) resource policies that allow you to control the use of the access point by resource, user, or other conditions\. For more information, see [Configuring IAM policies for Object Lambda access points](olap-policies.md)\.
 
 ## Encryption behavior<a name="olap-encryption"></a>
 

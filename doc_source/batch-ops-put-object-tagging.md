@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Replace all object tags<a name="batch-ops-put-object-tagging"></a>
 
 The **Replace all object tags **operation replaces the Amazon S3 object tags on every object listed in the manifest\. An Amazon S3 object tag is a key\-value pair of strings that you can use to store metadata about an object\.

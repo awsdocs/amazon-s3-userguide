@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Managing your storage lifecycle<a name="object-lifecycle-mgmt"></a>
 
 To manage your objects so that they are stored cost effectively throughout their lifecycle, configure their *Amazon S3 Lifecycle*\. An *S3 Lifecycle configuration* is a set of rules that define actions that Amazon S3 applies to a group of objects\. There are two types of actions:

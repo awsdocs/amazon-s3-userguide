@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Viewing settings for an S3 Bucket Key<a name="viewing-bucket-key-settings"></a>
 
 You can view settings for an S3 Bucket Key at the bucket or object level using the Amazon S3 console, REST API, AWS CLI, or AWS SDKs\.

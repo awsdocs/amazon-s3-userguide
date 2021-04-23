@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Working with delete markers<a name="DeleteMarker"></a>
 
 A *delete marker* in Amazon S3 is a placeholder \(or marker\) for a versioned object that was named in a simple `DELETE` request\. Because the object is in a versioning\-enabled bucket, the object is not deleted\. But the delete marker makes Amazon S3 behave as if it is deleted\. 

@@ -1,9 +1,3 @@
---------
-
-Welcome to the new **Amazon S3 User Guide**\! The Amazon S3 User Guide combines information and instructions from the three retired guides: *Amazon S3 Developer Guide*, *Amazon S3 Console User Guide*, and *Amazon S3 Getting Started Guide*\.
-
---------
-
 # Infrastructure security in Amazon S3<a name="network-isolation"></a>
 
 As a managed service, Amazon S3 is protected by the AWS global network security procedures that are described in the [Amazon Web Services: Overview of Security Processes](https://d1.awsstatic.com/whitepapers/aws-security-whitepaper.pdf)\.

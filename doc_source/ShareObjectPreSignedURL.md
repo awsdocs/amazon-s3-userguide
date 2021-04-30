@@ -129,6 +129,7 @@ public class GeneratePresignedURL {
             java.util.Date expiration = new java.util.Date();
             long expTimeMillis = expiration.getTime();
             expTimeMillis += 1000 * 60 * 60;
+            Date expiration = new Date();
             expiration.setTime(expTimeMillis);
 
             // Generate the presigned URL.

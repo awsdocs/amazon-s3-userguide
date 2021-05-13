@@ -36,4 +36,4 @@ For more information about the AWS SDK for \.NET API, see [AWS SDK for \.NET Ver
 
 ## Running the Amazon S3 \.NET Code Examples<a name="TestingDotNetApiSamples"></a>
 
-The \.NET code examples in this guide are compatible with the AWS SDK for \.NET version 3\.0\. For information about setting up and running the code examples, see [Getting Started with the AWS SDK for \.NET](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-setup.html) in the *AWS SDK for \.NET Developer Guide*\. 
+The \.NET code examples in this guide are compatible with the AWS SDK for \.NET version 3\.0\. For information about setting up and running the code examples, see [Getting Started with the AWS SDK for \.NET](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/net-dg-setup.html) in the *AWS SDK for \.NET Developer Guide*\. 

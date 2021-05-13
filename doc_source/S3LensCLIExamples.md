@@ -1,21 +1,21 @@
 # Amazon S3 Storage Lens examples using the AWS CLI<a name="S3LensCLIExamples"></a>
 
-Amazon S3 Storage Lens aggregates your usage and activity metrics and displays the information in an interactive dashboard on the Amazon S3 console or through a metrics data export that can be downloaded in CSV or Parquet format\. You can use the dashboard to visualize insights and trends, flag outliers, and provides recommendations for optimizing storage costs and applying data protection best practices\. You can use S3 Storage Lens through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\.\. For more information, see [Assessing storage activity and usage with Amazon S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)\. 
+Amazon S3 Storage Lens aggregates your usage and activity metrics and displays the information in the account snapshot on the Amazon S3 console home \(**Buckets**\) page, interactive dashboards, or through a metrics export that you can download in CSV or Parquet format\. You can use the dashboard to visualize insights and trends, flag outliers, and receive recommendations for optimizing storage costs and applying data protection best practices\. You can use S3 Storage Lens through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\.\. For more information, see [Assessing storage activity and usage with Amazon S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)\. 
 
 The following examples show how you can use S3 Storage Lens with the AWS Command Line Interface\.
 
 **Topics**
 + [Helper files for using Amazon S3 Storage Lens](#S3LensHelperFilesCLI)
-+ [Using Amazon S3 Storage Lens configurations using the AWS CLI](#S3LensConfigurationsCLI)
-+ [Using Amazon S3 Storage Lens with your AWS Organizations using the AWS CLI](#S3LensOrganizationsCLI)
++ [Using Amazon S3 Storage Lens configurations with the AWS CLI](#S3LensConfigurationsCLI)
++ [Using Amazon S3 Storage Lens with AWS Organizations using the AWS CLI](#S3LensOrganizationsCLI)
 
 ## Helper files for using Amazon S3 Storage Lens<a name="S3LensHelperFilesCLI"></a>
 
-Use the following json files for key inputs for your examples\.
+Use the following JSON files for key inputs for your examples\.
 
 
 
-### S3 Storage Lens sample configuration json<a name="S3LensHelperFilesSampleConfigurationCLI"></a>
+### S3 Storage Lens sample configuration JSON<a name="S3LensHelperFilesSampleConfigurationCLI"></a>
 
 **Example config\.json**  
 Contains details of a S3 Storage Lens Organizations\-level *Advanced Metrics and Recommendations* configuration\.  
@@ -71,7 +71,7 @@ Additional charges apply for Advanced Metrics and Recommendations\. For more inf
   }
 ```
 
-### S3 Storage Lens sample configuration tags json<a name="S3LensHelperFilesSampleConfigurationTagsCLI"></a>
+### S3 Storage Lens sample configuration tags JSON<a name="S3LensHelperFilesSampleConfigurationTagsCLI"></a>
 
 **Example tags\.json**  
 
@@ -123,16 +123,16 @@ S3 Storage Lens IAM permissions\.
 }
 ```
 
-## Using Amazon S3 Storage Lens configurations using the AWS CLI<a name="S3LensConfigurationsCLI"></a>
+## Using Amazon S3 Storage Lens configurations with the AWS CLI<a name="S3LensConfigurationsCLI"></a>
 
-You can use the AWS CLI to list, create, get and update your S3 Storage Lens configurations\. The following examples use the helper json files for key inputs\.
+You can use the AWS CLI to list, create, get and update your S3 Storage Lens configurations\. The following examples use the helper JSON files for key inputs\.
 
 **Topics**
 + [Put an S3 Storage Lens configuration](#S3PutStorageLensConfigurationTagsCLI)
 + [Put an S3 Storage Lens configuration without tags](#S3PutStorageLensConfigurationWOTagsCLI)
-+ [Gets an S3 Storage Lens configuration](#S3GetStorageLensConfigurationCLI)
-+ [Lists S3 Storage Lens configurations without next token](#S3ListStorageLensConfigurationsWOTokenCLI)
-+ [Lists S3 Storage Lens configurations](#S3ListStorageLensConfigurationsCLI)
++ [Get an S3 Storage Lens configuration](#S3GetStorageLensConfigurationCLI)
++ [List S3 Storage Lens configurations without next token](#S3ListStorageLensConfigurationsWOTokenCLI)
++ [List S3 Storage Lens configurations](#S3ListStorageLensConfigurationsCLI)
 + [Delete an S3 Storage Lens configuration](#S3DeleteStorageLensConfigurationCLI)
 + [Put tags to an S3 Storage Lens configuration](#S3PutStorageLensConfigurationTaggingCLI)
 + [Get tags for an S3 Storage Lens configuration](#S3GetStorageLensConfigurationTaggingCLI)
@@ -148,13 +148,13 @@ aws s3control put-storage-lens-configuration --account-id=222222222222 --config-
 
 ### Put an S3 Storage Lens configuration without tags<a name="S3PutStorageLensConfigurationWOTagsCLI"></a>
 
-**Example Puts an S3 Storage Lens configuration\.**  
+**Example Put an S3 Storage Lens configuration**  
 
 ```
 aws s3control put-storage-lens-configuration --account-id=222222222222 --config-id=your-configuration-id --region=us-east-1 --storage-lens-configuration=file://./config.json
 ```
 
-### Gets an S3 Storage Lens configuration<a name="S3GetStorageLensConfigurationCLI"></a>
+### Get an S3 Storage Lens configuration<a name="S3GetStorageLensConfigurationCLI"></a>
 
 **Example Get an S3 Storage Lens configuration**  
 
@@ -162,17 +162,17 @@ aws s3control put-storage-lens-configuration --account-id=222222222222 --config-
 aws s3control get-storage-lens-configuration --account-id=222222222222 --config-id=your-configuration-id --region=us-east-1
 ```
 
-### Lists S3 Storage Lens configurations without next token<a name="S3ListStorageLensConfigurationsWOTokenCLI"></a>
+### List S3 Storage Lens configurations without next token<a name="S3ListStorageLensConfigurationsWOTokenCLI"></a>
 
-**Example Lists S3 Storage Lens configurations without next token**  
+**Example List S3 Storage Lens configurations without next token**  
 
 ```
 aws s3control list-storage-lens-configurations --account-id=222222222222 --region=us-east-1
 ```
 
-### Lists S3 Storage Lens configurations<a name="S3ListStorageLensConfigurationsCLI"></a>
+### List S3 Storage Lens configurations<a name="S3ListStorageLensConfigurationsCLI"></a>
 
-**Example Lists S3 Storage Lens configurations**  
+**Example List S3 Storage Lens configurations**  
 
 ```
 aws s3control list-storage-lens-configurations --account-id=222222222222 --region=us-east-1 --next-token=abcdefghij1234
@@ -210,7 +210,7 @@ aws s3control get-storage-lens-configuration-tagging --account-id=222222222222 -
 aws s3control delete-storage-lens-configuration-tagging --account-id=222222222222 --region=us-east-1 --config-id=your-configuration-id
 ```
 
-## Using Amazon S3 Storage Lens with your AWS Organizations using the AWS CLI<a name="S3LensOrganizationsCLI"></a>
+## Using Amazon S3 Storage Lens with AWS Organizations using the AWS CLI<a name="S3LensOrganizationsCLI"></a>
 
 Use Amazon S3 Storage Lens to collect storage metrics and usage data for all accounts that are part of your AWS Organizations hierarchy\. For more information, see [Using Amazon S3 Storage Lens with AWS Organizations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_with_organizations.html)\. 
 
@@ -218,7 +218,7 @@ Use Amazon S3 Storage Lens to collect storage metrics and usage data for all acc
 + [Enable Organizations trusted access for S3 Storage Lens](#OrganizationsEnableTrustedAccessS3LensCLI)
 + [Disable Organizations trusted access for S3 Storage Lens](#OrganizationsDisableTrustedAccessS3LensCLI)
 + [Register Organizations delegated administrators for S3 Storage Lens](#OrganizationsRegisterDelegatedAdministratorS3LensCLI)
-+ [De\-register Organizations delegated administrators for S3 Storage Lens](#OrganizationsDeregisterDelegatedAdministratorS3LensCLI)
++ [Deregister Organizations delegated administrators for S3 Storage Lens](#OrganizationsDeregisterDelegatedAdministratorS3LensCLI)
 
 
 
@@ -246,9 +246,9 @@ aws organizations disable-aws-service-access --service-principal storage-lens.s3
 aws organizations register-delegated-administrator --service-principal storage-lens.s3.amazonaws.com —account-id 123456789012
 ```
 
-### De\-register Organizations delegated administrators for S3 Storage Lens<a name="OrganizationsDeregisterDelegatedAdministratorS3LensCLI"></a>
+### Deregister Organizations delegated administrators for S3 Storage Lens<a name="OrganizationsDeregisterDelegatedAdministratorS3LensCLI"></a>
 
-**Example De\-register Organizations delegated administrators for S3 Storage Lens**  
+**Example Deregister Organizations delegated administrators for S3 Storage Lens**  
 
 ```
 aws organizations deregister-delegated-administrator --service-principal storage-lens.s3.amazonaws.com —account-id 123456789012

@@ -2,7 +2,7 @@
 
 You can use Amazon S3 Storage Lens to collect storage metrics and usage data for all AWS accounts that are part of your AWS Organizations hierarchy\. To do this, you must be using AWS Organizations, and you must enable S3 Storage Lens trusted access using your AWS Organizations management\. 
 
-After enabling trusted access, you can add delegated administrator access to accounts in your organization\. These accounts can then create organization\-wide dashboards and configurations for S3 Storage Lens\. 
+After enabling trusted access, you can add delegated administrator access to accounts in your organization\. These accounts can then create S3 Storage Lens configurations and dashboards that collect organization\-wide storage metrics and user data\.
 
 For more information about enabling trusted access, see [Amazon S3 Storage Lens and AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/services-that-can-integrate-s3lens.html) in the *AWS Organizations User Guide*\.
 
@@ -14,11 +14,11 @@ For more information about enabling trusted access, see [Amazon S3 Storage Lens 
 
 ## Enabling trusted access for S3 Storage Lens<a name="storage_lens_with_organizations_enabling_trusted_access"></a>
 
-By enabling trusted access, you allow Amazon S3 Storage Lens to have access to your AWS Organizations hierarchy, membership, and structure through the AWS Organizations APIs\. S3 Storage Lens will be a trusted service for your entire organization’s structure\. 
+By enabling trusted access, you allow Amazon S3 Storage Lens to have access to your AWS Organizations hierarchy, membership, and structure through the AWS Organizations APIs\. S3 Storage Lens then becomes a trusted service for your entire organization’s structure\.
 
-Whenever a dashboard configuration is created, S3 Storage Lens creates service\-linked roles in your organization’s management or delegated administrator accounts\. The service\-linked role grants S3 Storage Lens permissions to describe organizations, list accounts, verify a list of service access for the organizations, and get delegated administrators for the organization\. S3 Storage Lens can then collect cross\-account storage usage and activity metrics for dashboards within accounts in your organizations\. For more information, see [ Using service\-linked roles for Amazon S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-service-linked-roles.html)\. 
+Whenever a dashboard configuration is created, S3 Storage Lens creates service\-linked roles in your organization’s management or delegated administrator accounts\. The service\-linked role grants S3 Storage Lens permissions to describe organizations, list accounts, verify a list of AWS service access for the organizations, and get delegated administrators for the organization\. S3 Storage Lens can then ensure it has access to collect the cross\-account storage usage and activity metrics for accounts in your organizations\. For more information, see [ Using service\-linked roles for Amazon S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-service-linked-roles.html)\. 
 
-After enabling trusted access, you can assign delegate administrator access to accounts in your organization\. When an account is marked as a delegate administrator for a service, the account receives authorization to access all read\-only organization APIs\. This provides visibility to the members and structures of your organization so that they can create S3 Storage Lens dashboards on your behalf\.
+After enabling trusted access, you can assign delegate administrator access to accounts in your organization\. When an account is marked as a delegate administrator for a service, the account receives authorization to access all read\-only organization APIs\. This provides visibility to the members and structures of your organization so that they too can create S3 Storage Lens dashboards\.
 
 **Note**  
 Only the management account can enable trusted access for Amazon S3 Storage Lens\.
@@ -35,7 +35,7 @@ Your management and delegated administrator accounts will still be able to see t
 
 ## Registering a delegated administrator for S3 Storage Lens<a name="storage_lens_with_organizations_registering_delegated_admins"></a>
 
-You can create organization\-level dashboards using your organization’s management account or a delegated administrator account\. Delegated administrator accounts allow other accounts besides your management account to create organization\-level dashboards\. Only the management account of an organization can register and deregister other accounts as delegated administrators for the organization\.
+You can create organization\-level dashboards using your organization’s management account or delegated administrator accounts\. Delegated administrator accounts allow other accounts besides your management account to create organization\-level dashboards\. Only the management account of an organization can register and deregister other accounts as delegated administrators for the organization\.
 
 To register a delegated administrator using the Amazon S3 console, see [Registering delegated administrators for S3 Storage Lens](storage_lens_console_organizations_registering_delegated_admins.md)\.
 
@@ -53,5 +53,5 @@ To de\-register a delegated admin using the S3 console, see [Deregistering deleg
 You can also de\-register a delegated administrator using the AWS Organizations REST API, AWS CLI, or SDKs from the management account\. For more information, see [ DeregisterDelegatedAdministrator](https://docs.aws.amazon.com/organizations/latest/APIReference/API_DeregisterDelegatedAdministrator.html) in the *AWS Organizations API Reference*\.
 
 **Note**  
-This action also automatically stop all organization\-level dashboards created by that delegated administrator from aggregating new storage metrics\.
+This action also automatically stops all organization\-level dashboards created by that delegated administrator from aggregating new storage metrics\.
 The delegate administrator accounts will still be able to see the historic data for those dashboards according to their respective retention periods\.

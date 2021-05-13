@@ -26,11 +26,12 @@ The following is an example of a manifest in a `manifest.json` file for a CSV\-f
    "reportFormat":"CSV",
    "reportSchema":"version_number,configuration_id,report_date,aws_account_number,aws_region,storage_class,record_type,record_value,bucket_name,metric_name,metric_value",
    "reportFiles":[
-      {
-         "key":"DestinationPrefix/StorageLens/123456789012/my-dashboard-configuration-id/V_1/reports/dt=2020-11-03/a38f6bc4-2e3d-4355-ac8a-e2fdcf3de158.csv",
-         "size":1603959,
-         "md5Checksum":"2177e775870def72b8d84febe1ad3574"
-      }
+        {
+            "key":"DestinationPrefix/StorageLens/123456789012/my-dashboard-configuration-id/V_1/reports/dt=2020-11-03/a38f6bc4-2e3d-4355-ac8a-e2fdcf3de158.csv",
+            "size":1603959,
+            "md5Checksum":"2177e775870def72b8d84febe1ad3574"
+        }
+      ]
 }
 ```
 

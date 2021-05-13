@@ -1,6 +1,6 @@
 # Expiring objects<a name="lifecycle-expire-general-considerations"></a>
 
- When an object reaches the end of its lifetime, Amazon S3 queues it for removal and removes it asynchronously\. There might be a delay between the expiration date and the date at which Amazon S3 removes an object\. You are not charged for storage time associated with an object that has expired\. 
+ When an object reaches the end of its lifetime based on its lifecycle policy, Amazon S3 queues it for removal and removes it asynchronously\. There might be a delay between the expiration date and the date at which Amazon S3 removes an object\. You are not charged for storage time associated with an object that has expired\. 
 
  To find when an object is scheduled to expire, use the [HEAD Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html) or the [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) API operations\. These API operations return response headers that provide this information\. 
 

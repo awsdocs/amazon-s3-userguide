@@ -10,162 +10,476 @@ This section details about writing and debugging Lambda functions for use with O
 
 ## Working with WriteGetObjectResponse<a name="olap-getobject-response"></a>
 
-S3 Object Lambda exposes a new Amazon S3 API, WriteGetObjectResponse which enables the Lambda function to provide customized data and response headers to the GetObject caller\. WriteGetObjectResponse affords the Lambda author extensive control over the status code, response headers and response body based on their processing needs\. You can use WriteGetObjectResponse to respond with the whole transformed object, portions of the transformed object, or other responses based on the context of your application\. The following section shows four unique examples of using the WriteGetObjectResponse to return customized objects\. In each example WriteGetObjectResponse will be called only once\.
+S3 Object Lambda exposes a new Amazon S3 API, WriteGetObjectResponse which enables the Lambda function to provide customized data and response headers to the GetObject caller\. WriteGetObjectResponse affords the Lambda author extensive control over the status code, response headers and response body based on their processing needs\. You can use WriteGetObjectResponse to respond with the whole transformed object, portions of the transformed object, or other responses based on the context of your application\. The following section shows unique examples of using the WriteGetObjectResponse\.
 + **Example 1:** Respond with a 403 Forbidden 
 + **Example 2:** Respond with a transformed image
-+ **Example 3:** Respond with a CSV with rows/columns masked in\-place
-+ **Example 4:** Respond with a CSV with rows/columns filtered out 
++ **Example 3:** Stream compressed content
 
 **Example 1:**
 
 You can use WriteGetObjectResponse to respond with a 403 Forbidden based on the content of the object\.
 
-```
-private void respondWithCustomError(int statusCode, String errorCode, String errorMessage, ObjectLambdaEvent event) {
-    var s3Client = getS3Client();
-    s3Client.writeGetObjectResponse(
-            request -> request
-                    .requestRoute(event.getGetObjectContext().getOutputRoute())
-                    .requestToken(event.getGetObjectContext().getOutputToken())
+------
+#### [ Java ]
 
-                    // Here we can explicitly set the Http Status Code, and the appropriate error code
-                    // and error message for our application and caller.
-                    .statusCode(statusCode)
-                    .errorCode(errorCode)
-                    .errorMessage(errorMessage),
-            RequestBody.empty());
-}
 
-// And in usage:
-if(requestContainsRequiredToken(user) == false) {
-    respondWithCustomError(
-            400, 
-            "MissingToken", 
-            "The request was missing the required token.", 
-            event);
+
+```
+package com.amazon.s3.objectlambda;
+
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.events.S3ObjectLambdaEvent;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.WriteGetObjectResponseRequest;
+
+import java.io.ByteArrayInputStream;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class Example1 {
+
+    public void handleRequest(S3ObjectLambdaEvent event, Context context) throws Exception {
+        AmazonS3 s3Client = AmazonS3Client.builder().build();
+
+        // We're checking to see if the request contains all of the information we need.
+        // If it does not, we send a 4XX response and a custom error code and message.
+        // If we're happy with the request, we retrieve the object from S3 and stream it
+        // to the client unchanged.
+        var tokenIsNotPresent = !event.getUserRequest().getHeaders().containsKey("requiredToken");
+        if (tokenIsNotPresent) {
+            s3Client.writeGetObjectResponse(new WriteGetObjectResponseRequest()
+                    .withRequestRoute(event.outputRoute())
+                    .withRequestToken(event.outputToken())
+                    .withStatusCode(403)
+                    .withContentLength(0L).withInputStream(new ByteArrayInputStream(new byte[0]))
+                    .withErrorCode("MissingRequiredToken")
+                    .withErrorMessage("The required token was not present in the request."));
+            return;
+        }
+
+        // Prepare the presigned URL for use and make the request to S3.
+        HttpClient httpClient = HttpClient.newBuilder().build();
+        var presignedResponse = httpClient.send(
+                HttpRequest.newBuilder(new URI(event.inputS3Url())).GET().build(),
+                HttpResponse.BodyHandlers.ofInputStream());
+
+        // Stream the original bytes back to the caller.
+        s3Client.writeGetObjectResponse(new WriteGetObjectResponseRequest()
+                .withRequestRoute(event.outputRoute())
+                .withRequestToken(event.outputToken())
+                .withInputStream(presignedResponse.body()));
+    }
 }
 ```
+
+------
+#### [ Python ]
+
+
+
+```
+import boto3
+import requests 
+
+def handler(event, context):
+    s3 = boto3.client('s3')
+
+    """
+    Retrieve the operation context object from event. This has info to where the WriteGetObjectResponse request
+    should be delivered and a presigned URL in `inputS3Url` where we can download the requested object from.
+    The `userRequest` object has information related to the user which made this `GetObject` request to S3OL.
+    """
+    get_context = event["getObjectContext"]
+    user_request_headers = event["userRequest"]["headers"]
+
+    route = get_context["outputRoute"]
+    token = get_context["outputToken"]
+    s3_url = get_context["inputS3Url"]
+
+    # Check for the presence of a `CustomHeader` header and deny or allow based on that header
+    is_token_present = "SuperSecretToken" in user_request_headers
+
+    if is_token_present:
+        # If the user presented our custom `SuperSecretToken` header we send the requested object back to the user.
+        response = requests.get(s3_url)
+        s3.write_get_object_response(RequestRoute=route, RequestToken=token, Body=response.content)
+    else:
+        # If the token is not present we send an error back to the user. 
+        s3.write_get_object_response(RequestRoute=route, RequestToken=token, StatusCode=403,
+        ErrorCode="NoSuperSecretTokenFound", ErrorMessage="The request was not secret enough.")
+
+    # Gracefully exit the Lambda function
+    return { 'status_code': 200 }
+```
+
+------
+#### [ NodeJS ]
+
+
+
+```
+const { S3 } = require('aws-sdk');
+const axios = require('axios').default;
+
+exports.handler = async (event) => {
+    const s3 = new S3();
+
+    // Retrieve the operation context object from event. This has info to where the WriteGetObjectResponse request
+    // should be delivered and a presigned URL in `inputS3Url` where we can download the requested object from.
+    // The `userRequest` object has information related to the user which made this `GetObject` request to S3OL.
+    const { userRequest, getObjectContext } = event;
+    const { outputRoute, outputToken, inputS3Url } = getObjectContext;
+
+    // Check for the presence of a `CustomHeader` header and deny or allow based on that header
+    const isTokenPresent = Object
+        .keys(userRequest.headers)
+        .includes("SuperSecretToken");
+
+    if (!isTokenPresent) {
+        // If the token is not present we send an error back to the user. Notice the `await` infront of the request as
+        // we want to wait for this request to finish sending before moving on. 
+        await s3.writeGetObjectResponse({
+            RequestRoute: outputRoute,
+            RequestToken: outputToken,
+            StatusCode: 403,
+            ErrorCode: "NoSuperSecretTokenFound",
+            ErrorMessage: "The request was not secret enough.",
+        }).promise();
+    } else {
+        // If the user presented our custom `SuperSecretToken` header we send the requested object back to the user.
+        // Again notice the presence of `await`.
+        const presignedResponse = await axios.get(inputS3Url);
+        await s3.writeGetObjectResponse({
+            RequestRoute: outputRoute,
+            RequestToken: outputToken,
+            Body: presignedResponse.data,
+        }).promise();
+    }
+
+    // Gracefully exit the Lambda function
+    return { statusCode: 200 };
+}
+```
+
+------
 
 **Example 2:**
 
 When performing an image transformation, you may find that you need all the bytes of the source object before you can start processing them\. Consequently, your WriteGetObjectResponse will return the whole object to the requesting application in one go\.
 
+------
+#### [ Java ]
+
+
+
 ```
-public void handleRequest(ObjectLambdaEvent event, Context context) throws Exception {
-    // Prepare the presigned URL for use and make the request to S3.
-    var presignedResponse = httpClient.send(
-            prepareGetRequest(event),
-            HttpResponse.BodyHandlers.ofByteArray());
+package com.amazon.s3.objectlambda;
 
-    // Check the initial request from S3 for errors and propagate to the client as appropriate
-    if(isError(presignedResponse.statusCode())) {
-        respondWithError(event, presignedResponse);
-        return;
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.events.S3ObjectLambdaEvent;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.WriteGetObjectResponseRequest;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class Example2 {
+
+    private static final int HEIGHT = 250;
+    private static final int WIDTH = 250;
+
+    public void handleRequest(S3ObjectLambdaEvent event, Context context) throws Exception {
+        AmazonS3 s3Client = AmazonS3Client.builder().build();
+        HttpClient httpClient = HttpClient.newBuilder().build();
+
+        // Prepare the presigned URL for use and make the request to S3.
+        var presignedResponse = httpClient.send(
+                HttpRequest.newBuilder(new URI(event.inputS3Url())).GET().build(),
+                HttpResponse.BodyHandlers.ofInputStream());
+
+        // The entire image is loaded into memory here so that we can resize it.
+        // Once the resizing is completed, we write the bytes into the body
+        // of the WriteGetObjectResponse.
+        var originalImage = ImageIO.read(presignedResponse.body());
+        var resizingImage = originalImage.getScaledInstance(WIDTH, HEIGHT, Image.SCALE_DEFAULT);
+        var resizedImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+        resizedImage.createGraphics().drawImage(resizingImage, 0, 0, WIDTH, HEIGHT, null);
+
+        var baos = new ByteArrayOutputStream();
+        ImageIO.write(resizedImage, "png", baos);
+
+        // Stream the bytes back to the caller.
+        s3Client.writeGetObjectResponse(new WriteGetObjectResponseRequest()
+                .withRequestRoute(event.outputRoute())
+                .withRequestToken(event.outputToken())
+                .withInputStream(new ByteArrayInputStream(baos.toByteArray())));
     }
-
-    // Pull the S3 response into memory and transform them.
-    var s3ObjectData = presignedResponse.body();
-    var transformedBytes = transformCompleteObject(s3ObjectData);
-
-    // Write the response, fully formed, back to the caller.
-    s3Client.writeGetObjectResponse(
-            request -> request
-                    .requestRoute(event.getGetObjectContext().getOutputRoute())
-                    .requestToken(event.getGetObjectContext().getOutputToken()),
-                    
-                    // OPTIONALLY: Retrieve the original headers and metadata from 
-                    // the presigned S3 request and propagate to the caller
-                    .overrideConfiguration(req ->
-                            presignedResponse.headers().map().forEach((k, v) ->
-                                    req.putHeader("x-amz-fwd-header-" + k, Strings.join(v, ','))
-                            )
-                    )
-            RequestBody.fromBytes(transformedBytes)
-    );
 }
 ```
+
+------
+#### [ Python ]
+
+
+
+```
+import boto3
+import requests 
+import io
+from PIL import Image
+
+def handler(event, context):
+    """
+    Retrieve the operation context object from event. This has info to where the WriteGetObjectResponse request
+    should be delivered and a presigned URL in `inputS3Url` where we can download the requested object from.
+    The `userRequest` object has information related to the user which made this `GetObject` request to S3OL.
+    """
+    get_context = event["getObjectContext"]
+    route = get_context["outputRoute"]
+    token = get_context["outputToken"]
+    s3_url = get_context["inputS3Url"]
+
+    """
+    In this case we're resizing `.png` images which are stored in S3 and are accessible via the presigned url
+    `inputS3Url`.
+    """
+    image_request = requests.get(s3_url)
+    image = Image.open(io.BytesIO(image_request.content))
+    image.thumbnail((256,256), Image.ANTIALIAS)
+
+    transformed = io.BytesIO()
+    image.save(transformed, "png")
+
+    # Sending the resized image back to the client
+    s3 = boto3.client('s3')
+    s3.write_get_object_response(Body=transformed.getvalue(), RequestRoute=route, RequestToken=token)
+
+    # Gracefully exit the Lambda function
+    return { 'status_code': 200 }
+```
+
+------
+#### [ NodeJS ]
+
+
+
+```
+const { S3 } = require('aws-sdk');
+const axios = require('axios').default;
+const sharp = require('sharp');
+
+exports.handler = async (event) => {
+    const s3 = new S3();
+
+    // Retrieve the operation context object from event. This has info to where the WriteGetObjectResponse request
+    // should be delivered and a presigned URL in `inputS3Url` where we can download the requested object from
+    const { getObjectContext } = event;
+    const { outputRoute, outputToken, inputS3Url } = getObjectContext;
+
+    // In this case we're resizing `.png` images which are stored in S3 and are accessible via the presigned url
+    // `inputS3Url`.
+    const { data } = await axios.get(inputS3Url, { responseType: 'arraybuffer' });
+
+    // Resizing the image
+    const resized = await sharp(data)
+        .resize({ height: 256, height: 256 })
+        .toBuffer();
+
+    // Sending the resized image back to the client
+    await s3.writeGetObjectResponse({
+        RequestRoute: outputRoute,
+        RequestToken: outputToken,
+        Body: resized,
+    }).promise();
+
+    // Gracefully exit the Lambda function
+    return { statusCode: 200 };
+}
+```
+
+------
 
 **Example 3:**
 
-When Masking data in\-place, you can perform the transformation on portions of the object\. Consequently, your WriteGetObjectResponse can be used to return the portions as their transformation is complete\. In this example, because the transformation involved in\-place masking, the size of the transformed object is the same as the object as it sits in S3\.
+When compressing objects, compressed data is produced incrementally\. Consequently, your WriteGetObjectResponse can be used to return the compressed data as soon as it's ready\. As shown in this example, it is not necessary to know the length of the completed transformation\.
+
+------
+#### [ Java ]
+
+
 
 ```
-public void handleRequest(ObjectLambdaEvent event, Context context) throws Exception {
-    // Prepare the presigned URL for use and make the request to S3.
-    var presignedResponse = httpClient.send(
-            prepareGetRequest(event),
-            HttpResponse.BodyHandlers.ofInputStream());
+package com.amazon.s3.objectlambda;
 
-    // Check the initial request from S3 for errors and propagate to the client as appropriate
-    if(isError(presignedResponse.statusCode())) {
-        respondWithError(event, presignedResponse);
-        return;
+import com.amazonaws.services.lambda.runtime.events.S3ObjectLambdaEvent;
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.WriteGetObjectResponseRequest;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class Example3 {
+
+    public void handleRequest(S3ObjectLambdaEvent event, Context context) throws Exception {
+        AmazonS3 s3Client = AmazonS3Client.builder().build();
+        HttpClient httpClient = HttpClient.newBuilder().build();
+
+        // Request the original object from S3.
+        var presignedResponse = httpClient.send(
+                HttpRequest.newBuilder(new URI(event.inputS3Url())).GET().build(),
+                HttpResponse.BodyHandlers.ofInputStream());
+
+        // We're consuming the incoming response body from the presigned request,
+        // applying our transformation on that data and emitting the transformed bytes
+        // into the body of the WriteGetObjectResponse request as soon as they're ready.
+        // This example compresses the data from S3, but any processing pertinent
+        // to your application can be performed here.
+        var bodyStream = new GZIPCompressingInputStream(presignedResponse.body());
+
+        // Stream the bytes back to the caller.
+        s3Client.writeGetObjectResponse(new WriteGetObjectResponseRequest()
+                .withRequestRoute(event.outputRoute())
+                .withRequestToken(event.outputToken())
+                .withInputStream(bodyStream));
     }
 
-    // Extract the content-length header from the S3 response.
-    int contentLength = extractContentLength(presignedResponse, context.getLogger());
-
-    // Prepare to transform the bytes as they flow from the S3 Get response body
-    // to the body of the WriteGetObjectResponse request.  The InputStreamTransform
-    // needs only read what it needs before emitting transformed bytes.
-    InputStream s3ObjectData = presignedResponse.body();
-    InputStream transformedStream = new InputStreamTransform(s3ObjectData);
-
-    // Write the response, providing our transforming stream, back to the caller.
-    s3Client.writeGetObjectResponse(
-            request -> request
-                    .requestRoute(event.getGetObjectContext().getOutputRoute())
-                    .requestToken(event.getGetObjectContext().getOutputToken()),
-            RequestBody.fromInputStream(transformedStream, contentLength)
-    );
 }
 ```
 
-**Example 4:**
+------
+#### [ Python ]
 
-When filtering rows/columns out of a CSV, you can perform the transformation on portions of the object\. Consequently, your WriteGetObjectResponse can be used to return the portions as their transformation is complete\. In this example, because the transformation involved filtering data out of the object, the resulting object size is unknown\. 
+
 
 ```
-public void handleRequest(ObjectLambdaEvent event, Context context) throws Exception {
-    // Prepare the presigned URL for use and make the request to S3.
-    var presignedResponse = httpClient.send(
-            prepareGetRequest(event),
-            HttpResponse.BodyHandlers.ofInputStream());
+import boto3
+import requests
+import zlib
+from botocore.config import Config
 
-    // Check the initial request from S3 for errors and propagate to the client as appropriate
-    if(isError(presignedResponse.statusCode())) {
-        respondWithError(event, presignedResponse);
-        return;
-    }
 
-    // We're consuming the incoming response body from the presigned request,
-    // applying our transformation on that data as it moves through the redaction process
-    // and emitting the transformed bytes into the body of the WriteGetObjectResponse request.
-    var redactor = new CsvRedactor(event);
-    var flowable = Flowable
-            .generate(
-                    () -> new BufferedInputStream(presignedResponse.body()),
-                    redactor::consumeTransformEmit,
-                    BufferedInputStream::close);
+"""
+A helper class to work with content iterators. Takes an interator and compresses the bytes that come from it. It
+implements `read` and `__iter__` so the SDK can stream the response 
+"""
+class Compress:
+    def __init__(self, content_iter):
+        self.content = content_iter
+        self.compressed_obj = zlib.compressobj()
 
-    // Stream the bytes back to the caller.
-    var wgorResponseFuture = s3AsyncClient.writeGetObjectResponse(
-            request -> request
-                    .requestRoute(event.getGetObjectContext().getOutputRoute())
-                    .requestToken(event.getGetObjectContext().getOutputToken())
-                    .overrideConfiguration(req -> {
-                        presignedResponse.headers().map().forEach((k, v) -> {
-                            req.putHeader(X_FWD_PRE + k, Strings.join(v, ','));
-                        });
-                    }),
-            AsyncRequestBody.fromPublisher(flowable)
+    def read(self, _size):
+        for data in self.__iter__()
+            return data
+
+    def __iter__(self):
+        while True:
+            data = next(self.content)
+            chunk = self.compressed_obj.compress(data)
+            if not chunk:
+                break
+
+            yield chunk
+
+        yield self.compressed_obj.flush()
+
+
+def handler(event, context):
+    """
+    Setting the `payload_signing_enabled` property to False will allow us to send a streamed response back to the client
+    in this scenario a streamed response means that the bytes are not buffered into memory as we're compressing them
+    but are sent straight to the user
+    """
+    my_config = Config(
+        region_name='eu-west-1',
+        signature_version='s3v4',
+        s3={
+            "payload_signing_enabled": False
+        }
+    )
+    s3 = boto3.client('s3', config=my_config)
+
+    """
+    Retrieve the operation context object from event. This has info to where the WriteGetObjectResponse request
+    should be delivered and a presigned URL in `inputS3Url` where we can download the requested object from.
+    The `userRequest` object has information related to the user which made this `GetObject` request to S3OL.
+    """
+    get_context = event["getObjectContext"]
+    route = get_context["outputRoute"]
+    token = get_context["outputToken"]
+    s3_url = get_context["inputS3Url"]
+
+    # Compress the `get` request stream
+    with requests.get(s3_url, stream=True) as r:
+        compressed = Compress(r.iter_content())
+
+        # Send the stream back to the client
+        s3.write_get_object_response(Body=compressed, RequestRoute=route, RequestToken=token, ContentType="text/plain",
+                                     ContentEncoding="gzip")
+
+    # Gracefully exit the Lambda function
+    return {'status_code': 200}
+```
+
+------
+#### [ NodeJS ]
+
+
+
+```
+const { S3 } = require('aws-sdk');
+const axios = require('axios').default;
+const zlib = require('zlib');
+
+exports.handler = async (event) => {
+    const s3 = new S3();
+
+    // Retrieve the operation context object from event. This has info to where the WriteGetObjectResponse request
+    // should be delivered and a presigned URL in `inputS3Url` where we can download the requested object from
+    const { getObjectContext } = event;
+    const { outputRoute, outputToken, inputS3Url } = getObjectContext;
+
+    // Let's download the object from S3 and process it as a stream as it might be a huge object and we don't want to
+    // buffer it in memory. Notice the `await` as we want to wait for `writeGetObjectResponse` to complete before we can
+    // exit the Lambda function 
+    await axios({
+        method: 'GET',
+        url: inputS3Url,
+        responseType: 'stream',
+    }).then(
+        // Gzip the stream
+        response => response.data.pipe(zlib.createGzip())
+    ).then(
+        // Finally send the gzip-ed stream back to the client
+        stream => s3.writeGetObjectResponse({
+            RequestRoute: outputRoute,
+            RequestToken: outputToken,
+            Body: stream,
+            ContentType: "text/plain",
+            ContentEncoding: "gzip",
+        }).promise()
     );
 
-    // Wait for the processing to complete and log the response of the 
-    // call for debugging.
-    logResponse(wgorResponseFuture.join(), context.getLogger());
+    // Gracefully exit the Lambda function
+    return { statusCode: 200 };
 }
 ```
+
+------
 
 **Note**  
 While S3 Object Lambda allows up to 60 seconds to send a complete response to the caller via WriteGetObjectResponse the actual amount of time available may be less, for instance if your Lambda function timeout is less than 60 seconds\. In other cases the caller may have more stringent timeouts\. 

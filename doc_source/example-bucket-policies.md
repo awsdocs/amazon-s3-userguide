@@ -333,7 +333,7 @@ The following example bucket policy grants Amazon S3 permission to write objects
 
 ## Granting permissions for Amazon S3 Storage Lens<a name="example-bucket-policies-lens"></a>
 
-Amazon S3 Storage Lens aggregates your usage and activity metrics and displays the information in an interactive dashboard on the Amazon S3 console or through a metrics data export that can be downloaded in CSV or Parquet format\. You can use the dashboard to visualize insights and trends, flag outliers, and provides recommendations for optimizing storage costs and applying data protection best practices\. You can use S3 Storage Lens through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\.
+Amazon S3 Storage Lens aggregates your usage and activity metrics and displays the information in the account snapshot on the Amazon S3 console home \(**Buckets**\) page, interactive dashboards, or through a metrics export that you can download in CSV or Parquet format\. You can use the dashboard to visualize insights and trends, flag outliers, and receive recommendations for optimizing storage costs and applying data protection best practices\. You can use S3 Storage Lens through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\.
 
 S3 Storage Lens can aggregate your storage usage to metrics exports in an Amazon S3 bucket for further analysis\. The bucket that S3 Storage Lens places its metrics exports is known as the *destination bucket*\. You must have a bucket policy for the *destination bucket* when when setting up your S3 Storage Lens metrics export\. For more information, see [Assessing your storage activity and usage with Amazon S3 Storage Lens](storage_lens.md)\.
 

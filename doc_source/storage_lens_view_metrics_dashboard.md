@@ -10,7 +10,7 @@ Use the interactive dashboard to explore your storage usage and activity trends 
 
 Amazon S3 preconfigures the S3 Storage Lens *default dashboard* to help you visualize summarized insights and trends of your entire account’s aggregated storage usage and activity metrics\(optional upgrade\)\. You can't modify the default dashboard configuration scope, but the metrics selection can be upgraded from *free metrics* to the paid *advanced metrics and recommendations*\. You can configure the optional metrics export, or even disable the dashboard\. However, the default dashboard cannot be deleted\.
 
-In addition to the default dashboard that Amazon S3 creates, you can also create custom dashboards scoped to your own organization’s accounts, Regions, buckets, and prefixes\(account\-level only\)\. These custom dashboards can be edited, deleted, and disabled\.
+In addition to the default dashboard that Amazon S3 creates, you can also create custom dashboards scoped to your own organization’s accounts, Regions, buckets, and prefixes\(account\-level only\)\. These custom dashboards can be edited, deleted, and disabled\. Summary information from the **default dashboard** appears in the account snapshot section in the S3 console home \(bucket lists\) page\.
 
 **Note**  
 The Amazon S3 Storage Lens dashboard is only available from the Amazon S3 console\. For more information, see [Viewing an Amazon S3 Storage Lens dashboard](storage_lens_console_viewing.md)\.

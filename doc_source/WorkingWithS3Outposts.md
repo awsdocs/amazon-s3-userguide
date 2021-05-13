@@ -77,11 +77,11 @@ An endpoint that exists for the same VPC\.
 
 ### Managing connections for S3 on Outposts using cross\-account elastic network interfaces<a name="S3OutpostsXENI"></a>
 
-S3 on Outposts endpoints are named resources with proper Amazon Resource Names \(ARNs\)\. When these endpoints are created, AWS Outposts sets up four cross\-account elastic network interfaces \(*X\-ENI*\)\. X\-ENI are like other elastic network interfaces with one exception: S3 on Outposts attaches the X\-ENI to instances that it runs in the service account and has a presence in your VPC\. S3 on Outposts DNS load balances your requests over the X\-ENI\. S3 on Outposts creates the X\-ENI in your account that is visible from the elastic network interface console\.
+S3 on Outposts endpoints are named resources with proper Amazon Resource Names \(ARNs\)\. When these endpoints are created, AWS Outposts sets up four cross\-account elastic network interfaces \(*cross\-account\-ENI*\)\. cross\-account\-ENI are like other elastic network interfaces with one exception: S3 on Outposts attaches the cross\-account\-ENI to instances that it runs in the service account and has a presence in your VPC\. S3 on Outposts DNS load balances your requests over the cross\-account\-ENI\. S3 on Outposts creates the cross\-account\-ENI in your account that is visible from the elastic network interface console\.
 
 ### Permissions required for endpoints<a name="S3OutpostsClusters"></a>
 
-To attach the cross\-account elastic network interfaces \(X\-ENI\) to cluster accounts, S3 on Outposts must also modify these network interfaces to use them with the account ID of the cluster account\. Because of CIDR restrictions, each elastic network interface is unique and on a unique IP\. The source VPC for the IP and ENI ID is recorded and is associated with the cluster ID\. 
+To attach the cross\-account elastic network interfaces \(cross\-account\-ENI\) to cluster accounts, S3 on Outposts must also modify these network interfaces to use them with the account ID of the cluster account\. Because of CIDR restrictions, each elastic network interface is unique and on a unique IP\. The source VPC for the IP and ENI ID is recorded and is associated with the cluster ID\. 
 
 ### Encryption options with S3 on Outposts<a name="S3OutpostsEncryption"></a>
 

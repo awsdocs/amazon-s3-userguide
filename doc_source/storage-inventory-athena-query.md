@@ -11,28 +11,28 @@ Athena can query Amazon S3 inventory files in ORC, Parquet, or CSV format\. When
    The following sample query includes all optional fields in an ORC\-formatted inventory report\. Drop any optional field that you did not choose for your inventory so that the query corresponds to the fields chosen for your inventory\. Also, you must use your bucket name and the location\. The location points to your inventory destination path; for example, `s3://destination-prefix/source-bucket/config-ID/hive/`\.
 
    ```
-    CREATE EXTERNAL TABLE your_table_name(
+   CREATE EXTERNAL TABLE your_table_name(
      `bucket` string,
      key string,
      version_id string,
      is_latest boolean,
      is_delete_marker boolean,
      size bigint,
-     last_modified_date string,
+     last_modified_date bigint,
      e_tag string,
      storage_class string,
      is_multipart_uploaded boolean,
      replication_status string,
      encryption_status string,
-     intelligent_tiering_tier string,
-     object_lock_retain_until_date string,
+     object_lock_retain_until_date bigint,
      object_lock_mode string,
-     object_lock_legal_hold_status string
+     object_lock_legal_hold_status string,
+     intelligent_tiering_access_tier string
      )
      PARTITIONED BY (dt string)
      ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.orc.OrcSerde'
      STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
-     OUTPUTFORMAT  'org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat'
+     OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat'
      LOCATION 's3://destination-prefix/source-bucket/config-ID/hive/';
    ```
 

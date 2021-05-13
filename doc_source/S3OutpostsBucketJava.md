@@ -1,26 +1,26 @@
-# Creating and managing Amazon S3 on Outposts bucket<a name="S3OutpostsBucketJava"></a>
+# Creating and managing Amazon S3 on Outposts buckets<a name="S3OutpostsBucketJava"></a>
 
 You can use the SDK for Java to create and manage your S3 on Outposts buckets\. From these examples, you can create and get an Outposts bucket, list buckets for an Outpost, create and manage access points, lifecycleconfiguration, and policy for the Outpost bucket\. 
 
 **Topics**
-+ [Configuring S3 control client for an Amazon S3 on Outposts](#S3OutpostsCongfigureS3ControlClientJava)
-+ [Create an Amazon S3 on Outposts bucket](#S3OutpostsCreateBucketJava)
-+ [Get the Amazon S3 on Outposts bucket](#S3OutpostsGetBucketJava)
++ [Configure S3 control client for S3 on Outposts](#S3OutpostsCongfigureS3ControlClientJava)
++ [Create an S3 on Outposts bucket](#S3OutpostsCreateBucketJava)
++ [Get an S3 on Outposts bucket](#S3OutpostsGetBucketJava)
 + [Get a list of buckets in an Outpost](#S3OutpostsListRegionalBucketJava)
-+ [Create an access point for an Amazon S3 on Outposts bucket](#S3OutpostsCreateAccessPointJava)
-+ [Gets an access point for an Amazon S3 on Outposts bucket](#S3OutpostsGetAccessPointJava)
-+ [:List access points for an AWS Outpost](#S3OutpostsListAccessPointJava)
-+ [Add a lifecycle configuration for your Outposts bucket](#S3OutpostsPutBucketLifecycleConfigurationJava)
-+ [Gets a lifecycle configuration for an Amazon S3 on Outposts bucket](#S3OutpostsGetBucketLifecycleConfigurationJava)
++ [Create an access point for an S3 on Outposts bucket](#S3OutpostsCreateAccessPointJava)
++ [Get an access point for an S3 on Outposts bucket](#S3OutpostsGetAccessPointJava)
++ [List access points for an AWS Outpost](#S3OutpostsListAccessPointJava)
++ [Add a lifecycle configuration for an Outposts bucket](#S3OutpostsPutBucketLifecycleConfigurationJava)
++ [Get a lifecycle configuration for an S3 on Outposts bucket](#S3OutpostsGetBucketLifecycleConfigurationJava)
 + [Put a policy on your Outposts bucket](#S3OutpostsPutBucketPolicyJava)
-+ [Gets a policy for an Amazon S3 on Outposts bucket](#S3OutpostsGetBucketPolicyJava)
++ [Get a policy for an S3 on Outposts bucket](#S3OutpostsGetBucketPolicyJava)
 + [Put a policy on your Outposts access point](#S3OutpostsPutAccessPointPolicyJava)
-+ [Gets a policy for an Amazon S3 on Outposts access point](#S3OutpostsGetAccessPointPolicyJava)
++ [Get a policy for an S3 on Outposts access point](#S3OutpostsGetAccessPointPolicyJava)
 + [Create an endpoint on an Outpost](#S3OutpostsCreateEndpointJava)
 + [Delete an endpoint on an Outpost](#S3OutpostsDeleteEndpointJava)
-+ [List endpoints for Amazon S3 on Outposts Outpost](#S3OutpostsListEndpointsJava)
++ [List endpoints for S3 on Outposts](#S3OutpostsListEndpointsJava)
 
-## Configuring S3 control client for an Amazon S3 on Outposts<a name="S3OutpostsCongfigureS3ControlClientJava"></a>
+## Configure S3 control client for S3 on Outposts<a name="S3OutpostsCongfigureS3ControlClientJava"></a>
 
 The following example configures the S3 control client for S3 on Outposts using the SDK for Java\. 
 
@@ -43,7 +43,7 @@ public AWSS3Control createS3ControlClient() {
 }
 ```
 
-## Create an Amazon S3 on Outposts bucket<a name="S3OutpostsCreateBucketJava"></a>
+## Create an S3 on Outposts bucket<a name="S3OutpostsCreateBucketJava"></a>
 
 The following example creates an S3 on Outposts `s3-outposts:CreateBucket` using the SDK for Java\. 
 
@@ -65,7 +65,7 @@ public String createBucket(String bucketName) {
 }
 ```
 
-## Get the Amazon S3 on Outposts bucket<a name="S3OutpostsGetBucketJava"></a>
+## Get an S3 on Outposts bucket<a name="S3OutpostsGetBucketJava"></a>
 
 The following S3 on Outposts example gets a bucket using the SDK for Java\. 
 
@@ -107,7 +107,7 @@ public void listRegionalBuckets() {
 
 
 
-## Create an access point for an Amazon S3 on Outposts bucket<a name="S3OutpostsCreateAccessPointJava"></a>
+## Create an access point for an S3 on Outposts bucket<a name="S3OutpostsCreateAccessPointJava"></a>
 
 The following SDK for Java example creates an access point for an Outposts bucket\.
 
@@ -132,7 +132,7 @@ public String createAccessPoint(String bucketArn, String accessPointName) {
 
 
 
-## Gets an access point for an Amazon S3 on Outposts bucket<a name="S3OutpostsGetAccessPointJava"></a>
+## Get an access point for an S3 on Outposts bucket<a name="S3OutpostsGetAccessPointJava"></a>
 
 The following SDK for Java example gets an access point for an Outposts bucket\.
 
@@ -153,9 +153,9 @@ public void getAccessPoint(String accessPointArn) {
 
 
 
-## :List access points for an AWS Outpost<a name="S3OutpostsListAccessPointJava"></a>
+## List access points for an AWS Outpost<a name="S3OutpostsListAccessPointJava"></a>
 
-The following SDK for Java example List access points for an Outposts bucket\.
+The following SDK for Java example lists access points for an Outposts bucket\.
 
 ```
 import com.amazonaws.services.s3control.model.*;
@@ -174,9 +174,9 @@ public void listAccessPoints(String bucketArn) {
 
 
 
-## Add a lifecycle configuration for your Outposts bucket<a name="S3OutpostsPutBucketLifecycleConfigurationJava"></a>
+## Add a lifecycle configuration for an Outposts bucket<a name="S3OutpostsPutBucketLifecycleConfigurationJava"></a>
 
-The following SDK for Java example puts an lifecycle configruations for an Outposts bucket where all objects with the flagged prefix and tags expire after 10 days\.
+The following SDK for Java example puts lifecycle configurations for an Outposts bucket where all objects with the flagged prefix and tags expire after 10 days\.
 
 ```
 import com.amazonaws.services.s3control.model.*;
@@ -219,7 +219,7 @@ public void putBucketLifecycleConfiguration(String bucketArn) {
 
 
 
-## Gets a lifecycle configuration for an Amazon S3 on Outposts bucket<a name="S3OutpostsGetBucketLifecycleConfigurationJava"></a>
+## Get a lifecycle configuration for an S3 on Outposts bucket<a name="S3OutpostsGetBucketLifecycleConfigurationJava"></a>
 
 The following SDK for Java example gets an access point for an Outposts bucket\.
 
@@ -264,7 +264,7 @@ public void putBucketPolicy(String bucketArn) {
 
 
 
-## Gets a policy for an Amazon S3 on Outposts bucket<a name="S3OutpostsGetBucketPolicyJava"></a>
+## Get a policy for an S3 on Outposts bucket<a name="S3OutpostsGetBucketPolicyJava"></a>
 
 The following SDK for Java example gets a policy for an Outposts bucket\.
 
@@ -310,7 +310,7 @@ public void putAccessPointPolicy(String accessPointArn) {
 
 
 
-## Gets a policy for an Amazon S3 on Outposts access point<a name="S3OutpostsGetAccessPointPolicyJava"></a>
+## Get a policy for an S3 on Outposts access point<a name="S3OutpostsGetAccessPointPolicyJava"></a>
 
 The following SDK for Java example gets a policy for an Outposts bucket\.
 
@@ -357,7 +357,7 @@ public void createEndpoint() {
 
 ## Delete an endpoint on an Outpost<a name="S3OutpostsDeleteEndpointJava"></a>
 
-The following SDK for Java example delete an endpoint for an Outpost\.
+The following SDK for Java example deletes an endpoint for an Outpost\.
 
 ```
 import com.amazonaws.arn.Arn;
@@ -381,7 +381,7 @@ public void deleteEndpoint(String endpointArnInput) {
 }
 ```
 
-## List endpoints for Amazon S3 on Outposts Outpost<a name="S3OutpostsListEndpointsJava"></a>
+## List endpoints for S3 on Outposts<a name="S3OutpostsListEndpointsJava"></a>
 
 The following SDK for Java example lists endpoints for an Outpost\.
 

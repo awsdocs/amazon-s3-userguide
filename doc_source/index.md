@@ -1,7 +1,7 @@
 # Amazon Simple Storage Service User Guide
 
 -----
-*****Copyright &copy;  Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -323,8 +323,8 @@ Amazon's trademarks and trade dress may not be used in
             + [What is an S3 Storage Lens export manifest?](storage_lens_whatis_metrics_export_manifest.md)
             + [Understanding the Amazon S3 Storage Lens export schema](storage_lens_understanding_metrics_export_schema.md)
       + [Amazon S3 Storage Lens metrics glossary](storage_lens_metrics_glossary.md)
-      + [Amazon S3 Storage Lens examples and console walk-through](S3LensExamples.md)
-         + [Using Amazon S3 Storage Lens in the console](storage_lens_console.md)
+      + [Working with Amazon S3 Storage Lens using the console and API](S3LensExamples.md)
+         + [Using Amazon S3 Storage Lens on the console](storage_lens_console.md)
             + [Viewing an Amazon S3 Storage Lens dashboard](storage_lens_console_viewing.md)
             + [Creating and updating Amazon S3 Storage Lens dashboards](storage_lens_console_creating_editing.md)
                + [Creating an Amazon S3 Storage Lens dashboard](storage_lens_console_creating.md)
@@ -401,22 +401,23 @@ Amazon's trademarks and trade dress may not be used in
    + [Using AWS Identity and Access Management with Amazon S3 on Outposts](S3OutpostsIAM.md)
    + [Accessing Amazon S3 on Outposts](WorkingWithS3Outposts.md)
    + [Monitoring Amazon S3 on Outposts](MonitoringS3Outposts.md)
-   + [Amazon S3 on Outposts examples](S3OutpostsExamples.md)
-      + [Using Amazon S3 on Outposts with the Amazon S3 console](outposts-console.md)
-         + [Creating an Amazon S3 on Outposts bucket with Amazon S3 console](s3-outposts-create-bucket.md)
-         + [View and edit the properties of the Amazon S3 on Outposts buckets with Amazon S3 console](s3-outposts-edit-bucket-properties.md)
-            + [Add and remove tag for the Amazon S3 on Outposts buckets with Amazon S3 console](s3-outposts-add-bucket-tags.md)
-            + [Add your Amazon S3 on Outposts bucket to AWS CloudTrail with Amazon S3 console](s3-outposts-add-bucket-events-cloudtrail.md)
-            + [Managing your Amazon S3 on Outposts bucket permissions with Amazon S3 console](s3-outposts-bucket-edit-permissions.md)
-            + [Managing your Amazon S3 on Outposts bucket access points with Amazon S3 console](s3-outposts-bucket-edit-outpost-access-point.md)
-         + [Deleting an Amazon S3 on Outposts with Amazon S3 console](s3-outposts-delete-bucket.md)
-         + [Managing your Amazon S3 on Outposts access points with Amazon S3 console](s3-outposts-bucket-manage-outpost-access-points.md)
-      + [Amazon S3 on Outposts examples using the AWS CLI](S3OutpostsCLIExamples.md)
-      + [Amazon S3 on Outposts examples using the SDK for Java](S3OutpostsJavaExamples.md)
-         + [Creating and managing Amazon S3 on Outposts bucket](S3OutpostsBucketJava.md)
+   + [Managing Amazon S3 on Outposts buckets and objects](S3OutpostsExamples.md)
+      + [Managing S3 on Outposts buckets and objects using the console](outposts-console.md)
+         + [Creating an Amazon S3 on Outposts bucket using the console](s3-outposts-create-bucket.md)
+         + [Viewing and editing properties of Amazon S3 on Outposts buckets using the console](s3-outposts-edit-bucket-properties.md)
+            + [Adding and removing tags for Amazon S3 on Outposts buckets using the console](s3-outposts-add-bucket-tags.md)
+            + [Adding an Amazon S3 on Outposts bucket to AWS CloudTrail using the console](s3-outposts-add-bucket-events-cloudtrail.md)
+            + [Managing Amazon S3 on Outposts bucket permissions using the console](s3-outposts-bucket-edit-permissions.md)
+            + [Managing an S3 on Outposts bucket's lifecycle rules using the console](s3-outposts-bucket-lifecycle.md)
+            + [Managing S3 on Outposts bucket access points using the console](s3-outposts-bucket-edit-outpost-access-point.md)
+         + [Deleting an Amazon S3 on Outposts bucket using the console](s3-outposts-delete-bucket.md)
+         + [Managing Amazon S3 on Outposts access points using the console](s3-outposts-bucket-manage-outpost-access-points.md)
+      + [Managing S3 on Outposts buckets and objects using the AWS CLI](S3OutpostsCLIExamples.md)
+      + [Managing S3 on Outposts buckets and objects using the AWS SDK for Java](S3OutpostsJavaExamples.md)
+         + [Creating and managing Amazon S3 on Outposts buckets](S3OutpostsBucketJava.md)
          + [Working with objects using Amazon S3 on Outposts](S3OutpostsObjectJava.md)
 + [Troubleshooting](troubleshooting.md)
    + [Troubleshooting Amazon S3 by Symptom](troubleshooting-by-symptom.md)
    + [Getting Amazon S3 Request IDs for AWS Support](get-request-ids.md)
-+ [Document History](WhatsNew.md)
++ [Document history](WhatsNew.md)
 + [AWS glossary](glossary.md)

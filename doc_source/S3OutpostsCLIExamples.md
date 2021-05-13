@@ -1,4 +1,4 @@
-# Amazon S3 on Outposts examples using the AWS CLI<a name="S3OutpostsCLIExamples"></a>
+# Managing S3 on Outposts buckets and objects using the AWS CLI<a name="S3OutpostsCLIExamples"></a>
 
 With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and easily store and retrieve objects on\-premises for applications that require local data access, local data processing, and data residency\. You can use S3 on Outposts through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\. For more information, see [Using Amazon S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)\. 
 
@@ -79,7 +79,7 @@ aws s3control get-access-point --account-id 123456789012 --name arn:aws:s3-outpo
 
 ### List access points for an Outpost<a name="S3OutpostsListAccessPointCLI"></a>
 
-The following AWS CLI example List access points for an Outposts bucket\.
+The following AWS CLI example lists access points for an Outposts bucket\.
 
 ```
 aws s3control list-access-points --account-id 123456789012 --bucket arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket
@@ -89,7 +89,7 @@ aws s3control list-access-points --account-id 123456789012 --bucket arn:aws:s3-o
 
 ### Put a lifecycle configuration for an S3 on Outposts bucket<a name="S3OutpostsPutBucketLifecycleConfigurationCLI"></a>
 
-The following AWS CLI example puts an lifecycle configruations for an Outposts bucket where all objects with the flagged prefix and tags expire after 10 days\.
+The following AWS CLI example puts lifecycle configurations for an Outposts bucket where all objects with the flagged prefix and tags expire after 10 days\.
 
 1. Save the lifecycle configuration policy to a JSON file\.
 

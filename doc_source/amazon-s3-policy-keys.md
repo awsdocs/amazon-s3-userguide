@@ -253,7 +253,7 @@ Suppose that Account A, represented by account ID 123456789012, owns a bucket\. 
         "AWS": "arn:aws:iam::123456789012:user/Dave"
       },
       "Action": "s3:PutObject",
-      "Resource": "arn:aws:s3:::awsexamplebucket1/*",
+      "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*",
       "Condition": {
         "StringEquals": {
           "s3:x-amz-storage-class": [
@@ -294,8 +294,8 @@ This example bucket policy *denies* PutObject requests by clients that have a TL
             "Principal": "*",
             "Action": "s3:PutObject",
             "Resource": [
-                "arn:aws:s3:::mybucket",
-                "arn:aws:::mybucket/*"
+                "arn:aws:s3:::DOC-EXAMPLE-BUCKET1",
+                "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
             ],
             "Condition": {
                 "NumericLessThan": {
@@ -319,8 +319,8 @@ This example bucket policy *allows* PutObject requests by clients that have a TL
             "Principal": "*",
             "Action": "s3:PutObject",
             "Resource": [
-                "arn:aws:s3:::mybucket",
-                "arn:aws:::mybucket/*"
+                "arn:aws:s3:::DOC-EXAMPLE-BUCKET1",
+                "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
             ],
             "Condition": {
                 "NumericGreaterThan": {

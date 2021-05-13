@@ -2,7 +2,9 @@
 
  When you create an object, you can specify the use of server\-side encryption with Amazon S3\-managed encryption keys to encrypt your data\. This is true when you are either uploading a new object or copying an existing object\. This encryption is known as SSE\-S3\. 
 
- You can specify SSE\-S3 using the S3 console, REST APIs, AWS SDKs, and AWS CLI\. For more information, see the topics below\. 
+You can specify SSE\-S3 using the S3 console, REST APIs, AWS SDKs, and AWS CLI\. For more information, see the topics below\.
+
+For a sample of how to copy an object without encryption, see [Copying objects](copy-object.md)\.
 
 ## Using the S3 console<a name="add-object-encryption-s3"></a>
 
@@ -499,6 +501,16 @@ end
 
 ------
 
-For examples of setting up encryption using AWS CloudFormation, see [Create a bucket with default encryption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_with_default_encryption) and [Create a bucket using AWS KMS server\-side encryption with an S3 Bucket Key](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_using_AWS_KMS_server-side_encryption_with_an_S3_Bucket_Key) in the *AWS CloudFormation User Guide*\. 
+## Using the AWS CLI<a name="sse-s3-aws-cli"></a>
 
-For a sample of how to copy an object without encryption, see [Copying objects](copy-object.md)\. 
+To specify SSE\-S3 when you upload an object using the AWS CLI, use the following example\.
+
+```
+aws s3api put-object --bucket DOC-EXAMPLE-BUCKET1 --key object-key-name --server-side-encryption AES256  --body file path
+```
+
+For more information, see [put\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-object.html) in the *AWS CLI reference*\. To specify SSE\-S3 when you copy an object using the AWS CLI, see [copy\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/copy-object.html)\.
+
+## Using AWS CloudFormation<a name="ss3-s3-cfn"></a>
+
+For examples of setting up encryption using AWS CloudFormation, see [Create a bucket with default encryption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_with_default_encryption) and [Create a bucket using AWS KMS server\-side encryption with an S3 Bucket Key](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_using_AWS_KMS_server-side_encryption_with_an_S3_Bucket_Key) in the *AWS CloudFormation User Guide*\. 

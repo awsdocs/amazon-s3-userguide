@@ -15,12 +15,10 @@ When retrieving objects that are stored encrypted using server\-side encryption,
 
 ## Using the S3 console<a name="download-objects-console"></a>
 
-This section explains how to use the Amazon S3 console to download objects from an S3 bucket\.
+This section explains how to use the Amazon S3 console to download an object from an S3 bucket\.
 
-Data transfer fees apply when you download objects\. For information about Amazon S3 features, and pricing, see [Amazon S3](https://aws.amazon.com/s3/)\.
-
-**Important**  
-If an object key name consists of a single period \(\.\), or two periods \(\.\.\), you can’t download the object using the Amazon S3 console\. To download an object with a key name of “\.” or “\.\.”, you must use the AWS CLI, AWS SDKs, or REST API\. For more information about naming objects, see [Object key naming guidelines](object-keys.md#object-key-guidelines)\.
+**Note**  
+You can only download one object at a time\.
 
 **To download an object from an S3 bucket**
 
@@ -35,9 +33,9 @@ If an object key name consists of a single period \(\.\), or two periods \(\.\.\
 
       
 
-     On the **Overview** page, choose **Download**\.
-   + Choose the name of the object that you want to download and then choose **Download** or **Download as** from the **Action** menu\.
-   + Choose the name of the object that you want to download\. Choose **Latest version** and then choose the download icon\.
+     On the **Overview** page, select the object and from the **Actions** menu choose **Download** or **Download as** if you want to download the object to a specific folder\.
+   + Choose the object that you want to download and then from the **Object actions** menu choose **Download** or **Download as** if you want to download the object to a specific folder\.
+   + If you want to download a specific version of the object, choose the name of the object that you want to download\. Choose the **Versions** tab and then from the **Actions** menu choose **Download** or **Download as** if you want to download the object to a specific folder\.
 
 ## Using the AWS SDKs<a name="download-object-sdk"></a>
 

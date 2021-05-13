@@ -19,6 +19,9 @@ To enable versioning, you can send a request to Amazon S3 with a versioning conf
 
 To suspend versioning, you set the status value to `Suspended`\.
 
+**Note**  
+ If you enable versioning on a bucket for the first time, it might take a short amount of time for the change to be fully propagated\. We recommend that you wait for 15 minutes after enabling versioning before issuing write operations \(PUT or DELETE\) on objects in the bucket\. 
+
 The bucket owner and all authorized IAM users can enable versioning\. The bucket owner is the AWS account that created the bucket \(the root account\)\. For more information about permissions, see [Identity and access management in Amazon S3](s3-access-control.md)\.
 
 For more information about enabling and disabling S3 Versioning using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), or REST API, see [Enabling versioning on buckets](manage-versioning-examples.md)\.

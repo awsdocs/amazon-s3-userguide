@@ -3,7 +3,7 @@
 With Amazon S3 on Outposts, you can use the Amazon S3 APIs and features, such as object storage, access policies, encryption, and tagging, on AWS Outposts as you do on Amazon S3\. For information about AWS Outposts, see [ What is AWS Outposts?](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.html) in the *AWS Outposts User Guide*\. 
 
 **Topics**
-+ [Order an Outpost](#OrderOutposts)
++ [Ordering an Outpost](#OrderOutposts)
 + [Setting up S3 on Outposts](#SettingUpS3Outposts)
 
 ## Ordering your AWS Outpost<a name="OrderOutposts"></a>

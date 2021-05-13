@@ -89,7 +89,7 @@ When you grant access to the **Authenticated Users group** any AWS authenticated
 
   **Access permission to this group allows anyone in the world access to the resource\.** The requests can be signed \(authenticated\) or unsigned \(anonymous\)\. Unsigned requests omit the Authentication header in the request\.
 **Warning**  
-We highly recommend that you never grant the **All Users group** `WRITE`, `WRITE_ACP`, or `FULL_CONTROL` permissions\. For example, `WRITE` permissions allow anyone to store objects in your bucket, for which you are billed\. It also allows others to delete objects that you might want to keep\. For more details about these permissions, see the following section [What permissions can I grant?](#permissions)\.
+We highly recommend that you never grant the **All Users group** `WRITE`, `WRITE_ACP`, or `FULL_CONTROL` permissions\. For example, while `WRITE` permissions do not allow non\-owners to overwrite or delete existing objects, `WRITE` permissions still allow anyone to store objects in your bucket, for which you are billed\. For more details about these permissions, see the following section [What permissions can I grant?](#permissions)\.
 + ****Log Delivery group**** – Represented by `http://acs.amazonaws.com/groups/s3/LogDelivery`\.
 
   WRITE permission on a bucket enables this group to write server access logs \(see [Logging requests using server access logging](ServerLogs.md)\) to the bucket\.
@@ -108,14 +108,14 @@ For more information about ACL permissions in the Amazon S3 console, see [Config
 
 | Permission | When granted on a bucket | When granted on an object | 
 | --- | --- | --- | 
-| READ | Allows grantee to list the objects in the bucket | Allows grantee to read the object data and its metadata | 
-| WRITE | Allows grantee to create, overwrite, and delete any object in the bucket | Not applicable | 
+| READ | Allows grantee to list the objects in the bucket\. | Allows grantee to read the object data and its metadata | 
+| WRITE | Allows grantee to create new objects in the bucket\. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects\. | Not applicable | 
 | READ\_ACP | Allows grantee to read the bucket ACL | Allows grantee to read the object ACL | 
 | WRITE\_ACP | Allows grantee to write the ACL for the applicable bucket | Allows grantee to write the ACL for the applicable object | 
 | FULL\_CONTROL | Allows grantee the READ, WRITE, READ\_ACP, and WRITE\_ACP permissions on the bucket | Allows grantee the READ, READ\_ACP, and WRITE\_ACP permissions on the object | 
 
 **Warning**  
-Use caution when granting access permissions to your S3 buckets and objects\. For example, granting `WRITE` access to a bucket allows the grantee to create, overwrite, and delete any object in the bucket\. We highly recommend that you read through this entire [Access control list \(ACL\) overview](#acl-overview) section before granting permissions\.
+Use caution when granting access permissions to your S3 buckets and objects\. For example, granting `WRITE` access to a bucket allows the grantee to create objects in the bucket\. We highly recommend that you read through this entire [Access control list \(ACL\) overview](#acl-overview) section before granting permissions\.
 
 ### Mapping of ACL permissions and access policy permissions<a name="acl-access-policy-permission-mapping"></a>
 
@@ -129,7 +129,7 @@ For more information about ACL permissions in the Amazon S3 console, see [Config
 | ACL permission | Corresponding access policy permissions when the ACL permission is granted on a bucket  | Corresponding access policy permissions when the ACL permission is granted on an object | 
 | --- | --- | --- | 
 | READ | s3:ListBucket, s3:ListBucketVersions, and s3:ListBucketMultipartUploads  | s3:GetObject, s3:GetObjectVersion, and s3:GetObjectTorrent | 
-| WRITE |  `s3:PutObject` and `s3:DeleteObject`\. In addition, when the grantee is the bucket owner, granting `WRITE` permission in a bucket ACL allows the `s3:DeleteObjectVersion` action to be performed on any version in that bucket\.  | Not applicable | 
+| WRITE |  `s3:PutObject` Bucket owner can create, overwrite, and delete any object in the bucket, and object owner has `FULL_CONTROL` over their object\. In addition, when the grantee is the bucket owner, granting `WRITE` permission in a bucket ACL allows the `s3:DeleteObjectVersion` action to be performed on any version in that bucket\.   | Not applicable | 
 | READ\_ACP | s3:GetBucketAcl  | s3:GetObjectAcl and s3:GetObjectVersionAcl | 
 | WRITE\_ACP | s3:PutBucketAcl | s3:PutObjectAcl and s3:PutObjectVersionAcl | 
 | FULL\_CONTROL | Equivalent to granting READ, WRITE, READ\_ACP, and WRITE\_ACP ACL permissions\. Accordingly, this ACL permission maps to a combination of corresponding access policy permissions\. | Equivalent to granting READ, READ\_ACP, and WRITE\_ACP ACL permissions\. Accordingly, this ACL permission maps to a combination of corresponding access policy permissions\. | 

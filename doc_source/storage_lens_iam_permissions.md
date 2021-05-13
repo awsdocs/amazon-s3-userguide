@@ -6,7 +6,7 @@ The IAM user or role must belong to the account that created or owns the dashboa
 
 **Note**  
 You can’t use your account's root user credentials to view Amazon S3 Storage Lens dashboards\. To access S3 Storage Lens dashboards, you must grant the requisite IAM permissions to a new or existing IAM user\. Then, sign in with those user credentials to access S3 Storage Lens dashboards\. For more information, see [AWS Identity and Access Management best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)\. 
-Using S3 Storage Lens on the Amazon S3 console can require multiple permissions\. For example; to edit a dashboard on the console, you need the following permissions:  
+Using S3 Storage Lens on the Amazon S3 console can require multiple permissions\. For example, to edit a dashboard on the console, you need the following permissions:  
 `s3:ListStorageLensConfigurations`
 `s3:GetStorageLensConfiguration`
 `s3:PutStorageLensConfiguration`
@@ -42,7 +42,7 @@ For metrics exports, which are stored in a bucket in your account, permissions a
 You can use Amazon S3 Storage Lens to collect storage metrics and usage data for all accounts that are part of your AWS Organizations hierarchy\. The following are the actions and permissions related to using S3 Storage Lens with Organizations\.
 
 
-**AWS Organizations\-related IAM permissions for using Amazon S3 Storage Lens**  
+**AWS Organizations related IAM permissions for using S3 Storage Lens**  
 
 | Action | IAM Permissions | 
 | --- | --- | 

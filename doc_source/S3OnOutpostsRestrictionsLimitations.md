@@ -9,11 +9,11 @@ Consider the following restrictions and limitations as you set up Amazon S3 on O
 + [Unsupported Amazon S3 features](#S3OnOutpostsFeatureLimitations)
 + [Network restrictions](#S3OnOutpostsConnectivityRestrictions)
 
-## Amazon S3 on Outposts specifications<a name="S3OnOutpostsSpecifications"></a>
-+ Maximum Outposts bucket size is 50 TB\.
-+ Maximum number of Outposts buckets per Outpost is 100\.
+## S3 on Outposts specifications<a name="S3OnOutpostsSpecifications"></a>
++ The maximum Outposts bucket size is 50 TB\.
++ The maximum number of Outposts buckets per Outpost is 100\.
 + Outposts buckets can only be accessed using access points and endpoints\.
-+ Maximum number of access points per Outposts bucket is 10\.
++ The maximum number of access points per Outposts bucket is 10\.
 + Access point policies are limited to 20 KB in size\.
 + The S3 on Outposts bucket owner account is always the owner of all objects in the bucket\.
 + Only the S3 on Outposts bucket owner account can perform operations on the bucket\.
@@ -22,7 +22,7 @@ Consider the following restrictions and limitations as you set up Amazon S3 on O
 + All objects stored in the `OUTPOSTS` storage class are stored using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\) by default\. You can also explicitly choose to store objects using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\.
 + If there is not enough space to store an object on your Outpost, the API will return an insufficient capacity exception \(ICE\)\. 
 
-## Amazon S3 on Outposts data consistency model<a name="S3OnOutpostsDataConsistency"></a>
+## S3 on Outposts data consistency model<a name="S3OnOutpostsDataConsistency"></a>
 
 Amazon S3 on Outposts provides read\-after\-write consistency for PUTS of new objects in your Amazon S3 bucket with one caveat: If you make a HEAD or GET request to a key name before the object is created and then create the object shortly after that, a subsequent GET might not return the object due to eventual consistency\.
 
@@ -34,7 +34,7 @@ Updates to a single key are atomic\. For example, if you PUT to an existing key,
 + A process deletes an existing object and immediately tries to read it\. Until the deletion is fully propagated, S3 on Outposts might return the deleted data\.
 + A process deletes an existing object and immediately lists keys within its bucket\. Until the deletion is fully propagated, S3 on Outposts might list the deleted object\.
 
-## API operations supported by Amazon S3 on Outposts<a name="S3OnOutpostsAPILimitations"></a>
+## API operations supported by S3 on Outposts<a name="S3OnOutpostsAPILimitations"></a>
 
 Amazon S3 on Outposts is designed to use the same object APIs as Amazon S3\. Therefore, you can use many of your existing code and policies by passing the S3 on Outposts Amazon Resource Name \(ARN\) as your identifier\.
 
@@ -59,7 +59,7 @@ Amazon S3 on Outposts supports the following API operations:
 + `UploadPart`
 + `UploadPartCopy`
 
-## Amazon S3 features not supported by Amazon S3 on Outposts<a name="S3OnOutpostsFeatureLimitations"></a>
+## Amazon S3 features not supported by S3 on Outposts<a name="S3OnOutpostsFeatureLimitations"></a>
 
 Several Amazon S3 features are currently not supported by Amazon S3 on Outposts\. Any attempts to use them are rejected\.
 + Access control list \(ACL\)
@@ -79,7 +79,7 @@ Several Amazon S3 features are currently not supported by Amazon S3 on Outposts\
 + Amazon CloudWatch request metrics
 + Metrics configuration
 + Transfer acceleration
-+ Event notifications
++ Event Notifications
 + Requester Pays buckets
 + S3 Select
 + Torrent
@@ -90,16 +90,17 @@ Several Amazon S3 features are currently not supported by Amazon S3 on Outposts\
 + SOAP
 + Website access
 
-## Amazon S3 on Outposts network restrictions<a name="S3OnOutpostsConnectivityRestrictions"></a>
-+ You cannot create Amazon S3 on Outposts access point for virtual private clouds \(VPCs\) associated with more than one associated CIDR block\.
-+ To route requests to an S3 on Outposts access point, you must create and configure an endpoint\. The following limits apply to endpoints for S3 on Outposts:
-  + Each virtual private cloud \(VPC\) on your AWS Outposts can have one associated endpoint, and you can have up to three endpoints per Outpost\.
+## S3 on Outposts network restrictions<a name="S3OnOutpostsConnectivityRestrictions"></a>
++ To route requests to an S3 on Outposts access point, you must create and configure an S3 on Outposts endpoint\. The following limits apply to endpoints for S3 on Outposts:
+  + Each virtual private cloud \(VPC\) on your AWS Outposts can have one associated endpoint, and you can have up to 100 endpoints per Outpost\.
   + Multiple access points can be mapped to the same endpoint\.
   + Endpoints can only be added to VPCs with CIDR blocks in the subspaces of the following CIDR ranges:
     + 10\.0\.0\.0/8
     + 172\.16\.0\.0/12
     + 192\.168\.0\.0/16
-+ An endpoint can only be created within a single CIDR block\.
++ Endpoints to an Outpost can only be created from VPCs that have non\-overlapping CIDR blocks\.
++ You can only create an endpoint for VPCs associated with only one CIDR block\.
++ An endpoint can only be created from within its Outposts subnet\.
 + Connections from peered VPCs to an endpoint are not supported\.
 + The subnet used to create an endpoint must contain four IP addresses for S3 on Outposts to use\.
-+ A CIDR range used to create an endpoint for an Outpost cannot be reused for another endpoint within that VPC\.
++ You can only create one endpoint per outpost per VPC\.

@@ -3,7 +3,7 @@
 The following table contains the schema of your S3 Storage Lens metrics export\.
 
 
-| Attribute Name  | Data Type | Column Name | Description | 
+| Attribute name  | Data type | Column name | Description | 
 | --- | --- | --- | --- | 
 | VersionNumber | String | version\_number | The version of the S3 Storage Lens metrics being used\. | 
 | ConfigurationId | String | configuration\_id | The name of the configuration\_id of your S3 Storage Lens configuration\. | 

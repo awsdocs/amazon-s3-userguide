@@ -107,14 +107,14 @@ For more information, see [Encryption context](UsingKMSEncryption.md#encryption-
 
 ### Example policies \- Using AWS KMS server\-side\-encryption \(SSE\-KMS\) with replication<a name="kms-replication-examples"></a>
 
-The following example IAM policies show statements for using AWS KMS sever\-side encryption with replication\.
+The following example IAM policies show statements for using AWS KMS server\-side encryption with replication\.
 
 In this example, the encryption context is the object ARN\. If you use SSE\-KMS with an S3 Bucket Key *enabled*, you must use the bucket ARN as the encryption context\. For more information, see [Encryption context](UsingKMSEncryption.md#encryption-context)\.
 
 If the 
 
 **Example Using AWS KMS server\-side\-encryption \(SSE\-KMS\) – separate destination buckets**  
-The following example policy shows statements for using AWS KMS with separate destination buckets\.   
+The following example policy shows statements for using AWS KMS with separate destination buckets\.  
 
 ```
 {

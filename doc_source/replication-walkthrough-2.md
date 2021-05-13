@@ -16,7 +16,7 @@ For more information about configuring replication using sever\-side encryption 
 
    ```
    {
-      "Version":"2008-10-17",
+      "Version":"2012-10-17",
       "Id":"",
       "Statement":[
          {

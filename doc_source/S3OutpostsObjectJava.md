@@ -3,20 +3,20 @@
 You can use the SDK for Java to put and manage your S3 on Outposts objects\. From these examples, you can put objects and get objects from an Outpost bucket\. 
 
 **Topics**
-+ [Put an object in to an Amazon S3 on Outposts bucket](#S3OutpostsPutObjectJava)
-+ [Get the Amazon S3 on Outposts bucket](#S3OutpostsGetObjectJava)
-+ [Copy the object on Amazon S3 on Outposts](#S3OutpostsCopyObjectJava)
-+ [Delete the object on Amazon S3 on Outposts](#S3OutpostsDeleteObjectJava)
-+ [Deletes objects on Amazon S3 on Outposts](#S3OutpostsDeleteObjectsJava)
-+ [Lists objects in an Amazon S3 on Outposts bucket](#S3OutpostsListObjectsJava)
-+ [This initiates a multipart upload objects in an Amazon S3 on Outposts bucket](#S3OutpostsInitiateMultipartUploadJava)
-+ [Copy an object in an Amazon S3 on Outposts bucket](#S3OutpostsCopyPartJava)
-+ [List parts of an object in an Amazon S3 on Outposts bucket](#S3OutpostsListPartsJava)
-+ [Retrieve a list of in\-progress multipart uploads in an Amazon S3 on Outposts bucket](#S3OutpostsListMultipartUploadsJava)
-+ [Abort a multipart upload of an object in an Amazon S3 on Outposts bucket](#S3OutpostsAbortMultipartUploadJava)
-+ [Using Head Bucket operation for an Amazon S3 on Outposts bucket](#S3OutpostsHeadBucketJava)
++ [Put an object into an S3 on Outposts bucket](#S3OutpostsPutObjectJava)
++ [Get an S3 on Outposts bucket](#S3OutpostsGetObjectJava)
++ [Copy an object on S3 on Outposts](#S3OutpostsCopyObjectJava)
++ [Delete an object on S3 on Outposts](#S3OutpostsDeleteObjectJava)
++ [Delete objects on S3 on Outposts](#S3OutpostsDeleteObjectsJava)
++ [List objects in an S3 on Outposts bucket](#S3OutpostsListObjectsJava)
++ [Initiate a multipart upload of objects in an S3 on Outposts bucket](#S3OutpostsInitiateMultipartUploadJava)
++ [Copy an object in an S3 on Outposts bucket](#S3OutpostsCopyPartJava)
++ [List parts of an object in an S3 on Outposts bucket](#S3OutpostsListPartsJava)
++ [Retrieve a list of in\-progress multipart uploads in an S3 on Outposts bucket](#S3OutpostsListMultipartUploadsJava)
++ [Stop a multipart upload of an object in an S3 on Outposts bucket](#S3OutpostsAbortMultipartUploadJava)
++ [Use the HeadBucket operation for an S3 on Outposts bucket](#S3OutpostsHeadBucketJava)
 
-## Put an object in to an Amazon S3 on Outposts bucket<a name="S3OutpostsPutObjectJava"></a>
+## Put an object into an S3 on Outposts bucket<a name="S3OutpostsPutObjectJava"></a>
 
 The following example puts an S3 on Outposts object using the SDK for Java\. For more information, see [Uploading objects](upload-objects.md)\.
 
@@ -67,7 +67,7 @@ public class PutObject {
 }
 ```
 
-## Get the Amazon S3 on Outposts bucket<a name="S3OutpostsGetObjectJava"></a>
+## Get an S3 on Outposts bucket<a name="S3OutpostsGetObjectJava"></a>
 
 The following S3 on Outposts example gets a bucket using the SDK for Java\. 
 
@@ -156,7 +156,7 @@ public class GetObject {
 
 
 
-## Copy the object on Amazon S3 on Outposts<a name="S3OutpostsCopyObjectJava"></a>
+## Copy an object on S3 on Outposts<a name="S3OutpostsCopyObjectJava"></a>
 
 The following S3 on Outposts example gets a bucket using the SDK for Java\. 
 
@@ -197,7 +197,7 @@ public class CopyObject {
 
 
 
-## Delete the object on Amazon S3 on Outposts<a name="S3OutpostsDeleteObjectJava"></a>
+## Delete an object on S3 on Outposts<a name="S3OutpostsDeleteObjectJava"></a>
 
 The following S3 on Outposts example deletes an object using the SDK for Java\. 
 
@@ -236,7 +236,7 @@ public class DeleteObject {
 
 
 
-## Deletes objects on Amazon S3 on Outposts<a name="S3OutpostsDeleteObjectsJava"></a>
+## Delete objects on S3 on Outposts<a name="S3OutpostsDeleteObjectsJava"></a>
 
 The following S3 on Outposts example deletes objects using the SDK for Java\. 
 
@@ -297,7 +297,7 @@ public class DeleteObjects {
 
 
 
-## Lists objects in an Amazon S3 on Outposts bucket<a name="S3OutpostsListObjectsJava"></a>
+## List objects in an S3 on Outposts bucket<a name="S3OutpostsListObjectsJava"></a>
 
 The following S3 on Outposts example lists objects using the SDK for Java in the Outposts bucket\. 
 
@@ -359,7 +359,7 @@ public class ListObjectsV2 {
 
 
 
-## This initiates a multipart upload objects in an Amazon S3 on Outposts bucket<a name="S3OutpostsInitiateMultipartUploadJava"></a>
+## Initiate a multipart upload of objects in an S3 on Outposts bucket<a name="S3OutpostsInitiateMultipartUploadJava"></a>
 
 The following S3 on Outposts example initiate, uploads, and completes a multipart upload using the SDK for Java in the Outposts bucket\. For more information, see [Uploading an object using multipart upload](mpu-upload-object.md)\.
 
@@ -453,7 +453,7 @@ public class MultipartUploadCopy {
 
 
 
-## Copy an object in an Amazon S3 on Outposts bucket<a name="S3OutpostsCopyPartJava"></a>
+## Copy an object in an S3 on Outposts bucket<a name="S3OutpostsCopyPartJava"></a>
 
 The following S3 on Outposts example copies and object using the SDK for Java from the Outposts bucket\. This is an example adapted from the [Copying an object using multipart upload](CopyingObjctsMPUapi.md)\.
 
@@ -545,7 +545,7 @@ public class MultipartUploadCopy {
 
 
 
-## List parts of an object in an Amazon S3 on Outposts bucket<a name="S3OutpostsListPartsJava"></a>
+## List parts of an object in an S3 on Outposts bucket<a name="S3OutpostsListPartsJava"></a>
 
 The following S3 on Outposts example lists the parts of an object using the SDK for Java from the Outposts bucket\. 
 
@@ -595,7 +595,7 @@ public class ListParts {
 
 
 
-## Retrieve a list of in\-progress multipart uploads in an Amazon S3 on Outposts bucket<a name="S3OutpostsListMultipartUploadsJava"></a>
+## Retrieve a list of in\-progress multipart uploads in an S3 on Outposts bucket<a name="S3OutpostsListMultipartUploadsJava"></a>
 
 The following S3 on Outposts example The following example shows how to retrieve a list of in\-progress multipart uploads using the SDK for Java from an Outposts bucket\. This is an example adapted from the [Listing multipart uploads](list-mpu.md) for Amazon S3\.
 
@@ -646,9 +646,9 @@ public class ListMultipartUploads {
 
 
 
-## Abort a multipart upload of an object in an Amazon S3 on Outposts bucket<a name="S3OutpostsAbortMultipartUploadJava"></a>
+## Stop a multipart upload of an object in an S3 on Outposts bucket<a name="S3OutpostsAbortMultipartUploadJava"></a>
 
-The following S3 on Outposts example The following example shows how to abort the multipart upload for an object using SDK for Java from an Outposts bucket\. This is an example adapted from the [Aborting a multipart upload](abort-mpu.md) example for Amazon S3\.
+The following S3 on Outposts example shows how to abort the multipart upload for an object using SDK for Java from an Outposts bucket\. This is an example adapted from the [Aborting a multipart upload](abort-mpu.md) example for Amazon S3\.
 
 ```
 import com.amazonaws.AmazonServiceException;
@@ -697,7 +697,7 @@ public class ListMultipartUploads {
 
 
 
-## Using Head Bucket operation for an Amazon S3 on Outposts bucket<a name="S3OutpostsHeadBucketJava"></a>
+## Use the HeadBucket operation for an S3 on Outposts bucket<a name="S3OutpostsHeadBucketJava"></a>
 
 The following S3 on Outposts example shows how to determine if a bucket exists and you have permission to access it\. 
 

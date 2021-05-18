@@ -95,7 +95,6 @@ The following object\-level API actions are logged as CloudTrail events:
 +  [GetObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html) 
 +  [GetObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html) 
 +  [GetObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html) 
-+  [GetObjectTorrent](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTorrent.html) 
 +  [HeadObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html) 
 +  [CreateMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html) 
 +  [ListParts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html) 

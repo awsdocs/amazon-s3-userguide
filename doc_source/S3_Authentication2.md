@@ -6,7 +6,7 @@ When accessing Amazon S3 using REST, you must provide the following items in you
 + **AWS access key Id** – Each request must contain the access key ID of the identity you are using to send your request\. 
 + **Signature** – Each request must contain a valid request signature, or the request is rejected\. 
 
-  A request signature is calculated using your secret access key, which is a shared secret known only to you and AWS\.
+  A request signature is calculated using your secret access key, which is a shared secret known only to you and
 + **Time stamp** – Each request must contain the date and time the request was created, represented as a string in UTC\. 
 + **Date** – Each request must contain the time stamp of the request\. 
 
@@ -19,7 +19,7 @@ Following are the general steps for authenticating requests to Amazon S3\. It is
 
 |  |  | 
 | --- |--- |
-|  1  |  Construct a request to AWS\.  | 
+|  1  |  Construct a request to  | 
 |  2  |  Calculate the signature using your secret access key\.  | 
 |  3  |  Send the request to Amazon S3\. Include your access key ID and the signature in your request\. Amazon S3 performs the next three steps\.  | 
 

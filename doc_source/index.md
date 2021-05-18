@@ -84,7 +84,6 @@ Amazon's trademarks and trade dress may not be used in
       + [Using AWS built Lambda functions](olap-examples.md)
       + [Best practices and guidelines for S3 Object Lambda](olap-best-practices.md)
       + [Security considerations for S3 Object Lambda access points](olap-security.md)
-   + [Retrieving Amazon S3 objects using BitTorrent](S3Torrent.md)
 + [Amazon S3 Security](security.md)
    + [Data protection in Amazon S3](DataDurability.md)
    + [Protecting data using encryption](UsingEncryption.md)

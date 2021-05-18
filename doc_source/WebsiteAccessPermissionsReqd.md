@@ -8,6 +8,7 @@ On the website endpoint, if a user requests an object that doesn't exist, Amazon
 **Topics**
 + [Step 1: Edit S3 Block Public Access settings](#block-public-access-static-site)
 + [Step 2: Add a bucket policy](#bucket-policy-static-site)
++ [Object access control lists](#object-acl)
 
 ## Step 1: Edit S3 Block Public Access settings<a name="block-public-access-static-site"></a>
 
@@ -83,7 +84,7 @@ The following policy is an example only and allows full access to the contents o
 
    If you get an error message and cannot save the bucket policy, check your account and bucket Block Public Access settings to confirm that you allow public access to the bucket\.
 
-### Object access control lists<a name="object-acl"></a>
+## Object access control lists<a name="object-acl"></a>
 
 You can use a bucket policy to grant public read permission to your objects\. However, the bucket policy applies only to objects that are owned by the bucket owner\. If your bucket contains objects that aren't owned by the bucket owner, the bucket owner should use the object access control list \(ACL\) to grant public READ permission on those objects\.
 

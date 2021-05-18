@@ -65,7 +65,7 @@ When you upload a folder, Amazon S3 uploads all of the files and subfolders from
       For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
 
    1. To encrypt the uploaded files using the AWS Key Management Service \(AWS KMS\), choose **AWS Key Management Service key \(SSE\-KMS\)**\. Then choose an option for **AWS KMS key**\.
-      + AWS managed key \(aws/s3\) \- Choose an [AWS managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)\.
+      + AWS managed key \- Choose an [AWS managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)\.
       + Choose from your KMS master keys \- Choose a [customer managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) from a list of CMKs in the same Region as your bucket\.
 
         For more information about creating a customer managed AWS KMS CMK, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/UsingServerSideEncryption.html) in the *AWS Key Management Service Developer Guide*\. For more information about protecting data with AWS KMS, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
@@ -249,9 +249,10 @@ The following example upload an existing file to an Amazon S3 bucket\. in a spec
 
 ```
 // Import required AWS SDK clients and commands for Node.js.
-const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
-const path = require("path");
-const fs = require("fs");
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+ import { s3 } from "./libs/s3Client.js"; // Helper function that creates Amazon S3 service client module.
+import {path} from "path";
+import {fs} from "fs";
 
 // Set the AWS Region.
 const REGION = "REGION"; //e.g. "us-east-1"
@@ -268,14 +269,13 @@ const uploadParams = {
   Body: fileStream,
 };
 
-// Create an Amazon S3 service client object.
-const s3 = new S3Client({ region: REGION });
 
 // Upload file to specified bucket.
 const run = async () => {
   try {
     const data = await s3.send(new PutObjectCommand(uploadParams));
     console.log("Success", data);
+    return data;
   } catch (err) {
     console.log("Error", err);
   }

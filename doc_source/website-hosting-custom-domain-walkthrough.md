@@ -27,11 +27,11 @@ This AWS CloudFormation template is available for you to download and use\. For 
 + [Step 5: Configure logging for website traffic](#root-domain-walkthrough-configure-logging)
 + [Step 6: Upload index and website content](#upload-website-content)
 + [Step 7: Upload an error document](#configure-error-document-root-domain)
-+ [Step 7: Edit S3 Block Public Access settings](#root-domain-walkthrough-configure-bucket-permissions)
-+ [Step 8: Attach a bucket policy](#add-bucket-policy-root-domain)
-+ [Step 9: Test your domain endpoint](#root-domain-walkthrough-test-website)
-+ [Step 10: Add alias records for your domain and subdomain](#root-domain-walkthrough-add-record-to-hostedzone)
-+ [Step 11: Test the website](#root-domain-testing)
++ [Step 8: Edit S3 Block Public Access settings](#root-domain-walkthrough-configure-bucket-permissions)
++ [Step 9: Attach a bucket policy](#add-bucket-policy-root-domain)
++ [Step 10: Test your domain endpoint](#root-domain-walkthrough-test-website)
++ [Step 11: Add alias records for your domain and subdomain](#root-domain-walkthrough-add-record-to-hostedzone)
++ [Step 12: Test the website](#root-domain-testing)
 + [Speeding up your website with Amazon CloudFront](website-hosting-cloudfront-walkthrough.md)
 + [Cleaning up your example resources](getting-started-cleanup.md)
 
@@ -255,7 +255,7 @@ When you enable static website hosting for your bucket, you enter the name of th
 
    For step\-by\-step instructions, see [Uploading objects](upload-objects.md)\.
 
-## Step 7: Edit S3 Block Public Access settings<a name="root-domain-walkthrough-configure-bucket-permissions"></a>
+## Step 8: Edit S3 Block Public Access settings<a name="root-domain-walkthrough-configure-bucket-permissions"></a>
 
 In this example, you edit block public access settings for the domain bucket \(`example.com`\) to allow public access\.
 
@@ -279,7 +279,7 @@ Before you complete this step, review [Blocking public access to your Amazon S3 
 
    Amazon S3 turns off Block Public Access settings for your bucket\. To create a public, static website, you might also have to [edit the Block Public Access settings](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/block-public-access-account.html) for your account before adding a bucket policy\. If account settings for Block Public Access are currently turned on, you see a note under **Block public access \(bucket settings\)**\.
 
-## Step 8: Attach a bucket policy<a name="add-bucket-policy-root-domain"></a>
+## Step 9: Attach a bucket policy<a name="add-bucket-policy-root-domain"></a>
 
 In this example, you attach a bucket policy to the domain bucket \(`example.com`\) to allow public read access\. You replace the *Bucket\-Name* in the example bucket policy with the name of your domain bucket, for example `example.com`\.
 
@@ -329,7 +329,7 @@ The following policy is an example only and allows full access to the contents o
 
 In the next step, you can figure out your website endpoints and test your domain endpoint\.
 
-## Step 9: Test your domain endpoint<a name="root-domain-walkthrough-test-website"></a>
+## Step 10: Test your domain endpoint<a name="root-domain-walkthrough-test-website"></a>
 
 After you configure your domain bucket to host a public website, you can test your endpoint\. For more information, see [Website endpoints](WebsiteEndpoints.md)\. You can only test the endpoint for your domain bucket because your subdomain bucket is set up for website redirect and not static website hosting\. 
 
@@ -347,7 +347,7 @@ For more information, see [How do I use CloudFront to serve a static website hos
 
 In the next step, you use Amazon Route 53 to enable customers to use both of your custom URLs to navigate to your site\. 
 
-## Step 10: Add alias records for your domain and subdomain<a name="root-domain-walkthrough-add-record-to-hostedzone"></a>
+## Step 11: Add alias records for your domain and subdomain<a name="root-domain-walkthrough-add-record-to-hostedzone"></a>
 
 In this step, you create the alias records that you add to the hosted zone for your domain maps `example.com` and `www.example.com`\. Instead of using IP addresses, the alias records use the Amazon S3 website endpoints\. Amazon Route 53 maintains a mapping between the alias records and the IP addresses where the Amazon S3 buckets reside\. You create two alias records, one for your root domain and one for your subdomain\.
 
@@ -482,7 +482,7 @@ Accept the default value of **No**\.
 **Note**  
 Changes generally propagate to all Route 53 servers within 60 seconds\. When propagation is done, you can route traffic to your Amazon S3 bucket by using the names of the alias records that you created in this procedure\.
 
-## Step 11: Test the website<a name="root-domain-testing"></a>
+## Step 12: Test the website<a name="root-domain-testing"></a>
 
 Verify that the website and the redirect work correctly\. In your browser, enter your URLs\. In this example, you can try the following URLs:
 + **Domain** \(`http://example.com`\) – Displays the index document in the `example.com` bucket\.

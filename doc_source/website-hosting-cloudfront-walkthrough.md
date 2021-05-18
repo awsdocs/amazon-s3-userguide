@@ -80,17 +80,21 @@ Now that you have successfully created a CloudFront distribution, update the ali
 
 1. Open the Route 53 console at [https://console\.aws\.amazon\.com/route53/](https://console.aws.amazon.com/route53/)\.
 
-1. On the **Hosted Zones** page, choose the hosted zone that you created for your subdomain\.
+1. In the left navigation, choose **Hosted zones**\.
 
-1. Choose **Go to Record Sets**\.
+1. On the **Hosted Zones** page, choose the hosted zone that you created for your subdomain, for example, `www.example.com`\.
 
-1. Choose the *A* record that you created for your subdomain, for example, `www.example.com`\.
+1. Under **Records**, select the *A* record that you created for your subdomain\. 
 
-1. For **Alias Target**, choose the CloudFront distribution\.
+1. Under **Record details**, choose **Edit record**\.
 
-1. Choose **Save Record Set**\.
+1. Under **Route traffic to**, choose **Alias to CloudFront distribution**\.
 
-1. To redirect the *A* record for the root domain to the CloudFront distribution, repeat this procedure\.
+1. Under **Choose distribution**, choose the CloudFront distribution\.
+
+1. Choose **Save**\.
+
+1. To redirect the *A* record for the root domain to the CloudFront distribution, repeat this procedure for the root domain, for example, `example.com`\.
 
    The update to the record sets takes effect within 2–48 hours\. 
 

@@ -293,7 +293,7 @@ exports.handler = async (event) => {
 
     // Resizing the image
     const resized = await sharp(data)
-        .resize({ height: 256, height: 256 })
+        .resize({ width: 256, height: 256 })
         .toBuffer();
 
     // Sending the resized image back to the client

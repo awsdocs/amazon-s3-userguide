@@ -15,7 +15,6 @@ After you configure a bucket to be a Requester Pays bucket, requesters must incl
 
 Requester Pays buckets do not support the following:
 + Anonymous requests
-+ BitTorrent
 + SOAP requests
 + Using a Requester Pays bucket as the target bucket for end\-user logging, or vice versa\. However, you can turn on end\-user logging on a Requester Pays bucket where the target bucket is not a Requester Pays bucket\. 
 

@@ -135,7 +135,7 @@ This section describes important Amazon S3 features\.
 **Topics**
 + [Storage classes](#RRS)
 + [Bucket policies](#BucketPolicies)
-+ [AWS identity and access management](#AWSIdentityandAccessManagement)
++ [AWS Identity and Access Management](#AWSIdentityandAccessManagement)
 + [Access control lists](#S3_ACLs)
 + [Versioning](#Versions)
 + [Operations](#BasicsOperations)
@@ -170,7 +170,7 @@ The conditions can be such things as IP addresses, IP address ranges in CIDR not
 
 For more information, see [Bucket policies and user policies](using-iam-policies.md)\.
 
-### AWS identity and access management<a name="AWSIdentityandAccessManagement"></a>
+### AWS Identity and Access Management<a name="AWSIdentityandAccessManagement"></a>
 
 You can use AWS Identity and Access Management \(IAM\) to manage access to your Amazon S3 resources\.
 
@@ -196,7 +196,7 @@ Following are the most common operations that you'll run through the API\.
 **Common operations**
 + **Create a bucket** – Create and name your own bucket in which to store your objects\.
 + **Write an object** – Store data by creating or overwriting an object\. When you write an object, you specify a unique key in the namespace of your bucket\. This is also a good time to specify any access control you want on the object\.
-+ **Read an object** – Read data back\. You can download the data via HTTP or BitTorrent\.
++ **Read an object** – Read data back\. You can download the data via HTTP\.
 + **Delete an object** – Delete some of your data\.
 + **List keys** – List the keys contained in one of your buckets\. You can filter the key list based on a prefix\.
 

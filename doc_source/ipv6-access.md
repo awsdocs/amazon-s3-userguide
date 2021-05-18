@@ -37,9 +37,7 @@ You can use a dual\-stack endpoint to access a bucket over IPv6 from any of the 
 
 ### Features not available over IPv6<a name="ipv6-not-supported"></a>
 
-The following features are not currently supported when accessing an S3 bucket over IPv6:
-+ Static website hosting from an S3 bucket
-+ BitTorrent
+The following feature is currently not supported when accessing an S3 bucket over IPv6: Static website hosting from an S3 bucket\.
 
 ## Using IPv6 addresses in IAM policies<a name="ipv6-access-iam"></a>
 

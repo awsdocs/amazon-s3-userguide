@@ -82,7 +82,6 @@ Several Amazon S3 features are currently not supported by Amazon S3 on Outposts\
 + Event Notifications
 + Requester Pays buckets
 + S3 Select
-+ Torrent
 + Lambda events
 + Server access logging
 + Presigned URLs

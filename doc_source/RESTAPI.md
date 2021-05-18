@@ -14,7 +14,7 @@ Amazon S3 access points endpoints and dual\-stack endpoints also follow the stan
 + **Amazon S3 access points** ‐`s3-accesspoint.Region.amazonaws.com`
 + **Dual\-stack** ‐ `s3.dualstack.Region.amazonaws.com` 
 
-For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
+For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *Amazon Web Services General Reference*\.
 
 ## Virtual hosted‐style and path‐style requests<a name="virtual-hosted-path-style-requests"></a>
 

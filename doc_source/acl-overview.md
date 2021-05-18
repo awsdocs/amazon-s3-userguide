@@ -56,7 +56,7 @@ Asia Pacific \(Sydney\)
 Asia Pacific \(Tokyo\)
 Europe \(Ireland\)
 South America \(São Paulo\)
-For a list of all the Amazon S3 supported regions and endpoints, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the *AWS General Reference*\.
+For a list of all the Amazon S3 supported regions and endpoints, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the *Amazon Web Services General Reference*\.
 
 **Example: Email Address**  
 For example, the following `x-amz-grant-read` header grants the AWS accounts identified by email addresses permissions to read object data and its metadata:  
@@ -128,7 +128,7 @@ For more information about ACL permissions in the Amazon S3 console, see [Config
 
 | ACL permission | Corresponding access policy permissions when the ACL permission is granted on a bucket  | Corresponding access policy permissions when the ACL permission is granted on an object | 
 | --- | --- | --- | 
-| READ | s3:ListBucket, s3:ListBucketVersions, and s3:ListBucketMultipartUploads  | s3:GetObject, s3:GetObjectVersion, and s3:GetObjectTorrent | 
+| READ | s3:ListBucket, s3:ListBucketVersions, and s3:ListBucketMultipartUploads  | s3:GetObject and s3:GetObjectVersion | 
 | WRITE |  `s3:PutObject` Bucket owner can create, overwrite, and delete any object in the bucket, and object owner has `FULL_CONTROL` over their object\. In addition, when the grantee is the bucket owner, granting `WRITE` permission in a bucket ACL allows the `s3:DeleteObjectVersion` action to be performed on any version in that bucket\.   | Not applicable | 
 | READ\_ACP | s3:GetBucketAcl  | s3:GetObjectAcl and s3:GetObjectVersionAcl | 
 | WRITE\_ACP | s3:PutBucketAcl | s3:PutObjectAcl and s3:PutObjectVersionAcl | 

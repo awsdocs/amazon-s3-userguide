@@ -1,6 +1,6 @@
 # Virtual hosting of buckets<a name="VirtualHosting"></a>
 
-Virtual hosting is the practice of serving multiple websites from a single web server\. One way to differentiate sites is by using the apparent hostname of the request instead of just the path name part of the URI\. An ordinary Amazon S3 REST request specifies a bucket by using the first slash\-delimited component of the Request\-URI path\. Or, you can use Amazon S3 virtual hosting to address a bucket in a REST API call by using the HTTP `Host` header\. In practice, Amazon S3 interprets `Host` as meaning that most buckets are automatically accessible for limited types of requests at `https://bucketname.s3.Region.amazonaws.com`\. For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
+Virtual hosting is the practice of serving multiple websites from a single web server\. One way to differentiate sites is by using the apparent hostname of the request instead of just the path name part of the URI\. An ordinary Amazon S3 REST request specifies a bucket by using the first slash\-delimited component of the Request\-URI path\. Or, you can use Amazon S3 virtual hosting to address a bucket in a REST API call by using the HTTP `Host` header\. In practice, Amazon S3 interprets `Host` as meaning that most buckets are automatically accessible for limited types of requests at `https://bucketname.s3.Region.amazonaws.com`\. For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *Amazon Web Services General Reference*\.
 
 Virtual hosting also has other benefits\. By naming your bucket after your registered domain name and by making that name a DNS alias for Amazon S3, you can completely customize the URL of your Amazon S3 resources, for example, `http://my.bucketname.com/`\. You can also publish to the "root directory" of your bucket's virtual server\. This ability can be important because many existing applications search for files in this standard location\. For example, `favicon.ico`, `robots.txt`, `crossdomain.xml` are all expected to be found at the root\. 
 
@@ -144,7 +144,7 @@ Amazon S3 uses the hostname to determine the bucket name\. So the CNAME and the 
 
 Amazon S3 sees only the original hostname `www.example.com` and is unaware of the CNAME mapping used to resolve the request\. 
 
-Any Amazon S3 endpoint can be used in a CNAME\. For example, `s3.ap-southeast-1.amazonaws.com` can be used in CNAMEs\. For more information about endpoints, see [Request Endpoints](MakingRequests.md#RequestEndpoints)\.
+Any Amazon S3 endpoint can be used in a CNAME\. For example, `s3.ap-southeast-1.amazonaws.com` can be used in CNAMEs\. For more information about endpoints, see [Request Endpoints](MakingRequests.md#RequestEndpoints)\. To create a static website using a custom domain, see [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)
 
 **To associate a hostname with an Amazon S3 bucket using CNAMEs**
 
@@ -174,7 +174,7 @@ For request routing reasons, the CNAME record must be defined exactly as shown i
 
 ### Legacy Endpoints<a name="s3-legacy-endpoints"></a>
 
-Some Regions support legacy endpoints\. You might see these endpoints in your server access logs or CloudTrail logs\. For more information, review the information below\. For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
+Some Regions support legacy endpoints\. You might see these endpoints in your server access logs or CloudTrail logs\. For more information, review the information below\. For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *Amazon Web Services General Reference*\.
 
 **Important**  
 Although you might see legacy endpoints in your logs, we recommend that you always use the standard endpoint syntax to access your buckets\.   

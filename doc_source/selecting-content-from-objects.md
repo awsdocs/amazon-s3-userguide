@@ -1,6 +1,6 @@
 # Filtering and retrieving data using Amazon S3 Select<a name="selecting-content-from-objects"></a>
 
-With Amazon S3 Select, you can use simple structured query language \(SQL\) statements to filter the contents of Amazon S3 objects and retrieve just the subset of data that you need\. By using Amazon S3 Select to filter this data, you can reduce the amount of data that Amazon S3 transfers, which reduces the cost and latency to retrieve this data\.
+With Amazon S3 Select, you can use simple structured query language \(SQL\) statements to filter the contents of an Amazon S3 object and retrieve just the subset of data that you need\. By using Amazon S3 Select to filter this data, you can reduce the amount of data that Amazon S3 transfers, which reduces the cost and latency to retrieve this data\.
 
 Amazon S3 Select works on objects stored in CSV, JSON, or Apache Parquet format\. It also works with objects that are compressed with GZIP or BZIP2 \(for CSV and JSON objects only\), and server\-side encrypted objects\. You can specify the format of the results as either CSV or JSON, and you can determine how the records in the result are delimited\.
 

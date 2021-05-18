@@ -23,7 +23,7 @@ For more information about configuring replication using sever\-side encryption 
             "Sid":"Set permissions for objects",
             "Effect":"Allow",
             "Principal":{
-               "AWS":"arn:aws:iam::source-bucket-acct-ID:source-acct-IAM-role"
+               "AWS":"arn:aws:iam::source-bucket-acct-ID:role/source-acct-IAM-role"
             },
             "Action":["s3:ReplicateObject", "s3:ReplicateDelete"],
             "Resource":"arn:aws:s3:::destination/*"
@@ -32,7 +32,7 @@ For more information about configuring replication using sever\-side encryption 
             "Sid":"Set permissions on bucket",
             "Effect":"Allow",
             "Principal":{
-               "AWS":"arn:aws:iam::source-bucket-acct-ID:source-acct-IAM-role"
+               "AWS":"arn:aws:iam::source-bucket-acct-ID:role/source-acct-IAM-role"
             },
             "Action":["s3:GetBucketVersioning", "s3:PutBucketVersioning"],
             "Resource":"arn:aws:s3:::destination"

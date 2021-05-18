@@ -28,7 +28,7 @@ However, this is not true for SSE\-C objects because in addition to the presigne
 ### Amazon S3 rest APIs that support SSE\-C<a name="sse-c-supported-apis"></a>
 
 The following Amazon S3 APIs support server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\.
-+ **GET operation** — When retrieving objects using the GET API \(see [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html)\), you can specify the request headers\. Torrents are not supported for objects encrypted using SSE\-C\.
++ **GET operation** — When retrieving objects using the GET API \(see [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html)\), you can specify the request headers\.
 + **HEAD operation** — To retrieve object metadata using the HEAD API \(see [HEAD Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html)\), you can specify these request headers\.
 + **PUT operation** — When uploading data using the PUT Object API \(see [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html)\), you can specify these request headers\. 
 + **Multipart Upload **— When uploading large objects using the multipart upload API, you can specify these headers\. You specify these headers in the initiate request \(see [Initiate Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html)\) and each subsequent part upload request \(see [Upload Part](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPart.html) or 

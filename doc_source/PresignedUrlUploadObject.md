@@ -184,7 +184,7 @@ Generate a presigned URL to share an object by using the SDK for Python \(Boto3\
 ```
 import boto3
     url = boto3.client('s3').generate_presigned_url(
-    ClientMethod='get_object', 
+    ClientMethod='put_object', 
     Params={'Bucket': 'BUCKET_NAME', 'Key': 'OBJECT_KEY'},
     ExpiresIn=3600)
 ```

@@ -15,7 +15,7 @@ When retrieving objects that are stored encrypted using server\-side encryption,
 
 ## Using the S3 console<a name="download-objects-console"></a>
 
-This section explains how to use the Amazon S3 console to download an object from an S3 bucket\.
+This section explains how to use the Amazon S3 console to download an object from an S3 bucket using a presigned URL\.
 
 **Note**  
 You can only download one object at a time\.

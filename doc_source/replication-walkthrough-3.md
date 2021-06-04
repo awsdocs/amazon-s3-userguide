@@ -215,7 +215,7 @@ The profiles you use for this exercise must have the necessary permissions\. For
 
 1. Check replica ownership in the Amazon S3 console\.
 
-   1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\. 
+   1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
    1. Add objects to the *source* bucket\. Verify that the *destination* bucket contains the object replicas and that the ownership of the replicas has changed to the AWS account that owns the *destination* bucket\.
 

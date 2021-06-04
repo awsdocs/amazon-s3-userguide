@@ -1,4 +1,4 @@
-# Configuring an S3 Bucket Key at the object level using the REST API, AWS SDKs, or AWS CLI<a name="configuring-bucket-key-object"></a>
+# Configuring an S3 Bucket Key at the object level using Batch Operations, REST API, AWS SDKs, or AWS CLI<a name="configuring-bucket-key-object"></a>
 
 When you perform a PUT or COPY operation using the REST API, AWS SDKs, or AWS CLI, you can enable or disable an S3 Bucket Key at the object level\. S3 Bucket Keys reduce the cost of server\-side encryption using AWS Key Management Service \(AWS KMS\) \(SSE\-KMS\) by decreasing request traffic from Amazon S3 to AWS KMS\. For more information, see [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)\. 
 
@@ -8,9 +8,14 @@ When you configure an S3 Bucket Key for an object using a PUT or COPY operation,
 Before you configure your object to use an S3 Bucket Key, review [Changes to note before enabling an S3 Bucket Key](bucket-key.md#bucket-key-changes)\. 
 
 **Topics**
++ [Amazon S3 Batch Operations](#bucket-key-object-bops)
 + [Using the REST API](#bucket-key-object-rest)
 + [Using the AWS SDK Java \(PutObject\)](#bucket-key-object-sdk)
 + [Using the AWS CLI \(PutObject\)](#bucket-key-object-cli)
+
+## Amazon S3 Batch Operations<a name="bucket-key-object-bops"></a>
+
+To encrypt your existing Amazon S3 objects, you can use Amazon S3 Batch Operations\. You provide S3 Batch Operations with a list of objects to operate on, and Batch Operations calls the respective API to perform the specified operation\. You can use the [S3 Batch Operations Copy operation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-copy-object.html) to copy existing unencrypted objects and write them back to the same bucket as encrypted objects\. A single Batch Operations job can perform the specified operation on billions of objects\. For more information, see [Performing large\-scale batch operations on Amazon S3 objects](batch-ops.md) and [Encrypting objects with Amazon S3 Batch Operations](http://aws.amazon.com/blogs/storage/encrypting-objects-with-amazon-s3-batch-operations/)\.
 
 ## Using the REST API<a name="bucket-key-object-rest"></a>
 

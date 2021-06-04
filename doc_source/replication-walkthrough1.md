@@ -185,7 +185,7 @@ To set up replication configuration when both source and destination buckets are
 
 1. Test the setup in the Amazon S3 console: 
 
-   1.  Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\. 
+   1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
    1. In the *source* bucket, create a folder named `Tax`\. 
 

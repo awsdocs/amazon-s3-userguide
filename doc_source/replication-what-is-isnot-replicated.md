@@ -38,11 +38,11 @@ By default Amazon S3 doesn't replicate the following:
 + Objects that existed before you added the replication configuration to the bucket\. In other words, Amazon S3 doesn't replicate objects retroactively\.
 + Objects in the source bucket that are replicas that were created by another replication rule\. For example if you configure replication where bucket A is the source and bucket B is the destination\. Now suppose that you add another replication configuration where bucket B is the source and bucket C is the destination\. In this case, objects in bucket B that are replicas of objects in bucket A are not replicated to bucket C\. 
 + Objects in the source bucket that have already been replicated to a different destination\. For example, if you change the destination bucket in an existing replication configuration, Amazon S3 won't replicate the object again\.
-+ Objects created with server\-side encryption using customer\-provided encryption keys \(SSE\-C\), but this can be enabled, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.
++ Objects created with server\-side encryption using customer\-provided encryption keys \(SSE\-C\)\.
 + Objects that are stored in S3 Glacier or S3 Glacier Deep Archive storage class\. 
 
   To learn more about the Amazon S3 Glacier service, see the [Amazon S3 Glacier Developer Guide](https://docs.aws.amazon.com/amazonglacier/latest/dev/)\.
-+ Objects in the source bucket that the bucket owner doesn't have permissions for \(when the bucket owner is not the owner of the object\)\. 
++ Objects in the source bucket that the bucket owner doesn't have sufficient permissions\. 
 
   For information about how an object owner can grant permissions to a bucket owner, see [Granting cross\-account permissions to upload objects while ensuring the bucket owner has full control](example-bucket-policies.md#example-bucket-policies-use-case-8)\.
 + Updates to bucket\-level subresources\. 

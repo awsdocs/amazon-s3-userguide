@@ -3,7 +3,7 @@
 By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with customer master keys \(CMKs\) stored in AWS KMS\. This section explains additional configuration that you add to direct Amazon S3 to replicate these objects\. 
 
 **Important**  
-Replication of encrypted data is a server\-side process that occurs entirely within Amazon S3\. Replication does not support client\-side encryption\. 
+Replication of encrypted data is a server\-side process that occurs entirely within Amazon S3\. Objects created with server\-side encryption using customer\-provided \(SSE\-C\) encryption keys are not replicated\.
 
 For an example with step\-by\-step instructions, see [Replicating encrypted objects](replication-walkthrough-4.md)\. For information about creating a replication configuration, see [Replicating objects](replication.md)\. 
 
@@ -34,7 +34,7 @@ In the replication configuration, you do the following:
       <Destination>
           ...
           <EncryptionConfiguration>
-             <ReplicaKmsKeyID>AWS KMS key ID for the AWS region of the destination bucket.</ReplicaKmsKeyID>
+             <ReplicaKmsKeyID>AWS KMS key ID for the AWS Region of the destination bucket.</ReplicaKmsKeyID>
           </EncryptionConfiguration>
        </Destination>
       ...
@@ -65,7 +65,7 @@ The following example shows a replication configuration, which includes optional
       <Destination>
          <Bucket>arn:aws:s3:::destination-bucket</Bucket>
          <EncryptionConfiguration>
-           <ReplicaKmsKeyID>The AWS KMS key ID for the AWS region of the destination buckets (S3 uses it to encrypt object replicas).</ReplicaKmsKeyID>
+           <ReplicaKmsKeyID>The AWS KMS key ID for the AWS Region of the destination buckets (S3 uses it to encrypt object replicas).</ReplicaKmsKeyID>
          </EncryptionConfiguration>
       </Destination>
       <SourceSelectionCriteria>
@@ -249,9 +249,9 @@ In a cross\-account scenario, where *source* and *destination* buckets are owned
 
 1. Under **General configuration**, choose the **Key policy** tab\.
 
-1. Choose **Other AWS Accounts**\.
+1. Choose **Other AWS accounts**\.
 
-1. Choose **Add another AWS Account**\.
+1. Choose **Add another AWS account**\.
 
 1. In **arn:aws:iam::**, enter the source bucket account ID\.
 

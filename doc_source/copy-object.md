@@ -26,7 +26,7 @@ When copying objects, you can request Amazon S3 to save the target object encryp
 
 To copy more than one Amazon S3 object with a single request, you can use Amazon S3 batch operations\. You provide S3 Batch Operations with a list of objects to operate on\. S3 Batch Operations calls the respective API to perform the specified operation\. A single Batch Operations job can perform the specified operation on billions of objects containing exabytes of data\. 
 
-The S3 Batch Operations feature tracks progress, sends notifications, and stores a detailed completion report of all actions, providing a fully managed, auditable, serverless experience\. You can use S3 Batch Operations through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\. For more information, see [S3 Batch Operations basics](batch-ops-basics.md)\.
+The S3 Batch Operations feature tracks progress, sends notifications, and stores a detailed completion report of all actions, providing a fully managed, auditable, serverless experience\. You can use S3 Batch Operations through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\. For more information, see [S3 Batch Operations basics](batch-ops.md#batch-ops-basics)\.
 
 
 

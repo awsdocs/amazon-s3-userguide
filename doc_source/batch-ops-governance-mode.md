@@ -235,7 +235,7 @@ public void allowBypassGovernance() {
             .withRoleName(roleName);
 
     final PutRolePolicyResult putRolePolicyResult = iam.putRolePolicy(putRolePolicyRequest);
-} 
+}
 public String createRemoveGovernanceRetentionJob(final AWSS3ControlClient awss3ControlClient) {
     final String manifestObjectArn = "arn:aws:s3:::ManifestBucket/governance-objects-manifest.csv";
     final String manifestObjectVersionId = "15ad5ba069e6bbc465c77bf83d541385";

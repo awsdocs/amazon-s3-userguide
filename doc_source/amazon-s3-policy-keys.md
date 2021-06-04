@@ -17,7 +17,7 @@ Several of the example policies show how you can use conditions keys with [PUT O
 + [Example 4: Granting access to a specific version of an object](#getobjectversion-limit-access-to-specific-version-3)
 + [Example 5: Restricting object uploads to objects with a specific storage class](#example-storage-class-condition-key)
 + [Example 6: Granting permissions based on object tags](#example-object-tagging-access-control)
-+ [Example 7: Restricting access by the AWS Account ID of the bucket owner](#example-object-resource-account)
++ [Example 7: Restricting access by the AWS account ID of the bucket owner](#example-object-resource-account)
 + [Example 8: Requiring a minimum TLS version](#example-object-tls-version)
 
 ### Example 1: Granting s3:PutObject permission with a condition requiring the bucket owner to get full control<a name="grant-putobject-conditionally-1"></a>
@@ -270,9 +270,9 @@ Suppose that Account A, represented by account ID 123456789012, owns a bucket\. 
 
 For examples on how to use object tagging condition keys with Amazon S3 operations, see [Tagging and access control policies](tagging-and-policies.md)\.
 
-### Example 7: Restricting access by the AWS Account ID of the bucket owner<a name="example-object-resource-account"></a>
+### Example 7: Restricting access by the AWS account ID of the bucket owner<a name="example-object-resource-account"></a>
 
-You can use the s3:ResourceAccount condition key to write IAM or Virtual Private Cloud Endpoint policies that restrict user or application access to the Amazon S3 buckets that are owned by a specific AWS Account ID\. You can use this condition key to restrict clients within your VPC from accessing buckets that you do not own\.
+You can use the s3:ResourceAccount condition key to write IAM or Virtual Private Cloud Endpoint policies that restrict user or application access to the Amazon S3 buckets that are owned by a specific AWS account ID\. You can use this condition key to restrict clients within your VPC from accessing buckets that you do not own\.
 
 For information and examples, see the following resources:
 + [Restricting access to buckets in a specified AWS account](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html#vpc-endpoints-policies-s3) in the *AWS PrivateLink Guide*

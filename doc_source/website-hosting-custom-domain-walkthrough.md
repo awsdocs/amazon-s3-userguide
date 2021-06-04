@@ -5,7 +5,7 @@ Suppose that you want to host a static website on Amazon S3\. You've registered 
 After you complete this walkthrough, you can optionally use Amazon CloudFront to improve the performance of your website\. For more information, see [Speeding up your website with Amazon CloudFront](website-hosting-cloudfront-walkthrough.md)\.
 
 **Note**  
-Amazon S3 does not support HTTPS access to the website\. If you want to use HTTPS, you can use Amazon CloudFront to serve a static website hosted on Amazon S3\.  
+Amazon S3 website endpoints do not support HTTPS or access points\. If you want to use HTTPS, you can use Amazon CloudFront to serve a static website hosted on Amazon S3\.  
 For more information, see [How do I use CloudFront to serve a static website hosted on Amazon S3?](http://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-serve-static-website/) and [Requiring HTTPS for communication between viewers and CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-viewers-to-cloudfront.html)\.
 
 **Automating static website setup with an AWS CloudFormation template**  

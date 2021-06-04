@@ -1,8 +1,6 @@
-# Restore<a name="batch-ops-initiate-restore-object"></a>
+# Restore objects<a name="batch-ops-initiate-restore-object"></a>
 
-
-
-S3 Batch Operations can run operations on a list of Amazon S3 objects that you specify, including initiating restore requests for archived objects\. The following objects must be restored with an [S3 Initiate Restore Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_S3InitiateRestoreObjectOperation.html) job before they can be accessed in real time:
+The **Restore** operation initiates restore requests for archived objects on a list of Amazon S3 objects that you specify\. The following objects must be restored with an [S3 Initiate Restore Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_S3InitiateRestoreObjectOperation.html) job before they can be accessed in real time:
 + Objects archived in the S3 Glacier or S3 Glacier Deep Archive storage classes
 + Objects archived through the S3 Intelligent\-Tiering storage class in the Archive Access or Deep Archive Access tiers
 

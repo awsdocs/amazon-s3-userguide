@@ -53,7 +53,7 @@ To view the global condition keys that are available to all services, see [Avail
 |   [ aws:ResourceTag/$\{TagKey\} ](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-resourcetag)  | Filters actions based on the tags associated with the resource | String | 
 |   [ aws:TagKeys ](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-tagkeys)  | Filters actions based on the tag keys that are passed in the request | String | 
 |   [ s3:AccessPointNetworkOrigin ](https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies)  | Filters access by the network origin \(Internet or VPC\) | String | 
-|   [ s3:DataAccessPointAccount ](https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies)  | Filters access by the AWS Account ID that owns the access point | String | 
+|   [ s3:DataAccessPointAccount ](https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies)  | Filters access by the AWS account ID that owns the access point | String | 
 |   [ s3:DataAccessPointArn ](https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html#access-points-policies)  | Filters access by an access point Amazon Resource Name \(ARN\) | String | 
 |   [ s3:ExistingJobOperation ](https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-job-tags-examples.html)  | Filters access to updating the job priority by operation | String | 
 |   [ s3:ExistingJobPriority ](https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-job-tags-examples.html)  | Filters access to cancelling existing jobs by priority range | Numeric | 

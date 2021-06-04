@@ -23,8 +23,8 @@ For more information, see [AWS Trusted Advisor](https://docs.aws.amazon.com/awss
 
 The following security best practices also address logging and monitoring:
 + [Identify and audit all your Amazon S3 buckets](security-best-practices.md#audit)
-+ [Implement monitoring using AWS monitoring tools](security-best-practices.md#tools)
++ [Implement monitoring using Amazon Web Services monitoring tools](security-best-practices.md#tools)
 + [Enable AWS Config](security-best-practices.md#config)
 + [Enable Amazon S3 server access logging](security-best-practices.md#serverlog)
-+ [Use AWS CloudTrail](security-best-practices.md#objectlog)
-+ [Monitor AWS security advisories](security-best-practices.md#advisories)
++ [Use CloudTrail](security-best-practices.md#objectlog)
++ [Monitor Amazon Web Services security advisories](security-best-practices.md#advisories)

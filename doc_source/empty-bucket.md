@@ -1,12 +1,17 @@
 # Emptying a bucket<a name="empty-bucket"></a>
 
-You can empty a bucket's contents using the Amazon S3 console, AWS SDKs, or AWS Command Line Interface \(AWS CLI\)\. When you empty a bucket, you delete all the content, but you keep the bucket\. 
+You can empty a bucket's contents using the Amazon S3 console, AWS SDKs, or AWS Command Line Interface \(AWS CLI\)\. When you empty a bucket, you delete all the objects, but you keep the bucket\. After you empty a bucket, it cannot be undone\. When you empty a bucket that has S3 Bucket Versioning enabled or suspended, all versions of all the objects in the bucket are deleted\. For more information, see [Working with objects in a versioning\-enabled bucket](manage-objects-versioned-bucket.md)\.
 
-You can also specify a lifecycle configuration on a bucket to expire objects so that Amazon S3 can delete them\. However, there are limitations on this method based on the number of objects in your bucket and the bucket's versioning status\. For more information, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)
+You can also specify a lifecycle configuration on a bucket to expire objects so that Amazon S3 can delete them\. For more information, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)
+
+**Troubleshooting**  
+Objects added to the bucket while the empty bucket action is in progress might be deleted\. To prevent new objects from being added to a bucket while the empty bucket action is in progress, you might need to stop your AWS CloudTrail trails from logging events to the bucket\. For more information, see [Turning off logging for a trail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-delete-trails-console.html) in the *AWS CloudTrail User Guide*\.
+
+Another alternative to stopping CloudTrail trails from being added to the bucket is to add a deny s3:PutObject statement to your bucket policy\. If you want to store new objects in the bucket, you should remove the deny s3:PutObject statement from your bucket policy\. For more information, see [Example — Object operations](using-with-s3-actions.md#using-with-s3-actions-related-to-objects) and [IAM JSON policy elements: Effect](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_effect.html) in the *IAM User Guide* 
 
 ## Using the S3 console<a name="empty-bucket-console"></a>
 
-You can use the Amazon S3 console to empty a bucket, which deletes all of the objects in the bucket without deleting the bucket\. When you empty a bucket that has S3 Bucket Versioning enabled, all versions of all the objects in the bucket are deleted\. For more information, see [Working with objects in a versioning\-enabled bucket](manage-objects-versioned-bucket.md)\.
+You can use the Amazon S3 console to empty a bucket, which deletes all of the objects in the bucket without deleting the bucket\. 
 
 **To empty an S3 bucket**
 
@@ -49,12 +54,10 @@ For more information about using other AWS SDKs, see [Tools for Amazon Web Servi
 
 ## Using a lifecycle configuration<a name="empty-bucket-lifecycle"></a>
 
-If use a lifecycle policy to empty your bucket, the lifecycle policy should include non\-current versions, delete markers, and incomplete multipart uploads\.
+If you use a lifecycle policy to empty your bucket, the lifecycle policy should include [current versions, non\-current versions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html), [delete markers](https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html), and [incomplete multipart uploads](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpu-abort-incomplete-mpu-lifecycle-config.html)\.
 
-You can configure lifecycle on your bucket to expire objects and request that Amazon S3 delete expired objects\. You can add lifecycle configuration rules to expire all or a subset of objects that have a specific key name prefix\. For example, to remove all objects in a bucket, you can set a lifecycle rule to expire objects one day after creation\.
+You can add lifecycle configuration rules to expire all objects or a subset of objects that have a specific key name prefix\. For example, to remove all objects in a bucket, you can set a lifecycle rule to expire objects one day after creation\.
 
-If your bucket has versioning enabled, you can also configure the rule to expire noncurrent objects\. To fully empty the contents of a versioning\-enabled bucket, you must configure an expiration policy on both current and noncurrent objects in the bucket\. 
-
-Amazon S3 supports a bucket lifecycle rule that you can use to direct Amazon S3 to stop multipart uploads that don't complete within a specified number of days after being initiated\. We recommend that you configure this lifecycle rule to minimize your storage costs\. For more information, see [Configuring a bucket lifecycle policy to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)\.
+Amazon S3 supports a bucket lifecycle rule that you can use to stop multipart uploads that don't complete within a specified number of days after being initiated\. We recommend that you configure this lifecycle rule to minimize your storage costs\. For more information, see [Configuring a bucket lifecycle policy to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)\.
 
 For more information about using a lifecycle configuration to empty a bucket, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md) and [Expiring objects](lifecycle-expire-general-considerations.md)\.

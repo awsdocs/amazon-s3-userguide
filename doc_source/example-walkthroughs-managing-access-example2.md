@@ -48,7 +48,7 @@ All the tasks of creating users and granting permissions are done in the AWS Man
 
    1. Using Account A credentials, sign in to the [IAM console](https://console.aws.amazon.com/iam/home?#home) to create the administrator user:
 
-      1. Create user AccountAadmin and note down the security credentials\. For instructions, see [Creating an IAM User in Your AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. 
+      1. Create user AccountAadmin and note down the security credentials\. For instructions, see [Creating an IAM User in Your AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. 
 
       1. Grant AccountAadmin administrator privileges by attaching a user policy giving full access\. For instructions, see [Working with Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\. 
 

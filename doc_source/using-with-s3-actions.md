@@ -38,7 +38,7 @@ The following example bucket policy grants the `s3:PutObject` and the `s3:PutObj
 You can use a wildcard to grant permission for all Amazon S3 actions\.
 
 ```
-"Action":   "*"
+"Action":   "*" 
 ```
 
 ## Example — Bucket operations<a name="using-with-s3-actions-related-to-buckets"></a>

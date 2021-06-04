@@ -12,7 +12,7 @@ To get started with Amazon S3 on Outposts, you need an Outpost with Amazon S3 ca
 
 ### Do you need a new AWS Outpost?<a name="SettingUpS3OutpostsNewOutpost"></a>
 
-If you need to order a new Outpost with S3 capacity, see [AWS Outposts pricing](http://aws.amazon.com/outposts/pricing/) to understand the capacity option for Amazon EC2, Amazon EBS, and Amazon S3\. Current options for Amazon S3 on Outposts capacity are 48 TB and 96 TB\. 
+If you need to order a new Outpost with S3 capacity, see [AWS Outposts pricing](http://aws.amazon.com/outposts/pricing/) to understand the capacity options for Amazon EC2, Amazon EBS, and Amazon S3\. 
 
 After you select your configuration, follow the steps in [Create an Outpost and order Outpost capacity](https://docs.aws.amazon.com/outposts/latest/userguide/order-outpost-capacity.html) in the *AWS Outposts User Guide\.* 
 

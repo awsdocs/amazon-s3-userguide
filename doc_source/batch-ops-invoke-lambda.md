@@ -1,10 +1,10 @@
 # Invoke AWS Lambda function<a name="batch-ops-invoke-lambda"></a>
 
-S3 Batch Operations can invoke AWS Lambda functions to perform custom actions on objects that are listed in a manifest\. This section describes how to create a Lambda function to use with S3 Batch Operations and how to create a job to invoke the function\. The S3 Batch Operations job uses the `LambdaInvoke` operation to run a Lambda function on every object listed in a manifest\. 
+The **Invoke AWS Lambda function** initiates AWS Lambda functions to perform custom actions on objects that are listed in a manifest\. This section describes how to create a Lambda function to use with S3 Batch Operations and how to create a job to invoke the function\. The S3 Batch Operations job uses the `LambdaInvoke` operation to run a Lambda function on every object listed in a manifest\.
 
 You can work with S3 Batch Operations for Lambda using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST APIs\. For more information about using Lambda, see [ Getting Started with AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html) in the *AWS Lambda Developer Guide*\. 
 
-The following sections explain how you can get started using S3 Batch Operations with Lambda\. 
+The following sections explain how you can get started using S3 Batch Operations with Lambda\.
 
 **Topics**
 + [Using Lambda with Amazon S3 batch operations](#batch-ops-invoke-lambda-using)
@@ -42,7 +42,7 @@ You must create Lambda functions specifically for use with S3 Batch Operations\.
 **Important**  
 AWS Lambda functions written in Java accept either [RequestHandler](https://github.com/aws/aws-lambda-java-libs/blob/master/aws-lambda-java-core/src/main/java/com/amazonaws/services/lambda/runtime/RequestHandler.java) or [RequestStreamHandler](https://github.com/aws/aws-lambda-java-libs/blob/master/aws-lambda-java-core/src/main/java/com/amazonaws/services/lambda/runtime/RequestStreamHandler.java) handler interfaces\. However, to support S3 Batch Operations request and response format, AWS Lambda requires the `RequestStreamHandler` interface for custom serialization and deserialization of a request and response\. This interface allows Lambda to pass an InputStream and OutputStream to the Java `handleRequest` method\.   
 Be sure to use the `RequestStreamHandler` interface when using Lambda functions with S3 Batch Operations\. If you use a `RequestHandler` interface, the batch job will fail with "Invalid JSON returned in Lambda payload" in the completion report\.   
-For more information, see [Handler interfaces](https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html#java-handler-interfaces) in the *AWS Lambda User Guide*\. 
+For more information, see [Handler interfaces](https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html#java-handler-interfaces) in the *AWS Lambda User Guide*\.
 
 ### Example IAM permissions<a name="batch-ops-invoke-lambda-custom-functions-iam"></a>
 
@@ -241,7 +241,7 @@ When creating an S3 Batch Operations job to invoke a Lambda function, you must p
 + An IAM role with permission to invoke the function
 + The action parameter `LambdaInvokeFunction`
 
-For more information about creating an S3 Batch Operations job, see [Creating an S3 Batch Operations job](batch-ops-create-job.md) and [Operations](batch-ops-operations.md)\.
+For more information about creating an S3 Batch Operations job, see [Creating an S3 Batch Operations job](batch-ops-create-job.md) and [Operations supported by S3 Batch Operations](batch-ops-operations.md)\.
 
 The following example creates an S3 Batch Operations job that invokes a Lambda function using the AWS CLI\.
 

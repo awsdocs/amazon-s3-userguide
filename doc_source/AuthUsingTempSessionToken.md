@@ -1,11 +1,11 @@
 # Making requests using IAM user temporary credentials<a name="AuthUsingTempSessionToken"></a>
 
- An AWS Account or an IAM user can request temporary security credentials and use them to send authenticated requests to Amazon S3\. This section provides examples of how to use the AWS SDK for Java, \.NET, and PHP to obtain temporary security credentials and use them to authenticate your requests to Amazon S3\.
+ An AWS account or an IAM user can request temporary security credentials and use them to send authenticated requests to Amazon S3\. This section provides examples of how to use the AWS SDK for Java, \.NET, and PHP to obtain temporary security credentials and use them to authenticate your requests to Amazon S3\.
 
 ------
 #### [ Java ]
 
-An IAM user or an AWS Account can request temporary security credentials \(see [Making requests](MakingRequests.md)\) using the AWS SDK for Java and use them to access Amazon S3\. These credentials expire after the specified session duration\. 
+An IAM user or an AWS account can request temporary security credentials \(see [Making requests](MakingRequests.md)\) using the AWS SDK for Java and use them to access Amazon S3\. These credentials expire after the specified session duration\. 
 
 By default, the session duration is one hour\. If you use IAM user credentials, you can specify the duration when requesting the temporary security credentials from 15 minutes to the maximum session duration for the role\. For more information about temporary security credentials, see [Temporary Security Credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html) in the *IAM User Guide*\. For more information about making requests, see [Making requests](MakingRequests.md)\.
 
@@ -24,7 +24,7 @@ If you obtain temporary security credentials using your AWS account security cre
 
 The following example lists a set of object keys in the specified bucket\. The example obtains temporary security credentials for a session and uses them to send an authenticated request to Amazon S3\.
 
-If you want to test the sample using IAM user credentials, you will need to create an IAM user under your AWS Account\. For more information about how to create an IAM user, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
+If you want to test the sample using IAM user credentials, you will need to create an IAM user under your AWS account\. For more information about how to create an IAM user, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
 
 For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\. 
 

@@ -16,6 +16,6 @@ If you require FIPS 140\-2 validated cryptographic modules when accessing AWS th
 The following security best practices also address data protection in Amazon S3:
 + [Implement server-side encryption](security-best-practices.md#server-side)
 + [Enforce encryption of data in transit](security-best-practices.md#transit)
-+ [Consider using Amazon Macie with Amazon S3](security-best-practices.md#macie)
++ [Consider using Macie with Amazon S3](security-best-practices.md#macie)
 + [Identify and audit all your Amazon S3 buckets](security-best-practices.md#audit)
-+ [Monitor AWS security advisories](security-best-practices.md#advisories)
++ [Monitor Amazon Web Services security advisories](security-best-practices.md#advisories)

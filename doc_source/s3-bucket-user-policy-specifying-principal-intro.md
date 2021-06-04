@@ -2,7 +2,7 @@
 
 The `Principal` element specifies the user, account, service, or other entity that is allowed or denied access to a resource\. The following are examples of specifying `Principal`\. For more information, see [Principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html) in the *IAM User Guide*\.
 
-## Grant permissions to an AWS Account<a name="s3-aws-account-permissions"></a>
+## Grant permissions to an AWS account<a name="s3-aws-account-permissions"></a>
 
 To grant permissions to an AWS account, identify the account using the following format\.
 

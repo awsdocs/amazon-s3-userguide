@@ -1,6 +1,6 @@
 # Getting the tags of a S3 Batch Operations job<a name="get-job-tags"></a>
 
-You can use GetJobTagging to return the tags of an S3 Batch Operations job\. For more information, see the examples below\.
+You can use `GetJobTagging` to return the tags of an S3 Batch Operations job\. For more information, see the following examples\.
 
 ## Using the AWS CLI<a name="batch-ops-example-cli-job-tags-get-job-tagging"></a>
 

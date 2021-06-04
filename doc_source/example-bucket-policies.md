@@ -25,6 +25,9 @@ When testing permissions using the Amazon S3 console, you will need to grant add
 
 The following example policy grants the `s3:PutObject` and `s3:PutObjectAcl` permissions to multiple AWS accounts and requires that any request for these operations include the `public-read` canned access control list \(ACL\)\. For more information, see [Amazon S3 actions](using-with-s3-actions.md) and [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\.
 
+**Warning**  
+Use caution when granting anonymous access to your Amazon S3 bucket or disabling block public access settings\. When you grant anonymous access, anyone in the world can access your bucket\. We recommend that you never grant anonymous access to your Amazon S3 bucket unless you specifically need to, such as with [static website hosting](WebsiteHosting.md)\.
+
 ```
  1. {
  2.   "Version":"2012-10-17",

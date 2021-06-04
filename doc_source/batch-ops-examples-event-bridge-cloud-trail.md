@@ -1,24 +1,24 @@
-# Tracking an S3 Batch Operations job in Amazon EventBridge through AWS CloudTrail<a name="batch-ops-examples-event-bridge-cloud-trail"></a>
+# Examples: Tracking an S3 Batch Operations job in Amazon EventBridge through AWS CloudTrail<a name="batch-ops-examples-event-bridge-cloud-trail"></a>
 
 Amazon S3 Batch Operations job activity is recorded as events in AWS CloudTrail\. You can create a custom rule in Amazon EventBridge and send these events to the target notification resource of your choice, such as Amazon Simple Notification Service \(Amazon SNS\)\. 
 
 **Note**  
-Amazon EventBridge is the preferred way to manage your events\. Amazon CloudWatch Events and EventBridge are the same underlying service and API, but EventBridge provides more features\. Changes that you make in either CloudWatch or EventBridge appear in each console\. For more information, see the [Amazon EventBridge User Guide](https://docs.aws.amazon.com/eventbridge/latest/userguide/)\.
+Amazon EventBridge is the preferred way to manage your events\. Amazon CloudWatch Events and EventBridge are the same underlying service and API, but EventBridge provides more features\. Changes that you make in either CloudWatch or EventBridge appear in each console\. For more information, see the *[Amazon EventBridge User Guide](https://docs.aws.amazon.com/eventbridge/latest/userguide/)*\.
 
 **Topics**
-+ [S3 Batch Operations events emitted to CloudTrail](#batch-ops-examples-cloud-trail-events)
-+ [Using an EventBridge rule for tracking S3 Batch Operations job events](#batch-ops-examples-event-bridge)
++ [S3 Batch Operations events recorded in CloudTrail](#batch-ops-examples-cloud-trail-events)
++ [EventBridge rule for tracking S3 Batch Operations job events](#batch-ops-examples-event-bridge)
 
-## S3 Batch Operations events emitted to CloudTrail<a name="batch-ops-examples-cloud-trail-events"></a>
+## S3 Batch Operations events recorded in CloudTrail<a name="batch-ops-examples-cloud-trail-events"></a>
 
 
 
-When a Batch Operations job is created, it is recorded as a `JobCreated` event in CloudTrail\. As the job runs, it changes state during processing, and other `JobStatusChanged` events are recorded in CloudTrail\. You can view these events on the [CloudTrail console](https://console.aws.amazon.com/cloudtrail)\. For more information about CloudTrail, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/how-cloudtrail-works.html)\.
+When a Batch Operations job is created, it is recorded as a `JobCreated` event in CloudTrail\. As the job runs, it changes state during processing, and other `JobStatusChanged` events are recorded in CloudTrail\. You can view these events on the [CloudTrail console](https://console.aws.amazon.com/cloudtrail)\. For more information about CloudTrail, see the [https://docs.aws.amazon.com/awscloudtrail/latest/userguide/how-cloudtrail-works.html](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/how-cloudtrail-works.html)\.
 
 **Note**  
 Only S3 Batch Operations job `status-change` events are recorded in CloudTrail\.
 
-**Example — S3 Batch Operations job completion event recorded by CloudTrail**  
+**Example S3 Batch Operations job completion event recorded by CloudTrail**  
 
 ```
 {
@@ -50,7 +50,7 @@ Only S3 Batch Operations job `status-change` events are recorded in CloudTrail\.
 }
 ```
 
-## Using an EventBridge rule for tracking S3 Batch Operations job events<a name="batch-ops-examples-event-bridge"></a>
+## EventBridge rule for tracking S3 Batch Operations job events<a name="batch-ops-examples-event-bridge"></a>
 
 The following example shows how to create a rule in Amazon EventBridge to capture S3 Batch Operations events recorded by AWS CloudTrail to a target of your choice\.
 
@@ -82,7 +82,7 @@ To do this, you create a rule by following all the steps in [Creating an EventBr
 
  The following examples are two Batch Operations events that were sent to Amazon Simple Queue Service \(Amazon SQS\) from an EventBridge event rule\. A Batch Operations job goes through many different states while processing \(`New`, `Preparing`, `Active`, etc\.\), so you can expect to receive several messages for each job\.
 
-**Example — `JobCreated` sample event**  
+**Example JobCreated sample event**  
 
 ```
 {
@@ -121,7 +121,7 @@ To do this, you create a rule by following all the steps in [Creating an EventBr
 }
 ```
 
-**Example — `JobStatusChanged` sample event for when a job is complete**  
+**Example JobStatusChanged job completion event**  
 
 ```
 {

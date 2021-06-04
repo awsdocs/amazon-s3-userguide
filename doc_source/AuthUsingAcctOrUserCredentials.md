@@ -203,7 +203,7 @@ namespace Amazon.DocSamples.S3
 }
 ```
 
-For working examples, see [Amazon S3 objects overview](UsingObjects.md) and [Buckets overview](UsingBucket.md)\. You can test these examples using your AWS Account or an IAM user credentials\. 
+For working examples, see [Amazon S3 objects overview](UsingObjects.md) and [Buckets overview](UsingBucket.md)\. You can test these examples using your AWS account or an IAM user credentials\. 
 
 For example, to list all the object keys in your bucket, see [Listing object keys programmatically](ListingKeysUsingAPIs.md)\. 
 

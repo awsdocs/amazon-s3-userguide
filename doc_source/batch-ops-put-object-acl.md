@@ -6,13 +6,11 @@ S3 Batch Operations support custom ACLs that you define and canned ACLs that Ama
 
 If the objects in your manifest are in a versioned bucket, you can apply the ACLs to specific versions of every object\. You do this by specifying a version ID for every object in the manifest\. If you don't include a version ID for any object, then S3 Batch Operations applies the ACL to the latest version of the object\.
 
+For more information about ACLs in Amazon S3, [Access control list \(ACL\) overview](acl-overview.md)\.
+
 **Note**  
-If you want to limit public access to all objects in a bucket, you should use Amazon S3 block public access instead of S3 Batch Operations\. Block public access can limit public access on a per\-bucket or account\-wide basis with a single, simple operation that takes effect quickly\. This make it a better choice when your goal is to control public access to all objects in a bucket or account\. Use S3 Batch Operations when you need to apply a customized ACL to every object in the manifest\. For more information about Amazon S3 block public access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
+If you want to limit public access to all objects in a bucket, you should use Amazon S3 Block Public Access instead of S3 Batch Operations\. Block Public Access can limit public access on a per\-bucket or account\-wide basis with a single, simple operation that takes effect quickly\. This makes it a better choice when your goal is to control public access to all objects in a bucket or account\. Use S3 Batch Operations when you need to apply a customized ACL to every object in the manifest\. For more information about S3 Block Public Access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
 
 ## Restrictions and limitations<a name="batch-ops-put-object-acl-restrictions"></a>
-+ The role that you specify to run the Replace access control list job must have permissions to perform the underlying Amazon S3 PutObjectAcl operation\. For more information about the permissions required, see [PutObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html) in the *Amazon Simple Storage Service API Reference*\.
-+ S3 Batch Operations uses the Amazon S3 PutObjectAcl operation to apply the specified ACL to every object in the manifest\. Therefore, all restrictions and limitations that apply to the underlying PutObjectAcl operation also apply to S3 Batch Operations Replace access control list jobs\. For more information, see the [Related resources](#batch-ops-put-object-acl-related-resources) section of this page\.
-
-## Related resources<a name="batch-ops-put-object-acl-related-resources"></a>
-+ [Access control list \(ACL\) overview](acl-overview.md)
-+ [GetObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html) in the *Amazon Simple Storage Service API Reference*
++ The role that you specify to run the Replace access control list job must have permissions to perform the underlying Amazon S3 `PutObjectAcl` operation\. For more information about the permissions required, see [PutObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html) in the *Amazon Simple Storage Service API Reference*\.
++ S3 Batch Operations uses the Amazon S3 `PutObjectAcl` operation to apply the specified ACL to every object in the manifest\. Therefore, all restrictions and limitations that apply to the underlying PutObjectAcl operation also apply to S3 Batch Operations Replace access control list jobs\.

@@ -6,7 +6,7 @@ The dashboard provides an interactive visualization for your storage usage and a
 
 If your account is a member of AWS Organizations, you can also see your storage usage and activity for your entire organization across member accounts\. This information is available to you provided that S3 Storage Lens has been given trusted access to your organization, and you are an authorized management or delegated administrator account\.
 
-Use the interactive dashboard to explore your storage usage and activity trends and insights, and get contextual recommendations for best practices to optimize your storage\. For more information, see [ Understanding Amazon S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html)\.
+Use the interactive dashboard to explore your storage usage and activity trends and insights, and get contextual recommendations for best practices to optimize your storage\. For more information, see [Understanding Amazon S3 Storage Lens](storage_lens_basics_metrics_recommendations.md)\.
 
 Amazon S3 preconfigures the S3 Storage Lens *default dashboard* to help you visualize summarized insights and trends of your entire account’s aggregated storage usage and activity metrics\(optional upgrade\)\. You can't modify the default dashboard configuration scope, but the metrics selection can be upgraded from *free metrics* to the paid *advanced metrics and recommendations*\. You can configure the optional metrics export, or even disable the dashboard\. However, the default dashboard cannot be deleted\.
 

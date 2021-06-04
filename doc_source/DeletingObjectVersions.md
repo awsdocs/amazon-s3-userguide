@@ -54,6 +54,33 @@ For examples of deleting objects using the AWS SDKs for Java, \.NET, and PHP, se
 
 For information about using other AWS SDKs, see the [AWS Developer Center](https://aws.amazon.com/code/)\. 
 
+------
+#### [ Python ]
+
+For instructions on how to create and test a working sample, see [Using the AWS SDK for Python \(Boto\)](UsingTheBotoAPI.md)\. 
+
+The following Python code example demonstrates S3 versioned bucket\.
+
+```
+def permanently_delete_object(bucket, object_key):
+    """
+    Permanently deletes a versioned object by deleting all of its versions.
+
+    Usage is shown in the usage_demo_single_object function at the end of this module.
+
+    :param bucket: The bucket that contains the object.
+    :param object_key: The object to delete.
+    """
+    try:
+        bucket.object_versions.filter(Prefix=object_key).delete()
+        logger.info("Permanently deleted all versions of object %s.", object_key)
+    except ClientError:
+        logger.exception("Couldn't delete all versions of %s.", object_key)
+        raise
+```
+
+------
+
 ### Using the REST API<a name="delete-obj-version-enabled-bucket-rest"></a>
 
 **To a delete a specific version of an object**

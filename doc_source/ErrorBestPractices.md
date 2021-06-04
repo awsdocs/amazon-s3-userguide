@@ -12,7 +12,7 @@ If Amazon S3 returns an InternalError response, retry the request\.
 
 ## Tune application for repeated SlowDown errors<a name="UsingErrorsSlowDown"></a>
 
-As with any distributed system, S3 has protection mechanisms which detect intentional or unintentional resource over\-consumption and react accordingly\. SlowDown errors can occur when a high request rate triggers one of these mechanisms\. Reducing your request rate will decrease or eliminate errors of this type\. Generally speaking, most users will not experience these errors regularly; however, if you would like more information or are experiencing high or unexpected SlowDown errors, please post to our Amazon S3 developer forum  [https://forums\.aws\.amazon\.com/](https://forums.aws.amazon.com/) or sign up for AWS Premium Support [https://aws\.amazon\.com/premiumsupport/](https://aws.amazon.com/premiumsupport/)\.
+As with any distributed system, S3 has protection mechanisms which detect intentional or unintentional resource over\-consumption and react accordingly\. SlowDown errors can occur when a high request rate triggers one of these mechanisms\. Reducing your request rate will decrease or eliminate errors of this type\. Generally speaking, most users will not experience these errors regularly; however, if you would like more information or are experiencing high or unexpected SlowDown errors, please post to our [Amazon S3 developer forum](https://forums.aws.amazon.com/) or sign up for AWS Support [https://aws\.amazon\.com/premiumsupport/](https://aws.amazon.com/premiumsupport/)\.
 
 ## Isolate errors<a name="UsingErrorsIsolate"></a>
 

@@ -8,7 +8,7 @@ Workloads that access millions or billions of objects encrypted with SSE\-KMS ca
 
 When you configure your bucket to use an S3 Bucket Key for SSE\-KMS, AWS KMS generates a bucket\-level key that is used to create unique data keys for *new* objects that you add to the bucket\. This S3 Bucket Key is used for a time\-limited period within Amazon S3, reducing the need for Amazon S3 to make requests to AWS KMS to complete encryption operations\. This reduces traffic from S3 to AWS KMS, allowing you to access AWS KMS\-encrypted objects in S3 at a fraction of the previous cost\.
 
-When you configure an S3 Bucket Key, objects that are already in the bucket do not use the S3 Bucket Key\. To configure an S3 Bucket Key for existing objects, you can use a COPY operation\. For more information, see [Configuring an S3 Bucket Key at the object level using the REST API, AWS SDKs, or AWS CLI](configuring-bucket-key-object.md)\.
+When you configure an S3 Bucket Key, objects that are already in the bucket do not use the S3 Bucket Key\. To configure an S3 Bucket Key for existing objects, you can use a COPY operation\. For more information, see [Configuring an S3 Bucket Key at the object level using Batch Operations, REST API, AWS SDKs, or AWS CLI](configuring-bucket-key-object.md)\.
 
 Amazon S3 will only share an S3 Bucket Key for objects encrypted by the same AWS KMS customer master key \(CMK\)\.
 
@@ -31,7 +31,7 @@ For more information, see [Configuring your bucket to use an S3 Bucket Key with 
 You can use the REST API, AWS CLI, or AWS SDK to configure your bucket to use an S3 Bucket Key for SSE\-KMS on new objects\. You can also enable an S3 Bucket Key at the object level\.
 
 For more information, see the following: 
-+ [Configuring an S3 Bucket Key at the object level using the REST API, AWS SDKs, or AWS CLI](configuring-bucket-key-object.md)
++ [Configuring an S3 Bucket Key at the object level using Batch Operations, REST API, AWS SDKs, or AWS CLI](configuring-bucket-key-object.md)
 + [Configuring your bucket to use an S3 Bucket Key with SSE\-KMS for new objects](configuring-bucket-key.md)
 
 The following APIs support S3 Bucket Keys for SSE\-KMS:
@@ -95,5 +95,5 @@ If your source object is not encrypted and the destination bucket uses an S3 Buc
 
 For more information about enabling and working with S3 Bucket Keys, see the following sections:
 + [Configuring your bucket to use an S3 Bucket Key with SSE\-KMS for new objects](configuring-bucket-key.md)
-+ [Configuring an S3 Bucket Key at the object level using the REST API, AWS SDKs, or AWS CLI](configuring-bucket-key-object.md)
++ [Configuring an S3 Bucket Key at the object level using Batch Operations, REST API, AWS SDKs, or AWS CLI](configuring-bucket-key-object.md)
 + [Viewing settings for an S3 Bucket Key ](viewing-bucket-key-settings.md)

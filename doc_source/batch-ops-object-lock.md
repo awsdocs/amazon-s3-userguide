@@ -15,17 +15,17 @@ The following examples show how to create an IAM role with S3 Batch Operations p
    
    read -d '' bops_trust_policy <<EOF
    {
-     "Version": "2012-10-17", 
-     "Statement": [ 
-       { 
-         "Effect": "Allow", 
-         "Principal": { 
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Principal": {
            "Service": [
              "batchoperations.s3.amazonaws.com"
            ]
-         }, 
-         "Action": "sts:AssumeRole" 
-       } 
+         },
+         "Action": "sts:AssumeRole"
+       }
      ]
    }
    EOF

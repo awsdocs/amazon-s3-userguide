@@ -1,6 +1,6 @@
 # What is Amazon S3?<a name="Welcome"></a>
 
-Amazon Simple Storage Service \(Amazon S3\) is storage for the Internet\. It is designed to make web\-scale computing easier for developers\.
+Amazon Simple Storage Service \(Amazon S3\) is storage for the Internet\. It is designed to make web\-scale computing easier\.
 
 Amazon S3 has a simple web services interface that you can use to store and retrieve any amount of data, at any time, from anywhere on the web\. It gives any developer access to the same highly scalable, reliable, fast, inexpensive data storage infrastructure that Amazon uses to run its own global network of web sites\. The service aims to maximize benefits of scale and to pass those benefits on to developers\.
 
@@ -204,7 +204,7 @@ These operations and all other functionality are described in detail throughout 
 
 ## Amazon S3 application programming interfaces \(API\)<a name="API"></a>
 
-The Amazon S3 architecture is designed to be programming language\-neutral, using AWS supported interfaces to store and retrieve objects\. 
+The Amazon S3 architecture is designed to be programming language\-neutral, using AWS Supported interfaces to store and retrieve objects\. 
 
 Amazon S3 provides a REST and a SOAP interface\. They are similar, but there are some differences\. For example, in the REST interface, metadata is returned in HTTP headers\. Because we only support HTTP requests of up to 4 KB \(not including the body\), the amount of metadata you can supply is restricted\. 
 

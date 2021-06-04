@@ -1,21 +1,20 @@
 # Creating an S3 Batch Operations job<a name="batch-ops-create-job"></a>
 
-With S3 Batch Operations, you can perform large\-scale Batch Operations on a list of specific Amazon S3 objects\. You can create S3 Batch Operations jobs using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\. 
+ 
 
-For more information about Batch Operations, see [S3 Batch Operations basics](batch-ops-basics.md)\.
+With S3 Batch Operations, you can perform large\-scale batch operations on a list of specific Amazon S3 objects\. This section describes the information that you need to create an S3 Batch Operations job and the results of a `Create Job` request\. It also provides instructions for creating a Batch Operations job using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), and AWS SDK for Java\.
 
-This section describes the information that you need to create an S3 Batch Operations job and the results of a `Create Job` request\. It also provides instructions for creating a Batch Operations job\.
+When you create an S3 Batch Operations job, you can request a completion report for all tasks or just for failed tasks\. As long as at least one task has been invoked successfully, S3 Batch Operations generates a report for jobs that have completed, failed, or been canceled\. For more information, see [Examples: S3 Batch Operations completion reports](batch-ops-examples-reports.md)\.
 
-When you create an S3 Batch Operations job, you can request a completion report for all tasks or just for failed tasks\. As long as at least one task has been invoked successfully, S3 Batch Operations generates a report for jobs that have completed, failed, or been canceled\. For more information, see [S3 Batch Operations completion reports](batch-ops-examples-reports.md)\.
+The following video provides a brief demonstration of how to create a Batch Operations job using the AWS Management Console\.
 
-**Prerequisite: **Before you create a Batch Operations job, confirm that you have configured relevant permissions\. For more information, see [Granting permissions for Amazon S3 Batch Operations](batch-ops-iam-role-policies.md)\.
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/hUv34voEftc//0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/hUv34voEftc/)
 
 **Topics**
 + [Batch Operations job request elements](#batch-ops-create-job-request-elements)
 + [Specifying a manifest](#specify-batchjob-manifest)
-+ [To create a Batch Operations job](#to-create-batch-ops-job)
++ [Creating a job](#to-create-batch-ops-job)
 + [Job responses](#batch-ops-create-job-response-elements)
-+ [Related resources](#batch-ops-create-job-related-resources)
 
 ## Batch Operations job request elements<a name="batch-ops-create-job-request-elements"></a>
 
@@ -41,16 +40,16 @@ For more information about Amazon S3 permissions, see [Amazon S3 actions](using-
 **Report**  
 Specify whether you want S3 Batch Operations to generate a completion report\. If you request a job\-completion report, you must also provide the parameters for the report in this element\. The necessary information includes the bucket where you want to store the report, the format of the report, whether you want the report to include the details of all tasks or only failed tasks, and an optional prefix string\.
 
-**Tags \(Optional\)**  
+**Tags \(optional\)**  
 You can label and control access to your S3 Batch Operations jobs by adding *tags*\. Tags can be used to identify who is responsible for a Batch Operations job\. You can create jobs with tags attached to them, and you can add tags to jobs after you create them\. For example, you could grant an IAM user permission to invoke `CreateJob` provided that the job is created with the tag `"Department=Finance"`\.   
 For more information, see [Controlling access and labeling jobs using tags](batch-ops-job-tags.md)\.
 
-**Description \(Optional\)**  
+**Description \(optional\)**  
 To track and monitor your job, you can also provide a description of up to 256 characters\. Amazon S3 includes this description whenever it returns information about a job or displays job details on the Amazon S3 console\. You can then easily sort and filter jobs according to the descriptions that you assigned\. Descriptions don't need to be unique, so you can use descriptions as categories \(for example, "Weekly Log Copy Jobs"\) to help you track groups of similar jobs\.
 
 ## Specifying a manifest<a name="specify-batchjob-manifest"></a>
 
- A manifest is an Amazon S3 object that lists object keys that you want Amazon S3 to act upon\. To create a manifest for a job, you specify the manifest object key, ETag, and optional version ID\. The contents of the manifest must be URL encoded\. Manifests that use server\-side encryption with customer\-provided keys \(SSE\-C\) and server\-side encryption with AWS Key Management Service \(SSE\-KMS\) customer master keys \(CMKs\) are not supported\. Your manifest must contain the bucket name, object key, and optionally, the object version for each object\. Any other fields in the manifest are not used by S3 Batch Operations\. 
+ A manifest is an Amazon S3 object that lists object keys that you want Amazon S3 to act upon\. To create a manifest for a job, you specify the manifest object key, ETag, and optional version ID\. The contents of the manifest must be URL encoded\. Manifests that use server\-side encryption with customer\-provided keys \(SSE\-C\) and server\-side encryption with AWS Key Management Service \(SSE\-KMS\) AWS KMS keys are not supported\. Your manifest must contain the bucket name, object key, and optionally, the object version for each object\. Any other fields in the manifest are not used by S3 Batch Operations\. 
 
 You can specify a manifest in a create job request using one of the following two formats\.
 + Amazon S3 inventory report — Must be a CSV\-formatted Amazon S3 inventory report\. You must specify the `manifest.json` file that is associated with the inventory report\. For more information about inventory reports, see [ Amazon S3 inventory](storage-inventory.md)\. If the inventory report includes version IDs, S3 Batch Operations operates on the specific object versions\.
@@ -86,13 +85,16 @@ S3 Batch Operations does not support CSV *manifest files* that are AWS KMS\-encr
 If the objects in your manifest are in a versioned bucket, you should specify the version IDs for the objects\. When you create a job, S3 Batch Operations parses the entire manifest before running the job\. However, it doesn't take a "snapshot" of the state of the bucket\.   
 Because manifests can contain billions of objects, jobs might take a long time to run\. If you overwrite an object with a new version while a job is running, and you didn't specify a version ID for that object, Amazon S3 performs the operation on the latest version of the object, and not the version that existed when you created the job\. The only way to avoid this behavior is to specify version IDs for the objects that are listed in the manifest\. 
 
-## To create a Batch Operations job<a name="to-create-batch-ops-job"></a>
+## Creating a job<a name="to-create-batch-ops-job"></a>
 
-This section describes how to create a S3 Batch Operations job\. For more information about the details of creating a job request, see [Batch Operations job request elements](#batch-ops-create-job-request-elements)\. For information about setting up the permissions that you need to create a job, see [Granting permissions for Amazon S3 Batch Operations](batch-ops-iam-role-policies.md)\.
+ You can create S3 Batch Operations jobs using the AWS Management Console, AWS CLI, Amazon SDKs, or REST API\. 
+
+For more information about creating a job request, see [Batch Operations job request elements](#batch-ops-create-job-request-elements)\. 
+
+**Prerequisite**  
+Before you create a Batch Operations job, confirm that you have configured relevant permissions\. For more information, see [Granting permissions for Amazon S3 Batch Operations](batch-ops-iam-role-policies.md)\.
 
 ### Using the S3 console<a name="batch-ops-create-job-console"></a>
-
-This section describes how to create a S3 Batch Operations job using the Amazon S3 console\.
 
 **To create a batch job**
 
@@ -301,11 +303,6 @@ public class CreateJob {
 
 If the `Create Job` request succeeds, Amazon S3 returns a job ID\. The job ID is a unique identifier that Amazon S3 generates automatically so that you can identify your Batch Operations job and monitor its status\.
 
-When you create a job through the AWS CLI, AWS SDKs, or REST API, you can set S3 Batch Operations to begin processing the job automatically\. The job runs as soon as it's ready and not waiting behind higher\-priority jobs\. 
+When you create a job through the AWS CLI, Amazon SDKs, or REST API, you can set S3 Batch Operations to begin processing the job automatically\. The job runs as soon as it's ready and not waiting behind higher\-priority jobs\. 
 
 When you create a job through the AWS Management Console, you must review the job details and confirm that you want to run it before Batch Operations can begin to process it\. After you confirm that you want to run the job, it progresses as though you had created it through one of the other methods\. If a job remains in the suspended state for over 30 days, it will fail\.
-
-## Related resources<a name="batch-ops-create-job-related-resources"></a>
-+ [S3 Batch Operations basics](batch-ops-basics.md)
-+ [Operations](batch-ops-operations.md)
-+ [Managing S3 Batch Operations jobs](batch-ops-managing-jobs.md)

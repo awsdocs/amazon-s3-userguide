@@ -29,7 +29,10 @@ The following table shows the ACL permissions that you can configure for buckets
 
 For more information about ACL permissions, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
-To set ACL permissions for a bucket, follow these steps\.
+**Note**  
+The console displays combined access grants for duplicate grantees\. To see the full list of ACLs, use the Amazon S3 REST API, AWS CLI, or AWS SDKs\.
+
+**To set ACL permissions for a bucket**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -55,7 +58,7 @@ To set ACL permissions for a bucket, follow these steps\.
    + **Objects** – **List** or **Write**
    + **Bucket ACL** – **Read** or **Write**
 
-   The *owner* refers to the AWS account root user, not an AWS Identity and Access Management \(IAM\) user\. For more information about the root user, see [The AWS Account Root User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) in the *IAM User Guide*\.
+   The *owner* refers to the AWS account root user, not an AWS Identity and Access Management \(IAM\) user\. For more information about the root user, see [The AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) in the *IAM User Guide*\.
 
 1. To grant or undo permissions for the general public \(everyone on the internet\), beside **Everyone \(public access\)**, clear or select from the following ACL permissions:
    + **Objects** – **List**
@@ -104,9 +107,10 @@ The following table shows the ACL permissions that you can configure for objects
 
 For more information about ACL permissions, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
-To set ACL permissions for an object, follow these steps\.
+**Note**  
+The console displays combined access grants for duplicate grantees\. To see the full list of ACLs, use the Amazon S3 REST API, AWS CLI, or AWS SDKs\.
 
-**To set permissions for an object**
+**To set ACL permissions for an object**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -133,7 +137,7 @@ To set ACL permissions for an object, follow these steps\.
 
 **Access for object owner**
 
-      The *owner* refers to the AWS account root user, and not an AWS Identity and Access Management \(IAM\) user\. For more information about the root user, see [The AWS Account Root User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) in the *IAM User Guide*\.
+      The *owner* refers to the AWS account root user, and not an AWS Identity and Access Management \(IAM\) user\. For more information about the root user, see [The AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) in the *IAM User Guide*\.
 
       To change the owner's object access permissions, under **Access for object owner**, choose **Your AWS Account \(owner\)**\.
 
@@ -143,7 +147,7 @@ To set ACL permissions for an object, follow these steps\.
 
 **Access for other AWS accounts**
 
-      To grant permissions to an AWS user from a different AWS account, under **Access for other AWS accounts**, choose **Add account**\. In the **Enter an ID** field, enter the canonical ID of the AWS user that you want to grant object permissions to\. For information about finding a canonical ID, see [AWS Account Identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) in the *Amazon Web Services General Reference*\. You can add as many as 99 users\.
+      To grant permissions to an AWS user from a different AWS account, under **Access for other AWS accounts**, choose **Add account**\. In the **Enter an ID** field, enter the canonical ID of the AWS user that you want to grant object permissions to\. For information about finding a canonical ID, see [Your AWS account identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) in the *Amazon Web Services General Reference*\. You can add as many as 99 users\.
 
       Select the check boxes for the permissions that you want to grant to the user, and then choose **Save**\. To display information about the permissions, choose the Help icons\. 
 

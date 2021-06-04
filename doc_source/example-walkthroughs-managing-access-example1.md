@@ -65,7 +65,7 @@ Using the credentials of user AccountAadmin in Account A, and the special IAM us
 
 1. Create Resources \(a bucket and an IAM user\)
 
-   1. In the Amazon S3 console create a bucket\. Note down the AWS region in which you created it\. For instructions, see [Creating a bucket](create-bucket-overview.md)\. 
+   1. In the Amazon S3 console create a bucket\. Note down the AWS Region in which you created it\. For instructions, see [Creating a bucket](create-bucket-overview.md)\. 
 
    1. In the IAM console, do the following: 
 

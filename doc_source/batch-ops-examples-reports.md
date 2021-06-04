@@ -1,10 +1,10 @@
-# S3 Batch Operations completion reports<a name="batch-ops-examples-reports"></a>
+# Examples: S3 Batch Operations completion reports<a name="batch-ops-examples-reports"></a>
 
 When you create an S3 Batch Operations job, you can request a completion report for all tasks or just for failed tasks\. As long as at least one task has been invoked successfully, S3 Batch Operations generates a report for jobs that have completed, failed, or been canceled\.
 
 The completion report contains additional information for each task, including the object key name and version, status, error codes, and descriptions of any errors\. The description of errors for each failed task can be used to diagnose issues that occur during job creation, such as permissions\.
 
-**Example — top\-level manifest result file**  
+**Example top\-level manifest result file**  
 The top\-level `manifest.json` file contains the locations of each succeeded report and \(if the job had any failures\) the location of failed reports, as shown in the following example\.  
 
 ```
@@ -30,7 +30,7 @@ The top\-level `manifest.json` file contains the locations of each succeeded rep
 ```
 
 
-**Example — failed tasks reports**  
+**Example failed tasks reports**  
 Failed tasks reports contain the following information for all *failed* tasks:  
 + `Bucket`
 + `Key`
@@ -51,7 +51,7 @@ awsexamplebucket1,image_17398,,failed,200,PermanentFailure,"Lambda returned func
 ```
 
 
-**Example — succeeded tasks report**  
+**Example succeeded tasks report**  
 Succeeded tasks reports contain the following for the *completed* tasks:  
 + `Bucket`
 + `Key`

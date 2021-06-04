@@ -1,6 +1,6 @@
 # S3 Object Lock legal hold<a name="batch-ops-legal-hold"></a>
 
-S3 Object Lock enables you to place a legal hold on an object version\. Like setting a retention period, a legal hold prevents an object version from being overwritten or deleted\. However, a legal hold doesn't have an associated retention period and remains in effect until removed\. 
+The **Object Lock legal hold** operation enables you to place a legal hold on an object version\. Like setting a retention period, a legal hold prevents an object version from being overwritten or deleted\. However, a legal hold doesn't have an associated retention period and remains in effect until removed\. 
 
 You can use S3 Batch Operations with Object Lock to add legal holds to *many* Amazon S3 objects at once\. You can do this by listing the target objects in your manifest and submitting that list to Batch Operations\. Your S3 Batch Operations job with Object Lock legal hold runs until completion, until cancellation, or until a failure state is reached\.
 

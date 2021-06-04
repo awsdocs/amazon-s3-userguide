@@ -66,3 +66,52 @@ When you delete a delete marker, Amazon S3 includes the following in the respons
 2. x-amz-version-id: versionID 
 3. x-amz-delete-marker: true
 ```
+
+## Using the AWS SDKs<a name="remove-delete-marker-examples-sdk"></a>
+
+TFor information about using other AWS SDKs, see the [AWSDeveloper Center](https://aws.amazon.com/code/)\.
+
+------
+#### [ Python ]
+
+For instructions on how to create and test a working sample, see [Using the AWS SDK for Python \(Boto\)](UsingTheBotoAPI.md)\. 
+
+The following Python code example demonstrates how to remove a delete marker from an object and thus makes the most recent non\-current version the current version of the object\.
+
+```
+def revive_object(bucket, object_key):
+    """
+    Revives a versioned object that was deleted by removing the object's active
+    delete marker.
+    A versioned object presents as deleted when its latest version is a delete marker.
+    By removing the delete marker, we make the previous version the latest version
+    and the object then presents as *not* deleted.
+
+    Usage is shown in the usage_demo_single_object function at the end of this module.
+
+    :param bucket: The bucket that contains the object.
+    :param object_key: The object to revive.
+    """
+    # Get the latest version for the object.
+    response = s3.meta.client.list_object_versions(
+        Bucket=bucket.name, Prefix=object_key, MaxKeys=1)
+
+    if 'DeleteMarkers' in response:
+        latest_version = response['DeleteMarkers'][0]
+        if latest_version['IsLatest']:
+            logger.info("Object %s was indeed deleted on %s. Let's revive it.",
+                        object_key, latest_version['LastModified'])
+            obj = bucket.Object(object_key)
+            obj.Version(latest_version['VersionId']).delete()
+            logger.info("Revived %s, active version is now %s  with body '%s'",
+                        object_key, obj.version_id, obj.get()['Body'].read())
+        else:
+            logger.warning("Delete marker is not the latest version for %s!",
+                           object_key)
+    elif 'Versions' in response:
+        logger.warning("Got an active version for %s, nothing to do.", object_key)
+    else:
+        logger.error("Couldn't get any version info for %s.", object_key)
+```
+
+------

@@ -1,6 +1,6 @@
 # Setting default server\-side encryption behavior for Amazon S3 buckets<a name="bucket-encryption"></a>
 
-With Amazon S3 default encryption, you can set the default encryption behavior for an S3 bucket so that all new objects are encrypted when they are stored in the bucket\. The objects are encrypted using server\-side encryption with either Amazon S3\-managed keys \(SSE\-S3\) or customer master keys \(CMKs\) stored in AWS Key Management Service \(AWS KMS\) \(SSE\-KMS\)\. 
+With Amazon S3 default encryption, you can set the default encryption behavior for an S3 bucket so that all new objects are encrypted when they are stored in the bucket\. The objects are encrypted using server\-side encryption with either Amazon S3\-managed keys \(SSE\-S3\) or AWS KMS keys stored in AWS Key Management Service \(AWS KMS\) \(SSE\-KMS\)\. 
 
 When you configure your bucket to use default encryption with SSE\-KMS, you can also enable S3 Bucket Keys to decrease request traffic from Amazon S3 to AWS Key Management Service \(AWS KMS\) and reduce the cost of encryption\. For more information, see [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)\.
 
@@ -11,7 +11,7 @@ For more information about permissions required for default encryption, see [Put
 To set up default encryption on a bucket, you can use the Amazon S3 console, AWS CLI, AWS SDKs, or the REST API\. For more information, see [Enabling Amazon S3 default bucket encryption](default-bucket-encryption.md)\.
 
 **Encrypting existing objects**  
-To encrypt your existing Amazon S3 objects with a single request, you can use Amazon S3 Batch Operations\. You provide S3 Batch Operations with a list of objects to operate on, and Batch Operations calls the respective API to perform the specified operation\. You can use the copy operation to copy the existing unencrypted objects and write the new encrypted objects to the same bucket\. A single Batch Operations job can perform the specified operation on billions of objects containing exabytes of data\. For more information, see [Performing S3 Batch Operations](batch-ops.md)\.
+To encrypt your existing Amazon S3 objects, you can use Amazon S3 Batch Operations\. You provide S3 Batch Operations with a list of objects to operate on, and Batch Operations calls the respective API to perform the specified operation\. You can use the [Batch Operations Copy operation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-copy-object.html) to copy existing unencrypted objects and write them back to the same bucket as encrypted objects\. A single Batch Operations job can perform the specified operation on billions of objects\. For more information, see [Performing large\-scale batch operations on Amazon S3 objects](batch-ops.md) and the *AWS Storage Blog* post [Encrypting objects with Amazon S3 Batch Operations](http://aws.amazon.com/blogs/storage/encrypting-objects-with-amazon-s3-batch-operations/)\.
 
 You can also encrypt existing objects using the Copy Object API\. For more information, see the *AWS Storage Blog* post [Encrypting existing Amazon S3 objects with the AWS CLI](http://aws.amazon.com/blogs/storage/encrypting-existing-amazon-s3-objects-with-the-aws-cli/)\.
 
@@ -27,7 +27,7 @@ Be aware of the following when using encryption for cross\-account operations:
 + If specifying your own CMK, you should use a fully qualified CMK key ARN\. When using a CMK alias, be aware that AWS KMS will resolve the key within the requester’s account\. This can result in data encrypted with a CMK that belongs to the requester, and not the bucket administrator\.
 + You must specify a key that you \(the requester\) have been granted `Encrypt` permission to\. For more information, see [Allows key users to use a CMK for cryptographic operations](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-users-crypto) in the *AWS Key Management Service Developer Guide*\.
 
-For more information about when to use customer managed CMKs and the AWS managed CMK, see [Should I use an AWS AWS KMS\-managed key or a custom AWS KMS key to encrypt my objects on Amazon S3?](http://aws.amazon.com/premiumsupport/knowledge-center/s3-object-encrpytion-keys/)
+For more information about when to use customer managed KMS keys and the AWS managed KMS keys, see [Should I use an AWS KMS\-managed key or a custom AWS KMS key to encrypt my objects on Amazon S3?](http://aws.amazon.com/premiumsupport/knowledge-center/s3-object-encrpytion-keys/)
 
 ## Using default encryption with replication<a name="bucket-encryption-replication"></a>
 
@@ -43,4 +43,4 @@ When you configure your bucket to use default encryption for SSE\-KMS on new obj
 
 When you configure your bucket to use S3 Bucket Keys for SSE\-KMS on new objects, AWS KMS generates a bucket\-level key that is used to create a unique [data key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) for objects in the bucket\. This bucket key is used for a time\-limited period within Amazon S3, reducing the need for Amazon S3 to make requests to AWS KMS to complete encryption operations\. 
 
-For more information about using an S3 Bucket Key, see [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)\.
+For more information about using an S3 Bucket Key, see [Using Amazon S3 Bucket Keys](bucket-key.md)\.

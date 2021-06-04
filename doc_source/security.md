@@ -1,4 +1,4 @@
-# Amazon S3 Security<a name="security"></a>
+# Amazon S3 security<a name="security"></a>
 
 Cloud security at AWS is the highest priority\. As an AWS customer, you benefit from a data center and network architecture that are built to meet the requirements of the most security\-sensitive organizations\.
 

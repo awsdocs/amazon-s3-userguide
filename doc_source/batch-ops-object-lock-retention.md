@@ -49,7 +49,7 @@ public void allowPutObjectRetention() {
             "        }" +
             "    ]" +
             "}";
-            
+
     final AmazonIdentityManagement iam =
             AmazonIdentityManagementClientBuilder.defaultClient();
 

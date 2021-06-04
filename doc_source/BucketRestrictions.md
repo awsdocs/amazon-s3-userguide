@@ -4,7 +4,7 @@ An Amazon S3 bucket is owned by the AWS account that created it\. Bucket ownersh
 
 When you create a bucket, you choose its name and the AWS Region to create it in\. After you create a bucket, you can't change its name or Region\.
 
-When naming a bucket, choose a name that is relevant to you or your business\. Avoid using names associated with others\. For example, you should avoid using *AWS* or *Amazon* in your bucket name\.
+When naming a bucket, choose a name that is relevant to you or your business\. Avoid using names associated with others\. For example, you should avoid using `AWS` or `Amazon` in your bucket name\.
 
 By default, you can create up to 100 buckets in each of your AWS accounts\. If you need additional buckets, you can increase your account bucket limit to a maximum of 1,000 buckets by submitting a service limit increase\. There is no difference in performance whether you use many buckets or just a few\. 
 

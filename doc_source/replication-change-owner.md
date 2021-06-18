@@ -42,7 +42,6 @@ The following example replication configuration tells Amazon S3 to replicate obj
       <ID>Rule-1</ID>
       <Priority>1</Priority>
       <Status>Enabled</Status>
-      <Status>Enabled</Status>
       <DeleteMarkerReplication>
          <Status>Disabled</Status>
       </DeleteMarkerReplication>

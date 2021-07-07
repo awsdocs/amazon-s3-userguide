@@ -32,7 +32,8 @@ The following bucket policy specifies that account *`111122223333`* can upload o
             ]
          },
          "Action": [
-            "s3:PutObject"
+            "s3:PutObject",
+            "s3:PutObjectAcl"
          ],
          "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
          "Condition": {

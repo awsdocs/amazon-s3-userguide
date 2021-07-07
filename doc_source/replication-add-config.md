@@ -39,7 +39,6 @@ The following sections provide additional information\.
 Each rule must include the rule's status and priority, and indicate whether to replicate delete markers\. 
 + `Status` indicates whether the rule is enabled or disabled\. If a rule is disabled, Amazon S3 doesn't perform the actions specified in the rule\. 
 + `Priority` indicates which rule has precedence whenever two or more replication rules conflict\. Amazon S3 will attempt to replicate objects according to all replication rules\. However, if there are two or more rules with the same destination bucket, then objects will be replicated according to the rule with the highest priority\. The higher the number, the higher the priority\.
-+ Currently, delete markers aren't replicated, so you must set `DeleteMarkerReplication` to `Disabled`\.
 
 In the destination configuration, you must provide the name of the bucket or buckets where you want Amazon S3 to replicate objects\. 
 
@@ -535,7 +534,7 @@ For backward compatibility, Amazon S3 continues to support the XML V1 replicatio
   ```
 
   For backward compatibility, `Amazon S3 ` continues to support the V1 configuration\. 
-+ When you delete an object from your source bucket without specifying an object version ID, Amazon S3 adds a delete marker\. If you use V1 of the replication configuration XML, Amazon S3 replicates delete markers that resulted from user actions\. In other words, if the user deleted the object, and not if Amazon S3 deleted it because the object expired as part of lifecycle action\. In V2, Amazon S3 doesn't replicate delete markers\. Therefore, you must set the `DeleteMarkerReplication` element to `Disabled`\. 
++ When you delete an object from your source bucket without specifying an object version ID, Amazon S3 adds a delete marker\. If you use V1 of the replication configuration XML, Amazon S3 replicates delete markers that resulted from user actions\. In other words, if the user deleted the object, and not if Amazon S3 deleted it because the object expired as part of lifecycle action\. In V2, delete markers are now replicated if enabled, however they do not replicate rules with tag filters\.
 
   ```
   ...
@@ -545,7 +544,10 @@ For backward compatibility, Amazon S3 continues to support the XML V1 replicatio
           <Priority>integer</Priority>
           <DeleteMarkerReplication>
              <Status>Disabled</Status>
-          </DeleteMarkerReplication>        
+          </DeleteMarkerReplication>
+          <Filter>
+             <Tag>Tax</Tag>
+          </Filter>        
           <Destination>        
              <Bucket>arn:aws:s3:::bucket-name</Bucket> 
           </Destination>    

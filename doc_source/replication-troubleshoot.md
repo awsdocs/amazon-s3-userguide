@@ -21,7 +21,7 @@ If object replicas don't appear in the destination bucket after you configure re
   ```
   1.            "s3:GetReplicationConfiguration",
   2.            "s3:ListBucket",
-  3.            "s3:GetObjectVersion",
+  3.            "s3:GetObjectVersionForReplication",
   4.            "s3:GetObjectVersionAcl",
   5.            "s3:GetObjectVersionTagging"
   ```

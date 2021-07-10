@@ -6,7 +6,7 @@ Amazon S3 has a simple web services interface that you can use to store and retr
 
 This introduction to Amazon Simple Storage Service \(Amazon S3\) provides a detailed summary of this web service\. After reading this section, you should have a good idea of what it offers and how it can fit in with your business\.
 
-This guide describes how you send requests to create buckets, store and retrieve your objects, and manage permissions on your resources\. The guide also describes access control and the authentication process\. Access control defines who can access objects and buckets within Amazon S3, and the type of access \(for example, READ and WRITE\)\. The authentication process verifies the identity of a user who is trying to access Amazon Web Services \(AWS\)\.
+This guide describes how you send requests to create buckets, store and retrieve your objects, and manage permissions on your resources\. The guide also describes access control and the authentication process\. Access control defines who can access objects and buckets within Amazon S3, and the type of access \(for example, READ and WRITE\)\. The authentication process tests the validity of the identity supplied by a user who is trying to access Amazon Web Services \(AWS\)\.
 
 **Topics**
 + [How do I\.\.\.?](#HowThisGuideIsOrganized)

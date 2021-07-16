@@ -8,6 +8,7 @@ By default, S3 Versioning is disabled on buckets, and you must explicitly enable
 
 **Note**  
 The SOAP API does not support S3 Versioning\. SOAP support over HTTP is deprecated, but it is still available over HTTPS\. New Amazon S3 features are not supported for SOAP\.
+Normal Amazon S3 rates apply for every version of an object stored and transferred\. Each version of an object is the entire object; it is not just a diff from the previous version\. Thus, if you have three versions of an object stored, you are charged for three objects\. 
 
 ## Unversioned, versioning\-enabled, and versioning\-suspended buckets<a name="versioning-states"></a>
 

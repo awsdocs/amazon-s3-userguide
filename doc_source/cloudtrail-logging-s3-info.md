@@ -22,7 +22,7 @@ You can store your log files in your bucket for as long as you want, but you can
 
 By default, CloudTrail logs S3 bucket\-level API calls that were made in the last 90 days, but not log requests made to objects\. Bucket\-level calls include events like `CreateBucket`, `DeleteBucket`, `PutBucketLifeCycle`, `PutBucketPolicy`, etc\. You can see bucket\-level events on the CloudTrail console\. However, you can't view data events \(Amazon S3 object\-level calls\) there—you must parse or query CloudTrail logs for them\. 
 
-For information about what Amazon S3 API calls are captured by CloudTrail, see [Amazon S3 CloudTrail events](#cloudtrail-logging-s3-info)\. 
+For more information about what Amazon S3 API calls are captured by CloudTrail, see [Amazon S3 CloudTrail events](#cloudtrail-logging-s3-info)\. 
 
 ## Amazon S3 account\-level actions tracked by CloudTrail logging<a name="cloudtrail-account-level-tracking"></a>
 
@@ -85,7 +85,7 @@ In addition to these API operations, you can also use the [OPTIONS object](https
 
 ## Amazon S3 object\-level actions tracked by AWS CloudTrail logging<a name="cloudtrail-object-level-tracking"></a>
 
-You can also get CloudTrail logs for object\-level Amazon S3 actions\. To do this, enable data events for your S3 bucket or all buckets in your account\. When an object\-level action occurs in your account, CloudTrail evaluates your trail settings\. If the event matches the object that you specified in a trail, the event is logged\. For more information, see [Enabling CloudTrail event logging for S3 buckets and objects](enable-cloudtrail-logging-for-s3.md) and [Logging Data Events for Trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html) in the *AWS CloudTrail User Guide*\. 
+You can also get CloudTrail logs for object\-level Amazon S3 actions\. To do this, enable data events for your S3 bucket or all buckets in your account\. When an object\-level action occurs in your account, CloudTrail evaluates your trail settings\. If the event matches the object that you specified in a trail, the event is logged\. For more information, see [Enabling CloudTrail event logging for S3 buckets and objects](enable-cloudtrail-logging-for-s3.md) and [Logging Data Events for Trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html) in the *AWS CloudTrail User Guide*\.
 
 The following object\-level API actions are logged as CloudTrail events:
 +  [AbortMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html) 
@@ -127,16 +127,15 @@ The examples assume that CloudTrail logs are appropriately configured\.
 CloudTrail delivers access logs to the bucket owner only if the bucket owner has permissions for the same object API\. Consider the following cross\-account scenario:
 + Account\-A owns the bucket\.
 + Account\-B \(the requester\) tries to access an object in that bucket\.
-
-CloudTrail always delivers object\-level API access logs to the requester\. In addition, CloudTrail also delivers the same logs to the bucket owner only if the bucket owner has permissions for the same API actions on that object\. 
++ Account\-C owns the object\. May be the same account as account\-A\.
 
 **Note**  
-If the bucket owner is also the object owner, the bucket owner gets the object access logs\. Otherwise, the bucket owner must get permissions, through the object ACL, for the same object API to get the same object\-access API logs\.
+CloudTrail always delivers object\-level API access logs to the requester \(account\-B\)\. In addition, CloudTrail also delivers the same logs to the bucket owner \(account\-A\) only if the bucket owner owns \(account\-C\) or has permissions for those same API actions on that object\. Otherwise, the bucket owner must get permissions, through the object's ACL to get object\-level API access logs\.
 
 #### Example 2: CloudTrail does not proliferate email addresses used in setting object ACLs<a name="cloudtrail-crossaccount-example2"></a>
 
 Consider the following cross\-account scenario:
 + Account\-A owns the bucket\.
-+  Account\-B \(the requester\) sends a request to set an object ACL grant using an email address\. For information about ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
++  Account\-B \(the requester\) sends a request to set an object ACL grant using an email address\. For more information about ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
 The request gets the logs along with the email information\. However, the bucket owner—if they are eligible to receive logs, as in example 1—gets the CloudTrail log reporting the event\. However, the bucket owner doesn't get the ACL configuration information, specifically the grantee email and the grant\. The only information that the log tells the bucket owner is that an ACL API call was made by Account\-B\.

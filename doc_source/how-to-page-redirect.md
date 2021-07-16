@@ -1,70 +1,15 @@
 # \(Optional\) Configuring a webpage redirect<a name="how-to-page-redirect"></a>
 
-If your Amazon S3 bucket is configured for website hosting, you can configure a webpage redirect\. You have the following options for configuring a redirect\.
+If your Amazon S3 bucket is configured for static website hosting, you can configure redirects for your bucket or the objects in it\. You have the following options for configuring redirects\.
 
 **Topics**
-+ [Setting an object redirect using the Amazon S3 console](#page-redirect-using-console)
-+ [Setting an object redirect using the REST API](#page-redirect-using-rest-api)
-+ [Redirecting requests for a bucket's website endpoint to another host](#redirect-endpoint-host)
-+ [Configuring advanced conditional redirects](#advanced-conditional-redirects)
++ [Redirect requests for your bucket's website endpoint to another bucket or domain](#redirect-endpoint-host)
++ [Configure redirection rules to use advanced conditional redirects](#advanced-conditional-redirects)
++ [Redirect requests for an object](#redirect-requests-object-metadata)
 
-## Setting an object redirect using the Amazon S3 console<a name="page-redirect-using-console"></a>
+## Redirect requests for your bucket's website endpoint to another bucket or domain<a name="redirect-endpoint-host"></a>
 
-You can redirect requests for an object to another object or URL by setting the website redirect location in the metadata of the object\. You set the redirect by adding the `x-amz-website-redirect-location` property to the object metadata\. On the Amazon S3 console, you set the **Website Redirect Location** in the metadata of the object\. If you use the [Amazon S3 API](#page-redirect-using-rest-api), you set `x-amz-website-redirect-location`\. The website then interprets the object as a 301 redirect\. 
-
-To redirect a request to another object, you set the redirect location to the key of the target object\. To redirect a request to an external URL, you set the redirect location to the URL that you want\. For more information about object metadata, see [System\-defined object metadata](UsingMetadata.md#SysMetadata)\.
-
-When you set a page redirect, you can either keep or delete the source object content\. For example, if you have a `page1.html` object in your bucket, you can redirect any requests for this page to another object, `page2.html`\. You have two options:
-+ Keep the content of the `page1.html` object and redirect page requests\.
-+ Delete the content of `page1.html` and upload a zero\-byte object named `page1.html` to replace the existing object and redirect page requests\. 
-
-**To redirect requests for an object**
-
-1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
-
-1. In the **Buckets** list, choose the name of the bucket that you have configured as a static website \(for example, `example.com`\)\.
-
-1. Under **Objects**, select your object\.
-
-1. Choose **Actions**, and choose **Edit metadata**\.
-
-1. Choose **Metadata**\.
-
-1. Choose **Add Metadata**\.
-
-1. Under **Type**, choose **System Defined**\.
-
-1. In **Key**, choose **x\-amz\-website\-redirect\-location**\.
-
-1. In **Value**, enter the key name of the object that you want to redirect to, for example, `/page2.html`\.
-
-   For another object in the same bucket, the `/` prefix in the value is required\. You can also set the value to an external URL, for example, `http://www.example.com`\.
-
-1. Choose **Edit metadata**\.
-
-## Setting an object redirect using the REST API<a name="page-redirect-using-rest-api"></a>
-
-The following Amazon S3 API actions support the `x-amz-website-redirect-location` header in the request\. Amazon S3 stores the header value in the object metadata as `x-amz-website-redirect-location`\. 
-+ [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html)
-+ [Initiate Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html)
-+ [POST Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html)
-+ [PUT Object \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html)
-
-A bucket configured for website hosting has both the website endpoint and the REST endpoint\. A request for a page that is configured as a 301 redirect has the following possible outcomes, depending on the endpoint of the request:
-+ **Region\-specific website endpoint – **Amazon S3 redirects the page request according to the value of the `x-amz-website-redirect-location` property\. 
-+ **REST endpoint – **Amazon S3 doesn't redirect the page request\. It returns the requested object\.
-
-For more information about the endpoints, see [Key differences between a website endpoint and a REST API endpoint](WebsiteEndpoints.md#WebsiteRestEndpointDiff)\.
-
-When setting a page redirect, you can either keep or delete the object content\. For example, suppose that you have a `page1.html` object in your bucket\.
-+ To keep the content of `page1.html` and only redirect page requests, you can submit a [PUT Object \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html) request to create a new `page1.html` object that uses the existing `page1.html` object as the source\. In your request, you set the `x-amz-website-redirect-location` header\. When the request is complete, you have the original page with its content unchanged, but Amazon S3 redirects any requests for the page to the redirect location that you specify\.
-+ To delete the content of the `page1.html` object and redirect requests for the page, you can send a PUT Object request to upload a zero\-byte object that has the same object key: `page1.html`\. In the PUT request, you set `x-amz-website-redirect-location` for `page1.html` to the new object\. When the request is complete, `page1.html` has no content, and requests are redirected to the location that is specified by `x-amz-website-redirect-location`\.
-
-When you retrieve the object using the [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) action, along with other object metadata, Amazon S3 returns the `x-amz-website-redirect-location` header in the response\.
-
-## Redirecting requests for a bucket's website endpoint to another host<a name="redirect-endpoint-host"></a>
-
-You can redirect all requests for a website endpoint for a bucket to another host\. If you redirect all requests, any request made to the website endpoint is redirected to the specified host name\. 
+You can redirect all requests to a website endpoint for a bucket to another bucket or domain\. If you redirect all requests, any request made to the website endpoint is redirected to the specified bucker or domain\. 
 
 For example, if your root domain is `example.com`, and you want to serve requests for both `http://example.com` and `http://www.example.com`, you can create two buckets named `example.com` and `www.example.com`\. Then, maintain the content in the `example.com` bucket, and configure the other `www.example.com` bucket to redirect all requests to the `example.com` bucket\. For more information, see [Configuring a Static Website Using a Custom Domain Name](https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html)\.
 
@@ -90,11 +35,11 @@ For example, if your root domain is `example.com`, and you want to serve request
 
 1. Choose **Save changes**\.
 
-## Configuring advanced conditional redirects<a name="advanced-conditional-redirects"></a>
+## Configure redirection rules to use advanced conditional redirects<a name="advanced-conditional-redirects"></a>
 
 Using advanced redirection rules, you can route requests conditionally according to specific object key names, prefixes in the request, or response codes\. For example, suppose that you delete or rename an object in your bucket\. You can add a routing rule that redirects the request to another object\. If you want to make a folder unavailable, you can add a routing rule to redirect the request to another webpage\. You can also add a routing rule to handle error conditions by routing requests that return the error to another domain when the error is processed\.
 
-When configuring a bucket for website hosting, you have the option of specifying advanced redirection rules\. Amazon S3 has a limitation of 50 routing rules per website configuration\. If you require more than 50 routing rules, you can use object redirect\. For more information, see [Setting an object redirect using the Amazon S3 console](#page-redirect-using-console)\.
+When enable static website hosting for your bucket, you can optionally specify advanced redirection rules\. Amazon S3 has a limitation of 50 routing rules per website configuration\. If you require more than 50 routing rules, you can use object redirect\. For more information, see [Using the S3 console](#page-redirect-using-console)\.
 
 For more information about configuring routing rules using the REST API, see [PutBucketWebsite](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketWebsite.html) in the *Amazon Simple Storage Service API Reference*\.
 
@@ -302,3 +247,57 @@ The following example also inserts the object key prefix `report-404/` in the re
     </RoutingRule>
   </RoutingRules>
 ```
+
+## Redirect requests for an object<a name="redirect-requests-object-metadata"></a>
+
+You can redirect requests for an object to another object or URL by setting the website redirect location in the metadata of the object\. You set the redirect by adding the `x-amz-website-redirect-location` property to the object metadata\. On the Amazon S3 console, you set the **Website Redirect Location** in the metadata of the object\. If you use the [Amazon S3 API](#page-redirect-using-rest-api), you set `x-amz-website-redirect-location`\. The website then interprets the object as a 301 redirect\. 
+
+To redirect a request to another object, you set the redirect location to the key of the target object\. To redirect a request to an external URL, you set the redirect location to the URL that you want\. For more information about object metadata, see [System\-defined object metadata](UsingMetadata.md#SysMetadata)\.
+
+When you set a page redirect, you can either keep or delete the source object content\. For example, if you have a `page1.html` object in your bucket, you can redirect any requests for this page to another object, `page2.html`\. You have two options:
++ Keep the content of the `page1.html` object and redirect page requests\.
++ Delete the content of `page1.html` and upload a zero\-byte object named `page1.html` to replace the existing object and redirect page requests\. 
+
+### Using the S3 console<a name="page-redirect-using-console"></a>
+
+1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the **Buckets** list, choose the name of the bucket that you have configured as a static website \(for example, `example.com`\)\.
+
+1. Under **Objects**, select your object\.
+
+1. Choose **Actions**, and choose **Edit metadata**\.
+
+1. Choose **Metadata**\.
+
+1. Choose **Add Metadata**\.
+
+1. Under **Type**, choose **System Defined**\.
+
+1. In **Key**, choose **x\-amz\-website\-redirect\-location**\.
+
+1. In **Value**, enter the key name of the object that you want to redirect to, for example, `/page2.html`\.
+
+   For another object in the same bucket, the `/` prefix in the value is required\. You can also set the value to an external URL, for example, `http://www.example.com`\.
+
+1. Choose **Edit metadata**\.
+
+### Using the REST API<a name="page-redirect-using-rest-api"></a>
+
+The following Amazon S3 API actions support the `x-amz-website-redirect-location` header in the request\. Amazon S3 stores the header value in the object metadata as `x-amz-website-redirect-location`\. 
++ [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html)
++ [Initiate Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html)
++ [POST Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html)
++ [PUT Object \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html)
+
+A bucket configured for website hosting has both the website endpoint and the REST endpoint\. A request for a page that is configured as a 301 redirect has the following possible outcomes, depending on the endpoint of the request:
++ **Region\-specific website endpoint – **Amazon S3 redirects the page request according to the value of the `x-amz-website-redirect-location` property\. 
++ **REST endpoint – **Amazon S3 doesn't redirect the page request\. It returns the requested object\.
+
+For more information about the endpoints, see [Key differences between a website endpoint and a REST API endpoint](WebsiteEndpoints.md#WebsiteRestEndpointDiff)\.
+
+When setting a page redirect, you can either keep or delete the object content\. For example, suppose that you have a `page1.html` object in your bucket\.
++ To keep the content of `page1.html` and only redirect page requests, you can submit a [PUT Object \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html) request to create a new `page1.html` object that uses the existing `page1.html` object as the source\. In your request, you set the `x-amz-website-redirect-location` header\. When the request is complete, you have the original page with its content unchanged, but Amazon S3 redirects any requests for the page to the redirect location that you specify\.
++ To delete the content of the `page1.html` object and redirect requests for the page, you can send a PUT Object request to upload a zero\-byte object that has the same object key: `page1.html`\. In the PUT request, you set `x-amz-website-redirect-location` for `page1.html` to the new object\. When the request is complete, `page1.html` has no content, and requests are redirected to the location that is specified by `x-amz-website-redirect-location`\.
+
+When you retrieve the object using the [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) action, along with other object metadata, Amazon S3 returns the `x-amz-website-redirect-location` header in the response\.

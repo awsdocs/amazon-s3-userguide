@@ -58,7 +58,7 @@ After you create a bucket, you can enable static website hosting for your bucket
 
 1. \(Optional\) If you want to specify advanced redirection rules, in **Redirection rules**, enter XML to describe the rules\.
 
-   For example, you can conditionally route requests according to specific object key names or prefixes in the request\. For more information, see [Configuring advanced conditional redirects](how-to-page-redirect.md#advanced-conditional-redirects)\.
+   For example, you can conditionally route requests according to specific object key names or prefixes in the request\. For more information, see [Configure redirection rules to use advanced conditional redirects](how-to-page-redirect.md#advanced-conditional-redirects)\.
 
 1. Choose **Save changes**\.
 
@@ -220,7 +220,7 @@ For more information, see [How do I use CloudFront to serve a static website hos
 
    Your index document opens in a separate browser window\.
 
-You now have a website hosted on Amazon S3\. This website is available at the Amazon S3 website endpoint\. However, you might have a domain, such as `example.com`, that you want to use to serve the content from the website you created\. You might also want to use Amazon S3 root domain support to serve requests for both `http://www.example.com` and `http://example.com`\. This requires additional steps\. For an example, see [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)\. 
+You now have a website hosted on Amazon S3\. This website is available at the Amazon S3 website endpoint\. However, you might have a domain, such as `example.com`, that you want to use to serve the content from the website you created\. You might also want to use Amazon S3 root domain support to serve requests for both `http://www.example.com` and `http://example.com`\. This requires additional steps\. For an example, see [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)\. 
 
 ## Step 8: Clean up<a name="getting-started-cleanup-s3-website-overview"></a>
 

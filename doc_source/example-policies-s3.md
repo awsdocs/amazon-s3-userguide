@@ -24,7 +24,7 @@ In addition to granting the `s3:PutObject`, `s3:GetObject`, and `s3:DeleteObject
       {
          "Effect":"Allow",
          "Action": "s3:ListAllMyBuckets",
-         "Resource":"arn:aws:s3:::*"
+         "Resource":"*"
       },
       {
          "Effect":"Allow",

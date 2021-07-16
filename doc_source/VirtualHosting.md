@@ -144,7 +144,7 @@ Amazon S3 uses the hostname to determine the bucket name\. So the CNAME and the 
 
 Amazon S3 sees only the original hostname `www.example.com` and is unaware of the CNAME mapping used to resolve the request\. 
 
-Any Amazon S3 endpoint can be used in a CNAME\. For example, `s3.ap-southeast-1.amazonaws.com` can be used in CNAMEs\. For more information about endpoints, see [Request Endpoints](MakingRequests.md#RequestEndpoints)\. To create a static website using a custom domain, see [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)
+Any Amazon S3 endpoint can be used in a CNAME\. For example, `s3.ap-southeast-1.amazonaws.com` can be used in CNAMEs\. For more information about endpoints, see [Request Endpoints](MakingRequests.md#RequestEndpoints)\. To create a static website using a custom domain, see [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)
 
 **To associate a hostname with an Amazon S3 bucket using CNAMEs**
 

@@ -24,6 +24,9 @@ These examples assume that you have the following resources:
 
   `arn:aws:lambda:us-east-1:111122223333:function/MyObjectLambdaFunction`
 
+**Note**  
+If using a Lambda function from your account you must include the function version in your policy statement\. For example, `arn:aws:lambda:us-east-1:111122223333:function/MyObjectLambdaFunction:$LATEST`
+
 The following IAM policy grants a user permission to interact with these resources\.
 
 ```
@@ -36,7 +39,7 @@ The following IAM policy grants a user permission to interact with these resourc
         "lambda:InvokeFunction"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:lambda:us-east-1:111122223333:function/MyObjectLambdaFunction",
+      "Resource": "arn:aws:lambda:us-east-1:111122223333:function/MyObjectLambdaFunction:$LATEST",
       "Condition": {
         "ForAnyValue:StringEquals": {
           "aws:CalledVia": [

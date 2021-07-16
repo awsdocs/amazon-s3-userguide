@@ -2,6 +2,9 @@
 
 Amazon S3 \(service prefix: `s3`\) provides the following service\-specific resources, actions, and condition context keys for use in IAM permission policies\.
 
+**Note**  
+You can use the actions listed below in IAM policies and Amazon S3 bucket policies to grant permissions for specific Amazon S3 API operations\. Most actions have the same name as the API operations they are associated with\. However, in some cases, the API operation and action names are different\. Additionally, a single action can control access to more than one operation, and some operations require several different actions\. 
+
 References:
 + Learn how to [configure this service](https://docs.aws.amazon.com/AmazonS3/latest/dev/)\.
 + View a list of the [API operations available for this service](https://docs.aws.amazon.com/AmazonS3/latest/API/)\.

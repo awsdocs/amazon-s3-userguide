@@ -1,8 +1,8 @@
-# Configuring replication for source and destination buckets are owned by different accounts<a name="replication-walkthrough-2"></a>
+# Configuring replication when source and destination buckets are owned by different accounts<a name="replication-walkthrough-2"></a>
 
 Setting up replication when *source* and *destination* buckets are owned by different AWS accounts is similar to setting replication when both buckets are owned by the same account\. The only difference is that the *destination* bucket owner must grant the *source* bucket owner permission to replicate objects by adding a bucket policy\. 
 
-For more information about configuring replication using sever\-side encryption with AWS Key Management Service in cross\-account scenarios, see [Granting additional permissions for cross\-account scenarios](replication-config-for-kms-objects.md#replication-kms-cross-acct-scenario)\.
+For more information about configuring replication using server\-side encryption with AWS Key Management Service in cross\-account scenarios, see [Granting additional permissions for cross\-account scenarios](replication-config-for-kms-objects.md#replication-kms-cross-acct-scenario)\.
 
 **To configure replication when the source and destination buckets are owned by different AWS accounts**
 
@@ -34,7 +34,7 @@ For more information about configuring replication using sever\-side encryption 
             "Principal":{
                "AWS":"arn:aws:iam::source-bucket-acct-ID:role/source-acct-IAM-role"
             },
-            "Action":["s3:GetBucketVersioning", "s3:PutBucketVersioning"],
+            "Action":["s3:List*", "s3:GetBucketVersioning", "s3:PutBucketVersioning"],
             "Resource":"arn:aws:s3:::destination"
          }
       ]
@@ -43,4 +43,4 @@ For more information about configuring replication using sever\-side encryption 
 
 Choose the bucket and add the bucket policy\. For instructions, see [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)\.
 
-In replication, the owner of the source object owns the replica by default\. When source and destination buckets are owned by different AWS accounts, you can add optional configuration settings to change replica ownership to the AWS account that owns the destination buckets\. For more information, see [Changing the replica owner](replication-change-owner.md)\.
+In replication, the owner of the source object owns the replica by default\. When source and destination buckets are owned by different AWS accounts, you can add optional configuration settings to change replica ownership to the AWS account that owns the destination buckets\. This includes granting the `ObjectOwnerOverrideToBucketOwner` permission\. For more information, see [Changing the replica owner](replication-change-owner.md)\.

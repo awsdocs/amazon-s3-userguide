@@ -19,7 +19,7 @@ Use the following naming conventions for the dual\-stack virtual hosted\-style a
 
    *bucketname*\.s3\.dualstack\.*aws\-region*\.amazonaws\.com
 
-   
+   
 + Path\-style dual\-stack endpoint: 
 
   s3\.dualstack\.*aws\-region*\.amazonaws\.com/*bucketname*

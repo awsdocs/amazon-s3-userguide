@@ -4,7 +4,7 @@
 
 To enable client\-side encryption, you have the following options:
 + Use a customer master key \(CMK\) stored in AWS Key Management Service \(AWS KMS\)\.
-+ Use a master key that you store within your application\.
++ Use a key that you store within your application\.
 
 **AWS Encryption SDK**  
 The [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/) is a client\-side encryption library that is separate from the language–specific SDKs\. You can use this encryption library to more easily implement encryption best practices in Amazon S3\. Unlike the Amazon S3 encryption clients in the language–specific AWS SDKs, the AWS Encryption SDK is not tied to Amazon S3 and can be used to encrypt or decrypt data to be stored anywhere\. 
@@ -71,12 +71,12 @@ For instructions on creating and testing a working example, see [Testing the Ama
         kmsClient.shutdown();
 ```
 
-## Option 2: Using a master key stored within your application<a name="client-side-encryption-client-side-master-key-intro"></a>
+## Option 2: Using a key stored within your application<a name="client-side-encryption-client-side-master-key-intro"></a>
 
 With this option, you use a master key that is stored within your application for client\-side data encryption\. 
 
 **Important**  
-Your client\-side master keys and your unencrypted data are never sent to AWS\. It's important that you safely manage your encryption keys\. If you lose them, you can't decrypt your data\.
+Your client\-side keys and your unencrypted data are never sent to AWS\. It's important that you safely manage your encryption keys\. If you lose them, you can't decrypt your data\.
 
 This is how it works:
 + **When uploading an object** — You provide a client\-side master key to the Amazon S3 encryption client\. The client uses the master key only to encrypt the data encryption key that it generates randomly\. 

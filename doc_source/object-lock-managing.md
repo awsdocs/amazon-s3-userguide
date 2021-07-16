@@ -80,7 +80,7 @@ For more information, see the following topics:
 
 ## Managing delete markers and object lifecycles<a name="object-lock-managing-lifecycle"></a>
 
-Although you can't delete a protected object version, you can still create a delete marker for that object\. Placing a delete marker on an object doesn't delete any object version\. However, it makes Amazon S3 behave in most ways as though the object has been deleted\. For more information, see [Working with delete markers](DeleteMarker.md)\.
+Although you can't delete a protected object version, you can still create a delete marker for that object\. Placing a delete marker on an object doesn't delete the object or its object versions\. However, it makes Amazon S3 behave in most ways as though the object has been deleted\. For more information, see [Working with delete markers](DeleteMarker.md)\.
 
 **Note**  
 Delete markers are not WORM\-protected, regardless of any retention period or legal hold in place on the underlying object\.

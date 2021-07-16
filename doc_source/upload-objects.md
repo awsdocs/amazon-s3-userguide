@@ -417,4 +417,4 @@ You can send REST requests to upload an object\. You can send a PUT request to u
 
 ## Using the AWS CLI<a name="UploadObjSingleOpCLI"></a>
 
-If your application requires it, you can send AWS Command Line Interface \(AWS CLI\) requests to upload an object\. You can send a PUT request to upload data in a single operation\. For more information, see [PutObject](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-object.html) in the *AWS CLI Command Reference*\.
+You can send a `PUT` request to upload an object of up to 5 GB in a single operation\. For more information, see the [https://docs.aws.amazon.com/cli/latest/reference/s3api/put-object.html#examples](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-object.html#examples) example in the *AWS CLI Command Reference*\.

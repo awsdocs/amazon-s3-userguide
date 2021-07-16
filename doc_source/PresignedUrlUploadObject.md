@@ -14,7 +14,7 @@ Since presigned URLs grant access to your Amazon S3 buckets to whoever has the U
 Anyone with valid security credentials can create a presigned URL\. However, for you to successfully upload an object, the presigned URL must be created by someone who has permission to perform the operation that the presigned URL is based upon\.
 
 **Generate a presigned URL for object upload**  
-You can generate a presigned URL programmatically using the \.NET, AWS SDK for Java, Ruby, [Node\.js](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, , and [Python](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
+You can generate a presigned URL programmatically using the [REST API](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html), \.NET, AWS SDK for Java, Ruby, [AWS SDK for JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, , and [Python](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
 
 If you are using Microsoft Visual Studio, you can also use AWS Explorer to generate a presigned object URL without writing any code\. Anyone who receives a valid presigned URL can then programmatically upload an object\. For more information, see [Using Amazon S3 from AWS Explorer](https://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/using-s3.html)\. For instructions on how to install AWS Explorer, see [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)\.
 
@@ -177,6 +177,83 @@ public class GeneratePresignedUrlAndUploadObject {
 ```
 
 ------
+#### [ JavaScript ]
+
+**Example**  
+For an AWS SDK for JavaScript example on using the presigned URL to upload objects, see [ Create a presigned URL to upload objects to an Amazon S3 bucket](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-creating-buckets.html#s3-create-presigendurl-put)\.
+
+**Example**  
+The following AWS SDK for JavaScript example uses a presigned URL to delete an object:  
+
+```
+          // Import the required AWS SDK clients and commands for Node.js
+import {
+  CreateBucketCommand,
+  DeleteObjectCommand,
+  PutObjectCommand,
+  DeleteBucketCommand }
+from "@aws-sdk/client-s3";
+import { s3Client } from "./libs/s3Client.js"; // Helper function that creates Amazon S3 service client module.
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import fetch from "node-fetch";
+
+// Set parameters
+// Create a random names for the Amazon Simple Storage Service (Amazon S3) bucket and key
+const bucketParams = {
+  Bucket: `test-bucket-${Math.ceil(Math.random() * 10 ** 10)}`,
+  Key: `test-object-${Math.ceil(Math.random() * 10 ** 10)}`,
+  Body: "BODY"
+};
+const run = async () => {
+  try {
+    // Create an Amazon S3 bucket.
+    console.log(`Creating bucket ${bucketParams.Bucket}`);
+    await s3Client.send(new CreateBucketCommand({ Bucket: bucketParams.Bucket }));
+    console.log(`Waiting for "${bucketParams.Bucket}" bucket creation...`);
+  } catch (err) {
+    console.log("Error creating bucket", err);
+  }
+  try {
+    // Create the command.
+    const command = new PutObjectCommand(bucketParams);
+
+    // Create the presigned URL.
+    const signedUrl = await getSignedUrl(s3Client, command, {
+      expiresIn: 3600,
+    });
+    console.log(
+      `\nPutting "${params.Key}" using signedUrl with body "${bucketParams.Body}" in v3`
+    );
+    console.log(signedUrl);
+    const response = await fetch(signedUrl);
+    console.log(
+      `\nResponse returned by signed URL: ${await response.text()}\n`
+    );
+    return response;
+  } catch (err) {
+    console.log("Error creating presigned URL", err);
+  }
+  try {
+    // Delete the object.
+    console.log(`\nDeleting object "${bucketParams.Key}"} from bucket`);
+    await s3Client.send(
+      new DeleteObjectCommand({ Bucket: bucketParams.Bucket, Key: params.Key })
+    );
+  } catch (err) {
+    console.log("Error deleting object", err);
+  }
+  try {
+    // Delete the Amazon S3 bucket.
+    console.log(`\nDeleting bucket ${bucketParams.Bucket}`);
+    await s3.send(new DeleteBucketCommand({ Bucket: bucketParams.Bucket }));
+  } catch (err) {
+    console.log("Error deleting bucket", err);
+  }
+};
+run();
+```
+
+------
 #### [ Python ]
 
 Generate a presigned URL to upload an object by using the SDK for Python \(Boto3\)\. For example, use a Boto3 client and the `generate_presigned_url` function to generate a presigned URL that PUTs an object\.
@@ -189,7 +266,7 @@ import boto3
     ExpiresIn=3600)
 ```
 
-For a complete example that shows how to generate presigned URLs and how to use the Requests package to upload and download objects, see the [ Python presigned URL](https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html) example on GitHub\. For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](http://amazonaws.com/http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.
+For a complete example that shows how to generate presigned URLs and how to use the Requests package to upload and download objects, see the [ Python presigned URL](https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html) example on GitHub\. For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.
 
 ------
 #### [ Ruby ]

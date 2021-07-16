@@ -41,6 +41,8 @@ You can choose up to 50 buckets to include or exclude\.
    1. The option to enable activity metrics is included with the advanced metrics and recommendations\. This option helps you track requests and errors for objects in your dashboard scope\.
 
    1. Choose **Enable prefix aggregation** if you want to aggregate your **usage** metrics at the prefix level so that you can receive detailed insights for your top prefixes in each bucket\.
+**Note**  
+At this time, you can only receive prefix aggregation for usage metrics\.
 
    1. If you chose **prefix aggregation**, you must choose the minimum prefix threshold size that S3 Storage Lens will collect for this dashboard\. For example, a prefix threshold of 5 percent indicates that prefixes that make up 5 percent or greater in size of the storage of the bucket will be aggregated\. 
 

@@ -2,7 +2,7 @@
 
 Amazon Simple Storage Service \(Amazon S3\) is storage for the Internet\. It is designed to make web\-scale computing easier\.
 
-Amazon S3 has a simple web services interface that you can use to store and retrieve any amount of data, at any time, from anywhere on the web\. It gives any developer access to the same highly scalable, reliable, fast, inexpensive data storage infrastructure that Amazon uses to run its own global network of web sites\. The service aims to maximize benefits of scale and to pass those benefits on to developers\.
+Amazon S3 has a simple web services interface that you can use to store and retrieve any amount of data, at any time, from anywhere on the web\. It gives any developer access to the same highly scalable, reliable, fast, and inexpensive data storage infrastructure that Amazon uses to run its own global network of web sites\. The service aims to maximize benefits of scale and to pass those benefits on to developers\.
 
 This introduction to Amazon Simple Storage Service \(Amazon S3\) provides a detailed summary of this web service\. After reading this section, you should have a good idea of what it offers and how it can fit in with your business\.
 

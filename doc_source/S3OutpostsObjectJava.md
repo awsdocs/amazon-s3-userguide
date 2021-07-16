@@ -455,7 +455,7 @@ public class MultipartUploadCopy {
 
 ## Copy an object in an S3 on Outposts bucket<a name="S3OutpostsCopyPartJava"></a>
 
-The following S3 on Outposts example copies and object using the SDK for Java from the Outposts bucket\. This is an example adapted from the [Copying an object using multipart upload](CopyingObjctsMPUapi.md)\.
+The following S3 on Outposts example copies and object using the SDK for Java from the Outposts bucket\. This is an example adapted from the [Copying an object using multipart upload](CopyingObjectsMPUapi.md)\.
 
 ```
 import com.amazonaws.AmazonServiceException;

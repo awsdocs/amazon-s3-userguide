@@ -41,31 +41,39 @@ Follow the steps to create and subscribe to an Amazon Simple Queue Service \(Ama
 
 1. Using the Amazon SQS console, create a queue\. For instructions, see [Getting Started with Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) in the *Amazon Simple Queue Service Developer Guide*\. 
 
-1. Replace the access policy attached to the queue with the following policy\. In the Amazon SQS console, select the queue, and in the **Permissions** tab, choose **Edit Policy Document \(Advanced\)**\.
+1. Replace the access policy attached to the queue with the following policy\.
 
-   ```
-   {
-    "Version": "2012-10-17",
-    "Id": "example-ID",
-    "Statement": [
-     {
-      "Sid": "example-statement-ID",
-      "Effect": "Allow",
-      "Principal": {
-       "Service": "s3.amazonaws.com"  
-      },
-      "Action": [
-       "SQS:SendMessage"
-      ],
-      "Resource": "SQS-queue-ARN",
-      "Condition": {
-         "ArnLike": { "aws:SourceArn": "arn:aws:s3:*:*:awsexamplebucket1" },
-         "StringEquals": { "aws:SourceAccount": "bucket-owner-account-id" }
+   1. In the Amazon SQS console, in the **Queues** list, choose the queue name\.
+
+   1. On the **Access policy** tab, choose **Edit**\.
+
+   1. Replace the access policy attached to the queue with the following policy, updating the Amazon SQS ARN, source bucket name, and bucket owner account ID\.
+
+      ```
+      {
+       "Version": "2012-10-17",
+       "Id": "example-ID",
+       "Statement": [
+        {
+         "Sid": "example-statement-ID",
+         "Effect": "Allow",
+         "Principal": {
+          "Service": "s3.amazonaws.com"  
+         },
+         "Action": [
+          "SQS:SendMessage"
+         ],
+         "Resource": "SQS-queue-ARN",
+         "Condition": {
+            "ArnLike": { "aws:SourceArn": "arn:aws:s3:*:*:awsexamplebucket1" },
+            "StringEquals": { "aws:SourceAccount": "bucket-owner-account-id" }
+         }
+        }
+       ]
       }
-     }
-    ]
-   }
-   ```
+      ```
+
+   1. Choose **Save**\.
 
 1. \(Optional\) If the Amazon SQS queue or the Amazon SNS topic is server\-side encryption enabled with AWS Key Management Service \(AWS KMS\), add the following policy to the associated symmetric customer managed AWS KMS CMK\. 
 

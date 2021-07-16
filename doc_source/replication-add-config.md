@@ -513,7 +513,7 @@ For more information about the XML structure of replication configuration, see [
 
 ## Backward compatibility<a name="replication-backward-compat-considerations"></a>
 
-The latest version of the replication configuration XML is V2\. XML V2 replication configurations are those that contain the `Filter` element for rules, and rules that specify S3 Replication Time Control \(S3 RTC\)\. In V2 replication configurations, Amazon S3 doesn't replicate delete markers for tag\-based rules\. Therefore, you must set the `DeleteMarkerReplication` element to `Disabled` if using a tag\-based V2 rule\.
+The latest version of the replication configuration XML is V2\. XML V2 replication configurations are those that contain the `Filter` element for rules, and rules that specify S3 Replication Time Control \(S3 RTC\)\.
 
 To see your replication configuration version, you can use the `GetBucketReplication` API\. For more information see, [GetBucketReplication](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketReplication.html) in the *Amazon Simple Storage Service API Reference*\. 
 
@@ -534,25 +534,6 @@ For backward compatibility, Amazon S3 continues to support the XML V1 replicatio
   ```
 
   For backward compatibility, `Amazon S3 ` continues to support the V1 configuration\. 
-+ When you delete an object from your source bucket without specifying an object version ID, Amazon S3 adds a delete marker\. If you use V1 of the replication configuration XML, Amazon S3 replicates delete markers that resulted from user actions\. In other words, if the user deleted the object, and not if Amazon S3 deleted it because the object expired as part of lifecycle action\. In V2, delete markers are now replicated if enabled, however they do not replicate rules with tag filters\.
-
-  ```
-  ...
-      <Rule>
-          <ID>Rule-1</ID>
-          <Status>rule-Enabled-or-Disabled</Status>
-          <Priority>integer</Priority>
-          <DeleteMarkerReplication>
-             <Status>Disabled</Status>
-          </DeleteMarkerReplication>
-          <Filter>
-             <Tag>Tax</Tag>
-          </Filter>        
-          <Destination>        
-             <Bucket>arn:aws:s3:::bucket-name</Bucket> 
-          </Destination>    
-      </Rule>
-  ...
-  ```
++ When you delete an object from your source bucket without specifying an object version ID, Amazon S3 adds a delete marker\. If you use V1 of the replication configuration XML, Amazon S3 replicates delete markers that resulted from user actions\. In other words, if the user deleted the object, and not if Amazon S3 deleted it because the object expired as part of lifecycle action\. In V2 replication configurations, you can enable delete marker replication for tag\-based rules\. For more information, see [Replicating delete markers between buckets](delete-marker-replication.md)\. 
 
  

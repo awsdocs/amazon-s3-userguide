@@ -4,7 +4,7 @@ When you configure a bucket as a static website, you must enable static website 
 
 You can enable static website hosting using the Amazon S3 console, REST API, the AWS SDKs, the AWS CLI, or AWS CloudFormation\.
 
-To configure your website with a custom domain, see [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)\.
+To configure your website with a custom domain, see [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)\.
 
 ## Using the S3 console<a name="HowDoIWebsiteConfiguration"></a>
 
@@ -32,7 +32,7 @@ To configure your website with a custom domain, see [Configuring a static websit
 
 1. \(Optional\) If you want to specify advanced redirection rules, in **Redirection rules**, enter XML to describe the rules\.
 
-   For example, you can conditionally route requests according to specific object key names or prefixes in the request\. For more information, see [Configuring advanced conditional redirects](how-to-page-redirect.md#advanced-conditional-redirects)\.
+   For example, you can conditionally route requests according to specific object key names or prefixes in the request\. For more information, see [Configure redirection rules to use advanced conditional redirects](how-to-page-redirect.md#advanced-conditional-redirects)\.
 
 1. Choose **Save changes**\.
 

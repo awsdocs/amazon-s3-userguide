@@ -59,7 +59,7 @@ For information about using other AWS SDKs, see the [AWS Developer Center](https
 
 For instructions on how to create and test a working sample, see [Using the AWS SDK for Python \(Boto\)](UsingTheBotoAPI.md)\. 
 
-The following Python code example demonstrates S3 versioned bucket\.
+The following Python code example permanently deletes a versioned object by deleting all of its versions\.
 
 ```
 def permanently_delete_object(bucket, object_key):
@@ -100,5 +100,5 @@ The following example deletes version `UIORUnfnd89493jJFJ` of `photo.gif`\.
 
 For more information about deleting object versions, see the following topics:
 + [Working with delete markers](DeleteMarker.md)
-+ [Removing delete markers](RemDelMarker.md)
++ [](ManagingDelMarkers.md#RemDelMarker)
 + [Deleting an object from an MFA delete\-enabled bucket](UsingMFADelete.md)

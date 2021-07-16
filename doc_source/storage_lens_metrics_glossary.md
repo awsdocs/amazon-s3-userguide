@@ -15,7 +15,7 @@ S3 Storage Lens metrics unit multiples are written using prefix symbols that are
 |  Total Storage  | The total storage |  Y  |  Usage  |  Summary |  N  |   | 
 |  Object Count  | The total object count |  Y  |  Usage  |  Summary |  N  |   | 
 |  \# Avg Object Size  | The average object size |  Y  |  Usage  |  Summary |  Y  | Sum\(StorageBytes\)/ sum\(ObjectCount\)  | 
-| \# of Active Buckets  | The total number of active buckets |  Y  |  Usage  |  Summary |  Y  | DistinctCount\[Bucketname\]  | 
+| \# of Active Buckets  | The total number of buckets in active usage with storage > 0 bytes |  Y  |  Usage  |  Summary |  Y  | DistinctCount\[Bucketname\]  | 
 | \# Accounts  | The number of accounts whose storage is in scope |  Y  |  Usage  |  Summary |  Y  | DistinctCount\[AccountID\]  | 
 | Current Version Storage Bytes  | The number of bytes that are a current version  |  Y  |  Usage  | Data Protection, Cost Efficiency  |  N  |   | 
 | % Current Version Bytes  | The percentage of bytes in scope that are current version |  Y  |  Usage  | Data Protection, Cost Efficiency  |  Y  | Sum\(CurrentVersion Bytes\) /sum\(Storage Bytes\)  | 

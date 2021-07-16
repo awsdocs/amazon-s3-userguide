@@ -1,22 +1,25 @@
-# Removing delete markers<a name="RemDelMarker"></a>
+# Managing delete markers<a name="ManagingDelMarkers"></a>
+
+## Configuring lifecycle to clean up expired delete markers automatically<a name="LifecycleDelMarker"></a>
+
+An expired object delete marker is one where all object versions are deleted and only a single delete marker remains\. If the lifecycle policy is set to delete current versions, or the `ExpiredObjectDeleteMarker` action is explicitly set, Amazon S3 removes the expired object’s delete marker\. For an example, see [Example 7: Removing expired object delete markers](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex7)\. 
+
+## Removing delete markers to make an older version current<a name="RemDelMarker"></a>
 
 When you delete an object in a versioning\-enabled bucket, all versions remain in the bucket, and Amazon S3 creates a delete marker for the object\. To undelete the object, you must delete this delete marker\. For more information about versioning and delete markers, see [Using versioning in S3 buckets](Versioning.md)\.
 
-If you want to delete a delete marker, it must have a version ID, and you must specify that ID in a `DELETE Object versionId` request\. If you use a `DELETE` request to delete a delete marker \(without specifying the version ID of the delete marker\), Amazon S3 does not delete the delete marker, but instead, inserts another delete marker\.
-
-The following figure shows how a simple `DELETE` on a delete marker removes nothing, but adds a new delete marker to a bucket\.
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/versioning_DELETE_deleteMarker.png)
-
-In a versioning\-enabled bucket, this new delete marker would have a unique version ID\. So, it's possible to have multiple delete markers of the same object in one bucket\. 
-
-If the current object version is the only object version, and it is also a delete marker \(known as an *expired object delete marker*, where all object versions are deleted and only a delete marker remains\), Amazon S3 removes the expired object delete marker when the lifecycle policy is set to *delete current versions*, or the *ExpiredObjectDeleteMarker* is explicitly set\. You can also use the expiration action to direct Amazon S3 to remove any expired object delete markers\. For an example, see [Example 7: Removing expired object delete markers](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex7)\. 
-
-To delete a delete marker permanently, you must include its version ID in a `DELETE Object versionId` request\. The following figure shows how a `DELETE Object versionId` request permanently removes a delete marker\. Only the owner of a bucket can permanently remove a delete marker\.
+To delete a delete marker permanently, you must include its version ID in a `DeleteObject versionId` request\. The following figure shows how a `DeleteObject versionId` request permanently removes a delete marker\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/versioning_DELETE_deleteMarkerVersioned.png)
 
-The effect of removing the delete marker is that a simple `GET` request will now retrieve the current version \(121212\) of the object\.
+The effect of removing the delete marker is that a simple `GET` request will now retrieve the current version ID \(121212\) of the object\. 
+
+**Note**  
+If you use a `DeleteObject` request where the current version is a delete marker \(without specifying the version ID of the delete marker\), Amazon S3 does not delete the delete marker, but instead `PUTs` another delete marker\.
+
+To delete a delete marker with a `NULL` version ID, you must pass the `NULL` as the version ID in the `DeleteObject` request\. The following figure shows how a simple `DeleteObject` request made without a version ID where the current version is a delete marker, removes nothing, but instead adds an additional delete marker with a unique version ID \(7498372\)\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/versioning_DELETE_deleteMarker.png)
 
 ## Using the S3 console<a name="undelete-objects"></a>
 
@@ -76,7 +79,7 @@ TFor information about using other AWS SDKs, see the [AWSDeveloper Center](https
 
 For instructions on how to create and test a working sample, see [Using the AWS SDK for Python \(Boto\)](UsingTheBotoAPI.md)\. 
 
-The following Python code example demonstrates how to remove a delete marker from an object and thus makes the most recent non\-current version the current version of the object\.
+The following Python code example demonstrates how to remove a delete marker from an object and thus makes the most recent non\-current version, the current version of the object\.
 
 ```
 def revive_object(bucket, object_key):

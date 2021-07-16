@@ -16,11 +16,9 @@ Follow these steps to use the Amazon S3 console to delete a single object from a
 
 1. In the **Bucket name** list, choose the name of the bucket that you want to delete an object from\.
 
-1. Choose the name of the object that you want to delete\.
-
-1. To delete the current version of the object, choose **Latest version**, and choose the trash can icon\.
-
-1. To delete a previous version of the object, choose **Latest version**, and choose the trash can icon beside the version that you want to delete\.
+1. To delete an object in a versioning\-enabled bucket with versioning: 
+   + **Off**, Amazon S3 creates a delete marker\. To delete the object, select the object, and choose **delete** and confirm your choice by typing **delete** in the text field\.
+   + **On**, Amazon S3 will permanently delete the object version\. Select the object version that you want to delete, and choose **delete** and confirm your choice by typing **permenently delete** in the text field\.
 
 ## Using the AWS SDKs<a name="DeletingOneObject"></a>
 

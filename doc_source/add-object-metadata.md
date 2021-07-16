@@ -6,7 +6,7 @@ You can also set some metadata when you upload the object and later edit it as y
 
 **Note**  
 Consider the following issues when you are editing object metadata in Amazon S3:  
-This action creates a *copy* of the object with updated settings and the last\-modified date\. If S3 Versioning is enabled, a new version of the object is created, and the existing object becomes an older version\. The IAM role that changes the property also becomes the owner of the new object or \(object version\)\.
+This action creates a *copy* of the object with updated settings and the last\-modified date\. If S3 Versioning is enabled, a new version of the object is created, and the existing object becomes an older version\. If S3 Versioning is not enabled, a new copy of the object replaces the original object\. The IAM role that changes the property also becomes the owner of the new object or \(object version\)\.
 Editing metadata updates values for existing key names\.
 Objects that are encrypted with customer\-provided encryption keys \(SSE\-C\) cannot be copied using the console\. You must use the AWS CLI, AWS SDK, or the Amazon S3 REST API\.
 

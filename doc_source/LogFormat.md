@@ -27,6 +27,14 @@ Any field can be set to `-` to indicate that the data was unknown or unavailable
 
 The following list describes the log record fields\.
 
+**Access Point ARN \(Amazon Resource Name\)**  
+The Amazon Resource Name \(ARN\) of the access point of the request\. If access point ARN is malformed or not used, the field will contain a '\-'\. For more information on access points, see [Using access points](using-access-points.md)\. For more information on ARNs, see the topic on [Amazon Resource Name \(ARN\)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *AWS Reference Guide*\.  
+**Example entry**  
+
+```
+arn:aws:s3:us-east-1:123456789012:accesspoint/example-AP
+```
+
 **Bucket Owner**  
 The canonical user ID of the owner of the source bucket\. The canonical user ID is another form of the AWS account ID\. For more information about the canonical user ID, see [AWS account identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html) in the *AWS General Reference*\. For information about how to find the canonical user ID for your account, see [Finding the canonical user ID for your AWS account](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingCanonicalId)\.  
 **Example entry**  

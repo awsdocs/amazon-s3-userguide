@@ -31,9 +31,7 @@ Avoid including sensitive information, such as account numbers, in the bucket na
 
    Choose a Region that is close to you geographically to minimize latency and costs and to address regulatory requirements\. Objects stored in a Region never leave that Region unless you explicitly transfer them to another Region\. For a list of Amazon S3 AWS Regions, see [AWS Service Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the *Amazon Web Services General Reference*\.
 
-1. In **Bucket settings for Block Public Access**, keep the values set to the defaults\. 
-
-   By default, Amazon S3 blocks all public access to your buckets\. We recommend that you keep all Block Public Access settings enabled\. For more information about blocking public access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
+1. Keep the remaining settings set to the defaults\. For more information on additional bucket settings, see [Creating a bucket](create-bucket-overview.md)\.
 
 1. Choose **Create bucket**\.
 

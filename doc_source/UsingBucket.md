@@ -32,7 +32,7 @@ The AWS account that creates a resource owns that resource\. For example, if you
 
 Public access is granted to buckets and objects through access control lists \(ACLs\), bucket policies, or both\. To help you manage public access to Amazon S3 resources, Amazon S3 provides settings to block public access\. Amazon S3 Block Public Access settings can override ACLs and bucket policies so that you can enforce uniform limits on public access to these resources\. You can apply Block Public Access settings to individual buckets or to all buckets in your account\.
 
-To help ensure that all of your Amazon Simple Storage Service buckets and objects have their public access blocked, we recommend that you turn on all four settings for Block Public Access for your account\. These settings block all public access for all current and future buckets\.
+To help ensure that all of your Amazon S3 buckets and objects have their public access blocked, we recommend that you turn on all four settings for Block Public Access for your account\. These settings block all public access for all current and future buckets\.
 
 Before applying these settings, verify that your applications will work correctly without public access\. If you require some level of public access to your buckets or objects—for example, to host a static website as described at [Hosting a static website using Amazon S3](WebsiteHosting.md)—you can customize the individual settings to suit your storage use cases\. For more information, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
 

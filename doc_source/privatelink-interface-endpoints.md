@@ -1,8 +1,8 @@
 # AWS PrivateLink for Amazon S3<a name="privatelink-interface-endpoints"></a>
 
-With AWS PrivateLink for Amazon S3, you can provision *interface VPC endpoints* \(interface endpoints\) in your virtual private cloud \(VPC\) instead of connecting over the internet\. These endpoints are directly accessible from applications that are on premises over VPN and AWS Direct Connect, or in a different AWS Region over VPC peering\.
+With AWS PrivateLink for Amazon S3, you can provision *interface VPC endpoints* \(interface endpoints\) in your virtual private cloud \(VPC\)\. These endpoints are directly accessible from applications that are on premises over VPN and AWS Direct Connect, or in a different AWS Region over VPC peering\.
 
-Interface endpoints are represented by one or more elastic network interfaces \(ENIs\) that are assigned private IP addresses from subnets in your VPC\. Requests that are made to interface endpoints for Amazon S3 are automatically routed to Amazon S3 on the Amazon network\. You can also access interface endpoints in your VPC from on\-premises applications through AWS Direct Connect or AWS Virtual Private Network \(AWS VPN\)\. For more information about how to connect your VPC with your on\-premises network, see the [AWS Direct Connect User Guide](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html) and the [AWS Site\-to\-Site VPN User Guide](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)\. 
+Interface endpoints are represented by one or more elastic network interfaces \(ENIs\) that are assigned private IP addresses from subnets in your VPC\. Requests that are made to interface endpoints for Amazon S3 are automatically routed to Amazon S3 on the Amazon network\. You can also access interface endpoints in your VPC from on\-premises applications through AWS Direct Connect or AWS Virtual Private Network \(AWS VPN\)\. For more information about how to connect your VPC with your on\-premises network, see the [https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html](https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html) and the [https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html](https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html)\. 
 
 For general information about interface endpoints, see [Interface VPC endpoints \(AWS PrivateLink\)](https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-interface.html) in the *AWS PrivateLink Guide*\.
 
@@ -16,15 +16,17 @@ For general information about interface endpoints, see [Interface VPC endpoints 
 
 ## Types of VPC endpoints for Amazon S3<a name="types-of-vpc-endpoints-for-s3"></a>
 
-You can use two types of VPC endpoints to access Amazon S3: *gateway endpoints* and *interface endpoints*\. A *gateway endpoint* is a gateway that you specify in your route table to access Amazon S3 from your VPC over the AWS network\. *Interface endpoints* extend the functionality of gateway endpoints by using private IP addresses to route requests to Amazon S3 from within your VPC, on premises, or from a different AWS Region\. Interface endpoints are compatible with gateway endpoints\. If you have an existing gateway endpoint in the VPC, you can use both types of endpoints in the same VPC\.
+You can use two types of VPC endpoints to access Amazon S3: *gateway endpoints* and *interface endpoints*\. A *gateway endpoint* is a gateway that you specify in your route table to access Amazon S3 from your VPC over the AWS network\. *Interface endpoints* extend the functionality of gateway endpoints by using private IP addresses to route requests to Amazon S3 from within your VPC, on premises, or from a VPC in another AWS Region using VPC peering or AWS Transit Gateway\. For more information, see [What is VPC peering](https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html) and [Transit Gateway vs VPC peering](https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/transit-gateway-vs-vpc-peering.html)\.
+
+Interface endpoints are compatible with gateway endpoints\. If you have an existing gateway endpoint in the VPC, you can use both types of endpoints in the same VPC\.
 
 
 |  Gateway endpoints for Amazon S3  |  Interface endpoints for Amazon S3  | 
 | --- | --- | 
 |   In both cases, your network traffic remains on the AWS network\.  | 
 |  Use Amazon S3 public IP addresses  |  Use private IP addresses from your VPC to access Amazon S3  | 
-|  Does not allow access from on premises  |  Allows access from on premises  | 
-|  Does not allow access from another AWS Region  |  Allows access from another AWS Region  | 
+|  Does not allow access from on premises  |  Allow access from on premises  | 
+|  Does not allow access from another AWS Region  |  Allow access from a VPC in another AWS Region using VPC peering or AWS Transit Gateway  | 
 |  Not billed  |  Billed  | 
 
 For more information about gateway endpoints, see [Gateway VPC endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-gateway.html) in the *AWS PrivateLink Guide*\.

@@ -21,7 +21,6 @@ This section explains the trust policy and minimum required permissions policy\.
 
   ```
   {
-
      "Version":"2012-10-17",
      "Statement":[
         {
@@ -40,7 +39,6 @@ This section explains the trust policy and minimum required permissions policy\.
 
   ```
   {
-
      "Version":"2012-10-17",
      "Statement":[
         {
@@ -129,7 +127,7 @@ When source and destination buckets aren't owned by the same accounts, the owner
 }
 ```
 
-For an example, see [Configuring replication for source and destination buckets are owned by different accounts](replication-walkthrough-2.md)\.
+For an example, see [Configuring replication when source and destination buckets are owned by different accounts](replication-walkthrough-2.md)\.
 
 If objects in the source bucket are tagged, note the following:
 + If the source bucket owner grants Amazon S3 permission for the `s3:GetObjectVersionTagging` and `s3:ReplicateTags` actions to replicate object tags \(through the IAM role\), Amazon S3 replicates the tags along with the objects\. For information about the IAM role, see [Creating an IAM role](#setting-repl-config-same-acctowner)\. 

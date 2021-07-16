@@ -7,7 +7,7 @@ To store an object in Amazon S3, you create a bucket and then upload the object 
 **Note**  
 With Amazon S3, you pay only for what you use\. For more information about Amazon S3 features and pricing, see [Amazon S3](http://aws.amazon.com/s3)\. If you are a new Amazon S3 customer, you can get started with Amazon S3 for free\. For more information, see [AWS Free Tier](http://aws.amazon.com/free)\.
 
-The topics in this section provide an overview of working with buckets in Amazon S3\. They include information about naming, creating, accessing, and deleting buckets\.
+The topics in this section provide an overview of working with buckets in Amazon S3\. They include information about naming, creating, accessing, and deleting buckets\. For more information about viewing or listing objects in a bucket, see [Organizing, listing, and working with your objects](organizing-objects.md)\.
 
 **Topics**
 + [Buckets overview](UsingBucket.md)

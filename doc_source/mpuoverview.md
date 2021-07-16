@@ -63,7 +63,9 @@ These libraries provide a high\-level abstraction that makes uploading multipart
 + [List Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)
 + [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html)
 
-The following sections in the AWS Command Line Interface describe the operations for multipart upload\. 
+## AWS Command Line Interface support for multipart upload<a name="clisupportformpu"></a>
+
+The following topics in the AWS Command Line Interface describe the operations for multipart upload\. 
 + [Initiate Multipart Upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/create-multipart-upload.html)
 + [Upload Part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
 + [Upload Part \(Copy\)](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
@@ -110,6 +112,7 @@ For information on the relationship between ACL permissions and permissions in a
 + [Concurrent multipart upload operations](#distributedmpupload)
 + [Multipart upload and pricing](#mpuploadpricing)
 + [API support for multipart upload](#apisupportformpu)
++ [AWS Command Line Interface support for multipart upload](#clisupportformpu)
 + [AWS SDK support for multipart upload](#sdksupportformpu)
 + [Multipart upload API and permissions](#mpuAndPermissions)
 + [Configuring a bucket lifecycle policy to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)
@@ -118,5 +121,5 @@ For information on the relationship between ACL permissions and permissions in a
 + [Listing multipart uploads](list-mpu.md)
 + [Tracking a multipart upload](track-mpu.md)
 + [Aborting a multipart upload](abort-mpu.md)
-+ [Copying an object using multipart upload](CopyingObjctsMPUapi.md)
++ [Copying an object using multipart upload](CopyingObjectsMPUapi.md)
 + [Amazon S3 multipart upload limits](qfacts.md)

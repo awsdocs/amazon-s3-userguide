@@ -1,6 +1,6 @@
 # Replicating objects<a name="replication"></a>
 
-Replication enables automatic, asynchronous copying of objects across Amazon S3 buckets\. Buckets that are configured for object replication can be owned by the same AWS account or by different accounts\. Object may be replicated to a single destination bucket or multiple destination buckets\. Destination buckets can be in different AWS Regions or within the same Region as the source bucket\. 
+Replication enables automatic, asynchronous copying of objects across Amazon S3 buckets\. Buckets that are configured for object replication can be owned by the same AWS account or by different accounts\. Objects may be replicated to a single destination bucket or multiple destination buckets\. Destination buckets can be in different AWS Regions or within the same Region as the source bucket\. 
 
 By default, replication only supports copying new Amazon S3 objects after it is enabled\. You can use replication to copy existing objects and clone them to a different bucket, but in order to do so, you must contact [AWS Support Center](https://console.aws.amazon.com/support/home#/)\. When you contact support, give your AWS Support case the subject “Replication for Existing Objects” and include the following information: 
 + Source bucket

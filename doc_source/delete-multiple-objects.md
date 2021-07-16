@@ -29,6 +29,8 @@ Follow these steps to use the Amazon S3 console to delete multiple objects from 
 **Warning**  
 Deleting the specified objects cannot be undone\.
 This action deletes all specified objects\. When deleting folders, wait for the delete action to finish before adding new objects to the folder\. Otherwise, new objects might be deleted as well\.
+To delete an object in a versioning\-enabled bucket with versioning **Off**, Amazon S3 creates a delete marker\. Tto undo the delete action, delete this delete marker\. To confirm this action, type **delete**\.
+To delete an object version in a versioning\-enabled bucket with versioning **On**, Amazon S3 will permanently delete the object version\. To confirm this action, type **permanently delete**\.
 
 ## Using the AWS SDKs<a name="DeletingMultipleObjects"></a>
 

@@ -8,6 +8,7 @@ An access log record contains details about the requests that are made to a buck
 
 **Important**  
 There is no extra charge for enabling server access logging on an Amazon S3 bucket\. However, any log files that the system delivers to you will accrue the usual charges for storage\. \(You can delete the log files at any time\.\) We do not assess data transfer charges for log file delivery, but we do charge the normal data transfer rate for accessing the log files\.
+You must ensure that your target bucket does not have server access logging enabled\.
 
 You can enable or disable server access logging by using the Amazon S3 console, Amazon S3 API, the AWS Command Line Interface \(AWS CLI\), or AWS SDKs\. 
 
@@ -282,4 +283,6 @@ To grant `WRITE` and `READ_ACP` \(ACL read\) permissions, add the following gran
 12. </Grant>
 ```
 
+**Important**  
+You must also add `AccessControl": "LogDeliveryWrite"` in the property field of your bucket when enabling Amazon S3 server access logging using AWS CloudFormation\. This is important because you can only grant those permissions by creating an ACL for the bucket, but you can't create custom ACLs for buckets in CloudFormation\. You can only use canned ACLs\.  
 For examples of adding ACL grants programmatically, see [Configuring ACLs](managing-acls.md)\.

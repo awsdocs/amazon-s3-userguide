@@ -36,7 +36,7 @@ For more information, see the following topics in the *IAM User Guide*:
 + [IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
 + [Common Scenarios for Roles: Users, Applications, and Services](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios.html)
 
-   
+   
 
 **Enable multi\-factor authentication \(MFA\) Delete**  
 MFA Delete can help prevent accidental bucket deletions\. If MFA Delete is not enabled, any user with the password of a sufficiently privileged root or IAM user could permanently delete an Amazon S3 object\.  

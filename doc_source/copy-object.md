@@ -86,7 +86,7 @@ This action updates metadata for bucket versioning, encryption, Object Lock feat
 
 ### Using the AWS SDKs<a name="CopyingObjectsUsingSDKs"></a>
 
-The examples in this section show how to copy objects up to 5 GB in a single operation\. For copying objects greater than 5 GB, you must use multipart upload API\. For more information, see [Copying an object using multipart upload](CopyingObjctsMPUapi.md)\.
+The examples in this section show how to copy objects up to 5 GB in a single operation\. For copying objects greater than 5 GB, you must use multipart upload API\. For more information, see [Copying an object using multipart upload](CopyingObjectsMPUapi.md)\.
 
 ------
 #### [ Java ]
@@ -138,7 +138,7 @@ public class CopyObjectSingleOperation {
 ------
 #### [ \.NET ]
 
-The following C\# example uses the high\-level AWS SDK for \.NET to copy objects that are as large as 5 GB in a single operation\. For objects that are larger than 5 GB, use the multipart upload copy example described in [Copying an object using multipart upload](CopyingObjctsMPUapi.md)\.
+The following C\# example uses the high\-level AWS SDK for \.NET to copy objects that are as large as 5 GB in a single operation\. For objects that are larger than 5 GB, use the multipart upload copy example described in [Copying an object using multipart upload](CopyingObjectsMPUapi.md)\.
 
 This example makes a copy of an object that is a maximum of 5 GB\. For information about the example's compatibility with a specific version of the AWS SDK for \.NET and instructions on how to create and test a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\.
 

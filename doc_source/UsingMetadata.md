@@ -81,4 +81,4 @@ x-amz-meta-ascii: AMAZONS3
 **Note**  
 The PUT request header is limited to 8 KB in size\. Within the PUT request header, the user\-defined metadata is limited to 2 KB in size\. The size of user\-defined metadata is measured by taking the sum of the number of bytes in the UTF\-8 encoding of each key and value\. 
 
-For information about adding metadata to your object after it’s been uploaded, [Editing object metadata in the Amazon S3 console](add-object-metadata.md)\.
+For information about changing the metadata of your object after it’s been uploaded by creating a copy of the object, modifying it, and replacing the old object, or creating a new version, see [Editing object metadata in the Amazon S3 console](add-object-metadata.md)\. 

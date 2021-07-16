@@ -4,6 +4,9 @@ When you create an object, you can specify the use of server\-side encryption wi
 
 You can specify SSE\-KMS using the S3 console, REST APIs, AWS SDKs, and AWS CLI\. For more information, see the topics below\. 
 
+**Note**  
+You can use a multi\-Region key in Amazon S3\. Multi\-Region keys will work as customer master keys \(CMKs\) work today, but they will not use the multi\-Region features of the key\. For more information, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
+
 ## Using the S3 console<a name="add-object-encryption-kms"></a>
 
 This topic describes how to set or change the type of encryption an object using the Amazon S3 console\.

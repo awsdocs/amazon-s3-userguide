@@ -34,7 +34,7 @@ The destination bucket:
 
 ## Amazon S3 inventory list<a name="storage-inventory-contents"></a>
 
-An inventory list file contains a list of the objects in the source bucket and metadata for each object\. The inventory lists are stored in the destination bucket as a CSV file compressed with GZIP, as an Apache optimized row columnar \(ORC\) file compressed with ZLIB, or as an Apache Parquet file compressed with Snappy\. 
+An inventory list file contains a list of the objects in the source bucket and metadata for each object\. The inventory lists are stored in the destination bucket as a CSV file compressed with GZIP, as an Apache optimized row columnar \(ORC\) file compressed with ZLIB, or as an Apache Parquet file compressed with Snappy\. Objects are sorted in ascending order based on the key names\.
 
 The inventory list contains a list of the objects in an S3 bucket and the following metadata for each listed object: 
 + **Bucket name** – The name of the bucket that the inventory is for\.

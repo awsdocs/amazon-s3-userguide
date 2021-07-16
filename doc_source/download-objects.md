@@ -4,9 +4,6 @@ This section explains how to download objects from an S3 bucket\.
 
 Data transfer fees apply when you download objects\. For information about Amazon S3 features, and pricing, see [Amazon S3](https://aws.amazon.com/s3/)\.
 
-**Important**  
-If an object key name consists of a single period \(\.\), or two periods \(\.\.\), you can’t download the object using the Amazon S3 console\. To download an object with a key name of “\.” or “\.\.”, you must use the AWS CLI, AWS SDKs, or REST API\. For more information about naming objects, see [Object key naming guidelines](object-keys.md#object-key-guidelines)\.
-
 You can download a single object per request using the Amazon S3 console\. To download multiple objects, use the AWS CLI, AWS SDKs, or REST API\. 
 
 When you download an object programmatically, its metadata is returned in the response headers\. There are times when you want to override certain response header values returned in a GET response\. For example, you might override the `Content-Disposition` response header value in your GET request\. The REST GET Object API \(see [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html)\) allows you to specify query string parameters in your GET request to override these values\. The AWS SDKs for Java, \.NET, and PHP also provide necessary objects you can use to specify values for these response headers in your GET request\. 
@@ -19,6 +16,7 @@ This section explains how to use the Amazon S3 console to download an object fro
 
 **Note**  
 You can only download one object at a time\.
+Objects with key names ending with period\(s\) "\." downloaded using the Amazon S3 console will have the period\(s\) "\." removed from the key name of the downloaded object\. To download an object with the key name ending in period\(s\) "\." retained in the downloaded object, you must use the AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\.
 
 **To download an object from an S3 bucket**
 

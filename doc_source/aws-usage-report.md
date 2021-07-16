@@ -30,7 +30,7 @@ You can download a usage report as an XML or a comma\-separated values \(CSV\) f
 
 ![\[Screenshot of a CSV usage report in a spreadsheet application.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/s3-usage-report.png)
 
-For information on understanding the usage report, see [Understanding your AWS billing and usage reports for Amazon S3](aws-usage-report-understand.md)\.
+For more information, see [Understanding your AWS billing and usage reports for Amazon S3](aws-usage-report-understand.md)\.
 
 ## Downloading the AWS Usage Report<a name="aws-usage-report-download"></a>
 

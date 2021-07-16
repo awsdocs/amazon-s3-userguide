@@ -202,7 +202,7 @@ public class BucketVersioningConfigurationExample {
 
 For instructions on how to create and test a working sample, see [Using the AWS SDK for Python \(Boto\)](UsingTheBotoAPI.md)\. 
 
-The following Python code example demonstrates permanently deleting a versioned object by deleting all of its versions\.
+The following Python code example creates an Amazon S3 bucket, enables it for versioning, and configures a lifecycle that expires noncurrent object versions after 7 days\.
 
 ```
 def create_versioned_bucket(bucket_name, prefix):

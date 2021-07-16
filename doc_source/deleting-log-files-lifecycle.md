@@ -4,7 +4,7 @@ An Amazon S3 bucket with server access logging enabled can accumulate many serve
 
 You can define a lifecycle configuration for a subset of objects in your S3 bucket by using a shared prefix \(that is, objects that have names that begin with a common string\)\. If you specified a prefix in your server access logging configuration, you can set a lifecycle configuration rule to delete log objects that have that prefix\. 
 
-For example, if your log objects have the prefix `logs/`, you can set a lifecycle configuration rule to delete all objects in the bucket that have the prefix `/logs` after a specified period of time\. 
+For example, if your log objects have the prefix `logs/`, you can set a lifecycle configuration rule to delete all objects in the bucket that have the prefix `logs/` after a specified period of time\. 
 
 For more information about lifecycle configuration, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 

@@ -24,7 +24,9 @@ For an example of how to attach a policy to an SNS topic or an SQS queue, see [W
 
 ### IAM policy for a destination SNS topic<a name="sns-topic-policy"></a>
 
-The following is an example of an AWS Identity and Access Management \(IAM\) policy that you attach to the destination SNS topic\.
+The following is an example of an AWS Identity and Access Management \(IAM\) policy that you attach to the destination SNS topic\. For more information about how to use this policy to set up a destination Amazon SNS topic for event notifications, see [Walkthrough: Configuring a bucket for notifications \(SNS topic or SQS queue\)](ways-to-add-notification-config-to-bucket.md)\.
+
+To use this policy, you must update the Amazon SNS topic ARN, bucket name, and bucket owner's AWS account ID\.
 
 ```
 {
@@ -52,7 +54,9 @@ The following is an example of an AWS Identity and Access Management \(IAM\) pol
 
 ### IAM policy for a destination SQS queue<a name="sqs-queue-policy"></a>
 
-The following is an example of an IAM policy that you attach to the destination SQS queue\.
+The following is an example of an IAM policy that you attach to the destination SQS queue\. For more information about how to use this policy to set up a destination Amazon SQS queue for event notifications, see [Walkthrough: Configuring a bucket for notifications \(SNS topic or SQS queue\)](ways-to-add-notification-config-to-bucket.md)\.
+
+To use this policy, you must update the Amazon SQS queue ARN, bucket name, and bucket owner's AWS account ID\.
 
 ```
 {

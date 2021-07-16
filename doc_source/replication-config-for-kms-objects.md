@@ -2,10 +2,13 @@
 
 By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with customer master keys \(CMKs\) stored in AWS KMS\. This section explains additional configuration that you add to direct Amazon S3 to replicate these objects\. 
 
-**Important**  
-Replication of encrypted data is a server\-side process that occurs entirely within Amazon S3\. Objects created with server\-side encryption using customer\-provided \(SSE\-C\) encryption keys are not replicated\.
+**Note**  
+You can use a multi\-Region key in Amazon S3\. Multi\-Region keys will work as customer master keys \(CMKs\) work today, but they will not use the multi\-Region features of the key\. For more information, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
 
 For an example with step\-by\-step instructions, see [Replicating encrypted objects](replication-walkthrough-4.md)\. For information about creating a replication configuration, see [Replicating objects](replication.md)\. 
+
+**Important**  
+Replication of encrypted data is a server\-side process that occurs entirely within Amazon S3\. Objects created with server\-side encryption using customer\-provided \(SSE\-C\) encryption keys are not replicated\.
 
 **Topics**
 + [Specifying additional information in the replication configuration](#replication-kms-extra-config)

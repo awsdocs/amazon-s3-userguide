@@ -49,7 +49,7 @@ Amazon SQS offers reliable and scalable hosted queues for storing messages as th
 The Amazon SQS queue must be in the same Region as your Amazon S3 bucket\. For information about creating an Amazon SQS queue, see [What is Amazon Simple Queue Service](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) and [Getting started with Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) in the *Amazon Simple Queue Service Developer Guide*\. 
 
 Before you can use the Amazon SQS queue as an event notification destination, you need the following:
-+ The ARN for the Amazon SQS topic
++ The ARN for the Amazon SQS queue
 
 ### Lambda function<a name="lambda-function"></a>
 

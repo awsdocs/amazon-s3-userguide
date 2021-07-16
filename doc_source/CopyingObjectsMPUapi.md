@@ -1,4 +1,4 @@
-# Copying an object using multipart upload<a name="CopyingObjctsMPUapi"></a>
+# Copying an object using multipart upload<a name="CopyingObjectsMPUapi"></a>
 
  The examples in this section show you how to copy objects greater than 5 GB using the multipart upload API\. You can copy objects less than 5 GB in a single operation\. For more information, see [Copying objects](copy-object.md)\. 
 

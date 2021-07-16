@@ -45,7 +45,7 @@ You can use wildcards as part of the resource ARN\. You can use wildcard charact
   ```
   1. arn:aws:s3:::examplebucket/*
   ```
-+ The following ARN uses `*` to indicate all Amazon S3 resources \(all S3 buckets and objects in your account\)\.
++ The following ARN uses `*` to indicate all Amazon S3 resources \(all S3 buckets and objects\)\.
 
   ```
   arn:aws:s3:::*

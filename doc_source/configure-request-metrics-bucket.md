@@ -38,6 +38,14 @@ You can add metrics configurations to a bucket using the Amazon S3 console, the 
 
    After about 15 minutes, CloudWatch begins tracking these request metrics\. You can see them on the **Request metrics** tab\. You can see graphs for the metrics on the Amazon S3 or CloudWatch console\. Request metrics are billed at the standard CloudWatch rate\. For more information, see [Amazon CloudWatch pricing](http://aws.amazon.com/cloudwatch/pricing/)\. 
 
+## Using the REST API<a name="metrics-configuration-api"></a>
+
+You can also add metrics configurations programmatically with the Amazon S3 REST API\. For more information about adding and working with metrics configurations, see the following topics in the *Amazon Simple Storage Service API Reference*:
++ [PUT Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html)
++ [GET Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETMetricConfiguration.html)
++ [List Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTListBucketMetricsConfiguration.html)
++ [DELETE Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTDeleteBucketMetricsConfiguration.html)
+
 ## Using the AWS CLI<a name="add-metrics-configurations"></a>
 
 1. Install and set up the AWS CLI\. For instructions, see [Installing, updating, and uninstalling the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) in the *AWS Command Line Interface User Guide*\.
@@ -47,32 +55,5 @@ You can add metrics configurations to a bucket using the Amazon S3 console, the 
 1. Run the following command to add a metrics configuration\.
 
    ```
-   aws s3api put-bucket-metrics-configuration --endpoint https://s3.us-west-2.amazonaws.com --bucket bucket-name --id metrics-config-id --metrics-configuration '{"Id":"metrics-config-id","Filter":{"Prefix":"prefix1"}}'
+   aws s3api put-bucket-metrics-configuration --endpoint https://s3.us-west-2.amazonaws.com --bucket bucket-name --id metrics-config-id --metrics-configuration '{"Id":"metrics-config-id"}'
    ```
-
-1. To verify that the configuration was added, run the following command\.
-
-   ```
-   aws s3api get-bucket-metrics-configuration --endpoint https://s3.us-west-2.amazonaws.com --bucket bucket-name --id metrics-config-id
-   ```
-
-   This returns the following response\.
-
-   ```
-   {
-       "MetricsConfiguration": {
-           "Filter": {
-               "Prefix": "prefix1"
-           },
-           "Id": "metrics-config-id"
-       }
-   }
-   ```
-
-## Using the REST API<a name="metrics-configuration-api"></a>
-
-You can also add metrics configurations programmatically with the Amazon S3 REST API\. For more information about adding and working with metrics configurations, see the following topics in the *Amazon Simple Storage Service API Reference*:
-+ [PUT Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html)
-+ [GET Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETMetricConfiguration.html)
-+ [List Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTListBucketMetricsConfiguration.html)
-+ [DELETE Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTDeleteBucketMetricsConfiguration.html)

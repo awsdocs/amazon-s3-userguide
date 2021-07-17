@@ -20,6 +20,9 @@ If you are using Microsoft Visual Studio, you can also use AWS Explorer to gener
 
 You can use the AWS SDK to generate a presigned URL that you, or anyone you give the URL, can use to upload an object to Amazon S3\. When you use the URL to upload an object, Amazon S3 creates the object in the specified bucket\. If an object with the same key that is specified in the presigned URL already exists in the bucket, Amazon S3 replaces the existing object with the uploaded object\.
 
+**Use the presigned URL**  
+Once generated, you can utilize the presigned URL to directly upload the object to S3. For more information on using the presigned URL, see [Presigned POST Object S3 uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html).
+
 ## Examples<a name="presigned-urls-upload-examples"></a>
 
 The following examples show how to upload objects using presigned URLs\.

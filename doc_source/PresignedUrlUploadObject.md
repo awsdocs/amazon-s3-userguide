@@ -225,7 +225,11 @@ const run = async () => {
       `\nPutting "${bucketParams.Key}" using signedUrl with body "${bucketParams.Body}" in v3`
     );
     console.log(signedUrl);
-    const response = await fetch(signedUrl);
+    const response = await fetch(signedUrl, {
+      method: "PUT",
+      body: bucketParams.body,
+      headers: {'Content-Type': bucketParams.ContentType}
+    });
     console.log(
       `\nResponse returned by signed URL: ${await response.text()}\n`
     );

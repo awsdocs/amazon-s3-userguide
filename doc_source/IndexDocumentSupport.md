@@ -45,6 +45,7 @@ When you enable static website hosting for your bucket, you enter the name of th
    If you don't have an `index.html` file, you can use the following HTML to create one:
 
    ```
+   <!DOCTYPE html>
    <html xmlns="http://www.w3.org/1999/xhtml" >
    <head>
        <title>My Website Home Page</title>

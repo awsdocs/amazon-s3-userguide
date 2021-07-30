@@ -1,6 +1,6 @@
 # Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)<a name="UsingKMSEncryption"></a>
 
-Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses AWS KMS customer master keys \(CMKs\) to encrypt your Amazon S3 objects\. AWS KMS encrypts only the object data\. Any object metadata is not encrypted\. 
+Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses AWS KMS customer master keys \(CMKs\) to encrypt your Amazon S3 objects\. Amazon S3 encrypts only the object data\. Any object metadata is not encrypted\. 
 
 If you use CMKs, you use AWS KMS via the [AWS Management Console](https://console.aws.amazon.com/kms) or [AWS KMS APIs](https://docs.aws.amazon.com/kms/latest/APIReference/) to centrally create CMKs, define the policies that control how CMKs can be used, and audit their usage to prove that they are being used correctly\. You can use these CMKs to protect your data in Amazon S3 buckets\. When you use SSE\-KMS encryption with an S3 bucket, the AWS KMS CMK must be in the same Region as the bucket\.
 

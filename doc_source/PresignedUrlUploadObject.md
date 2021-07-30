@@ -260,10 +260,11 @@ Generate a presigned URL to upload an object by using the SDK for Python \(Boto3
 
 ```
 import boto3
-    url = boto3.client('s3').generate_presigned_url(
+url = boto3.client('s3').generate_presigned_url(
     ClientMethod='put_object', 
     Params={'Bucket': 'BUCKET_NAME', 'Key': 'OBJECT_KEY'},
-    ExpiresIn=3600)
+    ExpiresIn=3600,
+)
 ```
 
 For a complete example that shows how to generate presigned URLs and how to use the Requests package to upload and download objects, see the [ Python presigned URL](https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html) example on GitHub\. For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.

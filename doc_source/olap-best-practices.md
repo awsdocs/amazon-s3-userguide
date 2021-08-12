@@ -10,11 +10,11 @@ When using S3 Object Lambda, follow these best practices and guidelines to optim
 
 ## Working with S3 Object Lambda<a name="olap-working-with"></a>
 
-S3 Object Lambda only support processing GET requests\. Any non\-GET requests, such as LIST or HEAD, will not invoke Lambda and return standard, non\-transformed API responses\. You can create a maximum of 1,000 Object Lambda access points per AWS account per Region\. The AWS Lambda function that you use must be in the same AWS account and Region as the Object Lambda access point\.
+S3 Object Lambda only support processing GetObject requests\. Any non\-GET requests, such as ListObjects or HeadObject, will not invoke Lambda and return standard, non\-transformed API responses\. You can create a maximum of 1,000 Object Lambda access points per AWS account per Region\. The AWS Lambda function that you use must be in the same AWS account and Region as the Object Lambda access point\.
 
 S3 Object Lambda allows up to 60 seconds to stream a complete response to its caller\. Your function is also subject to Lambda default quotas\. For more information, see [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) in the *AWS Lambda Developer Guide*\. Using S3 Object Lambda invokes your specified Lambda function and you are responsible for ensuring that any data overwritten or deleted from S3 by your specified Lambda function or application is intended and correct\.
 
-You can only use S3 Object Lambda to perform operations on objects\. You cannot use them to perform other Amazon S3 operations, such as modifying or deleting buckets\. For a complete list of S3 operations that support access points see, [Access point compatibility with S3 operations and AWS services](access-points-usage-examples.md#access-points-service-api-support)\.
+You can only use S3 Object Lambda to perform operations on objects\. You cannot use them to perform other Amazon S3 operations, such as modifying or deleting buckets\. For a complete list of S3 operations that support access points see, [Access point compatibility with AWS services](access-points-usage-examples.md#access-points-service-api-support)\.
 
 In addition to this list, S3 Object Lambda access points do not support [POST Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html), [Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html) \(as the source\), or [Select Object Content](https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html)\.
 

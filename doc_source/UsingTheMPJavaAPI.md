@@ -28,7 +28,7 @@ The following packages in the AWS SDK for Java provide the API:
   This high\-level API is designed to simplify transferring objects to and from Amazon S3\. It includes the `TransferManager` class, which provides asynchronous methods for working with, querying, and manipulating transfers\. It also includes the `TransferManagerConfiguration` class, which you can use to configure the minimum part size for uploading parts and the threshold in bytes of when to use multipart uploads\.
 + **com\.amazonaws\.services\.s3\.model—**Provides the low\-level API classes to create requests and process responses\. For example, it includes the `GetObjectRequest` class to describe your get object request, the `ListObjectsRequest` class to describe your list keys requests, and the `InitiateMultipartUploadRequest` class to create multipart uploads\. 
 
-For more information about the AWS SDK for Java API, see [AWS SDK for Java API Reference](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/)\.
+For more information about the AWS SDK for Java API, see [AWS SDK for Java API Reference](https://docs.aws.amazon.com/sdk-for-java/latest/reference/)\.
 
 ## Testing the Amazon S3 Java Code Examples<a name="TestingJavaSamples"></a>
 

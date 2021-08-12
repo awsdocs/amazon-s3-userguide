@@ -99,7 +99,7 @@ When you configure the ownership override option, the following considerations a
   If you add the owner override, Amazon S3 replicates only the object version, not the ACL\. In addition, Amazon S3 doesn't replicate subsequent changes to the source object ACL\. Amazon S3 sets the ACL on the replica that grants full control to the destination bucket owner\. 
 +  When you update a replication configuration to enable, or disable, the owner override, the following occurs\.
 
-   
+   
   + If you add the owner override option to the replication configuration:
 
     When Amazon S3 replicates an object version, it discards the ACL that is associated with the source object\. Instead, it sets the ACL on the replica, giving full control to the owner of the destination bucket\. It doesn't replicate subsequent changes to the source object ACL\. However, this ACL change doesn't apply to object versions that were replicated before you set the owner override option\. ACL updates on source objects that were replicated before the owner override was set continue to be replicated \(because the object and its replicas continue to have the same owner\)\.

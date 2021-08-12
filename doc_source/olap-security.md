@@ -14,3 +14,15 @@ Since Object Lambda access point use both Amazon S3 and AWS Lambda there are dif
 + When using S3 server\-side encryption with Object Lambda access points the object will be decrypted before being sent to AWS Lambda where it will be processed unencrypted up to the original caller \(in case of a GET\)\.
 + To prevent the key being logged, S3 will reject GET requests for objects encrypted via server\-side encryption using customer provided keys\. The Lambda function may still retrieve these objects provided it has access to the client provided key\.
 + When using S3 client\-side encryption with Object Lambda access points make sure Lambda has access to the key to decrypt and reencrypt the object\.
+
+## Access points security<a name="olap-access-points-security"></a>
+
+S3 Object Lambda uses two access points, an Object Lambda access point and a standard S3 access point, referred to as the supporting access point\. When you make a request to an Object Lambda access point, S3 either invokes Lambda on your behalf or delegates the request to the supporting access point, depending upon the S3 Object Lambda configuration\. When Lambda is invoked for GetObject, S3 will generate a pre\-signed URL to your object on your behalf through the supporting access point\. Your Lambda function will receive this URL as input when invoked\.
+
+You may set your Lambda function to use this URL to retrieve the original object, instead of invoking S3 directly\. This model allows you to apply better security boundaries to your objects\. You can limit direct object access through S3 buckets or S3 access points to a limited set of IAM roles or users\. This also protects your Lambda functions from being subject to the Confused Deputy problem, where a misconfigured function with different permissions than your GetObject invoker could allow or deny access to objects when it should not\.
+
+## Object Lambda Access Point public access<a name="olap-public-access"></a>
+
+S3 Object Lambda does not allow anonymous or public access because Amazon S3 needs to authorize your identity to complete any S3 Object Lambda request\. When invoking GetObject requests through an Object Lambda access point, you need the `lambda:InvokeFunction` permission for the configured Lambda function\. Similarly, when invoking other APIs through an Object Lambda access point, you need to have the required `s3:*` permissions\. 
+
+Without these permissions, requests to invoke Lambda or delegate to S3 will fail as a 403 Forbidden error\. All access must be made by authenticated principals\. If you require public access, Lambda@Edge can be used as a possible alternative\. For more information, see [Customizing at the edge with Lambda@Edge](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-the-edge.html) in the *Amazon CloudFront Developer Guide*\.

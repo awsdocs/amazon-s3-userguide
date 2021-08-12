@@ -18,7 +18,7 @@ Follow these steps to use the Amazon S3 console to delete a single object from a
 
 1. To delete an object in a versioning\-enabled bucket with versioning: 
    + **Off**, Amazon S3 creates a delete marker\. To delete the object, select the object, and choose **delete** and confirm your choice by typing **delete** in the text field\.
-   + **On**, Amazon S3 will permanently delete the object version\. Select the object version that you want to delete, and choose **delete** and confirm your choice by typing **permenently delete** in the text field\.
+   + **On**, Amazon S3 will permanently delete the object version\. Select the object version that you want to delete, and choose **delete** and confirm your choice by typing **permanently delete** in the text field\.
 
 ## Using the AWS SDKs<a name="DeletingOneObject"></a>
 
@@ -338,6 +338,29 @@ try
 catch (S3Exception $e) {
     exit($e->getAwsErrorMessage());
 }
+```
+
+------
+#### [ Javascript ]
+
+This example shows how to use version 3 of the AWS SDK for JavaScript to delete an object\. For more information about AWS SDK for JavaScript see, [Using the AWS SDK for JavaScript](using-aws-javascript.md)\.
+
+```
+import { DeleteObjectCommand } from "@aws-sdk/client-s3";
+import { s3Client } from "./libs/s3Client.js" // Helper function that creates Amazon S3 service client module.
+
+export const bucketParams = { Bucket: "BUCKET_NAME", Key: "KEY" };
+
+export const run = async () => {
+  try {
+    const data = await s3Client.send(new DeleteObjectCommand(bucketParams));
+    console.log("Success. Object deleted.", data);
+    return data; // For unit tests.
+  } catch (err) {
+    console.log("Error", err);
+  }
+};
+run();
 ```
 
 ------

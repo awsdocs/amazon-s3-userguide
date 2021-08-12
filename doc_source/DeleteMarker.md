@@ -10,7 +10,7 @@ A delete marker has a key name \(or key\) and version ID like any other object\.
 
 Delete markers accrue a nominal charge for storage in Amazon S3\. The storage size of a delete marker is equal to the size of the key name of the delete marker\. A key name is a sequence of Unicode characters\. The UTF\-8 encoding adds 1–4 bytes of storage to your bucket for each character in the name\. 
 
-For more information about key names, see [Creating object key names](object-keys.md)\. For information about deleting a delete marker, see [](ManagingDelMarkers.md#RemDelMarker)\.  
+For more information about key names, see [Creating object key names](object-keys.md)\. For information about deleting a delete marker, see [Managing delete markers](ManagingDelMarkers.md)\.  
 
 Only Amazon S3 can create a delete marker, and it does so whenever you send a `DELETE Object` request on an object in a versioning\-enabled or suspended bucket\. The object named in the `DELETE` request is not actually deleted\. Instead, the delete marker becomes the current version of the object\. The object's key name \(or key\) becomes the key of the delete marker\. If you try to get an object and its current version is a delete marker, Amazon S3 responds with the following:
 + A 404 \(Object not found\) error

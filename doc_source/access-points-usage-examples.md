@@ -3,42 +3,43 @@
 The following examples demonstrate how to use access points with compatible operations in Amazon S3\.
 
 **Topics**
-+ [Access point compatibility with S3 operations and AWS services](#access-points-service-api-support)
++ [Access point compatibility with AWS services](#access-points-service-api-support)
++ [Access point compatibility with S3 operations](#access-points-operations-support)
 + [Request an object through an access point](#get-object-ap)
-+ [Upload an object through an access point](#put-object-ap)
++ [Upload an object through an access point alias](#put-object-ap)
 + [Delete an object through an access point](#delete-object-ap)
-+ [List objects through an access point](#list-object-ap)
++ [List objects through an access point alias](#list-object-ap)
 + [Add a tag set to an object through an access point](#add-tag-set-ap)
 + [Grant access permissions through an access point using an ACL](#acl-permissions-ap)
 
-## Access point compatibility with S3 operations and AWS services<a name="access-points-service-api-support"></a>
+## Access point compatibility with AWS services<a name="access-points-service-api-support"></a>
 
-Access points in Amazon S3 are compatible with a subset of S3 operations and other AWS services\. The following sections list the compatible services and S3 operations\.
+Amazon S3 access points aliases allow any application that requires an S3 bucket name to easily use an access point\. You can use S3 access point aliases anywhere you use S3 bucket names to access data in S3\.
 
-**AWS Services**
+## Access point compatibility with S3 operations<a name="access-points-operations-support"></a>
 
-You can use S3 access points with AWS CloudFormation\.
-
-For more information about AWS CloudFormation, see [What is AWS CloudFormation?](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) in the *AWS CloudFormation User Guide*\.
+You can use access points to access a bucket using the following subset of Amazon S3 APIs\. All the operations listed below can accept either access point ARNs or access point aliases:
 
 **S3 operations**
-
-You can use access points to access a bucket using the following subset of Amazon S3 APIs:
 + `[AbortMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html)`
 + `[CompleteMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html)`
 + `[CopyObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html)` \(same\-region copies only\)
 + `[CreateMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html)`
 + `[DeleteObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html)`
 + `[DeleteObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectTagging.html)`
++ `[GetBucketLocation](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLocation.html)`
 + `[GetObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html)`
 + `[GetObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html)`
 + `[GetObjectLegalHold](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectLegalHold.html)`
 + `[GetObjectRetention](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectRetention.html)`
 + `[GetObjectTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html)`
++ `[HeadBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html)`
 + `[HeadObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html)`
 + `[ListMultipartUploads](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html)`
++ `[ListObjects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html)`
 + `[ListObjectsV2](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html)`
 + `[ListParts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)`
++ `[Presign](https://docs.aws.amazon.com/s3/presign.html)`
 + `[PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)`
 + `[PutObjectLegalHold](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLegalHold.html)`
 + `[PutObjectRetention](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectRetention.html)`
@@ -61,15 +62,15 @@ aws s3api get-object --key my-image.jpg --bucket arn:aws:s3:us-west-2:1234567890
 
 ------
 
-## Upload an object through an access point<a name="put-object-ap"></a>
+## Upload an object through an access point alias<a name="put-object-ap"></a>
 
-The following example uploads the object `my-image.jpg` through the access point `prod` owned by account ID `123456789012` in Region `us-west-2`\.
+The following example uploads the object `my-image.jpg` through the access point alias `my-access-point-hrzrlukc5m36ft7okagglf3gmwluquse1b-s3alias` owned by account ID `123456789012` in Region `us-west-2`\.
 
 ------
 #### [ AWS CLI ]
 
 ```
-aws s3api put-object --bucket arn:aws:s3:us-west-2:123456789012:accesspoint/prod --key my-image.jpg --body my-image.jpg
+aws s3api put-object --bucket my-access-point-hrzrlukc5m36ft7okagglf3gmwluquse1b-s3alias --key my-image.jpg --body my-image.jpg
 ```
 
 ------
@@ -87,15 +88,15 @@ aws s3api delete-object --bucket arn:aws:s3:us-west-2:123456789012:accesspoint/p
 
 ------
 
-## List objects through an access point<a name="list-object-ap"></a>
+## List objects through an access point alias<a name="list-object-ap"></a>
 
-The following example lists objects through the access point `prod` owned by account ID `123456789012` in Region `us-west-2`\.
+The following example lists objects through the access point alias `my-access-point-hrzrlukc5m36ft7okagglf3gmwluquse1b-s3alias` owned by account ID `123456789012` in Region `us-west-2`\.
 
 ------
 #### [ AWS CLI ]
 
 ```
-aws s3api list-objects-v2 --bucket arn:aws:s3:us-west-2:123456789012:accesspoint/prod
+aws s3api list-objects-v2 --bucket my-access-point-hrzrlukc5m36ft7okagglf3gmwluquse1b-s3alias
 ```
 
 ------

@@ -543,7 +543,7 @@ You can use the AWS SDK for Ruby to manage S3 Lifecycle configuration on a bucke
 
 ## Using the REST API<a name="manage-lifecycle-using-rest"></a>
 
-YThe following sections in the *Amazon Simple Storage Service API Reference* describe the REST API related to the S3 Lifecycle configuration\. 
+The following sections in the *Amazon Simple Storage Service API Reference* describe the REST API related to the S3 Lifecycle configuration\. 
 + [PUT Bucket lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTlifecycle.html)
 + [GET Bucket lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlifecycle.html)
 + [DELETE Bucket lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETElifecycle.html)

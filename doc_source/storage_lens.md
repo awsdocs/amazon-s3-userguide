@@ -22,5 +22,6 @@ For more information about using S3 Storage Lens, see [Working with Amazon S3 St
 + [Using Amazon S3 Storage Lens with AWS Organizations](storage_lens_with_organizations.md)
 + [Setting permissions to use Amazon S3 Storage Lens](storage_lens_iam_permissions.md)
 + [Viewing storage usage and activity metrics with Amazon S3 Storage Lens](storage_lens_view_metrics.md)
++ [Using Amazon S3 Storage Lens to optimize your storage costs](storage-lens-optimize-storage.md)
 + [Amazon S3 Storage Lens metrics glossary](storage_lens_metrics_glossary.md)
 + [Working with Amazon S3 Storage Lens using the console and API](S3LensExamples.md)

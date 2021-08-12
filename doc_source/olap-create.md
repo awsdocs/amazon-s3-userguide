@@ -10,7 +10,7 @@ The following sections describe how to create an Object Lambda access point usin
 
 ## Create an Object Lambda access point<a name="create-olap"></a>
 
-For information about how to create access points using the REST API, see [CreateAccessPoint](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html) in the *Amazon Simple Storage Service API Reference*\.
+For information about how to create an Object Lambda access point using the REST API, see [CreateAccessPointForObjectLambda](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html) in the *Amazon Simple Storage Service API Reference*\.
 
 ### Using the S3 console<a name="olap-create-console"></a>
 
@@ -151,3 +151,11 @@ This example uses the AWS prebuilt function `compress`\. For example AWS Lambda 
    ```
 **Important**  
 When using Object Lambda access points the payload should not contain any confidential information\.
+
+### Using AWS CloudFormation<a name="olap-create-cloudformation"></a>
+
+For more information about configuring Object Lambda access points using AWS CloudFormation, see [AWS::S3ObjectLambda::AccessPoint](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspoint.html) in the *AWS CloudFormation User Guide*\.
+
+### Using AWS Cloud Development Kit \(CDK\)<a name="olap-create-cdk"></a>
+
+For more information about configuring Object Lambda access points using the AWS CDK, see [AWS::S3ObjectLambda Construct Library](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-s3objectlambda-readme.html) in the *AWS Cloud Development Kit \(CDK\) API Reference*\.

@@ -6,7 +6,7 @@ For more information about CloudWatch metrics for Amazon S3, see [Monitoring met
 
 When you configure CloudWatch metrics, you can create a filter for all the objects in your bucket or you can filter the configuration into groups of related objects within a single bucket\. You can filter objects in a bucket for inclusion in a metrics configuration based on one or more of the following elements:
 + **Object key name prefix** – Although the Amazon S3 data model is a flat structure, you can infer hierarchy by using a prefix\. The Amazon S3 console supports these prefixes with the concept of folders\. If you filter by prefix, objects that have the same prefix are included in the metrics configuration\.
-+ **Tag** – You can add tags, which are key\-value name pairs, to objects\. Tags help you find and organize objects easily\. You can also use tags as a filter for metrics configurations\.
++ **Tag** – You can add tags, which are key\-value name pairs, to objects\. Tags help you find and organize objects easily\. You can also use tags as filters for metrics configurations\.
 
 If you specify a filter, only requests that operate on single objects can match the filter and be included in the reported metrics\. Requests like [Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html) and `List` requests don't return any metrics for configurations with filters\.
 

@@ -14,7 +14,7 @@ Since presigned URLs grant access to your Amazon S3 buckets to whoever has the U
 Anyone with valid security credentials can create a presigned URL\. However, for you to successfully upload an object, the presigned URL must be created by someone who has permission to perform the operation that the presigned URL is based upon\.
 
 **Generate a presigned URL for object upload**  
-You can generate a presigned URL programmatically using the [REST API](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html), \.NET, AWS SDK for Java, Ruby, [AWS SDK for JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, , and [Python](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
+You can generate a presigned URL programmatically using the [REST API](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html), \.NET, AWS SDK for Java, Ruby, [AWS SDK for JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, , and [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
 
 If you are using Microsoft Visual Studio, you can also use AWS Explorer to generate a presigned object URL without writing any code\. Anyone who receives a valid presigned URL can then programmatically upload an object\. For more information, see [Using Amazon S3 from AWS Explorer](https://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/using-s3.html)\. For instructions on how to install AWS Explorer, see [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)\.
 
@@ -199,12 +199,12 @@ import fetch from "node-fetch";
 
 // Set parameters
 // Create a random names for the Amazon Simple Storage Service (Amazon S3) bucket and key
-const bucketParams = {
+export const bucketParams = {
   Bucket: `test-bucket-${Math.ceil(Math.random() * 10 ** 10)}`,
   Key: `test-object-${Math.ceil(Math.random() * 10 ** 10)}`,
   Body: "BODY"
 };
-const run = async () => {
+export const run = async () => {
   try {
     // Create an Amazon S3 bucket.
     console.log(`Creating bucket ${bucketParams.Bucket}`);
@@ -266,7 +266,7 @@ import boto3
     ExpiresIn=3600)
 ```
 
-For a complete example that shows how to generate presigned URLs and how to use the Requests package to upload and download objects, see the [ Python presigned URL](https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html) example on GitHub\. For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.
+For a complete example that shows how to generate presigned URLs and how to use the Requests package to upload and download objects, see the [ Python presigned URL](https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html) example on GitHub\. For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.
 
 ------
 #### [ Ruby ]

@@ -26,18 +26,4 @@ Follow these steps if you need to change the public access settings for a single
 
 1. When you're asked for confirmation, enter **confirm**\. Then choose **Confirm** to save your changes\.
 
-**To edit the Amazon S3 block public access settings for an S3 bucket**
-
-1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
-
-1. In the **Buckets** list, choose the name of the bucket that you want\.
-
-1. Choose **Permissions**\.
-
-1. Choose **Edit** to change the public access settings for the bucket\. For more information about the four Amazon S3 Block Public Access Settings, see [Block public access settings](access-control-block-public-access.md#access-control-block-public-access-options)\.
-
-1. Choose the setting that you want to change, and then choose **Save changes**\.
-
-1. When you're asked for confirmation, enter **confirm**\. Then choose **Confirm** to save your changes\.
-
 You can change Amazon S3 Block Public Access settings when you create a bucket\. For more information, see [Creating a bucket](create-bucket-overview.md)\. 

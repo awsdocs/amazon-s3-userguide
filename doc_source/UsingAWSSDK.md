@@ -52,7 +52,7 @@ For all AWS Regions, AWS SDKs use Signature Version 4 by default to authenticate
 | Ruby SDK |  Ruby SDK \- Version 1: Set the `:s3_signature_version` parameter to `:v4` when constructing the client: <pre>s3 = AWS::S3::Client.new(:s3_signature_version => :v4)</pre> Ruby SDK \- Version 3: Set the `signature_version` parameter to `v4` when constructing the client: <pre>s3 = Aws::S3::Client.new(signature_version: 'v4')</pre>  | 
 | \.NET SDK |  Add the following to the code before creating the Amazon S3 client: <pre>AWSConfigsS3.UseSignatureVersion4 = true;</pre> Or, add the following to the config file: <pre><appSettings><br />   <add key="AWS.S3.UseSignatureVersion4" value="true" /><br /></appSettings></pre>  | 
 
- 
+ 
 
 ### AWS Signature Version 2 Turned Off \(Deprecated\) for Amazon S3<a name="UsingAWSSDK-sig2-deprecation"></a>
 
@@ -92,7 +92,7 @@ If you are using a presigned URL that requires you to sign for more than 7 days,
 + View the post [AWS Signature Version 4 to replace AWS Signature Version 2 for signing Amazon S3 API requests](https://forums.aws.amazon.com/ann.jspa?annID=5816) in the AWS forums\.
 + If you have any questions or concerns, contact [AWS Support](https://docs.aws.amazon.com/awssupport/latest/user/getting-started.html)\.
 
-   
+   
 
 ### Moving from Signature Version 2 to Signature Version 4<a name="UsingAWSSDK-move-to-Sig4"></a>
 

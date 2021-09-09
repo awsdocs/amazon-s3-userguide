@@ -90,36 +90,53 @@ Additional charges apply for Advanced Metrics and Recommendations\. For more inf
 
 ### S3 Storage Lens sample configuration IAM permissions<a name="S3LensHelperFilesSampleConfigurationIAMPermissionsCLI"></a>
 
-**Example permissions\.json**  
-S3 Storage Lens IAM permissions\.  
+**Example permissions\.json \- Specific dashboard name**  
+This example policy shows S3 Storage Lens IAM permissions with a specific dashboard name specified\. Replace `your-dashboard-name` and `example-account-id` with your own values\.  
 
 ```
 {
-  "Version": "2012-10-17",  "Statement": [
-    {
-      "Effect": "Allow",      
-      "Action": [       
-        "iam:*",        
-        "sts:AssumeRole"      
-      ],      
-      "Resource": "*"    
-    },    
-    {
-      "Effect": "Allow",      
-      "Action":
-      [
-        "s3:GetStorageLensConfiguration*",
-        "s3:DeleteStorageLensConfiguration*",        
-        "s3:PutStorageLensConfiguration*"      
-      ],      
-      "Condition": {
-        "StringEquals": {
-          "aws:ResourceTag/key1": "value1"        
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetStorageLensConfiguration",
+                "s3:DeleteStorageLensConfiguration",
+                "s3:PutStorageLensConfiguration"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "aws:ResourceTag/key1": "value1"
+                }
+            },
+            "Resource": "arn:aws:s3:us-east-1:example-account-id:storage-lens/your-dashboard-name"
         }
-      },      
-      "Resource": "*"  
-    }
-  ]
+    ]
+}
+```
+
+**Example permissions\.json \- No specific dashboard name**  
+This example policy shows S3 Storage Lens IAM permissions without a specific dashboard name specified\. Replace `example-account-id` with your AWS account ID\.  
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetStorageLensConfiguration",
+                "s3:DeleteStorageLensConfiguration",
+                "s3:PutStorageLensConfiguration"
+            ],
+            "Condition": {
+                "StringEquals": {
+                    "aws:ResourceTag/key1": "value1"
+                }
+            },
+            "Resource": "arn:aws:s3:us-east-1:example-account-id:storage-lens/*"
+        }
+    ]
 }
 ```
 

@@ -6,7 +6,7 @@ You can configure your bucket to use an S3 Bucket Key for SSE\-KMS on new object
 
 When an S3 Bucket Key is enabled for the source or destination bucket, the encryption context will be the bucket Amazon Resource Name \(ARN\) and not the object ARN, for example, `arn:aws:s3:::bucket_ARN`\. You need to update your IAM policies to use the bucket ARN for the encryption context\. For more information, see [Granting additional permissions for the IAM role](replication-config-for-kms-objects.md#replication-kms-extra-permissions)\.
 
-The following examples illustrate how an S3 Bucket Key works with replication\. For more information, see [Replicating objects created with server\-side encryption \(SSE\) using AWS KMS CMKs](replication-config-for-kms-objects.md)\. 
+The following examples illustrate how an S3 Bucket Key works with replication\. For more information, see [Replicating objects created with server\-side encryption \(SSE\) using KMS keys](replication-config-for-kms-objects.md)\. 
 
 **Prerequisite:**  
 Before you configure your bucket to use an S3 Bucket Key, review [Changes to note before enabling an S3 Bucket Key](bucket-key.md#bucket-key-changes)\.
@@ -36,7 +36,7 @@ If an object already has an S3 Bucket Key enabled, the S3 Bucket Key settings fo
 
 1. Choose an AWS KMS key:
    + Choose **AWS managed key \(aws/s3\)**\. 
-   + Choose **Customer managed key**, and choose a symmetric customer managed CMK in the same Region as your bucket\. 
+   + Choose **Customer managed key**, and choose a symmetric customer managed key in the same Region as your bucket\. 
 
 1. Under **Bucket Key**, choose **Enable**\. 
 
@@ -60,7 +60,7 @@ If an object already has an S3 Bucket Key enabled, the S3 Bucket Key settings fo
 
 1. Choose an AWS KMS key:
    + Choose **AWS managed key \(aws/s3\)**\. 
-   + Choose **Customer managed key**, and choose a symmetric customer managed CMK in the same Region as your bucket\. 
+   + Choose **Customer managed key**, and choose a symmetric customer managed key in the same Region as your bucket\. 
 
 1. Under **Bucket Key**, choose **Enable**\.
 
@@ -70,7 +70,7 @@ If an object already has an S3 Bucket Key enabled, the S3 Bucket Key settings fo
 
 ## Using the REST API<a name="enable-bucket-key-rest"></a>
 
-You can use [PutBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html) to enable or disable an S3 Bucket Key for your bucket\. To configure an S3 Bucket Key with `PutBucketEncryption`, specify the [ServerSideEncryptionRule](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ServerSideEncryptionRule.html), which includes default encryption with server\-side encryption using AWS KMS customer master keys \(CMKs\)\. You can also optionally use a customer managed CMK by specifying the KMS key ID for the CMK\.  
+You can use [PutBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html) to enable or disable an S3 Bucket Key for your bucket\. To configure an S3 Bucket Key with `PutBucketEncryption`, specify the [ServerSideEncryptionRule](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ServerSideEncryptionRule.html), which includes default encryption with server\-side encryption using AWS KMS key\. You can also optionally use a customer managed key by specifying the KMS key ID for the customer managed key\.  
 
 For more information and example syntax, see [PutBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html)\. 
 

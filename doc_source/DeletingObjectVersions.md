@@ -36,7 +36,7 @@ You can delete object versions in Amazon S3 using the console, AWS SDKs, or the 
 
    Amazon S3 shows all the versions for the object\.
 
-1. Select the check box next to the **Version ID** for the versions that you want to retrieve\.
+1. Select the check box next to the **Version ID** for the versions that you want to permanently delete\.
 
 1. Choose **Delete**\.
 
@@ -100,5 +100,5 @@ The following example deletes version `UIORUnfnd89493jJFJ` of `photo.gif`\.
 
 For more information about deleting object versions, see the following topics:
 + [Working with delete markers](DeleteMarker.md)
-+ [](ManagingDelMarkers.md#RemDelMarker)
++ [Removing delete markers to make an older version current](ManagingDelMarkers.md#RemDelMarker)
 + [Deleting an object from an MFA delete\-enabled bucket](UsingMFADelete.md)

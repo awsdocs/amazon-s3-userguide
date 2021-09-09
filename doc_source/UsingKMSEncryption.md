@@ -1,26 +1,26 @@
-# Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)<a name="UsingKMSEncryption"></a>
+# Protecting Data Using Server\-Side Encryption with KMS keys Stored in AWS Key Management Service \(SSE\-KMS\)<a name="UsingKMSEncryption"></a>
 
-Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses AWS KMS customer master keys \(CMKs\) to encrypt your Amazon S3 objects\. AWS KMS encrypts only the object data\. Any object metadata is not encrypted\. 
+Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses AWS KMS keys to encrypt your Amazon S3 objects\. AWS KMS encrypts only the object data\. Any object metadata is not encrypted\. 
 
-If you use CMKs, you use AWS KMS via the [AWS Management Console](https://console.aws.amazon.com/kms) or [AWS KMS APIs](https://docs.aws.amazon.com/kms/latest/APIReference/) to centrally create CMKs, define the policies that control how CMKs can be used, and audit their usage to prove that they are being used correctly\. You can use these CMKs to protect your data in Amazon S3 buckets\. When you use SSE\-KMS encryption with an S3 bucket, the AWS KMS CMK must be in the same Region as the bucket\.
+If you use KMS keys, you use AWS KMS via the [AWS Management Console](https://console.aws.amazon.com/kms) or [AWS KMS APIs](https://docs.aws.amazon.com/kms/latest/APIReference/) to centrally create KMS keys, define the policies that control how KMS keys can be used, and audit their usage to prove that they are being used correctly\. You can use these KMS keys to protect your data in Amazon S3 buckets\. When you use SSE\-KMS encryption with an S3 bucket, the AWS KMS keys must be in the same Region as the bucket\.
 
-There are additional charges for using AWS KMS CMKs\. For more information, see [AWS KMS concepts \- Customer master keys \(CMKs\)](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys) in the *AWS Key Management Service Developer Guide* and [AWS KMS pricing](https://aws.amazon.com/kms/pricing)\.
-
-**Important**  
-To upload an object encrypted with an AWS KMS CMK to Amazon S3, you need `kms:Decrypt` and `kms:GenerateDataKey` permissions on the key\. To download, an object encrypted with an AWS KMS CMK, you need `kms:Decrypt` permissions\. For information about AWS KMS permissions and multipart upload, see [Multipart upload API and permissions](mpuoverview.md#mpuAndPermissions)\.
-
-## AWS managed CMKs and customer managed CMKs<a name="aws-managed-customer-managed-cmks"></a>
-
-When you use server\-side encryption with AWS KMS \(SSE\-KMS\), you can use the default [AWS managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk), or you can specify a [customer managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) that you have already created\. 
-
-If you don't specify a customer managed CMK, Amazon S3 automatically creates an AWS managed CMK in your AWS account the first time that you add an object encrypted with SSE\-KMS to a bucket\. By default, Amazon S3 uses this CMK for SSE\-KMS\. 
-
-If you want to use a customer managed CMK for SSE\-KMS, create the CMK before you configure SSE\-KMS\. Then, when you configure SSE\-KMS for your bucket, specify the existing customer managed CMK\. 
-
-Creating your own customer managed CMK gives you more flexibility and control\. For example, you can create, rotate, and disable customer managed CMKs\. You can also define access controls and audit the customer managed CMKs that you use to protect your data\. For more information about customer managed and AWS managed CMKs, see [AWS KMS concepts](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html) in the *AWS Key Management Service Developer Guide*\.
+There are additional charges for using AWS KMS keys\. For more information, see [AWS KMS key concepts](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#kms_keys) in the *AWS Key Management Service Developer Guide* and [AWS KMS pricing](https://aws.amazon.com/kms/pricing)\.
 
 **Important**  
-When you use an AWS KMS CMK for server\-side encryption in Amazon S3, you must choose a symmetric CMK\. Amazon S3 only supports symmetric CMKs and not asymmetric CMKs\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
+To upload an object encrypted with an AWS KMS key to Amazon S3, you need `kms:Decrypt` and `kms:GenerateDataKey` permissions on the key\. To download, an object encrypted with an AWS KMS key, you need `kms:Decrypt` permissions\. For information about AWS KMS permissions and multipart upload, see [Multipart upload API and permissions](mpuoverview.md#mpuAndPermissions)\.
+
+## AWS KMS keys and customer managed keys<a name="aws-managed-customer-managed-keys"></a>
+
+When you use server\-side encryption with AWS KMS \(SSE\-KMS\), you can use the default [AWS KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk), or you can specify a [customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) that you have already created\. 
+
+If you don't specify a customer managed key, Amazon S3 automatically creates an AWS KMS key in your AWS account the first time that you add an object encrypted with SSE\-KMS to a bucket\. By default, Amazon S3 uses this KMS key for SSE\-KMS\. 
+
+If you want to use a customer managed key for SSE\-KMS, create the customer managed key before you configure SSE\-KMS\. Then, when you configure SSE\-KMS for your bucket, specify the existing customer managed key\. 
+
+Creating a customer managed key gives you more flexibility and control\. For example, you can create, rotate, and disable customer managed keys\. You can also define access controls and audit the customer managed key that you use to protect your data\. For more information about customer managed and AWS managed keys, see [AWS KMS concepts](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html) in the *AWS Key Management Service Developer Guide*\.
+
+**Important**  
+When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a symmetric key\. Amazon S3 only supports symmetric keys and not asymmetric keys\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
 ## Amazon S3 Bucket Keys<a name="sse-kms-bucket-keys"></a>
 
@@ -38,8 +38,8 @@ All GET and PUT requests for an object protected by AWS KMS fail if they are not
 ## SSE\-KMS highlights<a name="sse-kms-highlights"></a>
 
 The highlights of SSE\-KMS are as follows:
-+ You can choose a customer managed CMK that you create and manage, or you can choose an AWS managed CMK that Amazon S3 creates in your AWS account and manages for you\. Like a customer managed CMK, your AWS managed CMK is unique to your AWS account and Region\. Only Amazon S3 has permission to use this CMK on your behalf\. Amazon S3 only supports symmetric CMKs\.
-+ You can create, rotate, and disable auditable customer managed CMKs from the AWS KMS console\. 
++ You can choose a customer managed key that you create and manage, or you can choose an AWS managed key that Amazon S3 creates in your AWS account and manages for you\. Like a customer managed key, your AWS managed key is unique to your AWS account and Region\. Only Amazon S3 has permission to use this KMS key on your behalf\. Amazon S3 only supports symmetric KMS keys\.
++ You can create, rotate, and disable auditable customer managed keys from the AWS KMS console\. 
 + The `ETag` in the response is not the MD5 of the object data\.
 + The data keys used to encrypt your data are also encrypted and stored alongside the data that they protect\. 
 + The security controls in AWS KMS can help you meet encryption\-related compliance requirements\.
@@ -68,10 +68,10 @@ To require server\-side encryption of all objects in a particular Amazon S3 buck
 17. }
 ```
 
-To require that a particular AWS KMS CMK be used to encrypt the objects in a bucket, you can use the `s3:x-amz-server-side-encryption-aws-kms-key-id` condition key\. To specify the AWS KMS CMK, you must use a key Amazon Resource Name \(ARN\) that is in the "`arn:aws:kms:region:acct-id:key/key-id"` format\.
+To require that a particular AWS KMS key be used to encrypt the objects in a bucket, you can use the `s3:x-amz-server-side-encryption-aws-kms-key-id` condition key\. To specify the KMS key, you must use a key Amazon Resource Name \(ARN\) that is in the "`arn:aws:kms:region:acct-id:key/key-id"` format\.
 
 **Note**  
-When you upload an object, you can specify the AWS KMS CMK using the `x-amz-server-side-encryption-aws-kms-key-id` header\. If the header is not present in the request, Amazon S3 assumes the AWS managed CMK\. Regardless, the AWS KMS key ID that Amazon S3 uses for object encryption must match the AWS KMS key ID in the policy, otherwise Amazon S3 denies the request\.
+When you upload an object, you can specify the KMS key using the `x-amz-server-side-encryption-aws-kms-key-id` header\. If the header is not present in the request, Amazon S3 assumes the AWS managed key\. Regardless, the AWS KMS key ID that Amazon S3 uses for object encryption must match the AWS KMS key ID in the policy, otherwise Amazon S3 denies the request\.
 
 For a complete list of Amazon S3‐specific condition keys and more information about specifying condition keys, see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\.
 
@@ -90,7 +90,7 @@ If the key `aws:s3:arn` is not already in the encryption context, Amazon S3 can 
 You can use this predefined key to track relevant requests in CloudTrail\. So you can always see which Amazon S3 ARN was used with which encryption key\. You can use CloudTrail logs to ensure that the encryption context is not identical between different Amazon S3 objects and buckets, which provides additional security\. Your full encryption context will be validated to have the value equal to the object or bucket ARN\. 
 
 **Topics**
-+ [AWS managed CMKs and customer managed CMKs](#aws-managed-customer-managed-cmks)
++ [AWS KMS keys and customer managed keys](#aws-managed-customer-managed-keys)
 + [Amazon S3 Bucket Keys](#sse-kms-bucket-keys)
 + [AWS Signature Version 4](#aws-signature-version-4-sse-kms)
 + [SSE\-KMS highlights](#sse-kms-highlights)

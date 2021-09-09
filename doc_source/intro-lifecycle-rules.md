@@ -28,7 +28,7 @@ The following sections describe the XML elements in an S3 Lifecycle configuratio
 
 ## ID element<a name="intro-lifecycle-rule-id"></a>
 
-An S3 Lifecycle configuration can have up to 1,000 rules\. The <ID> element uniquely identifies a rule\. ID length is limited to 255 characters\.
+An S3 Lifecycle configuration can have up to 1,000 rules\. This limit is not adjustable\. The <ID> element uniquely identifies a rule\. ID length is limited to 255 characters\.
 
 ## Status element<a name="intro-lifecycle-rule-status"></a>
 

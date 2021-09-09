@@ -43,6 +43,8 @@ You can only enable S3 Object Lock for a bucket when you create it\. If you enab
    1. If you want to enable Object Lock, enter **enable** in the text box and choose **Confirm**\.
 
    For more information about the S3 Object Lock feature, see [Using S3 Object Lock](object-lock.md)\.
+**Note**  
+To create an Object Lock enabled bucket, you must have the following permissions: s3:CreateBucket, s3:PutBucketVersioning and s3:PutBucketObjectLockConfiguration\.
 
 1. Choose **Create bucket**\.
 

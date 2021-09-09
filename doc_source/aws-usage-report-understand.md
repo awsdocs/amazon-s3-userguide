@@ -134,11 +134,11 @@ The first column in the following table lists usage types that appear in your bi
 
 1. When objects that are archived to the S3 Glacier or S3 Glacier Deep Archive storage class are deleted, overwritten, or transitioned to a different storage class before the minimum storage commitment has passed, which is 90 days for S3 Glacier or 180\-days for S3 Glacier Deep Archive, there is a prorated charge per gigabyte for the remaining days\.
 
-1. For objects that are in S3 Intelligent\-Tiering, S3 Standard\-IA, or S3 One Zone\-IA storage, when they are deleted, overwritten, or transitioned to a different storage class prior to 30 days, there is a prorated charge per gigabyte for the remaining days\.
+1. For objects that are in S3 Standard\-IA or S3 One Zone\-IA storage, when they are deleted, overwritten, or transitioned to a different storage class prior to 30 days, there is a prorated charge per gigabyte for the remaining days\.
 
 1. For small objects \(smaller than 128 KB\) that are in S3 Standard\-IA or S3 One Zone\-IA storage, when they are deleted, overwritten, or transitioned to a different storage class prior to 30 days, there is a prorated charge per gigabyte for the remaining days\.
 
-1. There is no minimum billable object size for objects in the S3 Intelligent\-Tiering storage class, but objects that are smaller than 128 KB are not eligible for auto\-tiering and are always charged at the rate for the S3 Intelligent\-Tiering frequent access tier\. 
+1. There is no minimum billable object size for objects in the S3 Intelligent\-Tiering storage class\. Objects that are smaller than 128 KB are not monitored or eligible for auto\-tiering\. Smaller objects are always stored in the S3 Intelligent\-Tiering Frequent Access tier\.
 
 ## Tracking Operations in Your Usage Reports<a name="aws-usage-report-understand-operations"></a>
 

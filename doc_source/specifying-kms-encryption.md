@@ -1,11 +1,11 @@
 # Specifying server\-side encryption with AWS KMS \(SSE\-KMS\)<a name="specifying-kms-encryption"></a>
 
-When you create an object, you can specify the use of server\-side encryption with AWS Key Management Service \(AWS KMS\) customer master keys \(CMKs\) to encrypt your data\. This is true when you are either uploading a new object or copying an existing object\. This encryption is known as SSE\-KMS\. 
+When you create an object, you can specify the use of server\-side encryption with AWS Key Management Service \(AWS KMS\) keys to encrypt your data\. This is true when you are either uploading a new object or copying an existing object\. This encryption is known as SSE\-KMS\. 
 
 You can specify SSE\-KMS using the S3 console, REST APIs, AWS SDKs, and AWS CLI\. For more information, see the topics below\. 
 
 **Note**  
-You can use a multi\-Region key in Amazon S3\. Multi\-Region keys will work as customer master keys \(CMKs\) work today, but they will not use the multi\-Region features of the key\. For more information, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
+You can use a multi\-Region key in Amazon S3\. Multi\-Region keys will work as AWS KMS keys work today, but they will not use the multi\-Region features of the key\. For more information, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
 
 ## Using the S3 console<a name="add-object-encryption-kms"></a>
 
@@ -36,13 +36,13 @@ If you use the AWS KMS option for your default encryption configuration, you are
 
 1. Under **AWS KMS key**, choose one of the following:
    + **AWS managed key \(aws/s3\)**
-   + **Choose from your KMS master keys**, and choose your **KMS master key**\.
+   + **Choose from your AWS KMS keys**, and choose your **KMS key**\.
    + **Enter KMS master key ARN**, and enter your AWS KMS key ARN\.
 **Important**  
-You can only use KMS CMKs that are enabled in the same AWS Region as the bucket\. When you choose **Choose from your KMS master keys**, the S3 console only lists 100 KMS CMKs per Region\. If you have more than 100 CMKs in the same Region, you can only see the first 100 CMKs in the S3 console\. To use a KMS CMK that is not listed in the console, choose **Custom KMS ARN**, and enter the KMS CMK ARN\.  
-When you use an AWS KMS CMK for server\-side encryption in Amazon S3, you must choose a CMK that is enabled in the same Region as your bucket\. Additionally, Amazon S3 only supports symmetric CMKs and not asymmetric CMKs\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
+You can only use AWS KMS keys that are enabled in the same AWS Region as the bucket\. When you choose **Choose from your AWS KMS keys**, the S3 console only lists 100 KMS keys per Region\. If you have more than 100 KMS keys in the same Region, you can only see the first 100 KMS keys in the S3 console\. To use a KMS key that is not listed in the console, choose **Custom KMS ARN**, and enter the KMS key ARN\.  
+When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a KMS key that is enabled in the same Region as your bucket\. Additionally, Amazon S3 only supports symmetric KMS keys and not asymmetric KMS keys\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
-   For more information about creating an AWS KMS CMK, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\. For more information about using AWS KMS with Amazon S3, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+   For more information about creating an AWS KMS key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\. For more information about using AWS KMS with Amazon S3, see [Protecting Data Using Server\-Side Encryption with KMS keys Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
 
 1. Choose **Save changes**\.
 
@@ -51,7 +51,7 @@ This action applies encryption to all specified objects\. When encrypting folder
 
 ## Using the REST API<a name="KMSUsingRESTAPI"></a>
 
-When you create an object—that is, when you upload a new object or copy an existing object—you can specify the use of server\-side encryption with AWS Key Management Service \(AWS KMS\) customer master keys \(CMKs\) to encrypt your data\. To do this, add the `x-amz-server-side-encryption` header to the request\. Set the value of the header to the encryption algorithm `aws:kms`\. Amazon S3 confirms that your object is stored using SSE\-KMS by returning the response header `x-amz-server-side-encryption`\. 
+When you create an object—that is, when you upload a new object or copy an existing object—you can specify the use of server\-side encryption with AWS KMS keys to encrypt your data\. To do this, add the `x-amz-server-side-encryption` header to the request\. Set the value of the header to the encryption algorithm `aws:kms`\. Amazon S3 confirms that your object is stored using SSE\-KMS by returning the response header `x-amz-server-side-encryption`\. 
 
 If you specify the `x-amz-server-side-encryption` header with a value of `aws:kms`, you can also use the following request headers:
 + `x-amz-server-side-encryption-aws-kms-key-id`
@@ -97,10 +97,10 @@ For information about the encryption context in Amazon S3, see [Encryption conte
 
 ### AWS KMS key ID \(x\-amz\-server\-side\-encryption\-aws\-kms\-key\-id\)<a name="s3-kms-key-id-api"></a>
 
-You can use the `x-amz-server-side-encryption-aws-kms-key-id` header to specify the ID of the customer managed CMK used to protect the data\. If you specify `x-amz-server-side-encryption:aws:kms`, but don't provide `x-amz-server-side-encryption-aws-kms-key-id`, Amazon S3 uses the AWS managed CMK in AWS KMS to protect the data\. If you want to use a customer managed AWS KMS CMK, you must provide the `x-amz-server-side-encryption-aws-kms-key-id` of the customer managed CMK\.
+You can use the `x-amz-server-side-encryption-aws-kms-key-id` header to specify the ID of the customer managed key used to protect the data\. If you specify `x-amz-server-side-encryption:aws:kms`, but don't provide `x-amz-server-side-encryption-aws-kms-key-id`, Amazon S3 uses the AWS managed key to protect the data\. If you want to use a customer managed key, you must provide the `x-amz-server-side-encryption-aws-kms-key-id` of the customer managed key\.
 
 **Important**  
-When you use an AWS KMS CMK for server\-side encryption in Amazon S3, you must choose a symmetric CMK\. Amazon S3 only supports symmetric CMKs and not asymmetric CMKs\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
+When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a symmetric key\. Amazon S3 only supports symmetric keys and not asymmetric keys\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
 ### S3 Bucket Keys \(x\-amz\-server\-side\-encryption\-aws\-bucket\-key\-enabled\)<a name="bucket-key-api"></a>
 
@@ -110,35 +110,35 @@ If you specify `x-amz-server-side-encryption:aws:kms`, but don't provide `x-amz-
 
 ## Using the AWS SDKs<a name="kms-using-sdks"></a>
 
-When using AWS SDKs, you can request Amazon S3 to use AWS Key Management Service \(AWS KMS\) customer master keys \(CMKs\)\. This section provides examples of using the AWS SDKs for Java and \.NET\. For information about other SDKs, go to [Sample Code and Libraries](https://aws.amazon.com/code)\.
+When using AWS SDKs, you can request Amazon S3 to use AWS KMS keys\. This section provides examples of using the AWS SDKs for Java and \.NET\. For information about other SDKs, go to [Sample Code and Libraries](https://aws.amazon.com/code)\.
 
 **Important**  
-When you use an AWS KMS CMK for server\-side encryption in Amazon S3, you must choose a symmetric CMK\. Amazon S3 only supports symmetric CMKs and not asymmetric CMKs\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
+When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a symmetric key\. Amazon S3 only supports symmetric keys and not asymmetric keys\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
 ### Copy operation<a name="kms-copy-operation"></a>
 
- When copying objects, you add the same request properties \(`ServerSideEncryptionMethod` and `ServerSideEncryptionKeyManagementServiceKeyId`\) to request Amazon S3 to use an AWS KMS CMK\. For more information about copying objects, see [Copying objects](copy-object.md)\. 
+ When copying objects, you add the same request properties \(`ServerSideEncryptionMethod` and `ServerSideEncryptionKeyManagementServiceKeyId`\) to request Amazon S3 to use an AWS KMS key\. For more information about copying objects, see [Copying objects](copy-object.md)\. 
 
 ### Put operation<a name="kms-put-operation"></a>
 
 ------
 #### [ Java ]
 
-When uploading an object using the AWS SDK for Java, you can request Amazon S3 to use an AWS KMS CMK by adding the `SSEAwsKeyManagementParams` property as shown in the following request\.
+When uploading an object using the AWS SDK for Java, you can request Amazon S3 to use an AWS KMS key by adding the `SSEAwsKeyManagementParams` property as shown in the following request\.
 
 ```
 PutObjectRequest putRequest = new PutObjectRequest(bucketName,
    keyName, file).withSSEAwsKeyManagementParams(new SSEAwsKeyManagementParams());
 ```
 
-In this case, Amazon S3 uses the AWS managed CMK \(see [Using Server\-Side Encryption with CMKs Stored in AWS KMS ](UsingKMSEncryption.md)\)\. You can optionally create a symmetric customer managed CMK and specify that in the request\.
+In this case, Amazon S3 uses the AWS managed key \(see [Using Server\-Side Encryption with KMS keys Stored in AWS KMS ](UsingKMSEncryption.md)\)\. You can optionally create a symmetric KMS key and specify that in the request\.
 
 ```
 PutObjectRequest putRequest = new PutObjectRequest(bucketName,
    keyName, file).withSSEAwsKeyManagementParams(new SSEAwsKeyManagementParams(keyID));
 ```
 
-For more information about creating customer managed CMKs, see [Programming the AWS KMS API](https://docs.aws.amazon.com/kms/latest/developerguide/programming-top.html) in the *AWS Key Management Service Developer Guide*\.
+For more information about creating customer managed keys, see [Programming the AWS KMS API](https://docs.aws.amazon.com/kms/latest/developerguide/programming-top.html) in the *AWS Key Management Service Developer Guide*\.
 
 For working code examples of uploading an object, see the following topics\. You will need to update those code examples and provide encryption information as shown in the preceding code fragment\.
 + For uploading an object in a single operation, see [Uploading objects](upload-objects.md)\.
@@ -149,7 +149,7 @@ For working code examples of uploading an object, see the following topics\. You
 ------
 #### [ \.NET ]
 
-When uploading an object using the AWS SDK for \.NET, you can request Amazon S3 to use an AWS KMS CMK by adding the `ServerSideEncryptionMethod` property as shown in the following request\.
+When uploading an object using the AWS SDK for \.NET, you can request Amazon S3 to use an AWS KMS key by adding the `ServerSideEncryptionMethod` property as shown in the following request\.
 
 ```
 PutObjectRequest putRequest = new PutObjectRequest
@@ -161,7 +161,7 @@ PutObjectRequest putRequest = new PutObjectRequest
  };
 ```
 
-In this case, Amazon S3 uses the AWS managed CMK\. For more information, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\. You can optionally create your own symmetric customer managed CMK and specify that in the request\. 
+In this case, Amazon S3 uses the AWS managed key\. For more information, see [Protecting Data Using Server\-Side Encryption with KMS keys Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\. You can optionally create your own symmetric customer managed key and specify that in the request\. 
 
 ```
 PutObjectRequest putRequest1 = new PutObjectRequest
@@ -174,7 +174,7 @@ PutObjectRequest putRequest1 = new PutObjectRequest
 };
 ```
 
-For more information about creating customer managed CMKs, see [Programming the AWS KMS API](https://docs.aws.amazon.com/kms/latest/developerguide/programming-top.html) in the *AWS Key Management Service Developer Guide*\. 
+For more information about creating customer managed keys, see [Programming the AWS KMS API](https://docs.aws.amazon.com/kms/latest/developerguide/programming-top.html) in the *AWS Key Management Service Developer Guide*\. 
 
 For working code examples of uploading an object, see the following topics\. You will need to update these code examples and provide encryption information as shown in the preceding code fragment\.
 + For uploading an object in a single operation, see [Uploading objects](upload-objects.md)\.
@@ -189,7 +189,7 @@ For working code examples of uploading an object, see the following topics\. You
 ------
 #### [ Java ]
 
-When creating a presigned URL for an object encrypted using an AWS KMS CMK, you must explicitly specify Signature Version 4\.
+When creating a presigned URL for an object encrypted using an AWS KMS key, you must explicitly specify Signature Version 4\.
 
 ```
 ClientConfiguration clientConfiguration = new ClientConfiguration();
@@ -204,7 +204,7 @@ For a code example, see [Sharing an object with a presigned URL](ShareObjectPreS
 ------
 #### [ \.NET ]
 
-When creating a presigned URL for an object encrypted using an AWS KMS CMK, you must explicitly specify Signature Version 4\.
+When creating a presigned URL for an object encrypted using an AWS KMS key, you must explicitly specify Signature Version 4\.
 
 ```
 AWSConfigs.S3Config.UseSignatureVersion4 = true;

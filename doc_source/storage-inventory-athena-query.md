@@ -12,38 +12,39 @@ Athena can query Amazon S3 inventory files in ORC, Parquet, or CSV format\. When
 
    ```
    CREATE EXTERNAL TABLE your_table_name(
-     `bucket` string,
-     key string,
-     version_id string,
-     is_latest boolean,
-     is_delete_marker boolean,
-     size bigint,
-     last_modified_date bigint,
-     e_tag string,
-     storage_class string,
-     is_multipart_uploaded boolean,
-     replication_status string,
-     encryption_status string,
-     object_lock_retain_until_date bigint,
-     object_lock_mode string,
-     object_lock_legal_hold_status string,
-     intelligent_tiering_access_tier string,
-     bucket_key_status string
-     )
-     PARTITIONED BY (dt string)
-     ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.orc.OrcSerde'
+            bucket string,
+            key string,
+            version_id string,
+            is_latest boolean,
+            is_delete_marker boolean,
+            size bigint,
+            last_modified_date bigint,
+            e_tag string,
+            storage_class string,
+            is_multipart_uploaded boolean,
+            replication_status string,
+            encryption_status string,
+            object_lock_retain_until_date bigint,
+            object_lock_mode string,
+            object_lock_legal_hold_status string,
+            intelligent_tiering_access_tier string,
+            bucket_key_status string
+   ) PARTITIONED BY (
+           dt string
+   )
+   ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.orc.OrcSerde'
      STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
      OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat'
      LOCATION 's3://destination-prefix/source-bucket/config-ID/hive/';
    ```
 
-    When using Athena to query a Parquet\-formatted inventory report, use the following Parquet SerDe in place of the ORC SerDe in the `ROW FORMAT SERDE` statement\.
+   When using Athena to query a Parquet\-formatted inventory report, use the following Parquet SerDe in place of the ORC SerDe in the `ROW FORMAT SERDE` statement\.
 
    ```
    ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
    ```
 
-    When using Athena to query a CSV\-formatted inventory report, use the following CSV SerDe in place of the ORC SerDe in the `ROW FORMAT SERDE` statement\.
+   When using Athena to query a CSV\-formatted inventory report, use the following CSV SerDe in place of the ORC SerDe in the `ROW FORMAT SERDE` statement\.
 
    ```
    ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'

@@ -69,7 +69,7 @@ Middle East \(Bahrain\) \(me\-south\-1\)
 
 ### Retention period<a name="storage_lens_basics_retention_period"></a>
 
-Amazon S3 Storage Lens metrics are retained so you can see historical trends and compare differences in your storage usage and activity over time\. The retention periods depend on your [metrics selection](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_selection.html) and cannot be modified\. Free metrics are retained for a 14\-day period, and advanced metrics are retained for a 15\-month period\.
+Amazon S3 Storage Lens metrics are retained so you can see historical trends and compare differences in your storage usage and activity over time\. The retention periods depend on your [metrics selection](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_metrics_selection) and cannot be modified\. Free metrics are retained for a 14\-day period, and advanced metrics are retained for a 15\-month period\.
 
 ### Metrics types<a name="storage_lens_basics_metrics_types"></a>
 

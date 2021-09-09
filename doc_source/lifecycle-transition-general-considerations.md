@@ -44,7 +44,7 @@ When you transition objects from the S3 Standard or S3 Standard\-IA storage clas
 + **Larger objects** ‐ For the following transitions, there is a cost benefit to transitioning larger objects:
   + From the S3 Standard or S3 Standard\-IA storage classes to S3 Intelligent\-Tiering\.
   + From the S3 Standard storage class to S3 Standard\-IA or S3 One Zone\-IA\.
-+  **Objects smaller than 128 KB ** ‐ For the following transitions, Amazon S3 does not transition objects that are smaller than 128 KB because it's not cost effective:
++  **Objects smaller than 128 KB ** ‐ For the following transitions, Amazon S3 does not transition objects that are smaller than 128 KB:
   + From the S3 Standard or S3 Standard\-IA storage classes to S3 Intelligent\-Tiering\.
   + From the S3 Standard storage class to S3 Standard\-IA or S3 One Zone\-IA\.
 
@@ -53,10 +53,10 @@ Before you transition objects from the S3 Standard or S3 Standard\-IA storage cl
 
 Similarly, if you are transitioning noncurrent objects \(in versioned buckets\), you can transition only objects that are at least 30 days noncurrent to S3 Standard\-IA or S3 One Zone\-IA storage\. 
 
-**Minimum 30\-Day Storage Charge for S3 Intelligent\-Tiering, S3 Standard\-IA, and S3 One Zone\-IA**  
-The S3 Intelligent\-Tiering, S3 Standard\-IA, and S3 One Zone\-IA storage classes have a minimum 30\-day storage charge\. Therefore, you can't specify a single Lifecycle rule for both an S3 Intelligent\-Tiering, S3 Standard\-IA, or S3 One Zone\-IA transition and a S3 Glacier or S3 Glacier Deep Archive transition when the S3 Glacier or S3 Glacier Deep Archive transition occurs less than 30 days after the S3 Intelligent\-Tiering, S3 Standard\-IA, or S3 One Zone\-IA transition\.
+**Minimum 30\-Day Storage Charge for S3 Standard\-IA and S3 One Zone\-IA**  
+The S3 Standard\-IA and S3 One Zone\-IA storage classes have a minimum 30\-day storage charge\. Therefore, you can't specify a single Lifecycle rule for both an S3 Standard\-IA or S3 One Zone\-IA transition and a S3 Glacier or S3 Glacier Deep Archive transition when the S3 Glacier or S3 Glacier Deep Archive transition occurs less than 30 days after the S3 Standard\-IA or S3 One Zone\-IA transition\.
 
-The same 30\-day minimum applies when you specify a transition from S3 Standard\-IA storage to S3 One Zone\-IA or S3 Intelligent\-Tiering storage\. You can specify two rules to accomplish this, but you pay minimum storage charges\. For more information about cost considerations, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
+The same 30\-day minimum applies when you specify a transition from S3 Standard\-IA storage to S3 One Zone\-IA\. You can specify two rules to accomplish this, but you pay minimum storage charges\. For more information about cost considerations, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 
 ### Manage an object's complete lifecycle<a name="manage-complete-object-lifecycle"></a>
 

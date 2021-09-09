@@ -8,4 +8,4 @@ This section describes additional replication configuration options that are ava
 + [Replicating delete markers between buckets](delete-marker-replication.md)
 + [Replicating metadata changes with Amazon S3 replica modification sync](replication-for-metadata-changes.md)
 + [Changing the replica owner](replication-change-owner.md)
-+ [Replicating objects created with server\-side encryption \(SSE\) using AWS KMS CMKs](replication-config-for-kms-objects.md)
++ [Replicating objects created with server\-side encryption \(SSE\) using KMS keys](replication-config-for-kms-objects.md)

@@ -17,7 +17,7 @@ You can use the Amazon S3 console, the REST API, or the AWS CLI or AWS SDKs to c
 
 **Important**  
 Storage class analysis does not give recommendations for transitions to the ONEZONE\_IA or S3 Glacier storage classes\.  
-If you want to configure storage class analysis to export your findings as a \.csv file and the destination bucket uses default bucket encryption with a AWS KMS customer master key \(CMK\), you must update the AWS KMS key policy to grant Amazon S3 permission to encrypt the \.csv file\. For instructions, see [Granting Amazon S3 permission to use your AWS KMS CMK for encryption](configure-inventory.md#configure-inventory-kms-key-policy)\.
+If you want to configure storage class analysis to export your findings as a \.csv file and the destination bucket uses default bucket encryption with a AWS KMS key, you must update the AWS KMS key policy to grant Amazon S3 permission to encrypt the \.csv file\. For instructions, see [Granting Amazon S3 permission to use your AWS KMS key for encryption](configure-inventory.md#configure-inventory-kms-key-policy)\.
 
 For more information about analytics, see [Amazon S3 analytics – Storage Class Analysis](analytics-storage-class.md)\.
 
@@ -41,7 +41,7 @@ For more information about analytics, see [Amazon S3 analytics – Storage Class
 
 1. Optionally, you can choose **Enable** under **Export CSV** to export analysis reports to a comma\-separated values \(\.csv\) flat file\. Choose a destination bucket where the file can be stored\. You can type a prefix for the destination bucket\. The destination bucket must be in the same AWS Region as the bucket for which you are setting up the analysis\. The destination bucket can be in a different AWS account\. 
 
-   If the destination bucket for the \.csv file uses default bucket encryption with a AWS KMS CMK, you must update the AWS KMS key policy to grant Amazon S3 permission to encrypt the \.csv file\. For instructions, see [Granting Amazon S3 permission to use your AWS KMS CMK for encryption](configure-inventory.md#configure-inventory-kms-key-policy)\.
+   If the destination bucket for the \.csv file uses default bucket encryption with a KMS key, you must update the AWS KMS key policy to grant Amazon S3 permission to encrypt the \.csv file\. For instructions, see [Granting Amazon S3 permission to use your AWS KMS key for encryption](configure-inventory.md#configure-inventory-kms-key-policy)\.
 
 1. Choose **Create Configuration**\.
 

@@ -247,7 +247,7 @@ As part of copying the objects, specify that Amazon S3 should encrypt the object
 
 1. Under **Encryption key type**, choose **AWS KMS key \(SSE\-KMS\)** and choose the AWS KMS key format that you prefer:
    + **AWS managed key \(aws/s3\)**\.
-   + **Choose from your AWS KMS keys**, and choose a symmetric customer master key \(CMK\) in the same Region as your bucket\.
+   + **Choose from your AWS KMS keys**, and choose a symmetric KMS key in the same Region as your bucket\.
    + **AWS KMS key ARN**
 
 1. Under **Bucket Key**, choose **Enable**, and then choose **Save changes**\.

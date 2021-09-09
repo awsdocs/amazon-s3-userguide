@@ -92,7 +92,7 @@ Note that for both the Amazon SNS and Amazon SQS IAM policies, you can specify t
 
 ### AWS KMS key policy<a name="key-policy-sns-sqs"></a>
 
-If the SQS queue or SNS topics are encrypted with an AWS Key Management Service \(AWS KMS\) customer managed customer master key \(CMK\), you must grant the Amazon S3 service principal permission to work with the encrypted topics or queue\. To grant the Amazon S3 service principal permission, add the following statement to the key policy for the customer managed CMK\.
+If the SQS queue or SNS topics are encrypted with an AWS Key Management Service \(AWS KMS\) customer managed key, you must grant the Amazon S3 service principal permission to work with the encrypted topics or queue\. To grant the Amazon S3 service principal permission, add the following statement to the key policy for the customer managed key\.
 
 ```
 {

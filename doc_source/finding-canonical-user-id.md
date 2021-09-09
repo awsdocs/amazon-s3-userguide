@@ -31,7 +31,7 @@ Follow these steps to find the canonical user ID for your account when you are s
 
 1. In the Amazon S3 console, choose a bucket name to view the bucket details\.
 
-1. Choose **Permissions**, and then choose **Access Control List**\.
+1. Choose **Permissions**, and then scroll down to the **Access Control List** section\.
 
    At the top of the page, under **Access for bucket owner**, the canonical user ID for the AWS account appears\.
 

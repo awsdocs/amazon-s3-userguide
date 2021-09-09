@@ -65,15 +65,15 @@ When you upload a folder, Amazon S3 uploads all of the files and subfolders from
       For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
 
    1. To encrypt the uploaded files using the AWS Key Management Service \(AWS KMS\), choose **AWS Key Management Service key \(SSE\-KMS\)**\. Then choose an option for **AWS KMS key**\.
-      + AWS managed key \- Choose an [AWS managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)\.
-      + Choose from your KMS master keys \- Choose a [customer managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) from a list of CMKs in the same Region as your bucket\.
+      + AWS managed key \- Choose an [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)\.
+      + Choose from your KMS root keys \- Choose a [customer managed key ](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) from a list of KMS keys in the same Region as your bucket\.
 
-        For more information about creating a customer managed AWS KMS CMK, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/UsingServerSideEncryption.html) in the *AWS Key Management Service Developer Guide*\. For more information about protecting data with AWS KMS, see [Protecting Data Using Server\-Side Encryption with CMKs Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
-      + Enter KMS master key ARN \- Specify the AWS KMS key ARN for a customer managed CMK, and enter the Amazon Resource Name \(ARN\)\.
+        For more information about creating a customer managed key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/UsingServerSideEncryption.html) in the *AWS Key Management Service Developer Guide*\. For more information about protecting data with AWS KMS, see [Protecting Data Using Server\-Side Encryption with KMS keys Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+      + Enter KMS root key ARN \- Specify the AWS KMS key ARN for a customer managed key, and enter the Amazon Resource Name \(ARN\)\.
 
-        You can use the KMS master key ARN to give an external account the ability to use an object that is protected by an AWS KMS CMK\. To do this, choose **Enter KMS master key ARN**, and enter the Amazon Resource Name \(ARN\) for the external account\. Administrators of an external account that have usage permissions to an object protected by your AWS KMS CMK can further restrict access by creating a resource\-level IAM policy\. 
+        You can use the KMS root key ARN to give an external account the ability to use an object that is protected by an AWS KMS key\. To do this, choose **Enter KMS root key ARN**, and enter the Amazon Resource Name \(ARN\) for the external account\. Administrators of an external account that have usage permissions to an object protected by your KMS key can further restrict access by creating a resource\-level IAM policy\. 
 **Note**  
-To encrypt objects in a bucket, you can use only CMKs that are available in the same AWS Region as the bucket\. 
+To encrypt objects in a bucket, you can use only AWS KMS keys that are available in the same AWS Region as the bucket\. 
 
 1. To change access control list permissions, under **Access control list \(ACL\)**, edit permissions\. 
 

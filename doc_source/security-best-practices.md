@@ -51,7 +51,7 @@ You have the following options for protecting data at rest in Amazon S3:
 
   Amazon S3 provides these server\-side encryption options:
   + Server\-side encryption with Amazon S3‐managed keys \(SSE\-S3\)\.
-  + Server\-side encryption with customer master keys stored in AWS Key Management Service \(SSE\-KMS\)\.
+  + Server\-side encryption with KMS key stored in AWS Key Management Service \(SSE\-KMS\)\.
   + Server\-side encryption with customer\-provided keys \(SSE\-C\)\.
 
   For more information, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.

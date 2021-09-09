@@ -71,6 +71,9 @@ To use Object Lock, you must enable it for a bucket\. You can also optionally co
 
 To use Object Lock, you must enable it for a bucket\. You can also optionally configure a default retention mode and period that applies to new objects that are placed in the bucket\.
 
+**Note**  
+When using S3 Object Lock, make sure to take your encryption technique into consideration\. For example, if you are using server\-side encryption with AWS KMS keys, consider how the possible deletion of the key might interact with S3 Object Lock\. It might be important to consider protection for the key as well\.
+
 ### Enabling S3 Object Lock<a name="object-lock-bucket-config-enable"></a>
 
 Before you can lock any objects, you have to configure a bucket to use S3 Object Lock\. To do this, you specify when you create the bucket that you want to enable Object Lock\. After you configure a bucket for Object Lock, you can lock objects in that bucket using retention periods, legal holds, or both\.

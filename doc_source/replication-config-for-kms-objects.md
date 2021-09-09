@@ -1,9 +1,9 @@
-# Replicating objects created with server\-side encryption \(SSE\) using AWS KMS CMKs<a name="replication-config-for-kms-objects"></a>
+# Replicating objects created with server\-side encryption \(SSE\) using KMS keys<a name="replication-config-for-kms-objects"></a>
 
-By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with customer master keys \(CMKs\) stored in AWS KMS\. This section explains additional configuration that you add to direct Amazon S3 to replicate these objects\. 
+By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with customer managed keys stored in AWS KMS\. This section explains additional configuration that you add to direct Amazon S3 to replicate these objects\. 
 
 **Note**  
-You can use a multi\-Region key in Amazon S3\. Multi\-Region keys will work as customer master keys \(CMKs\) work today, but they will not use the multi\-Region features of the key\. For more information, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
+You can use a multi\-Region key in Amazon S3\. Multi\-Region keys will work as AWS KMS keys work today, but they will not use the multi\-Region features of the key\. For more information, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
 
 For an example with step\-by\-step instructions, see [Replicating encrypted objects](replication-walkthrough-4.md)\. For information about creating a replication configuration, see [Replicating objects](replication.md)\. 
 
@@ -19,8 +19,8 @@ Replication of encrypted data is a server\-side process that occurs entirely wit
 ## Specifying additional information in the replication configuration<a name="replication-kms-extra-config"></a>
 
 In the replication configuration, you do the following:
-+ In the `Destination` configuration, add the symmetric customer managed AWS KMS CMK that you want Amazon S3 to use to encrypt object replicas\. 
-+ Explicitly opt in by enabling replication of objects encrypted using AWS KMS CMKs by adding the `SourceSelectionCriteria` element\.
++ In the `Destination` configuration, add the symmetric customer managed key that you want Amazon S3 to use to encrypt object replicas\. 
++ Explicitly opt in by enabling replication of objects encrypted using KMS keys by adding the `SourceSelectionCriteria` element\.
 
  
 
@@ -46,8 +46,8 @@ In the replication configuration, you do the following:
 ```
 
 **Important**  
-The AWS KMS CMK must have been created in the same AWS Region as the destination buckets\.   
-The AWS KMS CMK *must* be valid\. The `PUT` Bucket replication API doesn't check the validity of AWS KMS CMKs\. If you use an invalid CMK, you will receive the 200 OK status code in response, but replication fails\.
+The KMS key must have been created in the same AWS Region as the destination buckets\.   
+The KMS key *must* be valid\. The `PUT` Bucket replication API doesn't check the validity of KMS keys\. If you use an invalid KMS key, you will receive the 200 OK status code in response, but replication fails\.
 
 The following example shows a replication configuration, which includes optional configuration elements\.
 
@@ -85,14 +85,14 @@ This replication configuration has one rule\. The rule applies to objects with t
 ## Granting additional permissions for the IAM role<a name="replication-kms-extra-permissions"></a>
 
 To replicate objects that are encrypted at rest under AWS Key Management Service \(AWS KMS\), grant the following additional permissions to the IAM role you specify in the replication configuration\. You grant these permissions by updating the permission policy associated with the IAM role\. Objects created with server\-side encryption using customer\-provided \(SSE\-C\) encryption keys are not replicated\.
-+ **`s3:GetObjectVersionForReplication` action for source objects** – Allows Amazon S3 to replicate both unencrypted objects and objects created with server\-side encryption using Amazon S3 managed encryption \(SSE\-S3\) keys or CMKs stored in AWS KMS \(SSE\-KMS\)\.
++ **`s3:GetObjectVersionForReplication` action for source objects** – Allows Amazon S3 to replicate both unencrypted objects and objects created with server\-side encryption using Amazon S3 managed encryption \(SSE\-S3\) keys or KMS keys \(SSE\-KMS\)\.
 **Note**  
-We recommend that you use the `s3:GetObjectVersionForReplication` action instead of the `s3:GetObjectVersion` action because it provides Amazon S3 with only the minimum permissions necessary for replication\. In addition, permission for the `s3:GetObjectVersion` action allows replication of unencrypted and SSE\-S3\-encrypted objects, but not of objects created using a CMK stored in AWS KMS\. 
+We recommend that you use the `s3:GetObjectVersionForReplication` action instead of the `s3:GetObjectVersion` action because it provides Amazon S3 with only the minimum permissions necessary for replication\. In addition, permission for the `s3:GetObjectVersion` action allows replication of unencrypted and SSE\-S3\-encrypted objects, but not of objects created using a KMS key\. 
 + **`kms:Decrypt` and `kms:Encrypt` AWS KMS actions**:
-  + `kms:Decrypt` permissions for the AWS KMS CMK used to decrypt the source object
-  + `kms:Encrypt` permissions for the AWS KMS CMK used to encrypt the object replica
+  + `kms:Decrypt` permissions for the KMS key used to decrypt the source object
+  + `kms:Encrypt` permissions for the KMS key used to encrypt the object replica
 
-We recommend that you restrict these permissions only to the destination buckets and objects using AWS KMS condition keys\. The AWS account that owns the IAM role must have permissions for these AWS KMS actions \(`kms:Encrypt` and `kms:Decrypt`\) for AWS KMS CMKs listed in the policy\. If the AWS KMS CMKs are owned by another AWS account, the CMK owner must grant these permissions to the AWS account that owns the IAM role\. For more information about managing access to these CMKs, see [Using IAM Policies with AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html) in the* AWS Key Management Service Developer Guide*\.
+We recommend that you restrict these permissions only to the destination buckets and objects using AWS KMS condition keys\. The AWS account that owns the IAM role must have permissions for these AWS KMS actions \(`kms:Encrypt` and `kms:Decrypt`\) for KMS keys listed in the policy\. If the KMS keys are owned by another AWS account, the KMS key owner must grant these permissions to the AWS account that owns the IAM role\. For more information about managing access to these KMS keys, see [Using IAM Policies with AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html) in the* AWS Key Management Service Developer Guide*\.
 
 ### Amazon S3 Bucket Keys and replication<a name="bk-replication"></a>
 
@@ -113,8 +113,6 @@ For more information, see [Encryption context](UsingKMSEncryption.md#encryption-
 The following example IAM policies show statements for using AWS KMS server\-side encryption with replication\.
 
 In this example, the encryption context is the object ARN\. If you use SSE\-KMS with an S3 Bucket Key *enabled*, you must use the bucket ARN as the encryption context\. For more information, see [Encryption context](UsingKMSEncryption.md#encryption-context)\.
-
-If the 
 
 **Example Using AWS KMS server\-side\-encryption \(SSE\-KMS\) – separate destination buckets**  
 The following example policy shows statements for using AWS KMS with separate destination buckets\.  
@@ -160,8 +158,8 @@ The following example policy shows statements for using AWS KMS with separate de
 }
 ```
 
-**Example Replicating objects created with server\-side encryption using Amazon S3 managed encryption keys and CMKs stored in AWS KMS**  
-The following is a complete IAM policy that grants the necessary permissions to replicate unencrypted objects, objects created with server\-side encryption using Amazon S3 managed encryption keys and CMKs stored in AWS KMS\.  
+**Example Replicating objects created with server\-side encryption using Amazon S3 managed encryption keys and KMS keys**  
+The following is a complete IAM policy that grants the necessary permissions to replicate unencrypted objects, objects created with server\-side encryption using Amazon S3 managed encryption keys and KMS keys\.  
 Objects created with server\-side encryption using customer\-provided \(SSE\-C\) encryption keys are not replicated\.
 
 ```
@@ -236,9 +234,9 @@ Objects created with server\-side encryption using customer\-provided \(SSE\-C\)
 
 ## Granting additional permissions for cross\-account scenarios<a name="replication-kms-cross-acct-scenario"></a>
 
-In a cross\-account scenario, where *source* and *destination* buckets are owned by different AWS accounts, you can use a customer managed CMK to encrypt object replicas\. However, the CMK owner must grant the source bucket owner permission to use the CMK\. <a name="cross-acct-kms-key-permission"></a>
+In a cross\-account scenario, where *source* and *destination* buckets are owned by different AWS accounts, you can use a customer managed key to encrypt object replicas\. However, the KMS key owner must grant the source bucket owner permission to use the KMS key\. <a name="cross-acct-kms-key-permission"></a>
 
-**To grant the source bucket owner permission to use the AWS KMS CMK \(IAM console\)**
+**To grant the source bucket owner permission to use the KMS key \(IAM console\)**
 
 1. Sign in to the AWS Management Console and open the AWS Key Management Service \(AWS KMS\) console at [https://console\.aws\.amazon\.com/kms](https://console.aws.amazon.com/kms)\.
 
@@ -246,7 +244,7 @@ In a cross\-account scenario, where *source* and *destination* buckets are owned
 
 1.  To view the keys in your account that you create and manage, in the navigation pane choose **Customer managed keys**\.
 
-1. Choose the CMK\.
+1. Choose the KMS key\.
 
 1. Under **General configuration**, choose the **Key policy** tab\.
 
@@ -258,7 +256,7 @@ In a cross\-account scenario, where *source* and *destination* buckets are owned
 
 1. Choose **Save Changes**\.
 
-**To grant the source bucket owner permission to use the AWS KMS CMK \(AWS CLI\)**
+**To grant the source bucket owner permission to use the KMS key \(AWS CLI\)**
 + For information, see [put\-key\-policy](http://docs.aws.amazon.com/cli/latest/reference/kms/put-key-policy.html) in the* AWS CLI Command Reference*\. For information about the underlying API, see [PutKeyPolicy](http://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html) in the *[AWS Key Management Service API Reference](https://docs.aws.amazon.com/kms/latest/APIReference/)\.*
 
 ## AWS KMS transaction limit considerations<a name="replication-kms-considerations"></a>

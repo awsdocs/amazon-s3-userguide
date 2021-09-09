@@ -1,9 +1,9 @@
 # Replicating encrypted objects<a name="replication-walkthrough-4"></a>
 
-By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with AWS Key Management Service \(AWS KMS\) customer master keys \(CMKs\)\. To replicate encrypted objects, you modify the bucket replication configuration to tell Amazon S3 to replicate these objects\. This example explains how to use the Amazon S3 console and the AWS Command Line Interface \(AWS CLI\) to change the bucket replication configuration to enable replicating encrypted objects\. For more information, see [Replicating objects created with server\-side encryption \(SSE\) using AWS KMS CMKs](replication-config-for-kms-objects.md)\. 
+By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with KMS keys\. To replicate encrypted objects, you modify the bucket replication configuration to tell Amazon S3 to replicate these objects\. This example explains how to use the Amazon S3 console and the AWS Command Line Interface \(AWS CLI\) to change the bucket replication configuration to enable replicating encrypted objects\. For more information, see [Replicating objects created with server\-side encryption \(SSE\) using KMS keys](replication-config-for-kms-objects.md)\. 
 
 **Note**  
-You can use a multi\-Region key in Amazon S3\. Multi\-Region keys will work as customer master keys \(CMKs\) work today, but they will not use the multi\-Region features of the key\. For more information, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
+You can use a multi\-Region key in Amazon S3\. Multi\-Region keys will work as AWS KMS keys work today, but they will not use the multi\-Region features of the key\. For more information, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
 
 ## Using the S3 console<a name="replication-ex4-console"></a>
 
@@ -90,7 +90,7 @@ To set up replication configuration when both *source* and *destination* buckets
 
       1. Copy the following permissions policy and save it to a file named `s3-role-permissions-policykmsobj.json` in the current directory on your local computer\. You create an IAM role and attach the policy to it later\. 
 **Important**  
-In the permissions policy, you specify the AWS KMS key IDs that will be used for encryption of *source* and `destination` buckets\. You must create two separate AWS KMS CMKs for the `source` and `destination` buckets\. AWS KMS CMKs are never shared outside the AWS Region in which they were created\. 
+In the permissions policy, you specify the AWS KMS key IDs that will be used for encryption of *source* and `destination` buckets\. You must create two separate KMS keys for the `source` and `destination` buckets\. AWS KMS keys are never shared outside the AWS Region in which they were created\. 
 
          ```
          {
@@ -260,12 +260,12 @@ In the replication configuration you specify the IAM role that Amazon S3 can ass
 
    1. In the *source* bucket, create a folder named `Tax`\. 
 
-   1. Add sample objects to the folder\. Be sure to choose the encryption option and specify your AWS KMS CMK to encrypt the objects\. 
+   1. Add sample objects to the folder\. Be sure to choose the encryption option and specify your KMS key to encrypt the objects\. 
 
-   1. Verify that the *destination* bucket contains the object replicas and that they are encrypted using the AWS KMS CMK that you specified in the configuration\.
+   1. Verify that the *destination* bucket contains the object replicas and that they are encrypted using the KMS key that you specified in the configuration\.
 
 ## Using the AWS SDKs<a name="replication-ex4-sdk"></a>
 
  For a code example to add replication configuration, see [Using the AWS SDKs](replication-walkthrough1.md#replication-ex1-sdk)\. You need to modify the replication configuration appropriately\. 
 
-For conceptual information, see [Replicating objects created with server\-side encryption \(SSE\) using AWS KMS CMKs](replication-config-for-kms-objects.md)\. 
+For conceptual information, see [Replicating objects created with server\-side encryption \(SSE\) using KMS keys](replication-config-for-kms-objects.md)\. 

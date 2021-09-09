@@ -37,7 +37,7 @@ The following example shows the structure of the JSON message\. This example sho
             },
             "object":{  
                "key":"object-key",
-               "size":"object-size",
+               "size":"object-size in bytes",
                "eTag":"object eTag",
                "versionId":"object version if bucket is versioning-enabled, otherwise null",
                "sequencer": "a string representation of a hexadecimal value used to determine event sequence, only used with PUTs and DELETEs"

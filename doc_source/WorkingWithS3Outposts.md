@@ -64,24 +64,21 @@ The following table lists the extended API operations for Amazon S3 on Outposts 
 
 ## Accessing Amazon S3 on Outposts using VPC\-only access points<a name="AccessingS3Outposts"></a>
 
-Amazon S3 on Outposts supports virtual private cloud \(VPC\)\-only access points as the only means to access Outposts buckets\. With S3 on Outposts endpoints\. you can privately connect your VPC to your Outposts bucket without requiring an internet gateway, network address translation \(NAT\) device, virtual private network \(VPN\) connection, or AWS Direct Connect connection\. 
+Amazon S3 on Outposts supports virtual private cloud \(VPC\)\-only access points as the only means to access your Outposts buckets\. With S3 on Outposts endpoints, you can privately connect your VPC to your Outposts bucket\. S3 on Outposts endpoints are virtual uniform resource identifiers \(URIs\) of the entry point to your S3 on Outposts bucket\. They are horizontally scaled, redundant, and highly available VPC components\.
 
 Instances in your VPC don't require public IP addresses to communicate with resources in your Outposts\. This keeps traffic between your VPC and your S3 on Outposts buckets within the AWS network\. 
 
-S3 on Outposts endpoints are virtual uniform resource identifiers \(URIs\) of the entry point to your S3 on Outposts bucket\. They are horizontally scaled, redundant, and highly available VPC components\. Outpost endpoints are the equivalent of [Outposts local gateway endpoints](https://docs.aws.amazon.com/outposts/latest/userguide/outposts-local-gateways.html) and [AWS PrivateLink for Amazon S3](privatelink-interface-endpoints.md)\. Outpost endpoints allow communication between the instances in your VPC and your on\-premises network and S3 on Outposts without imposing availability risks or bandwidth constraints on your network traffic\. For more information about endpoints, see [AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html)\.
-
-**Note**  
+**Important**  
 To access your S3 on Outposts buckets and objects, you must have the following:  
-An access point for the VPC
-An endpoint for the same VPC
-
-S3 on Outposts endpoints provide the networking layer for S3 access points in the same way that the VPC endpoints used by S3 provide the networking layer for their access points\. S3 on Outposts endpoints work without the need for any additional networking or proxy changes after creation\. 
+An access point for the VPC\.
+An endpoint for the same VPC\.
+An active connection between your Outpost and your AWS Region\. For more information about how to connect your Outpost to a Region, see [ Outpost connectivity to AWS Regions](https://docs.aws.amazon.com/outposts/latest/userguide/region-connectivity.html) in the *AWS Outposts User Guide*\. 
 
 You can access S3 on Outposts from within a VPC or from your on\-premises network\. There are two access types for an S3 on Outposts endpoint: 
 + **Private** — You can use this access type to work with S3 on Outposts from within a VPC\. This type of endpoint is not accessible from your on\-premises network\. 
-+ **Customer\-owned IP address pool \(CoIP pool\)** — You can use this access type to work with S3 on Outposts from your on\-premises network\. You can also use this access type to work with S3 on Outposts from within a VPC, but your traffic will be limited to the bandwidth of the local gateway\.
++ **Customer\-owned IP address pool \(CoIP pool\)** — You can use this access type to work with S3 on Outposts from both your on\-premises network and within a VPC\. When accessing S3 on Outposts within a VPC, your traffic is limited to the bandwidth of the local gateway\.
 
-When creating an endpoint, you must specify the endpoint access type between `Private` \(for VPC routing\) and `CustomerOwnedIp` \(for CoIP pool\)\. If you don't specify the access type, `Private` is used by default\.
+When creating an endpoint, you must specify the endpoint access type as either `Private` \(for VPC routing\) or `CustomerOwnedIp` \(for CoIP pool\)\. If you don't specify the access type, S3 on Outposts uses `Private` by default\.
 
 ## Managing connections for S3 on Outposts using cross\-account elastic network interfaces<a name="S3OutpostsXENI"></a>
 

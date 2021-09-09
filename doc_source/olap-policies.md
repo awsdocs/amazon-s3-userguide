@@ -9,11 +9,28 @@ In the case of a single AWS account, the following four resources must have perm
 + The AWS Lambda function
 
 These examples assume that you have the following resources:
-+ An Amazon S3 bucket with permissions delegated to your access point\. For more information, see [Delegating access control to access points](access-points-policies.md#access-points-delegating-control)\.
-
-  The bucket has the following Amazon Resource Name \(ARN\): 
++ An Amazon S3 bucket with following Amazon Resource Name \(ARN\): 
 
   `arn:aws:s3:::DOC-EXAMPLE-BUCKET1`
+
+  The bucket has the permissions delegated to your access point, such as the example below\. For more information, see [Delegating access control to access points](access-points-policies.md#access-points-delegating-control)\.  
+**Example bucket policy delegating access control to access points**  
+
+  ```
+  {
+      "Version": "2012-10-17",
+      "Statement" : [
+      {
+          "Effect": "Allow",
+          "Principal" : { "AWS":"account-ARN"},
+          "Action" : "*",
+          "Resource" : [ "DOC-EXAMPLE-BUCKET1", "DOC-EXAMPLE-BUCKET1/*"],
+          "Condition": {
+              "StringEquals" : { "s3:DataAccessPointAccount" : "Bucket owner's account ID" }
+          }
+      }]
+  }
+  ```
 + An Amazon S3 standard access point on this bucket with the following ARN: 
 
   `arn:aws:s3:us-east-1:111122223333:accesspoint/my-access-point`
@@ -77,7 +94,37 @@ The following IAM policy grants a user permission to interact with these resourc
 }
 ```
 
-Your AWS Lambda function needs permission to call back to the Object Lambda access point with the `WriteGetObjectResponse`\. Add the following statement to the `Execution` role that is used by the Lambda function\.
+## Lambda execution role<a name="olap-execution-role"></a>
+
+Your Lambda function needs permission to send data to S3 Object Lambda when requests are made to an Object Lambda access point\. This is provided by enabling the `s3-object-lambda:WriteGetObjectResponse` permission on your Lambda function's execution role\. You can create a new execution role or update an existing one\.
+
+**To create an execution role in the IAM console**
+
+1. Open the [Roles page](https://console.aws.amazon.com/iam/home#/roles) in the IAM console\.
+
+1. Choose **Create role**\.
+
+1. Under **Common use cases**, choose **Lambda**\.
+
+1. Choose **Next: Permissions**\.
+
+1. Under **Attach permissions policies**, choose the AWS managed policy [AmazonS3ObjectLambdaExecutionRolePolicy](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/service-role/AmazonS3ObjectLambdaExecutionRolePolicy$serviceLevelSummary)\.
+
+1. Choose **Next: Tags**\.
+
+1. Choose **Next: Review**\.
+
+1. For **Role name**, enter **s3\-object\-lambda\-role**\.
+
+1. Choose **Create role**\.
+
+1. Apply the newly created **s3\-object\-lambda\-role** as your Lambda function's execution role\.
+
+For detailed instructions, see [Creating a role for an AWS service \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html#roles-creatingrole-service-console) in the *IAM User Guide*\.
+
+**To update your Lambda function's execution role**
+
+Add the following statement to the execution role that is used by the Lambda function\.
 
 ```
 {
@@ -88,6 +135,8 @@ Your AWS Lambda function needs permission to call back to the Object Lambda acce
     "Resource": "*"
   }
 ```
+
+For more information about execution roles see, [Lambda execution role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html) in the *AWS Lambda Developer Guide*\.
 
 ## Using context keys with Object Lambda access points<a name="olap-keys"></a>
 

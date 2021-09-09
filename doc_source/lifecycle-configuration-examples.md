@@ -356,7 +356,7 @@ The Lifecycle configuration is shown following\.
     <Filter>
       <Tag>
          <Key>tag2</Key>
-         <Value>value1</Value>
+         <Value>value2</Value>
       </Tag>
     </Filter>
     <Status>Enabled</Status>

@@ -299,7 +299,7 @@ For more information, see [Meeting compliance requirements using S3 Replication 
 
 ### Replicate objects created with server\-side encryption using AWS KMS<a name="sse-kms-configuration"></a>
 
-Your source bucket might contain objects that were created with server\-side encryption using keys stored in AWS KMS\. By default, Amazon S3 doesn't replicate these objects\. You can optionally direct Amazon S3 to replicate these objects\. First, explicitly opt into this feature by adding the `SourceSelectionCriteria` element, and then provide the AWS KMS CMK \(for the AWS Region of the destination bucket\) to use for encrypting object replicas\. 
+Your source bucket might contain objects that were created with server\-side encryption using keys stored in AWS KMS\. By default, Amazon S3 doesn't replicate these objects\. You can optionally direct Amazon S3 to replicate these objects\. First, explicitly opt into this feature by adding the `SourceSelectionCriteria` element, and then provide the AWS KMS key \(for the AWS Region of the destination bucket\) to use for encrypting object replicas\. 
 
 ```
 ...
@@ -317,7 +317,7 @@ Your source bucket might contain objects that were created with server\-side enc
 ...
 ```
 
-For more information, see [Replicating objects created with server\-side encryption \(SSE\) using AWS KMS CMKs](replication-config-for-kms-objects.md)\.
+For more information, see [Replicating objects created with server\-side encryption \(SSE\) using KMS keys](replication-config-for-kms-objects.md)\.
 
 ## Example replication configurations<a name="replication-config-example-configs"></a>
 

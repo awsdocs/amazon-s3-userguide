@@ -16,7 +16,8 @@ The bucket owner, the AWS account that created the bucket \(root account\), and 
 
 **Note**  
 To use MFA delete with versioning, you enable `MFA Delete`\. However, you cannot enable `MFA Delete` using the AWS Management Console\. You must use the AWS Command Line Interface \(AWS CLI\) or the API\.   
-For examples of using MFA delete with versioning, see the examples section in the topic [Enabling versioning on buckets](manage-versioning-examples.md)\.
+For examples of using MFA delete with versioning, see the examples section in the topic [Enabling versioning on buckets](manage-versioning-examples.md)\.  
+You cannot use MFA delete with lifecycle configurations\. For more information about lifecycle configurations and how they interact with other configurations, see [Lifecycle and other bucket configurations](lifecycle-and-other-bucket-config.md)\.
 
 To enable or disable MFA delete, you use the same API that you use to configure versioning on a bucket\. Amazon S3 stores the MFA delete configuration in the same *versioning* subresource that stores the bucket's versioning status\.
 

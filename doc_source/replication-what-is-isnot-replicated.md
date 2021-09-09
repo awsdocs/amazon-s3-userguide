@@ -7,9 +7,9 @@ Amazon S3 replicates only specific items in buckets that are configured for repl
 By default Amazon S3 replicates the following:
 + Objects created after you add a replication configuration\.
 + Unencrypted objects\. 
-+ Objects encrypted at rest under Amazon S3 managed keys \(SSE\-S3\) or customer master keys \(CMKs\) stored in AWS Key Management Service \(SSE\-KMS\)\. 
++ Objects encrypted at rest under Amazon S3 managed keys \(SSE\-S3\) or KMS key stored in AWS Key Management Service \(SSE\-KMS\)\. 
 
-  To replicate objects encrypted with CMKs stored in AWS KMS, you must explicitly enable the option\. The replicated copy of the object is encrypted using the same type of server\-side encryption that was used for the source object\. For more information about server\-side encryption, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.
+  To replicate objects encrypted with KMS key stored in AWS KMS, you must explicitly enable the option\. The replicated copy of the object is encrypted using the same type of server\-side encryption that was used for the source object\. For more information about server\-side encryption, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.
 + Object metadata from the source objects to the replicas\. For information about replicating metadata from the replicas to the source objects, see [Replicating metadata changes with Amazon S3 replica modification sync](replication-for-metadata-changes.md)\.
 + Only objects in the source bucket for which the bucket owner has permissions to read objects and access control lists \(ACLs\)\. 
 

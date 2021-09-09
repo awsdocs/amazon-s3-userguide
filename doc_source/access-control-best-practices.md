@@ -103,7 +103,7 @@ Use the following tools to help protect data in transit and at rest, both of whi
 **Object encryption**  
 Amazon S3 offers several object encryption options that protect data in transit and at rest\. Server\-side encryption encrypts your object before saving it on disks in its data centers and then decrypts it when you download the objects\. As long as you authenticate your request and you have access permissions, there is no difference in the way you access encrypted or unencrypted objects\. When setting up server\-side encryption, you have three mutually exclusive options: 
 + Amazon S3 managed keys \(SSE\-S3\)
-+ Customer master keys \(CMK\) stored in AWS Key Management Service \(SSE\-KMS\)
++ KMS keys stored in AWS Key Management Service \(SSE\-KMS\)
 + Customer\-provided keys \(SSE\-C\)
 
 For more information, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.

@@ -18,7 +18,7 @@ http://website.s3-website.us-east-1.amazonaws.com
 Now you want to use JavaScript on the webpages that are stored in this bucket to be able to make authenticated GET and PUT requests against the same bucket by using the Amazon S3 API endpoint for the bucket, `website.s3.us-east-1.amazonaws.com`\. A browser would normally block JavaScript from allowing those requests, but with CORS you can configure your bucket to explicitly enable cross\-origin requests from `website.s3-website.us-east-1.amazonaws.com`\.
 
 **Scenario 2**  
-Suppose that you want to host a web font from your S3 bucket\. Again, browsers require a CORS check \(also called a preflight check\) for loading web fonts\. You would configure the bucket that is hosting the web font to allow any origin to make these requests\.
+Suppose that you want to host a web front from your S3 bucket\. Again, browsers require a CORS check \(also called a preflight check\) for loading web front\. You would configure the bucket that is hosting the web front to allow any origin to make these requests\.
 
 ## How does Amazon S3 evaluate the CORS configuration on a bucket?<a name="cors-eval-criteria"></a>
 

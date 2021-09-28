@@ -26,6 +26,9 @@ Each rule consists of the following:
 
 The following sections describe the XML elements in an S3 Lifecycle configuration\. For example configurations, see [Examples of lifecycle configuration](lifecycle-configuration-examples.md)\.
 
+**Note**
+Changes in lifecycle rules generally take several minutes to become effective, and new rules may be delayed 48 hours before first run\.
+
 ## ID element<a name="intro-lifecycle-rule-id"></a>
 
 An S3 Lifecycle configuration can have up to 1,000 rules\. This limit is not adjustable\. The <ID> element uniquely identifies a rule\. ID length is limited to 255 characters\.

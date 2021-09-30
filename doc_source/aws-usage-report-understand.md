@@ -1,6 +1,6 @@
 # Understanding your AWS billing and usage reports for Amazon S3<a name="aws-usage-report-understand"></a>
 
-Amazon S3 billing and usage reports use codes and abbreviations\. For example, for usage type, which is defined in the following table, *region* is replaced with one of the following abbreviations:
+Amazon S3 billing and usage reports use codes and abbreviations\. For usage types in the table that follows, replace *region*, *region1*, and *region2* with abbreviations from this list:
 + **AFS1:** Africa \(Cape Town\)
 + **APE1:** Asia Pacific \(Hong Kong\)
 + **APN1:** Asia Pacific \(Tokyo\)

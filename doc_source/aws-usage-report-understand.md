@@ -1,9 +1,11 @@
 # Understanding your AWS billing and usage reports for Amazon S3<a name="aws-usage-report-understand"></a>
 
-Amazon S3 billing and usage reports use codes and abbreviations\. For usage types in the table that follows, replace *region*, *region1*, and *region2* with abbreviations from this list:
+Amazon S3 billing and usage reports use codes and abbreviations\. For example, for usage type, which is defined in the following table, *region* is replaced with one of the following abbreviations:
++ **AFS1:** Africa \(Cape Town\)
 + **APE1:** Asia Pacific \(Hong Kong\)
 + **APN1:** Asia Pacific \(Tokyo\)
 + **APN2:** Asia Pacific \(Seoul\)
++ **APN3:** Asia Pacific \(Osaka\)
 + **APS1:** Asia Pacific \(Singapore\)
 + **APS2:** Asia Pacific \(Sydney\)
 + **APS3:** Asia Pacific \(Mumbai\)
@@ -12,6 +14,7 @@ Amazon S3 billing and usage reports use codes and abbreviations\. For usage type
 + **EUN1:** Europe \(Stockholm\)
 + **EUC1:** Europe \(Frankfurt\)
 + **EU:** Europe \(Ireland\)
++ **EUS1:** Europe \(Milan\)
 + **EUW2:** Europe \(London\)
 + **EUW3:** Europe \(Paris\)
 + **MES1:** Middle East \(Bahrain\)

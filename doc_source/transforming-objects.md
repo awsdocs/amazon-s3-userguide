@@ -16,6 +16,8 @@ The topics in this section describe how to work with Object Lambda access points
 + [Best practices and guidelines for S3 Object Lambda](olap-best-practices.md)
 + [Security considerations for S3 Object Lambda access points](olap-security.md)
 
+For S3 Object Lambda tutorials, see [](tutorial-s3-object-lambda-uppercase.md) and [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)\.
+
 For more information about standard access points, see [Managing data access with Amazon S3 access points](access-points.md)\. 
 
 For information about working with buckets, see [Buckets overview](UsingBucket.md)\. For information about working with objects, see [Amazon S3 objects overview](UsingObjects.md)\.

@@ -109,7 +109,15 @@ If the SQS queue or SNS topics are encrypted with an AWS Key Management Service 
                 "kms:GenerateDataKey",
                 "kms:Decrypt"
             ],
-            "Resource": "*"
+            "Resource": "*",
+            "Condition":{
+              "StringEquals":{
+                "aws:SourceAccount":"source-account-id"
+              },
+              "ArnLike":{
+                "aws:SourceARN": "arn:aws:s3:::source-bucket-name"
+              }
+           }
         }
     ]
 }

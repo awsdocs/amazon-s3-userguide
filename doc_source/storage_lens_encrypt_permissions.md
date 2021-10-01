@@ -23,14 +23,20 @@ To grant Amazon S3 Storage Lens permission to encrypt using a customer managed k
    ```
    {
        "Sid": "Allow Amazon S3 Storage Lens use of the KMS key",
-       "Effect": "Allow",
+        "Effect": "Allow",
        "Principal": {
            "Service": "storage-lens.s3.amazonaws.com"
        },
        "Action": [
            "kms:GenerateDataKey"
        ],
-       "Resource": "*"
+       "Resource": "*",
+       "Condition": {
+          "StringEquals": {
+              "aws:SourceArn": "arn:aws:s3:us-east-1:source-account-id:storage-lens/your-dashboard-name",
+              "aws:SourceAccount": "source-account-id"
+           }
+        }
    }
    ```
 

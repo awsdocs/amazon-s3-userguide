@@ -12,7 +12,7 @@ The following table contains the schema of your S3 Storage Lens metrics export\.
 |  AwsRegion  |  String  |  aws\_region  |  The AWS Region for which the metrics are being tracked\.  | 
 |  StorageClass  |  String  |  storage\_class  |  The storage class of the bucket in question\.  | 
 |  RecordType  |  ENUM  |  record\_type  |  The type of artifact that is being reported \(ACCOUNT, BUCKET, or PREFIX\)\.  | 
-|  RecordValue  |  String  |  record\_value  |  The record value\. This field is populated when the record\_type is PREFIX\. The record value is only URL\-encoded  | 
+|  RecordValue  |  String  |  record\_value  |  The record value\. This field is populated when the record\_type is PREFIX\. The record value is URL\-encoded  | 
 |  BucketName  |  String  |  bucket\_name  |  The name of the bucket that is being reported\.  | 
 |  MetricName  |  String  |  metric\_name  |  The name of the metric that is being reported\.  | 
 |  MetricValue  |  Long  |  metric\_value  |  The value of the metric that is being reported\.  | 

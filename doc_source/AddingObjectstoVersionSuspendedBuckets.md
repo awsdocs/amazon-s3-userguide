@@ -20,4 +20,4 @@ If a null version already exists in a bucket, the null version is overwritten, a
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/versioning_PUT_versionSuspended4.png)
 
-Although the key and version ID \(`null`\) of the null version are the same before and after the `PUT`, the contents of the null version originally stored in the bucket is replaced by the contents of the object `PUT` into the bucket\.
+Although the key and version ID \(`null`\) of the null version are the same before and after the `PUT`, the contents of the null version originally stored in the bucket are replaced by the contents of the object `PUT` into the bucket\.

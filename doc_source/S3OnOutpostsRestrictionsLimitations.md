@@ -29,7 +29,7 @@ Amazon S3 on Outposts provides read\-after\-write consistency for PUT requests o
 
 Amazon S3 on Outposts offers eventual consistency for overwrite PUT and DELETE requests in all Regions\.
 
-Updates to a single key are atomic\. For example, if you make a PUT request to an existing key, a subsequent read might return the old data or the updated data, but it doesnt return corrupted or partial data\. With the eventual consistency model, you might observe the following behaviors:
+Updates to a single key are atomic\. For example, if you make a PUT request to an existing key, a subsequent read might return the old data or the updated data, but it doesn't return corrupted or partial data\. With the eventual consistency model, you might observe the following behaviors:
 + A process writes a new object to S3 on Outposts and immediately lists keys within its bucket\. Until the change is fully propagated, the object might not appear in the list\.
 + A process replaces an existing object and immediately tries to read it\. Until the change is fully propagated, S3 on Outposts might return the previous data\.
 + A process deletes an existing object and immediately tries to read it\. Until the deletion is fully propagated, S3 on Outposts might return the deleted data\.

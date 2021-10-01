@@ -1,4 +1,4 @@
-# Accessing a bucket<a name="access-bucket-intro"></a>
+# Methods for accessing a bucket<a name="access-bucket-intro"></a>
 
 You can access your bucket using the Amazon S3 console\. Using the console UI, you can perform almost all bucket operations without having to write any code\. 
 

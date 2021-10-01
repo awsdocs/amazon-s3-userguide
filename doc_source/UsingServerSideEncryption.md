@@ -2,7 +2,7 @@
 
 Server\-side encryption protects data at rest\. Amazon S3 encrypts each object with a unique key\. As an additional safeguard, it encrypts the key itself with a key that it rotates regularly\. Amazon S3 server\-side encryption uses one of the strongest block ciphers available to encrypt your data, 256\-bit Advanced Encryption Standard \(AES\-256\)\.
 
-There are no new charges for using server\-side encryption with Amazon S3\-managed keys \(SSE\-S3\)\. However, requests to configure and use SSE\-S3 incur standard Amazon S3 request charges\. For information about pricing, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)\.
+There are no additional fees for using server\-side encryption with Amazon S3\-managed keys \(SSE\-S3\)\. However, requests to configure the default encryption feature incur standard Amazon S3 request charges\. For information about pricing, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)\.
 
 If you need server\-side encryption for all of the objects that are stored in a bucket, use a bucket policy\. For example, the following bucket policy denies permissions to upload an object unless the request includes the `x-amz-server-side-encryption` header to request server\-side encryption:
 

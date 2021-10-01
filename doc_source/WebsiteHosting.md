@@ -17,4 +17,3 @@ For more information about hosting a static website on Amazon S3, including inst
 + [Setting permissions for website access](WebsiteAccessPermissionsReqd.md)
 + [\(Optional\) Logging web traffic](LoggingWebsiteTraffic.md)
 + [\(Optional\) Configuring a webpage redirect](how-to-page-redirect.md)
-+ [Walkthroughs \- Hosting websites on Amazon S3](hosting-websites-on-s3-examples.md)

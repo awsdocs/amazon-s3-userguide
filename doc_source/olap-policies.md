@@ -1,6 +1,6 @@
 # Configuring IAM policies for Object Lambda access points<a name="olap-policies"></a>
 
-S3 access points support AWS Identity and Access Management \(IAM\) resource policies that allow you to control the use of the access point by resource, user, or other conditions\.
+S3 access points support AWS Identity and Access Management \(IAM\) resource policies that allow you to control the use of the access point by resource, user, or other conditions\. For step\-by\-step examples, see [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md) and [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)\.
 
 In the case of a single AWS account, the following four resources must have permissions granted to work with Object Lambda access points:
 + The IAM user or role
@@ -13,7 +13,7 @@ These examples assume that you have the following resources:
 
   `arn:aws:s3:::DOC-EXAMPLE-BUCKET1`
 
-  The bucket has the permissions delegated to your access point, such as the example below\. For more information, see [Delegating access control to access points](access-points-policies.md#access-points-delegating-control)\.  
+  The S3 bucket policy example below delegates access control for a bucket to the bucket's access points\. This allows full access to all access points owned by the bucket owner's account\. Thus, all access to this bucket is controlled by the policies attached to its access points\. Users can read from the bucket only through the S3 Access Point, allowing you to invoke operations only via access points\. For more information, see [Delegating access control to access points](access-points-policies.md#access-points-delegating-control)\.   
 **Example bucket policy delegating access control to access points**  
 
   ```
@@ -44,7 +44,7 @@ These examples assume that you have the following resources:
 **Note**  
 If using a Lambda function from your account you must include the function version in your policy statement\. For example, `arn:aws:lambda:us-east-1:111122223333:function/MyObjectLambdaFunction:$LATEST`
 
-The following IAM policy grants a user permission to interact with these resources\.
+The following IAM policy grants a user permission to the Lambda function, standard access point and the S3 Object Lambda access point\.
 
 ```
 {

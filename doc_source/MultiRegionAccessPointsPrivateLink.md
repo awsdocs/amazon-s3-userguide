@@ -2,13 +2,13 @@
 
  AWS PrivateLink provides you with private connectivity to Amazon S3 using private IP addresses in your virtual private cloud \(VPC\)\. You can provision one or more interface endpoints inside your VPC to connect to Amazon S3 Multi\-Region Access Points\.
 
- You can create **com\.amazonaws\.s3\-global\.accesspoint** endpoints for Multi\-Region Access Points through the AWS Management Console, AWS CLI, or AWS SDKs\. To learn more about how to configure an interface endpoint for Multi\-Region Access Point, see [Interface VPC endpoints](https://docs.aws.amazon.com/https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-interface.html) in the *VPC User Guide*\. 
+ You can create **com\.amazonaws\.s3\-global\.accesspoint** endpoints for Multi\-Region Access Points through the AWS Management Console, AWS CLI, or AWS SDKs\. To learn more about how to configure an interface endpoint for Multi\-Region Access Point, see [Interface VPC endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-interface.html) in the *VPC User Guide*\. 
 
  To make requests to a Multi\-Region Access Point via interface endpoints, follow these steps to configure the VPC and the Multi\-Region Access Point\. 
 
 **To configure a Multi\-Region Access Point to use with AWS PrivateLink**
 
-1. Create or have an appropriate VPC endpoint that can connect to Multi\-Region Access Points\. For more information about creating VPC endpoints, see [Interface VPC endpoints](https://docs.aws.amazon.com/https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-interface.html) in the *VPC User Guide*\.
+1. Create or have an appropriate VPC endpoint that can connect to Multi\-Region Access Points\. For more information about creating VPC endpoints, see [Interface VPC endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-interface.html) in the *VPC User Guide*\.
 **Important**  
  Make sure to create a **com\.amazonaws\.s3\-global\.accesspoint** endpoint\. Other endpoint types cannot access Multi\-Region Access Points\. 
 

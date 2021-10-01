@@ -186,7 +186,6 @@ In the replication configuration you specify the IAM role that Amazon S3 can ass
     <ReplicationConfiguration>
      <Role>IAM-Role-ARN</Role>
      <Rule>
-       <Status>Enabled</Status>
        <Priority>1</Priority>
        <DeleteMarkerReplication>
           <Status>Disabled</Status>

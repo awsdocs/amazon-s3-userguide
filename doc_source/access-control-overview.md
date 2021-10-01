@@ -173,4 +173,4 @@ For more information about Access Analyzer for S3, see [Reviewing bucket access 
 +  [Access policy guidelines](access-policy-alternatives-guidelines.md) 
 +  [How Amazon S3 authorizes a request](how-s3-evaluates-access-control.md) 
 +  [Example walkthroughs: Managing access to your Amazon S3 resources ](example-walkthroughs-managing-access.md) 
-+  [Access control best practices](access-control-best-practices.md)
++  [Control access to your buckets and objectsAccess control best practices](access-control-best-practices.md)

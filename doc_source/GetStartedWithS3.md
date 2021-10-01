@@ -16,4 +16,5 @@ Before you begin, confirm that you've completed the steps in [Prerequisite: Sett
 + [Step 3: Download an object](accessing-an-object.md)
 + [Step 4: Copy your object to a folder](copying-an-object.md)
 + [Step 5: Delete your objects and bucket](deleting-object-bucket.md)
-+ [Where do I go from here?](ImplementingS3.md)
++ [Next steps](getting-started-next-steps.md)
++ [Access control best practices](access-control-best-practices.md)

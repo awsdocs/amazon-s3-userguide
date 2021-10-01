@@ -12,7 +12,7 @@ When setting up replication, you must acquire necessary permissions as follows:
 
 
 
-By default, all Amazon S3 resources—buckets, objects, and related subresources—are private and only the resource owner can access the resource\. Amazon S3 needs permissions read and replicate objects from the source bucket\. You grant these permissions by creating an IAM role and specifying the role in your replication configuration\. 
+By default, all Amazon S3 resources—buckets, objects, and related subresources—are private and only the resource owner can access the resource\. Amazon S3 needs permissions to read and replicate objects from the source bucket\. You grant these permissions by creating an IAM role and specifying the role in your replication configuration\. 
 
 This section explains the trust policy and minimum required permissions policy\. The example walkthroughs provide step\-by\-step instructions to create an IAM role\. For more information, see [Walkthroughs: Configuring replication](replication-example-walkthroughs.md)\.
 

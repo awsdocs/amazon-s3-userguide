@@ -94,7 +94,15 @@ Follow the steps to create and subscribe to an Amazon Simple Queue Service \(Ama
                    "kms:GenerateDataKey",
                    "kms:Decrypt"
                ],
-               "Resource": "*"
+               "Resource": "*",
+               "Condition":{
+                 "StringEquals":{
+                   "aws:SourceAccount":"source-account-id"
+                 },
+                 "ArnLike":{
+                   "aws:SourceARN": "arn:aws:s3:::source-bucket-name"
+                 }
+              }
            }
        ]
    }

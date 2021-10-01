@@ -14,7 +14,7 @@ The topics in this section provide an overview of working with buckets in Amazon
 + [Bucket naming rules](bucketnamingrules.md)
 + [Creating a bucket](create-bucket-overview.md)
 + [Viewing the properties for an S3 bucket](view-bucket-properties.md)
-+ [Accessing a bucket](access-bucket-intro.md)
++ [Methods for accessing a bucket](access-bucket-intro.md)
 + [Emptying a bucket](empty-bucket.md)
 + [Deleting a bucket](delete-bucket.md)
 + [Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)

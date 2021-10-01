@@ -119,7 +119,7 @@ public class RecordInputStreamExample {
 ------
 #### [ JavaScript ]
 
-For a JavaScript example using the AWS SDK for JavaScript with the S3 SelectObjectContent API to select records from JSON and CSV files stored in Amazon S3, see the blog post [ Querying data without servers or databases using Amazon S3 Select](http://aws.amazon.com/blogs/storage/querying-data-without-servers-or-databases-using-amazon-s3-select/)\. 
+For a JavaScript example using the AWS SDK for JavaScript with the S3 SelectObjectContent API to select records from JSON and CSV files stored in Amazon S3, see the blog post [ Introducing support for Amazon S3 Select in the AWS SDK for JavaScript](http://aws.amazon.com/blogs/developer/introducing-support-for-amazon-s3-select-in-the-aws-sdk-for-javascript/)\. 
 
 ------
 #### [ Python ]

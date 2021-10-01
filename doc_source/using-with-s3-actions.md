@@ -99,7 +99,48 @@ The following user policy grants the `s3:GetBucketAcl` permission on the `DOC-EX
 You can delete objects either by explicitly calling the DELETE Object API or by configuring its lifecycle \(see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\) so that Amazon S3 can remove the objects when their lifetime expires\. To explicitly block users or accounts from deleting objects, you must explicitly deny them `s3:DeleteObject`, `s3:DeleteObjectVersion`, and `s3:PutLifecycleConfiguration` permissions\. 
 
 **Explicit deny**  
-By default, users have no permissions\. But as you create users, add users to groups, and grant them permissions, they might get certain permissions that you didn't intend to grant\. That is where you can use explicit deny, which supersedes all other permissions a user might have and denies the user permissions for specific actions\.
+By default, users have no permissions\. But as you create users, add users to groups, and grant them permissions, they might get certain permissions that you didn't intend to grant\. To avoid such permission loopholes, you can write a stricter access policy by adding explicit deny\. 
+
+The preceding bucket policy grants the `s3:GetBucketAcl` permission `DOC-EXAMPLE-BUCKET1` bucket to user Dave\. In this example, you explicitly deny the user Dave DELETE Object permissions\. Explicit deny always supersedes any other permission granted\. The following is the revised access policy example with explicit deny added\.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "statement1",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:user/Dave"
+      },
+      "Action": [
+        "s3:GetObjectVersion",
+        "s3:GetBucketAcl"
+      ],
+      "Resource": [
+        "arn:aws:s3:::DOC-EXAMPLE-BUCKET1",
+	 	"arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
+      ]
+    },
+    {
+      "Sid": "statement2",
+      "Effect": "Deny",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:user/Dave"
+      },
+      "Action": [
+        "s3:DeleteObject",
+        "s3:DeleteObjectVersion",
+        "s3:PutLifecycleConfiguration"
+      ],
+      "Resource": [
+        "arn:aws:s3:::DOC-EXAMPLE-BUCKET1",
+	    "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
+      ]
+    }
+  ]
+}
+```
 
 ## Example — Account operations<a name="using-with-s3-actions-related-to-accounts"></a>
 

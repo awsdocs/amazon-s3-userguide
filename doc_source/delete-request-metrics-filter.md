@@ -6,7 +6,7 @@ When you delete a filter, you can no longer use the filter for request metrics\.
 
 For information about creating a request metrics filter, see the following topics:
 + [Creating a CloudWatch metrics configuration for all the objects in your bucket](configure-request-metrics-bucket.md)
-+ [Creating a metrics configuration that filters by object key name prefix or tag](metrics-configurations-filter.md)
++ [Creating a metrics configuration that filters by prefix, object tag, or access point](metrics-configurations-filter.md)
 
 ## Using the S3 console<a name="delete-request-metrics-filter-console"></a>
 

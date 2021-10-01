@@ -54,15 +54,6 @@ For more information, see [Using AWS CloudFormation](configuring-bucket-key.md#
 
 Before you enable an S3 Bucket Key, please note the following related changes:
 
-### `kms:Decrypt` permissions for copy and upload<a name="kms-decrypt"></a>
-
-**Important**  
-To copy or upload objects with S3 Bucket Keys, the AWS KMS key policy for the key must include the `kms:Decrypt` permission for the calling principal\.
-
-When you enable an S3 Bucket Key, the AWS KMS key policy for the key must include the `kms:Decrypt` permission for the calling principal\. If the calling principal is in a different account than the KMS key, you must also include `kms:Decrypt` permission in the IAM policy\. The call to `kms:Decrypt` verifies the integrity of the S3 Bucket Key before using it\.
-
-You only need to include `kms:Decrypt` permissions in the key policy if you use a customer managed key\. If you enable an S3 Bucket Key for server\-side encryption using an AWS managed key \(aws/s3\), your AWS KMS key policy already includes `kms:Decrypt` permissions\.
-
 ### IAM or KMS key policies<a name="bucket-key-policies"></a>
 
 If your existing IAM policies or AWS KMS key policies use your object Amazon Resource Name \(ARN\) as the encryption context to refine or limit access to your KMS key, these policies won’t work with an S3 Bucket Key\. S3 Bucket Keys use the bucket ARN as encryption context\. Before you enable an S3 Bucket Key, update your IAM policies or AWS KMS key policies to use your bucket ARN as encryption context\.
@@ -78,9 +69,6 @@ After you enable an S3 Bucket Key, your AWS KMS CloudTrail events log your bucke
 You can use S3 Bucket Keys with Same\-Region Replication \(SRR\) and Cross\-Region Replication \(CRR\)\.
 
 When Amazon S3 replicates an encrypted object, it generally preserves the encryption settings of the replica object in the destination bucket\. However, if the source object is not encrypted and your destination bucket uses default encryption or an S3 Bucket Key, Amazon S3 encrypts the object with the destination bucket’s configuration\. 
-
-**Important**  
-To use replication with an S3 Bucket Key, the AWS KMS key policy for the KMS key used to encrypt the object replica must include `kms:Decrypt` permissions for the calling principal\. The call to `kms:Decrypt` verifies the integrity of the S3 Bucket Key before using it\. For more information, see [Using an S3 Bucket Key with replication](#bucket-key-replication)\. For more information about SSE\-KMS and S3 Bucket Key, see [Amazon S3 Bucket Keys and replication](replication-config-for-kms-objects.md#bk-replication)\.
 
 The following examples illustrate how an S3 Bucket Key works with replication\. For more information, see [Replicating objects created with server\-side encryption \(SSE\) using KMS keys](replication-config-for-kms-objects.md)\. 
 

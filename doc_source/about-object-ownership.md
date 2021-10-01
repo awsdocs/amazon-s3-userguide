@@ -9,9 +9,31 @@ S3 Object Ownership has two settings:
 + **Bucket owner preferred** – The bucket owner will own the object if the object is uploaded with the `bucket-owner-full-control` canned ACL\. Without this setting and canned ACL, the object is uploaded and remains owned by the uploading account\. For information about enforcing object ownership, see [How do I ensure that I take ownership of new objects?](#ensure-object-ownership)\. 
 
 **Topics**
++ [Setting S3 Object Ownership](#enable-object-ownership)
 + [How do I ensure that I take ownership of new objects?](#ensure-object-ownership)
 + [Using S3 Object Ownership with Amazon S3 Replication](#object-ownership-replication)
-+ [Setting S3 Object Ownership](#enable-object-ownership)
+
+## Setting S3 Object Ownership<a name="enable-object-ownership"></a>
+
+This section provides examples of how to enable S3 Object Ownership\. You can use the AWS Management Console, which provides a UI to manage permissions without writing any code\. 
+
+### Setting S3 Object Ownership to bucket owner preferred in the AWS Management Console<a name="add-object-ownership"></a>
+
+S3 Object Ownership enables you to take ownership of new objects that other AWS accounts upload to your bucket with the `bucket-owner-full-control` canned access control list \(ACL\)\. This section describes how to set Object Ownership using the console\.
+
+**Setting Object Ownership to bucket owner preferred on an S3 bucket**
+
+1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the **Buckets** list, choose the name of the bucket that you want to enable S3 Object Ownership for\.
+
+1. Choose the **Permissions** tab\.
+
+1. Choose **Edit** under **Object Ownership**\.
+
+1. Choose **Bucket owner preferred**, and then choose **Save**\.
+
+With the above steps Object Ownership will take ownership of any new objects that are written by other accounts with the `bucket-owner-full-control` canned ACL\. For more information about enforcing Object Ownership, see [How do I ensure that I take ownership of new objects?](#ensure-object-ownership)\.
 
 ## How do I ensure that I take ownership of new objects?<a name="ensure-object-ownership"></a>
 
@@ -63,25 +85,3 @@ If clients need access to objects after uploading, you must grant additional per
 S3 Object Ownership does not change the behavior of Amazon S3 Replication\. In replication, the owner of the source object also owns the replica by default\. When the source and destination buckets are owned by different AWS accounts, you can add optional configuration settings to change replica ownership\. 
 
 To transfer ownership of replicated objects to the destination bucket owner, you can use the Amazon S3 Replication owner override option\. For more information about transferring ownership of replicas, see [Changing the replica owner](replication-change-owner.md)\.
-
-## Setting S3 Object Ownership<a name="enable-object-ownership"></a>
-
-This section provides examples of how to enable S3 Object Ownership\. You can use the AWS Management Console, which provides a UI to manage permissions without writing any code\. 
-
-### Setting S3 Object Ownership to bucket owner preferred in the AWS Management Console<a name="add-object-ownership"></a>
-
-S3 Object Ownership enables you to take ownership of new objects that other AWS accounts upload to your bucket with the `bucket-owner-full-control` canned access control list \(ACL\)\. This section describes how to set Object Ownership using the console\.
-
-**Setting Object Ownership to bucket owner preferred on an S3 bucket**
-
-1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
-
-1. In the **Buckets** list, choose the name of the bucket that you want to enable S3 Object Ownership for\.
-
-1. Choose the **Permissions** tab\.
-
-1. Choose **Edit** under **Object Ownership**\.
-
-1. Choose **Bucket owner preferred**, and then choose **Save**\.
-
-With the above steps Object Ownership will take ownership of any new objects that are written by other accounts with the `bucket-owner-full-control` canned ACL\. For more information about enforcing Object Ownership, see [How do I ensure that I take ownership of new objects?](#ensure-object-ownership)\.

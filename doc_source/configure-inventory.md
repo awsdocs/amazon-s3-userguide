@@ -74,7 +74,15 @@ To grant Amazon S3 permission to encrypt using a customer managed AWS Key Manage
        "Action": [
            "kms:GenerateDataKey"
        ],
-       "Resource": "*"
+       "Resource": "*",
+       "Condition":{
+         "StringEquals":{
+            "aws:SourceAccount":"source-account-id"
+        },
+         "ArnLike":{
+           "aws:SourceARN": "arn:aws:s3:::source-bucket-name"
+        }
+      }
    }
    ```
 

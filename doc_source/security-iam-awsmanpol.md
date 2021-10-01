@@ -4,7 +4,7 @@ To add permissions to users, groups, and roles, it is easier to use AWS managed 
 
 AWS services maintain and update AWS managed policies\. You can't change the permissions in AWS managed policies\. Services occasionally add additional permissions to an AWS managed policy to support new features\. This type of update affects all identities \(users, groups, and roles\) where the policy is attached\. Services are most likely to update an AWS managed policy when a new feature is launched or when new operations become available\. Services do not remove permissions from an AWS managed policy, so policy updates won't break your existing permissions\.
 
-Additionally, AWS supports managed policies for job functions that span multiple services\. For example, the **ReadOnlyAccess** AWS managed policy provides read\-only access to all AWS services and resources\. When a service launches a new feature, AWS adds read\-only permissions for new operations and resources\. For a list and descriptions of job function policies, see [AWS managed policies for job functions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html) in the *IAM User Guide*\.
+Additionally, AWS supports managed policies for job functions that span multiple services\. For example, the **ViewOnlyAccess** AWS managed policy provides read\-only access to many AWS services and resources\. When a service launches a new feature, AWS adds read\-only permissions for new operations and resources\. For a list and descriptions of job function policies, see [AWS managed policies for job functions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html) in the *IAM User Guide*\.
 
 ## AWS managed policy: AmazonS3FullAccess<a name="security-iam-awsmanpol-amazons3fullaccess"></a>
 
@@ -31,5 +31,6 @@ View details about updates to AWS managed policies for Amazon S3 since this serv
 
 | Change | Description | Date | 
 | --- | --- | --- | 
-|  Amazon S3 started tracking changes  |  Amazon S3 started tracking changes for its AWS managed policies\.  | August 18, 2021 | 
+|  Amazon S3 added S3 Object Lambda permissions to `AmazonS3FullAccess` and `AmazonS3ReadOnlyAccess`  |  Amazon S3 updated the `AmazonS3FullAccess` and `AmazonS3ReadOnlyAccess` policies to include permissions for S3 Object Lambda\.  | September 27, 2021 | 
 |  Amazon S3 added `AmazonS3ObjectLambdaExecutionRolePolicy`  |  Amazon S3 added a new AWS\-managed policy called `AmazonS3ObjectLambdaExecutionRolePolicy` that provides Lambda functions permissions to interact with S3 Object Lambda and write to CloudWatch logs\.  | August 18, 2021 | 
+|  Amazon S3 started tracking changes  |  Amazon S3 started tracking changes for its AWS managed policies\.  | August 18, 2021 | 

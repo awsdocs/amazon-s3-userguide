@@ -4,7 +4,7 @@ If you created your static website as a learning exercise, you should delete the
 
 **Topics**
 + [Step 1: Delete the Amazon CloudFront distribution](#getting-started-cleanup-cloudfront)
-+ [Step 2: Delete the Route 53 hosted zone](#getting-started-cleanup-route53)
++ [Step 2: Delete the Route 53 hosted zone](#getting-started-cleanup-route53)
 + [Step 3: Disable logging and delete your S3 bucket](#getting-started-cleanup-s3)
 
 ## Step 1: Delete the Amazon CloudFront distribution<a name="getting-started-cleanup-cloudfront"></a>
@@ -23,13 +23,13 @@ Before you delete an Amazon CloudFront distribution, you must disable it\. A dis
 
 1. When prompted for confirmation, choose **Yes, Delete**\.
 
-## Step 2: Delete the Route 53 hosted zone<a name="getting-started-cleanup-route53"></a>
+## Step 2: Delete the Route 53 hosted zone<a name="getting-started-cleanup-route53"></a>
 
 Before you delete the hosted zone, you must delete the record sets that you created\. You don't need to delete the NS and SOA records; these are automatically deleted when you delete the hosted zone\.
 
 **To delete the record sets**
 
-1. Open the Route 53 console at [https://console\.aws\.amazon\.com/route53/](https://console.aws.amazon.com/route53/)\.
+1. Open the Route 53 console at [https://console\.aws\.amazon\.com/route53/](https://console.aws.amazon.com/route53/)\.
 
 1.  In the list of domain names, select your domain name, and then choose **Go to Record Sets**\. 
 
@@ -41,7 +41,7 @@ Before you delete the hosted zone, you must delete the record sets that you crea
 
 1. When prompted for confirmation, choose **Confirm**\. 
 
-**To delete a Route 53 hosted zone**
+**To delete a Route 53 hosted zone**
 
 1.  Continuing from the previous procedure, choose **Back to Hosted Zones**\. 
 

@@ -26,7 +26,7 @@ The `AWS/S3` namespace includes the following request metrics\.
 
 | Metric | Description | 
 | --- | --- | 
-| AllRequests |  The total number of HTTP requests made to an Amazon S3 bucket, regardless of type\. If you're using a metrics configuration with a filter, then this metric only returns the HTTP requests made to the objects in the bucket that meet the filter's requirements\. Units: Count Valid statistics: Sum  | 
+| AllRequests |  The total number of HTTP requests made to an Amazon S3 bucket, regardless of type\. If you're using a metrics configuration with a filter, then this metric only returns the HTTP requests that meet the filter's requirements\. Units: Count Valid statistics: Sum  | 
 | GetRequests |  The number of HTTP GET requests made for objects in an Amazon S3 bucket\. This doesn't include list operations\. Units: Count Valid statistics: Sum  Paginated list\-oriented requests, like [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListMPUpload.html), [List Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListParts.html), [Get Bucket Object versions](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETVersion.html), and others, are not included in this metric\.   | 
 | PutRequests |  The number of HTTP PUT requests made for objects in an Amazon S3 bucket\. Units: Count Valid statistics: Sum  | 
 | DeleteRequests |  The number of HTTP DELETE requests made for objects in an Amazon S3 bucket\. This also includes [Delete Multiple Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html) requests\. This metric shows the number of requests, not the number of objects deleted\. Units: Count Valid statistics: Sum  | 

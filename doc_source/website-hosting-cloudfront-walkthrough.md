@@ -70,7 +70,7 @@ Before you perform this step, note the [requirements for using alternate domain 
 
 1. To verify that your CloudFront distribution is working, enter the domain name of the distribution in a web browser\.
 
-   If your website is visible, the CloudFront distribution works\. If your website has a custom domain registered with Amazon Route 53 , you will need the CloudFront domain name to update the record set in the next step\.
+   If your website is visible, the CloudFront distribution works\. If your website has a custom domain registered with Amazon Route 53, you will need the CloudFront domain name to update the record set in the next step\.
 
 ## Step 2: Update the record sets for your domain and subdomain<a name="update-record-sets"></a>
 

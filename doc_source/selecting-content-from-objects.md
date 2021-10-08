@@ -18,6 +18,7 @@ The following limits apply when using Amazon S3 Select:
 + The maximum length of a SQL expression is 256 KB\.
 + The maximum length of a record in the input or result is 1 MB\.
 + Amazon S3 Select can only emit nested data using the JSON output format\.
++ You cannot specify the S3 Glacier, S3 Glacier Deep Archive, or REDUCED\_REDUNDANCY storage classes\. For more information, about storage classes see [Storage Classes](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html#storage-class-intro)\.
 
 Additional limitations apply when using Amazon S3 Select with Parquet objects:
 + Amazon S3 Select supports only columnar compression using GZIP or Snappy\. Amazon S3 Select doesn't support whole\-object compression for Parquet objects\.

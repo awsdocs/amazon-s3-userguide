@@ -11,7 +11,7 @@ To upload an object encrypted with an AWS KMS key to Amazon S3, you need `kms:De
 
 ## AWS KMS keys and customer managed keys<a name="aws-managed-customer-managed-keys"></a>
 
-When you use server\-side encryption with AWS KMS \(SSE\-KMS\), you can use the default [AWS KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk), or you can specify a [customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) that you have already created\. 
+When you use server\-side encryption with AWS KMS \(SSE\-KMS\), you can use the default [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk), or you can specify a [customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) that you have already created\. 
 
 If you don't specify a customer managed key, Amazon S3 automatically creates an AWS KMS key in your AWS account the first time that you add an object encrypted with SSE\-KMS to a bucket\. By default, Amazon S3 uses this KMS key for SSE\-KMS\. 
 

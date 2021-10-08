@@ -5,7 +5,7 @@
 **Topics**
 + [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md)
 + [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)
-+ [Tutorial: Hosting on\-demand streaming video with Amazon S3, CloudFront, and Route 53](tutorial-s3-cloudfront-route53-video-streaming.md)
-+ [Tutorial: Batch\-transcoding videos with S3 Batch Operations, Lambda, and MediaConvert](tutorial-s3-batchops-lambda-mediaconvert-video.md)
++ [Tutorial: Hosting on\-demand streaming video with Amazon S3, Amazon CloudFront, and Amazon Route 53](tutorial-s3-cloudfront-route53-video-streaming.md)
++ [Tutorial: Batch\-transcoding videos with S3 Batch Operations, AWS Lambda, and AWS Elemental MediaConvert](tutorial-s3-batchops-lambda-mediaconvert-video.md)
 + [Tutorial: Configuring a static website on Amazon S3](HostingWebsiteOnS3Setup.md)
 + [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)

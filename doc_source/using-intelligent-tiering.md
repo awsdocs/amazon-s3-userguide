@@ -95,7 +95,7 @@ When using the AWS CLI, you cannot specify the configuration as an XML file\. Yo
 
 The following example puts an S3 Intelligent\-Tiering configuration to the specified bucket\.
 
-**Example [https://docs.aws.amazon.com/https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-intelligent-tiering-configuration.html](https://docs.aws.amazon.com/https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-intelligent-tiering-configuration.html) configuration**  
+**Example [https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-intelligent-tiering-configuration.html](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-intelligent-tiering-configuration.html) configuration**  
 
 ```
 {

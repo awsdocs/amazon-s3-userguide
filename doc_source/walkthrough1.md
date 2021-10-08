@@ -97,7 +97,7 @@ In this step, you sign in to the Amazon S3 console with your AWS account credent
 
 1. Add three folders named `Private`, `Finance`, and `Development` to the bucket\.
 
-   For step\-by\-step instructions to create a folder, see [Organizing objects in the Amazon S3 console using folders](using-folders.md)> in the *Amazon Simple Storage Service Console User Guide*\.
+   For step\-by\-step instructions to create a folder, see [Organizing objects in the Amazon S3 console using folders](using-folders.md)> in the *Amazon Simple Storage Service User Guide*\.
 
 1. Upload one or two documents to each folder\. 
 

@@ -78,7 +78,7 @@
 13. }
 ```
 
- For more information about editing a VPCE policy, see [Control access to services with VPC endpoints](https://docs.aws.amazon.com/https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) in the *VPC User Guide*\. 
+ For more information about editing a VPCE policy, see [Control access to services with VPC endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html) in the *VPC User Guide*\. 
 
 ## Removing access to a Multi\-Region Access Point from a VPC endpoint<a name="RemovingMultiRegionAccessPointAccess"></a>
 

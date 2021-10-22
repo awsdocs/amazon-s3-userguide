@@ -478,6 +478,7 @@ PROFILE = '*** profile name ***'
 SOURCE_BUCKET = '*** source bucket ***'
 DESTINATION_BUCKET = '*** destination bucket ***'
 PREFIX = '*** folder/file prefix ***'
+ROLE_NAME = '*** role name ***'
 
 SESSION = boto3.Session(profile_name=PROFILE)
 S3_client = SESSION.client('s3')
@@ -570,10 +571,8 @@ def main():
         VersioningConfiguration={'Status': 'Enabled'}
     )
 
-    role_name = f'replicationRole-{SOURCE_BUCKET}-{DESTINATION_BUCKET}'
-    policy_name = f'replicationPolicy-{SOURCE_BUCKET}-{DESTINATION_BUCKET}'
     try:
-        res = IAM_CLIENT.get_role(RoleName=role_name)
+        res = IAM_CLIENT.get_role(RoleName=ROLE_NAME)
         role_exists = True
         role_arn = res['Role']['Arn']
     except IAM_CLIENT.exceptions.NoSuchEntityException:
@@ -582,12 +581,13 @@ def main():
 
     if not role_exists:
         print('Role for replication doesn\'t exists, creating it...')
-        res = IAM_CLIENT.create_role(RoleName=role_name, AssumeRolePolicyDocument=get_iam_role())
+        res = IAM_CLIENT.create_role(RoleName=ROLE_NAME, AssumeRolePolicyDocument=get_iam_role())
         role_arn = res['Role']['Arn']
 
         print('Attaching policy...')
+        policy_name = f'{ROLE_NAME}-replicationPolicy'
         IAM_CLIENT.put_role_policy(
-            RoleName=role_name,
+            RoleName=ROLE_NAME,
             PolicyName=policy_name,
             PolicyDocument=get_role_policy()
         )

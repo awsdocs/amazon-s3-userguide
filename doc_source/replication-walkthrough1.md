@@ -570,8 +570,8 @@ def main():
         VersioningConfiguration={'Status': 'Enabled'}
     )
 
-    role_name = f'replicationRole-{PROFILE}'
-    policy_name = f'replicationPolicy-{PROFILE}'
+    role_name = f'replicationRole-{SOURCE_BUCKET}-{DESTINATION_BUCKET}'
+    policy_name = f'replicationPolicy-{SOURCE_BUCKET}-{DESTINATION_BUCKET}'
     try:
         res = IAM_CLIENT.get_role(RoleName=role_name)
         role_exists = True

@@ -466,3 +466,149 @@ namespace Amazon.DocSamples.S3
 ```
 
 ------
+#### [ Python 3 ]
+
+The following AWS SDK for Python (Boto) code example adds a replication configuration to a bucket and then retrieves and verifies the configuration\. For instructions on how to create and test a working sample, see [Using the AWS SDK for Python (Boto)](UsingTheBotoAPI.md#UsingTheBotoAPI)\.
+
+```
+import json
+import boto3
+
+PROFILE = '*** profile name ***'
+SOURCE_BUCKET = '*** source bucket ***'
+DESTINATION_BUCKET = '*** destination bucket ***'
+PREFIX = '*** folder/file prefix ***'
+
+SESSION = boto3.Session(profile_name=PROFILE)
+S3_client = SESSION.client('s3')
+IAM_CLIENT = SESSION.client('iam')
+
+
+def get_iam_role():
+    return json.dumps({
+        'Version': '2012-10-17',
+        'Statement': [
+            {
+                'Effect': 'Allow',
+                'Principal': {
+                    'Service': 's3.amazonaws.com'
+                },
+                'Action': 'sts:AssumeRole'
+            }
+        ]
+    })
+
+
+def get_role_policy():
+    return json.dumps({
+        'Version': '2012-10-17',
+        'Statement': [
+            {
+                'Effect': 'Allow',
+                'Action': [
+                    's3:GetObjectVersionForReplication',
+                    's3:GetObjectVersionAcl',
+                    's3:GetObjectVersionTagging'
+                ],
+                'Resource': [
+                    f'arn:aws:s3:::{SOURCE_BUCKET}/*'
+                ]
+            },
+            {
+                'Effect': 'Allow',
+                'Action': [
+                    's3:ListBucket',
+                    's3:GetReplicationConfiguration'
+                ],
+                'Resource': [
+                    f'arn:aws:s3:::{SOURCE_BUCKET}'
+                ]
+            },
+            {
+                'Effect': 'Allow',
+                'Action': [
+                    's3:ReplicateObject',
+                    's3:ReplicateDelete',
+                    's3:ReplicateTags'
+                ],
+                'Resource': f'arn:aws:s3:::{DESTINATION_BUCKET}/*'
+            }
+        ]
+    })
+
+
+def get_replication_configuration(role_arn):
+    return {
+        'Role': f'{role_arn}',
+        'Rules': [
+            {
+                'Status': 'Enabled',
+                'Priority': 1,
+                'DeleteMarkerReplication': {'Status': 'Disabled'},
+                'Filter': {'Prefix': PREFIX},
+                'Destination': {
+                    'Bucket': f'arn:aws:s3:::{DESTINATION_BUCKET}'
+                }
+            }
+        ]
+    }
+
+
+def main():
+    print('Enabling versioning on source bucket...')
+    S3_client.put_bucket_versioning(
+        Bucket=SOURCE_BUCKET,
+        VersioningConfiguration={'Status': 'Enabled'}
+    )
+
+    print('Creating destination bucket...')
+    S3_client.create_bucket(Bucket=DESTINATION_BUCKET)
+
+    print('Enabling versioning on destination bucket...')
+    S3_client.put_bucket_versioning(
+        Bucket=DESTINATION_BUCKET,
+        VersioningConfiguration={'Status': 'Enabled'}
+    )
+
+    role_name = f'replicationRole-{PROFILE}'
+    policy_name = f'replicationPolicy-{PROFILE}'
+    try:
+        res = IAM_CLIENT.get_role(RoleName=role_name)
+        role_exists = True
+        role_arn = res['Role']['Arn']
+    except IAM_CLIENT.exceptions.NoSuchEntityException:
+        role_arn = None
+        role_exists = False
+
+    if not role_exists:
+        print('Role for replication doesn\'t exists, creating it...')
+        res = IAM_CLIENT.create_role(RoleName=role_name, AssumeRolePolicyDocument=get_iam_role())
+        role_arn = res['Role']['Arn']
+
+        print('Attaching policy...')
+        IAM_CLIENT.put_role_policy(
+            RoleName=role_name,
+            PolicyName=policy_name,
+            PolicyDocument=get_role_policy()
+        )
+
+    print('Enabling replication...')
+    S3_client.put_bucket_replication(
+        Bucket=SOURCE_BUCKET,
+        ReplicationConfiguration=get_replication_configuration(role_arn)
+    )
+
+    print('\nPrinting replication configuration information:')
+    res = S3_client.get_bucket_replication(Bucket=SOURCE_BUCKET)
+    for rule in res['ReplicationConfiguration']['Rules']:
+        print(f"\tRetrieved rule ID: {rule['ID']}")
+        print(f"\tRetrieved rule priority: {rule['Priority']}")
+        print(f"\tRetrieved rule prefix: {rule.get('Prefix')}")
+        print(f"\tRetrieved rule status: {rule['Status']}")
+
+
+if __name__ == '__main__':
+    main()
+```
+
+------

@@ -367,7 +367,7 @@ The following example shows how to use the AWS SDK for \.NET to add, update, and
 + Retrieves the Lifecycle configuration and updates it by adding another rule\. 
 + Adds the modified Lifecycle configuration to the bucket\. Amazon S3 replaces the existing Lifecycle configuration\.
 + Retrieves the configuration again and verifies it by printing the number of rules in the configuration\.
-+ Deletes the Lifecycle configuration\.and verifies the deletion\.
++ Deletes the Lifecycle configuration and verifies the deletion\.
 
 For instructions on how to create and test a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\.
 

@@ -518,7 +518,7 @@ The latest version of the replication configuration XML is V2\. XML V2 replicati
 To see your replication configuration version, you can use the `GetBucketReplication` API\. For more information see, [GetBucketReplication](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketReplication.html) in the *Amazon Simple Storage Service API Reference*\. 
 
 For backward compatibility, Amazon S3 continues to support the XML V1 replication configuration\. If you have used XML V1 replication configuration, consider the following issues that affect backward compatibility:
-+ Replication configuration XML V2 includes the `Filter` element for rules\. With the `Filter` element, you can specify object filters based on the object key prefix, tags, or both to scope the objects that the rule applies to\. Replication configuration XML V1 supported filtering based only on the key prefix\. In that case, you add the `Prefix` directly as a child element of the `Rule` element, as in the following example\.
++ Replication configuration XML V2 includes the `Filter` element for rules\. With the `Filter` element, you can specify object filters based on the object key prefix, tags, or both to scope the objects that the rule applies to\. Replication configuration XML V1 supported filtering based only on the key prefix\. In that case, you add the `Prefix` directly as a child element of the `Rule` element, as in the following example\. V2 also supports configurations that use multiple destination buckets\. 
 
   ```
   <?xml version="1.0" encoding="UTF-8"?>

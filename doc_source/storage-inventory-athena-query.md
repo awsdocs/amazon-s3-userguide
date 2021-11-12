@@ -1,10 +1,10 @@
-# Querying Amazon S3 inventory with Amazon Athena<a name="storage-inventory-athena-query"></a>
+# Querying Amazon S3 Inventory with Amazon Athena<a name="storage-inventory-athena-query"></a>
 
-You can query Amazon S3 inventory using standard SQL by using Amazon Athena in all Regions where Athena is available\. To check for AWS Region availability, see the [AWS Region Table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)\. 
+You can query Amazon S3 Inventory using standard SQL by using Amazon Athena in all Regions where Athena is available\. To check for AWS Region availability, see the [AWS Region Table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)\. 
 
-Athena can query Amazon S3 inventory files in ORC, Parquet, or CSV format\. When you use Athena to query inventory, we recommend that you use ORC\-formatted or Parquet\-formatted inventory files\. ORC and Parquet formats provide faster query performance and lower query costs\. ORC and Parquet are self\-describing type\-aware columnar file formats designed for [Apache Hadoop](http://hadoop.apache.org/)\. The columnar format lets the reader read, decompress, and process only the columns that are required for the current query\. The ORC and Parquet formats for Amazon S3 inventory are available in all AWS Regions\.
+Athena can query Amazon S3 Inventory files in ORC, Parquet, or CSV format\. When you use Athena to query inventory, we recommend that you use ORC\-formatted or Parquet\-formatted inventory files\. ORC and Parquet formats provide faster query performance and lower query costs\. ORC and Parquet are self\-describing type\-aware columnar file formats designed for [Apache Hadoop](http://hadoop.apache.org/)\. The columnar format lets the reader read, decompress, and process only the columns that are required for the current query\. The ORC and Parquet formats for Amazon S3 Inventory are available in all AWS Regions\.
 
-**To get started using Athena to query Amazon S3 inventory**
+**To get started using Athena to query Amazon S3 Inventory**
 
 1. Create an Athena table\. For information about creating a table, see [Creating Tables in Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/creating-tables.html) in the *Amazon Athena User Guide*\.
 
@@ -96,7 +96,7 @@ Athena can query Amazon S3 inventory files in ORC, Parquet, or CSV format\. When
 
 For more information about using Athena, see [Amazon Athena User Guide](https://docs.aws.amazon.com/athena/latest/ug/)\.
 
-The following are the REST operations used for Amazon S3 inventory\.
+The following are the REST operations used for Amazon S3 Inventory\.
 +  [ DELETE Bucket Inventory ](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEInventoryConfiguration.html) 
 +  [ GET Bucket Inventory](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETInventoryConfig.html) 
 +  [ List Bucket Inventory](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketListInventoryConfigs.html) 

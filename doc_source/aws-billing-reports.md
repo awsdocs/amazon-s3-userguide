@@ -16,7 +16,7 @@ The following table lists the charges associated with Amazon S3 usage\.
 |  Requests  |  You pay for requests, for example, GET requests, made against your S3 buckets and objects\. This includes lifecycle requests\. The rates for requests depend on what kind of request you’re making\. For information about request pricing, see [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.  | 
 |  Retrievals  |  You pay for retrieving objects that are stored in S3 Standard\-IA, S3 One Zone\-IA, S3 Glacier and S3 Glacier Deep Archive storage\.  | 
 |  Early Deletes  |  If you delete an object stored in S3 Intelligent\-Tiering, S3 Standard\-IA, S3 One Zone\-IA, S3 Glacier, or S3 Glacier Deep Archive storage before the minimum storage commitment has passed, you pay an early deletion fee for that object\.  | 
-|  Storage Management  |  You pay for the storage management features \(Amazon S3 inventory, analytics, and object tagging\) that are enabled on your account’s buckets\.  | 
+|  Storage Management  |  You pay for the storage management features \(Amazon S3 Inventory, analytics, and object tagging\) that are enabled on your account’s buckets\.  | 
 |  Bandwidth  |  You pay for all bandwidth into and out of Amazon S3, except for the following: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/aws-billing-reports.html) You also pay a fee for any data transferred using Amazon S3 Transfer Acceleration\.   | 
 
 For detailed information on Amazon S3 usage charges for storage, data transfer, and services, see [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/) and the [Amazon S3 FAQ](https://aws.amazon.com/s3/faqs/#billing)\.

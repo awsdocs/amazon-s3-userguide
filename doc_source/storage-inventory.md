@@ -1,12 +1,12 @@
-# Amazon S3 inventory<a name="storage-inventory"></a>
+# Amazon S3 Inventory<a name="storage-inventory"></a>
 
-Amazon S3 inventory is one of the tools Amazon S3 provides to help manage your storage\. You can use it to audit and report on the replication and encryption status of your objects for business, compliance, and regulatory needs\. You can also simplify and speed up business workflows and big data jobs using Amazon S3 inventory, which provides a scheduled alternative to the Amazon S3 synchronous `List` API operation\.
+Amazon S3 Inventory is one of the tools Amazon S3 provides to help manage your storage\. You can use it to audit and report on the replication and encryption status of your objects for business, compliance, and regulatory needs\. You can also simplify and speed up business workflows and big data jobs using Amazon S3 Inventory, which provides a scheduled alternative to the Amazon S3 synchronous `List` API operation\.
 
-Amazon S3 inventory provides comma\-separated values \(CSV\), [Apache optimized row columnar \(ORC\)](https://orc.apache.org/) or [Apache Parquet](https://parquet.apache.org/) output files that list your objects and their corresponding metadata on a daily or weekly basis for an S3 bucket or a shared prefix \(that is, objects that have names that begin with a common string\)\. If weekly, a report is generated every Sunday \(UTC\) after the initial report\. For information about Amazon S3 inventory pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
+Amazon S3 Inventory provides comma\-separated values \(CSV\), [Apache optimized row columnar \(ORC\)](https://orc.apache.org/) or [Apache Parquet](https://parquet.apache.org/) output files that list your objects and their corresponding metadata on a daily or weekly basis for an S3 bucket or a shared prefix \(that is, objects that have names that begin with a common string\)\. If weekly, a report is generated every Sunday \(UTC\) after the initial report\. For information about Amazon S3 Inventory pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 
 You can configure multiple inventory lists for a bucket\. You can configure what object metadata to include in the inventory, whether to list all object versions or only current versions, where to store the inventory list file output, and whether to generate the inventory on a daily or weekly basis\. You can also specify that the inventory list file be encrypted\.
 
-You can query Amazon S3 inventory using standard SQL by using [Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html), Amazon Redshift Spectrum, and other tools such as [Presto](https://prestodb.io/), [Apache Hive](https://hive.apache.org/), and [Apache Spark](https://databricks.com/spark/about/)\. You can use Athena to run queries on your inventory files\. You can use it for Amazon S3 inventory queries in all Regions where Athena is available\. 
+You can query Amazon S3 Inventory using standard SQL by using [Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/what-is.html), Amazon Redshift Spectrum, and other tools such as [Presto](https://prestodb.io/), [Apache Hive](https://hive.apache.org/), and [Apache Spark](https://databricks.com/spark/about/)\. You can use Athena to run queries on your inventory files\. You can use it for Amazon S3 Inventory queries in all Regions where Athena is available\. 
 
 ## Source and destination buckets<a name="storage-inventory-buckets"></a>
 
@@ -22,7 +22,7 @@ The source bucket:
 
 **Destination bucket**
 
-Amazon S3 inventory list files are written to the destination bucket\. To group all the inventory list files in a common location in the destination bucket, you can specify a destination prefix \(object key name\) in the inventory configuration\.
+Amazon S3 Inventory list files are written to the destination bucket\. To group all the inventory list files in a common location in the destination bucket, you can specify a destination prefix \(object key name\) in the inventory configuration\.
 
 The destination bucket:
 + Contains the inventory file lists\. 
@@ -32,7 +32,7 @@ The destination bucket:
 + Can be the same as the source bucket\.
 + Can be owned by a different AWS account than the account that owns the source bucket\.
 
-## Amazon S3 inventory list<a name="storage-inventory-contents"></a>
+## Amazon S3 Inventory list<a name="storage-inventory-contents"></a>
 
 An inventory list file contains a list of the objects in the source bucket and metadata for each object\. The inventory lists are stored in the destination bucket as a CSV file compressed with GZIP, as an Apache optimized row columnar \(ORC\) file compressed with ZLIB, or as an Apache Parquet file compressed with Snappy\. Objects are sorted in ascending order based on the key names\.
 
@@ -63,12 +63,12 @@ All of your objects might not appear in each inventory list\. The inventory list
 
 To validate the state of the object before you take action on the object, we recommend that you perform a `HEAD Object` REST API request to retrieve metadata for the object, or check the object's properties in the Amazon S3 console\. You can also check object metadata with the AWS CLI or the AWS SDKS\. For more information, see [HEAD Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html) in the *Amazon Simple Storage Service API Reference*\.
 
-For more information about working with S3 inventory, see the following topics\.
+For more information about working with Amazon S3 Inventory, see the following topics\.
 
 **Topics**
 + [Source and destination buckets](#storage-inventory-buckets)
-+ [Amazon S3 inventory list](#storage-inventory-contents)
-+ [Configuring Amazon S3 inventory](configure-inventory.md)
++ [Amazon S3 Inventory list](#storage-inventory-contents)
++ [Configuring Amazon S3 Inventory](configure-inventory.md)
 + [Setting up Amazon S3 event notifications for inventory completion](storage-inventory-notification.md)
 + [Locating your inventory list](storage-inventory-location.md)
-+ [Querying Amazon S3 inventory with Amazon Athena](storage-inventory-athena-query.md)
++ [Querying Amazon S3 Inventory with Amazon Athena](storage-inventory-athena-query.md)

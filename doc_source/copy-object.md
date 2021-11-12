@@ -274,11 +274,9 @@ The following tasks guide you through using the Ruby classes to copy an object i
 ```
 require 'aws-sdk-s3'
 
-# Copies an object from one Amazon S3 bucket to another.
-#
 # Prerequisites:
 #
-# - Two S3 buckets (a source bucket and a target bucket).
+# - Two Amazon S3 buckets (a source bucket and a target bucket).
 # - An object in the source bucket to be copied.
 #
 # @param s3_client [Aws::S3::Client] An initialized Amazon S3 client.
@@ -289,7 +287,7 @@ require 'aws-sdk-s3'
 # @param target_key [String] The name of the copied object.
 # @return [Boolean] true if the object was copied; otherwise, false.
 # @example
-#   s3_client = Aws::S3::Client.new(region: 'us-east-1')
+#   s3_client = Aws::S3::Client.new(region: 'us-west-2')
 #   exit 1 unless object_copied?(
 #     s3_client,
 #     'doc-example-bucket1',
@@ -312,6 +310,35 @@ def object_copied?(
 rescue StandardError => e
   puts "Error while copying object: #{e.message}"
 end
+
+# Full example call:
+# Replace us-west-2 with the AWS Region you're using for Amazon S3.
+def run_me
+  source_bucket_name = 'doc-example-bucket1'
+  source_key = 'my-source-file.txt'
+  target_bucket_name = 'doc-example-bucket2'
+  target_key = 'my-target-file.txt'
+  region = 'us-west-2'
+
+  s3_client = Aws::S3::Client.new(region: region)
+
+  puts "Copying object '#{source_key}' from bucket '#{source_bucket_name}' " \
+    "to bucket '#{target_bucket_name}'..."
+
+  if object_copied?(
+    s3_client,
+    source_bucket_name,
+    source_key,
+    target_bucket_name,
+    target_key)
+    puts 'The object was copied.'
+  else
+    puts 'The object was not copied. Stopping program.'
+    exit 1
+  end
+end
+
+run_me if $PROGRAM_NAME == __FILE__
 ```
 
 ------

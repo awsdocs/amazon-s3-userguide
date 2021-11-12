@@ -6,7 +6,7 @@ You can use Amazon S3 Inventory to create an inventory report and use the report
 
 Amazon S3 Inventory generates inventories of the objects in a bucket\. The resulting list is published to an output file\. The bucket that is inventoried is called the *source bucket*, and the bucket where the inventory report file is stored is called the *destination bucket*\.
 
-The Amazon S3 inventory report can be configured to be delivered to another AWS account\. This allows S3 Batch Operations to read the inventory report when the job is created in the destination account\.
+The Amazon S3 Inventory report can be configured to be delivered to another AWS account\. This allows S3 Batch Operations to read the inventory report when the job is created in the destination account\.
 
 For more information about Amazon S3 Inventory source and destination buckets, see [Source and destination buckets](storage-inventory.md#storage-inventory-buckets)\.
 
@@ -14,7 +14,7 @@ The easiest way to set up an inventory is by using the AWS Management Console, b
 
 The following console procedure contains the high\-level steps for setting up permissions for an S3 Batch Operations job\. In this procedure, you copy objects from a source account to a destination account, with the inventory report stored in the destination account\.
 
-**To set up Amazon S3 inventory for source and destination buckets owned by different accounts**
+**To set up Amazon S3 Inventory for source and destination buckets owned by different accounts**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -26,7 +26,7 @@ The following console procedure contains the high\-level steps for setting up pe
 
    Configure an inventory list for a source bucket\. When you do this, you specify the destination bucket where you want the list to be stored\. The inventory report for the source bucket is published to the destination bucket\. In this procedure, the *source account* is the account that owns the source bucket\.
 
-   For information about how to use the console to configure an inventory, see [Configuring Amazon S3 inventory](configure-inventory.md)\.
+   For information about how to use the console to configure an inventory, see [Configuring Amazon S3 Inventory](configure-inventory.md)\.
 
    Choose **CSV** for the output format\.
 

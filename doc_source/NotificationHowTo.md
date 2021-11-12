@@ -18,7 +18,7 @@ Amazon S3 event notifications are designed to be delivered at least once\. Typic
 
 For a list of supported event types, see [Supported event types](notification-how-to-event-types-and-destinations.md#supported-notification-event-types)\. 
 
-Amazon S3 supports the following destinations where it can publish events:
+Amazon S3 supports the following destinations where it can publish events\.
 + **Amazon Simple Notification Service \(Amazon SNS\)**
 
   Amazon SNS is a flexible, fully managed push messaging service\. Using this service, you can push messages to mobile devices or distributed services\. With SNS you can publish a message once, and deliver it one or more times\. Currently Standard SNS is only allowed as an S3 event notification destination, whereas SNS FIFO is not allowed\. For more information about SNS, see [Amazon SNS](http://aws.amazon.com/sns/)\.

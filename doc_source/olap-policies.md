@@ -68,8 +68,8 @@ The following IAM policy grants a user permission to the Lambda function, standa
     {
       "Sid": "AllowStandardAccessPointAccess",
       "Action": [
-        "s3: Get*",
-        "s3: List*"
+        "s3:Get*",
+        "s3:List*"
       ],
       "Effect": "Allow",
       "Resource": "arn:aws:s3:us-east-1:111122223333:accesspoint/my-access-point/*",

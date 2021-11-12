@@ -38,13 +38,6 @@ For more information, see the following topics in the *IAM User Guide*:
 
    
 
-**Enable multi\-factor authentication \(MFA\) Delete**  
-MFA Delete can help prevent accidental bucket deletions\. If MFA Delete is not enabled, any user with the password of a sufficiently privileged root or IAM user could permanently delete an Amazon S3 object\.  
-MFA Delete requires additional authentication for either of the following operations:  
-+ Changing the versioning state of your bucket
-+ Permanently deleting an object version
-For more information, see [Configuring MFA delete](MultiFactorAuthenticationDelete.md)\.
-
 **Consider encryption of data at rest**  
 You have the following options for protecting data at rest in Amazon S3:  
 + **Server\-Side Encryption** – Request Amazon S3 to encrypt your object before saving it on disks in its data centers and then decrypt it when you download the objects\. Server\-side encryption can help reduce risk to your data by encrypting the data with a key that is stored in a different mechanism than the mechanism that stores the data itself\. 
@@ -91,7 +84,7 @@ The following best practices for Amazon S3 can help detect potential security we
 **Identify and audit all your Amazon S3 buckets**  
 Identification of your IT assets is a crucial aspect of governance and security\. You need to have visibility of all your Amazon S3 resources to assess their security posture and take action on potential areas of weakness\.  
 Use Tag Editor to identify security\-sensitive or audit\-sensitive resources, then use those tags when you need to search for these resources\. For more information, see [Searching for Resources to Tag](https://docs.aws.amazon.com/ARG/latest/userguide/tag-editor.html)\.   
-Use Amazon S3 inventory to audit and report on the replication and encryption status of your objects for business, compliance, and regulatory needs\. For more information, see [ Amazon S3 inventory](storage-inventory.md)\.  
+Use Amazon S3 Inventory to audit and report on the replication and encryption status of your objects for business, compliance, and regulatory needs\. For more information, see [ Amazon S3 Inventory](storage-inventory.md)\.  
 Create resource groups for your Amazon S3 resources\. For more information, see [What Is AWS Resource Groups?](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html) 
 
 **Implement monitoring using AWS monitoring tools**  

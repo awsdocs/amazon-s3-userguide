@@ -32,7 +32,7 @@ When your replication rules enable Amazon S3 replica modification sync replicas 
 
 ## Finding replication status<a name="replication-status-usage"></a>
 
-To get the replication status of the objects in a bucket, you can use the Amazon S3 inventory tool\. Amazon S3 sends a CSV file to the destination bucket that you specify in the inventory configuration\. You can also use Amazon Athena to query the replication status in the inventory report\. For more information about Amazon S3 inventory, see [ Amazon S3 inventory](storage-inventory.md)\.
+To get the replication status of the objects in a bucket, you can use the Amazon S3 Inventory tool\. Amazon S3 sends a CSV file to the destination bucket that you specify in the inventory configuration\. You can also use Amazon Athena to query the replication status in the inventory report\. For more information about Amazon S3 Inventory, see [ Amazon S3 Inventory](storage-inventory.md)\.
 
 You can also find the object replication status using the console, the AWS Command Line Interface \(AWS CLI\), or the AWS SDK\. 
 

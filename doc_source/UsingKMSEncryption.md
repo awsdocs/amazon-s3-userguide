@@ -7,7 +7,7 @@ If you use KMS keys, you use AWS KMS via the [AWS Management Console](https://co
 There are additional charges for using AWS KMS keys\. For more information, see [AWS KMS key concepts](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#kms_keys) in the *AWS Key Management Service Developer Guide* and [AWS KMS pricing](https://aws.amazon.com/kms/pricing)\.
 
 **Important**  
-To upload an object encrypted with an AWS KMS key to Amazon S3, you need `kms:Decrypt` and `kms:GenerateDataKey` permissions on the key\. To download, an object encrypted with an AWS KMS key, you need `kms:Decrypt` permissions\. For information about AWS KMS permissions and multipart upload, see [Multipart upload API and permissions](mpuoverview.md#mpuAndPermissions)\.
+To upload an object encrypted with an AWS KMS key to Amazon S3, you need `kms:Encrypt` and `kms:GenerateDataKey` permissions on the key\. To download, an object encrypted with an AWS KMS key, you need `kms:Decrypt` permissions\. For information about AWS KMS permissions and multipart upload, see [Multipart upload API and permissions](mpuoverview.md#mpuAndPermissions)\.
 
 ## AWS KMS keys and customer managed keys<a name="aws-managed-customer-managed-keys"></a>
 

@@ -364,9 +364,6 @@ The following AWS SDK for Ruby – Version 3 example demonstrates how to specify
 ```
 require 'aws-sdk-s3'
 
-# Uploads a file to an Amazon S3 bucket and then encrypts the file server-side
-#   by using the 256-bit Advanced Encryption Standard (AES-256) block cipher.
-#
 # Prerequisites:
 #
 # - An Amazon S3 bucket.
@@ -379,7 +376,7 @@ require 'aws-sdk-s3'
 #   encrypted; otherwise, false.
 # @example
 #   exit 1 unless upload_file_encrypted_aes256_at_rest?(
-#     Aws::S3::Client.new(region: 'us-east-1'),
+#     Aws::S3::Client.new(region: 'us-west-2'),
 #     'doc-example-bucket',
 #     'my-file.txt',
 #     'This is the content of my-file.txt.'
@@ -401,6 +398,27 @@ rescue StandardError => e
   puts "Error uploading object: #{e.message}"
   return false
 end
+# Replace us-west-2 with the AWS Region you're using for Amazon S3.
+def run_me
+  bucket_name = 'doc-example-bucket'
+  object_key = 'my-file.txt'
+  object_content = 'This is the content of my-file.txt.'
+  region = 'us-west-2'
+  s3_client = Aws::S3::Client.new(region: region)
+
+  if upload_file_encrypted_aes256_at_rest?(
+    s3_client,
+    bucket_name,
+    object_key,
+    object_content
+  )
+    puts 'File uploaded and encrypted.'
+  else
+    puts 'File not uploaded.'
+  end
+end
+
+run_me if $PROGRAM_NAME == __FILE__
 ```
 
 For an example that shows how to upload an object without SSE, see [Uploading objects](upload-objects.md)\.
@@ -422,7 +440,7 @@ require 'aws-sdk-s3'
 # @param object_key [String] The object's key.
 # @return [String] The server-side encryption state.
 # @example
-#   s3_client = Aws::S3::Client.new(region: 'us-east-1')
+#   s3_client = Aws::S3::Client.new(region: 'us-west-2')
 #   puts get_server_side_encryption_state(
 #     s3_client,
 #     'doc-example-bucket',
@@ -438,6 +456,28 @@ def get_server_side_encryption_state(s3_client, bucket_name, object_key)
 rescue StandardError => e
   "unknown or error: #{e.message}"
 end
+
+# Full example call:
+# Replace us-west-2 with the AWS Region you're using for Amazon S3.
+def run_me
+  bucket_name = 'doc-example-bucket'
+  object_key = 'my-file.txt'
+  region = 'us-west-2'
+  s3_client = Aws::S3::Client.new(region: region)
+
+  puts "Getting server-side encryption state for object '#{object_key}' " \
+    "in bucket '#{bucket_name}'..."
+
+  state = get_server_side_encryption_state(
+    s3_client,
+    bucket_name,
+    object_key
+  )
+
+  puts "Encryption state is #{state}."
+end
+
+run_me if $PROGRAM_NAME == __FILE__
 ```
 
 If server\-side encryption is not used for the object that is stored in Amazon S3, the method returns null\.
@@ -447,10 +487,6 @@ To change the encryption state of an existing object, make a copy of the object 
 ```
 require 'aws-sdk-s3'
 
-# Copies an object from one Amazon S3 bucket to another,
-#   changing the object's server-side encryption state during 
-#   the copy operation.
-#
 # Prerequisites:
 #
 # - A bucket containing an object to be copied.
@@ -466,7 +502,7 @@ require 'aws-sdk-s3'
 # @return [Boolean] true if the object was copied with the specified
 #   server-side encryption; otherwise, false.
 # @example
-#   s3_client = Aws::S3::Client.new(region: 'us-east-1')
+#   s3_client = Aws::S3::Client.new(region: 'us-west-2')
 #   if object_copied_with_encryption?(
 #     s3_client,
 #     'doc-example-bucket1',
@@ -497,6 +533,27 @@ def object_copied_with_encryption?(
 rescue StandardError => e
   puts "Error while copying object: #{e.message}"
 end
+
+# Full example call:
+# Replace us-west-2 with the AWS Region you're using for Amazon S3.
+def run_me
+  s3_client = Aws::S3::Client.new(region: 'us-west-2')
+
+  if object_copied_with_encryption?(
+    s3_client,
+    'doc-example-bucket1',
+    'my-source-file.txt',
+    'doc-example-bucket2',
+    'my-target-file.txt',
+    'AES256'
+  )
+    puts 'Copied.'
+  else
+    puts 'Not copied.'
+  end
+end
+
+run_me if $PROGRAM_NAME == __FILE__
 ```
 
 ------

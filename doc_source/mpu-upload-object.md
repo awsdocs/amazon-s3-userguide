@@ -205,16 +205,6 @@ try {
 The following example loads an object using the high\-level multipart upload Python API \(the `TransferManager` class\)\. 
 
 ```
-"""
-Use Boto 3 managed file transfers to manage multipart uploads to and downloads
-from an Amazon S3 bucket.
-
-When the file to transfer is larger than the specified threshold, the transfer
-manager automatically uses multipart uploads or downloads. This demonstration
-shows how to use several of the available transfer manager settings and reports
-thread usage and time to transfer.
-"""
-
 import sys
 import threading
 

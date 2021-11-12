@@ -18,7 +18,7 @@ When testing permissions using the Amazon S3 console, you will need to grant add
 + [Granting permission to an Amazon CloudFront OAI](#example-bucket-policies-cloudfront)
 + [Adding a bucket policy to require MFA](#example-bucket-policies-use-case-7)
 + [Granting cross\-account permissions to upload objects while ensuring the bucket owner has full control](#example-bucket-policies-use-case-8)
-+ [Granting permissions for Amazon S3 inventory and Amazon S3 analytics](#example-bucket-policies-use-case-9)
++ [Granting permissions for Amazon S3 Inventory and Amazon S3 analytics](#example-bucket-policies-use-case-9)
 + [Granting permissions for Amazon S3 Storage Lens](#example-bucket-policies-lens)
 
 ## Granting permissions to multiple accounts with added conditions<a name="example-bucket-policies-use-case-1"></a>
@@ -307,11 +307,11 @@ The following example shows how to allow another AWS account to upload objects t
 15. }
 ```
 
-## Granting permissions for Amazon S3 inventory and Amazon S3 analytics<a name="example-bucket-policies-use-case-9"></a>
+## Granting permissions for Amazon S3 Inventory and Amazon S3 analytics<a name="example-bucket-policies-use-case-9"></a>
 
-Amazon S3 inventory creates lists of the objects in an Amazon S3 bucket, and Amazon S3 analytics export creates output files of the data used in the analysis\. The bucket that the inventory lists the objects for is called the *source bucket*\. The bucket where the inventory file is written and the bucket where the analytics export file is written is called a *destination bucket*\. You must create a bucket policy for the destination bucket when setting up inventory for an Amazon S3 bucket and when setting up the analytics export\. For more information, see [ Amazon S3 inventory](storage-inventory.md) and [Amazon S3 analytics – Storage Class Analysis](analytics-storage-class.md)\.
+Amazon S3 Inventory creates lists of the objects in an Amazon S3 bucket, and Amazon S3 analytics export creates output files of the data used in the analysis\. The bucket that the inventory lists the objects for is called the *source bucket*\. The bucket where the inventory file is written and the bucket where the analytics export file is written is called a *destination bucket*\. You must create a bucket policy for the destination bucket when setting up inventory for an Amazon S3 bucket and when setting up the analytics export\. For more information, see [ Amazon S3 Inventory](storage-inventory.md) and [Amazon S3 analytics – Storage Class Analysis](analytics-storage-class.md)\.
 
-The following example bucket policy grants Amazon S3 permission to write objects \(PUTs\) from the account for the source bucket to the destination bucket\. You use a bucket policy like this on the destination bucket when setting up Amazon S3 inventory and Amazon S3 analytics export\.
+The following example bucket policy grants Amazon S3 permission to write objects \(PUTs\) from the account for the source bucket to the destination bucket\. You use a bucket policy like this on the destination bucket when setting up Amazon S3 Inventory and Amazon S3 analytics export\.
 
 ```
  1. {

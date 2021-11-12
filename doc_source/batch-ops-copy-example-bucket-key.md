@@ -6,7 +6,7 @@ Topics covered in this example include the following:
 
 **Topics**
 + [Prerequisites](#bucket-key-ex-prerequisites)
-+ [Step 1: Get your list of objects using S3 Inventory](#bucket-key-ex-get-list-of-objects)
++ [Step 1: Get your list of objects using Amazon S3 Inventory](#bucket-key-ex-get-list-of-objects)
 + [Step 2: Filter your object list with S3 Select](#bucket-key-ex-filter-object-list-with-s3-select)
 + [Step 3: Set up and run your S3 Batch Operations job](#bucket-key-ex-setup-and-run-job)
 + [Summary](#bucket-key-ex-summary)
@@ -19,11 +19,11 @@ To follow along with the steps in this procedure, you need an AWS account and at
 + [Operations supported by S3 Batch Operations](batch-ops-operations.md)
 + [Managing S3 Batch Operations jobs](batch-ops-managing-jobs.md)
 
-## Step 1: Get your list of objects using S3 Inventory<a name="bucket-key-ex-get-list-of-objects"></a>
+## Step 1: Get your list of objects using Amazon S3 Inventory<a name="bucket-key-ex-get-list-of-objects"></a>
 
-To get started, identify the S3 bucket that contains the objects to encrypt, and get a list of its contents\. An Amazon S3 Inventory report is the most convenient and affordable way to do this\. The report provides the list of the objects in a bucket along with associated metadata\. The **source bucket** refers to the inventoried bucket, and the **destination bucket** refers to the bucket where you store the inventory report file\. For more information about Amazon S3 Inventory source and destination buckets, see [ Amazon S3 inventory](storage-inventory.md)\.
+To get started, identify the S3 bucket that contains the objects to encrypt, and get a list of its contents\. An Amazon S3 Inventory report is the most convenient and affordable way to do this\. The report provides the list of the objects in a bucket along with associated metadata\. The **source bucket** refers to the inventoried bucket, and the **destination bucket** refers to the bucket where you store the inventory report file\. For more information about Amazon S3 Inventory source and destination buckets, see [ Amazon S3 Inventory](storage-inventory.md)\.
 
-The easiest way to set up an inventory is by using the AWS Management Console\. But you can also use the REST API, AWS Command Line Interface \(AWS CLI\), or AWS SDKs\. Before following these steps, be sure to sign in to the console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\. If you encounter permission denied errors, add a bucket policy to your destination bucket\. For more information, see [Granting permissions for Amazon S3 inventory and Amazon S3 analytics](example-bucket-policies.md#example-bucket-policies-use-case-9)\.
+The easiest way to set up an inventory is by using the AWS Management Console\. But you can also use the REST API, AWS Command Line Interface \(AWS CLI\), or AWS SDKs\. Before following these steps, be sure to sign in to the console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\. If you encounter permission denied errors, add a bucket policy to your destination bucket\. For more information, see [Granting permissions for Amazon S3 Inventory and Amazon S3 analytics](example-bucket-policies.md#example-bucket-policies-use-case-9)\.
 
 **To get a list of objects using S3 Inventory**
 
@@ -49,7 +49,7 @@ An inventory list isn't a single point\-in\-time view of all objects\. Inventory
 
 After you receive your S3 Inventory report, you can filter the report’s contents to list only the objects that aren't encrypted with Bucket Keys\. If you want all your bucket’s objects encrypted with Bucket Keys, you can ignore this step\. However, filtering your S3 Inventory report at this stage saves you the time and expense of re\-encrypting objects that you previously encrypted\.
 
-Although the following steps show how to filter using [Amazon S3 Select](http://aws.amazon.com/blogs/aws/s3-glacier-select/), you can also use [Amazon Athena](http://aws.amazon.com/athena)\. To decide which tool to use, look at your S3 Inventory report’s `manifest.json` file\. This file lists the number of data files that are associated with that report\. If the number is large, use Amazon Athena because it runs across multiple S3 objects, whereas S3 Select works on one object at a time\. For more information about using Amazon S3 and Athena together, see [Querying Amazon S3 inventory with Amazon Athena](storage-inventory-athena-query.md) and [Using Athena](http://aws.amazon.com/blogs/storage/encrypting-objects-with-amazon-s3-batch-operations/#:~:text=Using%20Athena) in the blog post [Encrypting objects with Amazon S3 Batch Operations](http://aws.amazon.com/blogs/storage/encrypting-objects-with-amazon-s3-batch-operations)\.
+Although the following steps show how to filter using [Amazon S3 Select](http://aws.amazon.com/blogs/aws/s3-glacier-select/), you can also use [Amazon Athena](http://aws.amazon.com/athena)\. To decide which tool to use, look at your S3 Inventory report’s `manifest.json` file\. This file lists the number of data files that are associated with that report\. If the number is large, use Amazon Athena because it runs across multiple S3 objects, whereas S3 Select works on one object at a time\. For more information about using Amazon S3 and Athena together, see [Querying Amazon S3 Inventory with Amazon Athena](storage-inventory-athena-query.md) and [Using Athena](http://aws.amazon.com/blogs/storage/encrypting-objects-with-amazon-s3-batch-operations/#:~:text=Using%20Athena) in the blog post [Encrypting objects with Amazon S3 Batch Operations](http://aws.amazon.com/blogs/storage/encrypting-objects-with-amazon-s3-batch-operations)\.
 
 **To filter your S3 Inventory report using S3 Select**
 

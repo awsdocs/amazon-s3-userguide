@@ -87,7 +87,7 @@ To set up replication configuration when both source and destination buckets are
          ```
          $ aws iam create-role \
          --role-name replicationRole \
-         --assume-role-policy-document file://s3-role-trust-policy.json  \
+         --assume-role-policy-document file://S3-role-trust-policy.json  \
          --profile acctA
          ```
 

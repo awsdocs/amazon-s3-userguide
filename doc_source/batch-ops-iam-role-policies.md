@@ -43,7 +43,7 @@ Depending on the type of operations, you can attach one of the following policie
 
 Before you configure permissions, note the following:
 + Regardless of the operation, Amazon S3 needs permissions to read your manifest object from your S3 bucket and optionally write a report to your bucket\. Therefore, all of the following policies include these permissions\.
-+ For Amazon S3 inventory report manifests, S3 Batch Operations requires permission to read the manifest\.json object and all associated CSV data files\.
++ For Amazon S3 Inventory report manifests, S3 Batch Operations requires permission to read the manifest\.json object and all associated CSV data files\.
 + Version\-specific permissions such as `s3:GetObjectVersion` are only required when you are specifying the version ID of the objects\.
 + If you are running S3 Batch Operations on encrypted objects, the IAM role must also have access to the AWS KMS keys used to encrypt them\.
 

@@ -17,6 +17,6 @@ The following figure shows a bucket that doesn't have a null version\. In this c
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/versioning_DELETE_versioningSuspendedNoNull.png)
 
-Even in a versioning\-suspended bucket, the bucket owner can permanently delete a specified version\. The following figure shows that deleting a specified object version permanently removes that object\. Only the bucket owner can delete a specified object version\.
+Even in a versioning\-suspended bucket, the bucket owner can permanently delete a specified version by including the version ID in the `DELETE` request\. The following figure shows that deleting a specified object version permanently removes that version of the object\. Only the bucket owner can delete a specified object version\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/versioning_DELETE_versioningEnabled2.png)

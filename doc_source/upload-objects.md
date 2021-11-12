@@ -336,8 +336,6 @@ The AWS SDK for Ruby \- Version 3 has two ways of uploading an object to Amazon 
 ```
 require 'aws-sdk-s3'
 
-# Uploads an object to a bucket in Amazon Simple Storage Service (Amazon S3).
-#
 # Prerequisites:
 #
 # - An S3 bucket.
@@ -350,7 +348,7 @@ require 'aws-sdk-s3'
 # @return [Boolean] true if the object was uploaded; otherwise, false.
 # @example
 #   exit 1 unless object_uploaded?(
-#     Aws::S3::Resource.new(region: 'us-east-1'),
+#     Aws::S3::Resource.new(region: 'us-west-2'),
 #     'doc-example-bucket',
 #     'my-file.txt',
 #     './my-file.txt'
@@ -363,6 +361,25 @@ rescue StandardError => e
   puts "Error uploading object: #{e.message}"
   return false
 end
+
+# Full example call:
+# Replace us-west-2 with the AWS Region you're using for Amazon S3.
+
+def run_me
+  bucket_name = 'doc-example-bucket'
+  object_key = 'my-file.txt'
+  file_path = "./#{object_key}"
+  region = 'us-west-2'
+  s3_resource = Aws::S3::Resource.new(region: region)
+
+  if object_uploaded?(s3_resource, bucket_name, object_key, file_path)
+    puts "Object '#{object_key}' uploaded to bucket '#{bucket_name}''."
+  else
+    puts "Object '#{object_key}' not uploaded to bucket '#{bucket_name}'."
+  end
+end
+
+run_me if $PROGRAM_NAME == __FILE__
 ```
 
 The second way that AWS SDK for Ruby \- Version 3 can upload an object uses the `#put` method of `Aws::S3::Object`\. This is useful if the object is a string or an I/O object that is not a file on disk\. To use this method:
@@ -392,7 +409,7 @@ require 'aws-sdk-s3'
 # @return [Boolean] true if the object was uploaded; otherwise, false.
 # @example
 #   exit 1 unless object_uploaded?(
-#     Aws::S3::Resource.new(region: 'us-east-1'),
+#     Aws::S3::Resource.new(region: 'us-west-2'),
 #     'doc-example-bucket',
 #     'my-file.txt',
 #     './my-file.txt'
@@ -407,6 +424,26 @@ rescue StandardError => e
   puts "Error uploading object: #{e.message}"
   return false
 end
+
+
+# Full example call:
+# Replace us-west-2 with the AWS Region you're using for Amazon S3.
+
+def run_me
+  bucket_name = 'doc-example-bucket'
+  object_key = 'my-file.txt'
+  file_path = "./#{object_key}"
+  region = 'us-west-2'
+  s3_resource = Aws::S3::Resource.new(region: region)
+
+  if object_uploaded?(s3_resource, bucket_name, object_key, file_path)
+    puts "Object '#{object_key}' uploaded to bucket '#{bucket_name}'."
+  else
+    puts "Object '#{object_key}' not uploaded to bucket '#{bucket_name}'."
+  end
+end
+
+run_me if $PROGRAM_NAME == __FILE__
 ```
 
 ------

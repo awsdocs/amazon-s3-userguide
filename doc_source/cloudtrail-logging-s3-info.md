@@ -31,9 +31,9 @@ CloudTrail logs account\-level actions\. Amazon S3 records are written together 
 The tables in this section list the Amazon S3 account\-level actions that are supported for logging by CloudTrail\.
 
 Amazon S3 account\-level API actions tracked by CloudTrail logging appear as the following event names:
-+ [ DeletePublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeletePublicAccessBlock.html)
-+ [ GetPublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html)
-+ [ PutPublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html)
++ [ DeleteAccountPublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeletePublicAccessBlock.html)
++ [ GetAccountPublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html)
++ [ PutAccountPublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html)
 
 ## Amazon S3 bucket\-level actions tracked by CloudTrail logging<a name="cloudtrail-bucket-level-tracking"></a>
 
@@ -50,7 +50,7 @@ Amazon S3 bucket\-level API actions tracked by CloudTrail logging appear as the 
 +  [DeleteBucketPolicy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketPolicy.html) 
 +  [DeleteBucketReplication ](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketReplication.html) 
 +  [DeleteBucketTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html) 
-+  [ DeletePublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeletePublicAccessBlock.html) 
++  [ DeleteBucketPublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeletePublicAccessBlock.html) 
 +  [GetBucketCors](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketCors.html) 
 +  [GetBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketEncryption.html) 
 +  [GetBucketLifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycleConfiguration.html) 
@@ -63,7 +63,7 @@ Amazon S3 bucket\-level API actions tracked by CloudTrail logging appear as the 
 +  [GetBucketTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html) 
 +  [GetBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html) 
 +  [GetBucketWebsite](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketWebsite.html) 
-+  [GetPublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html) 
++  [GetBucketPublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html) 
 +  [ListBuckets](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html) 
 +  [PutBucketAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAcl.html) 
 +  [PutBucketCors](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html) 
@@ -77,7 +77,7 @@ Amazon S3 bucket\-level API actions tracked by CloudTrail logging appear as the 
 +  [PutBucketTagging ](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html) 
 +  [PutBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html) 
 +  [PutBucketWebsite](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketWebsite.html) 
-+  [PutPublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html) 
++  [PutBucketPublicAccessBlock](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html) 
 
 
 

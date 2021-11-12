@@ -1231,7 +1231,7 @@ Before you start creating an S3 Batch Operations job, make sure that the **Creat
 
 1. In the **Manifest** section, do the following:
 
-   1. For **Manifest format**, choose **S3 inventory report \(manifest\.json\)**\.
+   1. For **Manifest format**, choose **S3 Inventory report \(manifest\.json\)**\.
 
    1. For **Manifest object**, choose **Browse S3** to find the bucket that you created in [Step 5](#batchops-s3-step5) for storing inventory reports \(for example, **tutorial\-bucket\-3**\)\. On the **Manifest object ** page, navigate through the object names until you find a `manifest.json` file for a specific date\. This file lists the information about all the videos that you want to batch\-transcode\. When you've found the `manifest.json` file that you want to use, choose the option button next to it\. Then choose **Choose path**\.
 

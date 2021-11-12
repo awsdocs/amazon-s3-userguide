@@ -375,6 +375,9 @@ For added security when you request temporary security credentials for federated
 The following Ruby code example allows a federated user with a limited set of permissions to lists keys in the specified bucket\.   
 
 ```
+# Prerequisites:
+#  - An existing Amazon S3 bucket.
+
 require 'aws-sdk-s3'
 require 'aws-sdk-iam'
 require 'json'
@@ -386,7 +389,7 @@ require 'json'
 # @param user_name [String] The user's name.
 # @return [Aws::IAM::Types::User] The existing or new user.
 # @example
-#   iam = Aws::IAM::Client.new(region: 'us-east-1')
+#   iam = Aws::IAM::Client.new(region: 'us-west-2')
 #   user = get_user(iam, 'my-user')
 #   exit 1 unless user.user_name
 #   puts "User's name: #{user.user_name}"
@@ -414,8 +417,8 @@ end
 # @param policy [Hash] The access policy.
 # @return [Aws::STS::Types::Credentials] AWS credentials for API authentication.
 # @example
-#   sts = Aws::STS::Client.new(region: 'us-east-1')
-#   credentials = get_temporary_credentials(sts, duration_seconds, user_name, 
+#   sts = Aws::STS::Client.new(region: 'us-west-2')
+#   credentials = get_temporary_credentials(sts, duration_seconds, user_name,
 #     {
 #       'Version' => '2012-10-17',
 #       'Statement' => [
@@ -445,7 +448,7 @@ end
 # @param bucket_name [String] The bucket's name.
 # @return [Boolean] true if the objects were listed; otherwise, false.
 # @example
-#   s3_client = Aws::S3::Client.new(region: 'us-east-1')
+#   s3_client = Aws::S3::Client.new(region: 'us-west-2')
 #   exit 1 unless list_objects_in_bucket?(s3_client, 'doc-example-bucket')
 def list_objects_in_bucket?(s3_client, bucket_name)
   puts "Accessing the contents of the bucket named '#{bucket_name}'..."
@@ -467,6 +470,42 @@ def list_objects_in_bucket?(s3_client, bucket_name)
 rescue StandardError => e
   puts "Error while accessing the bucket named '#{bucket_name}': #{e.message}"
 end
+
+# Full example call:
+# Replace us-west-2 with the AWS Region you're using for Amazon S3.
+def run_me
+  region = 'us-west-2'
+  user_name = 'my-user'
+  bucket_name = 'doc-example-bucket'
+
+  iam = Aws::IAM::Client.new(region: region)
+  user = get_user(iam, user_name)
+
+  exit 1 unless user.user_name
+
+  puts "User's name: #{user.user_name}"
+  sts = Aws::STS::Client.new(region: region)
+  credentials = get_temporary_credentials(sts, 3600, user_name,
+    {
+      'Version' => '2012-10-17',
+      'Statement' => [
+        'Sid' => 'Stmt1',
+        'Effect' => 'Allow',
+        'Action' => 's3:ListBucket',
+        'Resource' => "arn:aws:s3:::#{bucket_name}"
+      ]
+    }
+  )
+
+  exit 1 unless credentials.access_key_id
+
+  puts "Access key ID: #{credentials.access_key_id}"
+  s3_client = Aws::S3::Client.new(region: region, credentials: credentials)
+
+  exit 1 unless list_objects_in_bucket?(s3_client, bucket_name)
+end
+
+run_me if $PROGRAM_NAME == __FILE__
 ```
 
 ------

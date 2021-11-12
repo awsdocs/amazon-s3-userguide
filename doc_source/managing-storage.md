@@ -9,7 +9,7 @@ After you create buckets and upload objects in Amazon S3, you can manage your ob
 + [Using Amazon S3 storage classes](storage-class-intro.md)
 + [Amazon S3 Intelligent\-Tiering](intelligent-tiering.md)
 + [Managing your storage lifecycle](object-lifecycle-mgmt.md)
-+ [Amazon S3 inventory](storage-inventory.md)
++ [Amazon S3 Inventory](storage-inventory.md)
 + [Replicating objects](replication.md)
 + [Categorizing your storage using tags](object-tagging.md)
 + [Using cost allocation S3 bucket tags](CostAllocTagging.md)

@@ -283,6 +283,14 @@ If you obtain temporary security credentials using your AWS account security cre
 The following Ruby example creates a temporary user to list the items in a specified bucket for one hour\. To use this example, you must have AWS credentials that have the necessary permissions to create new AWS Security Token Service \(AWS STS\) clients, and list Amazon S3 buckets\.
 
 ```
+# Prerequisites:
+# - A user in AWS Identity and Access Management (IAM). This user must
+#   be able to assume the following IAM role. You must run this code example
+#   within the context of this user.
+# - An existing role in IAM that allows all of the Amazon S3 actions for all of the
+#   resources in this code example. This role must also trust the preceding IAM user.
+# - An existing S3 bucket.
+
 require 'aws-sdk-core'
 require 'aws-sdk-s3'
 require 'aws-sdk-iam'
@@ -293,7 +301,7 @@ require 'aws-sdk-iam'
 # @param user_name [String] The user's name.
 # @return [Boolean] true if the user exists; otherwise, false.
 # @example
-#   iam_client = Aws::IAM::Client.new(region: 'us-east-1')
+#   iam_client = Aws::IAM::Client.new(region: 'us-west-2')
 #   exit 1 unless user_exists?(iam_client, 'my-user')
 def user_exists?(iam_client, user_name)
   response = iam_client.get_user(user_name: user_name)
@@ -311,7 +319,7 @@ end
 # @param user_name [String] The user's name.
 # @return [AWS:IAM::Types::User] The new user.
 # @example
-#   iam_client = Aws::IAM::Client.new(region: 'us-east-1')
+#   iam_client = Aws::IAM::Client.new(region: 'us-west-2')
 #   user = create_user(iam_client, 'my-user')
 #   exit 1 unless user.user_name
 def create_user(iam_client, user_name)
@@ -327,7 +335,7 @@ end
 # @param user_name [String] The user's name.
 # @return [AWS:IAM::Types::User] The existing user.
 # @example
-#   iam_client = Aws::IAM::Client.new(region: 'us-east-1')
+#   iam_client = Aws::IAM::Client.new(region: 'us-west-2')
 #   user = get_user(iam_client, 'my-user')
 #   exit 1 unless user.user_name
 def get_user(iam_client, user_name)
@@ -343,7 +351,7 @@ end
 # @param role_name [String] The role's name.
 # @return [Boolean] true if the role exists; otherwise, false.
 # @example
-#   iam_client = Aws::IAM::Client.new(region: 'us-east-1')
+#   iam_client = Aws::IAM::Client.new(region: 'us-west-2')
 #   exit 1 unless role_exists?(iam_client, 'my-role')
 def role_exists?(iam_client, role_name)
   response = iam_client.get_role(role_name: role_name)
@@ -361,7 +369,7 @@ end
 # @param duration_seconds [Integer] The number of seconds this session is valid.
 # @return [AWS::AssumeRoleCredentials] The credentials.
 # @example
-#   sts_client = Aws::STS::Client.new(region: 'us-east-1')
+#   sts_client = Aws::STS::Client.new(region: 'us-west-2')
 #   credentials = get_credentials(
 #     sts_client,
 #     'arn:aws:iam::123456789012:role/AmazonS3ReadOnly',
@@ -386,7 +394,7 @@ end
 # @param bucket_name [String] The name of the bucket.
 # @return [Boolean] true if the bucket exists; otherwise, false.
 # @example
-#   s3_client = Aws::S3::Client.new(region: 'us-east-1')
+#   s3_client = Aws::S3::Client.new(region: 'us-west-2')
 #   exit 1 unless bucket_exists?(s3_client, 'doc-example-bucket')
 def bucket_exists?(s3_client, bucket_name)
   response = s3_client.list_buckets
@@ -404,7 +412,7 @@ end
 # @param bucket_name [String] The bucket's name.
 # @return [Boolean] true if the objects were listed; otherwise, false.
 # @example
-#   s3_client = Aws::S3::Client.new(region: 'us-east-1')
+#   s3_client = Aws::S3::Client.new(region: 'us-west-2')
 #   exit 1 unless list_objects_in_bucket?(s3_client, 'doc-example-bucket')
 def list_objects_in_bucket?(s3_client, bucket_name)
   puts "Accessing the contents of the bucket named '#{bucket_name}'..."

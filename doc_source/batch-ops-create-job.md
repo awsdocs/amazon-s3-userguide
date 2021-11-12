@@ -24,7 +24,7 @@ To create an S3 Batch Operations job, you must provide the following information
 Specify the operation that you want S3 Batch Operations to run against the objects in the manifest\. Each operation type accepts parameters that are specific to that operation\. This enables you to perform the same tasks as if you performed the operation one\-by\-one on each object\.
 
 **Manifest**  
-The manifest is a list of all of the objects that you want S3 Batch Operations to run the specified action on\. You can use a CSV\-formatted [ Amazon S3 inventory](storage-inventory.md) report as a manifest or use your own customized CSV list of objects\.   
+The manifest is a list of all of the objects that you want S3 Batch Operations to run the specified action on\. You can use a CSV\-formatted [ Amazon S3 Inventory](storage-inventory.md) report as a manifest or use your own customized CSV list of objects\.   
 If the objects in your manifest are in a versioned bucket, you should specify the version IDs for the objects\. For more information, see [Specifying a manifest](#specify-batchjob-manifest)\.
 
 **Priority**  
@@ -52,7 +52,7 @@ To track and monitor your job, you can also provide a description of up to 256 c
  A manifest is an Amazon S3 object that lists object keys that you want Amazon S3 to act upon\. To create a manifest for a job, you specify the manifest object key, ETag, and optional version ID\. The contents of the manifest must be URL encoded\. Manifests that use server\-side encryption with customer\-provided keys \(SSE\-C\) and server\-side encryption with AWS Key Management Service \(SSE\-KMS\) AWS KMS keys are not supported\. Your manifest must contain the bucket name, object key, and optionally, the object version for each object\. Any other fields in the manifest are not used by S3 Batch Operations\. 
 
 You can specify a manifest in a create job request using one of the following two formats\.
-+ Amazon S3 inventory report — Must be a CSV\-formatted Amazon S3 inventory report\. You must specify the `manifest.json` file that is associated with the inventory report\. For more information about inventory reports, see [ Amazon S3 inventory](storage-inventory.md)\. If the inventory report includes version IDs, S3 Batch Operations operates on the specific object versions\.
++ Amazon S3 Inventory report — Must be a CSV\-formatted Amazon S3 Inventory report\. You must specify the `manifest.json` file that is associated with the inventory report\. For more information about inventory reports, see [ Amazon S3 Inventory](storage-inventory.md)\. If the inventory report includes version IDs, S3 Batch Operations operates on the specific object versions\.
 **Note**  
 S3 Batch Operations supports CSV *inventory reports *that are AWS KMS\-encrypted\.
 + CSV file — Each row in the file must include the bucket name, object key, and optionally, the object version\. Object keys must be URL\-encoded, as shown in the following examples\. The manifest must either include version IDs for all objects or omit version IDs for all objects\. For more information about the CSV manifest format, see [JobManifestSpec](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_JobManifestSpec.html) in the *Amazon Simple Storage Service API Reference*\.

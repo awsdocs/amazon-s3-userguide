@@ -91,13 +91,16 @@ This example uses the AWS prebuilt function `compress`\. For example AWS Lambda 
 
    ```
    {
-       "Version" : "2008-10-17",
-       "Statement":[{
-           "Sid": "Grant account 444455556666 GetObject access",
-           "Effect":"Allow",
-           "Principal" : {
-               "AWS": "arn:aws:iam::444455556666:root"
-           }
+       "Version": "2008-10-17",
+       "Statement": [
+           {
+               "Sid": "Grant account 444455556666 GetObject access",
+               "Effect": "Allow",
+               "Action": "s3-object-lambda:GetObject",
+               "Principal": {
+                   "AWS": "arn:aws:iam::444455556666:root"
+               },
+               "Resource": "your-object-lambda-access-point-arn"
            }
        ]
    }

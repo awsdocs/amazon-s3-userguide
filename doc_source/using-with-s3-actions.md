@@ -58,7 +58,7 @@ The following example user policy grants the `s3:CreateBucket`, `s3:ListAllMyBuc
             "s3:GetBucketLocation"  
          ],
          "Resource":[
-            "arn:aws:s3:::*"
+            "*"
          ]
        }
     ]

@@ -2,6 +2,8 @@
 
 To create a Multi\-Region Access Point in Amazon S3, you specify the name, choose one bucket in each AWS Region that you want to serve requests for the Multi\-Region Access Point, and configure the Amazon S3 Block Public Access settings for the Multi\-Region Access Point\. You provide this information in a create request, which Amazon S3 processes asynchronously\. Amazon S3 provides a token that you can use to monitor the status of the asynchronous creation request\. 
 
+Make sure to resolve security warnings, errors, general warnings, and suggestions from AWS Identity and Access Management Access Analyzer before you save your policy\. IAM Access Analyzer runs policy checks to validate your policy against IAM [policy grammar](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_grammar.html) and [best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)\. These checks generate findings and provide actionable recommendations to help you author policies that are functional and conform to security best practices\. To learn more about validating policies using IAM Access Analyzer, see [IAM Access Analyzer policy validation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html) in the *IAM User Guide*\. To view a list of the warnings, errors, and suggestions that are returned by IAM Access Analyzer, see [IAM Access Analyzer policy check reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html)\.
+
 When you use the API, the request to create a Multi\-Region Access Point is asynchronous\. When you submit a request to create a Multi\-Region Access Point, Amazon S3 synchronously authorizes the request\. It then immediately returns a token that you can use to track the progress of the creation request\. For more information about tracking asynchronous requests to create and manage Multi\-Region Access Points, see [Managing Multi\-Region Access Points](ManagingMultiRegionAccessPoints.md)\. 
 
 After you create the Multi\-Region Access Point, you can create an access control policy for it\. Each Multi\-Region Access Point can have an associated policy\. A Multi\-Region Access Point policy is a resource\-based policy that allows you to limit the use of the Multi\-Region Access Point by resource, user, or other conditions\.
@@ -24,7 +26,7 @@ You can update the policy for a Multi\-Region Access Point after creating it, bu
 
 When you create a Multi\-Region Access Point, you give it a name, which is a string that you choose\. You can't change the name of the Multi\-Region Access Point after it is created\. The name must be unique in your AWS account, and it must conform to the naming requirements listed in [Multi\-Region Access Point restrictions and limitations](MultiRegionAccessPointRestrictions.md)\. To help you identify the Multi\-Region Access Point, use a name that is meaningful to you, to your organization, or that reflects the scenario\. 
 
-You use this name when invoking Multi\-Region Access Point management operations, such as `GetMultiRegionAccessPoint` and `UpdateMultiRegionAccessPointPolicy`\. The name is not used to send requests to the Multi\-Region Access Point, and it doesn’t need to be exposed to clients who make requests using the Multi\-Region Access Point\. 
+You use this name when invoking Multi\-Region Access Point management operations, such as `GetMultiRegionAccessPoint` and `PutMultiRegionAccessPointPolicy`\. The name is not used to send requests to the Multi\-Region Access Point, and it doesn’t need to be exposed to clients who make requests using the Multi\-Region Access Point\. 
 
 When Amazon S3 creates a Multi\-Region Access Point, it automatically assigns an alias to it\. This alias is a unique alphanumeric string that ends in `.mrap`\. The alias is used to construct the hostname and the Amazon Resource Name \(ARN\) for a Multi\-Region Access Point\. The fully qualified name is also based on the alias for the Multi\-Region Access Point\.
 
@@ -106,7 +108,7 @@ aws s3control create-multi-region-access-point --account-id 111122223333 --detai
             { "Bucket": "DOC-EXAMPLE-BUCKET1" }, 
             { "Bucket": "DOC-EXAMPLE-BUCKET2" } 
         ]
-    }'
+    }' --region us-west-2
 ```
 
 **Topics**

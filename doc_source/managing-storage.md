@@ -4,6 +4,7 @@ After you create buckets and upload objects in Amazon S3, you can manage your ob
 
 **Topics**
 + [Using versioning in S3 buckets](Versioning.md)
++ [Using AWS Backup for Amazon S3 \(Preview\)](backup-for-s3.md)
 + [Working with archived objects](archived-objects.md)
 + [Using S3 Object Lock](object-lock.md)
 + [Using Amazon S3 storage classes](storage-class-intro.md)

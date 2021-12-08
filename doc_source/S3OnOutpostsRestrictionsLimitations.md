@@ -25,15 +25,7 @@ Consider the following restrictions and limitations as you set up Amazon S3 on O
 
 ## S3 on Outposts data consistency model<a name="S3OnOutpostsDataConsistency"></a>
 
-Amazon S3 on Outposts provides read\-after\-write consistency for PUT requests of new objects in your Amazon S3 bucket with one caveat: If you make a HEAD or GET request to a key name before the object is created and then create the object shortly after that, a subsequent GET request might not return the object due to eventual consistency\.
-
-Amazon S3 on Outposts offers eventual consistency for overwrite PUT and DELETE requests in all Regions\.
-
-Updates to a single key are atomic\. For example, if you make a PUT request to an existing key, a subsequent read might return the old data or the updated data, but it doesn't return corrupted or partial data\. With the eventual consistency model, you might observe the following behaviors:
-+ A process writes a new object to S3 on Outposts and immediately lists keys within its bucket\. Until the change is fully propagated, the object might not appear in the list\.
-+ A process replaces an existing object and immediately tries to read it\. Until the change is fully propagated, S3 on Outposts might return the previous data\.
-+ A process deletes an existing object and immediately tries to read it\. Until the deletion is fully propagated, S3 on Outposts might return the deleted data\.
-+ A process deletes an existing object and immediately lists keys within its bucket\. Until the deletion is fully propagated, S3 on Outposts might list the deleted object\.
+Amazon S3 on Outposts provides strong consistency for all object APIs, including read\-after\-write and list\-after\-write consistency\.
 
 ## API operations supported by S3 on Outposts<a name="S3OnOutpostsAPILimitations"></a>
 

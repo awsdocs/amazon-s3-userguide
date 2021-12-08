@@ -15,7 +15,7 @@ This section contains the terminology and concepts that are essential for unders
 + [Account snapshot](#storage_lens_basics_account_snapshot)
 + [Metrics export](#storage_lens_basics_metrics_export)
 + [Home Region](#storage_lens_basics_home_region)
-+ [Retention period](#storage_lens_basics_retention_period)
++ [Data available for queries](#storage_lens_basics_data_queries)
 + [Metrics types](#storage_lens_basics_metrics_types)
 + [Recommendations](#storage_lens_basics_recommendations)
 + [Metrics selection](#storage_lens_basics_metrics_selection)
@@ -30,7 +30,7 @@ Amazon S3 Storage Lens requires a *configuration* that contains the properties t
 The S3 Storage Lens default dashboard on the console is named **default\-account\-dashboard**\. S3 preconfigures this dashboard to visualize the summarized insights and trends of your entire account’s aggregated storage usage and activity metrics, and updates them daily in the Amazon S3 console\. You can't modify the configuration scope of the default dashboard, but you can upgrade the metrics selection from **free metrics** to the paid **advanced metrics and recommendations**\. You can also configure the optional metrics export, or even disable the dashboard\. However, you can't delete the default dashboard\.
 
 **Note**  
-If you disable your default dashboard, it is no longer updated, and you will no longer receive any new daily metrics in S3 Storage Lens, or in the account snapshot on S3 home \(**Buckets**\) page\. You can still see historic data in the dashboard until the 14\-day expiration period, or 15 months if you are subscribed to *advanced metrics and recommendations* for that dashboard\. You can re\-enable the dashboard within the expiration period to access this data\.
+If you disable your default dashboard, it is no longer updated, and you will no longer receive any new daily metrics in S3 Storage Lens, or in the account snapshot on S3 home \(**Buckets**\) page\. You can still see historic data in the dashboard until the 14\-day period that data is available for queries expires, or 15 months if you are subscribed to *advanced metrics and recommendations* for that dashboard\. You can re\-enable the dashboard within the expiration period to access this data\.
 
 ### Dashboards<a name="storage_lens_basics_dashboards"></a>
 
@@ -61,22 +61,37 @@ An S3 Storage Lens *metrics export* is a file that contains all the metrics iden
 The home Region is the AWS Region where all Amazon S3 Storage Lens metrics for a given dashboard or configuration's are stored\. You must choose a home Region when you create your S3 Storage Lens dashboard or configuration\. After a home Region is assigned, it can't be changed\.
 
 **Note**  
-Creating a home Region is not supported the following Regions:  
-Africa \(Cape Town\) \(af\-south\-1\)
-Asia Pacific \(Hong Kong\) \(ap\-east\-1\)
-Europe \(Milan\) \(eu\-south\-1\)
-Middle East \(Bahrain\) \(me\-south\-1\)
+Creating a home Region is supported the following Regions:  
+US East \(N\. Virginia\) – us\-east\-1
+US East \(Ohio\) – us\-east\-2
+US West \(N\. California\) – us\-west\-1
+US West \(Oregon\) – us\-west\-2
+Asia Pacific \(Mumbai\) – ap\-south\-1
+Asia Pacific \(Osaka\) – ap\-northeast\-3
+Asia Pacific \(Seoul\) – ap\-northeast\-2
+Asia Pacific \(Singapore\) – ap\-southeast\-1
+Asia Pacific \(Sydney\) – ap\-southeast\-2
+Asia Pacific \(Tokyo\) – ap\-northeast\-1
+Canada \(Central\) – ca\-central\-1
+China \(Beijing\) – cn\-north\-1
+China \(Ningxia\) – cn\-northwest\-1
+Europe \(Frankfurt\) – eu\-central\-1
+Europe \(Ireland\) – eu\-west\-1
+Europe \(London\) – eu\-west\-2
+Europe \(Paris\) – eu\-west\-3
+Europe \(Stockholm\) – eu\-north\-1
+South America \(São Paulo\) – sa\-east\-1
 
-### Retention period<a name="storage_lens_basics_retention_period"></a>
+### Data available for queries<a name="storage_lens_basics_data_queries"></a>
 
-Amazon S3 Storage Lens metrics are retained so you can see historical trends and compare differences in your storage usage and activity over time\. The retention periods depend on your [metrics selection](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_metrics_selection) and cannot be modified\. Free metrics are retained for a 14\-day period, and advanced metrics are retained for a 15\-month period\.
+You can use Amazon S3 Storage Lens metrics for queries so that you can see historical trends and compare differences in your storage usage and activity over time\. Metrics are available for a specific duration\. The duration depends on your [metrics selection](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_metrics_selection) and cannot be modified\. Free metrics are available for queries for a 14\-day period, and advanced metrics are available for queries for a 15\-month period\.
 
 ### Metrics types<a name="storage_lens_basics_metrics_types"></a>
 
 S3 Storage Lens offers two types of storage metrics: *usage* and *activity*\.
 + **Usage metrics**
 
-  S3 Storage Lens collects *usage metrics* for all dashboards and configurations\. Usage metrics describe the size, quantity, and characteristics of your storage\. This includes the total bytes stored, object count, and average object size in addition to metrics that describe feature utilization such as encrypted bytes, or delete market object counts\. For more information about the usage metrics aggregated by S3 Storage Lens, see [Metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)\.
+  S3 Storage Lens collects *usage metrics* for all dashboards and configurations\. Usage metrics describe the size, quantity, and characteristics of your storage\. This includes the total bytes stored, object count, and average object size\. It also includes metrics that describe feature utilization, such as encrypted bytes, or delete market object counts\. For more information about the usage metrics aggregated by S3 Storage Lens, see [Metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)\.
 + **Activity metrics**
 
   S3 Storage Lens aggregates *activity metrics* for all dashboards and configurations that have the *advanced metrics and recommendations metrics* type enabled\. Activity metrics describe the details of how often your storage is requested\. This includes the number of requests by type, upload and download bytes, and errors\. For more information about the activity metrics that are aggregated by S3 Storage Lens, see [Metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)\.
@@ -89,19 +104,19 @@ S3 Storage Lens recommendations come in the following forms:
 + **Suggestions**
 
   *Suggestions* alert you to trends within your storage usage and activity that might indicate a storage cost optimization opportunity or data protection best practice\. You can use the suggested topics in the *Amazon S3 User Guide* and the S3 Storage Lens dashboard to drill down for more details about the specific Regions, buckets, or prefixes to further assist you\.
-+ **Callouts**
++ **Call\-outs**
 
-  Callouts are recommendations that alert you to interesting anomalies within your storage usage and activity over a period that might need further attention or monitoring\.
-  + **Outlier callouts**
+  Call\-outs are recommendations that alert you to interesting anomalies within your storage usage and activity over a period that might need further attention or monitoring\.
+  + **Outlier call\-outs**
 
-    S3 Storage Lens provides callouts for metrics that are *outliers*, based on your recent 30\-day trend\. The outlier is calculated using a standard score, also known as a *z\-score*\. In this score, the current day’s metric is subtracted from the average of the last 30 days for that metric, and then divided by the standard deviation for that metric over the last 30 days\. The resulting score is usually between \-3 and \+3\. This number represents the number of standard deviations that the current day’s metric is from the mean\. 
+    S3 Storage Lens provides call\-outs for metrics that are *outliers*, based on your recent 30\-day trend\. The outlier is calculated using a standard score, also known as a *z\-score*\. In this score, the current day’s metric is subtracted from the average of the last 30 days for that metric, and then divided by the standard deviation for that metric over the last 30 days\. The resulting score is usually between \-3 and \+3\. This number represents the number of standard deviations that the current day’s metric is from the mean\. 
 
     S3 Storage Lens considers metrics with a score >2 or <\-2 to be outliers because they are higher or lower than 95 percent of normally distributed data\. 
-  + **Significant change callouts**
+  + **Significant change call\-outs**
 
-    The *significant change callout* applies to metrics that are expected to change less frequently\. Therefore it is set to a higher sensitivity than the outlier calculation, which is typically in the range of \+/\- 20 percent versus the prior day, week, or month\.
+    The *significant change call\-out* applies to metrics that are expected to change less frequently\. Therefore it is set to a higher sensitivity than the outlier calculation, which is typically in the range of \+/\- 20 percent versus the prior day, week, or month\.
 
-    **Addressing callouts in your storage usage and activity** – If you receive a significant change callout, it’s not necessarily a problem, and could be the result of an anticipated change in your storage\. For example, you might have recently added a large number of new objects, deleted a large number of objects, or made similar planned changes\. 
+    **Addressing call\-outs in your storage usage and activity** – If you receive a significant change call\-out, it’s not necessarily a problem, and could be the result of an anticipated change in your storage\. For example, you might have recently added a large number of new objects, deleted a large number of objects, or made similar planned changes\. 
 
     If you see a significant change call\-out on your dashboard, take note of it and determine whether it can be explained by recent circumstances\. If not, use the S3 Storage Lens dashboard to drill down for more details to understand the specific Regions, buckets, or prefixes that are driving the fluctuation\.
 + **Reminders**
@@ -113,14 +128,19 @@ S3 Storage Lens recommendations come in the following forms:
 S3 Storage Lens offers two metrics selections that you can choose for your dashboard and export: *free metrics* and *advanced metrics and recommendations*\.
 + **Free metrics**
 
-  S3 Storage Lens offers free metrics for all dashboards and configurations\. Free metrics contain metrics that are relevant to your storage usage\. This includes the number of buckets, the objects in your account, and what state they are in\. All free metrics are collected daily and retained for a 14\-day retention period\. For more information about what usage metrics are aggregated by S3 Storage Lens, see the [Metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)\.
+  S3 Storage Lens offers free metrics for all dashboards and configurations\. Free metrics contain metrics that are relevant to your storage usage\. This includes the number of buckets, the objects in your account, and what state they are in\. All free metrics are collected daily\. Data is available for queries for 14\-days\. For more information about what usage metrics are aggregated by S3 Storage Lens, see the [Metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)\.
 + **Advanced metrics and recommendations**
 
-  S3 Storage Lens offers free metrics for all dashboards and configurations and the option to upgrade to the* advanced metrics and recommendations* option\. Advanced metrics contain all the usage metrics that are included in free metrics\. This includes the number of buckets, the objects in your account, and what state they are in\. 
+  S3 Storage Lens offers free metrics for all dashboards and configurations with the option to upgrade to * advanced metrics and recommendations*\. Additional charges apply\. For more information, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)\. Advanced metrics contain all the usage metrics that are included in free metrics\. This includes the number of buckets, the objects in your account, and what state they are in\. 
 
-  Also, with advanced metrics, you can also collect usage metrics at the prefix level\. In addition, advanced metrics include activity metrics\. Activity metrics data is relevant to your storage activity\. This includes the number of requests, scans, and errors with respect to the configuration scope and what state they are in\. All advanced metrics are collected daily and retained for a 15\-month retention period\. For more information about the storage metrics aggregated by S3 Storage Lens, see the [Metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html)\.
+  This metrics selection also provides recommendations to help you optimize your storage\. Recommendations are placed contextually alongside relevant metrics in the dashboard\. 
 
-  This metrics selection also provides recommendations to help you optimize your storage\. Recommendations are placed contextually alongside relevant metrics in the dashboard\. Additional charges apply\. For more information, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)\.
+  Advanced metrics and recommendations also include the following features:
+  + **Activity metrics** \- Generate additional metrics aggregated by bucket, such as requests, bytes uploaded/downloaded, and errors\. Activity metrics data is relevant to your storage activity\. This includes the number of requests, scans, and errors with respect to the configuration scope and what state they are in\.
+  + **Amazon CloudWatch publishing ** \- Publish S3 Storage Lens usage and activity metrics to CloudWatch to create a unified view of your operational health in CloudWatch [dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html)\. You can also use CloudWatch APIs and features like alarms and triggered actions, metric math, and anomaly detection to monitor and take action on S3 Storage Lens metrics\. For more information, see [Monitor S3 Storage Lens metrics in CloudWatch](storage_lens_view_metrics_cloudwatch.md)\.
+  + **Prefix aggregation** \- Collect usage metrics at the prefix level\. Prefix level metrics are not published to CloudWatch\.
+
+  All advanced metrics are collected daily\. Data is available for queries for 15 months\. For more information about the storage metrics aggregated by S3 Storage Lens, see [Amazon S3 Storage Lens metrics glossary](storage_lens_metrics_glossary.md)\.
 **Note**  
 Recommendations are available only when you use the S3 Storage Lens dashboard on the Amazon S3 console, and not via the AWS CLI and SDKs\.
 

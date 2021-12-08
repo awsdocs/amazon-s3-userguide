@@ -5,7 +5,7 @@ By using Amazon S3 analytics *Storage Class Analysis* you can analyze storage ac
 After storage class analysis observes the infrequent access patterns of a filtered set of data over a period of time, you can use the analysis results to help you improve your lifecycle policies\. You can configure storage class analysis to analyze all the objects in a bucket\. Or, you can configure filters to group objects together for analysis by common prefix \(that is, objects that have names that begin with a common string\), by object tags, or by both prefix and tags\. You'll most likely find that filtering by object groups is the best way to benefit from storage class analysis\. 
 
 **Important**  
-Storage class analysis does not give recommendations for transitions to the ONEZONE\_IA or S3 Glacier storage classes\.
+Storage class analysis does not give recommendations for transitions to the ONEZONE\_IA or S3 Glacier Flexible Retrieval storage classes\.
 
 You can have multiple storage class analysis filters per bucket, up to 1,000, and will receive a separate analysis for each filter\. Multiple filter configurations allow you analyze specific groups of objects to improve your lifecycle policies that transition objects to STANDARD\_IA\. 
 
@@ -93,8 +93,6 @@ Data in the exported file is sorted by date within object age group as shown in 
 
 ![\[Screen shot.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/storage-class-analysis-export-file1.png)![\[Screen shot.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/)![\[Screen shot.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/)
 
-![\[Screen shot.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/storage-class-analysis-export-file2.png)![\[Screen shot.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/)![\[Screen shot.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/)
-
 At the end of the report the object age group is given as ALL\. The ALL rows contain cumulative totals, including objects smaller than 128 KB, for all the age groups for that day\.
 
 ![\[Screen shot.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/storage-class-analysis-export-file3.png)![\[Screen shot.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/)![\[Screen shot.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/)
@@ -117,8 +115,8 @@ Use the scroll bars to see the rest of the table\.
 | Filter | Dimension | String  | Full filter values as configured when adding the filter configuration\. | 
 | StorageClass | Dimension | String  | Storage class of the data\. | 
 | ObjectAge | Dimension | String  | Age group for the objects in the filter\. In addition to the 12 different age groups \(0\-14 days, 15\-29 days, 30\-44 days, 45\-59 days, 60\-74 days, 75\-89 days, 90\-119 days, 120\-149 days, 150\-179 days, 180\-364 days, 365\-729 days, 730 days\+\) for 128KB\+ objects, there is one extra value='ALL', which represents all age groups\. | 
-| ObjectCount  | Metric  |  Integer  | Total number of objects counted per storage class for the day in the age group\. For the `AgeGroup='ALL'`, the value is the total object count for all the age groups for the day\. | 
-| DataUploaded\_MB  | Metric | Number | Total data in MB uploaded per storage class for the day in the age group\. For the `AgeGroup='ALL'`, the value is the total upload count in MB for all the age groups for the day\. \(Note that you will not see multipart object upload activity in your export data because multipart upload requests do not currently have storage class information\.\) | 
+| ObjectCount  | Metric  |  Integer  | Total number of objects counted per storage class for the day\. This value is only populated for the `AgeGroup='ALL'`and shows the total object count for all the age groups for the day\. | 
+| DataUploaded\_MB  | Metric | Number | Total data in MB uploaded per storage class for the day\. This value is only populated for the `AgeGroup='ALL'` and shows the total upload count in MB for all the age groups for the day\. \(Note that you will not see multipart object upload activity in your export data because multipart upload requests do not currently have storage class information\.\) | 
 | Storage\_MB  | Metric | Number  | Total storage in MB per storage class for the day in the age group\. For the `AgeGroup='ALL'`, the value is the overall storage count in MB for all the age groups for the day\. | 
 | DataRetrieved\_MB | Metric | Number | Data transferred out in MBs per storage class with GET requests for the day in the age group\. For `AgeGroup='ALL'`, the value is the overall data transferred out in MB with GET requests for all the age groups for the day\. | 
 | GetRequestCount | Metric | Integer | Number of GET requests made per storage class for the day in the age group\. For AgeGroup='ALL', the value represents the overall GET request count for all the age groups for the day\.  | 

@@ -52,7 +52,7 @@ The inventory list contains a list of the objects in an S3 bucket and the follow
 + **S3 Object Lock Retain until date** – The date until which the locked object cannot be deleted\. For more information, see [Using S3 Object Lock](object-lock.md)\.
 + **S3 Object Lock Mode** – Set to `Governance` or `Compliance` for objects that are locked\. For more information, see [Using S3 Object Lock](object-lock.md)\.
 + **S3 Object Lock Legal hold status ** – Set to `On` if a legal hold has been applied to an object\. Otherwise, it is set to `Off`\. For more information, see [Using S3 Object Lock](object-lock.md)\.
-+ **Intelligent\-Tiering access tier** – Access tier \(frequent or infrequent\) of the object if stored in Intelligent\-Tiering\. For more information, see [Storage class for automatically optimizing data with changing or unknown access patterns](storage-class-intro.md#sc-dynamic-data-access)\.
++ **Intelligent\-Tiering access tier** – Access tier \(Frequent Access, Infrequent Access, or Archive Instant Access\) of the object if stored in Intelligent\-Tiering\. For more information, see [S3 Intelligent\-Tiering ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering.html)\.
 + **S3 Bucket Key status** – Set to `ENABLED` or `DISABLED`\. Indicates whether the object uses S3 Bucket Key for server\-side encryption\. For more information, see [Using Amazon S3 Bucket Keys](bucket-key.md)\.
 
 We recommend that you create a lifecycle policy that deletes old inventory lists\. For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
@@ -72,3 +72,4 @@ For more information about working with Amazon S3 Inventory, see the following t
 + [Setting up Amazon S3 event notifications for inventory completion](storage-inventory-notification.md)
 + [Locating your inventory list](storage-inventory-location.md)
 + [Querying Amazon S3 Inventory with Amazon Athena](storage-inventory-athena-query.md)
++ [Converting empty version ID strings in Amazon S3 Inventory reports to null strings](inventory-configure-bops.md)

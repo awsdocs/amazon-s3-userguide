@@ -102,7 +102,7 @@ When source and destination buckets aren't owned by the same accounts, the owner
          "Sid":"Permissions on objects",
          "Effect":"Allow",
          "Principal":{
-            "AWS":"arn:aws:iam::SourceBucket-AcctID:source-acct-IAM-role"
+            "AWS":"arn:aws:iam::SourceBucket-AcctID:role/source-acct-IAM-role"
          },
          "Action":[
             "s3:ReplicateDelete",
@@ -114,7 +114,7 @@ When source and destination buckets aren't owned by the same accounts, the owner
          "Sid":"Permissions on bucket",
          "Effect":"Allow",
          "Principal":{
-            "AWS":"arn:aws:iam::SourceBucket-AcctID:source-acct-IAM-role"
+            "AWS":"arn:aws:iam::SourceBucket-AcctID:role/source-acct-IAM-role"
          },
          "Action": [
             "s3:List*",

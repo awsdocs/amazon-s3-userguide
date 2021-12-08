@@ -8,6 +8,8 @@ In the case of a single AWS account, the following four resources must have perm
 + The Object Lambda access point
 + The AWS Lambda function
 
+Make sure to resolve security warnings, errors, general warnings, and suggestions from AWS Identity and Access Management Access Analyzer before you save your policy\. IAM Access Analyzer runs policy checks to validate your policy against IAM [policy grammar](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_grammar.html) and [best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)\. These checks generate findings and provide actionable recommendations to help you author policies that are functional and conform to security best practices\. To learn more about validating policies using IAM Access Analyzer, see [IAM Access Analyzer policy validation](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html) in the *IAM User Guide*\. To view a list of the warnings, errors, and suggestions that are returned by IAM Access Analyzer, see [IAM Access Analyzer policy check reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html)\.
+
 These examples assume that you have the following resources:
 + An Amazon S3 bucket with following Amazon Resource Name \(ARN\): 
 
@@ -56,7 +58,7 @@ The following IAM policy grants a user permission to the Lambda function, standa
         "lambda:InvokeFunction"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:lambda:us-east-1:111122223333:function/MyObjectLambdaFunction:$LATEST",
+      "Resource": "arn:aws:lambda:us-east-1:111122223333:function:MyObjectLambdaFunction:$LATEST",
       "Condition": {
         "ForAnyValue:StringEquals": {
           "aws:CalledVia": [

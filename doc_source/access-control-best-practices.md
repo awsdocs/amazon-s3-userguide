@@ -12,6 +12,20 @@ Amazon S3 provides a variety of security features and tools\. The following scen
 
 When creating a new bucket, you should apply the following tools and settings to help ensure that your Amazon S3 resources are protected\.  
 
+**S3 Object Ownership for simplifying access control**  
+S3 Object Ownership is an Amazon S3 bucket\-level setting that you can use to disable access control lists \(ACLs\) and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. By default, when another AWS account uploads an object to your S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through ACLs\. You can use Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies, such as IAM policies, S3 bucket policies, virtual private cloud \(VPC\) endpoint policies, and AWS Organizations service control policies \(SCPs\)\.
+
+Object Ownership has three settings that you can use to control ownership of objects uploaded in your bucket and disable or enable ACLs:
+
+**ACLs disabled**
++ **Bucket owner enforced \(recommended\)** – ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket\. ACLs no longer affect permissions to data in the S3 bucket\. The bucket uses policies exclusively to define access control\.
+
+**ACLs enabled**
++ **Bucket owner preferred** – The bucket owner owns and has full control over new objects that other accounts write to the bucket with the `bucket-owner-full-control` canned ACL\. 
++ **Object writer \(default\)** – The AWS account that uploads an object owns the object, has full control over it, and can grant other users access to it through ACLs\.
+
+For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
+
 **Block Public Access**  
 S3 Block Public Access provides four settings to help you avoid inadvertently exposing your S3 resources\. You can apply these settings in any combination to individual access points, buckets, or entire AWS accounts\. If you apply a setting to an account, it applies to all buckets and access points that are owned by that account\. By default, the **Block all public access** setting is applied to new buckets created in the Amazon S3 console\. 
 
@@ -74,17 +88,23 @@ For more information, see [Getting started with a secure static website](https:/
 
 There are several different ways that you can share resources with a specific group of users\. You can use the following tools to share a set of documents or other resources to a single group of users, department, or an office\. Although they can all be used to accomplish the same goal, some tools might pair better than others with your existing settings\. 
 
+**S3 Object Ownership**  
+S3 Object Ownership is an Amazon S3 bucket\-level setting that you can use to disable ACLs and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. By default, when another AWS account uploads an object to your S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through ACLs\. You can use Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
+
 **User policies**  
 You can share resources with a limited group of people using IAM groups and user policies\. When creating a new IAM user, you are prompted to create and add them to a group\. However, you can create and add users to groups at any point\. If the individuals you intend to share these resources with are already set up within IAM, you can add them to a common group and share the bucket with their group within the user policy\. You can also use IAM user policies to share individual objects within a bucket\.
 
 For more information, see [Allowing an IAM user access to one of your buckets](example-policies-s3.md#iam-policy-ex0)\.
 
-
-
 **Access control lists**  
-As a general rule, we recommend that you use S3 bucket policies or IAM policies for access control\. Amazon S3 access control lists \(ACLs\) are a legacy access control mechanism that predates IAM\. If you already use S3 ACLs and you find them sufficient, there is no need to change\. However, certain access control scenarios require the use of ACLs\. For example, when a bucket owner wants to grant permission to objects, but not all objects are owned by the bucket owner, the object owner must first grant permission to the bucket owner\. This is done using an object ACL\.
+As a general rule, we recommend that you use S3 bucket policies or IAM policies for access control\. Amazon S3 ACLs are the original access control mechanism in Amazon S3 that predates IAM\. If you already use S3 ACLs and you find them sufficient, there is no need to change\. However, certain access control scenarios require the use of ACLs\. For example, when a bucket owner wants to grant permission to objects, but not all objects are owned by the bucket owner, the object owner must first grant permission to the bucket owner\. This is done using an object ACL\.
 
-For more information, see [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)\.
+A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you disable ACLs except in unusual circumstances where you need to control access for each object individually\. With Object Ownership, you can disable ACLs and rely on policies for access control\. When you disable ACLs, you can easily maintain a bucket with objects uploaded by different AWS accounts\. You, as the bucket owner, own all the objects in the bucket and can manage access to them using policies\. 
+
+**Important**  
+If your bucket uses the bucket owner enforced setting for S3 Object Ownership, you must use policies to grant access to your bucket and the objects in it\. Requests to set ACLs or update ACLs fail and return the `AccessControlListNotSupported` error code\. Requests to read ACLs are still supported\.
+
+For more information about using ACLs, see [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)\.
 
 **Prefixes**  
 When trying to share specific resources from a bucket, you can replicate folder\-level permissions using prefixes\. The Amazon S3 console supports the folder concept as a means of grouping objects by using a shared name prefix for objects\. You can then specify a prefix within the conditions of an IAM user's policy to grant them explicit permission to access the resources associated with that prefix\. 

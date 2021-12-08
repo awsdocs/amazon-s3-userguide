@@ -8,10 +8,19 @@ You can grant permissions to other AWS account users or to predefined groups\. T
 
 Each permission you grant for a user or group adds an entry in the ACL that is associated with the bucket\. The ACL lists grants, which identify the grantee and the permission granted\.
 
+By default, when another AWS account uploads an object to your S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through ACLs\. You can use Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies, such as IAM policies, S3 bucket policies, virtual private cloud \(VPC\) endpoint policies, and AWS Organizations service control policies \(SCPs\)\.
+
+A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you disable ACLs except in unusual circumstances where you need to control access for each object individually\. With Object Ownership, you can disable ACLs and rely on policies for access control\. When you disable ACLs, you can easily maintain a bucket with objects uploaded by different AWS accounts\. You, as the bucket owner, own all the objects in the bucket and can manage access to them using policies\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
+
+**Important**  
+If your bucket uses the bucket owner enforced setting for S3 Object Ownership, you must use policies to grant access to your bucket and the objects in it\. Requests to set ACLs or update ACLs fail and return the `AccessControlListNotSupported` error code\. Requests to read ACLs are still supported\.
+
 **Warning**  
 We highly recommend that you avoid granting write access to the **Everyone \(public access\)** or **Authenticated Users group \(all AWS authenticated users\)** groups\. For more information about the effects of granting write access to these groups, see [Amazon S3 predefined groups](acl-overview.md#specifying-grantee-predefined-groups)\.
 
 ## Using the S3 console to set ACL permissions for a bucket<a name="set-bucket-permissions"></a>
+
+The console displays combined access grants for duplicate grantees\. To see the full list of ACLs, use the Amazon S3 REST API, AWS CLI, or AWS SDKs\.
 
 The following table shows the ACL permissions that you can configure for buckets in the Amazon S3 console\.
 
@@ -29,8 +38,8 @@ The following table shows the ACL permissions that you can configure for buckets
 
 For more information about ACL permissions, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
-**Note**  
-The console displays combined access grants for duplicate grantees\. To see the full list of ACLs, use the Amazon S3 REST API, AWS CLI, or AWS SDKs\.
+**Important**  
+If your bucket uses the bucket owner enforced setting for S3 Object Ownership, you must use policies to grant access to your bucket and the objects in it\. Requests to set ACLs or update ACLs fail and return the `AccessControlListNotSupported` error code\. Requests to read ACLs are still supported\.
 
 **To set ACL permissions for a bucket**
 
@@ -94,7 +103,7 @@ When you grant other AWS accounts access to your resources, be aware that the AW
 
 ## Using the S3 console to set ACL permissions for an object<a name="set-object-permissions"></a>
 
-The following table shows the ACL permissions that you can configure for objects in the Amazon S3 console\.
+The console displays combined access grants for duplicate grantees\. To see the full list of ACLs, use the Amazon S3 REST API, AWS CLI, or AWS SDKs\. The following table shows the ACL permissions that you can configure for objects in the Amazon S3 console\.
 
 
 **Amazon S3 console ACL permissions for objects**  
@@ -107,8 +116,8 @@ The following table shows the ACL permissions that you can configure for objects
 
 For more information about ACL permissions, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
-**Note**  
-The console displays combined access grants for duplicate grantees\. To see the full list of ACLs, use the Amazon S3 REST API, AWS CLI, or AWS SDKs\.
+**Important**  
+If your bucket uses the bucket owner enforced setting for S3 Object Ownership, you must use policies to grant access to your bucket and the objects in it\. Requests to set ACLs or update ACLs fail and return the `AccessControlListNotSupported` error code\. Requests to read ACLs are still supported\.
 
 **To set ACL permissions for an object**
 
@@ -165,6 +174,9 @@ We highly recommend that you *do not* grant the **Everyone** group write object 
 ## Using the AWS SDKs<a name="acl-using-sdk"></a>
 
 This section provides examples of how to configure access control list \(ACL\) grants on buckets and objects\.
+
+**Important**  
+If your bucket uses the bucket owner enforced setting for S3 Object Ownership, you must use policies to grant access to your bucket and the objects in it\. Requests to set ACLs or update ACLs fail and return the `AccessControlListNotSupported` error code\. Requests to read ACLs are still supported\.
 
 ------
 #### [ Java ]
@@ -464,6 +476,9 @@ For information on the REST API support for managing ACLs, see the following sec
 +  [PUT Object \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html) 
 +  [Initiate Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html) 
 
+**Important**  
+If your bucket uses the bucket owner enforced setting for S3 Object Ownership, you must use policies to grant access to your bucket and the objects in it\. Requests to set ACLs or update ACLs fail and return the `AccessControlListNotSupported` error code\. Requests to read ACLs are still supported\.
+
 ### Access Control List \(ACL\)\-Specific Request Headers<a name="acl-headers-rest-api"></a>
 
 You can use headers to grant access control list \(ACL\)\-based permissions\. By default, all objects are private\. Only the owner has full access control\. When adding a new object, you can grant permissions to individual AWS accounts or to predefined groups defined by Amazon S3\. These permissions are then added to the Access Control List \(ACL\) on the object\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\.
@@ -480,3 +495,6 @@ With this operation, you can grant access permissions using one these two method
 ## Using the AWS CLI<a name="using-acl-cli"></a>
 
 For more information about managing ACLs using the AWS CLI, see [put\-bucket\-acl](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-acl.html) in the *AWS CLI Command Reference*\.
+
+**Important**  
+If your bucket uses the bucket owner enforced setting for S3 Object Ownership, you must use policies to grant access to your bucket and the objects in it\. Requests to set ACLs or update ACLs fail and return the `AccessControlListNotSupported` error code\. Requests to read ACLs are still supported\.

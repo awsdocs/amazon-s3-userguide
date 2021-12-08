@@ -83,7 +83,10 @@ S3 Batch Operations does not support CSV *manifest files* that are AWS KMS\-encr
 
 **Important**  
 If the objects in your manifest are in a versioned bucket, you should specify the version IDs for the objects\. When you create a job, S3 Batch Operations parses the entire manifest before running the job\. However, it doesn't take a "snapshot" of the state of the bucket\.   
-Because manifests can contain billions of objects, jobs might take a long time to run\. If you overwrite an object with a new version while a job is running, and you didn't specify a version ID for that object, Amazon S3 performs the operation on the latest version of the object, and not the version that existed when you created the job\. The only way to avoid this behavior is to specify version IDs for the objects that are listed in the manifest\. 
+Because manifests can contain billions of objects, jobs might take a long time to run\. If you overwrite an object with a new version while a job is running, and you didn't specify a version ID for that object, Amazon S3 performs the operation on the latest version of the object, and not on the version that existed when you created the job\. The only way to avoid this behavior is to specify version IDs for the objects that are listed in the manifest\. 
+
+**Note**  
+When an S3 Batch Operations job uses an "all versions" S3 Inventory report as a manifest, it fails all tasks on objects that have an empty string in the version ID field\. To operate on these object keys, convert the empty strings in your manifest to the string `null`\. For more information about this procedure, see [Converting empty version ID strings in Amazon S3 Inventory reports to null strings](inventory-configure-bops.md)\.
 
 ## Creating a job<a name="to-create-batch-ops-job"></a>
 

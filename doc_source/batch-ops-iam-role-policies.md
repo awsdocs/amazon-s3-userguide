@@ -60,7 +60,7 @@ Before you configure permissions, note the following:
                 "s3:PutObjectTagging"
             ],
             "Effect": "Allow",
-            "Resource": "arn:aws:s3:::{{DestinationBucket}}/*"
+            "Resource": "arn:aws:s3:::DestinationBucket/*"
         },
         {
             "Action": [
@@ -71,8 +71,8 @@ Before you configure permissions, note the following:
             ],
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:s3:::{{SourceBucket}}",
-                "arn:aws:s3:::{{SourceBucket}}/*"
+                "arn:aws:s3:::SourceBucket",
+                "arn:aws:s3:::SourceBucket/*"
             ]
         },
         {
@@ -82,7 +82,7 @@ Before you configure permissions, note the following:
                 "s3:GetObjectVersion"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ManifestBucket}}/*"
+                "arn:aws:s3:::ManifestBucket/*"
             ]
         },
         {
@@ -91,7 +91,7 @@ Before you configure permissions, note the following:
                 "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ReportBucket}}/*"
+                "arn:aws:s3:::ReportBucket/*"
             ]
         }
     ]
@@ -110,7 +110,7 @@ Before you configure permissions, note the following:
         "s3:PutObjectTagging",
         "s3:PutObjectVersionTagging"
       ],
-      "Resource": "arn:aws:s3:::{{TargetResource}}/*"
+      "Resource": "arn:aws:s3:::TargetResource/*"
     },
     {
       "Effect": "Allow",
@@ -119,7 +119,7 @@ Before you configure permissions, note the following:
         "s3:GetObjectVersion"
       ],
       "Resource": [
-        "arn:aws:s3:::{{ManifestBucket}}/*"
+        "arn:aws:s3:::ManifestBucket/*"
       ]
     },
     {
@@ -128,7 +128,7 @@ Before you configure permissions, note the following:
         "s3:PutObject"
       ],
       "Resource":[
-        "arn:aws:s3:::{{ReportBucket}}/*"
+        "arn:aws:s3:::ReportBucket/*"
       ]
     }
   ]
@@ -148,7 +148,7 @@ Before you configure permissions, note the following:
               "s3:DeleteObjectVersionTagging"
             ],
             "Resource": [
-                "arn:aws:s3:::{{TargetResource}}/*"
+                "arn:aws:s3:::TargetResource/*"
             ]
         },
         {
@@ -158,7 +158,7 @@ Before you configure permissions, note the following:
                 "s3:GetObjectVersion"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ManifestBucket}}/*"
+                "arn:aws:s3:::ManifestBucket/*"
             ]
         },
         {
@@ -167,7 +167,7 @@ Before you configure permissions, note the following:
                 "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ReportBucket}}/*"
+                "arn:aws:s3:::ReportBucket/*"
             ]
         }
     ]
@@ -186,7 +186,7 @@ Before you configure permissions, note the following:
         "s3:PutObjectAcl",
         "s3:PutObjectVersionAcl"
       ],
-      "Resource": "arn:aws:s3:::{{TargetResource}}/*"
+      "Resource": "arn:aws:s3:::TargetResource/*"
     },
     {
       "Effect": "Allow",
@@ -195,7 +195,7 @@ Before you configure permissions, note the following:
         "s3:GetObjectVersion"
       ],
       "Resource": [
-        "arn:aws:s3:::{{ManifestBucket}}/*"
+        "arn:aws:s3:::ManifestBucket/*"
       ]
     },
     {
@@ -204,7 +204,7 @@ Before you configure permissions, note the following:
         "s3:PutObject"
       ],
       "Resource":[
-        "arn:aws:s3:::{{ReportBucket}}/*"
+        "arn:aws:s3:::ReportBucket/*"
       ]
     }
   ]
@@ -222,7 +222,7 @@ Before you configure permissions, note the following:
       "Action":[
           "s3:RestoreObject"
       ],
-      "Resource": "arn:aws:s3:::{{TargetResource}}/*"
+      "Resource": "arn:aws:s3:::TargetResource/*"
     },
     {
       "Effect": "Allow",
@@ -231,7 +231,7 @@ Before you configure permissions, note the following:
         "s3:GetObjectVersion"
       ],
       "Resource": [
-        "arn:aws:s3:::{{ManifestBucket}}/*"
+        "arn:aws:s3:::ManifestBucket/*"
       ]
     },
     {
@@ -240,7 +240,7 @@ Before you configure permissions, note the following:
         "s3:PutObject"
       ],
       "Resource":[
-        "arn:aws:s3:::{{ReportBucket}}/*"
+        "arn:aws:s3:::ReportBucket/*"
       ]
     }
   ]
@@ -257,7 +257,7 @@ Before you configure permissions, note the following:
             "Effect": "Allow",
             "Action": "s3:GetBucketObjectLockConfiguration",
             "Resource": [
-                "arn:aws:s3:::{{TargetResource}}"
+                "arn:aws:s3:::TargetResource"
             ]
         },
         {
@@ -267,7 +267,7 @@ Before you configure permissions, note the following:
                 "s3:BypassGovernanceRetention"
             ],
             "Resource": [
-                "arn:aws:s3:::{{TargetResource}}/*"
+                "arn:aws:s3:::TargetResource/*"
             ]
         },
         {
@@ -277,7 +277,7 @@ Before you configure permissions, note the following:
                 "s3:GetObjectVersion"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ManifestBucket}}/*"
+                "arn:aws:s3:::ManifestBucket/*"
             ]
         },
         {
@@ -286,7 +286,7 @@ Before you configure permissions, note the following:
                 "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ReportBucket}}/*"
+                "arn:aws:s3:::ReportBucket/*"
             ]
         }
     ]
@@ -303,14 +303,14 @@ Before you configure permissions, note the following:
             "Effect": "Allow",
             "Action": "s3:GetBucketObjectLockConfiguration",
             "Resource": [
-                "arn:aws:s3:::{{TargetResource}}"
+                "arn:aws:s3:::TargetResource"
             ]
         },
         {
             "Effect": "Allow",
             "Action": "s3:PutObjectLegalHold",
             "Resource": [
-                "arn:aws:s3:::{{TargetResource}}/*"
+                "arn:aws:s3:::TargetResource/*"
             ]
         },
         {
@@ -320,7 +320,7 @@ Before you configure permissions, note the following:
                 "s3:GetObjectVersion"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ManifestBucket}}/*"
+                "arn:aws:s3:::ManifestBucket/*"
             ]
         },
         {
@@ -329,7 +329,7 @@ Before you configure permissions, note the following:
                 "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::{{ReportBucket}}/*"
+                "arn:aws:s3:::ReportBucket/*"
             ]
         }
     ]

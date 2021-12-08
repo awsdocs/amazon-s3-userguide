@@ -15,7 +15,7 @@ This walkhrough helps you do the following:
 + Publish events of the `s3:ObjectCreated:*` type to an Amazon SQS queue\.
 + Publish events of the `s3:ReducedRedundancyLostObject` type to an Amazon SNS topic\.
 
-For information about notification configuration, see [Enabling event notifications](how-to-enable-disable-notification-intro.md)\.
+For information about notification configuration, see [Using Amazon SQS, Amazon SNS, and Lambda](how-to-enable-disable-notification-intro.md)\.
 
 You can do all these steps using the console, without writing any code\. In addition, code examples using AWS SDKs for Java and \.NET are also provided to help you add notification configurations programmatically\.
 
@@ -23,13 +23,13 @@ The procedure includes the following steps:
 
 1. Create an Amazon SQS queue\.
 
-   Using the Amazon SQS console, you create an SQS queue\. You can access any messages Amazon S3 sends to the queue programmatically\. But for this walkthrough, you verify notification messages in the console\. 
+   Using the Amazon SQS console, create an SQS queue\. You can access any messages Amazon S3 sends to the queue programmatically\. But, for this walkthrough, you verify notification messages in the console\. 
 
    You attach an access policy to the queue to grant Amazon S3 permission to post messages\.
 
 1. Create an Amazon SNS topic\.
 
-   Using the Amazon SNS console, you create an SNS topic and subscribe to the topic so that any events posted to it are delivered to you\. You specify email as the communications protocol\. After you create a topic, Amazon SNS sends an email\. You must use the link in the email to confirm the topic subscription\. 
+   Using the Amazon SNS console, create an SNS topic and subscribe to the topic\. That way, any events posted to it are delivered to you\. You specify email as the communications protocol\. After you create a topic, Amazon SNS sends an email\. You use the link in the email to confirm the topic subscription\. 
 
    You attach an access policy to the topic to grant Amazon S3 permission to post messages\. 
 
@@ -41,35 +41,39 @@ Follow the steps to create and subscribe to an Amazon Simple Queue Service \(Ama
 
 1. Using the Amazon SQS console, create a queue\. For instructions, see [Getting Started with Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) in the *Amazon Simple Queue Service Developer Guide*\. 
 
-1. Replace the access policy attached to the queue with the following policy\.
+1. Replace the access policy that's attached to the queue with the following policy\.
 
    1. In the Amazon SQS console, in the **Queues** list, choose the queue name\.
 
    1. On the **Access policy** tab, choose **Edit**\.
 
-   1. Replace the access policy attached to the queue with the following policy, updating the Amazon SQS ARN, source bucket name, and bucket owner account ID\.
+   1. Replace the access policy that's attached to the queue\. In it, provide your Amazon SQS ARN, source bucket name, and bucket owner account ID\.
 
       ```
       {
-       "Version": "2012-10-17",
-       "Id": "example-ID",
-       "Statement": [
-        {
-         "Sid": "example-statement-ID",
-         "Effect": "Allow",
-         "Principal": {
-          "Service": "s3.amazonaws.com"  
-         },
-         "Action": [
-          "SQS:SendMessage"
-         ],
-         "Resource": "SQS-queue-ARN",
-         "Condition": {
-            "ArnLike": { "aws:SourceArn": "arn:aws:s3:*:*:awsexamplebucket1" },
-            "StringEquals": { "aws:SourceAccount": "bucket-owner-account-id" }
-         }
-        }
-       ]
+          "Version": "2012-10-17",
+          "Id": "example-ID",
+          "Statement": [
+              {
+                  "Sid": "example-statement-ID",
+                  "Effect": "Allow",
+                  "Principal": {
+                      "Service": "s3.amazonaws.com"
+                  },
+                  "Action": [
+                      "SQS:SendMessage"
+                  ],
+                  "Resource": "SQS-queue-ARN",
+                  "Condition": {
+                      "ArnLike": {
+                          "aws:SourceArn": "arn:aws:s3:*:*:awsexamplebucket1"
+                      },
+                      "StringEquals": {
+                          "aws:SourceAccount": "bucket-owner-account-id"
+                      }
+                  }
+              }
+          ]
       }
       ```
 
@@ -106,7 +110,7 @@ Follow the steps to create and subscribe to an Amazon Simple Queue Service \(Ama
 
 1. Note the queue ARN\. 
 
-   The SQS queue you created is another resource in your AWS account, and it has a unique Amazon Resource Name \(ARN\)\. You will need this ARN in the next step\. The ARN will be of the following format:
+   The SQS queue that you created is another resource in your AWS account\. It has a unique Amazon Resource Name \(ARN\)\. You need this ARN in the next step\. The ARN is of the following format:
 
    ```
    arn:aws:sqs:aws-region:account-id:queue-name
@@ -120,31 +124,35 @@ Follow the steps to create and subscribe to an Amazon SNS topic\.
 
 1. Subscribe to the topic\. For this exercise, use email as the communications protocol\. For instructions, see [Subscribing to an Amazon SNS topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-subscribe-endpoint-to-topic.html) in the *Amazon Simple Notification Service Developer Guide*\. 
 
-   You will get email requesting you to confirm your subscription to the topic\. Confirm the subscription\. 
+   You get an email requesting you to confirm your subscription to the topic\. Confirm the subscription\. 
 
-1. Replace the access policy attached to the topic with the following policy\. You must update the policy by providing your SNS topic ARN, bucket name, and bucket owner's account ID\.
+1. Replace the access policy attached to the topic with the following policy\. In it, provide your SNS topic ARN, bucket name, and bucket owner's account ID\.
 
    ```
    {
-    "Version": "2012-10-17",
-    "Id": "example-ID",
-    "Statement": [
-     {
-      "Sid": "example-statement-ID",
-      "Effect": "Allow",
-      "Principal": {
-       "Service": "s3.amazonaws.com"  
-      },
-      "Action": [
-       "SNS:Publish"
-      ],
-      "Resource": "SNS-topic-ARN",
-      "Condition": {
-         "ArnLike": { "aws:SourceArn": "arn:aws:s3:*:*:bucket-name" },
-         "StringEquals": { "aws:SourceAccount": "bucket-owner-account-id" }
-      }
-     }
-    ]
+       "Version": "2012-10-17",
+       "Id": "example-ID",
+       "Statement": [
+           {
+               "Sid": "Example SNS topic policy",
+               "Effect": "Allow",
+               "Principal": {
+                   "Service": "s3.amazonaws.com"
+               },
+               "Action": [
+                   "SNS:Publish"
+               ],
+               "Resource": "SNS-topic-ARN",
+               "Condition": {
+                   "ArnLike": {
+                       "aws:SourceArn": "arn:aws:s3:*:*:bucket-name"
+                   },
+                   "StringEquals": {
+                       "aws:SourceAccount": "bucket-owner-account-id"
+                   }
+               }
+           }
+       ]
    }
    ```
 
@@ -168,14 +176,14 @@ Using the Amazon S3 console, add a notification configuration requesting Amazon 
 
 After you save the notification configuration, Amazon S3 posts a test message, which you get via email\. 
 
-For instructions, see [Enabling and configuring event notifications using the Amazon S3 console](enable-event-notifications.md)\. 
+For instructions, see [Enabling and configuring event notifications using the Amazon S3 consoleEnabling Amazon EventBridge](enable-event-notifications.md)\. 
 
 ### Option B: Enable notifications on a bucket using the AWS SDKs<a name="step2-enable-notification-using-awssdk-dotnet"></a>
 
 ------
 #### [ \.NET ]
 
-The following C\# code example provides a complete code listing that adds a notification configuration to a bucket\. You need to update the code and provide your bucket name and SNS topic ARN\. For information about how to create and test a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\. 
+The following C\# code example provides a complete code listing that adds a notification configuration to a bucket\. You must update the code and provide your bucket name and SNS topic ARN\. For instructions on how to create and test a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\. 
 
 ```
 using Amazon;
@@ -243,7 +251,7 @@ namespace Amazon.DocSamples.S3
 ------
 #### [ Java ]
 
-The following example shows how to add a notification configuration to a bucket\. For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.
+The following example shows how to add a notification configuration to a bucket\. For instructions on how to create and test a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.
 
 ```
 import com.amazonaws.AmazonServiceException;
@@ -301,4 +309,4 @@ public class EnableNotificationOnABucket {
 
 ## Step 4: Test the setup<a name="notification-walkthrough-1-test"></a>
 
-Now you can test the setup by uploading an object to your bucket and verifying the event notification in the Amazon SQS console\. For instructions, see [Receiving a Message](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.htmlReceiveMessage.html) in the *Amazon Simple Queue Service Developer Guide "Getting Started" section*\. 
+Now, you can test the setup by uploading an object to your bucket and verifying the event notification in the Amazon SQS console\. For instructions, see [Receiving a Message](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.htmlReceiveMessage.html) in the *Amazon Simple Queue Service Developer Guide "Getting Started" section*\. 

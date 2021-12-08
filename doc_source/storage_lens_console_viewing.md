@@ -22,7 +22,7 @@ The dashboard always loads for the latest date for which metrics are available\.
 
    Your dashboard always loads for the latest date for which metrics are available\.
 **Note**  
-You can’t use your account's root user credentials to view Amazon S3 Storage Lens dashboards\. To access S3 Storage Lens dashboards, you must grant the requisite IAM permissions to a new or existing IAM user\. Then, sign in with those user credentials to access S3 Storage Lens dashboards\. For more information, see [Setting permissions to use S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html)\. 
+You can’t use your account's root user credentials to view Amazon S3 Storage Lens dashboards\. To access S3 Storage Lens dashboards, you must grant the requisite IAM permissions to a new or existing IAM user\. Then, sign in with those user credentials to access S3 Storage Lens dashboards\. For more information, see [Setting permissions to use Amazon S3 Storage Lens](storage_lens_iam_permissions.md)\.
 
 ## Understanding your S3 Storage Lens dashboard<a name="storage_lens_console_viewing_dashboard"></a>
 
@@ -40,7 +40,7 @@ The first section is the **Snapshot** section, which shows the metrics that S3 S
 + Total storage bytes
 + Total object count
 + Average object size
-+  Accounts – This value is **1** unless you are using AWS Organizations, and your S3 Storage Lens has trusted access with a valid service\-linked role\. For more information, see [Using service\-linked roles for S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-service-linked-roles.html)\. 
++  Accounts – This value is **1** unless you are using AWS Organizations, and your S3 Storage Lens has trusted access with a valid service\-linked role\. For more information, see [Using service\-linked roles for Amazon S3 Storage Lens](using-service-linked-roles.md)\. 
 + Buckets
 +  Requests – If you chose to use **Advanced metrics and recommendations** for this dashboard\.
 
@@ -64,7 +64,7 @@ The third section of the S3 Storage Lens dashboard is **Top N overview** \(sorte
 
 The **Dimension level** tabs provide a detailed view of all values within a particular dimension\. For example, the **Region** tab shows metrics for all AWS Regions, and the **Bucket** tab shows metrics for all buckets\. Each dimension tab contains an identical layout consisting of four sections:
 + A *trend chart* displaying your top *N* items within the dimension over the last 30 days for the selected metric\. By default, this chart displays the top 10 items, but you can increase it to any number that you want\.
-+ A *histogram chart* shows a vertical bar chart for the selected date and metric\. You might need to scroll horizontally if you have a very large number of items to display in this chart\.
++ A *histogram chart* shows a vertical bar chart for the selected date and metric\. You might need to scroll horizontally if you have a large number of items to display in this chart\.
 + The *bubble analysis chart* plots all items within the dimension by representing the first metric on the x axis, a second metric on the y axis, and a third metric represented by the size of the bubble\. 
 + The *metric grid view* contains each item in the dimension listed in rows\. The columns represent each available metric, arranged in metrics category tabs for easier navigation\. 
 

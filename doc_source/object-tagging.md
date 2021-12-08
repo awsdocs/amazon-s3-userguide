@@ -118,6 +118,10 @@ For more information, see [Managing your storage lifecycle](object-lifecycle-mgm
 
 If you configured Replication on your bucket, Amazon S3 replicates tags, provided you grant Amazon S3 permission to read the tags\. For more information, see [Setting up replication](replication-how-setup.md)\.
 
+### Object tagging event notifications<a name="tagging-and-event-notifications"></a>
+
+You can set up an Amazon S3 event notification to receive notice when an object tag is added or deleted from an object\. The `s3:ObjectTagging:Put` event type notifies you when a tag is PUT on an object or when an existing tag is updated\. The `s3:ObjectTagging:Delete` event type notifies you when a tag is removed from an object\. For more information, see [ Enabling event notifications](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-enable-disable-notification-intro.html)\.
+
 For more information about object tagging, see the following topics:
 
 **Topics**

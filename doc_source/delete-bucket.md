@@ -7,6 +7,7 @@ You can delete an empty Amazon S3 bucket\. Before deleting a bucket, consider th
 
 **Troubleshooting**  
 If you are unable to delete an Amazon S3 bucket, consider the following:
++ **Make sure the bucket is empty** – You can only delete buckets that don't have any objects in them\. Make sure the bucket is empty\.
 + **s3:DeleteBucket permissions** – If you cannot delete a bucket, work with your IAM administrator to confirm that you have `s3:DeleteBucket` permissions in your IAM user policy\.
 + **s3:DeleteBucket deny statement** – If you have `s3:DeleteBucket` permissions in your IAM policy and you cannot delete a bucket, the bucket policy might include a deny statement for `s3:DeleteBucket`\. Buckets created by ElasticBeanstalk have a policy containing this statement by default\. Before you can delete the bucket, you must delete this statement or the bucket policy\.
 

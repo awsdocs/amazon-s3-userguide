@@ -25,13 +25,13 @@ Only the management account can enable trusted access for Amazon S3 Storage Lens
 
 ## Disabling trusted access for S3 Storage Lens<a name="storage_lens_with_organizations_disabling_trusted_access"></a>
 
-By disabling trusted access, you limit S3 Storage Lens to working only on an account level\. In addition, each account holder can only see the S3 Storage Lens benefits limited to the scope of their account, and not their entire organization\. Any dashboards requiring trusted access are no longer updated, but will retain their historic data per their respective [ retention periods](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_retention_period)\. 
+By disabling trusted access, you limit S3 Storage Lens to working only on an account level\. In addition, each account holder can only see the S3 Storage Lens benefits limited to the scope of their account, and not their entire organization\. Any dashboards requiring trusted access are no longer updated, but will retain their historic data per the period that [data is available for queries](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_data_queries)\. 
 
-Removing an account as a delegated administrator will limit their S3 Storage Lens dashboard metrics access to only work on an account level\. Any organizational dashboards that they created are no longer updated, but they will retain their historic data per their respective retention periods\. 
+Removing an account as a delegated administrator will limit their S3 Storage Lens dashboard metrics access to only work on an account level\. Any organizational dashboards that they created are no longer updated, but they will retain their historic data for the period that data is available for queries\. 
 
 **Note**  
 This action also automatically stops all organization\-level dashboards from collecting and aggregating storage metrics\. 
-Your management and delegated administrator accounts will still be able to see the historic data for your exiting organization\-level dashboards according to their respective retention periods\.
+Your management and delegated administrator accounts will still be able to see the historic data for your exiting organization\-level dashboards during the period that data is available for queries\.
 
 ## Registering a delegated administrator for S3 Storage Lens<a name="storage_lens_with_organizations_registering_delegated_admins"></a>
 
@@ -54,4 +54,4 @@ You can also de\-register a delegated administrator using the AWS Organizations 
 
 **Note**  
 This action also automatically stops all organization\-level dashboards created by that delegated administrator from aggregating new storage metrics\.
-The delegate administrator accounts will still be able to see the historic data for those dashboards according to their respective retention periods\.
+The delegate administrator accounts will still be able to see the historic data for those dashboards while data is available for queries\.

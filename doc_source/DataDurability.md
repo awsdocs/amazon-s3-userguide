@@ -1,11 +1,11 @@
 # Data protection in Amazon S3<a name="DataDurability"></a>
 
-Amazon S3 provides a highly durable storage infrastructure designed for mission\-critical and primary data storage\. Objects are redundantly stored on multiple devices across multiple facilities in an Amazon S3 Region\. To help better ensure data durability, Amazon S3 `PUT` and `PUT Object copy` operations synchronously store your data across multiple facilities\. After the objects are stored, Amazon S3 maintains their durability by quickly detecting and repairing any lost redundancy\. 
+Amazon S3 provides a highly durable storage infrastructure designed for mission\-critical and primary data storage\. S3 Standard, S3 Intelligent\-Tiering, S3 Standard\-IA, S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, and S3 Glacier Deep Archive redundantly store objects on multiple devices across a minimum of three Availability Zones in an AWS Region\. An Availability Zone is one or more discrete data centers with redundant power, networking, and connectivity in an AWS Region\. Availability Zones are physically separated by a meaningful distance, many kilometers, from any other Availability Zone, although all are within 100 km \(60 miles\) of each other\. The S3 One Zone\-IA storage class stores data redundantly across multiple devices within a single Availability Zone\. These services are designed to sustain concurrent device failures by quickly detecting and repairing any lost redundancy, and they also regularly verify the integrity of your data using checksums\.
 
 Amazon S3 standard storage offers the following features: 
-+ Backed with the [Amazon S3 Service Level Agreement](https://aws.amazon.com/s3/sla/)
-+ Designed to provide 99\.999999999% durability and 99\.99% availability of objects over a given year
-+ Designed to sustain the concurrent loss of data in two facilities 
++ Backed with the [Amazon S3 Service Level Agreement\.](https://aws.amazon.com/s3/sla/)
++ Designed to provide 99\.999999999% durability and 99\.99% availability of objects over a given year\.
++ S3 Standard, S3 Intelligent\-Tiering, S3 Standard\-IA, S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, and S3 Glacier Deep Archive are all designed to sustain data in the event of the loss of an entire Amazon S3 Availability Zone\.
 
 Amazon S3 further protects your data using versioning\. You can use versioning to preserve, retrieve, and restore every version of every object that is stored in your Amazon S3 bucket\. With versioning, you can easily recover from both unintended user actions and application failures\. By default, requests retrieve the most recently written version\. You can retrieve older versions of an object by specifying a version of the object in a request\. 
 

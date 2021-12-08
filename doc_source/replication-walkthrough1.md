@@ -196,7 +196,7 @@ The amount of time it takes for Amazon S3 to replicate an object depends on the 
       In the *destination* bucket, verify the following:
       + That Amazon S3 replicated the objects\.
       + In object **properties**, that the **Replication Status** is set to `Replica` \(identifying this as a replica object\)\.
-      + In object **properties**, that the permission section shows no permissions\. This means that the replica is still owned by the *source* bucket owner, and the *destination* bucket owner has no permission on the object replica\. You can add optional configuration to tell Amazon S3 to change the replica ownership\. For an example, see [Changing the replica owner for source and destination buckets are owned by different accounts](replication-walkthrough-3.md)\.   
+      + In object **properties**, that the permission section shows no permissions\. This means that the replica is still owned by the *source* bucket owner, and the *destination* bucket owner has no permission on the object replica\. You can add optional configuration to tell Amazon S3 to change the replica ownership\. For an example, see [Changing the replica owner when source and destination buckets are owned by different accounts](replication-walkthrough-3.md)\.   
 ![\[Screen shot of object properties showing the replication status and permissions.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/crr-wt2-10.png)
 
        

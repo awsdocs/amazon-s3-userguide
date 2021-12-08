@@ -74,7 +74,7 @@ If your **% noncurrent version bytes** is greater than 10 percent of your storag
 
 1. To identify specific buckets that are accumulating a large number of noncurrent versions, scroll down to the **Top N overview for *date*** section, and select the **% noncurrent version bytes** metric\.
 
-After you’ve determined which buckets require further investigation, you can navigate to the buckets within the S3 console and enable a lifecycle policy to expire noncurrent versions after a specified number of days\. Alternatively, to reduce costs while still retaining noncurrent versions, you can configure a lifecycle policy to transition noncurrent versions to Amazon S3 Glacier\. For more information, see [Example 6: Specifying a lifecycle rule for a versioning\-enabled bucket ](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex6)\. 
+After you’ve determined which buckets require further investigation, you can navigate to the buckets within the S3 console and enable a lifecycle policy to expire noncurrent versions after a specified number of days\. Alternatively, to reduce costs while still retaining noncurrent versions, you can configure a lifecycle policy to transition noncurrent versions to S3 Glacier Flexible Retrieval\. For more information, see [Example 6: Specifying a lifecycle rule for a versioning\-enabled bucket ](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex6)\. 
 
 ## Uncover cold Amazon S3 buckets<a name="uncover-cold-buckets"></a>
 

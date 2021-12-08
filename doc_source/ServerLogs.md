@@ -25,7 +25,7 @@ To enable log delivery, perform the following basic steps\. For details, see [En
 
    The key prefix can also help when you delete the logs\. For example, you can set a lifecycle configuration rule for Amazon S3 to delete objects with a specific key prefix\. For more information, see [Deleting Amazon S3 log files](deleting-log-files-lifecycle.md)\.
 
-1. \(Optional\) Set permissions so that others can access the generated logs\. By default, only the bucket owner always has full access to the log objects\. For more information, see [Identity and access management in Amazon S3](s3-access-control.md)\.
+1. **\(Optional\) Set permissions in target grants so that others can access the generated logs\.** By default, only the bucket owner always has full access to the log objects\. If your target bucket \(where your server access logs are stored\) uses the bucket owner enforced setting for S3 Object Ownership to disable access control lists \(ACLs\), you can't grant permissions in target grants that use ACLs\. However, you can update your bucket policy for the target bucket to grant access to others\. For more information, see [Identity and access management in Amazon S3](s3-access-control.md) and [Permissions for log delivery](enable-server-access-logging.md#grant-log-delivery-permissions-general)\. 
 
 ## Log object key format<a name="server-log-keyname-format"></a>
 
@@ -47,9 +47,12 @@ The trailing slash */* is required to denote the end of the prefix\.
 
 Amazon S3 periodically collects access log records, consolidates the records in log files, and then uploads log files to your target bucket as log objects\. If you enable logging on multiple source buckets that identify the same target bucket, the target bucket will have access logs for all those source buckets\. However, each log object reports access log records for a specific source bucket\. 
 
-Amazon S3 uses a special log delivery account, called the *Log Delivery* group, to write access logs\. These writes are subject to the usual access control restrictions\. You must grant the Log Delivery group write permission on the target bucket by adding a grant entry in the bucket's access control list \(ACL\)\. 
+Amazon S3 uses a special log delivery account to write server access logs\. These writes are subject to the usual access control restrictions\. We recommend that you update the bucket policy on the target bucket to grant access to the logging service principal \(`logging.s3.amazonaws.com`\) for access log delivery\. However, you can also grant access for access log delivery to the S3 log delivery group through your bucket access control list \(ACL\)\. Granting access to the S3 log delivery group using your bucket ACL is not recommended\. 
 
-If you use the Amazon S3 console to enable logging on a bucket, the console both enables logging on the source bucket and updates the ACL on the target bucket to grant write permission to the Log Delivery group\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\.
+When you enable server access logging and grant access for access log delivery through your bucket policy, you update the bucket policy on the target bucket to allow `s3:PutObject` access for the logging service principal\. If you use the Amazon S3 console to enable server access logging on a bucket, the console automatically updates the bucket policy on the target bucket to grant these permissions to the logging service principal\. For more information about granting permissions for server access log delivery, see [Permissions for log delivery](enable-server-access-logging.md#grant-log-delivery-permissions-general)\. 
+
+**Bucket owner enforced setting for S3 Object Ownership**  
+If the target bucket uses the bucket owner enforced setting for Object Ownership, ACLs are disabled and no longer affect permissions\. You must update the bucket policy on the target bucket to grant access to the logging service principal\. For more information about Object Ownership, see [Grant access to S3 log delivery group for server access logging](object-ownership-migrating-acls-prerequisites.md#object-ownership-server-access-logs)\.
 
 ## Best effort server log delivery<a name="LogDeliveryBestEffort"></a>
 

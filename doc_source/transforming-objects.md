@@ -10,6 +10,7 @@ The topics in this section describe how to work with Object Lambda access points
 
 **Topics**
 + [Creating Object Lambda Access Points](olap-create.md)
++ [Using an AWS CloudFormation template to automate S3 Object Lambda setup](olap-using-cfn-template.md)
 + [Configuring IAM policies for Object Lambda access points](olap-policies.md)
 + [Writing and debugging Lambda functions for S3 Object Lambda Access Points](olap-writing-lambda.md)
 + [Using AWS built Lambda functions](olap-examples.md)

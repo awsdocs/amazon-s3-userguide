@@ -40,7 +40,7 @@ By default Amazon S3 doesn't replicate the following:
 + Objects in the source bucket that have already been replicated to a different destination\. For example, if you change the destination bucket in an existing replication configuration, Amazon S3 won't replicate the object again\.
 + Objects created with server\-side encryption using customer\-provided encryption keys \(SSE\-C\)\.
 + When replicating from a different AWS account delete markers added to the source bucket are not replicated\.
-+ Objects that are stored in S3 Glacier or S3 Glacier Deep Archive storage class\. 
++ Objects that are stored in S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage class\. 
 
   To learn more about the Amazon S3 Glacier service, see the [Amazon S3 Glacier Developer Guide](https://docs.aws.amazon.com/amazonglacier/latest/dev/)\.
 + Objects in the source bucket that the bucket owner doesn't have sufficient permissions\. 

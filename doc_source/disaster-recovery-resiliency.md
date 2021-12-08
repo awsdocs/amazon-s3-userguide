@@ -18,7 +18,7 @@ Versioning is a means of keeping multiple variants of an object in the same buck
 You can use S3 Object Lock to store objects using a *write once, read many* \(WORM\) model\. Using S3 Object Lock, you can prevent an object from being deleted or overwritten for a fixed amount of time or indefinitely\. S3 Object Lock enables you to meet regulatory requirements that require WORM storage or simply to add an additional layer of protection against object changes and deletion\. For more information, see [Using S3 Object Lock](object-lock.md)\.
 
 **Storage classes**  
-Amazon S3 offers a range of storage classes for the objects that you store\. Two of these storage classes \(STANDARD\_IA and ONEZONE\_IA\) are designed for long\-lived and infrequently accessed data, such as backups\. You can also use the S3 Glacier storage class to archive objects that you don't need to access in real time\. For more information, see [Using Amazon S3 storage classes](storage-class-intro.md)\.
+Amazon S3 offers a range of storage classes to choose from depending on the requirements of your workload\. The S3 Standard\-IA and S3 One Zone\-IA storage classes are designed for data you access about once a month and need milliseconds access\. The S3 Glacier Instant Retrieval storage class is designed for long\-lived archive data accessed with milliseconds access that you access about once a quarter\. For archive data that does not require immediate access, such as backups, you can use the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes\. For more information, see [Using Amazon S3 storage classes](storage-class-intro.md)\.
 
 The following security best practices also address resilience:
 + [Enable versioning](security-best-practices.md#versioning)

@@ -77,20 +77,20 @@ Athena can query Amazon S3 Inventory files in ORC, Parquet, or CSV format\. When
 1. To add new inventory lists to your table, use the following `MSCK REPAIR TABLE` command\.
 
    ```
-   MSCK REPAIR TABLE your-table-name;
+   MSCK REPAIR TABLE your_table_name;
    ```
 
 1. After performing the first two steps, you can run ad hoc queries on your inventory, as shown in the following examples\. 
 
    ```
    # Get list of latest inventory report dates available
-   SELECT DISTINCT dt FROM your-table-name ORDER BY 1 DESC limit 10;
+   SELECT DISTINCT dt FROM your_table_name ORDER BY 1 DESC limit 10;
              
    # Get encryption status for a provided report date.
-   SELECT encryption_status, count(*) FROM your-table-name WHERE dt = 'YYYY-MM-DD-HH-MM' GROUP BY encryption_status;
+   SELECT encryption_status, count(*) FROM your_table_name WHERE dt = 'YYYY-MM-DD-HH-MM' GROUP BY encryption_status;
              
    # Get encryption status for report dates in the provided range.
-   SELECT dt, encryption_status, count(*) FROM your-table-name 
+   SELECT dt, encryption_status, count(*) FROM your_table_name 
    WHERE dt > 'YYYY-MM-DD-HH-MM' AND dt < 'YYYY-MM-DD-HH-MM' GROUP BY dt, encryption_status;
    ```
 

@@ -47,7 +47,7 @@ aws s3control get-bucket --account-id 123456789012 --bucket "arn:aws:s3-outposts
 
 ### Get a list of S3 on Outposts buckets<a name="S3OutpostsListRegionalBucketCLI"></a>
 
-The following AWS CLI example gets a list of buckets in an Outpost\. 
+The following AWS CLI example gets a list of buckets in an Outpost\.
 
 ```
 aws s3control list-regional-buckets --account-id 123456789012 --outpost-id op-01ac5d28a6a232904
@@ -264,3 +264,6 @@ The following example lists the objects in an S3 on Outposts bucket \(`s3-outpos
 ```
 aws s3api list-objects-v2 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point
 ```
+
+**Note**  
+When using this action with Amazon S3 on Outposts through the AWS SDKs, you provide the Outposts access point ARN in place of the bucket name, in the following form: `arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point`\. For more information about S3 on Outposts ARNs, see [Using Amazon S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html) in the *Amazon S3 User Guide*\.

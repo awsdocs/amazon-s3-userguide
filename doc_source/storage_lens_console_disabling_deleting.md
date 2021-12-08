@@ -6,9 +6,9 @@ Amazon S3 Storage Lens aggregates your usage and activity metrics and displays t
 
  The Amazon S3 Storage Lens default dashboard is **default\-account\-dashboard**\. This dashboard is preconfigured by Amazon S3 to help you visualize summarized insights and trends for your entire account’s aggregated storage usage and activity metrics on the console\. You can't modify its configuration scope, but you can upgrade the metrics selection from the Free Metrics to the paid Advanced Metrics and Recommendations, configure the optional metrics export, or even disable it\. The default dashboard cannot be deleted\. 
 
-You can delete or disable an Amazon S3 Storage Lens dashboard from the Amazon S3 console\. Disabling or deleting a dashboard prevents it from generating metrics in the future\. A disabled dashboard still retains its configuration information, so it can be easily resumed when re\-enabled\. A disabled dashboard retains its historical data until its retention policy expires\. 
+You can delete or disable an Amazon S3 Storage Lens dashboard from the Amazon S3 console\. Disabling or deleting a dashboard prevents it from generating metrics in the future\. A disabled dashboard still retains its configuration information, so it can be easily resumed when re\-enabled\. A disabled dashboard retains its historical data until it's no longer available for queries\. 
 
-Data for Free Metrics selections is retained for 14 days, and data for Advanced Metrics and Recommendations selections is retained for 15 months\.
+Data for Free Metrics selections is available for queries for 14 days, and data for Advanced Metrics and Recommendations selections is available for queries for 15 months\.
 
 **Topics**
 + [Disabling an Amazon S3 Storage Lens dashboard](storage_lens_console_disabling.md)

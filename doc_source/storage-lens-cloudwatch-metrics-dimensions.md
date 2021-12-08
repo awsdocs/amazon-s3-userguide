@@ -1,0 +1,53 @@
+# S3 Storage Lens metrics and dimensions<a name="storage-lens-cloudwatch-metrics-dimensions"></a>
+
+To send S3 Storage Lens metrics to CloudWatch, you must enable the CloudWatch publishing option within S3 Storage Lens *advanced metrics and recommendations*\. Once enabled, you can use CloudWatch [dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html) to monitor S3 Storage Lens metrics alongside other application metrics and create a unified view of your operational health\. You can use dimensions to filter your S3 Storage Lens metrics in CloudWatch by organization, account, bucket, storage class, Region, and metrics configuration ID\.
+
+For more information about S3 Storage Lens metrics and dimensions in CloudWatch, see the following topics\.
+
+**Topics**
++ [Metrics](#storage-lens-cloudwatch-metrics)
++ [Dimensions](#storage-lens-cloudwatch-dimensions)
+
+## Metrics<a name="storage-lens-cloudwatch-metrics"></a>
+
+S3 Storage Lens usage and activity metrics are available as metrics within CloudWatch\. S3 Storage Lens metrics are published to the `AWS/S3/Storage-Lens` namespace\. This namespace is only for S3 Storage Lens metrics\. Amazon S3 bucket, request, and replication metrics are published to the `AWS/S3` namespace\. 
+
+In S3 Storage Lens, metrics are aggregated and stored only in the designated home Region\. S3 Storage Lens metrics are also published to CloudWatch in the home Region that you specify in the S3 Storage Lens configuration\. 
+
+For a complete list of S3 Storage Lens metrics, including a list of those metrics available in CloudWatch, see [Amazon S3 Storage Lens metrics glossary](storage_lens_metrics_glossary.md)\.
+
+**Note**  
+The valid statistic for S3 Storage Lens metrics in CloudWatch is Average\. For more information about statistics in CloudWatch, see [ CloudWatch statistics definitions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html) in the *Amazon CloudWatch User Guide*\.
+
+### Granularity of S3 Storage Lens metrics in CloudWatch<a name="storage-lens-cloudwatch-metrics-granularity"></a>
+
+S3 Storage Lens offers metrics at organization, account, bucket, and prefix granularity\. S3 Storage Lens publishes organization, account, and bucket\-level S3 Storage Lens metrics to CloudWatch\. Prefix\-level S3 Storage Lens metrics are not available in CloudWatch\.
+
+For more information about the granularity of S3 Storage Lens metrics available in CloudWatch, see the following list:
++ **Organization** – Metrics aggregated across the member accounts in your organization\. S3 Storage Lens publishes metrics for member accounts to CloudWatch in the management account\. 
+  + **Organization and account** – Metrics for the member accounts in your organization\. 
+  + **Organization and bucket** – Metrics for Amazon S3 buckets in the member accounts of your organization\.
++ **Account** \(Non\-organization level\) – Metrics aggregated across the buckets in your account\. 
++ **Bucket** \(Non\-organization level\) – Metrics for a specific bucket\. In CloudWatch, S3 Storage Lens publishes these metrics to the AWS account that created the S3 Storage Lens configuration\. S3 Storage Lens publishes these metrics only for non\-organization configurations\.
+
+## Dimensions<a name="storage-lens-cloudwatch-dimensions"></a>
+
+When S3 Storage Lens sends data to CloudWatch, it attaches dimensions to each metric\. Dimensions are categories that describe the characteristics of metrics\. You can use dimensions to filter the results that CloudWatch returns\. 
+
+For example, all S3 Storage Lens metrics in CloudWatch have the `configuration_id` dimension\. You can use this dimension to differentiate between metrics associated with a specific S3 Storage Lens configuration\. The `organization_id` identifies organization\-level metrics\. For more information about dimensions in CloudWatch, see [Dimensions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension) in the *CloudWatch User Guide*\. 
+
+Different dimensions are available for S3 Storage Lens metrics depending on the granularity of metrics\. For example, you can use the `organization_id` dimension to filter organization\-level metrics by the AWS Organizations ID\. However, you can’t use this dimension for bucket and account\-level metrics\. For more information, see [Filtering metrics using dimensions](storage-lens-cloudwatch-monitoring-cloudwatch.md#storage-lens-cloudwatch-monitoring-cloudwatch-dimensions)\.
+
+To see which dimensions are available for your S3 Storage Lens configuration, see the following table\.
+
+
+|  **Dimension**  |  **Description**  |  **Bucket**  | **Account** |  **Organization**  |  **Organization and Bucket**  |  **Organization and Account**  | 
+| --- | --- | --- | --- | --- | --- | --- | 
+| configuration\_id |  Dashboard name for S3 Storage Lens configuration reported in the metrics  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | 
+| metrics\_version |  Version of the S3 Storage Lens metrics\. The metrics version has a fixed value of 1\.0\.  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | 
+| organization\_id |  AWS Organizations ID for the metrics  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-no.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-no.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | 
+| aws\_account\_number | AWS account associated with the metrics | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-no.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | 
+| aws\_region | AWS Region for the metrics | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | 
+| bucket\_name |  Name of the S3 bucket reported in the metrics  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-no.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-no.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-no.png)  | 
+| storage\_class |  Storage class for bucket reported in the metrics  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png)  | 
+| record\_type |  Granularity of metrics: ORGANIZATION, ACCOUNT, BUCKET  | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png) BUCKET | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png) ACCOUNT | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png) BUCKET | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png) ACCOUNT | ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/icon-yes.png) ORGANIZATION | 

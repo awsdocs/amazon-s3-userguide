@@ -15,6 +15,9 @@ On the [S3 console](https://console.aws.amazon.com/s3), S3 Storage Lens provides
 **Metrics export**  
 In addition to viewing the dashboard on the S3 console, you can export metrics in CSV or Parquet format to an S3 bucket of your choice for further analysis\. For more information, see [Viewing Amazon S3 Storage Lens metrics using a data export](storage_lens_view_metrics_export.md)\.
 
+**Amazon CloudWatch publishing option**  
+You can publish S3 Storage Lens usage and activity metrics to Amazon CloudWatch to create a unified view of your operational health in CloudWatch [dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html)\. You can also use CloudWatch features like alarms and triggered actions, metric math, and anomaly detection to monitor and take action on S3 Storage Lens metrics\. In addition, the CloudWatch APIs enable applications, including third\-party providers, to access your S3 Storage Lens metrics\. The CloudWatch publishing option is available for dashboards upgraded to S3 Storage Lens *advanced metrics and recommendations*\. For more information about support for S3 Storage Lens metrics in CloudWatch, see [Monitor S3 Storage Lens metrics in CloudWatch](storage_lens_view_metrics_cloudwatch.md)\.
+
 For more information about using S3 Storage Lens, see [Working with Amazon S3 Storage Lens using the console and API](S3LensExamples.md)\. For information about S3 Storage Lens pricing, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing)\.
 
 **Topics**

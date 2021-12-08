@@ -42,9 +42,10 @@ The first column in the following table lists usage types that appear in your bi
 |  `region1-region2-AWS-Out-Bytes`  |  GB  |  Hourly  |  The amount of data transferred from AWS Region1 to AWS Region2  | 
 |  `region-BatchOperations-Jobs `  |  Count   |  Hourly  |  The number of S3 Batch Operations jobs performed  | 
 |  `region-BatchOperations-Objects `  |  Count   |  Hourly  |  The number of object operations performed by S3 Batch Operations  | 
-|  `region-Bulk-Retrieval-Bytes`  |  GB  |  Hourly  |  The amount of data retrieved with Bulk S3 Glacier or S3 Glacier Deep Archive requests  | 
+|  `region-Bulk-Retrieval-Bytes`  |  GB  |  Hourly  |  The amount of data retrieved with Bulk S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive requests  | 
 |  `region-BytesDeleted-GDA`  |  GB  |  Monthly  |  The amount of data deleted by a DeleteObject operation from S3 Glacier Deep Archive storage  | 
-|  `region-BytesDeleted-GLACIER`  |  GB  |  Monthly  |  The amount of data deleted by a DeleteObject operation from S3 Glacier storage  | 
+|  `region-BytesDeleted-GIR`  |  GB  |  Monthly  |  The amount of data deleted by a DeleteObject operation from S3 Glacier Instant Retrieval storage\.  | 
+|  `region-BytesDeleted-GLACIER`  |  GB  |  Monthly  |  The amount of data deleted by a DeleteObject operation from S3 Glacier Flexible Retrieval storage  | 
 |  `region-BytesDeleted-INT`  |  GB  |  Monthly  |  The amount of data deleted by a DeleteObject operation from S3 Intelligent\-Tiering storage  | 
 |  `region-BytesDeleted-RRS`  |  GB  |  Monthly  |  The amount of data deleted by a DeleteObject operation from Reduced Redundancy Storage \(RRS\) storage  | 
 |  `region-BytesDeleted-SIA`  |  GB  |  Monthly  |  The amount of data deleted by a DeleteObject operation from S3 Standard\-IA storage  | 
@@ -57,25 +58,29 @@ The first column in the following table lists usage types that appear in your bi
 |  `region-DataTransfer-In-Bytes`  |  GB  |  Hourly  |  The amount of data transferred into Amazon S3 from the internet  | 
 |  `region-DataTransfer-Out-Bytes`  |  GB  |  Hourly  |  The amount of data transferred from Amazon S3 to the internet1  | 
 |  `region-DataTransfer-Regional-Bytes`  |  GB  |  Hourly  |  The amount of data transferred from Amazon S3 to AWS resources within the same AWS Region  | 
-|  `region-EarlyDelete-ByteHrs`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from, S3 Glacier storage before the 90\-day minimum commitment ended2  | 
+|  `region-EarlyDelete-ByteHrs`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from, S3 Glacier Flexible Retrieval storage before the 90\-day minimum commitment ended2  | 
 |  `region-EarlyDelete-GDA`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from S3 Glacier Deep Archive storage before the 180\-day minimum commitment ended 2  | 
+|  `region-EarlyDelete-GIR`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from S3 Glacier Instant Retrieval before the 90\-day minimum commitment ended\.  | 
+|  `region-EarlyDelete-GIR-SmObjects`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for small objects \(smaller than 128 KB\) that were deleted from S3 Glacier Instant Retrieval before the 90\-day minimum commitment ended\.  | 
 |  `region-EarlyDelete-INT`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from S3 Intelligent\-Tiering before the 30\-day minimum commitment ended  | 
 |  `region-EarlyDelete-SIA`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from S3 Standard\-IA before the 30\-day minimum commitment ended3  | 
 |  `region-EarlyDelete-SIA-SmObjects`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for small objects \(smaller than 128 KB\) that were deleted from S3 Standard\-IA before the 30\-day minimum commitment ended3  | 
 |  `region-EarlyDelete-ZIA`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from S3 One Zone\-IA before the 30\-day minimum commitment ended3  | 
 |  `region-EarlyDelete-ZIA-SmObjects`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for small objects \(smaller than 128 KB\) that were deleted from S3 One Zone\-IA before the 30\-day minimum commitment ended3  | 
-|  `region-Expedited-Retrieval-Bytes`  |  GB  |  Hourly  |  The amount of data retrieved with Expedited S3 Glacier requests  | 
+|  `region-Expedited-Retrieval-Bytes`  |  GB  |  Hourly  |  The amount of data retrieved with Expedited S3 Glacier Flexible Retrieval requests  | 
 |  `region-Inventory-ObjectsListed`  |  Objects  |  Hourly  |  The number of objects listed for an object group \(objects are grouped by bucket or prefix\) with an inventory list  | 
 |  `region-Monitoring-Automation-INT`  |  Objects  |  Hourly  |  The number of unique objects monitored and auto\-tiered in the S3 Intelligent\-Tiering storage class  | 
 |  `region-OverwriteBytes-Copy-GDA`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Glacier Deep Archive storage  | 
-|  `region-OverwriteBytes-Copy-GLACIER`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Glacier storage  | 
+|  `region-OverwriteBytes-Copy-GIR`  |  GB  |  Monthly  |  The amount of data oerwritten by a CopyObject operation from S3 Glacier Instant Retrieval storage\.  | 
+|  `region-OverwriteBytes-Copy-GLACIER`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Glacier Flexible Retrieval storage  | 
 |  `region-OverwriteBytes-Copy-INT`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Intelligent\-Tiering storage  | 
 |  `region-OverwriteBytes-Copy-RRS`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from Reduced Redundancy Storage \(RRS\) storage  | 
 |  `region-OverwriteBytes-Copy-SIA`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Standard\-IA storage  | 
 |  `region-OverwriteBytes-Copy-STANDARD`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Standard storage  | 
 |  `region-OverwriteBytes-Copy-ZIA`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 One Zone\-IA storage  | 
 |  `region-OverwriteBytes-Put-GDA`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 Glacier Deep Archive storage  | 
-|  `region-OverwriteBytes-Put-GLACIER`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 Glacier storage  | 
+|  `region-OverwriteBytes-Put-GIR`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 Glacier Instant Retrieval storage\.  | 
+|  `region-OverwriteBytes-Put-GLACIER`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 Glacier Flexible Retrieval storage  | 
 |  `region-OverwriteBytes-Put-INT`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 Intelligent\-Tiering storage  | 
 |  `region-OverwriteBytes-Put-RRS`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from Reduced Redundancy Storage \(RRS\) storage  | 
 |  `region-OverwriteBytes-Put-SIA`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 Standard\-IA storage  | 
@@ -85,40 +90,47 @@ The first column in the following table lists usage types that appear in your bi
 |  `region-Requests-GDA-Tier2`  |  Count  |  Hourly  |  The number of GET, HEAD, and LIST requests  | 
 |  `region-Requests-GDA-Tier3`  |  Count  |  Hourly  |  The number of S3 Glacier Deep Archive standard restore requests  | 
 |  `region-Requests-GDA-Tier5`  |  Count  |  Hourly  |  The number of Bulk S3 Glacier Deep Archive restore requests  | 
+|  `region-Requests-GIR-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on S3 Glacier Instant Retrieval objects\.  | 
+|  `region-Requests-GIR-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-GIR\-Tier1 requests on S3 Glacier Instant Retrieval objects\.  | 
+|  `region-Requests-GLACIER-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on S3 Glacier Flexible Retrieval objects  | 
+|  `region-Requests-GLACIER-Tier2`  |  Count  |  Hourly  | The number of GET and all other requests not listed on S3 Glacier Flexible Retrieval objects | 
 |  `region-Requests-INT-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on S3 Intelligent\-Tiering objects  | 
 |  `region-Requests-INT-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-Tier1 requests for S3 Intelligent\-Tiering objects  | 
 |  `region-Requests-SIA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on S3 Standard\-IA objects  | 
 |  `region-Requests-SIA-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-SIA\-Tier1 requests on S3 Standard\-IA objects  | 
 |  `region-Requests-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests for STANDARD, RRS, and tags  | 
-|  `region-Requests-GLACIER-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on S3 Glacier objects  | 
 |  `region-Requests-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-Tier1 requests  | 
-|  `region-Requests-GLACIER-Tier2`  |  Count  |  Hourly  | The number of GET and all other requests not listed on S3 Glacier objects | 
-|  `region-Requests-Tier3`  |  Count  |  Hourly  |  The number of lifecycle requests to S3 Glacier or S3 Glacier Deep Archive and standard S3 Glacier restore requests  | 
-|  `region-Requests-Tier4`  |  Count  |  Hourly  |  The number of lifecycle transitions to S3 Intelligent\-Tiering, S3 Standard\-IA, or S3 One Zone\-IA storage  | 
-|  `region-Requests-Tier5`  |  Count  |  Hourly  |  The number of Bulk S3 Glacier restore requests  | 
-|  `region-Requests-Tier6`  |  Count  |  Hourly  |  The number of Expedited S3 Glacier restore requests  | 
+|  `region-Requests-Tier3`  |  Count  |  Hourly  |  The number of lifecycle requests to S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive and standard S3 Glacier Flexible Retrieval restore requests  | 
+|  `region-Requests-Tier4`  |  Count  |  Hourly  |  The number of lifecycle transitions to S3 Glacier Instant Retrieval, S3 Intelligent\-Tiering, S3 Standard\-IA, or S3 One Zone\-IA storage  | 
+|  `region-Requests-Tier5`  |  Count  |  Hourly  |  The number of Bulk S3 Glacier Flexible Retrieval restore requests  | 
+|  `region-Requests-Tier6`  |  Count  |  Hourly  |  The number of Expedited S3 Glacier Flexible Retrieval restore requests  | 
 |  `region-Requests-ZIA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on S3 One Zone\-IA objects  | 
 |  `region-Requests-ZIA-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-ZIA\-Tier1 requests on S3 One Zone\-IA objects  | 
+|  `region-Retrieval-GIR`  |  GB  |  Hourly  |  The amount of data retrieved from S3 Glacier Instant Retrieval storage\.  | 
 |  `region-Retrieval-SIA`  |  GB  |  Hourly  |  The amount of data retrieved from S3 Standard\-IA storage  | 
 |  `region-Retrieval-ZIA`  |  GB  |  Hourly  |  The amount of data retrieved from S3 One Zone\-IA storage  | 
-|  `region-S3G-DataTransfer-In-Bytes`  |  GB  |  Hourly  |  The amount of data transferred into Amazon S3 to restore objects from S3 Glacier or S3 Glacier Deep Archive storage  | 
-|  `region-S3G-DataTransfer-Out-Bytes`  |  GB  |  Hourly  |  The amount of data transferred from Amazon S3 to transition objects to S3 Glacier or S3 Glacier Deep Archive storage  | 
+|  `region-S3G-DataTransfer-In-Bytes`  |  GB  |  Hourly  |  The amount of data transferred into Amazon S3 to restore objects from S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage  | 
+|  `region-S3G-DataTransfer-Out-Bytes`  |  GB  |  Hourly  |  The amount of data transferred from Amazon S3 to transition objects to S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage  | 
 |  `region-Select-Returned-Bytes`  |  GB  |  Hourly  |  The amount of data returned with Select requests from S3 Standard storage  | 
+|  `region-Select-Returned-GIR-Bytes`  |  GB  |  Hourly  |  The amount of data returned with Select requests from S3 Glacier Instant Retrieval storage\.  | 
 |  `region-Select-Returned-INT-Bytes`  |  GB  |  Hourly  |  The amount of data returned with Select requests from S3 Intelligent\-Tiering storage  | 
 |  `region-Select-Returned-SIA-Bytes`  |  GB  |  Hourly  |  The amount of data returned with Select requests from S3 Standard\-IA storage  | 
 |  `region-Select-Returned-ZIA-Bytes`  |  GB  |  Hourly  |  The amount of data returned with Select requests from S3 One Zone\-IA storage  | 
 |  `region-Select-Scanned-Bytes`  |  GB  |  Hourly  |  The amount of data scanned with Select requests from S3 Standard storage  | 
+|  `region-Select-Scanned-GIR-Bytes`  |  GB  |  Hourly  |  The amount of data scanned with Select requests from S3 Glacier Instant Retrieval storage\.  | 
 |  `region-Select-Scanned-INT-Bytes`  |  GB  |  Hourly  |  The amount of data scanned with Select requests from S3 Intelligent\-Tiering storage  | 
 |  `region-Select-Scanned-SIA-Bytes`  |  GB  |  Hourly  |  The amount of data scanned with Select requests from S3 Standard\-IA storage  | 
 |  `region-Select-Scanned-ZIA-Bytes`  |  GB  |  Hourly  |  The amount of data scanned with Select requests from S3 One Zone\-IA storage  | 
-|  `region-Standard-Retrieval-Bytes`  |  GB  |  Hourly  |  The amount of data retrieved with standard S3 Glacier or S3 Glacier Deep Archive requests  | 
+|  `region-Standard-Retrieval-Bytes`  |  GB  |  Hourly  |  The amount of data retrieved with standard S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive requests  | 
 |  `region-StorageAnalytics-ObjCount`  |  Objects  |  Hourly  |  The number of unique objects in each object group \(where objects are grouped by bucket or prefix\) tracked by storage analytics  | 
 |  `region-TagStorage-TagHrs`  |  Tag\-Hours  |  Daily  |  The total of tags on all objects in the bucket reported by hour  | 
 |  `region-TimedStorage-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Standard storage  | 
-|  `region-TimedStorage-GlacierByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Glacier storage  | 
 |  `region-TimedStorage-GDA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Glacier Deep Archive storage  | 
 |  `region-TimedStorage-GDA-Staging`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Glacier Deep Archive staging storage  | 
-|  `region-TimedStorage-GlacierStaging`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Glacier staging storage  | 
+|  `region-TimedStorage-GIR-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Glacier Instant Retrieval storage\.  | 
+|  `region-TimedStorage-GIR-SmObjects`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that small objects \(smaller than 128 KB\) were stored in S3 Glacier Instant Retrieval storage\.  | 
+|  `region-TimedStorage-GlacierByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Glacier Flexible Retrieval storage  | 
+|  `region-TimedStorage-GlacierStaging`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Glacier Flexible Retrieval staging storage  | 
 |  `region-TimedStorage-INT-FA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in the frequent access tier of S3 Intelligent\-Tiering storage5  | 
 |  `region-TimedStorage-INT-IA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in the infrequent access tier of S3 Intelligent\-Tiering storage  | 
 |  `region-TimedStorage-RRS-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in Reduced Redundancy Storage \(RRS\) storage  | 
@@ -132,7 +144,7 @@ The first column in the following table lists usage types that appear in your bi
 
 1. If you terminate a transfer before completion, the amount of data that is transferred might exceed the amount of data that your application receives\. This discrepancy can occur because a transfer termination request cannot be executed instantaneously, and some amount of data might be in transit pending execution of the termination request\. This data in transit is billed as data transferred “out\.”
 
-1. When objects that are archived to the S3 Glacier or S3 Glacier Deep Archive storage class are deleted, overwritten, or transitioned to a different storage class before the minimum storage commitment has passed, which is 90 days for S3 Glacier or 180\-days for S3 Glacier Deep Archive, there is a prorated charge per gigabyte for the remaining days\.
+1. When objects that are archived to the S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, or S3 Glacier Deep Archive storage class are deleted, overwritten, or transitioned to a different storage class before the minimum storage commitment has passed, which is 90 days for S3 Glacier Instant Retrieval and S3 Glacier Flexible Retrieval, or 180\-days for S3 Glacier Deep Archive, there is a prorated charge per gigabyte for the remaining days\.
 
 1. For objects that are in S3 Standard\-IA or S3 One Zone\-IA storage, when they are deleted, overwritten, or transitioned to a different storage class prior to 30 days, there is a prorated charge per gigabyte for the remaining days\.
 

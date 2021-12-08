@@ -3,8 +3,8 @@
 You can deregister delegate administrator access to accounts in your organization\. When an account is deregistered as a delegated administrator, the account loses authorization to access all read\-only AWS Organizations APIs that provide visibility to the members and structures of your organization\.
 
 **Note**  
- Deregistering a delegated administrator also automatically disables all organization\-level dashboards created by the delegated administrator\.
-The delegate administrator accounts can still see the historic data for these disabled dashboards according to their respective retention periods\. 
+Deregistering a delegated administrator also automatically disables all organization\-level dashboards created by the delegated administrator\.
+The delegate administrator accounts can still see the historic data for these disabled dashboards according to the respective period that data is available for queries\. 
 
 **To deregister accounts for delegated administrator access**
 

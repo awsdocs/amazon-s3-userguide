@@ -27,7 +27,7 @@ Be aware of the following when using encryption for cross\-account operations:
 + If specifying your own KMS key, you should use a fully qualified KMS key key ARN\. When using a KMS key alias, be aware that AWS KMS will resolve the key within the requester’s account\. This can result in data encrypted with a KMS key that belongs to the requester, and not the bucket administrator\.
 + You must specify a key that you \(the requester\) have been granted `Encrypt` permission to\. For more information, see [Allows key users to use a KMS key for cryptographic operations](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-users-crypto) in the *AWS Key Management Service Developer Guide*\.
 
-For more information about when to use customer managed keys and the AWS managed KMS keys, see [Should I use an AWS managed key or a customer managed key key to encrypt my objects on Amazon S3?](http://aws.amazon.com/premiumsupport/knowledge-center/s3-object-encrpytion-keys/)
+For more information about when to use customer managed keys and the AWS managed KMS keys, see [Should I use an AWS managed key or a customer managed KMS key to encrypt my objects on Amazon S3?](http://aws.amazon.com/premiumsupport/knowledge-center/s3-object-encryption-keys/)
 
 ## Using default encryption with replication<a name="bucket-encryption-replication"></a>
 

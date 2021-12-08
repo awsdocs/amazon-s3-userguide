@@ -1,6 +1,12 @@
 # Bucket policy examples<a name="example-bucket-policies"></a>
 
-This section presents a few examples of typical use cases for bucket policies\. The policies use *bucket* and *examplebucket* strings in the resource value\. To test these policies, replace these strings with your bucket name\. For information about access policy language, see [Access control list \(ACL\) overview](acl-overview.md)\.
+This section presents a few examples of typical use cases for bucket policies\. The policies use *bucket* and *examplebucket* strings in the resource value\. To test these policies, replace these strings with your bucket name\. For information about bucket policies, see [Using bucket policies](bucket-policies.md)\. For more information, access policy language, see [Policies and Permissions in Amazon S3](access-policy-language-overview.md)\.
+
+A bucket policy is a resource\-based policy that you can use to grant access permissions to your bucket and the objects in it\. Only the bucket owner can associate a policy with a bucket\. The permissions attached to the bucket apply to all of the objects in the bucket that are owned by the bucket owner\. These permissions do not apply to objects owned by other AWS accounts\.
+
+By default, when another AWS account uploads an object to your S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through ACLs\. You can use Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies, such as IAM policies, S3 bucket policies, virtual private cloud \(VPC\) endpoint policies, and AWS Organizations service control policies \(SCPs\)\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
+
+For more information about bucket policies, see [Using bucket policies](bucket-policies.md)\.
 
 **Note**  
 Bucket policies are limited to 20 KB in size\.

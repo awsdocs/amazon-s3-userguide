@@ -1,6 +1,6 @@
 # Setting lifecycle configuration on a bucket<a name="how-to-set-lifecycle-configuration-intro"></a>
 
-This section explains how you can set a S3 Lifecycle configuration on a bucket using AWS SDKs, the AWS CLI, or the S3 console\. For information about S3 Lifecycle configuration, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
+This section explains how you can set a S3 Lifecycle configuration on a bucket using AWS SDKs, the AWS CLI, or the Amazon S3 console\. For information about S3 Lifecycle configuration, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 
 You can use lifecycle rules to define actions that you want Amazon S3 to take during an object's lifetime \(for example, transition objects to another storage class, archive them, or delete them after a specified period of time\)\.
 
@@ -18,7 +18,7 @@ When you add a Lifecycle configuration to a bucket, the configuration rules appl
 **Changes in billing**  
 There may be a lag between when the Lifecycle configuration rules are satisfied and when the action triggered by satisfying the rule is taken\. However, changes in billing happen as soon as the Lifecycle configuration rule is satisfied, even if the action is not yet taken\.
 
-For example, after the object expiration time, you are not charged for storage, even if the object is not deleted immediately\. Another example, as soon as the object transition time elapses, you are charged Amazon S3 Glacier storage rates, even if the object is not immediately transitioned to the S3 Glacier storage class\. Lifecycle transitions to the S3 Intelligent\-Tiering storage class are the exception\. Changes in billing do not happen until the object has transitioned into the S3 Intelligent\-Tiering storage class\. 
+For example, after the object expiration time, you are not charged for storage, even if the object is not deleted immediately\. Another example, as soon as the object transition time elapses, you are charged S3 Glacier Flexible Retrieval storage rates, even if the object is not immediately transitioned to the S3 Glacier Flexible Retrieval storage class\. Lifecycle transitions to the S3 Intelligent\-Tiering storage class are the exception\. Changes in billing do not happen until the object has transitioned into the S3 Intelligent\-Tiering storage class\. 
 
 ## Using the S3 console<a name="create-lifecycle"></a>
 
@@ -46,6 +46,10 @@ You can define a lifecycle rules for all objects or a subset of objects in the b
        For more information about object name prefixes, see [Creating object key names](object-keys.md)\. For more information about object tags, see [Categorizing your storage using tags](object-tagging.md)\. 
    + To apply this lifecycle rule to *all objects in the bucket*, choose **This rule applies to *all* objects in the bucket**, and choose **I acknowledge that this rule applies to all objects in the bucket**\.
 
+1. To filter a rule by object size, you can check **Specify minimum object size**, **Specify maximum object size**, or both options\.
+   + When you're specifying a **minimum object size** or **maximum object size**, the value must be larger than 0 bytes and up to 5TB\. You can specify this value in bytes, KB, MB, or GB\.
+   + When you're specifying both, the maximum object size must be larger than the minimum object size\.
+
 1. Under **Lifecycle rule actions**, choose the actions that you want your lifecycle rule to perform:
    + Transition *current* versions of objects between storage classes
    + Transition *previous* versions of objects between storage classes
@@ -61,14 +65,14 @@ You can define a lifecycle rules for all objects or a subset of objects in the b
       + Standard\-IA
       + Intelligent\-Tiering
       + One Zone\-IA
-      + Glacier
+      + S3 Glacier Flexible Retrieval
       + Glacier Deep Archive
 
    1. In **Days after object creation**, enter the number of days after creation to transition the object\.
 
    For more information about storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md)\. You can define transitions for current or previous object versions or for both current and previous versions\. Versioning enables you to keep multiple versions of an object in one bucket\. For more information about versioning, see [Using the S3 console](manage-versioning-examples.md#enable-versioning)\.
 **Important**  
-When you choose the Glacier or Glacier Deep Archive storage class, your objects remain in Amazon S3\. You cannot access them directly through the separate Amazon S3 Glacier service\. For more information, see [Transitioning objects using Amazon S3 Lifecycle](lifecycle-transition-general-considerations.md)\. 
+When you choose the S3 Glacier Flexible Retrieval or Glacier Deep Archive storage class, your objects remain in Amazon S3\. You cannot access them directly through the separate Amazon S3 Glacier service\. For more information, see [Transitioning objects using Amazon S3 Lifecycle](lifecycle-transition-general-considerations.md)\. 
 
 1. To transition *non\-current* versions of objects between storage classes, under **Transition non\-current versions of objects between storage classes**:
 
@@ -76,7 +80,7 @@ When you choose the Glacier or Glacier Deep Archive storage class, your objects 
       + Standard\-IA
       + Intelligent\-Tiering
       + One Zone\-IA
-      + Glacier
+      + S3 Glacier Flexible Retrieval
       + Glacier Deep Archive
 
    1. In **Days after object becomes non\-current**, enter the number of days after creation to transition the object\.

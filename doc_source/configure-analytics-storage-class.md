@@ -16,7 +16,7 @@ You set up storage class analysis by configuring what object data you want to an
 You can use the Amazon S3 console, the REST API, or the AWS CLI or AWS SDKs to configure storage class analysis\.
 
 **Important**  
-Storage class analysis does not give recommendations for transitions to the ONEZONE\_IA or S3 Glacier storage classes\.  
+Storage class analysis does not give recommendations for transitions to the ONEZONE\_IA or S3 Glacier Flexible Retrieval storage classes\.  
 If you want to configure storage class analysis to export your findings as a \.csv file and the destination bucket uses default bucket encryption with a AWS KMS key, you must update the AWS KMS key policy to grant Amazon S3 permission to encrypt the \.csv file\. For instructions, see [Granting Amazon S3 permission to use your AWS KMS key for encryption](configure-inventory.md#configure-inventory-kms-key-policy)\.
 
 For more information about analytics, see [Amazon S3 analytics – Storage Class Analysis](analytics-storage-class.md)\.

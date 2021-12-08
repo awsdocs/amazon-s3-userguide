@@ -91,6 +91,8 @@ We recommend that you use the `s3:GetObjectVersionForReplication` action instead
 + **`kms:Decrypt` and `kms:Encrypt` AWS KMS actions**:
   + `kms:Decrypt` permissions for the KMS key used to decrypt the source object
   + `kms:Encrypt` permissions for the KMS key used to encrypt the object replica
+**Note**  
+The key policy must allow the use of IAM policies to control access to a KMS key\. If the key policy doesn't allow it, IAM policies that attempt to control access to a KMS key are ineffective\. For information, see [Default key policy](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-default.html) in the AWS Key Management Service Developer Guide\.
 
 We recommend that you restrict these permissions only to the destination buckets and objects using AWS KMS condition keys\. The AWS account that owns the IAM role must have permissions for these AWS KMS actions \(`kms:Encrypt` and `kms:Decrypt`\) for KMS keys listed in the policy\. If the KMS keys are owned by another AWS account, the KMS key owner must grant these permissions to the AWS account that owns the IAM role\. For more information about managing access to these KMS keys, see [Using IAM Policies with AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html) in the* AWS Key Management Service Developer Guide*\.
 

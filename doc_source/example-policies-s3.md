@@ -247,14 +247,9 @@ You want to prevent the `WidgetCo` group from doing anything else with the bucke
  8.       },
  9.       {
 10.          "Effect":"Deny",
-11.          "NotAction":"s3:PutObject",
-12.          "Resource":"arn:aws:s3:::mycorporatebucket/uploads/widgetco/*"
-13.       },
-14.       {
-15.          "Effect":"Deny",
-16.          "Action":"s3:*",
-17.          "NotResource":"arn:aws:s3:::mycorporatebucket/uploads/widgetco/*"
-18.       }
-19.    ]
-20. }
+11.          "Action":"s3:*",
+12.          "NotResource":"arn:aws:s3:::mycorporatebucket/uploads/widgetco/*"
+13.       }
+14.    ]
+15. }
 ```

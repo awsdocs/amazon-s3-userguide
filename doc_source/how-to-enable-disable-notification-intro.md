@@ -1,20 +1,24 @@
-# Enabling event notifications<a name="how-to-enable-disable-notification-intro"></a>
+# Using Amazon SQS, Amazon SNS, and Lambda<a name="how-to-enable-disable-notification-intro"></a>
 
-Enabling notifications is a bucket\-level operation\. You store notification configuration information in the *notification* subresource associated with a bucket\. After creating or changing the bucket notification configuration, typically you must wait 5 minutes for the changes to take effect\. An `s3:TestEvent` occurs when the notification is first enabled\. You can use any of the following methods to manage notification configuration:
-+ **Using the Amazon S3 console** — The console UI enables you to set a notification configuration on a bucket without having to write any code\. For more information, see [Enabling and configuring event notifications using the Amazon S3 console](enable-event-notifications.md)\.
-+ **Programmatically using the AWS SDKs** — Internally, both the console and the SDKs call the Amazon S3 REST API to manage *notification* subresources associated with the bucket\. For notification configuration using AWS SDK examples, see [Walkthrough: Configuring a bucket for notifications \(SNS topic or SQS queue\)](ways-to-add-notification-config-to-bucket.md)\.
+Enabling notifications is a bucket\-level operation\. You store notification configuration information in the *notification* subresource that's associated with a bucket\. After you create or change the bucket notification configuration, it usually takes about five minutes for the changes to take effect\. When the notification is first enabled, an `s3:TestEvent` occurs\. You can use any of the following methods to manage notification configuration:
++ **Using the Amazon S3 console** — You can use the console UI to set a notification configuration on a bucket without having to write any code\. For more information, see [Enabling and configuring event notifications using the Amazon S3 consoleEnabling Amazon EventBridge](enable-event-notifications.md)\.
++ **Programmatically using the AWS SDKs** — Internally, both the console and the SDKs call the Amazon S3 REST API to manage *notification* subresources that are associated with the bucket\. For examples of notification configurations that use AWS SDK, see [Walkthrough: Configuring a bucket for notifications \(SNS topic or SQS queue\)](ways-to-add-notification-config-to-bucket.md)\.
 **Note**  
-You can also make the Amazon S3 REST API calls directly from your code\. However, this can be cumbersome because it requires you to write code to authenticate your requests\. 
+You can also make the Amazon S3 REST API calls directly from your code\. However, this can be cumbersome because to do so you must write code to authenticate your requests\. 
 
-Regardless of the method that you use, Amazon S3 stores the notification configuration as XML in the *notification* subresource associated with a bucket\. For information about bucket subresources, see [Bucket configuration options](UsingBucket.md#bucket-config-options-intro)\.
+Regardless of the method that you use, Amazon S3 stores the notification configuration as XML in the *notification* subresource that's associated with a bucket\. For information about bucket subresources, see [Bucket configuration options](UsingBucket.md#bucket-config-options-intro)\.
 
 **Topics**
++ [Granting permissions to publish event notification messages to a destination](grant-destinations-permissions-to-s3.md)
 + [Enabling and configuring event notifications using the Amazon S3 console](enable-event-notifications.md)
 + [Configuring event notifications programmatically](#event-notification-configuration)
++ [Walkthrough: Configuring a bucket for notifications \(SNS topic or SQS queue\)](ways-to-add-notification-config-to-bucket.md)
++ [Configuring event notifications using object key name filtering](notification-how-to-filtering.md)
++ [Event message structure](notification-content-structure.md)
 
 ## Configuring event notifications programmatically<a name="event-notification-configuration"></a>
 
-By default, notifications are not enabled for any type of event\. Therefore, initially the *notification* subresource stores an empty configuration\.
+By default, notifications aren't enabled for any type of event\. Therefore, the *notification* subresource initially stores an empty configuration\.
 
 ```
 <NotificationConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/"> 

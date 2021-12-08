@@ -4,7 +4,7 @@ Enabling trusted access allows Amazon S3 Storage Lens to access your AWS Organiz
 
 The service\-linked role grants S3 Storage Lens permissions to describe organizations, list accounts, verify a list of service access for the organizations, and get delegated administrators for the organization\. This allows S3 Storage Lens to collect cross\-account storage usage and activity metrics for dashboards within accounts in your organizations\. 
 
-For more information, see [Using service\-linked roles for Amazon S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-service-linked-roles.html)\.
+For more information, see [Using service\-linked roles for Amazon S3 Storage Lens](using-service-linked-roles.md)\.
 
 **Note**  
  Trusted access can only be enabled by the *management account*\. 

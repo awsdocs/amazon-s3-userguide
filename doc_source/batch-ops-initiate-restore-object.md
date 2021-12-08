@@ -1,7 +1,7 @@
 # Restore objects<a name="batch-ops-initiate-restore-object"></a>
 
 The **Restore** operation initiates restore requests for archived objects on a list of Amazon S3 objects that you specify\. The following objects must be restored with an [S3 Initiate Restore Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_S3InitiateRestoreObjectOperation.html) job before they can be accessed in real time:
-+ Objects archived in the S3 Glacier or S3 Glacier Deep Archive storage classes
++ Objects archived in the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes
 + Objects archived through the S3 Intelligent\-Tiering storage class in the Archive Access or Deep Archive Access tiers
 
 Using an S3 Initiate Restore Object operation in your S3 Batch Operations job results in a restore request for every object that is specified in the manifest\.
@@ -9,15 +9,15 @@ Using an S3 Initiate Restore Object operation in your S3 Batch Operations job re
 **Important**  
 The S3 Initiate Restore Object job only *initiates* the request to restore objects\. S3 Batch Operations reports the job as complete for each object after the request is initiated for that object\. Amazon S3 doesn't update the job or otherwise notify you when the objects have been restored\. However, you can use event notifications to receive notifications when the objects are available in Amazon S3\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
 
-Restoring archived files from the S3 Glacier or S3 Glacier Deep Archive storage classes differs from restoring files from the S3 Intelligent\-Tiering storage class in the Archive Access or Deep Archive Access tiers\.
-+ When you restore from S3 Glacier or S3 Glacier Deep Archive, a temporary *copy* of the object is created\. Amazon S3 deletes this copy after `ExpirationInDays` days have elapsed\. After this copy is deleted, you must submit an additional restore request to access it\.
+Restoring archived files from the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes differs from restoring files from the S3 Intelligent\-Tiering storage class in the Archive Access or Deep Archive Access tiers\.
++ When you restore from S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive, a temporary *copy* of the object is created\. Amazon S3 deletes this copy after `ExpirationInDays` days have elapsed\. After this copy is deleted, you must submit an additional restore request to access it\.
 + When you restore from the S3 Intelligent\-Tiering Archive Access or Deep Archive Access tiers, the object transitions back into the S3 Intelligent\-Tiering Frequent Access tier\. The object automatically transitions into the Archive Access tier after a minimum of 90 consecutive days of no access\. It moves into the Deep Archive Access tier after a minimum of 180 consecutive days of no access\. Do *not * specify the `ExpirationInDays` argument when restoring archived S3 Intelligent\-Tiering objects\. 
-+ Batch Operations jobs can operate either on S3 Glacier and S3 Glacier Deep Archive storage class objects or on S3 Intelligent\-Tiering Archive Access and Deep Archive Access storage tier objects\. They can't operate on both types in the same job\. To restore objects of both types, you *must* create separate Batch Operations jobs\. 
++ Batch Operations jobs can operate either on S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive storage class objects or on S3 Intelligent\-Tiering Archive Access and Deep Archive Access storage tier objects\. They can't operate on both types in the same job\. To restore objects of both types, you *must* create separate Batch Operations jobs\. 
 
 To create an S3 Initiate Restore Object job, the following arguments are available:
 
 **ExpirationInDays**  
-This argument specifies how long the S3 Glacier or S3 Glacier Deep Archive object remains available in Amazon S3\. Initiate Restore Object jobs that target S3 Glacier and S3 Glacier Deep Archive objects require `ExpirationInDays` set to 1 or greater\.  
+This argument specifies how long the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive object remains available in Amazon S3\. Initiate Restore Object jobs that target S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive objects require `ExpirationInDays` set to 1 or greater\.  
 Conversely, do not set `ExpirationInDays` when creating S3 Initiate Restore Object operation jobs that target S3 Intelligent\-Tiering Archive Access and Deep Archive Access tier objects\. Objects in S3 Intelligent\-Tiering archive access tiers are not subject to restore expiry, so specifying `ExpirationInDays` results in restore request failure\.
 
 **GlacierJobTier**  
@@ -40,6 +40,6 @@ The restore operation fails for the object if any of the following conditions ar
 S3 Initiate Restore Object jobs have the following limitations:
 + You must create the job in the same Region as the archived objects\.
 + S3 Batch Operations does not support the `EXPEDITED` retrieval tier\.
-+ S3 Batch Operations does not support restoring subsets of S3 Intelligent\-Tiering or S3 Glacier objects\. You must call [RestoreObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html) for this purpose\.  
++ S3 Batch Operations does not support restoring subsets of S3 Intelligent\-Tiering or S3 Glacier Flexible Retrieval objects\. You must call [RestoreObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html) for this purpose\.  
 
 For more information about restoring objects, see [Restoring an archived object](restoring-objects.md)\.

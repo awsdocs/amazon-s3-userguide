@@ -1,8 +1,8 @@
 # Restoring an archived object<a name="restoring-objects"></a>
 
-Amazon S3 objects that are stored in the S3 Glacier or S3 Glacier Deep Archive storage classes are not immediately accessible\. To access an object in these storage classes, you must restore a temporary copy of it to its S3 bucket for a specified duration \(number of days\)\. For information about using these storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md) and [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
+Amazon S3 objects that are stored in the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes are not immediately accessible\. To access an object in these storage classes, you must restore a temporary copy of it to its S3 bucket for a specified duration \(number of days\)\. For information about using these storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md) and [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 
-Restored objects from S3 Glacier or S3 Glacier Deep Archive are stored only for the number of days that you specify\. If you want a permanent copy of the object, create a copy of it in your Amazon S3 bucket\. Unless you make a copy, the object will still be stored in the S3 Glacier or S3 Glacier Deep Archive storage classes\.
+Restored objects from S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive are stored only for the number of days that you specify\. If you want a permanent copy of the object, create a copy of it in your Amazon S3 bucket\. Unless you make a copy, the object will still be stored in the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes\.
 
 To calculate the expiry date, Amazon S3 adds the number of days that you specify to the time you request to restore the object, and then rounds to the next day at midnight UTC\. This calculation applies to the initial restoration of the object and to any extensions to availability that you request\. For example, if an object was restored on Oct 15, 2012 10:30 AM UTC, and the number of days that you specified is **3**, the object is available until Oct 19, 2012 00:00 UTC\. If, on Oct 16, 2012 11:00 AM UTC, you change the number of days that you want it to be accessible to **1**, Amazon S3 makes the restored object available until Oct 18, 2012 00:00 UTC\.
 
@@ -14,7 +14,7 @@ You can restore an archived object using the Amazon S3 console, the REST API, th
 
 
 
-Use the following steps to restore an object that has been archived to the S3 Glacier or S3 Glacier Deep Archive storage classes, to check the status, and to upgrade an in\-progress restore\. \(The console uses the names **Glacier** and **Glacier Deep Archive** for these storage classes\.\)
+Use the following steps to restore an object that has been archived to the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes, to check the status, and to upgrade an in\-progress restore\. \(The console uses the names **S3 Glacier Flexible Retrieval** and **Glacier Deep Archive** for these storage classes\.\)
 
 **To restore an archived object**
 
@@ -24,13 +24,13 @@ Use the following steps to restore an object that has been archived to the S3 Gl
 
 1. In the **Objects** list, select the object or objects that you want to restore, choose **Actions**, and then choose **Initiate restore**\.
 
-1. If you're restoring from S3 Glacier or S3 Glacier Deep Archive, enter the number of days that you want your archived data to be accessible in the **Initiate restore** dialog box\. 
+1. If you're restoring from S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive, enter the number of days that you want your archived data to be accessible in the **Initiate restore** dialog box\. 
 
 1. In **Retrieval options**, do one of the following:
    + Choose **Bulk retrieval** or **Standard retrieval**, and then choose **Restore**\. 
-   + Choose **Expedited retrieval** \(available only for S3 Glacier or S3 Intelligent\-Tiering Archive Access\)\.
+   + Choose **Expedited retrieval** \(available only for S3 Glacier Flexible Retrieval or S3 Intelligent\-Tiering Archive Access\)\.
 
-1. Provisioned capacity is only available for objects in S3 Glacier\. If you have provisioned capacity, choose **Restore** to start a provisioned retrieval\. 
+1. Provisioned capacity is only available for objects in S3 Glacier Flexible Retrieval\. If you have provisioned capacity, choose **Restore** to start a provisioned retrieval\. 
 
    If you have provisioned capacity, all of your expedited retrievals are served by your provisioned capacity\. For more information, see [Provisioned capacity](restoring-objects-retrieval-options.md#restoring-objects-expedited-capacity)\. 
    + If you don't have provisioned capacity and you don't want to buy it, choose **Restore**\. 
@@ -44,7 +44,7 @@ You can upgrade the speed of your restoration while it is in progress\.
 
 1. In the **Bucket name** list, choose the name of the bucket that contains the objects that you want to restore\.
 
-1. In the **Objects** list, select one or more of the objects that you are restoring, choose **Actions**, and then choose **Restore from Glacier**\. For information about checking the restoration status of an object, see [Checking restore status and expiration date](#restore-archived-objects-status)\. 
+1. In the **Objects** list, select one or more of the objects that you are restoring, choose **Actions**, and then choose **Restore from S3 Glacier Flexible Retrieval**\. For information about checking the restoration status of an object, see [Checking restore status and expiration date](#restore-archived-objects-status)\. 
 
 1. Choose the tier that you want to upgrade to, and then choose **Restore**\. 
 
@@ -56,9 +56,9 @@ Standard and bulk restores for S3 Intelligent\-Tiering are free of charge\. Howe
 
 You can check the progress of the restoration on the **Object overview** page\. For more information, see [Viewing an object overview in the Amazon S3 console](view-object-overview.md)\. This page will show that the restoration is **In progress**\.
 
-If you're restoring from S3 Glacier or S3 Glacier Deep Archive, the temporary copy of the **Object overview** shows the **Restoration expiry date**\. Amazon S3 will remove the restored copy of your archive on this date\.
+If you're restoring from S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive, the temporary copy of the **Object overview** shows the **Restoration expiry date**\. Amazon S3 will remove the restored copy of your archive on this date\.
 
-Restored objects from S3 Glacier or S3 Glacier Deep Archive are stored only for the number of days that you specify\. If you want a permanent copy of the object, create a copy of it in your Amazon S3 bucket\. 
+Restored objects from S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive are stored only for the number of days that you specify\. If you want a permanent copy of the object, create a copy of it in your Amazon S3 bucket\. 
 
 After restoring an object, you can download it from the **Overview** page\. For more information, see [Viewing an object overview in the Amazon S3 console](view-object-overview.md)\.
 
@@ -195,7 +195,7 @@ Amazon S3 provides an API for you to initiate an archive restoration\. For more 
 
 ## Using the AWS CLI<a name="restoring-objects-cli"></a>
 
-Use the `restore-object` command to restore objects from S3 Glacier\.
+Use the `restore-object` command to restore objects from S3 Glacier Flexible Retrieval\.
 
 The following example restores object *dir1/example\.obj* in *awsexamplebucket* for 25 days\.
 

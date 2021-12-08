@@ -22,6 +22,7 @@ This documentation will help you understand how to apply the shared responsibili
 + [Internetwork traffic privacy](inter-network-traffic-privacy.md)
 + [AWS PrivateLink for Amazon S3](privatelink-interface-endpoints.md)
 + [Identity and access management in Amazon S3](s3-access-control.md)
++ [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)
 + [Logging and monitoring in Amazon S3](s3-incident-response.md)
 + [Compliance Validation for Amazon S3](s3-compliance.md)
 + [Resilience in Amazon S3](disaster-recovery-resiliency.md)

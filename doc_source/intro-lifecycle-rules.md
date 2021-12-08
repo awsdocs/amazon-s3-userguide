@@ -21,10 +21,10 @@ You specify an S3 Lifecycle configuration as XML, consisting of one or more Life
 
 Each rule consists of the following:
 + Rule metadata that include a rule ID, and status indicating whether the rule is enabled or disabled\. If a rule is disabled, Amazon S3 doesn't perform any actions specified in the rule\.
-+ Filter identifying objects to which the rule applies\. You can specify a filter by using an object key prefix, one or more object tags, or both\. 
++ Filter identifying objects to which the rule applies\. You can specify a filter by using object size, object key prefix, one or more object tags, or a combination of filters\.
 + One or more transition or expiration actions with a date or a time period in the object's lifetime when you want Amazon S3 to perform the specified action\. 
 
-The following sections describe the XML elements in an S3 Lifecycle configuration\. For example configurations, see [Examples of lifecycle configuration](lifecycle-configuration-examples.md)\.
+The following sections describe the XML elements in an S3 Lifecycle configuration\. For example configurations, see [Examples of S3 Lifecycle configuration](lifecycle-configuration-examples.md)\.
 
 ## ID element<a name="intro-lifecycle-rule-id"></a>
 
@@ -38,7 +38,7 @@ The <Status> element value can be either Enabled or Disabled\. If a rule is disa
 
 A Lifecycle rule can apply to all or a subset of objects in a bucket based on the <Filter> element that you specify in the Lifecycle rule\. 
 
-You can filter objects by key prefix, object tags, or a combination of both \(in which case Amazon S3 uses a logical AND to combine the filters\)\. Consider the following examples:
+You can filter objects by key prefix, object tags, or a combination of both \(in which case Amazon S3 uses a logical `AND` to combine the filters\)\. Consider the following examples:
 + **Specifying a filter using key prefixes** – This example shows an S3 Lifecycle rule that applies to a subset of objects based on the key name prefix \(`logs/`\)\. For example, the Lifecycle rule applies to objects `logs/mylog.txt`, `logs/temp1.txt`, and `logs/test.txt`\. The rule does not apply to the object `example.jpg`\.
 
   ```
@@ -96,7 +96,7 @@ You can filter objects by key prefix, object tags, or a combination of both \(in
   </LifecycleConfiguration>
   ```
 
-  You can specify a filter based on multiple tags\. You must wrap the tags in the <AND> element shown in the following example\. The rule directs Amazon S3 to perform lifecycle actions on objects with two tags \(with the specific tag key and value\)\.
+  You can specify a filter based on multiple tags\. You must wrap the tags in the `<And>` element shown in the following example\. The rule directs Amazon S3 to perform lifecycle actions on objects with two tags \(with the specific tag key and value\)\.
 
   ```
   <LifecycleConfiguration>
@@ -119,12 +119,12 @@ You can filter objects by key prefix, object tags, or a combination of both \(in
   </Lifecycle>
   ```
 
-  The Lifecycle rule applies to objects that have both of the tags specified\. Amazon S3 performs a logical AND\. Note the following:
+  The Lifecycle rule applies to objects that have both of the tags specified\. Amazon S3 performs a logical `AND`\. Note the following:
   + Each tag must match both key and value exactly\.
   + The rule applies to a subset of objects that has all the tags specified in the rule\. If an object has additional tags specified, the rule will still apply\.
 **Note**  
 When you specify multiple tags in a filter, each tag key must be unique\.
-+ **Specifying a filter based on both prefix and one or more tags** – In a Lifecycle rule, you can specify a filter based on both the key prefix and one or more tags\. Again, you must wrap all of these in the <And> element as shown following\.
++ **Specifying a filter based on both prefix and one or more tags** – In a Lifecycle rule, you can specify a filter based on both the key prefix and one or more tags\. Again, you must wrap all of these in the `<And>` element as shown following\.
 
   ```
   <LifecycleConfiguration>
@@ -149,13 +149,46 @@ When you specify multiple tags in a filter, each tag key must be unique\.
   </LifecycleConfiguration>
   ```
 
-  Amazon S3 combines these filters using a logical AND\. That is, the rule applies to subset of objects with a specific key prefix and specific tags\. A filter can have only one prefix, and zero or more tags\.
-+ You can specify an empty filter, in which case the rule applies to all objects in the bucket\.
+  Amazon S3 combines these filters using a logical `AND`\. That is, the rule applies to subset of objects with a specific key prefix and specific tags\. A filter can have only one prefix, and zero or more tags\.
++ You can specify an **empty filter**, in which case the rule applies to all objects in the bucket\.
 
   ```
   <LifecycleConfiguration>
       <Rule>
           <Filter>
+          </Filter>
+          <Status>Enabled</Status>
+          transition/expiration actions.
+      </Rule>
+  </LifecycleConfiguration>
+  ```
++ To filter a rule by **object size**, you can specify a minimum size \(`ObjectSizeGreaterThan`\) or a maximum size \(`ObjectSizeLessThan`\), or you can specify a range of object sizes\.
+
+  Object size values are in bytes\. Maximum filter size is 5TB\. Some storage classes have minimum object size limitations, for more information, see [Comparing the Amazon S3 storage classes](storage-class-intro.md#sc-compare)\.
+
+  ```
+  <LifecycleConfiguration>
+      <Rule>
+          <Filter>
+              <ObjectSizeGreaterThan>500</ObjectSizeGreaterThan>   
+          </Filter>
+          <Status>Enabled</Status>
+          transition/expiration actions.
+      </Rule>
+  </LifecycleConfiguration>
+  ```
+
+  If you're specifying an object size range, the `ObjectSizeGreaterThan` integer must be less than the `ObjectSizeLessThan` value\. When using more than one filter, you must wrap the filters in an `<And>` element\. The following example shows how to specify objects in a range between 500 and 64000 bytes\. 
+
+  ```
+  <LifecycleConfiguration>
+      <Rule>
+          <Filter>
+              <And>
+                  <Prefix>key-prefix</Prefix>
+                  <ObjectSizeGreaterThan>500</ObjectSizeGreaterThan>
+                  <ObjectSizeLessThan>64000</ObjectSizeLessThan>
+              </And>    
           </Filter>
           <Status>Enabled</Status>
           transition/expiration actions.
@@ -168,12 +201,12 @@ When you specify multiple tags in a filter, each tag key must be unique\.
 You can direct Amazon S3 to perform specific actions in an object's lifetime by specifying one or more of the following predefined actions in an S3 Lifecycle rule\. The effect of these actions depends on the versioning state of your bucket\. 
 + **Transition** action element – You specify the `Transition` action to transition objects from one storage class to another\. For more information about transitioning objects, see [Supported transitions and related constraints](lifecycle-transition-general-considerations.md#lifecycle-general-considerations-transition-sc)\. When a specified date or time period in the object's lifetime is reached, Amazon S3 performs the transition\. 
 
-  For a versioned bucket \(versioning\-enabled or versioning\-suspended bucket\), the `Transition` action applies to the current object version\. To manage noncurrent versions, Amazon S3 defines the `NoncurrentVersionTransition` action \(described below\)\.
+  For a versioned bucket \(versioning\-enabled or versioning\-suspended bucket\), the `Transition` action applies to the current object version\. To manage noncurrent versions, Amazon S3 defines the `NoncurrentVersionTransition` action \(described later in this topic\)\.
 + **Expiration action element** – The `Expiration` action expires objects identified in the rule and applies to eligible objects in any of the Amazon S3 storage classes\. For more information about storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md)\. Amazon S3 makes all expired objects unavailable\. Whether the objects are permanently removed depends on the versioning state of the bucket\. 
 **Important**  
 Object expiration Lifecycle policies do not remove incomplete multipart uploads\. To remove incomplete multipart uploads, you must use the **AbortIncompleteMultipartUpload** Lifecycle configuration action that is described later in this section\. 
   + **Non\-versioned bucket** – The `Expiration` action results in Amazon S3 permanently removing the object\. 
-  + **Versioned bucket** – For a versioned bucket \(that is, versioning\-enabled or versioning\-suspended\), there are several considerations that guide how Amazon S3 handles the `expiration` action\. For more information, see [Using versioning in S3 buckets](Versioning.md)\. Regardless of the versioning state, the following applies:
+  + **Versioned bucket** – For a versioned bucket \(that is, versioning\-enabled or versioning\-suspended\), there are several considerations that guide how Amazon S3 handles the `Expiration` action\. For more information, see [Using versioning in S3 buckets](Versioning.md)\. Regardless of the versioning state, the following applies:
     + The `Expiration` action applies only to the current version \(it has no impact on noncurrent object versions\)\.
     + Amazon S3 doesn't take any action if there are one or more object versions and the delete marker is the current version\.
     + If the current object version is the only object version and it is also a delete marker \(also referred as an *expired object delete marker*, where all object versions are deleted and you only have a delete marker remaining\), Amazon S3 removes the expired object delete marker\. You can also use the expiration action to direct Amazon S3 to remove any expired object delete markers\. For an example, see [Example 7: Removing expired object delete markers](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex7)\. 
@@ -187,10 +220,14 @@ Object expiration Lifecycle policies do not remove incomplete multipart uploads\
       In a versioning\-suspended bucket, the expiration action causes Amazon S3 to create a delete marker with null as the version ID\. This delete marker replaces any object version with a null version ID in the version hierarchy, which effectively deletes the object\. 
 
 In addition, Amazon S3 provides the following actions that you can use to manage noncurrent object versions in a versioned bucket \(that is, versioning\-enabled and versioning\-suspended buckets\)\.
-+ **NoncurrentVersionTransition** action element – Use this action to specify how long \(from the time the objects became noncurrent\) you want the objects to remain in the current storage class before Amazon S3 transitions them to the specified storage class\. For more information about transitioning objects, see [Supported transitions and related constraints](lifecycle-transition-general-considerations.md#lifecycle-general-considerations-transition-sc)\. 
-+ **NoncurrentVersionExpiration** action element – Use this action to specify how long \(from the time the objects became noncurrent\) you want to retain noncurrent object versions before Amazon S3 permanently removes them\. The deleted object can't be recovered\. 
++ **NoncurrentVersionTransition** action element – Use this action to specify when to have Amazon S3 transition objects to the specified storage class\. You can either base this transition on a certain number of days from the time the objects become noncurrent or you can provide a maximum number of noncurrent versions to retain\. 
 
-  This delayed removal of noncurrent objects can be helpful when you need to correct any accidental deletes or overwrites\. For example, you can configure an expiration rule to delete noncurrent versions five days after they become noncurrent\. For example, suppose that on 1/1/2014 10:30 AM UTC, you create an object called `photo.gif` \(version ID 111111\)\. On 1/2/2014 11:30 AM UTC, you accidentally delete `photo.gif` \(version ID 111111\), which creates a delete marker with a new version ID \(such as version ID 4857693\)\. You now have five days to recover the original version of `photo.gif` \(version ID 111111\) before the deletion is permanent\. On 1/8/2014 00:00 UTC, the Lifecycle rule for expiration executes and permanently deletes `photo.gif` \(version ID 111111\), five days after it became a noncurrent version\. 
+  For more information about transitioning objects, see [Supported transitions and related constraints](lifecycle-transition-general-considerations.md#lifecycle-general-considerations-transition-sc)\. For details about how Amazon S3 calculates the date when you specify the number of days in the `NoncurrentVersionTransition` action, see [Lifecycle rules: Based on an object's age](#intro-lifecycle-rules-number-of-days)\.
++ **NoncurrentVersionExpiration** action element – Use this action to specify when Amazon S3 permanently removes noncurrent objects\. These deleted objects cannot be recovered\. You can base this expiration either on a certain number of days from the time the objects become noncurrent or you can provide a maximum number of noncurrent versions to retain\.
+
+  Delayed removal of noncurrent objects can be helpful when you need to correct any accidental deletes or overwrites\. For example, you can configure an expiration rule to delete noncurrent versions five days after they become noncurrent\. For example, suppose that on 1/1/2014 10:30 AM UTC, you create an object called `photo.gif` \(version ID 111111\)\. On 1/2/2014 11:30 AM UTC, you accidentally delete `photo.gif` \(version ID 111111\), which creates a delete marker with a new version ID \(such as version ID 4857693\)\. You now have five days to recover the original version of `photo.gif` \(version ID 111111\) before the deletion is permanent\. On 1/8/2014 00:00 UTC, the Lifecycle rule for expiration executes and permanently deletes `photo.gif` \(version ID 111111\), five days after it became a noncurrent version\. 
+
+  For details about how Amazon S3 calculates the date when you specify the number of days in an `NoncurrentVersionExpiration` action, see [Lifecycle rules: Based on an object's age](#intro-lifecycle-rules-number-of-days)\.
 **Important**  
 Object expiration Lifecycle policies do not remove incomplete multipart uploads\. To remove incomplete multipart uploads, you must use the **AbortIncompleteMultipartUpload** Lifecycle configuration action that is described later in this section\. 
 
@@ -206,14 +243,14 @@ You cannot specify this Lifecycle action in a rule that specifies a filter based
 
 ### How Amazon S3 calculates how long an object has been noncurrent<a name="non-current-days-calculations"></a>
 
-In a versioning\-enabled bucket, you can have multiple versions of an object, there is always one current version, and zero or more noncurrent versions\. Each time you upload an object, the current version is retained as the noncurrent version and the newly added version, the successor, becomes the current version\. To determine the number of days an object is noncurrent, Amazon S3 looks at when its successor was created\. Amazon S3 uses the number of days since its successor was created as the number of days an object is noncurrent\.
+In a versioning\-enabled bucket, you can have multiple versions of an object\. There is always one current version, and zero or more noncurrent versions\. Each time you upload an object, the current version is retained as the noncurrent version and the newly added version, the successor, becomes the current version\. To determine the number of days an object is noncurrent, Amazon S3 looks at when its successor was created\. Amazon S3 uses the number of days since its successor was created as the number of days an object is noncurrent\.
 
-**Restoring previous versions of an object when using lifecycle configurations**  
- As explained in detail in the topic [Restoring previous versions](RestoringPreviousVersions.md), you can use either of the following two methods to retrieve previous versions of an object:  
+**Restoring previous versions of an object when using S3 Lifecycle configurations**  
+As explained in detail in the topic [Restoring previous versions](RestoringPreviousVersions.md), you can use either of the following two methods to retrieve previous versions of an object:  
 By copying a noncurrent version of the object into the same bucket\. The copied object becomes the current version of that object, and all object versions are preserved\.
 By permanently deleting the current version of the object\. When you delete the current object version, you, in effect, turn the noncurrent version into the current version of that object\. 
 When you are using S3 Lifecycle configuration rules with versioning\-enabled buckets, we recommend as a best practice that you use the first method\.   
-Lifecycle operates under an eventually consistent model\. A current version that you permanently deleted may not disappear until the changes propagate \(Amazon S3 may be unaware of this deletion\)\. In the meantime, the lifecycle rule that you configured to expire noncurrent objects may permanently remove noncurrent objects, including the one you want to restore\. So, copying the old version, as recommended in the first method, is the safer alternative\.
+S3 Lifecycle operates under an eventually consistent model\. A current version that you permanently deleted might not disappear until the changes propagate \(Amazon S3 might be unaware of this deletion\)\. In the meantime, the lifecycle rule that you configured to expire noncurrent objects might permanently remove noncurrent objects, including the one that you want to restore\. So, copying the old version, as recommended in the first method, is the safer alternative\.
 
 The following table summarizes the behavior of the S3 Lifecycle configuration rule actions on objects in relation to the versioning state of the bucket containing the object\.
 
@@ -224,8 +261,8 @@ The following table summarizes the behavior of the S3 Lifecycle configuration ru
 | --- | --- | --- | --- | 
 |  `Transition` When a specified date or time period in the object's lifetime is reached\.  | Amazon S3 transitions the object to the specified storage class\. | Amazon S3 transitions the current version of the object to the specified storage class\. | Same behavior as a versioning\-enabled bucket\. | 
 |  `Expiration` When a specified date or time period in the object's lifetime is reached\.  | Expiration deletes the object, and the deleted object cannot be recovered\. | If the current version is not a delete marker, Amazon S3 creates a delete marker, which becomes the current version, and the existing current version is retained as a noncurrent version\. | The lifecycle creates a delete marker with null version ID, which becomes the current version\. If the version ID of the current version of the object is null, the Expiration action permanently deletes this version\. Otherwise, the current version is retained as a noncurrent version\. | 
-|  `NoncurrentVersionTransition` When the object has been classified as noncurrent for the specified number of days\.  | NoncurrentVersionTransition has no effect\. |  Amazon S3 transitions the noncurrent object versions to the specified storage class\.  | Same behavior as a versioning\-enabled bucket\. | 
-|  `NoncurrentVersionExpiration` When the object has been classified as noncurrent for the specified number of days\.  | NoncurrentVersionExpiration has no effect\. | NoncurrentVersionExpiration action deletes the noncurrent version of the object, and the deleted object cannot be recovered\. | Same behavior as a versioning\-enabled bucket\. | 
+|  `NoncurrentVersionTransition` When the object has been classified as noncurrent for the specified number of days or the specified maximum number of noncurrent versions to retain has been exceeded\.  | NoncurrentVersionTransition has no effect\. |  Amazon S3 transitions the noncurrent object versions to the specified storage class\.  | Same behavior as a versioning\-enabled bucket\. | 
+|  `NoncurrentVersionExpiration` When the object has been classified as noncurrent for the specified number of days or the specified maximum number of noncurrent versions to retain has been exceeded\.  | NoncurrentVersionExpiration has no effect\. | NoncurrentVersionExpiration action deletes the noncurrent version of the object, and the deleted object cannot be recovered\. | Same behavior as a versioning\-enabled bucket\. | 
 
 ### Lifecycle rules: Based on an object's age<a name="intro-lifecycle-rules-number-of-days"></a>
 

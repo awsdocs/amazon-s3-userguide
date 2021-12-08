@@ -162,6 +162,8 @@ If you want to track the number of visitors accessing your website, you can opti
 1. Create a folder for the server access logging log files \(for example, `logs`\)\.
 
 1. \(Optional\) If you want to use CloudFront to improve your website performance, create a folder for the CloudFront log files \(for example, `cdn`\)\.
+**Important**  
+When you create or update a distribution and enable CloudFront logging, CloudFront updates the bucket access control list \(ACL\) to give the `awslogsdelivery` account `FULL_CONTROL` permissions to write logs to your bucket\. For more information, see [Permissions required to configure standard logging and to access your log files](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#AccessLogsBucketAndFileOwnership) in the *Amazon CloudFront Developer Guide*\. If the bucket that stores the logs uses the bucket owner enforced setting for S3 Object Ownership to disable ACLs, CloudFront cannot write logs to the bucket\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 
 1. In the **Buckets** list, choose your root domain bucket\.
 

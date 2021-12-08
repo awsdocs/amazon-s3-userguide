@@ -36,7 +36,7 @@ If you enable versioning for a bucket, Amazon S3 automatically generates a uniqu
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/versioning_Enabled.png)
 
-Regardless of whether you enable versioning, each object in your bucket has a version ID\. If you don't enable S3 Versioning, Amazon S3 sets the value of the version ID to null\. If you enable S3 Versioning, Amazon S3 assigns a version ID value for the object\. This value distinguishes it from other versions of the same key\.
+Each object has a version ID, whether or not S3 Versioning is enabled\. If S3 Versioning is not enabled, Amazon S3 sets the value of version ID to null\. If you enable S3 Versioning, Amazon S3 assigns a version ID value for the object\. This value distinguishes it from other versions of the same key\.
 
 When you enable S3 Versioning on an existing bucket, objects that are already stored in the bucket are unchanged\. The version IDs \(null\), contents, and permissions remain the same\. After you enable S3 Versioning for a bucket, each object that is added to the bucket gets a version ID, which distinguishes it from other versions of the same key\. 
 

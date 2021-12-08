@@ -6,7 +6,7 @@ You can use the S3 Intelligent\-Tiering storage class to automatically optimize 
 
 There are two ways to move data into S3 Intelligent\-Tiering\. You can directly [PUT](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html) data into S3 Intelligent\-Tiering by specifying `INTELLIGENT_TIERING` in the `x-amz-storage-class` header or configure S3 Lifecycle policies to transition objects from S3 Standard or S3 Standard\-Infrequent Access to S3 Intelligent\-Tiering\.
 
-### Uploading data to S3 Intelligent\-Tiering using DirectPUT<a name="moving-data-to-int-tiering-directPUT"></a>
+### Uploading data to S3 Intelligent\-Tiering using Direct PUT<a name="moving-data-to-int-tiering-directPUT"></a>
 
 When you upload an object to the S3 Intelligent\-Tiering storage class using the [PUT](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html) API operation, you specify S3 Intelligent\-Tiering in the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html#API_PutObject_RequestSyntax](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html#API_PutObject_RequestSyntax) request header\.
 
@@ -49,9 +49,9 @@ You can specify S3 Lifecycle policies at the bucket or prefix level\. In this S3
 </LifecycleConfiguration>
 ```
 
-## Enabling S3 Intelligent\-Tiering automatic archiving<a name="enable-auto-archiving-int-tiering"></a>
+## Enabling S3 Intelligent\-Tiering Archive Access and Deep Archive Access tiers<a name="enable-auto-archiving-int-tiering"></a>
 
-You can activate one or both of the archive access tiers by creating a bucket, prefix, or object tag level configuration using the AWS Management Console, AWS CLI, or Amazon S3 API\. 
+To get the lowest storage cost on data that can be accessed in minutes to hours, you can activate one or both of the archive access tiers by creating a bucket, prefix, or object tag level configuration using the AWS Management Console, AWS CLI, or Amazon S3 API\. 
 
 ### Using the S3 console<a name="enable-auto-archiving-int-tiering-console"></a>
 
@@ -160,4 +160,4 @@ Host: Bucket.s3.amazonaws.com
 
 ### Using the PUT API operation<a name="enable-auto-archiving-int-tiering-api"></a>
 
-You can use the [ `PutBucketIntelligentTieringConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) operation for a specified bucket and up to 1,000 S3 Intelligent\-Tiering configurations per bucket\. You can define which objects within a bucket are eligible for the archive access tiers using a shared prefix or object tag\. Using a shared prefix or object tag allows you to align to specific business applications, workflows, or internal organizations\. You also have the flexibility to activate the Archive Access tier, the Deep Archive Access tier, or both\.
+You can use the [ `PutBucketIntelligentTieringConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) operation for a specified bucket and up to 1,000 S3 Intelligent\-Tiering configurations per bucket\. You can define which objects within a bucket are eligible for the archive access tiers using a shared prefix or object tag\. Using a shared prefix or object tag allows you to align to specific business applications, work flows, or internal organizations\. You also have the flexibility to activate the Archive Access tier, the Deep Archive Access tier, or both\.

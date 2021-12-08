@@ -15,11 +15,11 @@ Amazon Simple Storage Service \(Amazon S3\) is an object storage service that of
 
 ### Storage classes<a name="RRS"></a>
 
-Amazon S3 offers a range of storage classes designed for different use cases\. For example, you can store mission\-critical production data in S3 Standard for frequent access, save costs by storing infrequently accessed data in S3 Standard\-IA or S3 One Zone\-IA, and archive data at the lowest costs in S3 Glacier and S3 Glacier Deep Archive\. 
+Amazon S3 offers a range of storage classes designed for different use cases\. For example, you can store mission\-critical production data in S3 Standard for frequent access, save costs by storing infrequently accessed data in S3 Standard\-IA or S3 One Zone\-IA, and archive data at the lowest costs in S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, and S3 Glacier Deep Archive\. 
 
 You can store data with changing or unknown access patterns in S3 Intelligent\-Tiering, which optimizes storage costs by automatically moving your data between four access tiers when your access patterns change\. These four access tiers include two low\-latency access tiers optimized for frequent and infrequent access, and two opt\-in archive access tiers designed for asynchronous access for rarely accessed data\.
 
-For more information, see [Using Amazon S3 storage classes](storage-class-intro.md)\. For more information about S3 Glacier, see the [https://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html](https://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html)\.
+For more information, see [Using Amazon S3 storage classes](storage-class-intro.md)\. For more information about S3 Glacier Flexible Retrieval, see the [https://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html](https://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html)\.
 
 ### Storage management<a name="features-storage-management"></a>
 
@@ -36,6 +36,7 @@ Amazon S3 provides features for auditing and managing access to your buckets and
 + [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html) – Create IAM users for your AWS account to manage access to your Amazon S3 resources\. For example, you can use IAM with Amazon S3 to control the type of access a user or group of users has to an S3 bucket that your AWS account owns\.
 + [Bucket policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html) – Use IAM\-based policy language to configure resource\-based permissions for your S3 buckets and the objects in them\.
 + [Access control lists \(ACLs\)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acls.html) – Grant read and write permissions for individual buckets and objects to authorized users\. As a general rule, we recommend using S3 resource\-based policies \(bucket policies and access point policies\) or IAM policies for access control instead of ACLs\. ACLs are an access control mechanism that predates resource\-based policies and IAM\. For more information about when you'd use ACLs instead of resource\-based policies or IAM policies, see [Access policy guidelines](access-policy-alternatives-guidelines.md)\.
++ [S3 Object Ownership](https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html) – Disable ACLs and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. You, as the bucket owner, automatically own and have full control over every object in your bucket, and access control for your data is based on policies\.
 + [Access Analyzer for S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html) – Evaluate and monitor your S3 bucket access policies, ensuring that the policies provide only the intended access to your S3 resources\. 
 
 ### Data processing<a name="features-data-processing"></a>
@@ -140,9 +141,11 @@ In your bucket policy, you can use wildcard characters on Amazon Resource Names 
 
 ### Access control lists \(ACLs\)<a name="S3_ACLs"></a>
 
-As a general rule, we recommend using S3 resource\-based policies \(bucket policies and access point policies\) or IAM policies for access control instead of ACLs\. ACLs are an access control mechanism that predates resource\-based policies and IAM\. For more information about when you'd use ACLs instead of resource\-based policies or IAM policies, see [Access policy guidelines](access-policy-alternatives-guidelines.md)\.
+You can use ACLs to grant read and write permissions to authorized users for individual buckets and objects\. Each bucket and object has an ACL attached to it as a subresource\. The ACL defines which AWS accounts or groups are granted access and the type of access\. ACLs are an access control mechanism that predates IAM\. For more information about ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
-You can use ACLs to grant read and write permissions for individual buckets and objects to authorized users\. Each bucket and object has an ACL attached to it as a subresource\. The ACL defines which AWS accounts or groups are granted access and the type of access\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\.
+By default, when another AWS account uploads an object to your S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through ACLs\. You can use Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies, such as IAM policies, S3 bucket policies, virtual private cloud \(VPC\) endpoint policies, and AWS Organizations service control policies \(SCPs\)\.
+
+A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you disable ACLs except in unusual circumstances where you need to control access for each object individually\. With Object Ownership, you can disable ACLs and rely on policies for access control\. When you disable ACLs, you can easily maintain a bucket with objects uploaded by different AWS accounts\. You, as the bucket owner, own all the objects in the bucket and can manage access to them using policies\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 
 ### S3 Access Points<a name="BasicsAccessPoints"></a>
 

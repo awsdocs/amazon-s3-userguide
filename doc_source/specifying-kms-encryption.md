@@ -37,12 +37,12 @@ If you use the AWS KMS option for your default encryption configuration, you are
 1. Under **AWS KMS key**, choose one of the following:
    + **AWS managed key \(aws/s3\)**
    + **Choose from your AWS KMS keys**, and choose your **KMS key**\.
-   + **Enter KMS master key ARN**, and enter your AWS KMS key ARN\.
+   + **Enter KMS key ARN**
 **Important**  
 You can only use AWS KMS keys that are enabled in the same AWS Region as the bucket\. When you choose **Choose from your AWS KMS keys**, the S3 console only lists 100 KMS keys per Region\. If you have more than 100 KMS keys in the same Region, you can only see the first 100 KMS keys in the S3 console\. To use a KMS key that is not listed in the console, choose **Custom KMS ARN**, and enter the KMS key ARN\.  
 When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a KMS key that is enabled in the same Region as your bucket\. Additionally, Amazon S3 only supports symmetric KMS keys and not asymmetric KMS keys\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
-   For more information about creating an AWS KMS key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\. For more information about using AWS KMS with Amazon S3, see [Protecting Data Using Server\-Side Encryption with KMS keys Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+   For more information about creating an AWS KMS key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\. For more information about using AWS KMS with Amazon S3, see [Protecting Data Using Server\-Side Encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
 
 1. Choose **Save changes**\.
 
@@ -161,7 +161,7 @@ PutObjectRequest putRequest = new PutObjectRequest
  };
 ```
 
-In this case, Amazon S3 uses the AWS managed key\. For more information, see [Protecting Data Using Server\-Side Encryption with KMS keys Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\. You can optionally create your own symmetric customer managed key and specify that in the request\. 
+In this case, Amazon S3 uses the AWS managed key\. For more information, see [Protecting Data Using Server\-Side Encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\. You can optionally create your own symmetric customer managed key and specify that in the request\. 
 
 ```
 PutObjectRequest putRequest1 = new PutObjectRequest

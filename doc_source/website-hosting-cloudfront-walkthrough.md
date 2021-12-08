@@ -49,6 +49,8 @@ Before you perform this step, note the [requirements for using alternate domain 
       If the URL used to access the distribution doesn't contain a file name, the CloudFront distribution returns the index document\. The **Default Root Object** should exactly match the name of the index document for your static website\. For more information, see [Configuring an index document](IndexDocumentSupport.md)\.
 
    1. Set **Logging** to **On**\.
+**Important**  
+When you create or update a distribution and enable CloudFront logging, CloudFront updates the bucket access control list \(ACL\) to give the `awslogsdelivery` account `FULL_CONTROL` permissions to write logs to your bucket\. For more information, see [Permissions required to configure standard logging and to access your log files](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html#AccessLogsBucketAndFileOwnership) in the *Amazon CloudFront Developer Guide*\. If the bucket that stores the logs uses the bucket owner enforced setting for S3 Object Ownership to disable ACLs, CloudFront cannot write logs to the bucket\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 
    1. For **Bucket for Logs**, choose the logging bucket that you created\.
 

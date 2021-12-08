@@ -4,7 +4,9 @@ To upload your data to Amazon S3, you must first create an Amazon S3 bucket in o
 
 The AWS account that creates the bucket owns it\. You can upload any number of objects to the bucket\. By default, you can create up to 100 buckets in each of your AWS accounts\. If you need more buckets, you can increase your account bucket limit to a maximum of 1,000 buckets by submitting a service limit increase\. To learn how to submit a bucket limit increase, see [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\. You can store any number of objects in a bucket\. 
 
-You can use the Amazon S3 console, Amazon S3 APIs, AWS CLI, or AWS SDKs to create a bucket\. 
+S3 Object Ownership is an Amazon S3 bucket\-level setting that you can use to disable access control lists \(ACLs\) and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. By default, when another AWS account uploads an object to your S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through ACLs\. When you create a bucket, you can apply the bucket owner enforced setting for Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
+
+You can use the Amazon S3 console, Amazon S3 APIs, AWS CLI, or AWS SDKs to create a bucket\. For more information about the permissions required to create a bucket, see [CreateBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html) in the *Amazon Simple Storage Service API Reference*\.
 
 ## Using the S3 console<a name="create-bucket"></a>
 
@@ -22,13 +24,28 @@ You can use the Amazon S3 console, Amazon S3 APIs, AWS CLI, or AWS SDKs to creat
    + Not contain uppercase characters\.
    + Start with a lowercase letter or number\.
 
-   After you create the bucket, you can't change its name\. For information about naming buckets, see [Bucket naming rules](bucketnamingrules.md)\.
+   After you create the bucket, you cannot change its name\. For information about naming buckets, see [Bucket naming rules](bucketnamingrules.md)\. 
 **Important**  
-Avoid including sensitive information, such as account numbers, in the bucket name\. The bucket name is visible in the URLs that point to the objects in the bucket\.
+Avoid including sensitive information, such as account number, in the bucket name\. The bucket name is visible in the URLs that point to the objects in the bucket\.
 
 1. In **Region**, choose the AWS Region where you want the bucket to reside\. 
 
    Choose a Region close to you to minimize latency and costs and address regulatory requirements\. Objects stored in a Region never leave that Region unless you explicitly transfer them to another Region\. For a list of Amazon S3 AWS Regions, see [AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the *Amazon Web Services General Reference*\.
+
+1. Under **Object Ownership**, to disable or enable ACLs and control ownership of objects uploaded in your bucket, choose one of the following settings:
+
+**ACLs disabled**
+   + **Bucket owner enforced** – ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket\. ACLs no longer affect permissions to data in the S3 bucket\. The bucket uses policies to define access control\.
+
+     To require that all new buckets are created with ACLs disabled by using IAM or AWS Organizations policies, see [Disabling ACLs for all new buckets \(bucket owner enforced\)](ensure-object-ownership.md#object-ownership-requiring-bucket-owner-enforced)\.
+
+**ACLs enabled**
+   + **Bucket owner preferred** – The bucket owner owns and has full control over new objects that other accounts write to the bucket with the `bucket-owner-full-control` canned ACL\. 
+
+     If you apply the bucket owner preferred setting, to require all Amazon S3 uploads to include the `bucket-owner-full-control` canned ACL, you can [add a bucket policy](ensure-object-ownership.md#ensure-object-ownership-bucket-policy) that only allows object uploads that use this ACL\.
+   + **Object writer** – The AWS account that uploads an object owns the object, has full control over it, and can grant other users access to it through ACLs\.
+**Note**  
+To apply the **Bucket owner enforced** setting or the **Bucket owner preferred** setting, you must have the following permission: `s3:CreateBucket` and `s3:PutBucketOwnershipControls`\.
 
 1. In **Bucket settings for Block Public Access**, choose the Block Public Access settings that you want to apply to the bucket\. 
 
@@ -38,7 +55,7 @@ Avoid including sensitive information, such as account numbers, in the bucket na
 
    1. Choose **Advanced settings**, and read the message that appears\.
 **Important**  
-You can only enable S3 Object Lock for a bucket when you create it\. If you enable Object Lock for the bucket, you can't disable it later\. Enabling Object Lock also enables versioning for the bucket\. After you enable Object Lock for the bucket, you must configure the Object Lock settings before any objects in the bucket will be protected\. For more information about configuring protection for objects, see [Using S3 Object Lock](object-lock.md)\.
+You can only enable S3 Object Lock for a bucket when you create it\. If you enable Object Lock for the bucket, you cannot disable it later\. Enabling Object Lock also enables versioning for the bucket\. After you enable Object Lock for the bucket, you must configure the Object Lock default retention and legal hold settings to protect new objects from being deleted or overwritten\. For more information, see [Configuring S3 Object Lock using the console](object-lock-console.md)\.
 
    1. If you want to enable Object Lock, enter **enable** in the text box and choose **Confirm**\.
 
@@ -232,4 +249,3 @@ run_me if $PROGRAM_NAME == __FILE__
 You can also use the AWS Command Line Interface \(AWS CLI\) to create an S3 bucket\. For more information, see [create\-bucket](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/create-bucket.html) in the *AWS CLI Command Reference*\.
 
 For information about the AWS CLI, see [What is the AWS Command Line Interface?](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) in the *AWS Command Line Interface User Guide*\. 
-

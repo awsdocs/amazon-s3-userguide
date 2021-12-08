@@ -3,23 +3,25 @@
 The storage metrics and dimensions that Amazon S3 sends to CloudWatch are listed below\.
 
 **Topics**
-+ [Amazon S3 CloudWatch daily storage metrics for buckets](#s3-cloudwatch-metrics)
-+ [Amazon S3 CloudWatch request metrics](#s3-request-cloudwatch-metrics)
-+ [Amazon S3 CloudWatch replication metrics](#s3-cloudwatch-replication-metrics)
-+ [Amazon S3 on Outposts CloudWatch metrics](#s3-outposts-cloudwatch-metrics)
++ [Amazon S3 daily storage metrics for buckets in CloudWatch](#s3-cloudwatch-metrics)
++ [Amazon S3 request metrics in CloudWatch](#s3-request-cloudwatch-metrics)
++ [Amazon S3 replication metrics in CloudWatch](#s3-cloudwatch-replication-metrics)
++ [Amazon S3 Storage Lens metrics in CloudWatch](#storage-lens-metrics-cloudwatch-publish)
++ [Amazon S3 on Outposts metrics in CloudWatch](#s3-outposts-cloudwatch-metrics)
 + [Amazon S3 CloudWatch dimensions](#s3-cloudwatch-dimensions)
++ [Amazon S3 Storage Lens dimensions in CloudWatch](#storage-lens-dimensions)
 
-## Amazon S3 CloudWatch daily storage metrics for buckets<a name="s3-cloudwatch-metrics"></a>
+## Amazon S3 daily storage metrics for buckets in CloudWatch<a name="s3-cloudwatch-metrics"></a>
 
 The `AWS/S3` namespace includes the following daily storage metrics for buckets\.
 
 
 | Metric | Description | 
 | --- | --- | 
-| BucketSizeBytes |  The amount of data in bytes stored in a bucket in the STANDARD storage class, INTELLIGENT\_TIERING storage class, Standard\-Infrequent Access \(STANDARD\_IA\) storage class, OneZone\-Infrequent Access \(ONEZONE\_IA\), Reduced Redundancy Storage \(RRS\) class, Deep Archive Storage \(S3 Glacier Deep Archive\) class or, Glacier \(GLACIER\) storage class\. This value is calculated by summing the size of all objects and metadata in the bucket \(both current and noncurrent objects\), including the size of all parts for all incomplete multipart uploads to the bucket\.  Valid storage type filters: `StandardStorage`, `IntelligentTieringFAStorage`, `IntelligentTieringIAStorage`, `IntelligentTieringAAStorage`, `IntelligentTieringDAAStorage`, `StandardIAStorage`, `StandardIASizeOverhead`, `StandardIAObjectOverhead`, `OneZoneIAStorage`, `OneZoneIASizeOverhead`, `ReducedRedundancyStorage`, `GlacierStorage`, `GlacierStagingStorage`, `GlacierObjectOverhead`, `GlacierS3ObjectOverhead`, `DeepArchiveStorage`, `DeepArchiveObjectOverhead`, `DeepArchiveS3ObjectOverhead` and, `DeepArchiveStagingStorage` \(see the `StorageType` dimension\)  Units: Bytes Valid statistics: Average  | 
+| BucketSizeBytes |  The amount of data in bytes stored in a bucket in the STANDARD storage class, INTELLIGENT\_TIERING storage class, Standard\-Infrequent Access \(STANDARD\_IA\) storage class, OneZone\-Infrequent Access \(ONEZONE\_IA\), Reduced Redundancy Storage \(RRS\) class, Deep Archive Storage \(S3 Glacier Deep Archive\) class or, S3 Glacier Flexible Retrieval \(GLACIER\) storage class\. This value is calculated by summing the size of all objects and metadata in the bucket \(both current and noncurrent objects\), including the size of all parts for all incomplete multipart uploads to the bucket\.  Valid storage type filters: `StandardStorage`, `IntelligentTieringFAStorage`, `IntelligentTieringIAStorage`, `IntelligentTieringAAStorage`, `IntelligentTieringDAAStorage`, `StandardIAStorage`, `StandardIASizeOverhead`, `StandardIAObjectOverhead`, `OneZoneIAStorage`, `OneZoneIASizeOverhead`, `ReducedRedundancyStorage`, `GlacierStorage`, `GlacierStagingStorage`, `GlacierObjectOverhead`, `GlacierS3ObjectOverhead`, `DeepArchiveStorage`, `DeepArchiveObjectOverhead`, `DeepArchiveS3ObjectOverhead` and, `DeepArchiveStagingStorage` \(see the `StorageType` dimension\)  Units: Bytes Valid statistics: Average  | 
 | NumberOfObjects |  The total number of objects stored in a bucket for all storage classes\. This value is calculated by counting all objects in the bucket \(both current and noncurrent objects\) and the total number of parts for all incomplete multipart uploads to the bucket\. Valid storage type filters: `AllStorageTypes` \(see the `StorageType` dimension\) Units: Count Valid statistics: Average  | 
 
-## Amazon S3 CloudWatch request metrics<a name="s3-request-cloudwatch-metrics"></a>
+## Amazon S3 request metrics in CloudWatch<a name="s3-request-cloudwatch-metrics"></a>
 
 The `AWS/S3` namespace includes the following request metrics\.
 
@@ -43,7 +45,7 @@ The `AWS/S3` namespace includes the following request metrics\.
 | FirstByteLatency |  The per\-request time from the complete request being received by an Amazon S3 bucket to when the response starts to be returned\. Units: Milliseconds Valid statistics: Average, Sum, Min, Max\(same as p100\), Sample Count, any percentile between p0\.0 and p100  | 
 | TotalRequestLatency |  The elapsed per\-request time from the first byte received to the last byte sent to an Amazon S3 bucket\. This includes the time taken to receive the request body and send the response body, which is not included in `FirstByteLatency`\. Units: Milliseconds Valid statistics: Average, Sum, Min, Max\(same as p100\), Sample Count, any percentile between p0\.0 and p100  | 
 
-## Amazon S3 CloudWatch replication metrics<a name="s3-cloudwatch-replication-metrics"></a>
+## Amazon S3 replication metrics in CloudWatch<a name="s3-cloudwatch-replication-metrics"></a>
 
 You can monitor the progress of replication with S3 replication metrics by tracking bytes pending, operations pending, and replication latency\. For more information, see [Monitoring progress with replication metrics](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-metrics.html)\.
 
@@ -57,7 +59,13 @@ You can enable alarms for your replication metrics on Amazon CloudWatch\. When y
 | BytesPendingReplication |  The total number of bytes of objects pending replication for a given replication rule\. Units: Bytes Valid statistics: Max  | 
 | OperationsPendingReplication |  The number of operations pending replication for a given replication rule\. Units: Counts Valid statistics: Max  | 
 
-## Amazon S3 on Outposts CloudWatch metrics<a name="s3-outposts-cloudwatch-metrics"></a>
+## Amazon S3 Storage Lens metrics in CloudWatch<a name="storage-lens-metrics-cloudwatch-publish"></a>
+
+You can publish S3 Storage Lens usage and activity metrics to Amazon CloudWatch to create a unified view of your operational health in CloudWatch [dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html)\. S3 Storage Lens metrics are published to the `AWS/S3/Storage-Lens` namespace in CloudWatch\. The CloudWatch publishing option is available for S3 Storage Lens dashboards upgraded to advanced metrics and recommendations\.
+
+For a list of S3 Storage Lens metrics published to CloudWatch, see [Amazon S3 Storage Lens metrics glossary](storage_lens_metrics_glossary.md)\. For a complete list of dimensions, see [Dimensions](storage-lens-cloudwatch-metrics-dimensions.md#storage-lens-cloudwatch-dimensions)\.
+
+## Amazon S3 on Outposts metrics in CloudWatch<a name="s3-outposts-cloudwatch-metrics"></a>
 
 The `S3Outposts` namespace includes the following metrics for Amazon S3 on Outposts buckets\. You can monitor the total number of S3 on Outposts bytes provisioned, the total free bytes available for objects, and the total size of all objects for a given bucket\. 
 
@@ -83,3 +91,7 @@ The following dimensions are used to filter Amazon S3 metrics\.
 |  BucketName  |  This dimension filters the data you request for the identified bucket only\.  | 
 |  StorageType  |  This dimension filters the data that you have stored in a bucket by the following types of storage:  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/metrics-dimensions.html)  | 
 | FilterId | This dimension filters metrics configurations that you specify for request metrics on a bucket, for example, a prefix or a tag\. You specify a filter id when you create a metrics configuration\. For more information, see [Creating a metrics configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/metrics-configurations.html)\. | 
+
+## Amazon S3 Storage Lens dimensions in CloudWatch<a name="storage-lens-dimensions"></a>
+
+For a list of dimensions used to filter S3 Storage Lens metrics in CloudWatch, see [Dimensions](storage-lens-cloudwatch-metrics-dimensions.md#storage-lens-cloudwatch-dimensions)\.

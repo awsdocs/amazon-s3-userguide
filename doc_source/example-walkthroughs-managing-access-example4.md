@@ -9,13 +9,17 @@
 + [Step 4: Clean up](#access-policies-walkthrough-example4-step6)
 + [Related resources](#RelatedResources-managing-access-example4)
 
- In this example scenario, you own a bucket and you have enabled other AWS accounts to upload objects\. That is, your bucket can have objects that other AWS accounts own\. 
+ In this example scenario, you own a bucket and you have enabled other AWS accounts to upload objects\. If you have applied the bucket owner enforced setting for S3 Object Ownership for the bucket, you will own all objects in the bucket, including objects written by another AWS account\. This will resolve the issue that objects are not owned by you, the bucket owner\. Then, you can delegate permission to users in your own account or to other AWS accounts\. Suppose the bucket owner enforced setting for S3 Object Ownership is not enabled\. That is, your bucket can have objects that other AWS accounts own\. 
 
 Now, suppose as a bucket owner, you need to grant cross\-account permission on objects, regardless of who the owner is, to a user in another account\. For example, that user could be a billing application that needs to access object metadata\. There are two core issues:
 + The bucket owner has no permissions on those objects created by other AWS accounts\. So for the bucket owner to grant permissions on objects it does not own, the object owner, the AWS account that created the objects, must first grant permission to the bucket owner\. The bucket owner can then delegate those permissions\.
 + Bucket owner account can delegate permissions to users in its own account \(see [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)\), but it cannot delegate permissions to other AWS accounts, because cross\-account delegation is not supported\. 
 
 In this scenario, the bucket owner can create an AWS Identity and Access Management \(IAM\) role with permission to access objects, and grant another AWS account permission to assume the role temporarily enabling it to access objects in the bucket\. 
+
+**Note**  
+By default, when another AWS account uploads an object to your S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through ACLs\. You can use Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies, such as IAM policies, S3 bucket policies, virtual private cloud \(VPC\) endpoint policies, and AWS Organizations service control policies \(SCPs\)\.  
+A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you disable ACLs except in unusual circumstances where you need to control access for each object individually\. With Object Ownership, you can disable ACLs and rely on policies for access control\. When you disable ACLs, you can easily maintain a bucket with objects uploaded by different AWS accounts\. You, as the bucket owner, own all the objects in the bucket and can manage access to them using policies\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 
 ## Background: Cross\-account permissions and using IAM roles<a name="access-policies-walkthrough-example4-overview"></a>
 

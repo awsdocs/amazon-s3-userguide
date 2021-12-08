@@ -14,9 +14,8 @@ The following topics explain the learning paths that you can use to gain a deepe
 ## Understand common use cases<a name="s3-use-cases"></a>
 
 You can use Amazon S3 to support your specific use case\. The [AWS Solutions Library](http://aws.amazon.com/solutions/) and [AWS Blog](http://aws.amazon.com/blogs/) provide use\-case specific information and tutorials\. The following are some common use cases for Amazon S3:
-+ **Static website hosting** – Configure your Amazon S3 bucket to host a static website\. For more information, see [Hosting a static website using Amazon S3](WebsiteHosting.md)\.
 + **Backup and storage** – Use Amazon S3 storage management features to manage costs, meet regulatory requirements, reduce latency, and save multiple distinct copies of your data for compliance requirements\.
-+ **Application hosting** – Deploy, install, and manage web applications that are reliable, highly scalable, and low\-cost\.
++ **Application hosting** – Deploy, install, and manage web applications that are reliable, highly scalable, and low\-cost\. For example, you can configure your Amazon S3 bucket to host a static website\. For more information, see [Hosting a static website using Amazon S3](WebsiteHosting.md)\.
 + **Media hosting** – Build a highly available infrastructure that hosts video, photo, or music uploads and downloads\.
 + **Software delivery** – Host your software applications for customers to download\.
 
@@ -29,6 +28,7 @@ By default, S3 buckets and the objects in them are private\. You have access onl
 + [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html) – Create IAM users for your AWS account to manage access to your Amazon S3 resources\. For example, you can use IAM with Amazon S3 to control the type of access a user or group of users has to an Amazon S3 bucket that your AWS account owns\.
 + [Bucket policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html) – Use IAM\-based policy language to configure resource\-based permissions for your S3 buckets and the objects in them\.
 + [Access control lists \(ACLs\)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acls.html) – Grant read and write permissions for individual buckets and objects to authorized users\. As a general rule, we recommend using S3 resource\-based policies \(bucket policies and access point policies\) or IAM policies for access control instead of ACLs\. ACLs are an access control mechanism that predates resource\-based policies and IAM\. For more information about when you'd use ACLs instead of resource\-based policies or IAM policies, see [Access policy guidelines](access-policy-alternatives-guidelines.md)\.
++ [S3 Object Ownership](https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html) – Disable ACLs and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. You, as the bucket owner, automatically own and have full control over every object in your bucket, and access control for your data is based on policies\.
 + [Access Analyzer for S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html) – Evaluate and monitor your S3 bucket access policies, ensuring that the policies provide only the intended access to your S3 resources\. 
 
 ## Explore training and support<a name="explore-training-and-support"></a>

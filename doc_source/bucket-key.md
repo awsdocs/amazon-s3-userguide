@@ -4,7 +4,7 @@ Amazon S3 Bucket Keys reduce the cost of Amazon S3 server\-side encryption using
 
 ## S3 Bucket Keys for SSE\-KMS<a name="bucket-key-overview"></a>
 
-Workloads that access millions or billions of objects encrypted with SSE\-KMS can generate large volumes of requests to AWS KMS\. When you use SSE\-KMS to protect your data without an S3 Bucket Key, Amazon S3 uses an individual AWS KMS [data key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) for every object\. It makes a call to AWS KMS every time a request is made against a KMS\-encrypted object\. For information about how SSE\-KMS works, see [Protecting Data Using Server\-Side Encryption with KMS keys Stored in AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\. 
+Workloads that access millions or billions of objects encrypted with SSE\-KMS can generate large volumes of requests to AWS KMS\. When you use SSE\-KMS to protect your data without an S3 Bucket Key, Amazon S3 uses an individual AWS KMS [data key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) for every object\. It makes a call to AWS KMS every time a request is made against a KMS\-encrypted object\. For information about how SSE\-KMS works, see [Protecting Data Using Server\-Side Encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\. 
 
 When you configure your bucket to use an S3 Bucket Key for SSE\-KMS, AWS KMS generates a bucket\-level key that is used to create unique data keys for *new* objects that you add to the bucket\. This S3 Bucket Key is used for a time\-limited period within Amazon S3, reducing the need for Amazon S3 to make requests to AWS KMS to complete encryption operations\. This reduces traffic from S3 to AWS KMS, allowing you to access AWS KMS\-encrypted objects in S3 at a fraction of the previous cost\.
 
@@ -58,7 +58,7 @@ Before you enable an S3 Bucket Key, please note the following related changes:
 
 If your existing IAM policies or AWS KMS key policies use your object Amazon Resource Name \(ARN\) as the encryption context to refine or limit access to your KMS key, these policies won’t work with an S3 Bucket Key\. S3 Bucket Keys use the bucket ARN as encryption context\. Before you enable an S3 Bucket Key, update your IAM policies or AWS KMS key policies to use your bucket ARN as encryption context\.
 
-For more information about encryption context and S3 Bucket Keys, see [Encryption context \(x\-amz\-server\-side\-encryption\-context\)](specifying-kms-encryption.md#s3-kms-encryption-context)\.
+For more information about encryption context and S3 Bucket Keys, see [Encryption context](UsingKMSEncryption.md#encryption-context)\.
 
 ### AWS KMS CloudTrail events<a name="bucket-key-cloudtrail"></a>
 

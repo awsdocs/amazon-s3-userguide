@@ -1,8 +1,13 @@
 # Enabling and configuring event notifications using the Amazon S3 console<a name="enable-event-notifications"></a>
 
-You can enable certain Amazon S3 bucket events to send a notification message to a destination whenever the events occur\. This section explains how to use the Amazon S3 console to enable event notifications\. For information about using event notifications with the AWS SDKs and the Amazon S3 REST APIs, see [Configuring event notifications programmatically](how-to-enable-disable-notification-intro.md#event-notification-configuration)\. 
+You can enable certain Amazon S3 bucket events to send a notification message to a destination whenever those events occur\. This section explains how to use the Amazon S3 console to enable event notifications\. For information about how to use event notifications with the AWS SDKs and the Amazon S3 REST APIs, see [Configuring event notifications programmatically](how-to-enable-disable-notification-intro.md#event-notification-configuration)\. 
 
 **Prerequisites**: Before you can enable event notifications for your bucket, you must set up one of the destination types and then configure permissions\. For more information, see [Supported event destinations](notification-how-to-event-types-and-destinations.md#supported-notification-destinations) and [Granting permissions to publish event notification messages to a destination](grant-destinations-permissions-to-s3.md)\.
+
+**Topics**
++ [Enabling Amazon SNS, Amazon SQS, or Lambda notifications using the Amazon S3 console](#enable-event-notifications-sns-sqs-lam)
+
+## Enabling Amazon SNS, Amazon SQS, or Lambda notifications using the Amazon S3 console<a name="enable-event-notifications-sns-sqs-lam"></a>
 
 **To enable and configure event notifications for an S3 bucket**
 
@@ -20,21 +25,21 @@ You can enable certain Amazon S3 bucket events to send a notification message to
 
       If you don't enter a name, a globally unique identifier \(GUID\) is generated and used for the name\. 
 
-   1. To optionally filter event notifications by prefix, enter a **Prefix**\. 
+   1. \(Optional\) To filter event notifications by prefix, enter a **Prefix**\. 
 
       For example, you can set up a prefix filter so that you receive notifications only when files are added to a specific folder \(for example, `images/`\)\. 
 
-   1. To optionally filter event notifications by suffix, enter a **Suffix**\. 
+   1. \(Optional\) To filter event notifications by suffix, enter a **Suffix**\. 
 
       For more information, see [Configuring event notifications using object key name filtering](notification-how-to-filtering.md)\. 
 
-1. In the **Event types** section, select one or more event types for which you want to receive notifications\. 
+1. In the **Event types** section, select one or more event types that you want to receive notifications for\. 
 
-   For a listing of the event types, see [Supported event types](notification-how-to-event-types-and-destinations.md#supported-notification-event-types)\.
+   For a list of the different event types, see [Supported event types for SQS, SNS, and Lambda](notification-how-to-event-types-and-destinations.md#supported-notification-event-types)\.
 
 1. In the **Destination** section, choose the event notification destination\. 
 **Note**  
-Before you can publish event notifications, you must grant the Amazon S3 principal the necessary permissions to call the relevant API to publish notifications to a Lambda function, SNS topic, or SQS queue\.
+Before you can publish event notifications, you must grant the Amazon S3 principal the necessary permissions to call the relevant API\. This is so that it can publish notifications to a Lambda function, SNS topic, or SQS queue\.
 
    1. Select the destination type: **Lambda Function**, **SNS Topic**, or **SQS Queue**\.
 

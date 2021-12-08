@@ -1,10 +1,13 @@
 # Protecting data using client\-side encryption<a name="UsingClientSideEncryption"></a>
 
-*Client\-side encryption* is the act of encrypting data before sending it to Amazon S3\. 
+*Client\-side encryption* is the act of encrypting your data locally to ensure its security as it passes to the Amazon S3 service\. The Amazon S3 service receives your encrypted data; it does not play a role in encrypting or decrypting it\.
 
 To enable client\-side encryption, you have the following options:
-+ Use an AWS KMS key stored in AWS Key Management Service \(AWS KMS\)\.
++ Use a key stored in AWS Key Management Service \(AWS KMS\)\.
 + Use a key that you store within your application\.
+
+**Note**  
+Amazon S3 only supports symmetric keys and not asymmetric keys\.
 
 **AWS Encryption SDK**  
 The [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/) is a client\-side encryption library that is separate from the language–specific SDKs\. You can use this encryption library to more easily implement encryption best practices in Amazon S3\. Unlike the Amazon S3 encryption clients in the language–specific AWS SDKs, the AWS Encryption SDK is not tied to Amazon S3 and can be used to encrypt or decrypt data to be stored anywhere\. 

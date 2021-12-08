@@ -1,16 +1,17 @@
-# Examples of lifecycle configuration<a name="lifecycle-configuration-examples"></a>
+# Examples of S3 Lifecycle configuration<a name="lifecycle-configuration-examples"></a>
 
 This section provides examples of S3 Lifecycle configuration\. Each example shows how you can specify the XML in each of the example scenarios\.
 
 **Topics**
 + [Example 1: Specifying a filter](#lifecycle-config-ex1)
-+ [Example 2: Disabling a lifecycle rule](#lifecycle-config-conceptual-ex2)
++ [Example 2: Disabling a Lifecycle rule](#lifecycle-config-conceptual-ex2)
 + [Example 3: Tiering down storage class over an object's lifetime](#lifecycle-config-conceptual-ex3)
 + [Example 4: Specifying multiple rules](#lifecycle-config-conceptual-ex4)
 + [Example 5: Overlapping filters, conflicting lifecycle actions, and what Amazon S3 does with nonversioned buckets](#lifecycle-config-conceptual-ex5)
 + [Example 6: Specifying a lifecycle rule for a versioning\-enabled bucket](#lifecycle-config-conceptual-ex6)
 + [Example 7: Removing expired object delete markers](#lifecycle-config-conceptual-ex7)
 + [Example 8: Lifecycle configuration to abort multipart uploads](#lc-expire-mpu)
++ [Example 9: Lifecycle configuration using size\-based rules](#lc-size-rules)
 
 ## Example 1: Specifying a filter<a name="lifecycle-config-ex1"></a>
 
@@ -18,7 +19,7 @@ Each S3 Lifecycle rule includes a filter that you can use to identify a subset o
 + In this S3 Lifecycle configuration rule, the filter specifies a key prefix \(`tax/`\)\. Therefore, the rule applies to objects with the key name prefix `tax/`, such as `tax/doc1.txt` and `tax/doc2.txt`\.
 
   The rule specifies two actions that direct Amazon S3 to do the following:
-  + Transition objects to the S3 Glacier storage class 365 days \(one year\) after creation\.
+  + Transition objects to the S3 Glacier Flexible Retrieval storage class 365 days \(one year\) after creation\.
   + Delete objects \(the `Expiration` action\) 3,650 days \(10 years\) after creation\.
 
   ```
@@ -31,7 +32,7 @@ Each S3 Lifecycle rule includes a filter that you can use to identify a subset o
       <Status>Enabled</Status>
       <Transition>
         <Days>365</Days>
-        <StorageClass>S3 Glacier</StorageClass>
+        <StorageClass>S3 Glacier Flexible Retrieval</StorageClass>
       </Transition>
       <Expiration>
         <Days>3650</Days>
@@ -41,7 +42,7 @@ Each S3 Lifecycle rule includes a filter that you can use to identify a subset o
   ```
 
   Instead of specifying object age in terms of days after creation, you can specify a date for each action\. However, you can't use both `Date` and `Days` in the same rule\. 
-+ If you want the S3 Lifecycle rule to apply to all objects in the bucket, specify an empty prefix\. In the following configuration, the rule specifies a `Transition` action that directs Amazon S3 to transition objects to the S3 Glacier storage class 0 days after creation\. This rule means that the objects are eligible for archival to Amazon S3 Glacier at midnight UTC following creation\. For more information about lifecycle constraints, see [Constraints](lifecycle-transition-general-considerations.md#lifecycle-configuration-constraints)\.
++ If you want the S3 Lifecycle rule to apply to all objects in the bucket, specify an empty prefix\. In the following configuration, the rule specifies a `Transition` action that directs Amazon S3 to transition objects to the S3 Glacier Flexible Retrieval storage class 0 days after creation\. This rule means that the objects are eligible for archival to Amazon S3 Glacier at midnight UTC following creation\. For more information about lifecycle constraints, see [Constraints](lifecycle-transition-general-considerations.md#lifecycle-configuration-constraints)\.
 
   ```
   <LifecycleConfiguration>
@@ -53,14 +54,12 @@ Each S3 Lifecycle rule includes a filter that you can use to identify a subset o
       <Status>Enabled</Status>
       <Transition>
         <Days>0</Days>
-        <StorageClass>S3 Glacier</StorageClass>
+        <StorageClass>S3 Glacier Flexible Retrieval</StorageClass>
       </Transition>
     </Rule>
   </LifecycleConfiguration>
   ```
-+ You can specify zero or one key name prefix and zero or more object tags in a filter\. The following example code applies the S3 Lifecycle rule to a subset of objects with the `tax/` key prefix and to objects that have two tags with a specific key and value\. When you specify more than one filter, you must include the `AND` as shown \(Amazon S3 applies a logical `AND` to combine the specified filter conditions\)\.
-
-  
++ You can specify zero or one key name prefix and zero or more object tags in a filter\. The following example code applies the S3 Lifecycle rule to a subset of objects with the `tax/` key prefix and to objects that have two tags with specific key and value\. When you specify more than one filter, you must include the `<And>` element as shown \(Amazon S3 applies a logical `AND` to combine the specified filter conditions\)\.
 
   ```
   ...
@@ -106,16 +105,16 @@ Each S3 Lifecycle rule includes a filter that you can use to identify a subset o
 When you have multiple rules in an S3 Lifecycle configuration, an object can become eligible for multiple S3 Lifecycle actions\. In such cases, Amazon S3 follows these general rules:  
 Permanent deletion takes precedence over transition\.
 Transition takes precedence over creation of delete markers\.
-When an object is eligible for both an S3 Glacier and an S3 Standard\-IA \(or S3 One Zone\-IA\) transition, Amazon S3 chooses the S3 Glacier transition\.
+When an object is eligible for both a S3 Glacier Flexible Retrieval and S3 Standard\-IA \(or S3 One Zone\-IA\) transition, Amazon S3 chooses the S3 Glacier Flexible Retrieval transition\.
  For examples, see [Example 5: Overlapping filters, conflicting lifecycle actions, and what Amazon S3 does with nonversioned buckets](#lifecycle-config-conceptual-ex5)\. 
 
 
 
-## Example 2: Disabling a lifecycle rule<a name="lifecycle-config-conceptual-ex2"></a>
+## Example 2: Disabling a Lifecycle rule<a name="lifecycle-config-conceptual-ex2"></a>
 
 You can temporarily disable a S3 Lifecycle rule\. The following S3 Lifecycle configuration specifies two rules:
-+ Rule 1 directs Amazon S3 to transition objects with the `logs/` prefix to the S3 Glacier storage class soon after creation\. 
-+ Rule 2 directs Amazon S3 to transition objects with the `documents/` prefix to the S3 Glacier storage class soon after creation\. 
++ Rule 1 directs Amazon S3 to transition objects with the `logs/` prefix to the S3 Glacier Flexible Retrieval storage class soon after creation\. 
++ Rule 2 directs Amazon S3 to transition objects with the `documents/` prefix to the S3 Glacier Flexible Retrieval storage class soon after creation\. 
 
 In the policy, Rule 1 is enabled and Rule 2 is disabled\. Amazon S3 ignores disabled rules\.
 
@@ -129,7 +128,7 @@ In the policy, Rule 1 is enabled and Rule 2 is disabled\. Amazon S3 ignores disa
     <Status>Enabled</Status>
     <Transition>
       <Days>0</Days>
-      <StorageClass>S3 Glacier</StorageClass>
+      <StorageClass>S3 Glacier Flexible Retrieval</StorageClass>
     </Transition>
   </Rule>
   <Rule>
@@ -138,7 +137,7 @@ In the policy, Rule 1 is enabled and Rule 2 is disabled\. Amazon S3 ignores disa
     <Status>Disabled</Status>
     <Transition>
       <Days>0</Days>
-      <StorageClass>S3 Glacier</StorageClass>
+      <StorageClass>S3 Glacier Flexible Retrieval</StorageClass>
     </Transition>
   </Rule>
 </LifecycleConfiguration>
@@ -146,12 +145,12 @@ In the policy, Rule 1 is enabled and Rule 2 is disabled\. Amazon S3 ignores disa
 
 ## Example 3: Tiering down storage class over an object's lifetime<a name="lifecycle-config-conceptual-ex3"></a>
 
-In this example, you use lifecycle configuration to tier down the storage class of objects over their lifetime\. Tiering down can help reduce storage costs\. For more information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
+In this example, you use S3 Lifecycle configuration to tier down the storage class of objects over their lifetime\. Tiering down can help reduce storage costs\. For more information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 
 The following S3 Lifecycle configuration specifies a rule that applies to objects with the key name prefix `logs/`\. The rule specifies the following actions:
 + Two transition actions:
   + Transition objects to the S3 Standard\-IA storage class 30 days after creation\.
-  + Transition objects to the S3 Glacier storage class 90 days after creation\.
+  + Transition objects to the S3 Glacier Flexible Retrieval storage class 90 days after creation\.
 + One expiration action that directs Amazon S3 to delete objects a year after creation\.
 
 ```
@@ -185,8 +184,8 @@ You can use one rule to describe all S3 Lifecycle actions if all actions apply t
 
 
 You can specify multiple rules if you want different S3 Lifecycle actions of different objects\. The following S3 Lifecycle configuration has two rules:
-+ Rule 1 applies to objects with the key name prefix `classA/`\. It directs Amazon S3 to transition objects to the S3 Glacier storage class one year after creation and expire these objects 10 years after creation\.
-+ Rule 2 applies to objects with the key name prefix `classB/`\. It directs Amazon S3 to transition objects to the S3 Standard\-IA storage class 90 days after creation and delete them one year after creation\.
++ Rule 1 applies to objects with the key name prefix `classA/`\. It directs Amazon S3 to transition objects to the S3 Glacier Flexible Retrieval storage class one year after creation and expire these objects 10 years after creation\.
++ Rule 2 applies to objects with key name prefix `classB/`\. It directs Amazon S3 to transition objects to the S3 Standard\-IA storage class 90 days after creation and delete them one year after creation\.
 
 ```
 <LifecycleConfiguration>
@@ -227,7 +226,7 @@ You might specify an S3 Lifecycle configuration in which you specify overlapping
 
 Generally, S3 Lifecycle optimizes for cost\. For example, if two expiration policies overlap, the shorter expiration policy is honored so that data is not stored for longer than expected\. Likewise, if two transition policies overlap, S3 Lifecycle transitions your objects to the lower\-cost storage class\. 
 
-In both cases, S3 Lifecycle tries to choose the path that is least expensive for you\. An exception to this general rule is with the S3 Intelligent\-Tiering storage class\. S3 Intelligent\-Tiering is favored by S3 Lifecycle over any storage class, aside from the S3 Glacier and S3 Glacier Deep Archive storage classes\.
+In both cases, S3 Lifecycle tries to choose the path that is least expensive for you\. An exception to this general rule is with the S3 Intelligent\-Tiering storage class\. S3 Intelligent\-Tiering is favored by S3 Lifecycle over any storage class, aside from the S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive storage classes\.
 
 The following examples show how Amazon S3 resolves potential conflicts\.
 
@@ -267,7 +266,7 @@ Since there is no conflict in this case, Amazon S3 will transition the objects w
 In this example configuration, there are two rules that direct Amazon S3 to perform two different actions on the same set of objects at the same time in the objects' lifetime:  
 + Both rules specify the same key name prefix, so both rules apply to the same set of objects\.
 + Both rules specify the same 365 days after object creation when the rules apply\.
-+ One rule directs Amazon S3 to transition objects to the S3 Standard\-IA storage class\. The other rule directs Amazon S3 to expire the objects at the same time\.
++ One rule directs Amazon S3 to transition objects to the S3 Standard\-IA storage class and another rule wants Amazon S3 to expire the objects at the same time\.
 
 ```
 <LifecycleConfiguration>
@@ -332,7 +331,7 @@ In this case, Amazon S3 chooses to transition them 10 days after creation\.
 
 **Example 4: Tag\-based filtering and resulting conflicting lifecycle actions**  
 Suppose that you have the following S3 Lifecycle policy that has two rules, each specifying a tag filter:  
-+ Rule 1 specifies a tag\-based filter \(`tag1/value1`\)\. This rule directs Amazon S3 to transition objects to the S3 Glacier storage class 365 days after creation\.
++ Rule 1 specifies a tag\-based filter \(`tag1/value1`\)\. This rule directs Amazon S3 to transition objects to the S3 Glacier Flexible Retrieval storage class 365 days after creation\.
 + Rule 2 specifies a tag\-based filter \(`tag2/value2`\)\. This rule directs Amazon S3 to expire objects 14 days after creation\.
 The S3 Lifecycle configuration is shown in following example\.  
 
@@ -375,11 +374,9 @@ If an object has both tags, then Amazon S3 has to decide which rule to follow\. 
 
 ## Example 6: Specifying a lifecycle rule for a versioning\-enabled bucket<a name="lifecycle-config-conceptual-ex6"></a>
 
-You can use S3 Lifecycle rules with versioned buckets, and for the most part, the rules function in the same way as they do with nonversioned buckets\. However, there are a few things to be aware of regarding how Amazon S3 handles versioning and S3 Lifecycle rules\. These examples demonstrate the behavior with versioned buckets\. 
+Suppose that you have a versioning\-enabled bucket, which means that for each object, you have a current version and zero or more noncurrent versions\. \(For more information about S3 Versioning, see [Using versioning in S3 buckets](Versioning.md)\.\) In this example, you want to maintain one year's worth of history, and delete the noncurrent versions\. Amazon S3 S3 Lifecycle configurations supports keeping 1 to 100 versions of any object\. 
 
-**Example 1: Keeping old versions**  
-Suppose that you have a versioning\-enabled bucket, which means that for each object you have a current version and zero or more noncurrent versions\. You want to maintain one year's worth of history and then delete the noncurrent versions\. For more information about S3 Versioning, see [Using versioning in S3 buckets](Versioning.md)\.   
-Also, you want to save storage costs by moving noncurrent versions to S3 Glacier 30 days after they become noncurrent \(assuming that these versions are cold data for which you don't need real\-time access\)\. In addition, you also expect the frequency of access of the current versions to diminish 90 days after creation, so you might choose to move these objects to the S3 Standard\-IA storage class\.  
+To save storage costs, you want to move noncurrent versions to S3 Glacier Flexible Retrieval 30 days after they become noncurrent \(assuming that these noncurrent objects are cold data for which you don't need real\-time access\)\. In addition, you expect frequency of access of the current versions to diminish 90 days after creation, so you might choose to move these objects to the S3 Standard\-IA storage class\.
 
 ```
  1. <LifecycleConfiguration>
@@ -395,48 +392,15 @@ Also, you want to save storage costs by moving noncurrent versions to S3 Glacier
 11.         </Transition>
 12.         <NoncurrentVersionTransition>      
 13.             <NoncurrentDays>30</NoncurrentDays>      
-14.             <StorageClass>S3 Glacier</StorageClass>   
+14.             <StorageClass>S3 Glacier Flexible Retrieval</StorageClass>   
 15.         </NoncurrentVersionTransition>    
 16.        <NoncurrentVersionExpiration>     
-17.             <NoncurrentDays>365</NoncurrentDays>    
-18.        </NoncurrentVersionExpiration> 
-19.     </Rule>
-20. </LifecycleConfiguration>
+17.             <NewerNoncurrentVersions>5</NewerNoncurrentVersions>
+18.             <NoncurrentDays>365</NoncurrentDays>    
+19.        </NoncurrentVersionExpiration> 
+20.     </Rule>
+21. </LifecycleConfiguration>
 ```
-
-**Example 2: Conflicts with versioned buckets**  
-In [Example 5: Overlapping filters, conflicting lifecycle actions, and what Amazon S3 does with nonversioned buckets](#lifecycle-config-conceptual-ex5), you saw examples demonstrating what happens when there is a conflict between two S3 Lifecycle actions\. When working with versioned buckets, which option is the least\-expensive may not be immediately obvious\. Consider the same example from earlier, with the following S3 Lifecycle rules:   
-+ Both rules specify the same key name prefix, so both rules apply to the same set of objects\.
-+ Both rules specify the same 365 days after object creation when the rules apply\.
-+ One rule directs Amazon S3 to transition objects to the S3 Standard\-IA storage class\. The other rule directs Amazon S3 to expire the objects at the same time\.
-
-```
-<LifecycleConfiguration>
-  <Rule>
-    <ID>Rule 1</ID>
-    <Filter>
-      <Prefix>logs/</Prefix>
-    </Filter>
-    <Status>Enabled</Status>
-    <Expiration>
-      <Days>365</Days>
-    </Expiration>
-  </Rule>
-  <Rule>
-    <ID>Rule 2</ID>
-    <Filter>
-      <Prefix>logs/</Prefix>
-    </Filter>
-    <Status>Enabled</Status>
-    <Transition>
-      <StorageClass>STANDARD_IA<StorageClass>
-      <Days>365</Days>
-    </Transition>
-   </Rule>
-</LifecycleConfiguration>
-```
-Consider an object that you added 365 days ago but have not updated in that time\. This object qualifies for both the transition and expiration rule\. If this object is in a versioned bucket, Amazon S3 transitions the object to the S3 Standard\-IA storage class\. The transition action takes precedence over the expiration action\. This is because of how versioned buckets work\. When an object is deleted in a versioned bucket, Amazon S3 does not removed it\. It places a delete marker on top of the object\. Since the object is still stored, the cheaper option is to transition it to the S3 Standard\-IA storage class\.  
-In this specific example, the object is still unchanged after being transitioned to a new storage class\. Because of this, it is still subject to the expiration action after it has been transferred\. After the transfer is complete, Amazon S3 expires the object, placing a delete marker on the object\. For more information about how delete markers work, see [Working with delete markers](DeleteMarker.md)\. 
 
 ## Example 7: Removing expired object delete markers<a name="lifecycle-config-conceptual-ex7"></a>
 
@@ -449,13 +413,14 @@ A versioning\-enabled bucket has one current version and zero or more noncurrent
 
 This example shows a scenario that can create expired object delete markers in your bucket, and how you can use S3 Lifecycle configuration to direct Amazon S3 to remove the expired object delete markers\.
 
-Suppose that you write a S3 Lifecycle policy that specifies the `NoncurrentVersionExpiration` action to remove the noncurrent versions 30 days after they become noncurrent, as shown in the following example\.
+Suppose that you write a S3 Lifecycle policy that uses the `NoncurrentVersionExpiration` action to remove the noncurrent versions 30 days after they become noncurrent and retains at most 10 noncurrent versions, as shown in the following example\.
 
 ```
 <LifecycleConfiguration>
     <Rule>
         ...
         <NoncurrentVersionExpiration>     
+            <NewerNoncurrentVersions>10</NewerNoncurrentVersions>
             <NoncurrentDays>30</NoncurrentDays>    
         </NoncurrentVersionExpiration>
     </Rule>
@@ -477,6 +442,7 @@ For current object versions, you have the following options to manage their life
              <Days>60</Days>
           </Expiration>
           <NoncurrentVersionExpiration>     
+              <NewerNoncurrentVersions>10</NewerNoncurrentVersions>
               <NoncurrentDays>30</NoncurrentDays>    
           </NoncurrentVersionExpiration>
       </Rule>
@@ -508,6 +474,7 @@ You cannot specify both a `Days` and an `ExpiredObjectDeleteMarker` tag on the s
              <ExpiredObjectDeleteMarker>true</ExpiredObjectDeleteMarker>
           </Expiration>
           <NoncurrentVersionExpiration>     
+              <NewerNoncurrentVersions>10</NewerNoncurrentVersions>
               <NoncurrentDays>30</NoncurrentDays>    
           </NoncurrentVersionExpiration>
       </Rule>
@@ -541,6 +508,43 @@ The following is an example S3 Lifecycle configuration that specifies a rule wit
         <AbortIncompleteMultipartUpload>
           <DaysAfterInitiation>7</DaysAfterInitiation>
         </AbortIncompleteMultipartUpload>
+    </Rule>
+</LifecycleConfiguration>
+```
+
+## Example 9: Lifecycle configuration using size\-based rules<a name="lc-size-rules"></a>
+
+You can create rules that transition objects based only on their size\. You can specify a minimum size \(`ObjectSizeGreaterThan`\) or a maximum size \(`ObjectSizeLessThan`\), or you can specify a range of object sizes\. When using more than one filter, such as a prefix and size rule, you must wrap the filters in an `<And>` element\.
+
+```
+<LifecycleConfiguration>
+  <Rule>
+    <ID>Transition with a prefix and based on size</ID>
+    <Filter>
+       <And>
+          <Prefix>tax/</Prefix>
+          <ObjectSizeGreaterThan>500</ObjectSizeGreaterThan>
+       </And>   
+    </Filter>
+    <Status>Enabled</Status>
+    <Transition>
+      <Days>365</Days>
+      <StorageClass>S3 Glacier Flexible Retrieval</StorageClass>
+    </Transition>
+  </Rule>
+</LifecycleConfiguration>
+```
+
+If you're specifying a range by using both the `ObjectSizeGreaterThan` and `ObjectSizeLessThan` elements, the maximum object size must be larger than the minimum object size\. When using more than one filter, you must wrap the filters in an `<And>` element\. The following example shows how to specify objects in a range between 500 and 64000 bytes\. 
+
+```
+<LifecycleConfiguration>
+    <Rule>
+        ...
+          <And>
+             <ObjectSizeGreaterThan>500</ObjectSizeGreaterThan>
+             <ObjectSizeLessThan>64000</ObjectSizeLessThan>
+          </And>
     </Rule>
 </LifecycleConfiguration>
 ```

@@ -1,7 +1,7 @@
 # Managing your storage lifecycle<a name="object-lifecycle-mgmt"></a>
 
 To manage your objects so that they are stored cost effectively throughout their lifecycle, configure their *Amazon S3 Lifecycle*\. An *S3 Lifecycle configuration* is a set of rules that define actions that Amazon S3 applies to a group of objects\. There are two types of actions:
-+ **Transition actions** – These actions define when objects transition to another storage class\. For example, you might choose to transition objects to the S3 Standard\-IA storage class 30 days after creating them, or archive objects to the S3 Glacier storage class one year after creating them\. For more information, see [Using Amazon S3 storage classes](storage-class-intro.md)\. 
++ **Transition actions** – These actions define when objects transition to another storage class\. For example, you might choose to transition objects to the S3 Standard\-IA storage class 30 days after creating them, or archive objects to the S3 Glacier Flexible Retrieval storage class one year after creating them\. For more information, see [Using Amazon S3 storage classes](storage-class-intro.md)\. 
 
   There are costs associated with lifecycle transition requests\. For pricing information, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 + **Expiration actions** – These actions define when objects expire\. Amazon S3 deletes expired objects on your behalf\. 
@@ -44,5 +44,6 @@ For more information about creating a lifecycle configuration, see the following
 + [Expiring objects](lifecycle-expire-general-considerations.md)
 + [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)
 + [Lifecycle and other bucket configurations](lifecycle-and-other-bucket-config.md)
++ [Configuring Lifecycle event notifications](lifecycle-configure-notification.md)
 + [Lifecycle configuration elements](intro-lifecycle-rules.md)
-+ [Examples of lifecycle configuration](lifecycle-configuration-examples.md)
++ [Examples of S3 Lifecycle configuration](lifecycle-configuration-examples.md)

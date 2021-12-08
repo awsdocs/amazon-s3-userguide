@@ -92,7 +92,7 @@ For endpoints that use the CoIP pool access type, S3 on Outposts allocates and a
 
 For endpoints that are using the customer\-owned IP address pool \(CoIP pool\) access type, you also must have permissions to allocate and associate IP addresses from your CoIP pool\. 
 
-S3 on Outposts requires new permissions in AWS Identity and Access Management \(IAM\) to manage S3 on Outposts endpoint actions\. 
+S3 on Outposts requires new permissions in AWS Identity and Access Management \(IAM\) to manage S3 on Outposts endpoint actions\.
 
 
 **S3 on Outposts endpoint\-related IAM permissions**  
@@ -101,10 +101,12 @@ S3 on Outposts requires new permissions in AWS Identity and Access Management \(
 | --- | --- | 
 | CreateEndpoint |  `s3-outposts:CreateEndpoint` `ec2:CreateNetworkInterface` `ec2:DescribeNetworkInterfaces` `ec2:DescribeVpcs` `ec2:DescribeSecurityGroups` `ec2:DescribeSubnets` `ec2:CreateTags` For endpoints that are using the on\-premises customer\-owned IP address pool \(CoIP pool\) access type, the following additional permissions are required: `s3-outposts:CreateEndpoint` `ec2:DescribeCoipPools` `ec2:GetCoipPoolUsage` `ec2:AllocateAddress` `ec2:AssociateAddress` `ec2:DescribeAddresses` `ec2:DescribeLocalGatewayRouteTableVpcAssociations`  | 
 | DeleteEndpoint |  `s3-outposts:DeleteEndpoint` `ec2:DeleteNetworkInterface` `ec2:DescribeNetworkInterfaces` For endpoints that are using the on\-premises customer\-owned IP address pool \(CoIP pool\) access type, the following additional permissions are required: `s3-outposts:DeleteEndpoint` `ec2:DisassociateAddress` `ec2:DescribeAddresses` `ec2:ReleaseAddress`  | 
-| ListEndpoints | `s3-outposts:ListEndpoints`  | 
+| ListEndpoints |  `s3-outposts:ListEndpoints`  | 
 
 **Note**  
 You can use resource tags in an IAM policy to manage permissions\.
+
+For shared accounts accessing S3 on Outposts using AWS Resource Access Manager, users can't create their own endpoints on a shared subnet\. If a user in a shared account wants to manage their own endpoints, the shared account must create its own subnet on the Outpost\.
 
 ## Encryption options with S3 on Outposts<a name="S3OutpostsEncryption"></a>
 

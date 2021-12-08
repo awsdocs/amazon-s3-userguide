@@ -2,9 +2,9 @@
 
 The notification message that Amazon S3 sends to publish an event is in the JSON format\.
 
-For general information about configuring event notifications, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
+For a general overview and instructions on configuring event notifications, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
 
-This example shows *version 2\.2* of the event notification JSON structure\. Amazon S3 uses *versions 2\.1* and *2\.2* of this event structure\. Amazon S3 uses version 2\.2 for cross\-region replication event notifications that contain extra information specific to these operations\. Version 2\.2 is otherwise compatible with version 2\.1, which Amazon S3 currently uses for other operation types\.
+This example shows *version 2\.2* of the event notification JSON structure\. Amazon S3 uses *versions 2\.1*, *2\.2*, and *2\.3* of this event structure\. Amazon S3 uses version 2\.2 for cross\-Region replication event notifications\. It uses version 2\.3 for S3 Lifecycle, S3 Intelligent\-Tiering, object ACL, object tagging, and object restoration delete events\. These versions contain extra information specific to these operations\. Versions 2\.2 and 2\.3 are otherwise compatible with version 2\.1, which Amazon S3 currently uses for all other event notification types\.
 
 ```
 {  
@@ -54,80 +54,45 @@ This example shows *version 2\.2* of the event notification JSON structure\. Ama
 }
 ```
 
-Note the following about the previous example:
+Note the following about the event message structure:
 + The `eventVersion` key value contains a major and minor version in the form `<major>`\.`<minor>`\.
 
-  The major version is incremented if Amazon S3 makes a change to the event structure that is not backward compatible\. This includes removing a JSON field that is already present or changing how the contents of a field are represented \(for example, a date format\)\.
+  The major version is incremented if Amazon S3 makes a change to the event structure that's not backward compatible\. This includes removing a JSON field that's already present or changing how the contents of a field are represented \(for example, a date format\)\.
 
-  The minor version is incremented if Amazon S3 adds new fields to the event structure\. This might occur if new information is provided for some or all existing events, or if new information is provided on only newly introduced event types\. Applications should ignore new fields to stay forward compatible with new minor versions of the event structure\.
+  The minor version is incremented if Amazon S3 adds new fields to the event structure\. This might occur if new information is provided for some or all existing events\. This might also occur if new information is provided on only newly introduced event types\. Applications should ignore new fields to stay forward compatible with new minor versions of the event structure\.
 
-  If new event types are introduced but the structure of the event is otherwise unmodified, the event version does not change\.
+  If new event types are introduced but the structure of the event is otherwise unmodified, the event version doesn't change\.
 
-  To ensure that your applications can parse the event structure correctly, we recommend that you do an equal\-to comparison on the major version number\. To ensure that the fields expected by your application are present, we also recommend doing a greater\-than\-or\-equal\-to comparison on the minor version\.
-+ The `eventName` references the list of [event notification types](https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html) but does not contain the `s3:` prefix\.
-+ The `responseElements` key value is useful if you want to trace a request by following up with AWS Support\. Both `x-amz-request-id` and `x-amz-id-2` help Amazon S3 trace an individual request\. These values are the same as those that Amazon S3 returns in the response to the request that initiates the events, so they can be used to match the event to the request\.
+  To ensure that your applications can parse the event structure correctly, we recommend that you do an equal\-to comparison on the major version number\. To ensure that the fields that are expected by your application are present, we also recommend doing a greater\-than\-or\-equal\-to comparison on the minor version\.
++ The `eventName` references the list of [event notification types](https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html) but doesn't contain the `s3:` prefix\.
++ The `responseElements` key value is useful if you want to trace a request by following up with AWS Support\. Both `x-amz-request-id` and `x-amz-id-2` help Amazon S3 trace an individual request\. These values are the same as those that Amazon S3 returns in the response to the request that initiates the events\. This is so they can be used to match the event to the request\.
 + The `s3` key provides information about the bucket and object involved in the event\. The object key name value is URL encoded\. For example, "red flower\.jpg" becomes "red\+flower\.jpg" \(Amazon S3 returns "`application/x-www-form-urlencoded`" as the content type in the response\)\.
-+ The `sequencer` key provides a way to determine the sequence of events\. Event notifications are not guaranteed to arrive in the order that the events occurred\. However, notifications from events that create objects \(`PUT`s\) and delete objects contain a `sequencer`, which can be used to determine the order of events for a given object key\. 
++ The `sequencer` key provides a way to determine the sequence of events\. Event notifications aren't guaranteed to arrive in the same order that the events occurred\. However, notifications from events that create objects \(`PUT`s\) and delete objects contain a `sequencer`\. It can be used to determine the order of events for a given object key\. 
 
-  If you compare the `sequencer` strings from two event notifications on the same object key, the event notification with the greater `sequencer` hexadecimal value is the event that occurred later\. If you are using event notifications to maintain a separate database or index of your Amazon S3 objects, you will probably want to compare and store the `sequencer` values as you process each event notification\. 
+  If you compare the `sequencer` strings from two event notifications on the same object key, the event notification with the greater `sequencer` hexadecimal value is the event that occurred later\. If you're using event notifications to maintain a separate database or index of your Amazon S3 objects, we recommend that you compare and store the `sequencer` values as you process each event notification\. 
 
   Note the following:
   + You can't use `sequencer` to determine order for events on different object keys\.
-  + The sequencers can be of different lengths\. So to compare these values, you must first right pad the shorter value with zeros, and then do a lexicographical comparison\.
+  + The sequencers can be of different lengths\. So, to compare these values, first right pad the shorter value with zeros, and then do a lexicographical comparison\.
++ The `sequencer` key provides a way to determine the sequence of events\. Event notifications might not arrive in the same order that the events occurred in\. However, notifications from events that create objects \(`PUT`s\) and delete objects contain a `sequencer`\. You can use the `sequencer` to determine the order the events were in for a given object key\. 
+
+  Assume that you compare the `sequencer` strings from two event notifications on the same object key\. The event notification with the greater `sequencer` hexadecimal value is the event that occurred later\. Assume that you use event notifications to maintain a separate database or index of your Amazon S3 objects\. In this case, we recommend that you compare and store the `sequencer` values as you process each event notification\. 
+
+  Note the following:
+  + You can't use `sequencer` to determine order for events on different object keys\.
+  + The sequencers can be of different lengths\. To compare these values, first right pad the shorter value with zeros, and then do a lexicographical comparison\.
 + The `glacierEventData` key is only visible for `s3:ObjectRestore:Completed` events\. 
-+ The `restoreEventData` key contains attributes related to your restore request\.
++ The `restoreEventData` key contains attributes that are related to your restore request\.
 + The `replicationEventData` key is only visible for replication events\.
-
-The following example shows *version 2\.0* of the event message structure, which Amazon S3 no longer uses\.
-
-```
-{  
-   "Records":[  
-      {  
-         "eventVersion":"2.0",
-         "eventSource":"aws:s3",
-         "awsRegion":"us-west-2",
-         "eventTime":"The time, in ISO-8601 format, for example, 1970-01-01T00:00:00.000Z, when S3 finished processing the request",
-         "eventName":"event-type",
-         "userIdentity":{  
-            "principalId":"Amazon-customer-ID-of-the-user-who-caused-the-event"
-         },
-         "requestParameters":{  
-            "sourceIPAddress":"ip-address-where-request-came-from"
-         },
-         "responseElements":{  
-            "x-amz-request-id":"Amazon S3 generated request ID",
-            "x-amz-id-2":"Amazon S3 host that processed the request"
-         },
-         "s3":{  
-            "s3SchemaVersion":"1.0",
-            "configurationId":"ID found in the bucket notification configuration",
-            "bucket":{  
-               "name":"bucket-name",
-               "ownerIdentity":{  
-                  "principalId":"Amazon-customer-ID-of-the-bucket-owner"
-               },
-               "arn":"bucket-ARN"
-            },
-            "object":{  
-               "key":"object-key",
-               "size":"object-size",
-               "eTag":"object eTag",
-               "versionId":"object version if bucket is versioning-enabled, otherwise null",
-               "sequencer": "a string representation of a hexadecimal value used to determine event sequence, only used with PUTs and DELETEs"
-            }
-         }
-      }
-   ]
-}
-```
++ The `intelligentTieringEventData` key is only visible for S3 Intelligent\-Tiering events\.
++ The `lifecycleEventData` key is only visible for S3 Lifecycle transition events\.
 
 ## Example messages<a name="notification-content-structure-examples"></a>
 
 The following are examples of Amazon S3 event notification messages\.
 
 **Amazon S3 test message**  
-When you configure an event notification on a bucket, Amazon S3 sends the following test message\.
+After you configure an event notification on a bucket, Amazon S3 sends the following test message\.
 
 ```
 1. {  
@@ -185,4 +150,4 @@ The following message is an example of a message Amazon S3 sends to publish an `
 39. }
 ```
 
-For a definition of each IAM identification prefix \(AIDA, AROA, AGPA, etc\.\), see [IAM identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-prefixesl) in the *IAM User Guide*\.
+For a definition of each IAM identification prefix \(for example, AIDA, AROA, AGPA\), see [IAM identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-prefixesl) in the *IAM User Guide*\.

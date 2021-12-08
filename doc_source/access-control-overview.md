@@ -19,14 +19,14 @@ Bucket subresources include the following:
 + `versioning` – Stores versioning configuration\. For more information, see [PUT Bucket versioning](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html) in the *Amazon Simple Storage Service API Reference*\. 
 + `policy` and `acl` \(access control list\) – Store access permission information for the bucket\. 
 + `cors` \(cross\-origin resource sharing\) – Supports configuring your bucket to allow cross\-origin requests\. For more information, see [Using cross\-origin resource sharing \(CORS\)](cors.md)\.
-+ `object ownership` – Enables the bucket owner to take ownership of new objects in the bucket, regardless of who uploads them\. For more information, see [Controlling ownership of uploaded objects using S3 Object Ownership](about-object-ownership.md)\.
++ `object ownership` – Enables the bucket owner to take ownership of new objects in the bucket, regardless of who uploads them\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 + `logging` – Enables you to request Amazon S3 to save bucket access logs\.
 
 Object subresources include the following:
 + `acl` – Stores a list of access permissions on the object\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\.
 + `restore` – Supports temporarily restoring an archived object\. For more information, see [POST Object restore](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html) in the *Amazon Simple Storage Service API Reference*\. 
 
-  An object in the S3 Glacier storage class is an archived object\. To access the object, you must first initiate a restore request, which restores a copy of the archived object\. In the request, you specify the number of days that you want the restored copy to exist\. For more information about archiving objects, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
+  An object in the S3 Glacier Flexible Retrieval storage class is an archived object\. To access the object, you must first initiate a restore request, which restores a copy of the archived object\. In the request, you specify the number of days that you want the restored copy to exist\. For more information about archiving objects, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 
 ## Amazon S3 bucket and object ownership<a name="about-resource-owner"></a>
 
@@ -172,5 +172,5 @@ For more information about Access Analyzer for S3, see [Reviewing bucket access 
  The following sections explain these access control alternatives, how Amazon S3 evaluates access control mechanisms, and when to use which access control method\. They also provide example walkthroughs\.
 +  [Access policy guidelines](access-policy-alternatives-guidelines.md) 
 +  [How Amazon S3 authorizes a request](how-s3-evaluates-access-control.md) 
-+  [Example walkthroughs: Managing access to your Amazon S3 resources ](example-walkthroughs-managing-access.md) 
-+  [Control access to your buckets and objectsAccess control best practices](access-control-best-practices.md)
++  [Example walkthroughs: Managing access to your Amazon S3 resources](example-walkthroughs-managing-access.md) 
++  [Access control best practices](access-control-best-practices.md)

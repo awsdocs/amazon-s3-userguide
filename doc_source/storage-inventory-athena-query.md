@@ -18,7 +18,7 @@ Athena can query Amazon S3 Inventory files in ORC, Parquet, or CSV format\. When
             is_latest boolean,
             is_delete_marker boolean,
             size bigint,
-            last_modified_date bigint,
+            last_modified_date timestamp,
             e_tag string,
             storage_class string,
             is_multipart_uploaded boolean,

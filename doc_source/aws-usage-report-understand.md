@@ -4,6 +4,7 @@ Amazon S3 billing and usage reports use codes and abbreviations\. For usage type
 + **APE1:** Asia Pacific \(Hong Kong\)
 + **APN1:** Asia Pacific \(Tokyo\)
 + **APN2:** Asia Pacific \(Seoul\)
++ **APN3:** Asia Pacific \(Osaka\)
 + **APS1:** Asia Pacific \(Singapore\)
 + **APS2:** Asia Pacific \(Sydney\)
 + **APS3:** Asia Pacific \(Mumbai\)

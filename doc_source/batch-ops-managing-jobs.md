@@ -16,10 +16,5 @@ This video explores the following actions that you can perform on your S3 Batch 
 + Confirm and run a job
 + Clone a job
 + Cancel a job
-+ View active and queued jobs
-+ Change a job's priority
-+ Confirm and run a job
-+ Clone a job
-+ Cancel a job
 
 [![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/CuMDH6c0zm4//0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/CuMDH6c0zm4/)

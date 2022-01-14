@@ -8,7 +8,7 @@ The storage metrics and dimensions that Amazon S3 sends to CloudWatch are listed
 + [Amazon S3 replication metrics in CloudWatch](#s3-cloudwatch-replication-metrics)
 + [Amazon S3 Storage Lens metrics in CloudWatch](#storage-lens-metrics-cloudwatch-publish)
 + [Amazon S3 on Outposts metrics in CloudWatch](#s3-outposts-cloudwatch-metrics)
-+ [Amazon S3 CloudWatch dimensions](#s3-cloudwatch-dimensions)
++ [Amazon S3 dimensions in CloudWatch](#s3-cloudwatch-dimensions)
 + [Amazon S3 Storage Lens dimensions in CloudWatch](#storage-lens-dimensions)
 
 ## Amazon S3 daily storage metrics for buckets in CloudWatch<a name="s3-cloudwatch-metrics"></a>
@@ -18,7 +18,7 @@ The `AWS/S3` namespace includes the following daily storage metrics for buckets\
 
 | Metric | Description | 
 | --- | --- | 
-| BucketSizeBytes |  The amount of data in bytes stored in a bucket in the STANDARD storage class, INTELLIGENT\_TIERING storage class, Standard\-Infrequent Access \(STANDARD\_IA\) storage class, OneZone\-Infrequent Access \(ONEZONE\_IA\), Reduced Redundancy Storage \(RRS\) class, Deep Archive Storage \(S3 Glacier Deep Archive\) class or, S3 Glacier Flexible Retrieval \(GLACIER\) storage class\. This value is calculated by summing the size of all objects and metadata in the bucket \(both current and noncurrent objects\), including the size of all parts for all incomplete multipart uploads to the bucket\.  Valid storage type filters: `StandardStorage`, `IntelligentTieringFAStorage`, `IntelligentTieringIAStorage`, `IntelligentTieringAAStorage`, `IntelligentTieringDAAStorage`, `StandardIAStorage`, `StandardIASizeOverhead`, `StandardIAObjectOverhead`, `OneZoneIAStorage`, `OneZoneIASizeOverhead`, `ReducedRedundancyStorage`, `GlacierStorage`, `GlacierStagingStorage`, `GlacierObjectOverhead`, `GlacierS3ObjectOverhead`, `DeepArchiveStorage`, `DeepArchiveObjectOverhead`, `DeepArchiveS3ObjectOverhead` and, `DeepArchiveStagingStorage` \(see the `StorageType` dimension\)  Units: Bytes Valid statistics: Average  | 
+| BucketSizeBytes |  The amount of data in bytes stored in a bucket in the STANDARD storage class, INTELLIGENT\_TIERING storage class, Standard\-Infrequent Access \(STANDARD\_IA\) storage class, OneZone\-Infrequent Access \(ONEZONE\_IA\), Reduced Redundancy Storage \(RRS\) class, S3 Glacier Instant Retrieval storage class, Deep Archive Storage \(S3 Glacier Deep Archive\) class or, S3 Glacier Flexible Retrieval \(GLACIER\) storage class\. This value is calculated by summing the size of all objects and metadata in the bucket \(both current and noncurrent objects\), including the size of all parts for all incomplete multipart uploads to the bucket\.  Valid storage type filters: `StandardStorage`, `IntelligentTieringFAStorage`, `IntelligentTieringIAStorage`, `IntelligentTieringAAStorage`, `IntelligentTieringAIAStorage`, `IntelligentTieringDAAStorage`, `StandardIAStorage`, `StandardIASizeOverhead`, `StandardIAObjectOverhead`, `OneZoneIAStorage`, `OneZoneIASizeOverhead`, `ReducedRedundancyStorage`, `GlacierInstantRetrievalStorage`, `GlacierStorage`, `GlacierStagingStorage`, `GlacierObjectOverhead`, `GlacierS3ObjectOverhead`, `DeepArchiveStorage`, `DeepArchiveObjectOverhead`, `DeepArchiveS3ObjectOverhead` and, `DeepArchiveStagingStorage` \(see the `StorageType` dimension\)  Units: Bytes Valid statistics: Average  | 
 | NumberOfObjects |  The total number of objects stored in a bucket for all storage classes\. This value is calculated by counting all objects in the bucket \(both current and noncurrent objects\) and the total number of parts for all incomplete multipart uploads to the bucket\. Valid storage type filters: `AllStorageTypes` \(see the `StorageType` dimension\) Units: Count Valid statistics: Average  | 
 
 ## Amazon S3 request metrics in CloudWatch<a name="s3-request-cloudwatch-metrics"></a>
@@ -81,7 +81,7 @@ Because S3 on Outposts has limited capacity, you can create CloudWatch alerts th
 | BucketUsedBytes |  The total size of all objects for the given bucket\. Units: Counts Period: 5 minutes  | 
 | AccountUsedBytes |  The total size of all objects for the specified Outposts account\.  Units: Bytes Period: 5 minutes  | 
 
-## Amazon S3 CloudWatch dimensions<a name="s3-cloudwatch-dimensions"></a>
+## Amazon S3 dimensions in CloudWatch<a name="s3-cloudwatch-dimensions"></a>
 
 The following dimensions are used to filter Amazon S3 metrics\.
 

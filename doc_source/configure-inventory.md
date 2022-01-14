@@ -36,7 +36,7 @@ The easiest way to set up an inventory is by using the AWS Management Console, b
 
 ## Creating a destination bucket policy<a name="configure-inventory-destination-bucket-policy"></a>
 
-Amazon S3 creates a bucket policy on the destination bucket that grants Amazon S3 write permission\. This allows Amazon S3 to write data for the inventory reports to the bucket\. 
+If you create the inventory configuration through the S3 console, Amazon S3 automatically creates a bucket policy on the destination bucket that grants Amazon S3 write permission\. If you create the inventory configuration through the AWS CLI, SDKs, or the REST API, you must manually add a bucket policy on the destination bucket\. For more information, see [Granting permissions for Amazon S3 Inventory and Amazon S3 analytics](example-bucket-policies.md#example-bucket-policies-use-case-9)\. The Amazon S3 Inventory destination bucket policy allows Amazon S3 to write data for the inventory reports to the bucket\. 
 
 If an error occurs when you try to create the bucket policy, you are given instructions on how to fix it\. For example, if you choose a destination bucket in another AWS account and don't have permissions to read and write to the bucket policy, you see an error message\.
 
@@ -133,7 +133,7 @@ It may take up to 48 hours to deliver the first report\.
 
    1. Under **Encryption key type**, choose **Amazon S3 key \(SSE\-S3\)** or **AWS Key Management Service key \(SSE\-KMS\)**\.
 
-      Amazon S3 server\-side encryption uses 256\-bit Advanced Encryption Standard \(AES\-256\)\. For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. For more information about SSE\-KMS, see [Protecting Data Using Server\-Side Encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+      Amazon S3 server\-side encryption uses 256\-bit Advanced Encryption Standard \(AES\-256\)\. For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. For more information about SSE\-KMS, see [Protecting data using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
 
    1. To use an AWS KMS key, choose one of the following:
       + **AWS managed key \(aws/s3\)**

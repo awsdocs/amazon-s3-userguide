@@ -34,7 +34,7 @@ By default, S3 buckets and the objects in them are private\. You have access onl
 ## Explore training and support<a name="explore-training-and-support"></a>
 
 You can learn from AWS experts to advance your skills and get expert assistance achieving your objectives\.
-+ **Training** – Training resources provide a hands\-on approach to learning Amazon S3\. For more information, see [AWS training and certification](https://www.aws.training) and [ AWS online tech talks](http://aws.amazon.com/events/online-tech-talks)\.
++ **Training** – Training resources provide a hands\-on approach to learning Amazon S3\. For more information, see [AWS training and certification](https://www.aws.training) and [AWS online tech talks](http://aws.amazon.com/events/online-tech-talks)\.
 + **Discussion Forums** – On the forum, you can review posts to understand what you can and can't do with Amazon S3\. You can also post your questions\. For more information, see [Discussion Forums](http://forums.aws.amazon.com/index.jspa)\.
 + **Technical Support** – If you have further questions, you can contact [Technical Support](http://aws.amazon.com/contact-us)\.
 

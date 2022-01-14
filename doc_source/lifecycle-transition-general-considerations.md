@@ -1,6 +1,6 @@
 # Transitioning objects using Amazon S3 Lifecycle<a name="lifecycle-transition-general-considerations"></a>
 
-You can add rules in an S3 Lifecycle configuration to tell Amazon S3 to transition objects to another Amazon S3 [Using Amazon S3 storage classes](storage-class-intro.md)\. For example:
+You can add rules in an S3 Lifecycle configuration to tell Amazon S3 to transition objects to another Amazon S3 storage class\. For more information about storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md)\. Some examples of when you might use S3 Lifecycle configurations in this way include the following:
 + When you know that objects are infrequently accessed, you might transition them to the S3 Standard\-IA storage class\.
 + You might want to archive objects that you don't need to access in real time to the S3 Glacier Flexible Retrieval storage class\.
 

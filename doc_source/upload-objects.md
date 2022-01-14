@@ -68,7 +68,7 @@ When you upload a folder, Amazon S3 uploads all of the files and subfolders from
       + AWS managed key \- Choose an [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)\.
       + Choose from your KMS root keys \- Choose a [customer managed key ](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) from a list of KMS keys in the same Region as your bucket\.
 
-        For more information about creating a customer managed key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/UsingServerSideEncryption.html) in the *AWS Key Management Service Developer Guide*\. For more information about protecting data with AWS KMS, see [Protecting Data Using Server\-Side Encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+        For more information about creating a customer managed key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/UsingServerSideEncryption.html) in the *AWS Key Management Service Developer Guide*\. For more information about protecting data with AWS KMS, see [Protecting data using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
       + Enter KMS root key ARN \- Specify the AWS KMS key ARN for a customer managed key, and enter the Amazon Resource Name \(ARN\)\.
 
         You can use the KMS root key ARN to give an external account the ability to use an object that is protected by an AWS KMS key\. To do this, choose **Enter KMS root key ARN**, and enter the Amazon Resource Name \(ARN\) for the external account\. Administrators of an external account that have usage permissions to an object protected by your KMS key can further restrict access by creating a resource\-level IAM policy\. 
@@ -245,7 +245,7 @@ public class UploadObject {
 ------
 #### [ JavaScript ]
 
-The following example upload an existing file to an Amazon S3 bucket\. in a specific Region\.
+The following example upload an existing file to an Amazon S3 bucket in a specific Region\.
 
 ```
 // Import required AWS SDK clients and commands for Node.js.
@@ -336,50 +336,40 @@ The AWS SDK for Ruby \- Version 3 has two ways of uploading an object to Amazon 
 ```
 require 'aws-sdk-s3'
 
-# Prerequisites:
-#
-# - An S3 bucket.
-# - An object to upload to the bucket.
-#
-# @param s3_client [Aws::S3::Resource] An initialized S3 resource.
-# @param bucket_name [String] The name of the bucket.
-# @param object_key [String] The name of the object.
-# @param file_path [String] The path and file name of the object to upload.
-# @return [Boolean] true if the object was uploaded; otherwise, false.
-# @example
-#   exit 1 unless object_uploaded?(
-#     Aws::S3::Resource.new(region: 'us-west-2'),
-#     'doc-example-bucket',
-#     'my-file.txt',
-#     './my-file.txt'
-#   )
-def object_uploaded?(s3_resource, bucket_name, object_key, file_path)
-  object = s3_resource.bucket(bucket_name).object(object_key)
-  object.upload_file(file_path)
-  return true
-rescue StandardError => e
-  puts "Error uploading object: #{e.message}"
-  return false
-end
+# Wraps Amazon S3 object actions.
+class ObjectWrapper
+  attr_reader :object
 
-# Full example call:
-# Replace us-west-2 with the AWS Region you're using for Amazon S3.
+  # @param object [Aws::S3::Object] An existing Amazon S3 object.
+  def initialize(object)
+    @object = object
+  end
 
-def run_me
-  bucket_name = 'doc-example-bucket'
-  object_key = 'my-file.txt'
-  file_path = "./#{object_key}"
-  region = 'us-west-2'
-  s3_resource = Aws::S3::Resource.new(region: region)
-
-  if object_uploaded?(s3_resource, bucket_name, object_key, file_path)
-    puts "Object '#{object_key}' uploaded to bucket '#{bucket_name}''."
-  else
-    puts "Object '#{object_key}' not uploaded to bucket '#{bucket_name}'."
+  # Uploads a file to an Amazon S3 object by using a managed uploader.
+  #
+  # @param file_path [String] The path to the file to upload.
+  # @return [Boolean] True when the file is uploaded; otherwise false.
+  def upload_file(file_path)
+    @object.upload_file(file_path)
+    true
+  rescue StandardError => e
+    puts "Couldn't upload file #{file_path} to #{@object.key}. Here's why: #{e.message}"
+    false
   end
 end
 
-run_me if $PROGRAM_NAME == __FILE__
+def run_demo
+  bucket_name = 'doc-example-bucket'
+  object_key = 'my-uploaded-file'
+  file_path = "object_upload_file.rb"
+
+  wrapper = ObjectWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
+  return unless wrapper.upload_file(file_path)
+
+  puts "File #{file_path} successfully uploaded to #{bucket_name}:#{object_key}."
+end
+
+run_demo if $PROGRAM_NAME == __FILE__
 ```
 
 The second way that AWS SDK for Ruby \- Version 3 can upload an object uses the `#put` method of `Aws::S3::Object`\. This is useful if the object is a string or an I/O object that is not a file on disk\. To use this method:
@@ -395,55 +385,39 @@ The second way that AWS SDK for Ruby \- Version 3 can upload an object uses the 
 ```
 require 'aws-sdk-s3'
 
-# Uploads an object to a bucket in Amazon Simple Storage Service (Amazon S3).
-#
-# Prerequisites:
-#
-# - An S3 bucket.
-# - An object to upload to the bucket.
-#
-# @param s3_client [Aws::S3::Resource] An initialized S3 resource.
-# @param bucket_name [String] The name of the bucket.
-# @param object_key [String] The name of the object.
-# @param file_path [String] The path and file name of the object to upload.
-# @return [Boolean] true if the object was uploaded; otherwise, false.
-# @example
-#   exit 1 unless object_uploaded?(
-#     Aws::S3::Resource.new(region: 'us-west-2'),
-#     'doc-example-bucket',
-#     'my-file.txt',
-#     './my-file.txt'
-#   )
-def object_uploaded?(s3_resource, bucket_name, object_key, file_path)
-  object = s3_resource.bucket(bucket_name).object(object_key)
-  File.open(file_path, 'rb') do |file|
-    object.put(body: file)
+# Wraps Amazon S3 object actions.
+class ObjectWrapper
+  attr_reader :object
+
+  # @param object [Aws::S3::Object] An existing Amazon S3 object.
+  def initialize(object)
+    @object = object
   end
-  return true
-rescue StandardError => e
-  puts "Error uploading object: #{e.message}"
-  return false
+
+  def put_object(source_file_path)
+    File.open(source_file_path, 'rb') do |file|
+      @object.put(body: file)
+    end
+    true
+  rescue StandardError => e
+    puts "Couldn't put #{source_file_path} to #{object.key}. Here's why: #{e.message}"
+    false
+  end
 end
 
-
-# Full example call:
-# Replace us-west-2 with the AWS Region you're using for Amazon S3.
-
-def run_me
+def run_demo
   bucket_name = 'doc-example-bucket'
-  object_key = 'my-file.txt'
-  file_path = "./#{object_key}"
-  region = 'us-west-2'
-  s3_resource = Aws::S3::Resource.new(region: region)
+  object_key = 'my-object-key'
+  file_path = 'my-local-file.txt'
 
-  if object_uploaded?(s3_resource, bucket_name, object_key, file_path)
-    puts "Object '#{object_key}' uploaded to bucket '#{bucket_name}'."
-  else
-    puts "Object '#{object_key}' not uploaded to bucket '#{bucket_name}'."
-  end
+  wrapper = ObjectWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
+  success = wrapper.put_object(file_path)
+  return unless success
+
+  puts "Put file #{file_path} into #{object_key} in #{bucket_name}."
 end
 
-run_me if $PROGRAM_NAME == __FILE__
+run_demo if $PROGRAM_NAME == __FILE__
 ```
 
 ------

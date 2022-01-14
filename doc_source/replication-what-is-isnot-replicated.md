@@ -39,7 +39,9 @@ By default Amazon S3 doesn't replicate the following:
 + Objects in the source bucket that are replicas that were created by another replication rule\. For example if you configure replication where bucket A is the source and bucket B is the destination\. Now suppose that you add another replication configuration where bucket B is the source and bucket C is the destination\. In this case, objects in bucket B that are replicas of objects in bucket A are not replicated to bucket C\. 
 + Objects in the source bucket that have already been replicated to a different destination\. For example, if you change the destination bucket in an existing replication configuration, Amazon S3 won't replicate the object again\.
 + Objects created with server\-side encryption using customer\-provided encryption keys \(SSE\-C\)\.
-+ When replicating from a different AWS account delete markers added to the source bucket are not replicated\.
++ By default, when replicating from a different AWS account delete markers added to the source bucket are not replicated\.
+
+  For information about how to replicate delete markers, see [Replicating delete markers between buckets](delete-marker-replication.md)\.
 + Objects that are stored in S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage class\. 
 
   To learn more about the Amazon S3 Glacier service, see the [Amazon S3 Glacier Developer Guide](https://docs.aws.amazon.com/amazonglacier/latest/dev/)\.
@@ -55,7 +57,9 @@ By default Amazon S3 doesn't replicate the following:
 
 ## Replicating existing objects<a name="existing-object-replication"></a>
 
-To enable existing object replication for your account, you must contact [AWS Support](https://console.aws.amazon.com/support/home#/case/create?issueType=customer-service&serviceCode=general-info&getting-started&categoryCode=using-aws&services)\. To prevent your request from being delayed, title your AWS Support case "Replication for Existing Objects" and be sure to include the following information:
+To replicate existing objects you can use S3 Batch Operations to perform a single operation on lists of Amazon S3 objects that you specify\. For information about using Batch Operations to copy multiple objects, see [Copy objects](batch-ops-copy-object.md)\.
+
+You may optionally enable existing object replication for your account\. In order to do so you must contact [AWS Support](https://console.aws.amazon.com/support/home#/case/create?issueType=customer-service&serviceCode=general-info&getting-started&categoryCode=using-aws&services)\. To prevent your request from being delayed, title your AWS Support case "Replication for Existing Objects" and be sure to include the following information:
 + Source bucket
 + Destination buckets
 + Estimated storage volume to replicate \(in terabytes\) 

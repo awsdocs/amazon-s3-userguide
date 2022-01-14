@@ -6,7 +6,7 @@ The *cost allocation report* lists the AWS usage for your account by product cat
 
 AWS provides two types of cost allocation tags, an AWS\-generated tag and user\-defined tags\. AWS defines, creates, and applies the AWS\-generated `createdBy` tag for you after an Amazon S3 CreateBucket event\. You define, create, and apply *user\-defined* tags to your S3 bucket\.
 
-You must activate both types of tags separately in the Billing and Cost Management console before they can appear in your billing reports\. For more information about AWS\-generated tags, see [ AWS\-Generated Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tags.html)\. 
+You must activate both types of tags separately in the Billing and Cost Management console before they can appear in your billing reports\. For more information about AWS\-generated tags, see [AWS\-Generated Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tags.html)\. 
 + To create tags in the console, see [Viewing the properties for an S3 bucket](view-bucket-properties.md)\.
 + To create tags using the Amazon S3 API, see [PUT Bucket tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTtagging.html) in the *Amazon Simple Storage Service API Reference*\.
 + To create tags using the AWS CLI, see [put\-bucket\-tagging](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-tagging.html) in the AWS CLI Command Reference\.

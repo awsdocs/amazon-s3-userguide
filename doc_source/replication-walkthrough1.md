@@ -65,7 +65,7 @@ To set up replication configuration when both source and destination buckets are
 
    1. Create the IAM role\.
 
-      1. Copy the following trust policy and save it to a file named `S3-role-trust-policy.json` in the current directory on your local computer\. This policy grants Amazon S3 service principal permissions to assume the role\.
+      1. Copy the following trust policy and save it to a file named `s3-role-trust-policy.json` in the current directory on your local computer\. This policy grants Amazon S3 service principal permissions to assume the role\.
 
          ```
          {
@@ -87,13 +87,13 @@ To set up replication configuration when both source and destination buckets are
          ```
          $ aws iam create-role \
          --role-name replicationRole \
-         --assume-role-policy-document file://S3-role-trust-policy.json  \
+         --assume-role-policy-document file://s3-role-trust-policy.json  \
          --profile acctA
          ```
 
    1. Attach a permissions policy to the role\.
 
-      1. Copy the following permissions policy and save it to a file named `S3-role-permissions-policy.json` in the current directory on your local computer\. This policy grants permissions for various Amazon S3 bucket and object actions\. 
+      1. Copy the following permissions policy and save it to a file named `s3-role-permissions-policy.json` in the current directory on your local computer\. This policy grants permissions for various Amazon S3 bucket and object actions\. 
 
          ```
          {
@@ -200,10 +200,6 @@ The amount of time it takes for Amazon S3 to replicate an object depends on the 
 ![\[Screen shot of object properties showing the replication status and permissions.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/crr-wt2-10.png)
 
        
-
-   1. Update an object's ACL in the *source* bucket and verify that changes appear in the *destination* bucket\.
-
-      For instructions, see [Configuring ACLs](managing-acls.md)\.
 
 ## Using the AWS SDKs<a name="replication-ex1-sdk"></a>
 

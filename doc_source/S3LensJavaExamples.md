@@ -4,6 +4,10 @@ Amazon S3 Storage Lens aggregates your usage and activity metrics and displays t
 
 The following examples show how you can use S3 Storage Lens with the AWS SDK for Java\.
 
+**Topics**
++ [Using Amazon S3 Storage Lens configurations using the SDK for Java](#S3LensConfigurationsJava)
++ [Using Amazon S3 Storage Lens with your AWS Organizations using the SDK for Java](#S3LensOrganizationsJava)
+
 ## Using Amazon S3 Storage Lens configurations using the SDK for Java<a name="S3LensConfigurationsJava"></a>
 
 You can use the SDK for Java to list, create, get and update your S3 Storage Lens configurations\. The following examples use the helper json files for key inputs\.
@@ -516,3 +520,172 @@ public class UpdateDefaultConfigWithPaidFeatures {
 
 **Note**  
 Additional charges apply for Advanced Metrics and Recommendations\. For more information, see [Advanced Metrics and Recommendations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_metrics_selection)\.
+
+## Using Amazon S3 Storage Lens with your AWS Organizations using the SDK for Java<a name="S3LensOrganizationsJava"></a>
+
+Use Amazon S3 Storage Lens to collect storage metrics and usage data for all accounts that are part of your AWS Organizations hierarchy\. For more information, see [Using Amazon S3 Storage Lens with AWS Organizations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_with_organizations.html)\. 
+
+**Topics**
++ [Enable Organizations trusted access for S3 Storage Lens](#OrganizationsEnableTrustedAccessS3LensJava)
++ [Disable Organizations trusted access for S3 Storage Lens](#OrganizationsDisableTrustedAccessS3LensJava)
++ [Register Organizations delegated administrators for S3 Storage Lens](#OrganizationsRegisterDelegatedAdministratorS3LensJava)
++ [Deregister Organizations delegated administrators for S3 Storage Lens](#OrganizationsDeregisterDelegatedAdministratorS3LensJava)
+
+
+
+### Enable Organizations trusted access for S3 Storage Lens<a name="OrganizationsEnableTrustedAccessS3LensJava"></a>
+
+**Example Enable Organizations trusted access for S3 Storage Lens**  
+
+```
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.SdkClientException;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.organizations.AWSOrganizations;
+import com.amazonaws.services.organizations.AWSOrganizationsClient;
+import com.amazonaws.services.organizations.model.EnableAWSServiceAccessRequest;
+
+public class EnableOrganizationsTrustedAccess {
+	private static final String S3_STORAGE_LENS_SERVICE_PRINCIPAL = "storage-lens.s3.amazonaws.com";
+
+	public static void main(String[] args) {
+		try {
+            AWSOrganizations organizationsClient = AWSOrganizationsClient.builder()
+                .withCredentials(new ProfileCredentialsProvider())
+                .withRegion(Regions.US_EAST_1)
+                .build();
+
+            organizationsClient.enableAWSServiceAccess(new EnableAWSServiceAccessRequest()
+                .withServicePrincipal(S3_STORAGE_LENS_SERVICE_PRINCIPAL));
+        } catch (AmazonServiceException e) {
+            // The call was transmitted successfully, but AWS Organizations couldn't process
+            // it and returned an error response.
+            e.printStackTrace();
+        } catch (SdkClientException e) {
+            // AWS Organizations couldn't be contacted for a response, or the client
+            // couldn't parse the response from AWS Organizations.
+            e.printStackTrace();
+        }
+	}
+}
+```
+
+### Disable Organizations trusted access for S3 Storage Lens<a name="OrganizationsDisableTrustedAccessS3LensJava"></a>
+
+**Example Disable Organizations trusted access for S3 Storage Lens**  
+
+```
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.SdkClientException;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.organizations.AWSOrganizations;
+import com.amazonaws.services.organizations.AWSOrganizationsClient;
+import com.amazonaws.services.organizations.model.DisableAWSServiceAccessRequest;
+
+public class DisableOrganizationsTrustedAccess {
+	private static final String S3_STORAGE_LENS_SERVICE_PRINCIPAL = "storage-lens.s3.amazonaws.com";
+
+	public static void main(String[] args) {
+		try {
+            AWSOrganizations organizationsClient = AWSOrganizationsClient.builder()
+                .withCredentials(new ProfileCredentialsProvider())
+                .withRegion(Regions.US_EAST_1)
+                .build();
+
+            // Make sure to remove any existing delegated administrator for S3 Storage Lens before disabling access, otherwise the request will fail.
+            organizationsClient.disableAWSServiceAccess(new DisableAWSServiceAccessRequest()
+                .withServicePrincipal(S3_STORAGE_LENS_SERVICE_PRINCIPAL));
+        } catch (AmazonServiceException e) {
+            // The call was transmitted successfully, but AWS Organizations couldn't process
+            // it and returned an error response.
+            e.printStackTrace();
+        } catch (SdkClientException e) {
+            // AWS Organizations couldn't be contacted for a response, or the client
+            // couldn't parse the response from AWS Organizations.
+            e.printStackTrace();
+        }
+	}
+}
+```
+
+### Register Organizations delegated administrators for S3 Storage Lens<a name="OrganizationsRegisterDelegatedAdministratorS3LensJava"></a>
+
+**Example Register Organizations delegated administrators for S3 Storage Lens**  
+
+```
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.SdkClientException;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.organizations.AWSOrganizations;
+import com.amazonaws.services.organizations.AWSOrganizationsClient;
+import com.amazonaws.services.organizations.model.RegisterDelegatedAdministratorRequest;
+
+public class RegisterOrganizationsDelegatedAdministrator {
+	private static final String S3_STORAGE_LENS_SERVICE_PRINCIPAL = "storage-lens.s3.amazonaws.com";
+
+	public static void main(String[] args) {
+		try {
+            String delegatedAdminAccountId = "253880222538"; // Account Id for the delegated administrator
+            AWSOrganizations organizationsClient = AWSOrganizationsClient.builder()
+                .withCredentials(new ProfileCredentialsProvider())
+                .withRegion(Regions.US_EAST_1)
+                .build();
+
+            organizationsClient.registerDelegatedAdministrator(new RegisterDelegatedAdministratorRequest()
+                .withAccountId(delegatedAdminAccountId)
+                .withServicePrincipal(S3_STORAGE_LENS_SERVICE_PRINCIPAL));
+        } catch (AmazonServiceException e) {
+            // The call was transmitted successfully, but AWS Organizations couldn't process
+            // it and returned an error response.
+            e.printStackTrace();
+        } catch (SdkClientException e) {
+            // AWS Organizations couldn't be contacted for a response, or the client
+            // couldn't parse the response from AWS Organizations.
+            e.printStackTrace();
+        }
+	}
+}
+```
+
+### Deregister Organizations delegated administrators for S3 Storage Lens<a name="OrganizationsDeregisterDelegatedAdministratorS3LensJava"></a>
+
+**Example Deregister Organizations delegated administrators for S3 Storage Lens**  
+
+```
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.SdkClientException;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.organizations.AWSOrganizations;
+import com.amazonaws.services.organizations.AWSOrganizationsClient;
+import com.amazonaws.services.organizations.model.DeregisterDelegatedAdministratorRequest;
+
+public class DeregisterOrganizationsDelegatedAdministrator {
+	private static final String S3_STORAGE_LENS_SERVICE_PRINCIPAL = "storage-lens.s3.amazonaws.com";
+
+	public static void main(String[] args) {
+		try {
+            String delegatedAdminAccountId = "Account ID"; // Account Id for the delegated administrator
+            AWSOrganizations organizationsClient = AWSOrganizationsClient.builder()
+                .withCredentials(new ProfileCredentialsProvider())
+                .withRegion(Regions.US_EAST_1)
+                .build();
+
+            organizationsClient.deregisterDelegatedAdministrator(new DeregisterDelegatedAdministratorRequest()
+                .withAccountId(delegatedAdminAccountId)
+                .withServicePrincipal(S3_STORAGE_LENS_SERVICE_PRINCIPAL));
+        } catch (AmazonServiceException e) {
+            // The call was transmitted successfully, but AWS Organizations couldn't process
+            // it and returned an error response.
+            e.printStackTrace();
+        } catch (SdkClientException e) {
+            // AWS Organizations couldn't be contacted for a response, or the client
+            // couldn't parse the response from AWS Organizations.
+            e.printStackTrace();
+        }
+	}
+}
+```

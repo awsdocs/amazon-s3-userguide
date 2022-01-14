@@ -62,7 +62,7 @@ The following AWS CLI and SDK for Java examples update the status of a Batch Ope
 
   
 
-### Using the AWS SDK Java job<a name="batch-ops-examples-java-update-job-status"></a>
+### Using the AWS SDK Java<a name="batch-ops-examples-java-update-job-status"></a>
 
 The following example updates the status of an S3 Batch Operations job using the AWS SDK for Java\.
 

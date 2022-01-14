@@ -14,7 +14,7 @@ Since presigned URLs grant access to your Amazon S3 buckets to whoever has the U
 Anyone with valid security credentials can create a presigned URL\. However, for you to successfully upload an object, the presigned URL must be created by someone who has permission to perform the operation that the presigned URL is based upon\.
 
 **Generate a presigned URL for object upload**  
-You can generate a presigned URL programmatically using the [REST API](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html), \.NET, AWS SDK for Java, Ruby, [AWS SDK for JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, , and [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
+You can generate a presigned URL programmatically using the [REST API](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html), \.NET, AWS SDK for Java, Ruby, [AWS SDK for JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, and [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
 
 If you are using Microsoft Visual Studio, you can also use AWS Explorer to generate a presigned object URL without writing any code\. Anyone who receives a valid presigned URL can then programmatically upload an object\. For more information, see [Using Amazon S3 from AWS Explorer](https://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/using-s3.html)\. For instructions on how to install AWS Explorer, see [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)\.
 
@@ -266,6 +266,7 @@ import boto3
     ExpiresIn=3600)
 ```
 
+**Note**  
 For a complete example that shows how to generate presigned URLs and how to use the Requests package to upload and download objects, see the [ Python presigned URL](https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html) example on GitHub\. For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.
 
 ------
@@ -290,91 +291,41 @@ The following Ruby code example demonstrates the preceding tasks for SDK for Rub
 require 'aws-sdk-s3'
 require 'net/http'
 
-# Uploads an object to a bucket in Amazon Simple Storage Service (Amazon S3)
-#   by using a presigned URL.
+# Creates a presigned URL that can be used to upload content to an object.
 #
-# Prerequisites:
-#
-# - An S3 bucket.
-# - An object in the bucket to upload content to.
-#
-# @param s3_client [Aws::S3::Resource] An initialized S3 resource.
-# @param bucket_name [String] The name of the bucket.
-# @param object_key [String] The name of the object.
-# @param object_content [String] The content to upload to the object.
-# @param http_client [Net::HTTP] An initialized HTTP client.
-#   This is especially useful for testing with mock HTTP clients.
-#   If not specified, a default HTTP client is created.
-# @return [Boolean] true if the object was uploaded; otherwise, false.
-# @example
-#   exit 1 unless object_uploaded_to_presigned_url?(
-#     Aws::S3::Resource.new(region: 'us-west-2'),
-#     'doc-example-bucket',
-#     'my-file.txt',
-#     'This is the content of my-file.txt'
-#   )
-def object_uploaded_to_presigned_url?(
-  s3_resource,
-  bucket_name,
-  object_key,
-  object_content,
-  http_client = nil
-)
-  object = s3_resource.bucket(bucket_name).object(object_key)
-  url = URI.parse(object.presigned_url(:put))
-
-  if http_client.nil?
-    Net::HTTP.start(url.host) do |http|
-      http.send_request(
-        'PUT',
-        url.request_uri,
-        object_content,
-        'content-type' => ''
-      )
-    end
-  else
-    http_client.start(url.host) do |http|
-      http.send_request(
-        'PUT',
-        url.request_uri,
-        object_content,
-        'content-type' => ''
-      )
-    end
-  end
-  content = object.get.body
-  puts "The presigned URL for the object '#{object_key}' in the bucket " \
-    "'#{bucket_name}' is:\n\n"
-  puts url
-  puts "\nUsing this presigned URL to get the content that " \
-    "was just uploaded to this object, the object\'s content is:\n\n"
-  puts content.read
-  return true
+# @param bucket [Aws::S3::Bucket] An existing Amazon S3 bucket.
+# @param object_key [String] The key to give the uploaded object.
+# @return [URI, nil] The parsed URI if successful; otherwise nil.
+def get_presigned_url(bucket, object_key)
+  url = bucket.object(object_key).presigned_url(:put)
+  puts "Created presigned URL: #{url}."
+  URI(url)
 rescue StandardError => e
-  puts "Error uploading to presigned URL: #{e.message}"
-  return false
+  puts "Couldn't create presigned URL for #{bucket.name}:#{object_key}. Here's why: #{e.message}"
 end
 
-# Replace us-west-2 with the AWS Region you're using for Amazon S3.
-def run_me
+def run_demo
   bucket_name = 'doc-example-bucket'
   object_key = 'my-file.txt'
   object_content = 'This is the content of my-file.txt.'
-  region = 'us-west-2'
-  s3_resource = Aws::S3::Resource.new(region: region)
 
-  unless object_uploaded_to_presigned_url?(
-    s3_resource,
-    bucket_name,
-    object_key,
-    object_content
-  )
-    puts "Content '#{object_content}' not uploaded to '#{object_key}' " \
-      "in bucket '#{bucket_name}'."
+  bucket = Aws::S3::Bucket.new(bucket_name)
+  presigned_url = get_presigned_url(bucket, object_key)
+  return unless presigned_url
+
+  response = Net::HTTP.start(presigned_url.host) do |http|
+    http.send_request('PUT', presigned_url.request_uri, object_content, 'content_type' => '')
+  end
+
+  case response
+  when Net::HTTPSuccess
+    puts 'Content uploaded!'
+  else
+    puts response.value
   end
 end
 
-run_me if $PROGRAM_NAME == __FILE__
+run_demo if $PROGRAM_NAME == __FILE__
 ```
 
 ------

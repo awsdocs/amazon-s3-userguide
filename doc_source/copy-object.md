@@ -274,71 +274,47 @@ The following tasks guide you through using the Ruby classes to copy an object i
 ```
 require 'aws-sdk-s3'
 
-# Prerequisites:
-#
-# - Two Amazon S3 buckets (a source bucket and a target bucket).
-# - An object in the source bucket to be copied.
-#
-# @param s3_client [Aws::S3::Client] An initialized Amazon S3 client.
-# @param source_bucket_name [String] The source bucket's name.
-# @param source_key [String] The name of the object
-#   in the source bucket to be copied.
-# @param target_bucket_name [String] The target bucket's name.
-# @param target_key [String] The name of the copied object.
-# @return [Boolean] true if the object was copied; otherwise, false.
-# @example
-#   s3_client = Aws::S3::Client.new(region: 'us-west-2')
-#   exit 1 unless object_copied?(
-#     s3_client,
-#     'doc-example-bucket1',
-#     'my-source-file.txt',
-#     'doc-example-bucket2',
-#     'my-target-file.txt'
-#   )
-def object_copied?(
-  s3_client,
-  source_bucket_name,
-  source_key,
-  target_bucket_name,
-  target_key)
+# Wraps Amazon S3 object actions.
+class ObjectWrapper
+  attr_reader :source_object
 
-  return true if s3_client.copy_object(
-    bucket: target_bucket_name,
-    copy_source: source_bucket_name + '/' + source_key,
-    key: target_key
-  )
-rescue StandardError => e
-  puts "Error while copying object: #{e.message}"
+  # @param source_object [Aws::S3::Object] An existing Amazon S3 object. This is used as the source object for
+  #                                        copy actions.
+  def initialize(source_object)
+    @source_object = source_object
+  end
+
+  # Copy the source object to the specified target bucket and rename it with the target key.
+  #
+  # @param target_bucket [Aws::S3::Bucket] An existing Amazon S3 bucket where the object is copied.
+  # @param target_object_key [String] The key to give the copy of the object.
+  # @return [Aws::S3::Object, nil] The copied object when successful; otherwise, nil.
+  def copy_object(target_bucket, target_object_key)
+    @source_object.copy_to(bucket: target_bucket.name, key: target_object_key)
+    target_bucket.object(target_object_key)
+  rescue StandardError => e
+    puts "Couldn't copy #{@source_object.key} to #{target_object_key}. Here's why: #{e.message}"
+  end
 end
 
-# Full example call:
-# Replace us-west-2 with the AWS Region you're using for Amazon S3.
-def run_me
+# Replace the source and target bucket names with existing buckets you own and replace the source object key
+# with an existing object in the source bucket.
+def run_demo
   source_bucket_name = 'doc-example-bucket1'
   source_key = 'my-source-file.txt'
   target_bucket_name = 'doc-example-bucket2'
   target_key = 'my-target-file.txt'
-  region = 'us-west-2'
 
-  s3_client = Aws::S3::Client.new(region: region)
+  source_bucket = Aws::S3::Bucket.new(source_bucket_name)
+  wrapper = ObjectWrapper.new(source_bucket.object(source_key))
+  target_bucket = Aws::S3::Bucket.new(target_bucket_name)
+  target_object = wrapper.copy_object(target_bucket, target_key)
+  return unless target_object
 
-  puts "Copying object '#{source_key}' from bucket '#{source_bucket_name}' " \
-    "to bucket '#{target_bucket_name}'..."
-
-  if object_copied?(
-    s3_client,
-    source_bucket_name,
-    source_key,
-    target_bucket_name,
-    target_key)
-    puts 'The object was copied.'
-  else
-    puts 'The object was not copied. Stopping program.'
-    exit 1
-  end
+  puts "Copied #{source_key} from #{source_bucket_name} to #{target_object.bucket_name}:#{target_object.key}."
 end
 
-run_me if $PROGRAM_NAME == __FILE__
+run_demo if $PROGRAM_NAME == __FILE__
 ```
 
 ------

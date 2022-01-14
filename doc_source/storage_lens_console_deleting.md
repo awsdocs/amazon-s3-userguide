@@ -4,7 +4,7 @@
  Before deleting a dashboard, consider the following:  
 As an alternative to deleting a dashboard, you can *disable* the dashboard so that it is available to be re\-enabled in the future\. For more information, see [Disabling an Amazon S3 Storage Lens dashboard](storage_lens_console_disabling.md)\.
 Deleting the dashboard will delete all the configuration settings that are associated with it\.
- Deleting a dashboard will make all the historic metrics data unavailable\. This historical data is still available for queries until it expires \(14 days or 15 months, depending on whether it is a free or advanced metrics dashboard\)\. If you want to access this data again, create a dashboard with the same name in the same home Region as the one that was deleted\.
+Deleting a dashboard will make all the historic metrics data unavailable\. This historical data is still retained for 15 months\. If you want to access this data again, create a dashboard with the same name in the same home Region as the one that was deleted\. 
 
 **To delete an S3 Storage Lens dashboard**
 

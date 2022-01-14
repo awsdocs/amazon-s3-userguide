@@ -22,7 +22,7 @@ If AWS Outposts is already on your site, depending on your current Outpost confi
 
 ## Setting up S3 on Outposts<a name="SettingUpS3Outposts"></a>
 
-After your S3 on Outposts capacity is provisioned, you can create buckets and S3 access points on your Outpost using the [ AWS Outposts console](https://console.aws.amazon.com/outposts), the Amazon S3 on Outposts REST API, the AWS Command Line Interface \(AWS CLI\), or the AWS SDKs\. You can then use APIs to store and retrieve objects from these buckets\. You can also use AWS DataSync to transfer data between your Outpost and the AWS Region\. For more information, see [Accessing Amazon S3 on Outposts](WorkingWithS3Outposts.md)\.
+After your S3 on Outposts capacity is provisioned, you can create buckets and S3 access points on your Outpost using the [AWS Outposts console](https://console.aws.amazon.com/outposts), the Amazon S3 on Outposts REST API, the AWS Command Line Interface \(AWS CLI\), or the AWS SDKs\. You can then use APIs to store and retrieve objects from these buckets\. You can also use AWS DataSync to transfer data between your Outpost and the AWS Region\. For more information, see [Accessing Amazon S3 on Outposts](WorkingWithS3Outposts.md)\.
 
 You can manage your Amazon S3 storage on Outposts using the same services that you use in\-Region today\. These include AWS Identity and Access Management \(IAM\) and Amazon S3 access points to control access to objects and buckets, Amazon CloudWatch to monitor operational health, and AWS CloudTrail to track and report on object\-level and bucket\-level activity\.
 

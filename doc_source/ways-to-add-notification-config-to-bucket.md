@@ -11,7 +11,7 @@ You can receive Amazon S3 notifications using Amazon Simple Notification Service
 
 ## Walkthrough summary<a name="notification-walkthrough-summary"></a>
 
-This walkhrough helps you do the following:
+This walkthrough helps you do the following:
 + Publish events of the `s3:ObjectCreated:*` type to an Amazon SQS queue\.
 + Publish events of the `s3:ReducedRedundancyLostObject` type to an Amazon SNS topic\.
 

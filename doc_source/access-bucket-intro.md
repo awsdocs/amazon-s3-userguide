@@ -16,7 +16,7 @@ In a virtual\-hosted–style request, the bucket name is part of the domain name
 Amazon S3 virtual\-hosted\-style URLs use the following format\.
 
 ```
-https://bucket-name.s3.Region.amazonaws.com/key name
+https://bucket-name.s3.Region.amazonaws.com/key-name
 ```
 
 In this example, `my-bucket` is the bucket name, US West \(Oregon\) is the Region, and `puppy.png` is the key name:
@@ -32,7 +32,7 @@ For more information about virtual hosted style access, see [Virtual Hosted\-Sty
 In Amazon S3, path\-style URLs use the following format\.
 
 ```
-https://s3.Region.amazonaws.com/bucket-name/key name
+https://s3.Region.amazonaws.com/bucket-name/key-name
 ```
 
 For example, if you create a bucket named `mybucket` in the US West \(Oregon\) Region, and you want to access the `puppy.jpg` object in that bucket, you can use the following path\-style URL:

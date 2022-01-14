@@ -15,7 +15,7 @@ This section contains the terminology and concepts that are essential for unders
 + [Account snapshot](#storage_lens_basics_account_snapshot)
 + [Metrics export](#storage_lens_basics_metrics_export)
 + [Home Region](#storage_lens_basics_home_region)
-+ [Data available for queries](#storage_lens_basics_data_queries)
++ [Retention period](#storage_lens_basics_data_queries)
 + [Metrics types](#storage_lens_basics_metrics_types)
 + [Recommendations](#storage_lens_basics_recommendations)
 + [Metrics selection](#storage_lens_basics_metrics_selection)
@@ -82,7 +82,9 @@ Europe \(Paris\) – eu\-west\-3
 Europe \(Stockholm\) – eu\-north\-1
 South America \(São Paulo\) – sa\-east\-1
 
-### Data available for queries<a name="storage_lens_basics_data_queries"></a>
+### Retention period<a name="storage_lens_basics_data_queries"></a>
+
+Amazon S3 Storage Lens metrics are retained so you can see historical trends and compare differences in your storage usage and activity over time\. All S3 Storage Lens metrics are retained for a period of 15 months\. A dashboard with only free metrics can display metrics that are up to 14 days old\. A dashboard that has advanced metrics and recommendations enabled can display metrics that are up to 15 months old\.
 
 You can use Amazon S3 Storage Lens metrics for queries so that you can see historical trends and compare differences in your storage usage and activity over time\. Metrics are available for a specific duration\. The duration depends on your [metrics selection](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_metrics_selection) and cannot be modified\. Free metrics are available for queries for a 14\-day period, and advanced metrics are available for queries for a 15\-month period\.
 

@@ -71,7 +71,7 @@ The first column in the following table lists usage types that appear in your bi
 |  `region-Inventory-ObjectsListed`  |  Objects  |  Hourly  |  The number of objects listed for an object group \(objects are grouped by bucket or prefix\) with an inventory list  | 
 |  `region-Monitoring-Automation-INT`  |  Objects  |  Hourly  |  The number of unique objects monitored and auto\-tiered in the S3 Intelligent\-Tiering storage class  | 
 |  `region-OverwriteBytes-Copy-GDA`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Glacier Deep Archive storage  | 
-|  `region-OverwriteBytes-Copy-GIR`  |  GB  |  Monthly  |  The amount of data oerwritten by a CopyObject operation from S3 Glacier Instant Retrieval storage\.  | 
+|  `region-OverwriteBytes-Copy-GIR`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Glacier Instant Retrieval storage\.  | 
 |  `region-OverwriteBytes-Copy-GLACIER`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Glacier Flexible Retrieval storage  | 
 |  `region-OverwriteBytes-Copy-INT`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from S3 Intelligent\-Tiering storage  | 
 |  `region-OverwriteBytes-Copy-RRS`  |  GB  |  Monthly  |  The amount of data overwritten by a CopyObject operation from Reduced Redundancy Storage \(RRS\) storage  | 
@@ -132,7 +132,9 @@ The first column in the following table lists usage types that appear in your bi
 |  `region-TimedStorage-GlacierByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Glacier Flexible Retrieval storage  | 
 |  `region-TimedStorage-GlacierStaging`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Glacier Flexible Retrieval staging storage  | 
 |  `region-TimedStorage-INT-FA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in the frequent access tier of S3 Intelligent\-Tiering storage5  | 
-|  `region-TimedStorage-INT-IA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in the infrequent access tier of S3 Intelligent\-Tiering storage  | 
+|  `region-TimedStorage-INT-IA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in the Infrequent Access tier of S3 Intelligent\-Tiering storage  | 
+|  `region-TimedStorage-INT-AA-ByteHrs`  |  GB\-Hours  |  Daily  | The number of GB\-hours that data was stored in the Archive Access tier of S3 Intelligent\-Tiering storage | 
+|  `region-TimedStorage-INT-DAA-ByteHrs`  |  GB\-Hours  |  Daily  | The number of GB\-hours that data was stored in the Deep Archive Access tier of S3 Intelligent\-Tiering storage | 
 |  `region-TimedStorage-RRS-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in Reduced Redundancy Storage \(RRS\) storage  | 
 |  `region-TimedStorage-SIA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Standard\-IA storage  | 
 |  `region-TimedStorage-SIA-SmObjects`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that small objects \(smaller than 128 KB\) were stored in S3 Standard\-IA storage4  | 

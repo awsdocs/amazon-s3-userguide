@@ -17,7 +17,7 @@ By default, all Amazon S3 resources—buckets, objects, and related subresources
 This section explains the trust policy and minimum required permissions policy\. The example walkthroughs provide step\-by\-step instructions to create an IAM role\. For more information, see [Walkthroughs: Configuring replication](replication-example-walkthroughs.md)\.
 
 
-+ The following shows a *trust policy*, where you identify Amazon S3 as the service principal who can assume the role\.
++ The following shows a basic *trust policy*, where you identify Amazon S3 as the service principal who can assume the role\.
 
   ```
   {
@@ -35,6 +35,28 @@ This section explains the trust policy and minimum required permissions policy\.
   ```
 
   For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) in the *IAM User Guide*\.
++ The following shows a *trust policy* used for replication, where you identify Amazon S3 as the service principal who can assume the role, the account owning the the source bucket, and the ARN of the replication source bucket\.
+
+  ```
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "s3.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole",
+        "Condition": {
+          "StringEquals": {
+            "aws:SourceAccount": "SourceAccount",
+            "aws:SourceArn": "arn:aws:s3:::SourceBucket"
+          }
+        }
+      }
+    ]
+  }
+  ```
 + The following shows an *access policy*, where you grant the role permissions to perform replication tasks on your behalf\. When Amazon S3 assumes the role, it has the permissions that you specify in this policy\.
 
   ```

@@ -2,6 +2,11 @@
 
 To send S3 Storage Lens metrics to CloudWatch, you must enable the CloudWatch publishing option within S3 Storage Lens *advanced metrics and recommendations*\. Once enabled, you can use CloudWatch [dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html) to monitor S3 Storage Lens metrics alongside other application metrics and create a unified view of your operational health\. You can use dimensions to filter your S3 Storage Lens metrics in CloudWatch by organization, account, bucket, storage class, Region, and metrics configuration ID\.
 
+S3 Storage Lens metrics are published to CloudWatch in the account that owns the S3 Storage Lens configuration\. After you enable the CloudWatch publishing option within advanced metrics and recommendations, you can access organization, account, and bucket\-level usage and activity metrics in CloudWatch\. Prefix\-level metrics are not available in CloudWatch\.
+
+**Note**  
+S3 Storage Lens metrics are daily metrics and are published to CloudWatch once per day\. When you query S3 Storage Lens metrics in CloudWatch, the period for the query must be 1 day \(86400 seconds\)\. After your daily S3 Storage Lens metrics appear in your S3 Storage Lens dashboard in the Amazon S3 console, it can take a few hours for these same metrics to appear in CloudWatch\. When you enable the CloudWatch publishing option for S3 Storage Lens metrics for the first time, it can take up to 24 hours for your metrics to publish to CloudWatch\. 
+
 For more information about S3 Storage Lens metrics and dimensions in CloudWatch, see the following topics\.
 
 **Topics**
@@ -11,6 +16,8 @@ For more information about S3 Storage Lens metrics and dimensions in CloudWatch,
 ## Metrics<a name="storage-lens-cloudwatch-metrics"></a>
 
 S3 Storage Lens usage and activity metrics are available as metrics within CloudWatch\. S3 Storage Lens metrics are published to the `AWS/S3/Storage-Lens` namespace\. This namespace is only for S3 Storage Lens metrics\. Amazon S3 bucket, request, and replication metrics are published to the `AWS/S3` namespace\. 
+
+S3 Storage Lens metrics are published to CloudWatch in the account that owns the S3 Storage Lens configuration\. After you enable the CloudWatch publishing option within advanced metrics and recommendations, you can access organization, account, and bucket\-level usage and activity metrics in CloudWatch\. Prefix\-level metrics are not available in CloudWatch\.
 
 In S3 Storage Lens, metrics are aggregated and stored only in the designated home Region\. S3 Storage Lens metrics are also published to CloudWatch in the home Region that you specify in the S3 Storage Lens configuration\. 
 

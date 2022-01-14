@@ -26,4 +26,4 @@ You can also use the [ X\-Ray Analytics](https://docs.aws.amazon.com/xray/latest
 
 ## Available Regions<a name="tracing_requests_using_xray-regions"></a>
 
-AWS X\-Ray support for Amazon S3 is available in all [ AWS X\-Ray Regions](http://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)\. For more information, see [Amazon S3 and AWS X\-Ray](https://docs.aws.amazon.com/xray/latest/devguide/xray-services-s3.html) in the *AWS X\-Ray Developer Guide*\.
+AWS X\-Ray support for Amazon S3 is available in all [AWS X\-Ray Regions](http://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/)\. For more information, see [Amazon S3 and AWS X\-Ray](https://docs.aws.amazon.com/xray/latest/devguide/xray-services-s3.html) in the *AWS X\-Ray Developer Guide*\.

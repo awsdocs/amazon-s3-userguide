@@ -11,7 +11,7 @@ Both the AWS account and an IAM user can request temporary security credentials 
 You can provide temporary security credentials for your federated users and applications so that they can send authenticated requests to access your AWS resources\. When requesting these temporary credentials, you must provide a user name and an IAM policy that describes the resource permissions that you want to grant\. By default, the session duration is one hour\. You can explicitly set a different duration value when requesting the temporary security credentials for federated users and applications\.
 
 **Note**  
-For added security when requesting temporary security credentials for federated users and applications, we recommend that you use a dedicated IAM user with only the necessary access permissions\. The temporary user you create can never get more permissions than the IAM user who requested the temporary security credentials\. For more information, see [ AWS Identity and Access Management FAQs ](https://aws.amazon.com/iam/faqs/#What_are_the_best_practices_for_using_temporary_security_credentials)\.
+For added security when requesting temporary security credentials for federated users and applications, we recommend that you use a dedicated IAM user with only the necessary access permissions\. The temporary user you create can never get more permissions than the IAM user who requested the temporary security credentials\. For more information, see [AWS Identity and Access Management FAQs ](https://aws.amazon.com/iam/faqs/#What_are_the_best_practices_for_using_temporary_security_credentials)\.
 
 To provide security credentials and send authenticated request to access resources, do the following:
 + Create an instance of the `AWSSecurityTokenServiceClient` class\. For information about providing credentials, see [Using the AWS SDK for Java](UsingTheMPJavaAPI.md)\.
@@ -124,7 +124,7 @@ public class MakingRequestsWithFederatedTempCredentials {
 You can provide temporary security credentials for your federated users and applications so that they can send authenticated requests to access your AWS resources\. When requesting these temporary credentials, you must provide a user name and an IAM policy that describes the resource permissions that you want to grant\. By default, the duration of a session is one hour\. You can explicitly set a different duration value when requesting the temporary security credentials for federated users and applications\. For information about sending authenticated requests, see [Making requests](MakingRequests.md)\.
 
 **Note**  
-When requesting temporary security credentials for federated users and applications, for added security, we suggest that you use a dedicated IAM user with only the necessary access permissions\. The temporary user you create can never get more permissions than the IAM user who requested the temporary security credentials\. For more information, see [ AWS Identity and Access Management FAQs ](https://aws.amazon.com/iam/faqs/#What_are_the_best_practices_for_using_temporary_security_credentials)\.
+When requesting temporary security credentials for federated users and applications, for added security, we suggest that you use a dedicated IAM user with only the necessary access permissions\. The temporary user you create can never get more permissions than the IAM user who requested the temporary security credentials\. For more information, see [AWS Identity and Access Management FAQs ](https://aws.amazon.com/iam/faqs/#What_are_the_best_practices_for_using_temporary_security_credentials)\.
 
 You do the following:
 + Create an instance of the AWS Security Token Service client, `AmazonSecurityTokenServiceClient` class\. For information about providing credentials, see [Using the AWS SDK for \.NET](UsingTheMPDotNetAPI.md)\.
@@ -369,7 +369,7 @@ try {
 You can provide temporary security credentials for your federated users and applications so that they can send authenticated requests to access your AWS resources\. When requesting temporary credentials from the IAM service, you must provide a user name and an IAM policy that describes the resource permissions that you want to grant\. By default, the session duration is one hour\. However, if you are requesting temporary credentials using IAM user credentials, you can explicitly set a different duration value when requesting the temporary security credentials for federated users and applications\. For information about temporary security credentials for your federated users and applications, see [Making requests](MakingRequests.md)\.
 
 **Note**  
-For added security when you request temporary security credentials for federated users and applications, you might want to use a dedicated IAM user with only the necessary access permissions\. The temporary user you create can never get more permissions than the IAM user who requested the temporary security credentials\. For more information, see [ AWS Identity and Access Management FAQs ](https://aws.amazon.com/iam/faqs/#What_are_the_best_practices_for_using_temporary_security_credentials)\.
+For added security when you request temporary security credentials for federated users and applications, you might want to use a dedicated IAM user with only the necessary access permissions\. The temporary user you create can never get more permissions than the IAM user who requested the temporary security credentials\. For more information, see [AWS Identity and Access Management FAQs ](https://aws.amazon.com/iam/faqs/#What_are_the_best_practices_for_using_temporary_security_credentials)\.
 
 **Example**  
 The following Ruby code example allows a federated user with a limited set of permissions to lists keys in the specified bucket\.   
@@ -512,5 +512,5 @@ run_me if $PROGRAM_NAME == __FILE__
 
 ## Related resources<a name="RelatedResources005"></a>
 + [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)
-+ [ AWS SDK for PHP for Amazon S3 Aws\\S3\\S3Client Class](https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.S3.S3Client.html) 
++ [AWS SDK for PHP for Amazon S3 Aws\\S3\\S3Client Class](https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.S3.S3Client.html) 
 + [AWS SDK for PHP Documentation](http://aws.amazon.com/documentation/sdk-for-php/)

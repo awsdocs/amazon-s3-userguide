@@ -302,6 +302,10 @@ public class CreateJob {
 }
 ```
 
+### Using the REST API<a name="batch-ops-examples-rest-create-job"></a>
+
+You can use the REST API to create a Batch Operations job\. For more information, see [CreateJob REST API](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html) in the *Amazon Simple Storage Service API Reference*\. 
+
 ## Job responses<a name="batch-ops-create-job-response-elements"></a>
 
 If the `Create Job` request succeeds, Amazon S3 returns a job ID\. The job ID is a unique identifier that Amazon S3 generates automatically so that you can identify your Batch Operations job and monitor its status\.

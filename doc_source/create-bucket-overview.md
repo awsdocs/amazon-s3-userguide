@@ -209,37 +209,52 @@ For information about how to create and test a working sample, see [Using the AW
 ```
 require 'aws-sdk-s3'
 
-# @param s3_client [Aws::S3::Client] An initialized Amazon S3 client.
-# @param bucket_name [String] The bucket's name.
-# @return [Boolean] true if the bucket was created; otherwise, false.
-# @example
-#   s3_client = Aws::S3::Client.new(region: 'us-west-2')
-#   exit 1 unless bucket_created?(s3_client, 'doc-example-bucket')
-def bucket_created?(s3_client, bucket_name)
-  s3_client.create_bucket(bucket: bucket_name)
-rescue StandardError => e
-  puts "Error while creating the bucket named '#{bucket_name}': #{e.message}"
-end
+# Wraps Amazon S3 bucket actions.
+class BucketWrapper
+  attr_reader :bucket
 
-# Full example call:
-# Replace us-west-2 with the AWS Region you're using for Amazon S3.
-def run_me
-  bucket_name = 'doc-example-bucket'
-  region = 'us-west-2'
+  # @param bucket [Aws::S3::Bucket] An Amazon S3 bucket initialized with a name. This is a client-side object until
+  #                                 create is called.
+  def initialize(bucket)
+    @bucket = bucket
+  end
 
-  s3_client = Aws::S3::Client.new(region: region)
+  # Creates an Amazon S3 bucket in the specified AWS Region.
+  #
+  # @param region [String] The Region where the bucket is created.
+  # @return [Boolean] True when the bucket is created; otherwise, false.
+  def create?(region)
+    @bucket.create(create_bucket_configuration: { location_constraint: region })
+    true
+  rescue StandardError => e
+    puts "Couldn't create bucket. Here's why: #{e.message}"
+    false
+  end
 
-  puts "Creating the bucket '#{bucket_name}'..."
-
-  if bucket_created?(s3_client, bucket_name)
-    puts 'The bucket was created.'
-  else
-    puts 'The bucket was not created. Stopping program.'
-    exit 1
+  # Gets the Region where the bucket is located.
+  #
+  # @return [String] The location of the bucket.
+  def location
+    if @bucket.nil?
+      "None. You must create a bucket before you can get it's location!"
+    else
+      @bucket.client.get_bucket_location(bucket: @bucket.name).location_constraint
+    end
+  rescue StandardError => e
+    "Couldn't get the location of #{@bucket.name}. Here's why: #{e.message}"
   end
 end
 
-run_me if $PROGRAM_NAME == __FILE__
+def run_demo
+  region = 'us-west-2'
+  wrapper = BucketWrapper.new(Aws::S3::Bucket.new("doc-example-bucket-#{Random.uuid}"))
+  return unless wrapper.create?(region)
+
+  puts "Created bucket #{wrapper.bucket.name}."
+  puts "Your bucket's region is: #{wrapper.location}"
+end
+
+run_demo if $PROGRAM_NAME == __FILE__
 ```
 
 ------

@@ -36,18 +36,32 @@ Use caution when granting anonymous access to your Amazon S3 bucket or disabling
 
 ```
  1. {
- 2.   "Version":"2012-10-17",
- 3.   "Statement":[
- 4.     {
- 5.       "Sid":"AddCannedAcl",
- 6.       "Effect":"Allow",
- 7.     "Principal": {"AWS": ["arn:aws:iam::111122223333:root","arn:aws:iam::444455556666:root"]},
- 8.       "Action":["s3:PutObject","s3:PutObjectAcl"],
- 9.       "Resource":"arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
-10.       "Condition":{"StringEquals":{"s3:x-amz-acl":["public-read"]}}
-11.     }
-12.   ]
-13. }
+ 2.     "Version": "2012-10-17",
+ 3.     "Statement": [
+ 4.         {
+ 5.             "Sid": "AddCannedAcl",
+ 6.             "Effect": "Allow",
+ 7.             "Principal": {
+ 8.                 "AWS": [
+ 9.                     "arn:aws:iam::111122223333:root",
+10.                     "arn:aws:iam::444455556666:root"
+11.                 ]
+12.             },
+13.             "Action": [
+14.                 "s3:PutObject",
+15.                 "s3:PutObjectAcl"
+16.             ],
+17.             "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
+18.             "Condition": {
+19.                 "StringEquals": {
+20.                     "s3:x-amz-acl": [
+21.                         "public-read"
+22.                     ]
+23.                 }
+24.             }
+25.         }
+26.     ]
+27. }
 ```
 
 ## Granting read\-only permission to an anonymous user<a name="example-bucket-policies-use-case-2"></a>
@@ -59,17 +73,22 @@ Use caution when granting anonymous access to your Amazon S3 bucket or disabling
 
 ```
  1. {
- 2.   "Version":"2012-10-17",
- 3.   "Statement":[
- 4.     {
- 5.       "Sid":"PublicRead",
- 6.       "Effect":"Allow",
- 7.       "Principal": "*",
- 8.       "Action":["s3:GetObject","s3:GetObjectVersion"],
- 9.       "Resource":["arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"]
-10.     }
-11.   ]
-12. }
+ 2.     "Version": "2012-10-17",
+ 3.     "Statement": [
+ 4.         {
+ 5.             "Sid": "PublicRead",
+ 6.             "Effect": "Allow",
+ 7.             "Principal": "*",
+ 8.             "Action": [
+ 9.                 "s3:GetObject",
+10.                 "s3:GetObjectVersion"
+11.             ],
+12.             "Resource": [
+13.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
+14.             ]
+15.         }
+16.     ]
+17. }
 ```
 
 ## Limiting access to specific IP addresses<a name="example-bucket-policies-use-case-3"></a>
@@ -85,24 +104,26 @@ Replace the IP address range in this example with an appropriate value for your 
 
 ```
  1. {
- 2.   "Version": "2012-10-17",
- 3.   "Id": "S3PolicyId1",
- 4.   "Statement": [
- 5.     {
- 6.       "Sid": "IPAllow",
- 7.       "Effect": "Deny",
- 8.       "Principal": "*",
- 9.       "Action": "s3:*",
-10.       "Resource": [
-11. 	       "arn:aws:s3:::DOC-EXAMPLE-BUCKET",
-12.          "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
-13.       ],
-14.       "Condition": {
-15. 	 "NotIpAddress": {"aws:SourceIp": "54.240.143.0/24"}
-16.       }
-17.     }
-18.   ]
-19. }
+ 2.     "Version": "2012-10-17",
+ 3.     "Id": "S3PolicyId1",
+ 4.     "Statement": [
+ 5.         {
+ 6.             "Sid": "IPAllow",
+ 7.             "Effect": "Deny",
+ 8.             "Principal": "*",
+ 9.             "Action": "s3:*",
+10.             "Resource": [
+11.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET",
+12.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
+13.             ],
+14.             "Condition": {
+15.                 "NotIpAddress": {
+16.                     "aws:SourceIp": "54.240.143.0/24"
+17.                 }
+18.             }
+19.         }
+20.     ]
+21. }
 ```
 
 ### Allowing IPv4 and IPv6 addresses<a name="example-bucket-policies-use-case-ipv6"></a>
@@ -118,34 +139,34 @@ Replace the IP address ranges in this example with appropriate values for your u
 
 ```
  1. {
- 2.   "Id":"PolicyId2",
- 3.   "Version":"2012-10-17",
- 4.   "Statement":[
- 5.     {
- 6.       "Sid":"AllowIPmix",
- 7.       "Effect":"Allow",
- 8.       "Principal":"*",
- 9.       "Action":"s3:*",
-10.       "Resource": [
-11. 	       "arn:aws:s3:::DOC-EXAMPLE-BUCKET",
-12.          "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
-13.       ],
-14.       "Condition": {
-15.         "IpAddress": {
-16.           "aws:SourceIp": [
-17.             "54.240.143.0/24",
-18. 	    "2001:DB8:1234:5678::/64"
-19.           ]
-20.         },
-21.         "NotIpAddress": {
-22.           "aws:SourceIp": [
-23. 	     "54.240.143.128/30",
-24. 	     "2001:DB8:1234:5678:ABCD::/80"
-25.           ]
-26.         }
-27.       }
-28.     }
-29.   ]
+ 2.     "Id": "PolicyId2",
+ 3.     "Version": "2012-10-17",
+ 4.     "Statement": [
+ 5.         {
+ 6.             "Sid": "AllowIPmix",
+ 7.             "Effect": "Allow",
+ 8.             "Principal": "*",
+ 9.             "Action": "s3:*",
+10.             "Resource": [
+11.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET",
+12.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
+13.             ],
+14.             "Condition": {
+15.                 "IpAddress": {
+16.                     "aws:SourceIp": [
+17.                         "54.240.143.0/24",
+18.                         "2001:DB8:1234:5678::/64"
+19.                     ]
+20.                 },
+21.                 "NotIpAddress": {
+22.                     "aws:SourceIp": [
+23.                         "54.240.143.128/30",
+24.                         "2001:DB8:1234:5678:ABCD::/80"
+25.                     ]
+26.                 }
+27.             }
+28.         }
+29.     ]
 30. }
 ```
 
@@ -320,27 +341,30 @@ Amazon S3 Inventory creates lists of the objects in an Amazon S3 bucket, and Ama
 The following example bucket policy grants Amazon S3 permission to write objects \(PUTs\) from the account for the source bucket to the destination bucket\. You use a bucket policy like this on the destination bucket when setting up Amazon S3 Inventory and Amazon S3 analytics export\.
 
 ```
- 1. {
- 2.   "Version":"2012-10-17",
- 3.   "Statement":[
- 4.     {
- 5.       "Sid":"InventoryAndAnalyticsExamplePolicy",
- 6.       "Effect":"Allow",
- 7.       "Principal": {"Service": "s3.amazonaws.com"},
- 8.       "Action":"s3:PutObject",
- 9.       "Resource":["arn:aws:s3:::destinationbucket/*"],
-10.       "Condition": {
-11.           "ArnLike": {
-12.               "aws:SourceArn": "arn:aws:s3:::sourcebucket"
-13.            },
-14.          "StringEquals": {
-15.              "aws:SourceAccount": "123456789012",
-16.              "s3:x-amz-acl": "bucket-owner-full-control"
-17.           }
-18.        }
-19.     }
-20.   ]
-21. }
+ 1.   "Version": "2012-10-17",
+ 2.     "Statement": [
+ 3.         {
+ 4.             "Sid": "InventoryAndAnalyticsExamplePolicy",
+ 5.             "Effect": "Allow",
+ 6.             "Principal": {
+ 7.                 "Service": "s3.amazonaws.com"
+ 8.             },
+ 9.             "Action": "s3:PutObject",
+10.             "Resource": [
+11.                 "arn:aws:s3:::destinationbucket/*"
+12.             ],
+13.             "Condition": {
+14.                 "ArnLike": {
+15.                     "aws:SourceArn": "arn:aws:s3:::sourcebucket"
+16.                 },
+17.                 "StringEquals": {
+18.                     "aws:SourceAccount": "123456789012",
+19.                     "s3:x-amz-acl": "bucket-owner-full-control"
+20.                 }
+21.             }
+22.         }
+23.     ]
+24. }
 ```
 
 ## Granting permissions for Amazon S3 Storage Lens<a name="example-bucket-policies-lens"></a>
@@ -359,26 +383,22 @@ The following example bucket policy grants Amazon S3 permission to write objects
  5.             "Sid": "S3StorageLensExamplePolicy",
  6.             "Effect": "Allow",
  7.             "Principal": {
- 8.                 "Service": [
- 9.                     "storage-lens.s3.amazonaws.com"
-10.                 ]
-11.             },
-12.             "Action": "s3:PutObject",
-13.             "Resource": "arn:aws:s3:::destination-bucket/destination-prefix/StorageLens/111122223333/*",
+ 8.                 "Service": "storage-lens.s3.amazonaws.com"
+ 9.             },
+10.             "Action": "s3:PutObject",
+11.             "Resource": [
+12.                 "arn:aws:s3::destination-bucket/destination-prefix/StorageLens/111122223333/*"
+13.             ],
 14.             "Condition": {
 15.                 "StringEquals": {
-16.                     "s3:x-amz-acl": "bucket-owner-full-control"
-17.                 },
-18.                 "StringEquals": {
-19.                     "aws:SourceAccount": "111122223333"
-20.                 },
-21.                 "StringEquals": {
-22.                     "aws:SourceArn": "arn:aws:s3:your-region:111122223333:storage-lens/your-dashboard-configuration-id"
-23.                 }
-24.             }
-25.         }
-26.     ]
-27. }
+16.                     "s3:x-amz-acl": "bucket-owner-full-control",
+17.                     "aws:SourceAccount": "111122223333",
+18.                     "aws:SourceArn": "arn:aws:s3:Region:111122223333:storage-lens/storage-lens-dashboard-configuration-id"
+19.                 }
+20.             }
+21.         }
+22.     ]
+23. }
 ```
 
 The following modification to the previous bucket policy `"Action": "s3:PutObject"` resource when setting up an S3 Storage Lens organization\-level metrics export\.

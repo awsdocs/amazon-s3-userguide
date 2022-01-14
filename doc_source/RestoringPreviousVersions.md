@@ -24,6 +24,27 @@ A subsequent `GET` retrieves version 111111\.
 
 ## To restore previous object versions<a name="restoring-obj-version-version-enabled-bucket-examples"></a>
 
+### Using the S3 console<a name="retrieving-object-versions"></a>
+
+1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the **Buckets** list, choose the name of the bucket that contains the object\.
+
+1. In the **Objects** list, choose the name of the object\.
+
+1. Choose **Versions**\.
+
+   Amazon S3 shows all the versions for the object\.
+
+1. Select the check box next to the **Version ID** for the versions that you want to retrieve\.
+
+1. Choose **Actions**, choose **Download**, and save the object\.
+
+You also can view, download, and delete object versions in the object overview panel\. For more information, see [Viewing an object overview in the Amazon S3 console](view-object-overview.md)\.
+
+**Important**  
+You can undelete an object only if it was deleted as the latest \(current\) version\. You can't undelete a previous version of an object that was deleted\. For more information, see [Using versioning in S3 buckets](Versioning.md)\.
+
 ### Using the AWS SDKs<a name="restoring-obj-version-version-enabled-bucket-sdks"></a>
 
 For information about using other AWS SDKs, see the [AWS Developer Center](https://aws.amazon.com/code/)\. 

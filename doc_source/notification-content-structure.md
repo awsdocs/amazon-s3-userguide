@@ -74,13 +74,6 @@ Note the following about the event message structure:
   Note the following:
   + You can't use `sequencer` to determine order for events on different object keys\.
   + The sequencers can be of different lengths\. So, to compare these values, first right pad the shorter value with zeros, and then do a lexicographical comparison\.
-+ The `sequencer` key provides a way to determine the sequence of events\. Event notifications might not arrive in the same order that the events occurred in\. However, notifications from events that create objects \(`PUT`s\) and delete objects contain a `sequencer`\. You can use the `sequencer` to determine the order the events were in for a given object key\. 
-
-  Assume that you compare the `sequencer` strings from two event notifications on the same object key\. The event notification with the greater `sequencer` hexadecimal value is the event that occurred later\. Assume that you use event notifications to maintain a separate database or index of your Amazon S3 objects\. In this case, we recommend that you compare and store the `sequencer` values as you process each event notification\. 
-
-  Note the following:
-  + You can't use `sequencer` to determine order for events on different object keys\.
-  + The sequencers can be of different lengths\. To compare these values, first right pad the shorter value with zeros, and then do a lexicographical comparison\.
 + The `glacierEventData` key is only visible for `s3:ObjectRestore:Completed` events\. 
 + The `restoreEventData` key contains attributes that are related to your restore request\.
 + The `replicationEventData` key is only visible for replication events\.

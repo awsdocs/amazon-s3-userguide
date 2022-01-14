@@ -3,7 +3,7 @@
 By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with KMS keys\. To replicate encrypted objects, you modify the bucket replication configuration to tell Amazon S3 to replicate these objects\. This example explains how to use the Amazon S3 console and the AWS Command Line Interface \(AWS CLI\) to change the bucket replication configuration to enable replicating encrypted objects\. For more information, see [Replicating objects created with server\-side encryption \(SSE\) using KMS keys](replication-config-for-kms-objects.md)\. 
 
 **Note**  
-You can use a multi\-Region key in Amazon S3\. Multi\-Region keys will work as AWS KMS keys work today, but they will not use the multi\-Region features of the key\. For more information, see [Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
+You can use multi\-Region AWS KMS keys in Amazon S3\. However, Amazon S3 currently treats multi\-Region keys as though they were single\-Region keys, and does not use the multi\-Region features of the key\. For more information, see [ Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
 
 ## Using the S3 console<a name="replication-ex4-console"></a>
 

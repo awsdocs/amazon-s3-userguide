@@ -1,10 +1,10 @@
 # Using presigned URLs<a name="using-presigned-url"></a>
 
-All objects and buckets are private by default\. However, you can use a presigned URL to optionally share objects or enable your customers/users to upload objects to buckets without AWS security credentials or permissions\.
+All objects and buckets are private by default\. However, you can use a presigned URL to optionally share objects or allow your customers/users to upload objects to buckets without AWS security credentials or permissions\.
 
 ## Limiting presigned URL capabilities<a name="PresignedUrlUploadObject-LimitCapabilities"></a>
 
-You can use presigned URLs to generate a URL that can be used to access your S3 buckets\. When you create a presigned URL, you associate it with a specific action\. You can share the URL, and anyone with access to it can perform the action embedded in the URL as if they were the original signing user\. The URL will expire and no longer work when it reaches its expiration time\. The capabilities of the URL are limited by the permissions of the user who created the presigned URL\. 
+You can use presigned URLs to generate a URL that can be used to access your Amazon S3 buckets\. When you create a presigned URL, you associate it with a specific action\. You can share the URL, and anyone with access to it can perform the action embedded in the URL as if they were the original signing user\. The URL will expire and no longer work when it reaches its expiration time\. The capabilities of the URL are limited by the permissions of the user who created the presigned URL\. 
 
 In essence, presigned URLs are a bearer token that grants access to customers who possess them\. As such, we recommend that you protect them appropriately\.
 
@@ -27,7 +27,7 @@ The following IAM policy statement requires the principal to access AWS from onl
 }
 ```
 
-For more information about using a presigned URL to share or upload objects, see the topics below\.
+For more information about using a presigned URL to share or upload objects, see the following topics\.
 
 **Topics**
 + [Limiting presigned URL capabilities](#PresignedUrlUploadObject-LimitCapabilities)

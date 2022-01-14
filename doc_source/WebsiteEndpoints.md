@@ -8,7 +8,7 @@ Depending on your Region, your Amazon S3 website endpoint follows one of these t
 
 These URLs return the default index document that you configure for the website\. For a complete list of Amazon S3 website endpoints, see [Amazon S3 Website Endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_website_region_endpoints)\.
 
-For your customers to access content at the website endpoint, you must make all your content publicly readable\. To do so, you can edit the S3 Block Public Access settings for the bucket\. For more information, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\. Then, use a bucket policy or an access control list \(ACL\) on an object to grant the necessary permissions\. For more information, see [Setting permissions for website access](WebsiteAccessPermissionsReqd.md)\.
+If you want your website to be public, you must make all your content publicly readable for your customers to be able to access it at the website endpoint\. For more information, see [Setting permissions for website access](WebsiteAccessPermissionsReqd.md)\. 
 
 **Important**  
 Amazon S3 website endpoints do not support HTTPS or access points\. If you want to use HTTPS, you can use Amazon CloudFront to serve a static website hosted on Amazon S3\. For more information, see [How do I use CloudFront to serve HTTPS requests for my Amazon S3 bucket?](https://aws.amazon.com/premiumsupport/knowledge-center/cloudfront-https-requests-s3) To use HTTPS with a custom domain, see [Configuring a static website using a custom domain registered with Route 53](https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html)\.  

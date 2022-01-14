@@ -22,7 +22,7 @@ The dashboard always loads for the latest date for which metrics are available\.
 
    Your dashboard always loads for the latest date for which metrics are available\.
 **Note**  
-You can’t use your account's root user credentials to view Amazon S3 Storage Lens dashboards\. To access S3 Storage Lens dashboards, you must grant the requisite IAM permissions to a new or existing IAM user\. Then, sign in with those user credentials to access S3 Storage Lens dashboards\. For more information, see [Setting permissions to use Amazon S3 Storage Lens](storage_lens_iam_permissions.md)\.
+You can’t use your account's root user credentials to view Amazon S3 Storage Lens dashboards\. To access S3 Storage Lens dashboards, you must grant the requisite IAM permissions to a new or existing IAM user\. Then, sign in with those user credentials to access S3 Storage Lens dashboards\. For more information, see [Amazon S3 Storage Lens permissions](storage_lens_iam_permissions.md)\.
 
 ## Understanding your S3 Storage Lens dashboard<a name="storage_lens_console_viewing_dashboard"></a>
 

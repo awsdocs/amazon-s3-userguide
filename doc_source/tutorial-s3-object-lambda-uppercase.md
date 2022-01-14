@@ -240,7 +240,7 @@ The preceding example Lambda function loads the entire requested object into mem
    + `outputRoute` – A routing token that is added to the S3 Object Lambda URL when the Lambda function calls `WriteGetObjectResponse` to send back the transformed object\.
    + `outputToken` – A token used by S3 Object Lambda to match the `WriteGetObjectResponse` call with the original caller when sending back the transformed object\.
 
-   For more information about all the fields in the event context, see [Event context format and usage](olap-writing-lambda.md#olap-event-context) and [Writing and debugging Lambda functions for S3 Object Lambda Access Points](olap-writing-lambda.md)\.
+   For more information about all the fields in the event context, see [Event context format and usage](olap-writing-lambda.md#olap-event-context) and [Writing and debugging AWS Lambda functions for Amazon S3 Object Lambda Access Points](olap-writing-lambda.md)\.
 
 1. In your local terminal, enter the following command to install the `virtualenv` package:
 

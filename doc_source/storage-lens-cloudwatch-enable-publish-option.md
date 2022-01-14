@@ -2,12 +2,14 @@
 
 You can publish S3 Storage Lens usage and activity metrics to Amazon CloudWatch to create a unified view of your operational health in CloudWatch [dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html)\. You can also use CloudWatch features, like alarms and triggered actions, metric math, and anomaly detection, to monitor and take action on S3 Storage Lens metrics\. In addition, the CloudWatch APIs enable applications, including third\-party providers, to access your S3 Storage Lens metrics\. For more information about CloudWatch features, see the [https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)\.
 
+S3 Storage Lens metrics are published to CloudWatch in the account that owns the S3 Storage Lens configuration\. After you enable the CloudWatch publishing option within advanced metrics and recommendations, you can access organization, account, and bucket\-level usage and activity metrics in CloudWatch\. Prefix\-level metrics are not available in CloudWatch\.
+
 You can enable CloudWatch support for new or existing dashboard configurations using the S3 console, Amazon S3 REST APIs, AWS CLI, and AWS SDKs\. The CloudWatch publishing option is available for dashboards upgraded to S3 Storage Lens *advanced metrics and recommendations\. *For S3 Storage Lens* advanced metrics and recommendations *pricing, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)\. No additional CloudWatch metrics publishing charges apply; however, other CloudWatch charges such as dashboards, alarms, and API are applicable\.
 
 To enable the CloudWatch publishing option for S3 Storage Lens metrics, see the following topics\.
 
 **Note**  
-After your daily S3 Storage Lens metrics appear in your S3 Storage Lens dashboard in the Amazon S3 console, it can a few hours for these same metrics to appear in CloudWatch\. When you enable the CloudWatch publishing option for S3 Storage Lens metrics for the first time, it can take up to 24 hours for your metrics to publish to CloudWatch\. 
+S3 Storage Lens metrics are daily metrics and are published to CloudWatch once per day\. When you query S3 Storage Lens metrics in CloudWatch, the period for the query must be 1 day \(86400 seconds\)\. After your daily S3 Storage Lens metrics appear in your S3 Storage Lens dashboard in the Amazon S3 console, it can take a few hours for these same metrics to appear in CloudWatch\. When you enable the CloudWatch publishing option for S3 Storage Lens metrics for the first time, it can take up to 24 hours for your metrics to publish to CloudWatch\.   
 Currently, S3 Storage Lens metrics cannot be consumed via CloudWatch streams\. 
 
 ## Using the S3 console<a name="storage-lens-cloudwatch-enable-publish-console"></a>

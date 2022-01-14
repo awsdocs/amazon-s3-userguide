@@ -41,10 +41,10 @@ These examples assume that you have the following resources:
   `arn:aws:s3-object-lambda:us-east-1:111122223333:accesspoint/my-object-lambda-ap`
 + An AWS Lambda function with the following ARN: 
 
-  `arn:aws:lambda:us-east-1:111122223333:function/MyObjectLambdaFunction`
+  `arn:aws:lambda:us-east-1:111122223333:function:MyObjectLambdaFunction`
 
 **Note**  
-If using a Lambda function from your account you must include the function version in your policy statement\. For example, `arn:aws:lambda:us-east-1:111122223333:function/MyObjectLambdaFunction:$LATEST`
+If using a Lambda function from your account you must include the function version in your policy statement\. For example, `arn:aws:lambda:us-east-1:111122223333:function:MyObjectLambdaFunction:$LATEST`
 
 The following IAM policy grants a user permission to the Lambda function, standard access point and the S3 Object Lambda access point\.
 

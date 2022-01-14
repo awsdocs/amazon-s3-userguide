@@ -13,11 +13,11 @@ To grant permissions to an AWS account, identify the account using the following
 The following are examples\.
 
 ```
-"Principal":{"AWS":"arn:aws:iam::AccountNumber-WithoutHyphens:root"}
+"Principal":{"AWS":"arn:aws:iam::AccountIDWithoutHyphens:root"}
 ```
 
 ```
-"Principal":{"AWS":["arn:aws:iam::AccountNumber1-WithoutHyphens:root","arn:aws:iam::AccountNumber2-WithoutHyphens:root"]}
+"Principal":{"AWS":["arn:aws:iam::AccountID1WithoutHyphens:root","arn:aws:iam::AccountID2WithoutHyphens:root"]}
 ```
 
 Amazon S3 also supports a canonical user ID, which is an obfuscated form of the AWS account ID\. You can specify this ID using the following format\.

@@ -3,13 +3,13 @@
 
 |  | 
 | --- |
-| AWS Backup currently offers a public preview of its support of Amazon S3 in the US West \(Oregon\)\. If you would like to participate in the Preview, review [  Creating Amazon S3 backups \(Preview\)](https://docs.aws.amazon.com/aws-backup/latest/devguide/s3-backups.html) in the AWS Backup Developer Guide\. | 
+| AWS Backup currently offers a public preview of its support of Amazon S3 in the US West \(Oregon\)\. If you would like to participate in the Preview, review [ Creating Amazon S3 backups \(Preview\)](https://docs.aws.amazon.com/aws-backup/latest/devguide/s3-backups.html) in the AWS Backup Developer Guide\. | 
 
 Amazon S3 is natively integrated with AWS Backup, a fully managed, policy\-based service that you can use to define a central backup policy to protect your Amazon S3 data\. Along with AWS Backup, you can use S3 Versioning and Amazon S3 Replication to help recover from accidental deletions and perform your own self\-recovery operations\. After you define your backup policies and assign Amazon S3 resources to the policies, AWS Backup automates the creation of Amazon S3 backups\. It also stores the backups in an encrypted storage vault that you designate\.
 
 AWS Backup cannot be applied to data protected using client\-side encryption\.
 
-To create an Amazon S3 backup with AWS Backup, see [  Creating Amazon S3 backups \(Preview\)](https://docs.aws.amazon.com/aws-backup/latest/devguide/s3-backups.html) in the *AWS Backup Developer Guide*\.
+To create an Amazon S3 backup with AWS Backup, see [ Creating Amazon S3 backups \(Preview\)](https://docs.aws.amazon.com/aws-backup/latest/devguide/s3-backups.html) in the *AWS Backup Developer Guide*\.
 
 **Highlights**
 

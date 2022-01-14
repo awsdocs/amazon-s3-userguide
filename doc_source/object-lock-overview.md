@@ -106,4 +106,13 @@ If you configure a default retention period on a bucket, requests to upload obje
 
 ## Required permissions<a name="object-lock-permissions"></a>
 
- Object Lock operations require specific permissions\. For more information about required permissions, see [Example — Object operations](using-with-s3-actions.md#using-with-s3-actions-related-to-objects)\. For information about using conditions with permissions, see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\.
+ Object Lock operations require specific permissions\. Depending on the exact operation you are attempting, you might need any of the following permissions:
++ `s3:BypassGovernanceRetention`
++ `s3:GetBucketObjectLockConfiguration`
++ `s3:GetObjectLegalHold`
++ `s3:GetObjectRetention`
++ `s3:PutBucketObjectLockConfiguration`
++ `s3:PutObjectLegalHold`
++ `s3:PutObjectRetention`
+
+For information about using conditions with permissions, see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\.

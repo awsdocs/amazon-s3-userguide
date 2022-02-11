@@ -6,7 +6,7 @@ Amazon S3 replica modification sync can help you keep object metadata such as ta
 
 You can use Amazon S3 replica modification sync with new or existing replication rules\. You can apply it to an entire S3 bucket or to Amazon S3 objects that have a specific prefix\.
 
-To enable replica modification sync using the Amazon S3 console, see [Walkthroughs: Configuring replication](replication-example-walkthroughs.md)\. This topic provides instructions for enabling replica modification sync in your replication configuration when buckets are owned by the same or different AWS accounts\.
+To enable replica modification sync using the Amazon S3 console, see [Walkthroughs: Examples for configuring replication](replication-example-walkthroughs.md)\. This topic provides instructions for enabling replica modification sync in your replication configuration when buckets are owned by the same or different AWS accounts\.
 
 To enable replica modification sync using the AWS Command Line Interface \(AWS CLI\), you must add a replication configuration to the bucket containing the replicas with `ReplicaModifications` enabled\. To make replication bidirectional enable replica modification sync on the bucket containing the replicas and the bucket containing the source objects\. 
 

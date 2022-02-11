@@ -89,7 +89,7 @@ aws \
     --description "Turn off legal hold";
 ```
 
-## Using the AWS SDK Java<a name="batch-ops-examples-java-object-lock-legalhold"></a>
+## Using the AWS SDK for Java<a name="batch-ops-examples-java-object-lock-legalhold"></a>
 
 **Example Updates the role to grant `s3:PutObjectLegalHold` permissions**  
 

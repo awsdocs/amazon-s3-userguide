@@ -141,7 +141,7 @@ aws \
     --description "Remove governance retention";
 ```
 
-## Using the AWS SDK Java<a name="batch-ops-examples-java-object-lock-governance"></a>
+## Using the AWS SDK for Java<a name="batch-ops-examples-java-object-lock-governance"></a>
 
 The following example builds on the previous example of creating a trust policy, and setting S3 Batch Operations and S3 Object Lock configuration permissions\. It shows how to apply S3 Object Lock retention governance with the `retain until date` set to January 30, 2020 across multiple objects\. It creates a Batch Operations job that uses the manifest bucket and reports the results in the reports bucket\.
 

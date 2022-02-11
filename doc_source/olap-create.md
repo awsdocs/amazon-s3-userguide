@@ -46,7 +46,7 @@ For information about how to create an Object Lambda access point using the REST
 
 **To create an Object Lambda access point using an AWS CloudFormation template**
 
-1. Download the AWS Lambda function deployment package *s3objectlambda\_deployment\_package\.zip* at [S3 Object Lambda default configuration](https://github.com/aws-samples/amazon-s3-object-lambda-default-configuration)\.
+1. Download the AWS Lambda function deployment package `s3objectlambda_deployment_package.zip` at [S3 Object Lambda default configuration](https://github.com/aws-samples/amazon-s3-object-lambda-default-configuration)\.
 
 1. Upload the package to an Amazon S3 bucket that has object versioning enabled\.
 
@@ -54,7 +54,7 @@ For information about how to create an Object Lambda access point using the REST
    aws s3api put-object --bucket Amazon S3 bucket name --key s3objectlambda_deployment_package.zip --body release/s3objectlambda_deployment_package.zip
    ```
 
-1. Download the AWS CloudFormation template *s3objectlambda\_defaultconfig\.yaml* at [S3 Object Lambda default configuration](https://github.com/aws-samples/amazon-s3-object-lambda-default-configuration)\.
+1. Download the AWS CloudFormation template `s3objectlambda_defaultconfig.yaml` at [S3 Object Lambda default configuration](https://github.com/aws-samples/amazon-s3-object-lambda-default-configuration)\.
 
 1. Deploy the template to your AWS account\.
 
@@ -62,22 +62,22 @@ For information about how to create an Object Lambda access point using the REST
    aws cloudformation deploy --template-file s3objectlambda_defaultconfig.yaml \
     --stack-name AWS CloudFormation stack name --parameter-overrides ObjectLambdaAccessPointName=Object Lambda access point name \
      SupportingAccessPointName=Amazon S3 access point S3BucketName=Amazon S3 bucket \
-     LambdaFunctionS3BucketName=Amazon S3 bucket containing your Lambda package LambdaFunctionS3Key=Lambda object key LambdaFunctionS3ObjectVersion=Lambda object version --capabilities capability_IAM
+     LambdaFunctionS3BucketName=Amazon S3 bucket containing your Lambda package LambdaFunctionS3Key=Lambda object key LambdaFunctionS3ObjectVersion=Lambda object version LambdaFunctionRuntime=Lambda function runtime --capabilities capability_IAM
    ```
 
-For more information on modifying the AWS CloudFormation template's default configuration, see [Using an AWS CloudFormation template to automate S3 Object Lambda setup](olap-using-cfn-template.md)\.
+For more information about modifying the AWS CloudFormation template's default configuration, see [Using an AWS CloudFormation template to automate S3 Object Lambda setup](olap-using-cfn-template.md)\.
 
 **To create an Object Lambda access point using the AWS CLI**
 
-The following example creates an Object Lambda access point named `my-object-lambda-ap` for the bucket `DOC-EXAMPLE-BUCKET1` in account `111122223333`\. This example assumes that a standard access point named `example-ap` has already been created\. For information about creating a standard access point, see [Creating access points](creating-access-points.md)\.
+The following example creates an Object Lambda access point named *`my-object-lambda-ap`* for the bucket *`DOC-EXAMPLE-BUCKET1`* in the account *`111122223333`*\. This example assumes that a standard access point named *`example-ap`* has already been created\. For information about creating a standard access point, see [Creating access points](creating-access-points.md)\.
 
 This example uses the AWS prebuilt function `compress`\. For example AWS Lambda functions, see [Using AWS built Lambda functions](olap-examples.md)\.
 
-1. Create a bucket\. In this example, we will use `DOC-EXAMPLE-BUCKET1`\. For information about creating buckets, see [Creating a bucket](create-bucket-overview.md)\.
+1. Create a bucket\. In this example, we will use *`DOC-EXAMPLE-BUCKET1`*\. For information about creating buckets, see [Creating a bucket](create-bucket-overview.md)\.
 
-1. Create a standard access point and attach it to your bucket\. In this example, we will use `example-ap`\. For information about creating standard access points, see [Creating access points](creating-access-points.md)
+1. Create a standard access point and attach it to your bucket\. In this example, we will use *`example-ap`*\. For information about creating standard access points, see [Creating access points](creating-access-points.md)
 
-1. Create a Lambda function in your account that you would like to use to transform your S3 object\. See [Using Lambda with the AWS CLI](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html) in the *AWS Lambda Developer Guide*\. You can also use an AWS prebuilt Lambda function\.
+1. Create a Lambda function in your account that you would like to use to transform your Amazon S3 object\. See [Using Lambda with the AWS CLI](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-awscli.html) in the *AWS Lambda Developer Guide*\. You can also use an AWS prebuilt Lambda function\.
 
 1. Create a JSON configuration file named `my-olap-configuration.json`\. In this configuration, provide the supporting access point and Lambda function ARN created in the previous steps\.  
 **Example**  
@@ -107,7 +107,7 @@ This example uses the AWS prebuilt function `compress`\. For example AWS Lambda 
 
 1. \(Optional\) Create a JSON policy file named `my-olap-policy.json`\.
 
-   This resource policy grants `GetObject` permission for account 444455556666 to the specified Object Lambda access point\.  
+   This resource policy grants `GetObject` permission for account *`444455556666`* to the specified Object Lambda access point\.  
 **Example**  
 
    
@@ -132,7 +132,7 @@ This example uses the AWS prebuilt function `compress`\. For example AWS Lambda 
 1. \(Optional\) Run `put-access-point-policy-for-object-lambda` to set your resource policy\.
 
    ```
-   aws s3control put-access-point-policy-for-object-lambda --account-id 123456789012 --name my-object-lambda-ap --policy file://my-olap-policy.json
+   aws s3control put-access-point-policy-for-object-lambda --account-id 111122223333 --name my-object-lambda-ap --policy file://my-olap-policy.json
    ```
 
 1. \(Optional\) Specify a payload\.
@@ -157,7 +157,7 @@ This example uses the AWS prebuilt function `compress`\. For example AWS Lambda 
    }
    ```
 
-   The following Object Lambda access point configuration shows a payload with one parameter, and with range and part number enabled\.
+   The following Object Lambda access point configuration shows a payload with one parameter, and with `GetObject-Range` and `GetObject-PartNumber` enabled\.
 
    ```
    {
@@ -176,7 +176,7 @@ This example uses the AWS prebuilt function `compress`\. For example AWS Lambda 
    }
    ```
 **Important**  
-When using Object Lambda access points, the payload should not contain any confidential information\.
+When you're using Object Lambda access points, make sure that the payload does not contain any confidential information\.
 
 ### Using the AWS CloudFormation console and template<a name="olap-create-cfn-console"></a>
 
@@ -212,6 +212,10 @@ You can create an Object Lambda access point using the default configuration pro
 
    1. Enter the Amazon S3 object key where you uploaded the deployment package for **LambdaFunctionS3Key**\.
 
+   1. Enter the Amazon S3 object version where you uploaded the deployment package for **LambdaFunctionS3ObjectVersion**\.
+
+   1. Enter your preferred runtime for the Lambda function for **LambdaFunctionRuntime**\. The available choices are `nodejs14.x`, `python3.9`, `java11`\.
+
    1. Enter a name for your Object Lambda access point for **ObjectLambdaAccessPointName**\.
 
    1. Enter the Amazon S3 bucket name that will be associated with your Object Lambda access point for **S3BucketName**\.
@@ -228,7 +232,7 @@ This is an access point associated with the Amazon S3 bucket that you chose in t
 
 1. On the **Review** page, choose **Create stack**\.
 
-For more information on modifying the AWS CloudFormation template's default configuration, see [Using an AWS CloudFormation template to automate S3 Object Lambda setup](olap-using-cfn-template.md)\.
+For more information about modifying the AWS CloudFormation template's default configuration, see [Using an AWS CloudFormation template to automate S3 Object Lambda setup](olap-using-cfn-template.md)\.
 
 For more information about configuring Object Lambda access points using AWS CloudFormation without the template, see [AWS::S3ObjectLambda::AccessPoint](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspoint.html) in the *AWS CloudFormation User Guide*\.
 

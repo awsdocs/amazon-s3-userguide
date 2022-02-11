@@ -365,7 +365,7 @@ The following AWS SDK for Ruby – Version 3 example demonstrates how to specify
 require 'aws-sdk-s3'
 
 # Wraps Amazon S3 object actions.
-class ObjectWrapper
+class ObjectPutSseWrapper
   attr_reader :object
 
   # @param object [Aws::S3::Object] An existing Amazon S3 object.
@@ -376,7 +376,7 @@ class ObjectWrapper
   def put_object_encrypted(object_content, encryption)
     @object.put(body: object_content, server_side_encryption: encryption)
     true
-  rescue StandardError => e
+  rescue Aws::Errors::ServiceError => e
     puts "Couldn't put your content to #{object.key}. Here's why: #{e.message}"
     false
   end
@@ -388,7 +388,7 @@ def run_demo
   object_content = 'This is my super-secret content.'
   encryption = 'AES256'
 
-  wrapper = ObjectWrapper.new(Aws::S3::Object.new(bucket_name, object_content))
+  wrapper = ObjectPutSseWrapper.new(Aws::S3::Object.new(bucket_name, object_content))
   return unless wrapper.put_object_encrypted(object_content, encryption)
 
   puts "Put your content into #{bucket_name}:#{object_key} and encrypted it with #{encryption}."
@@ -405,7 +405,7 @@ The following code example demonstrates how to determine the encryption state of
 require 'aws-sdk-s3'
 
 # Wraps Amazon S3 object actions.
-class ObjectWrapper
+class ObjectGetEncryptionWrapper
   attr_reader :object
 
   # @param object [Aws::S3::Object] An existing Amazon S3 object.
@@ -418,7 +418,7 @@ class ObjectWrapper
   # @return [Aws::S3::Types::GetObjectOutput, nil] The retrieved object data if successful; otherwise nil.
   def get_object
     @object.get
-  rescue StandardError => e
+  rescue Aws::Errors::ServiceError => e
     puts "Couldn't get object #{@object.key}. Here's why: #{e.message}"
   end
 end
@@ -428,7 +428,7 @@ def run_demo
   bucket_name = 'doc-example-bucket'
   object_key = 'my-object.txt'
 
-  wrapper = ObjectWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
+  wrapper = ObjectGetEncryptionWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
   obj_data = wrapper.get_object
   return unless obj_data
 
@@ -447,7 +447,7 @@ To change the encryption state of an existing object, make a copy of the object 
 require 'aws-sdk-s3'
 
 # Wraps Amazon S3 object actions.
-class ObjectWrapper
+class ObjectCopyEncryptWrapper
   attr_reader :source_object
 
   # @param source_object [Aws::S3::Object] An existing Amazon S3 object. This is used as the source object for
@@ -464,7 +464,7 @@ class ObjectWrapper
   def copy_object(target_bucket, target_object_key, encryption)
     @source_object.copy_to(bucket: target_bucket.name, key: target_object_key, server_side_encryption: encryption)
     target_bucket.object(target_object_key)
-  rescue StandardError => e
+  rescue Aws::Errors::ServiceError => e
     puts "Couldn't copy #{@source_object.key} to #{target_object_key}. Here's why: #{e.message}"
   end
 end
@@ -479,7 +479,7 @@ def run_demo
   target_encryption = 'AES256'
 
   source_bucket = Aws::S3::Bucket.new(source_bucket_name)
-  wrapper = ObjectWrapper.new(source_bucket.object(source_key))
+  wrapper = ObjectCopyEncryptWrapper.new(source_bucket.object(source_key))
   target_bucket = Aws::S3::Bucket.new(target_bucket_name)
   target_object = wrapper.copy_object(target_bucket, target_key, target_encryption)
   return unless target_object

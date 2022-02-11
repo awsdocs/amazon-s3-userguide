@@ -13,5 +13,6 @@ For on\-premises applications that require high\-throughput local processing, S3
 + [Amazon S3 on Outposts restrictions and limitations](S3OnOutpostsRestrictionsLimitations.md)
 + [Using AWS Identity and Access Management with Amazon S3 on Outposts](S3OutpostsIAM.md)
 + [Accessing Amazon S3 on Outposts](WorkingWithS3Outposts.md)
++ [Sharing Amazon S3 on Outposts by using AWS Resource Access Manager](outposts-sharing-with-ram.md)
 + [Monitoring Amazon S3 on Outposts](MonitoringS3Outposts.md)
 + [Managing Amazon S3 on Outposts buckets and objects](S3OutpostsExamples.md)

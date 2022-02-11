@@ -335,3 +335,94 @@ Before you configure permissions, note the following:
     ]
 }
 ```
+
+### Replicate existing objects: InitiateReplication with a S3 generated manifest<a name="batch-ops-batch-replication-policy"></a>
+
+Use this policy if using and storing a S3 generated manifest\. For more information about using Batch Operations for replicate existing objects see, [Replicating existing objects with S3 Batch Replication](s3-batch-replication-batch.md)\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Action":[
+            "s3:InitiateReplication"
+         ],
+         "Effect":"Allow",
+         "Resource":[
+            "arn:aws:s3:::*** replication source bucket ***/*"
+         ]
+      },
+      {
+         "Action":[
+            "s3:GetReplicationConfiguration",
+            "s3:PutInventoryConfiguration"
+         ],
+         "Effect":"Allow",
+         "Resource":[
+            "arn:aws:s3:::*** replication source bucket ***"
+         ]
+      },
+      {
+         "Action":[
+            "s3:GetObject",
+            "s3:GetObjectVersion"
+         ],
+         "Effect":"Allow",
+         "Resource":[
+            "arn:aws:s3:::*** manifest bucket ***/*"
+         ]
+      },
+      {
+         "Effect":"Allow",
+         "Action":[
+            "s3:PutObject"
+         ],
+         "Resource":[
+            "arn:aws:s3:::*** completion report bucket ****/*",
+            "arn:aws:s3:::*** manifest bucket ****/*"    
+         ]
+      }
+   ]
+}
+```
+
+### Replicate existing objects: InitiateReplication with a user manifest<a name="batch-ops-batch-replication-policy-user"></a>
+
+Use this policy if using a user supplied manifest\. For more information about using Batch Operations for replicate existing objects see, [Replicating existing objects with S3 Batch Replication](s3-batch-replication-batch.md)\.
+
+```
+{
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Action":[
+            "s3:InitiateReplication"
+         ],
+         "Effect":"Allow",
+         "Resource":[
+            "arn:aws:s3:::*** replication source bucket ***/*"
+         ]
+      },
+            {
+         "Action":[
+            "s3:GetObject",
+            "s3:GetObjectVersion"
+         ],
+         "Effect":"Allow",
+         "Resource":[
+            "arn:aws:s3:::*** manifest bucket ***/*"
+         ]
+      },
+      {
+         "Effect":"Allow",
+         "Action":[
+            "s3:PutObject"
+         ],
+         "Resource":[
+            "arn:aws:s3:::*** completion report bucket ****/*"    
+         ]
+      }
+   ]
+}
+```

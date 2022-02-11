@@ -1,6 +1,6 @@
 # Configuring IAM policies for Object Lambda access points<a name="olap-policies"></a>
 
-S3 access points support AWS Identity and Access Management \(IAM\) resource policies that allow you to control the use of the access point by resource, user, or other conditions\. For step\-by\-step examples, see [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md) and [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)\.
+Amazon S3 access points support AWS Identity and Access Management \(IAM\) resource policies that you can use to control the use of the access point by resource, user, or other conditions\. For step\-by\-step examples, see [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md) and [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)\.
 
 In the case of a single AWS account, the following four resources must have permissions granted to work with Object Lambda access points:
 + The IAM user or role
@@ -15,8 +15,8 @@ These examples assume that you have the following resources:
 
   `arn:aws:s3:::DOC-EXAMPLE-BUCKET1`
 
-  The S3 bucket policy example below delegates access control for a bucket to the bucket's access points\. This allows full access to all access points owned by the bucket owner's account\. Thus, all access to this bucket is controlled by the policies attached to its access points\. Users can read from the bucket only through the S3 Access Point, allowing you to invoke operations only via access points\. For more information, see [Delegating access control to access points](access-points-policies.md#access-points-delegating-control)\.   
-**Example bucket policy delegating access control to access points**  
+  The following S3 bucket policy example delegates access control for a bucket to the bucket's access points\. This policy allows full access to all access points owned by the bucket owner's account\. Thus, all access to this bucket is controlled by the policies attached to its access points\. Users can read from the bucket only through the S3 Access Point, which means that operations can be invoked only through access points\. For more information, see [Delegating access control to access points](access-points-policies.md#access-points-delegating-control)\.   
+**Example – bucket policy delegating access control to access points**  
 
   ```
   {
@@ -26,7 +26,10 @@ These examples assume that you have the following resources:
           "Effect": "Allow",
           "Principal" : { "AWS":"account-ARN"},
           "Action" : "*",
-          "Resource" : [ "DOC-EXAMPLE-BUCKET1", "DOC-EXAMPLE-BUCKET1/*"],
+          "Resource" : [
+              "arn:aws:s3:::DOC-EXAMPLE-BUCKET1", 
+              "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
+          ],
           "Condition": {
               "StringEquals" : { "s3:DataAccessPointAccount" : "Bucket owner's account ID" }
           }
@@ -130,7 +133,6 @@ Add the following statement to the execution role that is used by the Lambda fun
 
 ```
 {
-  {
     "Sid": "AllowObjectLambdaAccess",
     "Action": ["s3-object-lambda:WriteGetObjectResponse"],
     "Effect": "Allow",
@@ -138,8 +140,8 @@ Add the following statement to the execution role that is used by the Lambda fun
   }
 ```
 
-For more information about execution roles see, [Lambda execution role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html) in the *AWS Lambda Developer Guide*\.
+For more information about execution roles, see [Lambda execution role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html) in the *AWS Lambda Developer Guide*\.
 
 ## Using context keys with Object Lambda access points<a name="olap-keys"></a>
 
-With S3 Object Lambda, GET requests will automatically invoke Lambda functions and all other requests will be forwarded to S3\. S3 Object Lambda will evaluate context keys such as `s3-object-lambda:TlsVersion` or `s3-object-lambda:AuthType` related to the connection or signing of the request\. All other context keys, such as ` s3:prefix`, are evaluated by S3\. 
+With S3 Object Lambda, GET requests will automatically invoke Lambda functions and all other requests will be forwarded to Amazon S3\. S3 Object Lambda will evaluate context keys such as `s3-object-lambda:TlsVersion` or `s3-object-lambda:AuthType` related to the connection or signing of the request\. All other context keys, such as ` s3:prefix`, are evaluated by Amazon S3\. 

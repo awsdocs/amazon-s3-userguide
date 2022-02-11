@@ -307,7 +307,7 @@ This bucket ACL grants `WRITE` and `READ_ACP` access to the S3 log delivery grou
                "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/EXAMPLE-LOGGING-PREFIX*",
                "Condition": {
                    "ArnLike": {
-                       "aws:SourceARN": "arn:aws:s3:::SOURCE-BUCKET-NAME"
+                       "aws:SourceArn": "arn:aws:s3:::SOURCE-BUCKET-NAME"
                    },
                    "StringEquals": {
                        "aws:SourceAccount": "SOURCE-AWS-ACCOUNT-ID"

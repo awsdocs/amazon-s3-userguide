@@ -40,7 +40,7 @@ You can use the Amazon S3 console, the REST API, or the AWS CLI or AWS SDKs to c
 
 You use storage class analysis to observe your data access patterns over time to gather information to help you improve the lifecycle management of your STANDARD\_IA storage\. After you configure a filter, you'll start seeing data analysis based on the filter in the Amazon S3 console in 24 to 48 hours\. However, storage class analysis observes the access patterns of a filtered data set for 30 days or longer to gather information for analysis before giving a result\. The analysis continues to run after the initial result and updates the result as the access patterns change
 
-When you first configure a filter, the Amazon S3 console may take a moment to analyze the your data\.
+When you first configure a filter, the Amazon S3 console may take a moment to analyze your data\.
 
 Storage class analysis observes the access patterns of a filtered object data set for 30 days or longer to gather enough information for the analysis\. After storage class analysis has gathered sufficient information, you'll see a message in the Amazon S3 console that analysis is complete\.
 

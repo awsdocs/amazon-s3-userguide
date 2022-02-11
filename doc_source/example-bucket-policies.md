@@ -1,6 +1,6 @@
 # Bucket policy examples<a name="example-bucket-policies"></a>
 
-This section presents a few examples of typical use cases for bucket policies\. The policies use *bucket* and *examplebucket* strings in the resource value\. To test these policies, replace these strings with your bucket name\. For information about bucket policies, see [Using bucket policies](bucket-policies.md)\. For more information, access policy language, see [Policies and Permissions in Amazon S3](access-policy-language-overview.md)\.
+This section presents a few examples of typical use cases for bucket policies\. The policies use *DOC\-EXAMPLE\-BUCKET* strings in the resource value\. To test these policies, replace these strings with your bucket name\. For information about bucket policies, see [Using bucket policies](bucket-policies.md)\. For more information about policy language, see [Policies and Permissions in Amazon S3](access-policy-language-overview.md)\.
 
 A bucket policy is a resource\-based policy that you can use to grant access permissions to your bucket and the objects in it\. Only the bucket owner can associate a policy with a bucket\. The permissions attached to the bucket apply to all of the objects in the bucket that are owned by the bucket owner\. These permissions do not apply to objects owned by other AWS accounts\.
 
@@ -14,7 +14,7 @@ Bucket policies are limited to 20 KB in size\.
 You can use the [AWS Policy Generator](http://aws.amazon.com/blogs/aws/aws-policy-generator/) to create a bucket policy for your Amazon S3 bucket\. You can then use the generated document to set your bucket policy by using the [Amazon S3 console](https://console.aws.amazon.com/s3/home), through several third\-party tools, or via your application\. 
 
 **Important**  
-When testing permissions using the Amazon S3 console, you will need to grant additional permissions that the console requires—`s3:ListAllMyBuckets`, `s3:GetBucketLocation`, and `s3:ListBucket` permissions\. For an example walkthrough that grants permissions to users and tests them using the console, see [Controlling access to a bucket with user policies](walkthrough1.md)\.
+When testing permissions using the Amazon S3 console, you must grant additional permissions that the console requires—`s3:ListAllMyBuckets`, `s3:GetBucketLocation`, and `s3:ListBucket` permissions\. For an example walkthrough that grants permissions to users and tests them using the console, see [Controlling access to a bucket with user policies](walkthrough1.md)\.
 
 **Topics**
 + [Granting permissions to multiple accounts with added conditions](#example-bucket-policies-use-case-1)
@@ -95,12 +95,12 @@ Use caution when granting anonymous access to your Amazon S3 bucket or disabling
 
 The following example denies permissions to any user to perform any Amazon S3 operations on objects in the specified S3 bucket unless the request originates from the range of IP addresses specified in the condition\. 
 
-This statement identifies the 54\.240\.143\.0/24 as the range of allowed Internet Protocol version 4 \(IPv4\) IP addresses\. 
+This statement identifies *`54.240.143.0/24`* as the range of allowed Internet Protocol version 4 \(IPv4\) IP addresses\. 
 
 The `Condition` block uses the `NotIpAddress` condition and the `aws:SourceIp` condition key, which is an AWS\-wide condition key\. For more information about these condition keys, see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\. The `aws:SourceIp` IPv4 values use the standard CIDR notation\. For more information, see [IAM JSON Policy Elements Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html#Conditions_IPAddress) in the *IAM User Guide*\. 
 
-**Important**  
-Replace the IP address range in this example with an appropriate value for your use case before using this policy\. Otherwise, you will lose the ability to access your bucket\.
+**Warning**  
+Before using this policy, replace the *`54.240.143.0/24`* IP address range in this example with an appropriate value for your use case\. Otherwise, you will lose the ability to access your bucket\.
 
 ```
  1. {
@@ -130,11 +130,11 @@ Replace the IP address range in this example with an appropriate value for your 
 
 When you start using IPv6 addresses, we recommend that you update all of your organization's policies with your IPv6 address ranges in addition to your existing IPv4 ranges to ensure that the policies continue to work as you make the transition to IPv6\.
 
-The following example bucket policy shows how to mix IPv4 and IPv6 address ranges to cover all of your organization's valid IP addresses\. The example policy would allow access to the example IP addresses `54.240.143.1` and `2001:DB8:1234:5678::1` and would deny access to the addresses `54.240.143.129` and `2001:DB8:1234:5678:ABCD::1`\.
+The following example bucket policy shows how to mix IPv4 and IPv6 address ranges to cover all of your organization's valid IP addresses\. The example policy would allow access to the example IP addresses *`54.240.143.1`* and *`2001:DB8:1234:5678::1`* and would deny access to the addresses *`54.240.143.129`* and *`2001:DB8:1234:5678:ABCD::1`*\.
 
 The IPv6 values for `aws:SourceIp` must be in standard CIDR format\. For IPv6, we support using `::` to represent a range of 0s \(for example, `2032001:DB8:1234:5678::/64`\)\. For more information, see [ IP Address Condition Operators](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html#Conditions_IPAddress) in the *IAM User Guide*\.
 
-**Important**  
+**Warning**  
 Replace the IP address ranges in this example with appropriate values for your use case before using this policy\. Otherwise, you might lose the ability to access your bucket\.
 
 ```
@@ -172,7 +172,7 @@ Replace the IP address ranges in this example with appropriate values for your u
 
 ## Restricting access to a specific HTTP referer<a name="example-bucket-policies-use-case-4"></a>
 
-Suppose that you have a website with a domain name \(`www.example.com` or `example.com`\) with links to photos and videos stored in your Amazon S3 bucket, `DOC-EXAMPLE-BUCKET`\. By default, all the Amazon S3 resources are private, so only the AWS account that created the resources can access them\. To allow read access to these objects from your website, you can add a bucket policy that allows `s3:GetObject` permission with a condition, using the `aws:Referer` key, that the get request must originate from specific webpages\. The following policy specifies the `StringLike` condition with the `aws:Referer` condition key\.
+Suppose that you have a website with a domain name \(*`www.example.com`* or *`example.com`*\) with links to photos and videos stored in your Amazon S3 bucket, `DOC-EXAMPLE-BUCKET`\. By default, all the Amazon S3 resources are private, so only the AWS account that created the resources can access them\. To allow read access to these objects from your website, you can add a bucket policy that allows `s3:GetObject` permission with a condition, using the `aws:Referer` key, that the get request must originate from specific webpages\. The following policy specifies the `StringLike` condition with the `aws:Referer` condition key\.
 
 ```
  1. {
@@ -193,10 +193,11 @@ Suppose that you have a website with a domain name \(`www.example.com` or `examp
 16. }
 ```
 
-Make sure the browsers you use include the HTTP `referer` header in the request\.
+Make sure the browsers that you use include the HTTP `referer` header in the request\.
 
-**Important**  
-This key should be used carefully\. It is dangerous to include a publicly known referer header value\. Unauthorized parties can use modified or custom browsers to provide any `aws:referer` value that they choose\. As a result, `aws:referer` should not be used to prevent unauthorized parties from making direct AWS requests\. It is offered only to allow customers to protect their digital content, such as content stored in Amazon S3, from being referenced on unauthorized third\-party sites\. For more information, see [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-referer](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-referer) in the *IAM User Guide*\.
+**Warning**  
+We recommend that you use caution when using the `aws:Referer` condition key\. It is dangerous to include a publicly known referer header value\. Unauthorized parties can use modified or custom browsers to provide any `aws:Referer` value that they choose\. Therefore, do not use `aws:Referer` to prevent unauthorized parties from making direct AWS requests\.   
+The `aws:Referer` condition key is offered only to allow customers to protect their digital content, such as content stored in Amazon S3, from being referenced on unauthorized third\-party sites\. For more information, see [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-referer](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-referer) in the *IAM User Guide*\.
 
 ## Granting permission to an Amazon CloudFront OAI<a name="example-bucket-policies-cloudfront"></a>
 
@@ -205,8 +206,8 @@ The following example bucket policy grants a CloudFront origin access identity \
 The following policy uses the OAI’s ID as the policy’s `Principal`\. For more information about using S3 bucket policies to grant access to a CloudFront OAI, see [Using Amazon S3 Bucket Policies](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html#private-content-updating-s3-bucket-policies) in the *Amazon CloudFront Developer Guide*\.
 
 To use this example:
-+ Replace *EH1HDMB1FH2TC* with the OAI’s ID\. To find the OAI’s ID, see the [Origin Access Identity page](https://console.aws.amazon.com/cloudfront/home?region=us-east-1#oai:) on the CloudFront console, or use [ListCloudFrontOriginAccessIdentities](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListCloudFrontOriginAccessIdentities.html) in the CloudFront API\.
-+ Replace *DOC\-EXAMPLE\-BUCKET* with the name of your Amazon S3 bucket\.
++ Replace `EH1HDMB1FH2TC` with the OAI’s ID\. To find the OAI’s ID, see the [Origin Access Identity page](https://console.aws.amazon.com/cloudfront/home?region=us-east-1#oai:) on the CloudFront console, or use [ListCloudFrontOriginAccessIdentities](https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ListCloudFrontOriginAccessIdentities.html) in the CloudFront API\.
++ Replace `DOC-EXAMPLE-BUCKET` with the name of your Amazon S3 bucket\.
 
 ```
  1. {
@@ -231,7 +232,7 @@ Amazon S3 supports MFA\-protected API access, a feature that can enforce multi\-
 
 You can enforce the MFA requirement using the `aws:MultiFactorAuthAge` key in a bucket policy\. AWS Identity and Access Management \(IAM\) users can access Amazon S3 resources by using temporary credentials issued by the AWS Security Token Service \(AWS STS\)\. You provide the MFA code at the time of the AWS STS request\. 
 
-When Amazon S3 receives a request with multi\-factor authentication, the `aws:MultiFactorAuthAge` key provides a numeric value indicating how long ago \(in seconds\) the temporary credential was created\. If the temporary credential provided in the request was not created using an MFA device, this key value is null \(absent\)\. In a bucket policy, you can add a condition to check this value, as shown in the following example bucket policy\. The policy denies any Amazon S3 operation on the `/taxdocuments` folder in the `DOC-EXAMPLE-BUCKET` bucket if the request is not authenticated using MFA\. To learn more about MFA, see [Using Multi\-Factor Authentication \(MFA\) in AWS](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html) in the *IAM User Guide*\.
+When Amazon S3 receives a request with multi\-factor authentication, the `aws:MultiFactorAuthAge` key provides a numeric value indicating how long ago \(in seconds\) the temporary credential was created\. If the temporary credential provided in the request was not created using an MFA device, this key value is null \(absent\)\. In a bucket policy, you can add a condition to check this value, as shown in the following example bucket policy\. This example policy denies any Amazon S3 operation on the *`/taxdocuments`* folder in the `DOC-EXAMPLE-BUCKET` bucket if the request is not authenticated using MFA\. To learn more about MFA, see [Using Multi\-Factor Authentication \(MFA\) in AWS](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html) in the *IAM User Guide*\.
 
 ```
  1. {
@@ -250,7 +251,7 @@ When Amazon S3 receives a request with multi\-factor authentication, the `aws:Mu
 14.  }
 ```
 
-The `Null` condition in the `Condition` block evaluates to true if the `aws:MultiFactorAuthAge` key value is null, indicating that the temporary security credentials in the request were created without the MFA key\. 
+The `Null` condition in the `Condition` block evaluates to `true` if the `aws:MultiFactorAuthAge` key value is null, indicating that the temporary security credentials in the request were created without the MFA key\. 
 
 The following bucket policy is an extension of the preceding bucket policy\. It includes two policy statements\. One statement allows the `s3:GetObject` permission on a bucket \(`DOC-EXAMPLE-BUCKET`\) to everyone\. Another statement further restricts access to the `DOC-EXAMPLE-BUCKET/taxdocuments` folder in the bucket by requiring MFA\. 
 
@@ -314,7 +315,7 @@ You can optionally use a numeric condition to limit the duration for which the `
 
 ## Granting cross\-account permissions to upload objects while ensuring the bucket owner has full control<a name="example-bucket-policies-use-case-8"></a>
 
-The following example shows how to allow another AWS account to upload objects to your bucket while taking full control of the uploaded objects\. This policy enforces that a specific AWS account \(`123456789012`\) be granted the ability to upload objects only if that account includes the bucket\-owner\-full\-control canned ACL on upload\. The StringEquals condition in the policy specifies the s3:x\-amz\-acl condition key to express the requirement \(see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\)\. 
+The following example shows how to allow another AWS account to upload objects to your bucket while taking full control of the uploaded objects\. This policy enforces that a specific AWS account \(*`123456789012`*\) be granted the ability to upload objects only if that account includes the bucket\-owner\-full\-control canned ACL on upload\. The `StringEquals` condition in the policy specifies the `s3:x-amz-acl condition` key to express the requirement \(see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\)\. 
 
 ```
  1. {
@@ -371,7 +372,7 @@ The following example bucket policy grants Amazon S3 permission to write objects
 
 Amazon S3 Storage Lens aggregates your usage and activity metrics and displays the information in the account snapshot on the Amazon S3 console home \(**Buckets**\) page, interactive dashboards, or through a metrics export that you can download in CSV or Parquet format\. You can use the dashboard to visualize insights and trends, flag outliers, and receive recommendations for optimizing storage costs and applying data protection best practices\. You can use S3 Storage Lens through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\.
 
-S3 Storage Lens can aggregate your storage usage to metrics exports in an Amazon S3 bucket for further analysis\. The bucket that S3 Storage Lens places its metrics exports is known as the *destination bucket*\. You must have a bucket policy for the *destination bucket* when when setting up your S3 Storage Lens metrics export\. For more information, see [Assessing your storage activity and usage with Amazon S3 Storage Lens](storage_lens.md)\.
+S3 Storage Lens can aggregate your storage usage to metrics exports in an Amazon S3 bucket for further analysis\. The bucket that S3 Storage Lens places its metrics exports is known as the *destination bucket*\. You must have a bucket policy for the *destination bucket* when setting up your S3 Storage Lens metrics export\. For more information, see [Assessing your storage activity and usage with Amazon S3 Storage Lens](storage_lens.md)\.
 
 The following example bucket policy grants Amazon S3 permission to write objects \(PUTs\) to a *destination bucket*\. You use a bucket policy like this on the *destination bucket* when setting up an S3 Storage Lens metrics export\.
 

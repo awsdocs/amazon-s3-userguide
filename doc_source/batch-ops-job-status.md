@@ -35,7 +35,7 @@ After you create and run a job, it progresses through a series of statuses\. The
 
 ## Updating job status<a name="updating-job-statuses"></a>
 
-The following AWS CLI and SDK for Java examples update the status of a Batch Operations job\. For more information about using the S3 console to manage Batch Operations jobs, see [Using the S3 console to manage your S3 Batch Operations jobs](batch-ops-managing-jobs.md#batch-ops-manage-console)\.
+The following AWS CLI and SDK for Java examples update the status of a Batch Operations job\. For more information about using the S3 console to manage Batch Operations jobs, see [Using the Amazon S3 console to manage your S3 Batch Operations jobs](batch-ops-managing-jobs.md#batch-ops-manage-console)\.
 
 ### Using the AWS CLI<a name="batch-ops-example-cli-update-job-status"></a>
 + If you didn't specify the `--no-confirmation-required` parameter in the previous `create-job` example, the job remains in a suspended state until you confirm the job by setting its status to `Ready`\. Amazon S3 then makes the job eligible for execution\.
@@ -62,7 +62,7 @@ The following AWS CLI and SDK for Java examples update the status of a Batch Ope
 
   
 
-### Using the AWS SDK Java<a name="batch-ops-examples-java-update-job-status"></a>
+### Using the AWS SDK for Java<a name="batch-ops-examples-java-update-job-status"></a>
 
 The following example updates the status of an S3 Batch Operations job using the AWS SDK for Java\.
 

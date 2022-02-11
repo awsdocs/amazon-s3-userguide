@@ -10,7 +10,7 @@ When you create the S3 Batch Operations job to remove the legal hold, you just n
 
 For information about how to use this operation with the REST API, see `S3PutObjectLegalHold` in the [CreateJob](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html) operation in the *Amazon Simple Storage Service API Reference*\. 
 
-For an example use of this operation, see [Using the AWS SDK Java](batch-ops-legal-hold-off.md#batch-ops-examples-java-object-lock-legalhold)\. 
+For an example use of this operation, see [Using the AWS SDK for Java](batch-ops-legal-hold-off.md#batch-ops-examples-java-object-lock-legalhold)\. 
 
 ## Restrictions and limitations<a name="batch-ops-legal-hold-restrictions"></a>
 + S3 Batch Operations does not make any bucket level changes\.

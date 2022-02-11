@@ -10,7 +10,7 @@ Before you configure your object to use an S3 Bucket Key, review [Changes to no
 **Topics**
 + [Amazon S3 Batch Operations](#bucket-key-object-bops)
 + [Using the REST API](#bucket-key-object-rest)
-+ [Using the AWS SDK Java \(PutObject\)](#bucket-key-object-sdk)
++ [Using the AWS SDK for Java \(PutObject\)](#bucket-key-object-sdk)
 + [Using the AWS CLI \(PutObject\)](#bucket-key-object-cli)
 
 ## Amazon S3 Batch Operations<a name="bucket-key-object-bops"></a>
@@ -27,7 +27,7 @@ When you use SSE\-KMS, you can enable an S3 Bucket Key for an object using the f
 
 To enable an S3 Bucket Key at the object level, include the `x-amz-server-side-encryption-bucket-key-enabled` request header\. For more information about SSE\-KMS and the REST API, see [Using the REST API](specifying-kms-encryption.md#KMSUsingRESTAPI)\.
 
-## Using the AWS SDK Java \(PutObject\)<a name="bucket-key-object-sdk"></a>
+## Using the AWS SDK for Java \(PutObject\)<a name="bucket-key-object-sdk"></a>
 
 You can use the following example to configure an S3 Bucket Key at the object level using the AWS SDK for Java\.
 

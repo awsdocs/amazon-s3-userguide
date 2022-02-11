@@ -56,6 +56,7 @@ Amazon S3 on Outposts supports the following API operations:
 
 The following Amazon S3 features are currently not supported by Amazon S3 on Outposts\. Any attempts to use them are rejected\.
 + Access control lists \(ACLs\)
++ Access point alias names
 + Cross\-origin resource sharing \(CORS\)
 + Batch operations
 + Inventory reports
@@ -91,7 +92,6 @@ The following Amazon S3 features are currently not supported by Amazon S3 on Out
     + 172\.16\.0\.0/12
     + 192\.168\.0\.0/16
 + Endpoints to an Outpost can be created only from VPCs that have non\-overlapping CIDR blocks\.
-+ You can create an endpoint only for VPCs that are associated with only one CIDR block\.
 + An endpoint can be created only from within its Outposts subnet\.
 + The subnet used to create an endpoint must contain four IP addresses for S3 on Outposts to use\.
 + The customer\-owned IP address pool \(CoIP pool\), if specified, must contain four IP addresses for S3 on Outposts to use\.

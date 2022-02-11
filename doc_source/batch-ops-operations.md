@@ -1,8 +1,6 @@
 # Operations supported by S3 Batch Operations<a name="batch-ops-operations"></a>
 
 S3 Batch Operations supports several different operations\. The topics in this section describe each of these operations\.
-
-**Topics**
 + [Copy objects](batch-ops-copy-object.md)
 + [Invoke AWS Lambda function](batch-ops-invoke-lambda.md)
 + [Replace all object tags](batch-ops-put-object-tagging.md)
@@ -11,3 +9,4 @@ S3 Batch Operations supports several different operations\. The topics in this s
 + [Restore objects](batch-ops-initiate-restore-object.md)
 + [S3 Object Lock retention](batch-ops-retention-date.md)
 + [S3 Object Lock legal hold](batch-ops-legal-hold.md)
++ [Replicating existing objects with S3 Batch Replication](s3-batch-replication-batch.md)

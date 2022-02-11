@@ -146,7 +146,7 @@ config.json
 }
 ```
 
-## Using the AWS SDK Java<a name="storage-lens-cloudwatch-enable-publish-sdk"></a>
+## Using the AWS SDK for Java<a name="storage-lens-cloudwatch-enable-publish-sdk"></a>
 
 ```
 package aws.example.s3control;

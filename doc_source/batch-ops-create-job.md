@@ -4,7 +4,7 @@
 
 With S3 Batch Operations, you can perform large\-scale batch operations on a list of specific Amazon S3 objects\. This section describes the information that you need to create an S3 Batch Operations job and the results of a `Create Job` request\. It also provides instructions for creating a Batch Operations job using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), and AWS SDK for Java\.
 
-When you create an S3 Batch Operations job, you can request a completion report for all tasks or just for failed tasks\. As long as at least one task has been invoked successfully, S3 Batch Operations generates a report for jobs that have completed, failed, or been canceled\. For more information, see [Examples: S3 Batch Operations completion reports](batch-ops-examples-reports.md)\.
+When you create an S3 Batch Operations job, you can request a completion report for all tasks or only for failed tasks\. As long as at least one task has been invoked successfully, S3 Batch Operations generates a report for jobs that have completed, failed, or been canceled\. For more information, see [Examples: S3 Batch Operations completion reports](batch-ops-examples-reports.md)\.
 
 The following video provides a brief demonstration of how to create a Batch Operations job using the AWS Management Console\.
 
@@ -38,7 +38,11 @@ For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.co
 For more information about Amazon S3 permissions, see [Amazon S3 actions](using-with-s3-actions.md)\.
 
 **Report**  
-Specify whether you want S3 Batch Operations to generate a completion report\. If you request a job\-completion report, you must also provide the parameters for the report in this element\. The necessary information includes the bucket where you want to store the report, the format of the report, whether you want the report to include the details of all tasks or only failed tasks, and an optional prefix string\.
+Specify whether you want S3 Batch Operations to generate a completion report\. If you request a job\-completion report, you must also provide the parameters for the report in this element\. The necessary information includes:  
++ The bucket where you want to store the report
++ The format of the report
++ Whether you want the report to include the details of all tasks or only failed tasks
++ An optional prefix string
 
 **Tags \(optional\)**  
 You can label and control access to your S3 Batch Operations jobs by adding *tags*\. Tags can be used to identify who is responsible for a Batch Operations job\. You can create jobs with tags attached to them, and you can add tags to jobs after you create them\. For example, you could grant an IAM user permission to invoke `CreateJob` provided that the job is created with the tag `"Department=Finance"`\.   
@@ -49,7 +53,7 @@ To track and monitor your job, you can also provide a description of up to 256 c
 
 ## Specifying a manifest<a name="specify-batchjob-manifest"></a>
 
- A manifest is an Amazon S3 object that lists object keys that you want Amazon S3 to act upon\. To create a manifest for a job, you specify the manifest object key, ETag, and optional version ID\. The contents of the manifest must be URL encoded\. Manifests that use server\-side encryption with customer\-provided keys \(SSE\-C\) and server\-side encryption with AWS Key Management Service \(SSE\-KMS\) AWS KMS keys are not supported\. Your manifest must contain the bucket name, object key, and optionally, the object version for each object\. Any other fields in the manifest are not used by S3 Batch Operations\. 
+ A manifest is an Amazon S3 object that contains object keys that you want Amazon S3 to act upon\. To create a manifest for a job, you specify the manifest object key, ETag, and optional version ID\. The contents of the manifest must be URL encoded\. Manifests that use server\-side encryption with customer\-provided keys \(SSE\-C\) are not supported\. Manifests that use server\-side encryption with AWS Key Management Service \(SSE\-KMS\) AWS KMS keys are only supported when using CSV\-formatted inventory reports\. Your manifest must contain the bucket name, object key, and optionally, the object version for each object\. Any other fields in the manifest are not used by S3 Batch Operations\. 
 
 You can specify a manifest in a create job request using one of the following two formats\.
 + Amazon S3 Inventory report — Must be a CSV\-formatted Amazon S3 Inventory report\. You must specify the `manifest.json` file that is associated with the inventory report\. For more information about inventory reports, see [ Amazon S3 Inventory](storage-inventory.md)\. If the inventory report includes version IDs, S3 Batch Operations operates on the specific object versions\.
@@ -82,11 +86,11 @@ S3 Batch Operations does not support CSV *manifest files* that are AWS KMS\-encr
   ```
 
 **Important**  
-If the objects in your manifest are in a versioned bucket, you should specify the version IDs for the objects\. When you create a job, S3 Batch Operations parses the entire manifest before running the job\. However, it doesn't take a "snapshot" of the state of the bucket\.   
-Because manifests can contain billions of objects, jobs might take a long time to run\. If you overwrite an object with a new version while a job is running, and you didn't specify a version ID for that object, Amazon S3 performs the operation on the latest version of the object, and not on the version that existed when you created the job\. The only way to avoid this behavior is to specify version IDs for the objects that are listed in the manifest\. 
+When using a user supplied manifest and a versioned bucket, you must specify the version IDs for the objects\. When you create a job, S3 Batch Operations parses the entire manifest before running the job\. However, it doesn't take a "snapshot" of the state of the bucket\.   
+Because manifests can contain billions of objects, jobs might take a long time to run\. If you overwrite an object with a new version while a job is running and you didn't specify a version ID for that object, Amazon S3 performs the operation on the latest version of the object, not on the version that existed when you created the job\. The only way to avoid this behavior is to specify version IDs for the objects that are listed in the manifest\. 
 
 **Note**  
-When an S3 Batch Operations job uses an "all versions" S3 Inventory report as a manifest, it fails all tasks on objects that have an empty string in the version ID field\. To operate on these object keys, convert the empty strings in your manifest to the string `null`\. For more information about this procedure, see [Converting empty version ID strings in Amazon S3 Inventory reports to null strings](inventory-configure-bops.md)\.
+Amazon S3 gives you the option to create a manifest for the S3 Batch Replication job\. Batch Replication is an on\-demand operation that replicates existing objects\. For more information about Batch Replication, see [Replicating existing objects with S3 Batch Replication](s3-batch-replication-batch.md)\.
 
 ## Creating a job<a name="to-create-batch-ops-job"></a>
 
@@ -312,4 +316,4 @@ If the `Create Job` request succeeds, Amazon S3 returns a job ID\. The job ID is
 
 When you create a job through the AWS CLI, Amazon SDKs, or REST API, you can set S3 Batch Operations to begin processing the job automatically\. The job runs as soon as it's ready and not waiting behind higher\-priority jobs\. 
 
-When you create a job through the AWS Management Console, you must review the job details and confirm that you want to run it before Batch Operations can begin to process it\. After you confirm that you want to run the job, it progresses as though you had created it through one of the other methods\. If a job remains in the suspended state for over 30 days, it will fail\.
+When you create a job through the AWS Management Console, you must review the job details and confirm that you want to run it before Batch Operations can begin to process it\. After you confirm that you want to run the job, it progresses as though you created it through one of the other methods\. If a job remains in the suspended state for over 30 days, it will fail\.

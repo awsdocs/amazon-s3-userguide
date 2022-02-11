@@ -74,7 +74,7 @@ You can use [PutBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/A
 
 For more information and example syntax, see [PutBucketEncryption](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html)\. 
 
-## Using the AWS SDK Java<a name="enable-bucket-key-sdk"></a>
+## Using the AWS SDK for Java<a name="enable-bucket-key-sdk"></a>
 
 The following example enables default bucket encryption with SSE\-KMS and an S3 Bucket Key using the AWS SDK for Java\.
 

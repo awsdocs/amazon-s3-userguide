@@ -7,6 +7,18 @@ You can change a job's priority while it is running\. If you submit a new job wi
 **Note**  
 S3 Batch Operations honor job priorities on a best\-effort basis\. Although jobs with higher priorities generally take precedence over jobs with lower priorities, Amazon S3 does not guarantee strict ordering of jobs\.
 
+## Using the S3 console<a name="batch-ops-example-console-update-job-priority"></a>
+
+**How to update job priority in the AWS Management Console**
+
+1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the left navigation pane, choose **Batch Operations**\.
+
+1. Select the specific job that you would like to manage\.
+
+1. Choose **Action**\. In the dropdown list, choose **Update priority**\.
+
 ## Using the AWS CLI<a name="batch-ops-example-cli-update-job-priority"></a>
 
 The following example updates the job priority using the AWS CLI\. A higher number indicates a higher execution priority\.

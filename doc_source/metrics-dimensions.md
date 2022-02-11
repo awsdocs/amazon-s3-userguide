@@ -88,9 +88,9 @@ The following dimensions are used to filter Amazon S3 metrics\.
 
 |  Dimension  |  Description  | 
 | --- | --- | 
-|  BucketName  |  This dimension filters the data you request for the identified bucket only\.  | 
+|  BucketName  |  This dimension filters the data that you request for the identified bucket only\.  | 
 |  StorageType  |  This dimension filters the data that you have stored in a bucket by the following types of storage:  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/metrics-dimensions.html)  | 
-| FilterId | This dimension filters metrics configurations that you specify for request metrics on a bucket, for example, a prefix or a tag\. You specify a filter id when you create a metrics configuration\. For more information, see [Creating a metrics configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/metrics-configurations.html)\. | 
+| FilterId | This dimension filters metrics configurations that you specify for request metrics on a bucket, for example, a prefix or a tag\. You specify a filter ID when you create a metrics configuration\. For more information, see [Creating a metrics configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/metrics-configurations.html)\. | 
 
 ## Amazon S3 Storage Lens dimensions in CloudWatch<a name="storage-lens-dimensions"></a>
 

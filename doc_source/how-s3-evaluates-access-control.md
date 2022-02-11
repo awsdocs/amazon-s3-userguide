@@ -27,7 +27,9 @@ Following are some of the example scenarios that illustrate how Amazon S3 author
 **Example Requester is an IAM principal**  
 If the requester is an IAM principal, Amazon S3 must determine if the parent AWS account to which the principal belongs has granted the principal necessary permission to perform the operation\. In addition, if the request is for a bucket operation, such as a request to list the bucket content, Amazon S3 must verify that the bucket owner has granted permission for the requester to perform the operation\. To perform a specific operation on a resource, an IAM principal needs permission from both the parent AWS account to which it belongs and the AWS account that owns the resource\.
 
-**Example Requester is an IAM principal \- is an request is for an object the bucket owner doesn't own**  
+ 
+
+**Example Requester is an IAM principal \- If the request is for an operation on an object that the bucket owner doesn't own\.**  
 If the request is for an operation on an object that the bucket owner does not own, in addition to making sure the requester has permissions from the object owner, Amazon S3 must also check the bucket policy to ensure the bucket owner has not set explicit deny on the object\. A bucket owner \(who pays the bill\) can explicitly deny access to objects in the bucket regardless of who owns it\. The bucket owner can also delete any object in the bucket\.  
 By default, when another AWS account uploads an object to your S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through ACLs\. You can use Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies, such as IAM policies, S3 bucket policies, virtual private cloud \(VPC\) endpoint policies, and AWS Organizations service control policies \(SCPs\)\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 

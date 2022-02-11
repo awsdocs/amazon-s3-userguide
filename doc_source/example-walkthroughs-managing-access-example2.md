@@ -155,13 +155,13 @@ Now the Account B administrator creates a user, Dave, and delegates the permissi
 
 Using the IAM user sign\-in URL for Account B, first sign in to the AWS Management Console as AccountBadmin user\. 
 
-### Step 2\.2: Create user dave in Account B<a name="access-policies-walkthrough-example2b-create-user"></a>
+### Step 2\.2: Create user Dave in Account B<a name="access-policies-walkthrough-example2b-create-user"></a>
 
 In the IAM console, create a user, Dave\. 
 
 For instructions, see [Creating IAM Users \(AWS Management Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) in the *IAM User Guide*\. 
 
-### Step 2\.3: Delegate permissions to user dave<a name="access-policies-walkthrough-example2-delegate-perm-userdave"></a>
+### Step 2\.3: Delegate permissions to user Dave<a name="access-policies-walkthrough-example2-delegate-perm-userdave"></a>
 
 Create an inline policy for the user Dave by using the following policy\. You will need to update the policy by providing your bucket name\.
 

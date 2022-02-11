@@ -10,7 +10,7 @@ Batch Operations verifies that Object Lock is enabled on your bucket before proc
 
 For information about using this operation with the REST API, see `S3PutObjectRetention` in the [CreateJob](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html) operation in the *Amazon Simple Storage Service API Reference*\. 
 
-For an AWS Command Line Interface example of using this operation, see [Using the AWS SDK Java](batch-ops-object-lock-retention.md#batch-ops-examples-java-object-lock-retention)\. For an AWS SDK for Java example, see [Using the AWS CLI](batch-ops-object-lock-retention.md#batch-ops-cli-object-lock-retention-example)\. 
+For an AWS Command Line Interface example of using this operation, see [Using the AWS SDK for Java](batch-ops-object-lock-retention.md#batch-ops-examples-java-object-lock-retention)\. For an AWS SDK for Java example, see [Using the AWS CLI](batch-ops-object-lock-retention.md#batch-ops-cli-object-lock-retention-example)\. 
 
 ## Restrictions and limitations<a name="batch-ops-retention-date-restrictions"></a>
 + S3 Batch Operations does not make any bucket level changes\.

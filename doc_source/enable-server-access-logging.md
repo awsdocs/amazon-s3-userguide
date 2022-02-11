@@ -31,7 +31,7 @@ If the target bucket uses the bucket owner enforced setting for Object Ownership
 
 ### Grant permissions to the logging service principal using a bucket policy<a name="grant-log-delivery-permissions-bucket-policy"></a>
 
-This example bucket policy grants `s3:PutObject` permissions to the logging service principal \(`logging.s3.amazonaws.com`\)\.
+This example bucket policy grants `s3:PutObject` permissions to the logging service principal \(`logging.s3.amazonaws.com`\)\. To use this bucket policy, replace the example values\.
 
 ```
 {
@@ -49,7 +49,7 @@ This example bucket policy grants `s3:PutObject` permissions to the logging serv
             "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/EXAMPLE-LOGGING-PREFIX*",
             "Condition": {
                 "ArnLike": {
-                    "aws:SourceARN": "arn:aws:s3:::SOURCE-BUCKET-NAME"
+                    "aws:SourceArn": "arn:aws:s3:::SOURCE-BUCKET-NAME"
                 },
                 "StringEquals": {
                     "aws:SourceAccount": "SOURCE-ACCOUNT-ID"
@@ -274,7 +274,7 @@ In this example, you have the following five buckets:
      1. aws s3api put-bucket-policy --bucket awsexamplebucket1-logs --policy file://policy.json
      ```
 
-     `Policy.json` is a JSON document in the current folder that contains the bucket policy:
+     `Policy.json` is a JSON document in the current folder that contains the bucket policy\. To use this bucket policy, replace the example values\.
 
      ```
      {
@@ -292,7 +292,7 @@ In this example, you have the following five buckets:
                  "Resource": "arn:aws:s3:::awsexamplebucket1-logs/*",
                  "Condition": {
                      "ArnLike": {
-                         "aws:SourceARN": "arn:aws:s3:::SOURCE-BUCKET-NAME"
+                         "aws:SourceArn": "arn:aws:s3:::SOURCE-BUCKET-NAME"
                      },
                      "StringEquals": {
                          "aws:SourceAccount": "SOURCE-ACCOUNT-ID"

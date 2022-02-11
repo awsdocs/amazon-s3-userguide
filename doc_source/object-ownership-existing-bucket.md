@@ -52,7 +52,7 @@ This example applies the bucket owner enforced setting for an existing bucket us
 aws s3api put-bucket-ownership-controls --bucket DOC-EXAMPLE-BUCKET --ownership-controls Rules=[{ObjectOwnership=BucketOwnerEnforced}]
 ```
 
-## Using the AWS SDK Java<a name="object-ownership-existing-bucket-sdk-java"></a>
+## Using the AWS SDK for Java<a name="object-ownership-existing-bucket-sdk-java"></a>
 
 This example applies the `BucketOwnerEnforced` setting for Object Ownership on an existing bucket using the AWS SDK for Java:
 

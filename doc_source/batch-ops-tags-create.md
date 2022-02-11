@@ -86,7 +86,7 @@ The following AWS CLI example creates an S3 Batch Operations `S3PutObjectCopy` j
        --description "Copy with Replace Metadata";
    ```
 
-## Using the AWS SDK Java<a name="batch-ops-examples-java-job-with-tags-create"></a>
+## Using the AWS SDK for Java<a name="batch-ops-examples-java-job-with-tags-create"></a>
 
 **Example**  
 The following example creates an S3 Batch Operations job with tags using the AWS SDK for Java\.  

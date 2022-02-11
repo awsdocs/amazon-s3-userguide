@@ -4,103 +4,41 @@ A presigned URL gives you access to the object identified in the URL, provided t
 
 All objects and buckets by default are private\. The presigned URLs are useful if you want your user/customer to be able to upload a specific object to your bucket, but you don't require them to have AWS security credentials or permissions\. 
 
-When you create a presigned URL, you must provide your security credentials and then specify a bucket name, an object key, an HTTP method \(PUT for uploading objects\), and an expiration date and time\. The presigned URLs are valid only for the specified duration\. That is, you must start the action before the expiration date and time\. If the action consists of multiple steps, such as a multipart upload, all steps must be started before the expiration, otherwise you will receive an error when Amazon S3 attempts to start a step with an expired URL\.
+When you create a presigned URL, you must provide your security credentials and then specify a bucket name, an object key, an HTTP method \(PUT for uploading objects\), and an expiration date and time\. The presigned URLs are valid only for the specified duration\. That is, you must start the action before the expiration date and time\. 
+
+If the action consists of multiple steps, such as a multipart upload, all steps must be started before the expiration\. Otherwise, you will receive an error when Amazon S3 tries to start a step with an expired URL\.
 
 You can use the presigned URL multiple times, up to the expiration date and time\.
 
-**Presigned URL access**  
-Since presigned URLs grant access to your Amazon S3 buckets to whoever has the URL, we recommend that you protect them appropriately\. For more details about protecting presigned URLs, see [Limiting presigned URL capabilities](using-presigned-url.md#PresignedUrlUploadObject-LimitCapabilities)\.
+**Access to presigned URLs**  
+Because presigned URLs grant access to your Amazon S3 buckets to whoever has the URL, we recommend that you protect them appropriately\. For more information about protecting presigned URLs, see [Limiting presigned URL capabilities](using-presigned-url.md#PresignedUrlUploadObject-LimitCapabilities)\.
 
-Anyone with valid security credentials can create a presigned URL\. However, for you to successfully upload an object, the presigned URL must be created by someone who has permission to perform the operation that the presigned URL is based upon\.
+Anyone with valid security credentials can create a presigned URL\. However, for you to successfully upload an object, the presigned URL must be created by someone who has permission to perform the operation that the presigned URL is based upon\. For more information, see [Who can create a presigned URL](using-presigned-url.md#who-presigned-url)\.
 
-**Generate a presigned URL for object upload**  
-You can generate a presigned URL programmatically using the [REST API](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html), \.NET, AWS SDK for Java, Ruby, [AWS SDK for JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, and [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
+## Generating a presigned URL for uploading objects<a name="generating-presigned-url"></a>
 
-If you are using Microsoft Visual Studio, you can also use AWS Explorer to generate a presigned object URL without writing any code\. Anyone who receives a valid presigned URL can then programmatically upload an object\. For more information, see [Using Amazon S3 from AWS Explorer](https://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/using-s3.html)\. For instructions on how to install AWS Explorer, see [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)\.
+You can generate a presigned URL programmatically using the AWS SDKs for \.NET, Java, Ruby, [JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, and [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
 
-You can use the AWS SDK to generate a presigned URL that you, or anyone you give the URL, can use to upload an object to Amazon S3\. When you use the URL to upload an object, Amazon S3 creates the object in the specified bucket\. If an object with the same key that is specified in the presigned URL already exists in the bucket, Amazon S3 replaces the existing object with the uploaded object\.
+You can use the AWS SDK to generate a presigned URL that you or anyone that you give the URL to can use to upload an object to Amazon S3\. When you use the URL to upload an object, Amazon S3 creates the object in the specified bucket\. If an object with the same key that is specified in the presigned URL already exists in the bucket, Amazon S3 replaces the existing object with the uploaded object\.
 
-## Examples<a name="presigned-urls-upload-examples"></a>
+### Using AWS Explorer for Visual Studio<a name="upload-object-presignedurl-vsexplorer"></a>
+
+If you're using Microsoft Visual Studio, you can generate a presigned object URL without writing any code by using AWS Explorer in the AWS Toolkit for Visual Studio\. Anyone who receives a valid presigned URL can then programmatically upload an object\. For more information, see [Using Amazon S3 from AWS Explorer](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-s3.html) in the *AWS Toolkit for Visual Studio User Guide*\. 
+
+For instructions on installing AWS Explorer, see [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)\.
+
+### Using the AWS SDKs<a name="presigned-urls-upload-examples"></a>
 
 The following examples show how to upload objects using presigned URLs\.
 
 ------
-#### [ \.NET ]
-
-The following C\# example shows how to use the AWS SDK for \.NET to upload an object to an S3 bucket using a presigned URL\.
-
-This example generates a presigned URL for a specific object and uses it to upload a file\. For information about the example's compatibility with a specific version of the AWS SDK for \.NET and instructions about how to create and test a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\.
-
-```
-using Amazon;
-using Amazon.S3;
-using Amazon.S3.Model;
-using System;
-using System.IO;
-using System.Net;
-
-namespace Amazon.DocSamples.S3
-{
-    class UploadObjectUsingPresignedURLTest
-    {
-        private const string bucketName = "*** provide bucket name ***";
-        private const string objectKey  = "*** provide the name for the uploaded object ***";
-        private const string filePath   = "*** provide the full path name of the file to upload ***";
-        // Specify how long the presigned URL lasts, in hours
-        private const double timeoutDuration = 12;
-        // Specify your bucket region (an example region is shown).
-        private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USWest2; 
-        private static IAmazonS3 s3Client;
-
-        public static void Main()
-        {
-            s3Client = new AmazonS3Client(bucketRegion);
-            var url = GeneratePreSignedURL(timeoutDuration);
-            UploadObject(url);
-        }
-
-        private static void UploadObject(string url)
-        {
-            HttpWebRequest httpRequest = WebRequest.Create(url) as HttpWebRequest;
-            httpRequest.Method = "PUT";
-            using (Stream dataStream = httpRequest.GetRequestStream())
-            {
-                var buffer = new byte[8000];
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    int bytesRead = 0;
-                    while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
-                    {
-                        dataStream.Write(buffer, 0, bytesRead);
-                    }
-                }
-            }
-            HttpWebResponse response = httpRequest.GetResponse() as HttpWebResponse;
-        }
-
-        private static string GeneratePreSignedURL(double duration)
-        {
-            var request = new GetPreSignedUrlRequest
-            {
-                BucketName = bucketName,
-                Key        = objectKey,
-                Verb       = HttpVerb.PUT,
-                Expires    = DateTime.UtcNow.AddHours(duration)
-            };
-
-           string url = s3Client.GetPreSignedURL(request);
-           return url;
-        }
-    }
-}
-```
-
-------
 #### [ Java ]
 
-To successfully complete an upload, you must do the following:
+To successfully complete an upload using the AWS SDK for Java, you must do the following:
 + Specify the HTTP PUT verb when creating the `GeneratePresignedUrlRequest` and `HttpURLConnection` objects\.
-+ Interact with the `HttpURLConnection` object in some way after finishing the upload\. The following example accomplishes this by using the `HttpURLConnection` object to check the HTTP response code\.
++ Interact with the `HttpURLConnection` object in some way after finishing the upload\. 
+
+  The following example accomplishes this by using the `HttpURLConnection` object to check the HTTP response code\.
 
 **Example**  
 This example generates a presigned URL and uses it to upload sample data as an object\. For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.  
@@ -177,81 +115,81 @@ public class GeneratePresignedUrlAndUploadObject {
 ```
 
 ------
+#### [ \.NET ]
+
+The following C\# example shows how to use the AWS SDK for \.NET to upload an object to an S3 bucket using a presigned URL\.
+
+This example generates a presigned URL for a specific object and uses it to upload a file\. For information about the example's compatibility with a specific version of the AWS SDK for \.NET and instructions on creating and testing a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\.
+
+```
+using Amazon;
+using Amazon.S3;
+using Amazon.S3.Model;
+using System;
+using System.IO;
+using System.Net;
+
+namespace Amazon.DocSamples.S3
+{
+    class UploadObjectUsingPresignedURLTest
+    {
+        private const string bucketName = "*** provide bucket name ***";
+        private const string objectKey  = "*** provide the name for the uploaded object ***";
+        private const string filePath   = "*** provide the full path name of the file to upload ***";
+        // Specify how long the presigned URL lasts, in hours
+        private const double timeoutDuration = 12;
+        // Specify your bucket region (an example region is shown).
+        private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USWest2; 
+        private static IAmazonS3 s3Client;
+
+        public static void Main()
+        {
+            s3Client = new AmazonS3Client(bucketRegion);
+            var url = GeneratePreSignedURL(timeoutDuration);
+            UploadObject(url);
+        }
+
+        private static void UploadObject(string url)
+        {
+            HttpWebRequest httpRequest = WebRequest.Create(url) as HttpWebRequest;
+            httpRequest.Method = "PUT";
+            using (Stream dataStream = httpRequest.GetRequestStream())
+            {
+                var buffer = new byte[8000];
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    int bytesRead = 0;
+                    while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        dataStream.Write(buffer, 0, bytesRead);
+                    }
+                }
+            }
+            HttpWebResponse response = httpRequest.GetResponse() as HttpWebResponse;
+        }
+
+        private static string GeneratePreSignedURL(double duration)
+        {
+            var request = new GetPreSignedUrlRequest
+            {
+                BucketName = bucketName,
+                Key        = objectKey,
+                Verb       = HttpVerb.PUT,
+                Expires    = DateTime.UtcNow.AddHours(duration)
+            };
+
+           string url = s3Client.GetPreSignedURL(request);
+           return url;
+        }
+    }
+}
+```
+
+------
 #### [ JavaScript ]
 
 **Example**  
 For an AWS SDK for JavaScript example on using the presigned URL to upload objects, see [ Create a presigned URL to upload objects to an Amazon S3 bucket](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-creating-buckets.html#s3-create-presigendurl-put)\.
-
-**Example**  
-The following AWS SDK for JavaScript example uses a presigned URL to delete an object:  
-
-```
-          // Import the required AWS SDK clients and commands for Node.js
-import {
-  CreateBucketCommand,
-  DeleteObjectCommand,
-  PutObjectCommand,
-  DeleteBucketCommand }
-from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates Amazon S3 service client module.
-import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import fetch from "node-fetch";
-
-// Set parameters
-// Create a random names for the Amazon Simple Storage Service (Amazon S3) bucket and key
-export const bucketParams = {
-  Bucket: `test-bucket-${Math.ceil(Math.random() * 10 ** 10)}`,
-  Key: `test-object-${Math.ceil(Math.random() * 10 ** 10)}`,
-  Body: "BODY"
-};
-export const run = async () => {
-  try {
-    // Create an Amazon S3 bucket.
-    console.log(`Creating bucket ${bucketParams.Bucket}`);
-    await s3Client.send(new CreateBucketCommand({ Bucket: bucketParams.Bucket }));
-    console.log(`Waiting for "${bucketParams.Bucket}" bucket creation...`);
-  } catch (err) {
-    console.log("Error creating bucket", err);
-  }
-  try {
-    // Create the command.
-    const command = new PutObjectCommand(bucketParams);
-
-    // Create the presigned URL.
-    const signedUrl = await getSignedUrl(s3Client, command, {
-      expiresIn: 3600,
-    });
-    console.log(
-      `\nPutting "${bucketParams.Key}" using signedUrl with body "${bucketParams.Body}" in v3`
-    );
-    console.log(signedUrl);
-    const response = await fetch(signedUrl);
-    console.log(
-      `\nResponse returned by signed URL: ${await response.text()}\n`
-    );
-    return response;
-  } catch (err) {
-    console.log("Error creating presigned URL", err);
-  }
-  try {
-    // Delete the object.
-    console.log(`\nDeleting object "${bucketParams.Key}"} from bucket`);
-    await s3Client.send(
-      new DeleteObjectCommand({ Bucket: bucketParams.Bucket, Key: bucketParams.Key })
-    );
-  } catch (err) {
-    console.log("Error deleting object", err);
-  }
-  try {
-    // Delete the Amazon S3 bucket.
-    console.log(`\nDeleting bucket ${bucketParams.Bucket}`);
-    await s3.send(new DeleteBucketCommand({ Bucket: bucketParams.Bucket }));
-  } catch (err) {
-    console.log("Error deleting bucket", err);
-  }
-};
-run();
-```
 
 ------
 #### [ Python ]
@@ -272,18 +210,21 @@ For a complete example that shows how to generate presigned URLs and how to use 
 ------
 #### [ Ruby ]
 
-The following tasks guide you through using a Ruby script to upload an object using a presigned URL for SDK for Ruby \- Version 3\.
+The following steps guide you through using a Ruby script to upload an object using a presigned URL for the AWS SDK for Ruby Version 3\.
 
+**To upload objects using the SDK for Ruby Version 3**
 
-**Uploading objects \- SDK for Ruby \- version 3**  
+1. Create an instance of the `Aws::S3::Resource` class\.
 
-|  |  | 
-| --- |--- |
-|  1  |  Create an instance of the `Aws::S3::Resource` class\.  | 
-|  2  |  Provide a bucket name and an object key by calling the `#bucket[]` and the `#object[]` methods of your `Aws::S3::Resource` class instance\. Generate a presigned URL by creating an instance of the `URI` class, and use it to parse the `.presigned_url` method of your `Aws::S3::Resource` class instance\. You must specify `:put` as an argument to `.presigned_url`, and you must specify `PUT` to `Net::HTTP::Session#send_request` if you want to upload an object\.  | 
-|  3  |  Anyone with the presigned URL can upload an object\.  The upload creates an object or replaces any existing object with the same key that is specified in the presigned URL\.  | 
+1. Provide a bucket name and an object key by calling the `#bucket[]` and the `#object[]` methods of your `Aws::S3::Resource` class instance\.
 
-The following Ruby code example demonstrates the preceding tasks for SDK for Ruby \- Version 3\.
+   Generate a presigned URL by creating an instance of the `URI` class, and use it to parse the `.presigned_url` method of your `Aws::S3::Resource` class instance\. You must specify `:put` as an argument to `.presigned_url`, and you must specify `PUT` to `Net::HTTP::Session#send_request` if you want to upload an object\.
+
+1. Anyone with the presigned URL can upload an object\. 
+
+   The upload creates an object or replaces any existing object with the same key that is specified in the presigned URL\.
+
+The following Ruby code example demonstrates the preceding tasks for SDK for Ruby Version 3\.
 
 **Example**  
 
@@ -300,7 +241,7 @@ def get_presigned_url(bucket, object_key)
   url = bucket.object(object_key).presigned_url(:put)
   puts "Created presigned URL: #{url}."
   URI(url)
-rescue StandardError => e
+rescue Aws::Errors::ServiceError => e
   puts "Couldn't create presigned URL for #{bucket.name}:#{object_key}. Here's why: #{e.message}"
 end
 
@@ -327,5 +268,10 @@ end
 
 run_demo if $PROGRAM_NAME == __FILE__
 ```
+
+------
+#### [ Go ]
+
+You can use the SDK for Go to upload an object\. You can send a PUT request to upload data in a single operation\. For more information, see [Create pre\-signed URLs for Amazon S3 buckets](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/s3-example-presigned-urls.html) in the *AWS SDK for Go Developer Guide*\.
 
 ------

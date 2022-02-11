@@ -374,7 +374,7 @@ If an object has both tags, then Amazon S3 has to decide which rule to follow\. 
 
 ## Example 6: Specifying a lifecycle rule for a versioning\-enabled bucket<a name="lifecycle-config-conceptual-ex6"></a>
 
-Suppose that you have a versioning\-enabled bucket, which means that for each object, you have a current version and zero or more noncurrent versions\. \(For more information about S3 Versioning, see [Using versioning in S3 buckets](Versioning.md)\.\) In this example, you want to maintain one year's worth of history, and delete the noncurrent versions\. Amazon S3 S3 Lifecycle configurations supports keeping 1 to 100 versions of any object\. 
+Suppose that you have a versioning\-enabled bucket, which means that for each object, you have a current version and zero or more noncurrent versions\. \(For more information about S3 Versioning, see [Using versioning in S3 buckets](Versioning.md)\.\) In this example, you want to maintain one year's worth of history, and delete the noncurrent versions\. S3 Lifecycle configurations supports keeping 1 to 100 versions of any object\. 
 
 To save storage costs, you want to move noncurrent versions to S3 Glacier Flexible Retrieval 30 days after they become noncurrent \(assuming that these noncurrent objects are cold data for which you don't need real\-time access\)\. In addition, you expect frequency of access of the current versions to diminish 90 days after creation, so you might choose to move these objects to the S3 Standard\-IA storage class\.
 

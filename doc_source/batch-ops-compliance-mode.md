@@ -121,7 +121,7 @@ aws \
     --description "Extend compliance retention to 15 Jan 2020";
 ```
 
-## Using the AWS SDK Java<a name="batch-ops-examples-java-object-lock-compliance"></a>
+## Using the AWS SDK for Java<a name="batch-ops-examples-java-object-lock-compliance"></a>
 
 **Example Set the retention mode to COMPLIANCE and the retain until date to January 1, 2020\.**  
 

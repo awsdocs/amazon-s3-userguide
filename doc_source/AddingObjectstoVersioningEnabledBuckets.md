@@ -10,7 +10,7 @@ The following figure shows that Amazon S3 adds a unique version ID to an object 
 Normal Amazon S3 rates apply for every version of an object stored and transferred\. Each version of an object is the entire object; it is not just a diff from the previous version\. Thus, if you have three versions of an object stored, you are charged for three objects\.   
 The version ID values that Amazon S3 assigns are URL safe \(can be included as part of a URI\)\.
 
-You can add object versions to a versioning\-enabled bucket using the console, AWS SDKs, and REST API\.
+For more information about versioning, see [Using versioning in S3 buckets](Versioning.md)\. You can add object versions to a versioning\-enabled bucket using the console, AWS SDKs, and REST API\.
 
 ## Using the console<a name="add-obj-versioning-enabled-bucket-console"></a>
 

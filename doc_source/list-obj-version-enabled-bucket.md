@@ -12,7 +12,7 @@ Follow these steps to use the Amazon S3 console to see the different versions of
 
 1. In the **Buckets** list, choose the name of the bucket that contains the object\.
 
-1. To see a list of the versions of the objects in the bucket, choose the **List versions** switch\. 
+1. To see a list of the versions of the objects in the bucket, choose the **Show versions** switch\. 
 
    For each object version, the console shows a unique version ID, the date and time the object version was created, and other properties\. \(Objects stored in your bucket before you set the versioning state have a version ID of **null**\.\)
 

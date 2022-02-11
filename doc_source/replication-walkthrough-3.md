@@ -58,7 +58,7 @@ The profiles you use for this exercise must have the necessary permissions\. For
 
 1. You must add permissions to your *destination* bucket policy to allow changing the replica ownership\.
 
-   1.  Save the following policy to `destination-bucket-policy.json`
+   1.  Save the following policy to `destination-bucket-policy.json`\.
 
       ```
       {

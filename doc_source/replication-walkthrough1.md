@@ -1,6 +1,6 @@
 # Configuring replication for source and destination buckets owned by the same account<a name="replication-walkthrough1"></a>
 
-Replication is the automatic, asynchronous copying of objects across buckets in the same or different AWS Regions\. Replication copies newly created objects and object updates from a source bucket to a destination bucket or buckets\. For more information see [Replicating objects](replication.md)\.
+Replication is the automatic, asynchronous copying of objects across buckets in the same or different AWS Regions\. Replication copies newly created objects and object updates from a source bucket to a destination bucket or buckets\. For more information, see [Replicating objects](replication.md)\.
 
 When you configure replication, you add replication rules to the source bucket\. Replication rules define which source bucket objects to replicate and the destination bucket or buckets where the replicated objects are stored\. You can create a rule to replicate all the objects in a bucket or a subset of objects with a specific key name prefix, one or more object tags, or both\. A destination bucket can be in the same AWS account as the source bucket, or it can be in a different account\.
 
@@ -12,15 +12,21 @@ In this example, you set up replication for source and destination buckets that 
 
 ## Using the AWS CLI<a name="replication-ex1-cli"></a>
 
-To use the AWS CLI to set up replication when the source and destination buckets are owned by the same AWS account, you create source and destination buckets, enable versioning on the buckets, create an IAM role that gives Amazon S3 permission to replicate objects, and add the replication configuration to the source bucket\. To verify your setup, you test it\.
+To use the AWS CLI to set up replication when the source and destination buckets are owned by the same AWS account, you do the following:
++ Create source and destination buckets
++ Enable versioning on the buckets
++ Create an IAM role that gives Amazon S3 permission to replicate objects
++ Add the replication configuration to the source bucket
+
+To verify your setup, you test it\.
 
 **To set up replication when source and destination buckets are owned by the same AWS account**
 
 1. Set a credentials profile for the AWS CLI\. In this example, we use the profile name `acctA`\. For information about setting credential profiles, see [Named Profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html) in the *AWS Command Line Interface User Guide*\. 
 **Important**  
-The profile you use for this exercise must have the necessary permissions\. For example, in the replication configuration, you specify the IAM role that Amazon S3 can assume\. You can do this only if the profile you use has the `iam:PassRole` permission\. For more information, see [Granting a User Permissions to Pass a Role to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\. If you use administrator user credentials to create a named profile, you can perform all the tasks\. 
+The profile you use for this exercise must have the necessary permissions\. For example, in the replication configuration, you specify the IAM role that Amazon S3 can assume\. You can do this only if the profile you use has the `iam:PassRole` permission\. For more information, see [Granting a User Permissions to Pass a Role to an AWS Service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\. If you use administrator credentials to create a named profile, you can perform all the tasks\. 
 
-1. Create a *source* bucket and enable versioning on it\. The following code creates a *source* bucket in the US East \(N\. Virginia\) \(us\-east\-1\) Region\.
+1. Create a `source` bucket and enable versioning on it\. The following code creates a `source` bucket in the US East \(N\. Virginia\) \(us\-east\-1\) Region\.
 
    
 
@@ -38,7 +44,7 @@ The profile you use for this exercise must have the necessary permissions\. For 
    --profile acctA
    ```
 
-1. Create a *destination* bucket and enable versioning on it\. The following code creates a *destination* bucket in the US West \(Oregon\) \(us\-west\-2\) Region\. 
+1. Create a `destination` bucket and enable versioning on it\. The following code creates a `destination` bucket in the US West \(Oregon\) \(us\-west\-2\) Region\. 
 **Note**  
 To set up replication configuration when both source and destination buckets are in the same AWS account, you use the same profile\. This example uses `acctA`\. To test replication configuration when the buckets are owned by different AWS accounts, you specify different profiles for each\. This example uses the `acctB` profile for the destination bucket\.
 
@@ -143,7 +149,7 @@ To set up replication configuration when both source and destination buckets are
          --profile acctA
          ```
 
-1. Add replication configuration to the *source* bucket\. 
+1. Add replication configuration to the `source` bucket\. 
 
    1. Although the Amazon S3 API requires replication configuration as XML, the AWS CLI requires that you specify the replication configuration as JSON\. Save the following JSON in a file called `replication.json` to the local directory on your computer\.
 
@@ -164,9 +170,9 @@ To set up replication configuration when both source and destination buckets are
       }
       ```
 
-   1. Update the JSON by providing values for the *destination\-bucket* and *IAM\-role\-ARN*\. Save the changes\.
+   1. Update the JSON by providing values for the `destination-bucket` and `IAM-role-ARN`\. Save the changes\.
 
-   1. Run the following command to add the replication configuration to your source bucket\. Be sure to provide the *source* bucket name\.
+   1. Run the following command to add the replication configuration to your source bucket\. Be sure to provide the `source` bucket name\.
 
       ```
       $ aws s3api put-bucket-replication \
@@ -187,16 +193,16 @@ To set up replication configuration when both source and destination buckets are
 
    1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
-   1. In the *source* bucket, create a folder named `Tax`\. 
+   1. In the `source` bucket, create a folder named `Tax`\. 
 
-   1. Add sample objects to the `Tax` folder in the *source* bucket\. 
+   1. Add sample objects to the `Tax` folder in the `source` bucket\. 
 **Note**  
 The amount of time it takes for Amazon S3 to replicate an object depends on the size of the object\. For information about how to see the status of replication, see [Getting replication status information](replication-status.md)\.
 
-      In the *destination* bucket, verify the following:
+      In the `destination` bucket, verify the following:
       + That Amazon S3 replicated the objects\.
       + In object **properties**, that the **Replication Status** is set to `Replica` \(identifying this as a replica object\)\.
-      + In object **properties**, that the permission section shows no permissions\. This means that the replica is still owned by the *source* bucket owner, and the *destination* bucket owner has no permission on the object replica\. You can add optional configuration to tell Amazon S3 to change the replica ownership\. For an example, see [Changing the replica owner when source and destination buckets are owned by different accounts](replication-walkthrough-3.md)\.   
+      + In object **properties**, that the permission section shows no permissions\. This means that the replica is still owned by the `source` bucket owner, and the `destination` bucket owner has no permission on the object replica\. You can add optional configuration to tell Amazon S3 to change the replica ownership\. For an example, see [Changing the replica owner when source and destination buckets are owned by different accounts](replication-walkthrough-3.md)\.   
 ![\[Screen shot of object properties showing the replication status and permissions.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/crr-wt2-10.png)
 
        

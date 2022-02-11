@@ -38,7 +38,7 @@ To delete existing tags for your Batch Operations job, the `DeleteJobTagging` ac
        --region us-east-1;
    ```
 
-## Using the AWS SDK Java<a name="batch-ops-examples-java-job-with-tags-put"></a>
+## Using the AWS SDK for Java<a name="batch-ops-examples-java-job-with-tags-put"></a>
 
 **Example**  
 The following example puts the tags of an S3 Batch Operations job using the AWS SDK for Java\.  

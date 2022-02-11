@@ -82,7 +82,7 @@ This example applies the bucket owner enforced setting for a new bucket using th
 aws s3api create-bucket --bucket  DOC-EXAMPLE-BUCKET --region us-east-1 --object-ownership BucketOwnerEnforced
 ```
 
-## Using the AWS SDK Java<a name="object-ownership-new-bucket-sdk-java"></a>
+## Using the AWS SDK for Java<a name="object-ownership-new-bucket-sdk-java"></a>
 
 This example sets the bucket owner enforced setting for a new bucket using the AWS SDK for Java:
 

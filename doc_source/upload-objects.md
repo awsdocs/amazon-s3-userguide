@@ -250,7 +250,7 @@ The following example upload an existing file to an Amazon S3 bucket in a specif
 ```
 // Import required AWS SDK clients and commands for Node.js.
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates Amazon S3 service client module.
+import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
 import {path} from "path";
 import {fs} from "fs";
 
@@ -337,7 +337,7 @@ The AWS SDK for Ruby \- Version 3 has two ways of uploading an object to Amazon 
 require 'aws-sdk-s3'
 
 # Wraps Amazon S3 object actions.
-class ObjectWrapper
+class ObjectUploadFileWrapper
   attr_reader :object
 
   # @param object [Aws::S3::Object] An existing Amazon S3 object.
@@ -352,7 +352,7 @@ class ObjectWrapper
   def upload_file(file_path)
     @object.upload_file(file_path)
     true
-  rescue StandardError => e
+  rescue Aws::Errors::ServiceError => e
     puts "Couldn't upload file #{file_path} to #{@object.key}. Here's why: #{e.message}"
     false
   end
@@ -363,7 +363,7 @@ def run_demo
   object_key = 'my-uploaded-file'
   file_path = "object_upload_file.rb"
 
-  wrapper = ObjectWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
+  wrapper = ObjectUploadFileWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
   return unless wrapper.upload_file(file_path)
 
   puts "File #{file_path} successfully uploaded to #{bucket_name}:#{object_key}."
@@ -386,7 +386,7 @@ The second way that AWS SDK for Ruby \- Version 3 can upload an object uses the 
 require 'aws-sdk-s3'
 
 # Wraps Amazon S3 object actions.
-class ObjectWrapper
+class ObjectPutWrapper
   attr_reader :object
 
   # @param object [Aws::S3::Object] An existing Amazon S3 object.
@@ -399,7 +399,7 @@ class ObjectWrapper
       @object.put(body: file)
     end
     true
-  rescue StandardError => e
+  rescue Aws::Errors::ServiceError => e
     puts "Couldn't put #{source_file_path} to #{object.key}. Here's why: #{e.message}"
     false
   end
@@ -410,7 +410,7 @@ def run_demo
   object_key = 'my-object-key'
   file_path = 'my-local-file.txt'
 
-  wrapper = ObjectWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
+  wrapper = ObjectPutWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
   success = wrapper.put_object(file_path)
   return unless success
 

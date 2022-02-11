@@ -11,6 +11,7 @@ For more information about copying objects in Amazon S3 and the required and opt
 + All destination objects must be in one bucket\.
 + You must have read permissions for the source bucket and write permissions for the destination bucket\.
 + Objects to be copied can be up to 5 GB in size\.
++ If you try to copy objects from the S3 Glacier storage classes to the S3 Standard storage class, you need to first restore these objects\. For more information, see [Restoring an archived object](restoring-objects.md)\.
 + Copy jobs must be created in the destination Region, which is the Region you intend to copy the objects to\.
 + All Copy options are supported except for conditional checks on ETags and server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\.
 + If the buckets are unversioned, you will overwrite objects with the same key names\.

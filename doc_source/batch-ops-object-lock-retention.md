@@ -29,7 +29,7 @@ EOF
 aws iam put-role-policy --role-name bops-objectlock --policy-name retention-permissions --policy-document "${retention_permissions}"
 ```
 
-## Using the AWS SDK Java<a name="batch-ops-examples-java-object-lock-retention"></a>
+## Using the AWS SDK for Java<a name="batch-ops-examples-java-object-lock-retention"></a>
 
 ```
 public void allowPutObjectRetention() {

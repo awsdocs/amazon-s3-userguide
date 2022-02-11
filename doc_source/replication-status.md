@@ -28,7 +28,7 @@ When you replicate objects to multiple destination buckets, the `x-amz-replicati
 
 ## Replication status if Amazon S3 replica modification sync is enabled<a name="replication-status-multiple-destinations"></a>
 
-When your replication rules enable Amazon S3 replica modification sync replicas can report statuses other than `REPLICA`\. If metadata changes are in the process of replicating the `x-amz-replication-status` header will return `PENDING`\. replica modification sync fails to replicate metadata the header will return `FAILED`\. If metadata is replicated correctly the replicas will return header `REPLICA`\.
+When your replication rules enable Amazon S3 replica modification sync, replicas can report statuses other than `REPLICA`\. If metadata changes are in the process of replicating, the `x-amz-replication-status` header returns `PENDING`\. If replica modification sync fails to replicate metadata, the header returns `FAILED`\. If metadata is replicated correctly, the replicas return the header `REPLICA`\.
 
 ## Finding replication status<a name="replication-status-usage"></a>
 

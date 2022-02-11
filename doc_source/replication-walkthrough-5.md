@@ -52,7 +52,7 @@ To use the AWS CLI to replicate objects with S3 RTC enabled, you create buckets,
 **Important**  
  `Metrics:EventThreshold:Minutes` and `ReplicationTime:Time:Minutes` can only have 15 as a valid value\. 
 
-## Using the AWS SDK Java<a name="replication-ex5-sdk"></a>
+## Using the AWS SDK for Java<a name="replication-ex5-sdk"></a>
 
  The following Java example adds replication configuration with S3 Replication Time Control \(S3 RTC\)\.
 

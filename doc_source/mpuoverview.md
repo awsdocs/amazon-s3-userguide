@@ -3,10 +3,10 @@
 Multipart upload allows you to upload a single object as a set of parts\. Each part is a contiguous portion of the object's data\. You can upload these object parts independently and in any order\. If transmission of any part fails, you can retransmit that part without affecting other parts\. After all parts of your object are uploaded, Amazon S3 assembles these parts and creates the object\. In general, when your object size reaches 100 MB, you should consider using multipart uploads instead of uploading the object in a single operation\.
 
 Using multipart upload provides the following advantages:
-+  Improved throughput \- You can upload parts in parallel to improve throughput\. 
-+ Quick recovery from any network issues \- Smaller part size minimizes the impact of restarting a failed upload due to a network error\.
-+ Pause and resume object uploads \- You can upload object parts over time\. After you initiate a multipart upload, there is no expiry; you must explicitly complete or stop the multipart upload\.
-+ Begin an upload before you know the final object size \- You can upload an object as you are creating it\. 
++  Improved throughput – You can upload parts in parallel to improve throughput\. 
++ Quick recovery from any network issues – Smaller part size minimizes the impact of restarting a failed upload due to a network error\.
++ Pause and resume object uploads – You can upload object parts over time\. After you initiate a multipart upload, there is no expiry; you must explicitly complete or stop the multipart upload\.
++ Begin an upload before you know the final object size – You can upload an object as you are creating it\. 
 
 We recommend that you use multipart upload in the following ways:
 + If you're uploading large objects over a stable high\-bandwidth network, use multipart upload to maximize the use of your available bandwidth by uploading object parts in parallel for multi\-threaded performance\.

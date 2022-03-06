@@ -1,6 +1,6 @@
 # Working with object metadata<a name="UsingMetadata"></a>
 
-You can set object metadata in Amazon S3 at the time you upload the object\. Object metadata is a set of name\-value pairs\. After you upload the object, you cannot modify object metadata\. The only way to modify object metadata is to make a copy of the object and set the metadata\. 
+You can set object metadata in Amazon S3 at the time you upload the object\. Object metadata is a set of name\-value pairs\. 
 
 When you create an object, you also specify the key name, which uniquely identifies the object in the bucket\. The object key \(or key name\) uniquely identifies the object in an Amazon S3 bucket\. For more information, see [Creating object key names](object-keys.md)\.
 

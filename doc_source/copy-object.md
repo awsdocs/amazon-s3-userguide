@@ -6,15 +6,15 @@ You can create a copy of your object up to 5 GB in a single atomic operation\. H
 
 Using the `copy` operation, you can:
 + Create additional copies of objects 
-+  Rename objects by copying them and deleting the original ones 
-+  Move objects across Amazon S3 locations \(e\.g\., us\-west\-1 and Europe\) 
++ Rename objects by copying them and deleting the original ones 
++ Move objects across Amazon S3 locations \(for example, us\-west\-1 and Europe\) 
 + Change object metadata
 
-  Each Amazon S3 object has metadata\. It is a set of name\-value pairs\. You can set object metadata at the time you upload it\. After you upload the object, you cannot modify object metadata\. The only way to modify object metadata is to make a copy of the object and set the metadata\. In the copy operation you set the same object as the source and target\. 
+  Each Amazon S3 object has metadata\. It is a set of name\-value pairs\. You can set object metadata at the time you upload it\. After you upload the object, you cannot modify object metadata\. The only way to modify object metadata is to make a copy of the object and set the metadata\. In the copy operation, set the same object as the source and target\. 
 
-Each object has metadata\. Some of it is system metadata and other user\-defined\. Users control some of the system metadata such as configuring server\-side encryption\. When you copy an object using the console, user\-controlled system metadata and user\-defined metadata are also copied\. When using an API call, you specify whether to retain the metadata\. Regardless of the method used, Amazon S3 resets the system\-controlled metadata\. For example, when you copy an object, Amazon S3 resets the creation date of the copied object\. You don't need to set any of these values in your copy request\. 
+Each object has metadata\. Some of it is system metadata and other is user\-defined\. You can control some of the system metadata, such as the storage class configuration to use for the object, and you can configure server\-side encryption\. When you copy an object, user\-controlled system metadata and user\-defined metadata are also copied\. Amazon S3 resets the system\-controlled metadata\. For example, when you copy an object, Amazon S3 resets the creation date of the copied object\. You don't need to set any of these values in your copy request\. 
 
-When copying an object, you might decide to update some of the metadata values\. For example, if your source object is configured to use standard storage, you might choose to use reduced redundancy storage for the object copy\. You might also decide to alter some of the user\-defined metadata values present on the source object\. Note that if you choose to update any of the object's user\-configurable metadata \(system or user\-defined\) during the copy, then you must explicitly specify all of the user\-configurable metadata present on the source object in your request, even if you are only changing only one of the metadata values\.
+When copying an object, you might decide to update some of the metadata values\. For example, if your source object is configured to use S3 Standard storage, you might choose to use S3 Intelligent\-Tiering for the object copy\. You might also decide to alter some of the user\-defined metadata values present on the source object\. If you choose to update any of the object's user\-configurable metadata \(system or user\-defined\) during the copy, then you must explicitly specify all of the user\-configurable metadata present on the source object in your request, even if you are changing only one of the metadata values\.
 
 For more information about the object metadata, see [Working with object metadata](UsingMetadata.md)\.
 
@@ -22,7 +22,9 @@ For more information about the object metadata, see [Working with object metadat
 Copying objects across locations incurs bandwidth charges\. 
  If the source object is archived in `S3 Glacier Flexible Retrieval` or `S3 Glacier Deep Archive`, you must first restore a temporary copy before you can copy the object to another bucket\. For information about archiving objects, see [Transitioning to the S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive storage classes \(object archival\)](lifecycle-transition-general-considerations.md#before-deciding-to-archive-objects)\. 
 
-When copying objects, you can request Amazon S3 to save the target object encrypted with an AWS KMS key, an Amazon S3\-managed encryption key, or a customer\-provided encryption key\. Accordingly, you must specify encryption information in your request\. If the copy source is an object that is stored in Amazon S3 using server\-side encryption with customer provided key, you will need to provide encryption information in your request so Amazon S3 can decrypt the object for copying\. For more information, see [Protecting data using encryption](UsingEncryption.md)\.
+When copying objects, you can request that Amazon S3 save the target object encrypted with an AWS KMS key, an Amazon S3 managed encryption key, or a customer\-provided encryption key\. Accordingly, you must specify encryption information in your request\. If the copy source is an object that is stored in Amazon S3 using server\-side encryption with a customer\-provided key, you must provide encryption information in your request so that Amazon S3 can decrypt the object for copying\. For more information, see [Protecting data using encryption](UsingEncryption.md)\.
+
+When copying objects, you can choose to use a different checksum algorithm for the object\. Whether you choose to use the same algorithm or a new one, Amazon S3 calculates a new checksum value after the object is copied\. Amazon S3 does not directly copy the value of the checksum\. The checksum value of objects that were loaded using multipart uploads might change\. For more information about how the checksum is calculated, see [Using part\-level checksums for multipart uploads](checking-object-integrity.md#large-object-checksums)\.
 
 To copy more than one Amazon S3 object with a single request, you can use Amazon S3 batch operations\. You provide S3 Batch Operations with a list of objects to operate on\. S3 Batch Operations calls the respective API to perform the specified operation\. A single Batch Operations job can perform the specified operation on billions of objects containing exabytes of data\. 
 
@@ -32,11 +34,14 @@ The S3 Batch Operations feature tracks progress, sends notifications, and stores
 
 ## To copy an object<a name="CopyingObjectsExamples"></a>
 
-To copy an object, use the examples below\.
+To copy an object, use the following methods\.
 
 ### Using the S3 console<a name="copying-moving-console"></a>
 
-In the S3 console, you can copy or move an object\. For more information, see the procedures below\.
+In the Amazon S3 console, you can copy or move an object\. For more information, see the following procedures\.
+
+**Note**  
+Objects encrypted with customer\-provided encryption keys \(SSE\-C\) cannot be copied or moved using the S3 console\. To copy or move objects encrypted with SSE\-C, use the AWS CLI, AWS SDK, or the Amazon S3 REST API\.
 
 **To copy an object**
 
@@ -48,15 +53,21 @@ In the S3 console, you can copy or move an object\. For more information, see th
 
 1. Choose **Actions** and choose **Copy** from the list of options that appears\.
 
-   Alternatively, choose **Copy** from the options in the upper right\. 
+   Alternatively, choose **Copy** from the options in the upper\-right corner\. 
 
-1. Select the destination type and destination account\. To specify the destination path, choose **Browse S3**, navigate to the destination, and select the check box to the left of the destination\. Choose **Choose destination** in the lower right\. 
+1. Select the destination type and destination account\. To specify the destination path, choose **Browse S3**, navigate to the destination, and select the check box to the left of the destination\. Choose **Choose destination** in the lower\-right corner\. 
 
    Alternatively, enter the destination path\. 
 
-1. If you do *not* have bucket versioning enabled, you might be asked to acknowledge that existing objects with the same name are overwritten\. If this is OK, select the check box and proceed\. If you want to keep all versions of objects in this bucket, select **Enable Bucket Versioning**\. You can also update default encryption and Object Lock properties\.
+1. If you do *not* have bucket versioning enabled, you might be asked to acknowledge that existing objects with the same name are overwritten\. If this is OK, select the check box and proceed\. If you want to keep all versions of objects in this bucket, select **Enable Bucket Versioning**\. You can also update the default encryption and S3 Object Lock properties\.
 
-1. Choose **Copy** in the bottom right and Amazon S3 moves your objects to the destination\.
+1. Under **Additional checksums**, choose whether you want to copy the objects using the existing checksum function or replace the existing checksum function with a new one\. When you uploaded the objects, you had the option to specify the checksum algorithm that was used to verify data integrity\. When copying the object, you have the option to choose a new function\. If you did not originally specify an additional checksum, you can use this section of the copy options to add one\.
+**Note**  
+Even if you opt to use the same checksum function, your checksum value might change if you copy the object and it is over 16 MB in size\. The checksum value might change because of how checksums are calculated for multipart uploads\. For more information about how the checksum might change when copying the object, see [Using part\-level checksums for multipart uploads](checking-object-integrity.md#large-object-checksums)\.
+
+   To change the checksum function, choose **Replace with a new checksum function**\. Choose the new checksum function from the box\. When the object is copied over, the new checksum is calculated and stored using the specified algorithm\.
+
+1. Choose **Copy** in the bottom\-right corner\. Amazon S3 copies your objects to the destination\.
 
 **To move objects**
 
@@ -68,20 +79,19 @@ In the S3 console, you can copy or move an object\. For more information, see th
 
 1. Choose **Actions** and choose **Move** from the list of options that appears\.
 
-   Alternatively, choose **Move** from the options in the upper right\. 
+   Alternatively, choose **Move** from the options in the upper\-right corner\. 
 
-1. To specify the destination path, choose **Browse S3**, navigate to the destination, and select the check box to the left of the destination\. Choose **Choose destination** in the lower right\. 
+1. To specify the destination path, choose **Browse S3**, navigate to the destination, and select the check box to the left of the destination\. Choose **Choose destination** in the lower\-right corner\. 
 
    Alternatively, enter the destination path\. 
 
-1. If you do *not* have bucket versioning enabled, you might be asked to acknowledge that existing objects with the same name are overwritten\. If this is OK, select the check box and proceed\. If you want to keep all versions of objects in this bucket, select **Enable Bucket Versioning**\. You can also update default encryption and Object Lock properties\.
+1. If you do *not* have bucket versioning enabled, you might be asked to acknowledge that existing objects with the same name are overwritten\. If this is OK, select the check box and proceed\. If you want to keep all versions of objects in this bucket, select **Enable Bucket Versioning**\. You can also update the default encryption and Object Lock properties\.
 
-1. Choose **Move** in the bottom right and Amazon S3 moves your objects to the destination\.
+1. Choose **Move** in the bottom\-right corner\. Amazon S3 moves your objects to the destination\.
 
 **Note**  
 This action creates a copy of all specified objects with updated settings, updates the last\-modified date in the specified location, and adds a delete marker to the original object\. 
 When moving folders, wait for the move action to finish before making additional changes in the folders\. 
-Objects encrypted with customer\-provided encryption keys \(SSE\-C\) cannot be copied using the S3 console\. To copy objects encrypted with SSE\-C, use the AWS CLI, AWS SDK, or the Amazon S3 REST API\. 
 This action updates metadata for bucket versioning, encryption, Object Lock features, and archived objects\. 
 
 ### Using the AWS SDKs<a name="CopyingObjectsUsingSDKs"></a>
@@ -272,7 +282,7 @@ The following tasks guide you through using the Ruby classes to copy an object i
  The following Ruby code example demonstrates the preceding tasks using the `#copy_object` method to copy an object from one bucket to another\.
 
 ```
-require 'aws-sdk-s3'
+require "aws-sdk-s3"
 
 # Wraps Amazon S3 object actions.
 class ObjectCopyWrapper
@@ -300,10 +310,10 @@ end
 # Replace the source and target bucket names with existing buckets you own and replace the source object key
 # with an existing object in the source bucket.
 def run_demo
-  source_bucket_name = 'doc-example-bucket1'
-  source_key = 'my-source-file.txt'
-  target_bucket_name = 'doc-example-bucket2'
-  target_key = 'my-target-file.txt'
+  source_bucket_name = "doc-example-bucket1"
+  source_key = "my-source-file.txt"
+  target_bucket_name = "doc-example-bucket2"
+  target_key = "my-target-file.txt"
 
   source_bucket = Aws::S3::Bucket.new(source_bucket_name)
   wrapper = ObjectCopyWrapper.new(source_bucket.object(source_key))

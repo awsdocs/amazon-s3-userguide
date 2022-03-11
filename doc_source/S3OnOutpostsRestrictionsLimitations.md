@@ -1,13 +1,14 @@
-# Amazon S3 on Outposts restrictions and limitations<a name="S3OnOutpostsRestrictionsLimitations"></a>
+# How is Amazon S3 on Outposts different from Amazon S3?<a name="S3OnOutpostsRestrictionsLimitations"></a>
 
-Consider the following restrictions and limitations as you set up Amazon S3 on Outposts\.
+Amazon S3 on Outposts delivers object storage to your on\-premises AWS Outposts environment and helps you to meet local processing, data residency, and demanding performance needs by keeping data close to on\-premises applications\. Using Amazon S3 APIs and features, S3 on Outposts makes it easy to store, secure, tag, and report on, and control access to the data on your Outposts and extend AWS infrastructure to your in\-premises facility for a consistent hybrid experience\.
+
+For more information about how S3 on Outposts is unique, see the following topics\.
 
 **Topics**
-+ [Specifications](#S3OnOutpostsSpecifications)
-+ [Data consistency model](#S3OnOutpostsDataConsistency)
-+ [Supported API operations](#S3OnOutpostsAPILimitations)
-+ [Unsupported Amazon S3 features](#S3OnOutpostsFeatureLimitations)
-+ [Network restrictions](#S3OnOutpostsConnectivityRestrictions)
++ [S3 on Outposts specifications](#S3OnOutpostsSpecifications)
++ [API operations supported by S3 on Outposts](#S3OnOutpostsAPILimitations)
++ [Amazon S3 features not supported by S3 on Outposts](#S3OnOutpostsFeatureLimitations)
++ [S3 on Outposts network requirements](#S3OnOutpostsConnectivityRestrictions)
 
 ## S3 on Outposts specifications<a name="S3OnOutpostsSpecifications"></a>
 + The maximum Outposts bucket size is 50 TB\.
@@ -23,34 +24,9 @@ Consider the following restrictions and limitations as you set up Amazon S3 on O
 + All objects stored in the `OUTPOSTS` storage class are stored using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\) by default\. You can also explicitly choose to store objects using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\.
 + If there is not enough space to store an object on your Outpost, the API will return an insufficient capacity exception \(ICE\)\. 
 
-## S3 on Outposts data consistency model<a name="S3OnOutpostsDataConsistency"></a>
-
-Amazon S3 on Outposts provides strong consistency for all object APIs, including read\-after\-write and list\-after\-write consistency\.
-
 ## API operations supported by S3 on Outposts<a name="S3OnOutpostsAPILimitations"></a>
 
-Amazon S3 on Outposts is designed to use the same object APIs as Amazon S3\. Therefore, you can use most of your existing code and many of your existing policies by passing the S3 on Outposts Amazon Resource Name \(ARN\) as your identifier\.
-
-Amazon S3 on Outposts supports the following API operations:
-+ `AbortMultipartUpload`
-+ `CompleteMultipartUpload`
-+ `CopyObject`
-+ `CreateMultipartUpload`
-+ `DeleteObject`
-+ `DeleteObjects`
-+ `DeleteObjectTagging`
-+ `GetObject`
-+ `GetObjectTagging`
-+ `HeadObject`
-+ `HeadBucket`
-+ `ListMultipartUploads`
-+ `ListObjects`
-+ `ListObjectsV2`
-+ `ListParts`
-+ `PutObject`
-+ `PutObjectTagging`
-+ `UploadPart`
-+ `UploadPartCopy`
+For a list of API operations supported by S3 on Outposts, see [Amazon S3 on Outposts APIs](S3OutpostsAPI.md)\.
 
 ## Amazon S3 features not supported by S3 on Outposts<a name="S3OnOutpostsFeatureLimitations"></a>
 
@@ -83,7 +59,7 @@ The following Amazon S3 features are currently not supported by Amazon S3 on Out
 + SOAP
 + Website access
 
-## S3 on Outposts network restrictions<a name="S3OnOutpostsConnectivityRestrictions"></a>
+## S3 on Outposts network requirements<a name="S3OnOutpostsConnectivityRestrictions"></a>
 + To route requests to an S3 on Outposts access point, you must create and configure an S3 on Outposts endpoint\. The following limits apply to endpoints for S3 on Outposts:
   + Each virtual private cloud \(VPC\) on your AWS Outposts can have one associated endpoint, and you can have up to 100 endpoints per Outpost\.
   + Multiple access points can be mapped to the same endpoint\.

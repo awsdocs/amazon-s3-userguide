@@ -35,6 +35,7 @@ Amazon S3 provides features for auditing and managing access to your buckets and
 + [S3 Block Public Access](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html) – Block public access to S3 buckets and objects\. By default, Block Public Access settings are turned on at the account and bucket level\.
 + [AWS Identity and Access Management \(IAM\)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html) – Create IAM users for your AWS account to manage access to your Amazon S3 resources\. For example, you can use IAM with Amazon S3 to control the type of access a user or group of users has to an S3 bucket that your AWS account owns\.
 + [Bucket policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html) – Use IAM\-based policy language to configure resource\-based permissions for your S3 buckets and the objects in them\.
++  [Amazon S3 access points](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html) – Configure named network endpoints with dedicated access policies to manage data access at scale for shared datasets in Amazon S3\. 
 + [Access control lists \(ACLs\)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acls.html) – Grant read and write permissions for individual buckets and objects to authorized users\. As a general rule, we recommend using S3 resource\-based policies \(bucket policies and access point policies\) or IAM policies for access control instead of ACLs\. ACLs are an access control mechanism that predates resource\-based policies and IAM\. For more information about when you'd use ACLs instead of resource\-based policies or IAM policies, see [Access policy guidelines](access-policy-alternatives-guidelines.md)\.
 + [S3 Object Ownership](https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html) – Disable ACLs and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. You, as the bucket owner, automatically own and have full control over every object in your bucket, and access control for your data is based on policies\.
 + [Access Analyzer for S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html) – Evaluate and monitor your S3 bucket access policies, ensuring that the policies provide only the intended access to your S3 resources\. 
@@ -85,8 +86,8 @@ Buckets and the objects in them are private and can be accessed only if you expl
 + [S3 Versioning](#Versions)
 + [Version ID](#BasicsVersionID)
 + [Bucket policy](#BucketPolicies)
-+ [Access control lists \(ACLs\)](#S3_ACLs)
 + [S3 Access Points](#BasicsAccessPoints)
++ [Access control lists \(ACLs\)](#S3_ACLs)
 + [Regions](#Regions)
 
 ### Buckets<a name="BasicsBucket"></a>
@@ -139,6 +140,14 @@ Bucket policies use JSON\-based access policy language that is standard across A
 
 In your bucket policy, you can use wildcard characters on Amazon Resource Names \(ARNs\) and other values to grant permissions to a subset of objects\. For example, you can control access to groups of objects that begin with a common [prefix](https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#keyprefix) or end with a given extension, such as `.html`\.
 
+### S3 Access Points<a name="BasicsAccessPoints"></a>
+
+Amazon S3 Access Points are named network endpoints with dedicated access policies that describe how data can be accessed using that endpoint\. Access Points are attached to buckets that you can use to perform S3 object operations, such as GetObject and PutObject\. Access Points simplify managing data access at scale for shared datasets in Amazon S3\. 
+
+Each access point has its own access point policy\. You can configure [Block Public Access](access-control-block-public-access.md) settings for each access point\. To restrict Amazon S3 data access to a private network, you can also configure any access point to accept requests only from a virtual private cloud \(VPC\)\.
+
+For more information, see [Managing data access with Amazon S3 access points](access-points.md)\. 
+
 ### Access control lists \(ACLs\)<a name="S3_ACLs"></a>
 
 You can use ACLs to grant read and write permissions to authorized users for individual buckets and objects\. Each bucket and object has an ACL attached to it as a subresource\. The ACL defines which AWS accounts or groups are granted access and the type of access\. ACLs are an access control mechanism that predates IAM\. For more information about ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
@@ -146,14 +155,6 @@ You can use ACLs to grant read and write permissions to authorized users for ind
 By default, when another AWS account uploads an object to your S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through ACLs\. You can use Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies, such as IAM policies, S3 bucket policies, virtual private cloud \(VPC\) endpoint policies, and AWS Organizations service control policies \(SCPs\)\.
 
 A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you disable ACLs except in unusual circumstances where you need to control access for each object individually\. With Object Ownership, you can disable ACLs and rely on policies for access control\. When you disable ACLs, you can easily maintain a bucket with objects uploaded by different AWS accounts\. You, as the bucket owner, own all the objects in the bucket and can manage access to them using policies\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
-
-### S3 Access Points<a name="BasicsAccessPoints"></a>
-
-Amazon S3 Access Points are named network endpoints with dedicated access policies that describe how data can be accessed using that endpoint\. Access Points simplify managing data access at scale for shared datasets in Amazon S3\. Access Points are named network endpoints attached to buckets that you can use to perform S3 object operations, such as `GetObject` and `PutObject`\.
-
-Each access point has its own IAM policy\. You can configure [Block Public Access](access-control-block-public-access.md) settings for each access point\. To restrict Amazon S3 data access to a private network, you can also configure any access point to accept requests only from a virtual private cloud \(VPC\)\.
-
-For more information, see [Managing data access with Amazon S3 access points](access-points.md)\. 
 
 ### Regions<a name="Regions"></a>
 

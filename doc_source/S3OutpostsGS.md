@@ -1,29 +1,10 @@
-# Getting started with Amazon S3 on Outposts<a name="S3OutpostsGS"></a>
+# Getting started with S3 on Outposts<a name="S3OutpostsGS"></a>
 
-With Amazon S3 on Outposts, you can use the Amazon S3 APIs and features, such as object storage, access policies, encryption, and tagging, on AWS Outposts as you do on Amazon S3\. For information about AWS Outposts, see [ What is AWS Outposts?](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.html) in the *AWS Outposts User Guide*\. 
+With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and easily store and retrieve objects on premises for applications that require local data access, local data processing, and data residency\. S3 on Outposts provides a new storage class, S3 Outposts \(`OUTPOSTS`\), which uses the S3 APIs, and is designed to store data durably and redundantly across multiple devices and servers on your AWS Outposts\. You communicate with your Outpost bucket by using an access point and endpoint connection over a virtual private cloud \(VPC\)\. You can use the same APIs and features on Outpost buckets as you do on Amazon S3 buckets, including access policies, encryption, and tagging\. You can use S3 on Outposts through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\.
+
+With Amazon S3 on Outposts, you can use the Amazon S3 APIs and features, such as object storage, access policies, encryption, and tagging, on AWS Outposts as you do on Amazon S3\. For information, about S3 on Outposts, see [What is Amazon S3 on Outposts?](S3onOutposts.md)\.
 
 **Topics**
-+ [Ordering an Outpost](#OrderOutposts)
-+ [Setting up S3 on Outposts](#SettingUpS3Outposts)
-
-## Ordering your AWS Outpost<a name="OrderOutposts"></a>
-
-To get started with Amazon S3 on Outposts, you need an Outpost with Amazon S3 capacity deployed at your facility\. For information about options for ordering an Outpost and S3 capacity, see [AWS Outposts](http://aws.amazon.com/outposts)\. For specifications, restrictions, and limitations, see [Amazon S3 on Outposts restrictions and limitations](S3OnOutpostsRestrictionsLimitations.md)\.
-
-### Do you need a new AWS Outpost?<a name="SettingUpS3OutpostsNewOutpost"></a>
-
-If you need to order a new Outpost with S3 capacity, see [AWS Outposts pricing](http://aws.amazon.com/outposts/pricing/) to understand the capacity options for Amazon EC2, Amazon EBS, and Amazon S3\. 
-
-After you select your configuration, follow the steps in [Create an Outpost and order Outpost capacity](https://docs.aws.amazon.com/outposts/latest/userguide/order-outpost-capacity.html) in the *AWS Outposts User Guide\.* 
-
-### Do you already have an AWS Outpost?<a name="SettingUpS3OutpostsExistingOutpost"></a>
-
-If AWS Outposts is already on your site, depending on your current Outpost configuration and storage capacity, you may be able to add Amazon S3 storage to an existing Outpost, or you may need to work with your AWS account team to add additional hardware to support Amazon S3 on Outposts\.
-
-## Setting up S3 on Outposts<a name="SettingUpS3Outposts"></a>
-
-After your S3 on Outposts capacity is provisioned, you can create buckets and S3 access points on your Outpost using the [AWS Outposts console](https://console.aws.amazon.com/outposts), the Amazon S3 on Outposts REST API, the AWS Command Line Interface \(AWS CLI\), or the AWS SDKs\. You can then use APIs to store and retrieve objects from these buckets\. You can also use AWS DataSync to transfer data between your Outpost and the AWS Region\. For more information, see [Accessing Amazon S3 on Outposts](WorkingWithS3Outposts.md)\.
-
-You can manage your Amazon S3 storage on Outposts using the same services that you use in\-Region today\. These include AWS Identity and Access Management \(IAM\) and Amazon S3 access points to control access to objects and buckets, Amazon CloudWatch to monitor operational health, and AWS CloudTrail to track and report on object\-level and bucket\-level activity\.
-
-After AWS enables your S3 on Outposts capacity, you can access S3 on Outposts using the AWS Outposts or Amazon S3 consoles, the Amazon S3 REST API, the AWS CLI, or the AWS SDKs\.
++ [Setting up AWS Identity and Access Management with S3 on Outposts](S3OutpostsIAM.md)
++ [Getting started using the AWS Management Console](S3OutpostsGSConsole.md)
++ [Getting started using the AWS CLI and SDK for Java](S3OutpostsGSCLIJava.md)

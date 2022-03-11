@@ -315,7 +315,7 @@ You can optionally use a numeric condition to limit the duration for which the `
 
 ## Granting cross\-account permissions to upload objects while ensuring the bucket owner has full control<a name="example-bucket-policies-use-case-8"></a>
 
-The following example shows how to allow another AWS account to upload objects to your bucket while taking full control of the uploaded objects\. This policy enforces that a specific AWS account \(*`123456789012`*\) be granted the ability to upload objects only if that account includes the bucket\-owner\-full\-control canned ACL on upload\. The `StringEquals` condition in the policy specifies the `s3:x-amz-acl condition` key to express the requirement \(see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\)\. 
+The following example shows how to allow another AWS account to upload objects to your bucket while taking full control of the uploaded objects\. This policy enforces that a specific AWS account \(*`111122223333`*\) be granted the ability to upload objects only if that account includes the bucket\-owner\-full\-control canned ACL on upload\. The `StringEquals` condition in the policy specifies the `s3:x-amz-acl condition` key to express the requirement \(see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\)\. 
 
 ```
  1. {
@@ -324,7 +324,7 @@ The following example shows how to allow another AWS account to upload objects t
  4.      {
  5.        "Sid":"PolicyForAllowUploadWithACL",
  6.        "Effect":"Allow",
- 7.        "Principal":{"AWS":"123456789012"},
+ 7.        "Principal":{"AWS":"111122223333"},
  8.        "Action":"s3:PutObject",
  9.        "Resource":"arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
 10.        "Condition": {
@@ -337,35 +337,36 @@ The following example shows how to allow another AWS account to upload objects t
 
 ## Granting permissions for Amazon S3 Inventory and Amazon S3 analytics<a name="example-bucket-policies-use-case-9"></a>
 
-Amazon S3 Inventory creates lists of the objects in an Amazon S3 bucket, and Amazon S3 analytics export creates output files of the data used in the analysis\. The bucket that the inventory lists the objects for is called the *source bucket*\. The bucket where the inventory file is written and the bucket where the analytics export file is written is called a *destination bucket*\. You must create a bucket policy for the destination bucket when setting up inventory for an Amazon S3 bucket and when setting up the analytics export\. For more information, see [ Amazon S3 Inventory](storage-inventory.md) and [Amazon S3 analytics – Storage Class Analysis](analytics-storage-class.md)\.
+Amazon S3 Inventory creates lists of the objects in an Amazon S3 bucket, and Amazon S3 analytics export creates output files of the data used in the analysis\. The bucket that the inventory lists the objects for is called the *source bucket*\. The bucket where the inventory file is written and the bucket where the analytics export file is written is called a *destination bucket*\. You must create a bucket policy for the destination bucket when setting up inventory for an Amazon S3 bucket and when setting up the analytics export\. For more information, see [Amazon S3 Inventory](storage-inventory.md) and [Amazon S3 analytics – Storage Class Analysis](analytics-storage-class.md)\.
 
 The following example bucket policy grants Amazon S3 permission to write objects \(PUTs\) from the account for the source bucket to the destination bucket\. You use a bucket policy like this on the destination bucket when setting up Amazon S3 Inventory and Amazon S3 analytics export\.
 
 ```
- 1.   "Version": "2012-10-17",
- 2.     "Statement": [
- 3.         {
- 4.             "Sid": "InventoryAndAnalyticsExamplePolicy",
- 5.             "Effect": "Allow",
- 6.             "Principal": {
- 7.                 "Service": "s3.amazonaws.com"
- 8.             },
- 9.             "Action": "s3:PutObject",
-10.             "Resource": [
-11.                 "arn:aws:s3:::destinationbucket/*"
-12.             ],
-13.             "Condition": {
-14.                 "ArnLike": {
-15.                     "aws:SourceArn": "arn:aws:s3:::sourcebucket"
-16.                 },
-17.                 "StringEquals": {
-18.                     "aws:SourceAccount": "123456789012",
-19.                     "s3:x-amz-acl": "bucket-owner-full-control"
-20.                 }
-21.             }
-22.         }
-23.     ]
-24. }
+ 1. {  
+ 2.       "Version": "2012-10-17",
+ 3.       "Statement": [
+ 4.         {
+ 5.             "Sid": "InventoryAndAnalyticsExamplePolicy",
+ 6.             "Effect": "Allow",
+ 7.             "Principal": {
+ 8.                 "Service": "s3.amazonaws.com"
+ 9.             },
+10.             "Action": "s3:PutObject",
+11.             "Resource": [
+12.                 "arn:aws:s3:::destinationbucket/*"
+13.             ],
+14.             "Condition": {
+15.                 "ArnLike": {
+16.                     "aws:SourceArn": "arn:aws:s3:::sourcebucket"
+17.                 },
+18.                 "StringEquals": {
+19.                     "aws:SourceAccount": "111122223333",
+20.                     "s3:x-amz-acl": "bucket-owner-full-control"
+21.                 }
+22.             }
+23.         }
+24.     ]
+25. }
 ```
 
 ## Granting permissions for Amazon S3 Storage Lens<a name="example-bucket-policies-lens"></a>
@@ -388,13 +389,13 @@ The following example bucket policy grants Amazon S3 permission to write objects
  9.             },
 10.             "Action": "s3:PutObject",
 11.             "Resource": [
-12.                 "arn:aws:s3::destination-bucket/destination-prefix/StorageLens/111122223333/*"
+12.                 "arn:aws:s3:::destination-bucket/destination-prefix/StorageLens/111122223333/*"
 13.             ],
 14.             "Condition": {
 15.                 "StringEquals": {
 16.                     "s3:x-amz-acl": "bucket-owner-full-control",
 17.                     "aws:SourceAccount": "111122223333",
-18.                     "aws:SourceArn": "arn:aws:s3:Region:111122223333:storage-lens/storage-lens-dashboard-configuration-id"
+18.                     "aws:SourceArn": "arn:aws:s3:AWS Region:111122223333:storage-lens/storage-lens-dashboard-configuration-id"
 19.                 }
 20.             }
 21.         }
@@ -402,10 +403,8 @@ The following example bucket policy grants Amazon S3 permission to write objects
 23. }
 ```
 
-The following modification to the previous bucket policy `"Action": "s3:PutObject"` resource when setting up an S3 Storage Lens organization\-level metrics export\.
+Use the following modification to the previous bucket policy Resource when setting up an S3 Storage Lens organization\-level metrics export\.
 
 ```
-1. {
-2.             "Action": "s3:PutObject",
-3.             "Resource": "arn:aws:s3:::destination-bucket/destination-prefix/StorageLens/your-organization-id/*",
+1.             "Resource": "arn:aws:s3:::destination-bucket/destination-prefix/StorageLens/your-organization-id/*",
 ```

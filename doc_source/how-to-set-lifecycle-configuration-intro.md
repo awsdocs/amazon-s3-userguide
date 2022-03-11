@@ -99,7 +99,7 @@ In a non\-versioned bucket the expiration action results in Amazon S3 permanentl
 
    If the rule does not contain any errors, Amazon S3 enables it, and you can see it on the **Management** tab under **Lifecycle rules**\.
 
-For information about CloudFormation templates and examples, see [Working with AWS CloudFormation templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) and [AWS::S3::Bucket](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#aws-properties-s3-bucket--examples) in the *AWS CloudFormation User Guide*\.
+For information about CloudFormation templates and examples, see [Working with AWS CloudFormation templates](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html) and [AWS::S3::Bucket](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-bucket.html#aws-resource-s3-bucket--examples) in the *AWS CloudFormation User Guide*\.
 
 ## Using the AWS CLI<a name="set-lifecycle-cli"></a>
 

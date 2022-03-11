@@ -107,9 +107,10 @@ You can require the `x-amz-acl` header with a canned ACL granting full control p
 
 ```
 "Condition": {
-	"StringNotEquals": {
-		"s3:x-amz-acl": "bucket-owner-full-control"
-	}
+    "StringEquals": {
+        "s3:x-amz-acl": "bucket-owner-full-control"
+    }
+}
 ```
 
 To test the permission using the AWS CLI, you specify the `--acl` parameter\. The AWS CLI then adds the `x-amz-acl` header when it sends the request\.

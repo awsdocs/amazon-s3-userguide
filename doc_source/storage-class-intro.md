@@ -87,7 +87,7 @@ Objects stored in the S3 Outposts \(`OUTPOSTS`\) storage class are always encryp
 
 You can also explicitly choose to encrypt objects stored in the S3 Outposts storage class using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. For more information, see [Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)](ServerSideEncryptionCustomerKeys.md)\. 
 
-For more information about S3 on Outposts, see [Using Amazon S3 on Outposts](S3onOutposts.md)\.
+For more information about S3 on Outposts, see [What is Amazon S3 on Outposts?](S3onOutposts.md)\.
 
 ## Comparing the Amazon S3 storage classes<a name="sc-compare"></a>
 

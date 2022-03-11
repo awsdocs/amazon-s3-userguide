@@ -113,7 +113,7 @@ In this step, you configure your root domain bucket \(`example.com`\) as a websi
 
    The error document name is case sensitive and must exactly match the file name of the HTML error document that you plan to upload to your S3 bucket\. If you don't specify a custom error document and an error occurs, Amazon S3 returns a default HTML error document\. For more information, see [Configuring a custom error document](CustomErrorDocSupport.md)\.
 
-1. \(Optional\) If you want to specify advanced redirection rules, in **Redirection rules**, enter XML to describe the rules\.
+1. \(Optional\) If you want to specify advanced redirection rules, in **Redirection rules**, enter JSON to describe the rules\.
 
    For example, you can conditionally route requests according to specific object key names or prefixes in the request\. For more information, see [Configure redirection rules to use advanced conditional redirects](how-to-page-redirect.md#advanced-conditional-redirects)\.
 
@@ -408,7 +408,7 @@ If you want to use quick create to create your alias records, see [Configuring R
 
 1. Choose the Region\.
 
-1. Choose the S3 bucket, for example, `s3-website-us-west-2.amazonaws.com (example.com)`\.
+1. Choose the S3 bucket, for example, `s3-website-us-west-2.amazonaws.com (www.example.com)`\.
 
    If your bucket does not appear in the **Choose S3 bucket** list, enter the Amazon S3 website endpoint for the Region where the bucket was created, for example, **s3\-website\-us\-west\-2\.amazonaws\.com**\. For a complete list of Amazon S3 website endpoints, see [Amazon S3 Website endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_website_region_endpoints)\. For more information about the alias target, see [Value/route traffic to](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-values-alias.html#rrsets-values-alias-alias-target) in the *Amazon Route 53 Developer Guide*\.
 

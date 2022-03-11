@@ -1,4 +1,4 @@
-# CloudTrail log file entries for Amazon S3 and Amazon S3 on Outposts<a name="cloudtrail-logging-understanding-s3-entries"></a>
+# CloudTrail log file entries for Amazon S3 and S3 on Outposts<a name="cloudtrail-logging-understanding-s3-entries"></a>
 
  A trail is a configuration that enables delivery of events as log files to an Amazon S3 bucket that you specify\. CloudTrail log files contain one or more log entries\. An event represents a single request from any source\. It includes information about the requested action, the date and time of the action, request parameters, and so on\. CloudTrail log files are not an ordered stack trace of the public API calls, so they do not appear in any specific order\.
 

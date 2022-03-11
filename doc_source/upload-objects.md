@@ -24,9 +24,9 @@ When you upload an object, the object key name is the file name and any optional
 For example, if you upload an object named `sample1.jpg` to a folder named `backup`, the key name is `backup/sample1.jpg`\. However, the object is displayed in the console as `sample1.jpg` in the `backup` folder\. For more information about key names, see [Working with object metadata](UsingMetadata.md)\.
 
 **Note**  
-If you rename an object or change any of the properties in the S3 console, for example **Storage Class**, ** Encryption**, **Metadata**, a new object is created to replace the old one\. If S3 Versioning is enabled, a new version of the object is created, and the existing object becomes an older version\. The role that changes the property also becomes the owner of the new object or \(object version\)\.
+If you rename an object or change any of the properties in the Amazon S3 console, for example **Storage Class**, ** Encryption**, **Metadata**, a new object is created to replace the old one\. If S3 Versioning is enabled, a new version of the object is created, and the existing object becomes an older version\. The role that changes the property also becomes the owner of the new object or \(object version\)\.
 
-When you upload a folder, Amazon S3 uploads all of the files and subfolders from the specified folder to your bucket\. It then assigns an object key name that is a combination of the uploaded file name and the folder name\. For example, if you upload a folder named `/images` that contains two files, `sample1.jpg` and `sample2.jpg`, Amazon S3 uploads the files and then assigns the corresponding key names, `images/sample1.jpg` and `images/sample2.jpg`\. The key names include the folder name as a prefix\. The Amazon S3 console displays only the part of the key name that follows the last “/”\. For example, within an images folder the `images/sample1.jpg` and `images/sample2.jpg` objects are displayed as `sample1.jpg` and a `sample2.jpg`\.<a name="upload-files-folders"></a>
+When you upload a folder, Amazon S3 uploads all of the files and subfolders from the specified folder to your bucket\. It then assigns an object key name that is a combination of the uploaded file name and the folder name\. For example, if you upload a folder named `/images` that contains two files, `sample1.jpg` and `sample2.jpg`, Amazon S3 uploads the files and then assigns the corresponding key names, `images/sample1.jpg` and `images/sample2.jpg`\. The key names include the folder name as a prefix\. The Amazon S3 console displays only the part of the key name that follows the last `/`\. For example, within an images folder the `images/sample1.jpg` and `images/sample2.jpg` objects are displayed as `sample1.jpg` and a `sample2.jpg`\.<a name="upload-files-folders"></a>
 
 **To upload folders and files to an S3 bucket**
 
@@ -44,13 +44,17 @@ When you upload a folder, Amazon S3 uploads all of the files and subfolders from
 
 1. To upload the listed files and folders without configuring additional upload options, at the bottom of the page, choose **Upload**\.
 
-   Amazon S3 uploads your objects and folders\. When the upload completes, you can see a success message on the **Upload: status** page\.
-
-1. To configure additional object properties before uploading, see [To configure additional object properties](#configure-additional-properties)\.<a name="configure-additional-properties"></a>
+   Amazon S3 uploads your objects and folders\. When the upload completes, you can see a success message on the **Upload: status** page\.<a name="configure-additional-properties"></a>
 
 **To configure additional object properties**
 
-1. To configure additional object properties, choose **Additional upload options**\.
+1. To change access control list permissions, choose **Permissions**\.
+
+1. Under **Access control list \(ACL\)**, edit the permissions\.
+
+   For information about object access permissions, see [Using the S3 console to set ACL permissions for an object](managing-acls.md#set-object-permissions)\. You can grant read access to your objects to the public \(everyone in the world\) for all of the files that you're uploading\. However, we recommend not changing the default setting for public read access\. Granting public read access is applicable to a small subset of use cases, such as when buckets are used for websites\. You can always change the object permissions after you upload the object\. 
+
+1. To configure other additional properties, choose **Properties**\.
 
 1. Under **Storage class**, choose the storage class for the files you're uploading\.
 
@@ -58,26 +62,26 @@ When you upload a folder, Amazon S3 uploads all of the files and subfolders from
 
 1. To update the encryption settings for your objects, under **Server\-side encryption settings**, do the following\.
 
-   1. Choose **Override default encryption bucket settings**\.
+   1. Choose **Specify an encryption key**\.
 
    1. To encrypt the uploaded files using keys that are managed by Amazon S3, choose **Amazon S3 key \(SSE\-S3\)**\.
 
       For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
 
    1. To encrypt the uploaded files using the AWS Key Management Service \(AWS KMS\), choose **AWS Key Management Service key \(SSE\-KMS\)**\. Then choose an option for **AWS KMS key**\.
-      + AWS managed key \- Choose an [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)\.
-      + Choose from your KMS root keys \- Choose a [customer managed key ](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) from a list of KMS keys in the same Region as your bucket\.
+      + **AWS managed key** – Choose an [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)\.
+      + **Choose from your KMS root keys** – Choose a [customer managed key ](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) from a list of KMS keys in the same Region as your bucket\.
 
         For more information about creating a customer managed key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/UsingServerSideEncryption.html) in the *AWS Key Management Service Developer Guide*\. For more information about protecting data with AWS KMS, see [Protecting data using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
-      + Enter KMS root key ARN \- Specify the AWS KMS key ARN for a customer managed key, and enter the Amazon Resource Name \(ARN\)\.
+      + **Enter KMS root key ARN** – Specify the AWS KMS key ARN for a customer managed key, and enter the Amazon Resource Name \(ARN\)\.
 
         You can use the KMS root key ARN to give an external account the ability to use an object that is protected by an AWS KMS key\. To do this, choose **Enter KMS root key ARN**, and enter the Amazon Resource Name \(ARN\) for the external account\. Administrators of an external account that have usage permissions to an object protected by your KMS key can further restrict access by creating a resource\-level IAM policy\. 
 **Note**  
 To encrypt objects in a bucket, you can use only AWS KMS keys that are available in the same AWS Region as the bucket\. 
 
-1. To change access control list permissions, under **Access control list \(ACL\)**, edit permissions\. 
+1. To use additional checksums, choose **On**\. Then for **Checksum function**, choose the function that you would like to use\. Amazon S3 calculates and stores the checksum value after it receives the entire object\. You can use the **Precalculated value** box to supply a precalculated value\. If you do, Amazon S3 compares the value that you provided to the value that it calculates\. If the two values do not match, Amazon S3 generates an error\.
 
-   For information about object access permissions, see [Using the S3 console to set ACL permissions for an object](managing-acls.md#set-object-permissions)\. You can grant read access to your objects to the general public \(everyone in the world\) for all of the files that you're uploading\. We recommend that you do not change the default setting for public read access\. Granting public read access is applicable to a small subset of use cases such as when buckets are used for websites\. You can always make changes to object permissions after you upload the object\. 
+   Additional checksums enable you to specify the checksum algorithm that you would like to use to verify your data\. For more information about additional checksums, see [Checking object integrity](checking-object-integrity.md)\.
 
 1. To add tags to all of the objects that you are uploading, choose **Add tag**\. Type a tag name in the **Key** field\. Type a value for the tag\.
 
@@ -87,7 +91,7 @@ To encrypt objects in a bucket, you can use only AWS KMS keys that are available
 
    1. Under **Type**, choose **System defined** or **User defined**\.
 
-      For system\-defined metadata, you can select common HTTP headers, such as **Content\-Type** and **Content\-Disposition**\. For a list of system\-defined metadata and information about whether you can add the value, see [System\-defined object metadata](UsingMetadata.md#SysMetadata)\. Any metadata starting with prefix `x-amz-meta-` is treated as user\-defined metadata\. User\-defined metadata is stored with the object and is returned when you download the object\. Both the keys and their values must conform to US\-ASCII standards\. User\-defined metadata can be as large as 2 KB\. For more information about system defined and user defined metadata, see [Working with object metadata](UsingMetadata.md)\.
+      For system\-defined metadata, you can select common HTTP headers, such as **Content\-Type** and **Content\-Disposition**\. For a list of system\-defined metadata and information about whether you can add the value, see [System\-defined object metadata](UsingMetadata.md#SysMetadata)\. Any metadata starting with prefix `x-amz-meta-` is treated as user\-defined metadata\. User\-defined metadata is stored with the object and is returned when you download the object\. Both the keys and their values must conform to US\-ASCII standards\. User\-defined metadata can be as large as 2 KB\. For more information about system\-defined and user\-defined metadata, see [Working with object metadata](UsingMetadata.md)\.
 
    1. For **Key**, choose a key\.
 
@@ -334,7 +338,7 @@ The AWS SDK for Ruby \- Version 3 has two ways of uploading an object to Amazon 
 **Example**  
 
 ```
-require 'aws-sdk-s3'
+require "aws-sdk-s3"
 
 # Wraps Amazon S3 object actions.
 class ObjectUploadFileWrapper
@@ -359,8 +363,8 @@ class ObjectUploadFileWrapper
 end
 
 def run_demo
-  bucket_name = 'doc-example-bucket'
-  object_key = 'my-uploaded-file'
+  bucket_name = "doc-example-bucket"
+  object_key = "my-uploaded-file"
   file_path = "object_upload_file.rb"
 
   wrapper = ObjectUploadFileWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
@@ -383,7 +387,7 @@ The second way that AWS SDK for Ruby \- Version 3 can upload an object uses the 
 **Example**  
 
 ```
-require 'aws-sdk-s3'
+require "aws-sdk-s3"
 
 # Wraps Amazon S3 object actions.
 class ObjectPutWrapper
@@ -395,7 +399,7 @@ class ObjectPutWrapper
   end
 
   def put_object(source_file_path)
-    File.open(source_file_path, 'rb') do |file|
+    File.open(source_file_path, "rb") do |file|
       @object.put(body: file)
     end
     true
@@ -406,9 +410,9 @@ class ObjectPutWrapper
 end
 
 def run_demo
-  bucket_name = 'doc-example-bucket'
-  object_key = 'my-object-key'
-  file_path = 'my-local-file.txt'
+  bucket_name = "doc-example-bucket"
+  object_key = "my-object-key"
+  file_path = "my-local-file.txt"
 
   wrapper = ObjectPutWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
   success = wrapper.put_object(file_path)

@@ -1,19 +1,19 @@
-# Managing an S3 on Outposts bucket's lifecycle rules using the console<a name="s3-outposts-bucket-lifecycle"></a>
+# Creating and managing a lifecycle rule using the AWS Management Console<a name="S3OutpostsLifecycleConsole"></a>
 
-Lifecycle rules for S3 on Outposts buckets are limited to object deletion and stopping incomplete multipart uploads\. You can use lifecycle rules to define when to initiate object deletion based on age or date\. You can create, enable, disable, delete a lifecycle rule\.
+Lifecycle rules for S3 on Outposts buckets are limited to object deletion\. You can use lifecycle rules to define when to initiate object deletion based on age or date\. You can create, enable, disable, or delete a lifecycle rule\.
 
 **Note**  
-The AWS account that creates the bucket owns it and is the only one can create, enable, disable, delete a lifecycle rule\.
+The AWS account that creates the bucket owns it and is the only one that can create, enable, disable, or delete a lifecycle rule\.
+
+To create and manage a lifecycle rule for an S3 on Outposts using the AWS Management Console, see the following topics\.
 
 **Topics**
-+ [Creating an S3 on Outposts bucket's lifecycle rule](#s3-outposts-bucket-create-lifecycle)
-+ [Enabling or disabling an S3 on Outposts bucket's lifecycle rule](#s3-outposts-bucket-enable-lifecycle)
-+ [Deleting an S3 on Outposts bucket's lifecycle rule](#s3-outposts-bucket-delete-lifecycle)
-+ [Editing an S3 on Outposts bucket's lifecycle rule](#s3-outposts-bucket-edit-lifecycle)
++ [Creating a lifecycle rule](#s3-outposts-bucket-create-lifecycle)
++ [Enabling a lifecycle rule](#s3-outposts-bucket-enable-lifecycle)
++ [Editing a lifecycle rule](#s3-outposts-bucket-edit-lifecycle)
++ [Deleting a lifecycle rule](#s3-outposts-bucket-delete-lifecycle)
 
-## Creating an S3 on Outposts bucket's lifecycle rule<a name="s3-outposts-bucket-create-lifecycle"></a>
-
-**To create a bucket lifecycle rule**
+## Creating a lifecycle rule<a name="s3-outposts-bucket-create-lifecycle"></a>
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -35,7 +35,7 @@ Add tags to limit the scope of this rule to the key\-value pairs added below\.
 
 1. In the **lifecycle rule trigger** section, choose the **rule trigger** based on a specific date or object's age\.
 
-## Enabling or disabling an S3 on Outposts bucket's lifecycle rule<a name="s3-outposts-bucket-enable-lifecycle"></a>
+## Enabling a lifecycle rule<a name="s3-outposts-bucket-enable-lifecycle"></a>
 
 **To enable or disable a bucket lifecycle rule**
 
@@ -49,23 +49,7 @@ Add tags to limit the scope of this rule to the key\-value pairs added below\.
 
 1. For **Action**, choose **Enable or disable rule**\.
 
-## Deleting an S3 on Outposts bucket's lifecycle rule<a name="s3-outposts-bucket-delete-lifecycle"></a>
-
-**To delete a bucket lifecycle rule**
-
-1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
-
-1. In the navigation pane, choose **Outposts buckets**\.
-
-1. Choose the Outposts bucket that you want to delete a lifecycle rule for\.
-
-1. Choose the **Management** tab, and then choose the **Lifecycle rule** that you want to delete\.
-
-1. Choose **Delete**\.
-
-## Editing an S3 on Outposts bucket's lifecycle rule<a name="s3-outposts-bucket-edit-lifecycle"></a>
-
-**To edit a bucket lifecycle rule**
+## Editing a lifecycle rule<a name="s3-outposts-bucket-edit-lifecycle"></a>
 
 1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -88,3 +72,15 @@ If you want the rule to apply to specific objects, you must use a filter to iden
       + Add tags to limit the scope of this rule to the key\-value pairs added below\.
 
 1. In the **lifecycle rule trigger** section, update the **rule trigger** based on a specific date or object's age\.
+
+## Deleting a lifecycle rule<a name="s3-outposts-bucket-delete-lifecycle"></a>
+
+1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the navigation pane, choose **Outposts buckets**\.
+
+1. Choose the Outposts bucket that you want to delete a lifecycle rule for\.
+
+1. Choose the **Management** tab, and then choose the **Lifecycle rule** that you want to delete\.
+
+1. Choose **Delete**\.

@@ -15,7 +15,7 @@ Events logged by CloudTrail are stored as compressed, GZipped JSON objects in yo
 
 After you set up CloudTrail to deliver events to a bucket, you should start to see objects go to your destination bucket on the Amazon S3 console\. These are formatted as follows: 
 
-`s3://<myawsexamplebucket1>/AWSLogs/<111122223333>/CloudTrail/<Region>/<yyyy>/<mm>/<dd>` 
+`s3://myawsexamplebucket1/AWSLogs/111122223333/CloudTrail/Region/yyyy/mm/dd` 
 
 **Example — Use Athena to query CloudTrail event logs for specific requests**  
 
@@ -35,7 +35,7 @@ With CloudTrail event logs, you can now create an Athena database and table to q
    CREATE DATABASE s3_cloudtrail_events_db
    ```
 
-1. Use the following query to create a table for all of your CloudTrail events in the bucket\. Be sure to change the bucket name from *<CloudTrail\_myawsexamplebucket1>* to your bucket's name\. Also provide the *AWS\_account\_ID* CloudTrail that is used in your bucket\. 
+1. Use the following query to create a table for all of your CloudTrail events in the bucket\. Be sure to change the bucket name from `CloudTrail_myawsexamplebucket1` to your bucket's name\. Also provide the `AWS_account_ID` CloudTrail that is used in your bucket\. 
 
    ```
    CREATE EXTERNAL TABLE s3_cloudtrail_events_db.cloudtrail_myawsexamplebucket1_table(
@@ -88,7 +88,7 @@ With CloudTrail event logs, you can now create an Athena database and table to q
        ROW FORMAT SERDE 'com.amazon.emr.hive.serde.CloudTrailSerde'
        STORED AS INPUTFORMAT 'com.amazon.emr.cloudtrail.CloudTrailInputFormat'
        OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
-       LOCATION 's3://<myawsexamplebucket1>/AWSLogs/<111122223333>/';
+       LOCATION 's3://myawsexamplebucket1/AWSLogs/111122223333/';
    ```
 
 1. Test Athena to ensure that the query works\.

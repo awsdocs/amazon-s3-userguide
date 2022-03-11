@@ -291,9 +291,9 @@ The following Ruby example creates a temporary user to list the items in a speci
 #   resources in this code example. This role must also trust the preceding IAM user.
 # - An existing S3 bucket.
 
-require 'aws-sdk-core'
-require 'aws-sdk-s3'
-require 'aws-sdk-iam'
+require "aws-sdk-core"
+require "aws-sdk-s3"
+require "aws-sdk-iam"
 
 # Checks whether a user exists in IAM.
 #
@@ -309,7 +309,7 @@ def user_exists?(iam_client, user_name)
 rescue Aws::IAM::Errors::NoSuchEntity
   # User doesn't exist.
 rescue StandardError => e
-  puts 'Error while determining whether the user ' \
+  puts "Error while determining whether the user " \
     "'#{user_name}' exists: #{e.message}"
 end
 
@@ -357,7 +357,7 @@ def role_exists?(iam_client, role_name)
   response = iam_client.get_role(role_name: role_name)
   return true if response.role.role_name
 rescue StandardError => e
-  puts 'Error while determining whether the role ' \
+  puts "Error while determining whether the role " \
     "'#{role_name}' exists: #{e.message}"
 end
 
@@ -423,7 +423,7 @@ def list_objects_in_bucket?(s3_client, bucket_name)
 
   if response.count.positive?
     puts "Contents of the bucket named '#{bucket_name}' (first 50 objects):"
-    puts 'Name => ETag'
+    puts "Name => ETag"
     response.contents.each do |obj|
       puts "#{obj.key} => #{obj.etag}"
     end

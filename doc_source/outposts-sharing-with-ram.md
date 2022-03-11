@@ -1,4 +1,4 @@
-# Sharing Amazon S3 on Outposts by using AWS Resource Access Manager<a name="outposts-sharing-with-ram"></a>
+# Sharing Amazon S3 on Outposts using AWS Resource Access Manager<a name="outposts-sharing-with-ram"></a>
 
 Amazon S3 on Outposts supports sharing S3 capacity across multiple accounts within an organization by using AWS Resource Access Manager \([AWS RAM](https://docs.aws.amazon.com/ram/latest/userguide/what-is.html)\)\. With S3 on Outposts sharing, you can allow others to create and manage buckets, endpoints, and access points on your Outpost\. 
 
@@ -31,7 +31,7 @@ The user can confirm that the resources have been shared with them using the AWS
 After you have shared your S3 on Outposts resources with another account, that account can manage buckets and objects on your Outpost\. If you shared the **Subnets** resource, then that account can use the endpoint you created\. The following examples demonstrate how a user can use the AWS CLI to interact with your Outpost after you share these resources\.
 
 **Example : Create a bucket**  
-The following example creates a bucket named *DOC\-EXAMPLE\-BUCKET1* on the Outpost `op-01ac5d28a6a232904`**\. Before using this command, replace each `user input placeholder` with the appropriate values for your use case\.  
+The following example creates a bucket named *DOC\-EXAMPLE\-BUCKET1* on the Outpost `op-01ac5d28a6a232904`\. Before using this command, replace each `user input placeholder` with the appropriate values for your use case\.  
 
 ```
 aws s3control create-bucket --bucket DOC-EXAMPLE-BUCKET1 --outpost-id op-01ac5d28a6a232904

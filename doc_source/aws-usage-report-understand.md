@@ -62,7 +62,6 @@ The first column in the following table lists usage types that appear in your bi
 |  `region-EarlyDelete-GDA`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from S3 Glacier Deep Archive storage before the 180\-day minimum commitment ended 2  | 
 |  `region-EarlyDelete-GIR`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from S3 Glacier Instant Retrieval before the 90\-day minimum commitment ended\.  | 
 |  `region-EarlyDelete-GIR-SmObjects`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for small objects \(smaller than 128 KB\) that were deleted from S3 Glacier Instant Retrieval before the 90\-day minimum commitment ended\.  | 
-|  `region-EarlyDelete-INT`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from S3 Intelligent\-Tiering before the 30\-day minimum commitment ended  | 
 |  `region-EarlyDelete-SIA`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from S3 Standard\-IA before the 30\-day minimum commitment ended3  | 
 |  `region-EarlyDelete-SIA-SmObjects`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for small objects \(smaller than 128 KB\) that were deleted from S3 Standard\-IA before the 30\-day minimum commitment ended3  | 
 |  `region-EarlyDelete-ZIA`  |  GB\-Hours  |  Hourly  |  Prorated storage usage for objects deleted from S3 One Zone\-IA before the 30\-day minimum commitment ended3  | 
@@ -134,6 +133,7 @@ The first column in the following table lists usage types that appear in your bi
 |  `region-TimedStorage-INT-FA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in the frequent access tier of S3 Intelligent\-Tiering storage5  | 
 |  `region-TimedStorage-INT-IA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in the Infrequent Access tier of S3 Intelligent\-Tiering storage  | 
 |  `region-TimedStorage-INT-AA-ByteHrs`  |  GB\-Hours  |  Daily  | The number of GB\-hours that data was stored in the Archive Access tier of S3 Intelligent\-Tiering storage | 
+|  `region-TimedStorage-INT-AIA-ByteHrs`  |  GB\-Hours  |  Daily  | The number of GB\-hours that data was stored in the Archive Instant Access tier of S3 Intelligent\-Tiering storage | 
 |  `region-TimedStorage-INT-DAA-ByteHrs`  |  GB\-Hours  |  Daily  | The number of GB\-hours that data was stored in the Deep Archive Access tier of S3 Intelligent\-Tiering storage | 
 |  `region-TimedStorage-RRS-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in Reduced Redundancy Storage \(RRS\) storage  | 
 |  `region-TimedStorage-SIA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Standard\-IA storage  | 

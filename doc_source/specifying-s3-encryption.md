@@ -362,7 +362,7 @@ When using the AWS SDK for Ruby to upload an object, you can specify that the ob
 The following AWS SDK for Ruby – Version 3 example demonstrates how to specify that a file uploaded to Amazon S3 be encrypted at rest\.
 
 ```
-require 'aws-sdk-s3'
+require "aws-sdk-s3"
 
 # Wraps Amazon S3 object actions.
 class ObjectPutSseWrapper
@@ -383,10 +383,10 @@ class ObjectPutSseWrapper
 end
 
 def run_demo
-  bucket_name = 'doc-example-bucket'
-  object_key = 'my-encrypted-content'
-  object_content = 'This is my super-secret content.'
-  encryption = 'AES256'
+  bucket_name = "doc-example-bucket"
+  object_key = "my-encrypted-content"
+  object_content = "This is my super-secret content."
+  encryption = "AES256"
 
   wrapper = ObjectPutSseWrapper.new(Aws::S3::Object.new(bucket_name, object_content))
   return unless wrapper.put_object_encrypted(object_content, encryption)
@@ -402,7 +402,7 @@ For an example that shows how to upload an object without SSE, see [Uploading ob
 The following code example demonstrates how to determine the encryption state of an existing object\.
 
 ```
-require 'aws-sdk-s3'
+require "aws-sdk-s3"
 
 # Wraps Amazon S3 object actions.
 class ObjectGetEncryptionWrapper
@@ -425,14 +425,14 @@ end
 
 # Replace bucket name and object key with an existing bucket and object that you own.
 def run_demo
-  bucket_name = 'doc-example-bucket'
-  object_key = 'my-object.txt'
+  bucket_name = "doc-example-bucket"
+  object_key = "my-object.txt"
 
   wrapper = ObjectGetEncryptionWrapper.new(Aws::S3::Object.new(bucket_name, object_key))
   obj_data = wrapper.get_object
   return unless obj_data
 
-  encryption = obj_data.server_side_encryption.nil? ? 'no' : obj_data.server_side_encryption
+  encryption = obj_data.server_side_encryption.nil? ? "no" : obj_data.server_side_encryption
   puts "Object #{object_key} uses #{encryption} encryption."
 end
 
@@ -444,7 +444,7 @@ If server\-side encryption is not used for the object that is stored in Amazon S
 To change the encryption state of an existing object, make a copy of the object and delete the source object\. By default, the copy methods do not encrypt the target unless you explicitly request server\-side encryption\. You can request the encryption of the target object by specifying the `server_side_encryption` value in the options hash argument as shown in the following Ruby code example\. The code example demonstrates how to copy an object and encrypt the copy\. 
 
 ```
-require 'aws-sdk-s3'
+require "aws-sdk-s3"
 
 # Wraps Amazon S3 object actions.
 class ObjectCopyEncryptWrapper
@@ -472,11 +472,11 @@ end
 # Replace the source and target bucket names with existing buckets you own and replace the source object key
 # with an existing object in the source bucket.
 def run_demo
-  source_bucket_name = 'doc-example-bucket1'
-  source_key = 'my-source-file.txt'
-  target_bucket_name = 'doc-example-bucket2'
-  target_key = 'my-target-file.txt'
-  target_encryption = 'AES256'
+  source_bucket_name = "doc-example-bucket1"
+  source_key = "my-source-file.txt"
+  target_bucket_name = "doc-example-bucket2"
+  target_key = "my-target-file.txt"
+  target_encryption = "AES256"
 
   source_bucket = Aws::S3::Bucket.new(source_bucket_name)
   wrapper = ObjectCopyEncryptWrapper.new(source_bucket.object(source_key))
@@ -505,4 +505,4 @@ For more information, see [put\-object](https://awscli.amazonaws.com/v2/document
 
 ## Using AWS CloudFormation<a name="ss3-s3-cfn"></a>
 
-For examples of setting up encryption using AWS CloudFormation, see [Create a bucket with default encryption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_with_default_encryption) and [Create a bucket using AWS KMS server\-side encryption with an S3 Bucket Key](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_using_AWS_KMS_server-side_encryption_with_an_S3_Bucket_Key) in the *AWS CloudFormation User Guide*\. 
+For examples of setting up encryption using AWS CloudFormation, see [Create a bucket with default encryption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_with_default_encryption) and [Create a bucket using AWS KMS server\-side encryption with an S3 Bucket Key](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_using_KMS_server-side_encryption_with_an_S3_Bucket_Key) in the *AWS CloudFormation User Guide*\. 

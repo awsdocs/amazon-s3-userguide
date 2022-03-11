@@ -17,6 +17,8 @@ This limitation doesn't affect buckets used for static website hosting, because 
 **Note**  
 Before March 1, 2018, buckets created in the US East \(N\. Virginia\) Region could have names that were up to 255 characters long and included uppercase letters and underscores\. Beginning March 1, 2018, new buckets in US East \(N\. Virginia\) must conform to the same rules applied in all other Regions\.
 
+ For information on object key names, see [Creating object key names](https://docs.aws.amazon.com/en_us/AmazonS3/latest/userguide/object-keys.html)\.
+
 ## Example bucket names<a name="bucket-names"></a>
 
 The following example bucket names are valid and follow the recommended naming guidelines:

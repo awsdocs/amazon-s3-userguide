@@ -302,7 +302,7 @@ In this example, you have the following five buckets:
          ]
      }
      ```
-   + **Update the bucket ACL** – \- To grant permissions to the S3 log delivery group, use `put-bucket-acl`\.
+   + **Update the bucket ACL** – To grant permissions to the S3 log delivery group, use `put-bucket-acl`\.
 
      ```
      1. aws s3api put-bucket-acl --bucket awsexamplebucket1-logs  --grant-write URI=http://acs.amazonaws.com/groups/s3/LogDelivery --grant-read-acp URI=http://acs.amazonaws.com/groups/s3/LogDelivery 

@@ -14,6 +14,7 @@ With Amazon S3, you pay only for what you use\. For more information about Amazo
 + [Uploading and copying objects using multipart upload](mpuoverview.md)
 + [Copying objects](copy-object.md)
 + [Downloading an object](download-objects.md)
++ [Checking object integrity](checking-object-integrity.md)
 + [Deleting Amazon S3 objects](DeletingObjects.md)
 + [Organizing, listing, and working with your objects](organizing-objects.md)
 + [Using presigned URLs](using-presigned-url.md)

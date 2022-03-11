@@ -18,7 +18,7 @@ To view an object version's retention mode and retention period, you must have t
 
 To view a bucket's default retention configuration \(if it has one\), request the bucket's Object Lock configuration\. To do this, you must have the `s3:GetBucketObjectLockConfiguration` permission\. If you make a request for an Object Lock configuration against a bucket that doesn't have S3 Object Lock enabled, Amazon S3 returns an error\. For more information about permissions, see [Example — Object operations](using-with-s3-actions.md#using-with-s3-actions-related-to-objects)\. 
 
-You can configure Amazon S3 Inventory reports on your buckets to include the `Retain Until Date`, `object lock Mode`, and `Legal Hold Status` for all objects in a bucket\. For more information, see [ Amazon S3 Inventory](storage-inventory.md)\.
+You can configure Amazon S3 Inventory reports on your buckets to include the `Retain Until Date`, `object lock Mode`, and `Legal Hold Status` for all objects in a bucket\. For more information, see [Amazon S3 Inventory](storage-inventory.md)\.
 
 ## Bypassing governance mode<a name="object-lock-managing-bypass"></a>
 

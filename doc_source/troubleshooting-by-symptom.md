@@ -10,7 +10,7 @@ The following topics list symptoms to help you troubleshoot some of the issues t
 
 If you notice a significant increase in the number of HTTP 503\-slow down responses received for Amazon S3 PUT or DELETE object requests to a bucket that has versioning enabled, you might have one or more objects in the bucket for which there are millions of versions\. When you have objects with millions of versions, Amazon S3 automatically throttles requests to the bucket to protect the customer from an excessive amount of request traffic, which could potentially impede other requests made to the same bucket\. 
 
-To determine which S3 objects have millions of versions, use the Amazon S3 Inventory tool\. The inventory tool generates a report that provides a flat file list of the objects in a bucket\. For more information, see [ Amazon S3 Inventory](storage-inventory.md)\.
+To determine which S3 objects have millions of versions, use the Amazon S3 Inventory tool\. The inventory tool generates a report that provides a flat file list of the objects in a bucket\. For more information, see [Amazon S3 Inventory](storage-inventory.md)\.
 
 The Amazon S3 team encourages customers to investigate applications that repeatedly overwrite the same S3 object, potentially creating millions of versions for that object, to determine whether the application is working as intended\. If you have a use case that requires millions of versions for one or more S3 objects, contact the AWS Support team at [AWS Support](https://console.aws.amazon.com/support/home) to discuss your use case and to help us assist you in determining the optimal solution for your use case scenario\.
 

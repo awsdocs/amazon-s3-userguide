@@ -71,7 +71,7 @@ The `S3Outposts` namespace includes the following metrics for Amazon S3 on Outpo
 
 **Note**  
 S3 on Outposts supports only the following metrics, and no other Amazon S3 metrics\.  
-Because S3 on Outposts has limited capacity, you can create CloudWatch alerts that alert you when storage utilization exceeds a certain threshold\.
+Because S3 on Outposts has fixed capacity, you can create CloudWatch alerts that alert you when your storage utilization exceeds a certain threshold\.
 
 
 | Metric | Description | 

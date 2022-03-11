@@ -207,7 +207,7 @@ For information about how to create and test a working sample, see [Using the AW
 **Example**  
 
 ```
-require 'aws-sdk-s3'
+require "aws-sdk-s3"
 
 # Wraps Amazon S3 bucket actions.
 class BucketCreateWrapper
@@ -246,7 +246,7 @@ class BucketCreateWrapper
 end
 
 def run_demo
-  region = 'us-west-2'
+  region = "us-west-2"
   wrapper = BucketCreateWrapper.new(Aws::S3::Bucket.new("doc-example-bucket-#{Random.uuid}"))
   return unless wrapper.create?(region)
 

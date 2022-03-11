@@ -28,7 +28,8 @@ Athena can query Amazon S3 Inventory files in ORC, Parquet, or CSV format\. When
             object_lock_mode string,
             object_lock_legal_hold_status string,
             intelligent_tiering_access_tier string,
-            bucket_key_status string
+            bucket_key_status string,
+            checksum_algorithm string
    ) PARTITIONED BY (
            dt string
    )
@@ -64,7 +65,8 @@ Athena can query Amazon S3 Inventory files in ORC, Parquet, or CSV format\. When
             object_lock_mode string,
             object_lock_legal_hold_status string,
             intelligent_tiering_access_tier string,
-            bucket_key_status string
+            bucket_key_status string,
+            checksum_algorithm string
    ) PARTITIONED BY (
            dt string
    )

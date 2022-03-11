@@ -83,12 +83,10 @@ The following user policy grants the `s3:GetBucketAcl` permission on the `DOC-EX
         "AWS": "arn:aws:iam::123456789012:user/Dave"
       },
       "Action": [
-        "s3:GetObjectVersion",
         "s3:GetBucketAcl"
       ],
       "Resource": [
-        "arn:aws:s3:::DOC-EXAMPLE-BUCKET1",
-	 "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
+        "arn:aws:s3:::DOC-EXAMPLE-BUCKET1"
       ]
     }
   ]

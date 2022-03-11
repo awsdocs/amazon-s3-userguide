@@ -40,6 +40,6 @@ Newer Amazon S3 features are not supported for SOAP\. We recommend that you use 
 + [Using CloudTrail logs with Amazon S3 server access logs and CloudWatch Logs](#cloudtrail-logging-vs-server-logs)
 + [CloudTrail tracking with Amazon S3 SOAP API calls](#cloudtrail-s3-soap)
 + [Amazon S3 CloudTrail events](cloudtrail-logging-s3-info.md)
-+ [CloudTrail log file entries for Amazon S3 and Amazon S3 on Outposts](cloudtrail-logging-understanding-s3-entries.md)
++ [CloudTrail log file entries for Amazon S3 and S3 on Outposts](cloudtrail-logging-understanding-s3-entries.md)
 + [Enabling CloudTrail event logging for S3 buckets and objects](enable-cloudtrail-logging-for-s3.md)
 + [Identifying Amazon S3 requests using CloudTrail](cloudtrail-request-identification.md)

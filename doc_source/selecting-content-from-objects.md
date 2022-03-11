@@ -23,7 +23,7 @@ The following limits apply when using Amazon S3 Select:
 Additional limitations apply when using Amazon S3 Select with Parquet objects:
 + Amazon S3 Select supports only columnar compression using GZIP or Snappy\. Amazon S3 Select doesn't support whole\-object compression for Parquet objects\.
 + Amazon S3 Select doesn't support Parquet output\. You must specify the output format as CSV or JSON\.
-+ The maximum uncompressed row group size is 256 MB\.
++ The maximum uncompressed row group size is 512 MB\.
 + You must use the data types specified in the object's schema\.
 + Selecting on a repeated field returns only the last value\.
 

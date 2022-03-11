@@ -39,7 +39,7 @@ END
 
 ### Examples<a name="s3-glacier-select-sql-reference-case-examples"></a>
 
-Use a simple CASE expression is used to replace New York City with Big Apple in a query\. Replace all other city names with other\.
+Use a simple CASE expression to replace New York City with Big Apple in a query\. Replace all other city names with other\.
 
 ```
 select venuecity,

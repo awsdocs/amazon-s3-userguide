@@ -30,7 +30,7 @@ To configure your website with a custom domain, see [Configuring a static websit
 
    The error document name is case sensitive and must exactly match the file name of the HTML error document that you plan to upload to your S3 bucket\. If you don't specify a custom error document and an error occurs, Amazon S3 returns a default HTML error document\. For more information, see [Configuring a custom error document](CustomErrorDocSupport.md)\.
 
-1. \(Optional\) If you want to specify advanced redirection rules, in **Redirection rules**, enter XML to describe the rules\.
+1. \(Optional\) If you want to specify advanced redirection rules, in **Redirection rules**, enter JSON to describe the rules\.
 
    For example, you can conditionally route requests according to specific object key names or prefixes in the request\. For more information, see [Configure redirection rules to use advanced conditional redirects](how-to-page-redirect.md#advanced-conditional-redirects)\.
 

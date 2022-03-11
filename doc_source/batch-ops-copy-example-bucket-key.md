@@ -21,7 +21,7 @@ To follow along with the steps in this procedure, you need an AWS account and at
 
 ## Step 1: Get your list of objects using Amazon S3 Inventory<a name="bucket-key-ex-get-list-of-objects"></a>
 
-To get started, identify the S3 bucket that contains the objects to encrypt, and get a list of its contents\. An Amazon S3 Inventory report is the most convenient and affordable way to do this\. The report provides the list of the objects in a bucket along with associated metadata\. The **source bucket** refers to the inventoried bucket, and the **destination bucket** refers to the bucket where you store the inventory report file\. For more information about Amazon S3 Inventory source and destination buckets, see [ Amazon S3 Inventory](storage-inventory.md)\.
+To get started, identify the S3 bucket that contains the objects to encrypt, and get a list of its contents\. An Amazon S3 Inventory report is the most convenient and affordable way to do this\. The report provides the list of the objects in a bucket along with associated metadata\. The **source bucket** refers to the inventoried bucket, and the **destination bucket** refers to the bucket where you store the inventory report file\. For more information about Amazon S3 Inventory source and destination buckets, see [Amazon S3 Inventory](storage-inventory.md)\.
 
 The easiest way to set up an inventory is by using the AWS Management Console\. But you can also use the REST API, AWS Command Line Interface \(AWS CLI\), or AWS SDKs\. Before following these steps, be sure to sign in to the console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\. If you encounter permission denied errors, add a bucket policy to your destination bucket\. For more information, see [Granting permissions for Amazon S3 Inventory and Amazon S3 analytics](example-bucket-policies.md#example-bucket-policies-use-case-9)\.
 
@@ -75,7 +75,7 @@ Although the following steps show how to filter using [Amazon S3 Select](http://
      }
    ```
 
-   If versioning isn't activated on the bucket, or if you choose to run the report for the latest versions, the `fileschema` is `Bucket`, `Key`, and `BucketKeyStatus`\. 
+   If versioning isn't activated on the bucket, or if you choose to run the report for the latest versions, the `fileSchema` is `Bucket`, `Key`, and `BucketKeyStatus`\. 
 
    If versioning *is* activated, depending on how you set up the inventory report, the `fileSchema` might include the following: `Bucket, Key, VersionId, IsLatest, IsDeleteMarker, BucketKeyStatus`\. So pay attention to columns 1, 2, 3, and 6 when you run your query\. 
 
@@ -89,7 +89,7 @@ Although the following steps show how to filter using [Amazon S3 Select](http://
 
 1. To review your inventory report’s format before proceeding, choose **Show file preview**\.
 
-1. Enter the columns to reference in the SQL expression field\. and choose **Run SQL**\. The following expression returns columns 1–3 for all objects without Bucket Key configured\.
+1. Enter the columns to reference in the SQL expression field, and choose **Run SQL**\. The following expression returns columns 1–3 for all objects without Bucket Key configured\.
 
    `select s._1, s._2, s._3 from s3object s where s._6 = 'DISABLED'`
 

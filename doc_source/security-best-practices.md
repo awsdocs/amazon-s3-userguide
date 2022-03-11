@@ -84,7 +84,7 @@ The following best practices for Amazon S3 can help detect potential security we
 **Identify and audit all your Amazon S3 buckets**  
 Identification of your IT assets is a crucial aspect of governance and security\. You need to have visibility of all your Amazon S3 resources to assess their security posture and take action on potential areas of weakness\.  
 Use Tag Editor to identify security\-sensitive or audit\-sensitive resources, then use those tags when you need to search for these resources\. For more information, see [Searching for Resources to Tag](https://docs.aws.amazon.com/ARG/latest/userguide/tag-editor.html)\.   
-Use Amazon S3 Inventory to audit and report on the replication and encryption status of your objects for business, compliance, and regulatory needs\. For more information, see [ Amazon S3 Inventory](storage-inventory.md)\.  
+Use Amazon S3 Inventory to audit and report on the replication and encryption status of your objects for business, compliance, and regulatory needs\. For more information, see [Amazon S3 Inventory](storage-inventory.md)\.  
 Create resource groups for your Amazon S3 resources\. For more information, see [What Is AWS Resource Groups?](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html) 
 
 **Implement monitoring using AWS monitoring tools**  
@@ -105,7 +105,8 @@ Several of the best practices listed in this topic suggest creating AWS Config r
 For an example of how to use AWS Config to monitor for and respond to Amazon S3 buckets that allow public access, see [How to Use AWS Config to Monitor for and Respond to Amazon S3 Buckets Allowing Public Access](https://aws.amazon.com/blogs/security/how-to-use-aws-config-to-monitor-for-and-respond-to-amazon-s3-buckets-allowing-public-access/) on the *AWS Security Blog*\. 
 
 **Consider using Amazon Macie with Amazon S3**  
-Macie uses machine learning to automatically discover, classify, and protect sensitive data in AWS\. Macie recognizes sensitive data such as personally identifiable information \(PII\) or intellectual property\. It provides you with dashboards and alerts that give visibility into how this data is being accessed or moved\. For more information, see [What Is Amazon Macie?](https://docs.aws.amazon.com/macie/latest/userguide/what-is-macie.html)
+Amazon Macie is a data security and data privacy service that uses machine learning and pattern matching to help you discover, monitor, and protect sensitive data in your AWS environment\. Macie automates the discovery of sensitive data, such as personally identifiable information \(PII\) and financial data, to provide you with a better understanding of the data that your organization stores in Amazon S3\.  
+Macie also provides you with an inventory of your S3 buckets, and it automatically evaluates and monitors those buckets for security and access control\. If Macie detects sensitive data or potential issues with the security or privacy of your data, it creates detailed findings for you to review and remediate as necessary\. For more information, see [What is Amazon Macie?](https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html)
 
 **Monitor AWS security advisories**  
 You should regularly check security advisories posted in Trusted Advisor for your AWS account\. In particular, note warnings about Amazon S3 buckets with “open access permissions\.” You can do this programmatically using [describe\-trusted\-advisor\-checks](https://docs.aws.amazon.com/cli/latest/reference/support/describe-trusted-advisor-checks.html)\.  

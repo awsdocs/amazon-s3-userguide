@@ -229,8 +229,8 @@ The following Ruby code example demonstrates the preceding tasks for SDK for Rub
 **Example**  
 
 ```
-require 'aws-sdk-s3'
-require 'net/http'
+require "aws-sdk-s3"
+require "net/http"
 
 # Creates a presigned URL that can be used to upload content to an object.
 #
@@ -246,21 +246,21 @@ rescue Aws::Errors::ServiceError => e
 end
 
 def run_demo
-  bucket_name = 'doc-example-bucket'
-  object_key = 'my-file.txt'
-  object_content = 'This is the content of my-file.txt.'
+  bucket_name = "doc-example-bucket"
+  object_key = "my-file.txt"
+  object_content = "This is the content of my-file.txt."
 
   bucket = Aws::S3::Bucket.new(bucket_name)
   presigned_url = get_presigned_url(bucket, object_key)
   return unless presigned_url
 
   response = Net::HTTP.start(presigned_url.host) do |http|
-    http.send_request('PUT', presigned_url.request_uri, object_content, 'content_type' => '')
+    http.send_request("PUT", presigned_url.request_uri, object_content, "content_type" => "")
   end
 
   case response
   when Net::HTTPSuccess
-    puts 'Content uploaded!'
+    puts "Content uploaded!"
   else
     puts response.value
   end

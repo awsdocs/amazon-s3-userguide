@@ -4,6 +4,8 @@ The **Copy** operation copies each object that is specified in the manifest\. Yo
 
 You can also use the Copy operation to copy existing unencrypted objects and write them back to the same bucket as encrypted objects\. For more information, see [Encrypting objects with Amazon S3 Batch Operations](http://aws.amazon.com/blogs/storage/encrypting-objects-with-amazon-s3-batch-operations/)\.
 
+When you copy objects, you can change the checksum algorithm used to calculate the checksum of the object\. If objects don't have an additional checksum calculated, you can also add one by specifying the checksum algorithm for Amazon S3 to use\. For more information, see [Checking object integrity](checking-object-integrity.md)\.
+
 For more information about copying objects in Amazon S3 and the required and optional parameters, see [Copying objects](copy-object.md) in this guide and [CopyObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html) in the *Amazon Simple Storage Service API Reference*\.
 
 ## Restrictions and limitations<a name="batch-ops-copy-object-restrictions"></a>

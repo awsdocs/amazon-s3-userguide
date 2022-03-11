@@ -43,13 +43,16 @@ Each rule must include the rule's status and priority\. The rule must also indic
 
 In the destination configuration, you must provide the name of the bucket or buckets where you want Amazon S3 to replicate objects\. 
 
-The following example shows the minimum requirements for a rule\.
+The following example shows the minimum requirements for a V2 rule\. For backward compatibility, Amazon S3 continues to support the XML V1, see [Backward compatibility](#replication-backward-compat-considerations)\.
 
 ```
 ...
     <Rule>
         <ID>Rule-1</ID>
         <Status>Enabled-or-Disabled</Status>
+        <Filter>
+            <Prefix></Prefix>   
+        </Filter>
         <Priority>integer</Priority>
         <DeleteMarkerReplication>
            <Status>Enabled-or-Disabled</Status>

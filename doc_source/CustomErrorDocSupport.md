@@ -35,7 +35,7 @@ When you configure your bucket as a static website, you can provide a custom err
 
 To configure a custom error document using the S3 console, follow the steps below\. You can also configure an error document using the REST API, the AWS SDKs, the AWS CLI, or AWS CloudFormation\. For more information, see the following:
 + [PutBucketWebsite](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketWebsite.html) in the *Amazon Simple Storage Service API Reference*
-+ [AWS::S3::Bucket WebsiteConfiguration](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-websiteconfiguration.html) in the *AWS CloudFormation User Guide*
++ [AWS::S3::Bucket WebsiteConfiguration](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-websiteconfiguration.html) in the *AWS CloudFormation User Guide*
 + [put\-bucket\-website](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-website.html) in the *AWS CLI Command Reference*
 
 When you enable static website hosting for your bucket, you enter the name of the error document \(for example, **404\.html**\)\. After you enable static website hosting for the bucket, you upload an HTML file with this error document name to your bucket\.

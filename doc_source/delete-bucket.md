@@ -127,6 +127,8 @@ You can delete a bucket that contains objects with the AWS CLI if it doesn't hav
 
 If your bucket does not have versioning enabled, you can use the `rb` \(remove bucket\) AWS CLI command with the `--force` parameter to delete the bucket and all the objects in it\. This command deletes all objects first and then deletes the bucket\.
 
+If versioning is enabled versioned objects will not be deleted in this process which would cause the bucket deletion to fail because the bucket would not be empty\. For more information about deleting versioned objects, see [Deleting object versions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjectVersions.html)\.
+
 ```
 $ aws s3 rb s3://bucket-name --force  
 ```

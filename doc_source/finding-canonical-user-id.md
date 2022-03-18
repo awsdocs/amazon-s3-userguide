@@ -15,7 +15,7 @@ Follow these steps to find the canonical user ID for your AWS account when you a
 
    For more information, see [Signing in to the AWS Management Console](https://docs.aws.amazon.com/IAM/latest/UserGuide/console.html) in the *IAM User Guide*\.
 
-1. In the navigation bar on the upper right, choose your account name or number, and then choose **My Security Credentials**\.
+1. In the navigation bar on the upper right, choose your account name or number, and then choose **Security credentials**\.
 
 1. Find the canonical ID for the account:
    + If you are the root user, expand **Account identifiers** and find **Canonical User ID**\.

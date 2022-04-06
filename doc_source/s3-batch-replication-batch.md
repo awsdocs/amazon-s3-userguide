@@ -1,6 +1,6 @@
 # Replicating existing objects with S3 Batch Replication<a name="s3-batch-replication-batch"></a>
 
-S3 Batch Replication provides you a way to replicate objects that existed before a replication configuration was in place, objects that have previously replicated, and objects that have failed replication\. This is done through the use of a Batch Operations job\. This differs from live replication which continuously and automatically replicates new objects across Amazon S3 buckets\. To get started with Batch Replication you may:
+S3 Batch Replication provides you a way to replicate objects that existed before a replication configuration was in place, objects that have previously been replicated, and objects that have failed replication\. This is done through the use of a Batch Operations job\. This differs from live replication which continuously and automatically replicates new objects across Amazon S3 buckets\. To get started with Batch Replication you may:
 + **Initiate Batch Replication for a new replication rule or destination** – You may create a one\-time Batch Replication job when creating the first rule in a new replication configuration or when adding a new destination to an existing configuration through the AWS Management Console\. 
 + **Initiate Batch Replication for an existing replication configuration** – You can create a new Batch Replication job using **S3 Batch Operations** through the AWS SDKs, AWS Command Line Interface \(AWS CLI\), or the Amazon S3 console\.
 

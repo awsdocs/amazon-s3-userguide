@@ -17,38 +17,35 @@ In searched CASE expressions, each CASE is evaluated based on a Boolean expressi
 
 ### Syntax<a name="s3-glacier-select-sql-reference-case-syntax"></a>
 
+**Note**  
+Currently, Amazon S3 Select doesn't support `ORDER BY` or queries that contain new lines\. Make sure that you use queries with no line breaks\.
+
 Simple CASE statement used to match conditions:
 
 ```
-CASE expression
-WHEN value THEN result
-[WHEN...]
-[ELSE result]
-END
+CASE expression WHEN value THEN result [WHEN...] [ELSE result] END
 ```
 
 Searched CASE statement used to evaluate each condition:
 
 ```
-CASE
-WHEN boolean condition THEN result
-[WHEN ...]
-[ELSE result]
-END
+CASE WHEN boolean condition THEN result [WHEN ...] [ELSE result] END
 ```
 
 ### Examples<a name="s3-glacier-select-sql-reference-case-examples"></a>
 
-Use a simple CASE expression to replace New York City with Big Apple in a query\. Replace all other city names with other\.
+**Note**  
+If you use the Amazon S3 console to run the following examples and your CSV file contains a header row, please select **Exclude the first line of CSV data**\. 
+
+**Example 1:** Use a simple CASE expression to replace New York City with Big Apple in a query\. Replace all other city names with other\.
 
 ```
-select venuecity,
-case venuecity
-when 'New York City'
-then 'Big Apple' else 'other'
-end from venue
-order by venueid desc;
+SELECT venuecity, CASE venuecity WHEN 'New York City' THEN 'Big Apple' ELSE 'other' END FROM S3Object;
+```
 
+Query Result: 
+
+```
 venuecity        |   case
 -----------------+-----------
 Los Angeles      | other
@@ -56,19 +53,17 @@ New York City    | Big Apple
 San Francisco    | other
 Baltimore        | other
 ...
-(202 rows)
 ```
 
-Use a searched CASE expression to assign group numbers based on the PRICEPAID value for individual ticket sales:
+**Example 2:** Use a searched CASE expression to assign group numbers based on the PRICEPAID value for individual ticket sales:
 
 ```
-select pricepaid,
-case when pricepaid <10000 then 'group 1'
-when pricepaid >10000 then 'group 2'
-else 'group 3'
-end from sales
-order by 1 desc;
+SELECT pricepaid, CASE WHEN CAST(pricepaid as FLOAT) < 10000 THEN 'group 1' WHEN CAST(pricepaid as FLOAT) > 10000 THEN 'group 2' ELSE 'group 3' END FROM S3Object;
+```
 
+Query Result: 
+
+```
 pricepaid |  case
 -----------+---------
 12624.00 | group 2
@@ -77,7 +72,6 @@ pricepaid |  case
 9996.00 | group 1
 9988.00 | group 1
 ...
-(172456 rows)
 ```
 
 ## COALESCE<a name="s3-glacier-select-sql-reference-coalesce"></a>

@@ -63,7 +63,8 @@ The following example uploads the file *`my_image.jpg`* from the user's local fi
 aws s3api put-object --bucket arn:aws:s3-outposts:us-east-1:111122223333:outpost/op-01ac5d28a6a232904/accesspoint/example-outpost-access-point \
 --body my_image.jpg --key images/my_image.jpg
 ```
-If this operation results in a Resource not found error or is unresponsive, your VPC might not have a shared endpoint\. 
+If this operation results in a Resource not found error or is unresponsive, your VPC might not have a shared endpoint\.   
+To check whether there is a shared endpoint, use the [list\-shared\-endpoints](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3outposts/list-shared-endpoints.html) AWS CLI command\. If there is no shared endpoint, work with the Outpost owner to create one\. For more information see [ListSharedEndpoints](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListSharedEndpoints.html) in the *Amazon Simple Storage Service API Reference*\.
 
 **Example : Create an endpoint**  
 The following example creates an endpoint on a shared Outpost\. Before using this command, replace the Outpost ID, subnet ID, and security group ID with the appropriate values for your use case\.  

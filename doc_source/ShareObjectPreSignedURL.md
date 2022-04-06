@@ -16,6 +16,9 @@ You can generate a presigned URL for an object without writing any code by using
 
  You can use the AWS Management Console to generate a presigned URL for an object by following these steps\. 
 
+**Note**  
+In the Amazon S3 console, the maximum expiration time for a presigned URL is 12 hours from the time of creation\. 
+
 **To generate a presigned URL using the AWS Management Console**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
@@ -36,11 +39,17 @@ You can generate a presigned URL for an object without writing any code by using
 
 If you are using Visual Studio, you can generate a presigned URL for an object without writing any code by using AWS Explorer for Visual Studio\. Anyone with this URL can download the object\. For more information, go to [Using Amazon S3 from AWS Explorer](https://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/using-s3.html)\. 
 
+**Note**  
+With AWS Explorer for Visual Studio, the maximum expiration time for a presigned URL is 7 days from the time of creation\. 
+
 For instructions on how to install the AWS Explorer, see [Developing with Amazon S3 using the AWS SDKs, and explorers](UsingAWSSDK.md)\.
 
 ### Using the AWS SDKs<a name="ShareObjectPreSignedURLSDK"></a>
 
 The following examples generate a presigned URL that you can give to others so that they can retrieve an object\. 
+
+**Note**  
+With the AWS SDKs, the maximum expiration time for a presigned URL is 7 days from the time of creation\. 
 
 ------
 #### [ Java ]
@@ -181,3 +190,10 @@ import boto3
 For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.
 
 ------
+
+### Using the AWS CLI<a name="ShareObjectPresignedCLI"></a>
+
+To generate a presigned URL to share an object using the AWS CLI, see [presign](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/presign.html) in the *AWS CLI Command Reference*\.
+
+**Note**  
+With the AWS CLI, the maximum expiration time for a presigned URL is 7 days from the time of creation\. 

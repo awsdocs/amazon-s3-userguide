@@ -45,9 +45,9 @@ With bucket policies, you can personalize bucket access to help ensure that only
 
 For more information, see [Using bucket policies](bucket-policies.md)\.
 
-When creating policies, avoid the use of wildcards in the `Principal` element because it effectively allows anyone to access your Amazon S3 resources\. It's better to explicitly list users or groups that are allowed to access the bucket\. Rather than including a wildcard for their actions, grant them specific permissions when applicable\. 
+When creating policies, avoid the use of wildcard characters in the `Principal` element because it effectively allows anyone to access your Amazon S3 resources\. It's better to explicitly list users or groups that are allowed to access the bucket\. Rather than including a wildcard for their actions, grant them specific permissions when applicable\. 
 
-To further maintain the practice of least privileges, Deny statements in the `Effect` element should be as broad as possible and Allow statements should be as narrow as possible\. Deny effects paired with the "`s3:*`" action are another good way to implement opt\-in best practices for the users included in policy condition statements\.
+To further maintain the practice of least privileges, `Deny` statements in the `Effect` element should be as broad as possible and `Allow` statements should be as narrow as possible\. `Deny` effects paired with the "`s3:*`" action are another good way to implement opt\-in best practices for the users included in policy condition statements\.
 
 For more information about specifying conditions for when a policy is in effect, see [Amazon S3 condition key examples](amazon-s3-policy-keys.md)\.
 
@@ -76,11 +76,11 @@ When creating buckets that are accessed by different office locations, you shoul
 For more information, see [Replicating objects](replication.md)\.
 
 **Permissions for secure static website hosting**  
-When configuring a bucket to be used as a publicly accessed static website, you need to disable all Block Public Access settings\. It is important to only provide `s3:GetObject` actions and not `ListObject` or `PutObject` permissions when writing the bucket policy for your static website\. This helps ensure that users cannot view all the objects in your bucket or add their own content\.
+When configuring a bucket to be used as a publicly accessed static website, you must disable all Block Public Access settings\. It is important to only provide `s3:GetObject` actions and not `ListObject` or `PutObject` permissions when writing the bucket policy for your static website\. This helps ensure that users cannot view all the objects in your bucket or add their own content\.
 
 For more information, see [Setting permissions for website access](WebsiteAccessPermissionsReqd.md)\.
 
-Amazon CloudFront provides the capabilities required to set up a secure static website\. Amazon S3 static websites only support HTTP endpoints\. CloudFront uses the durable storage of Amazon S3 while providing additional security headers like HTTPS\. HTTPS adds security by encrypting a normal HTTP request and protecting against common cyber attacks\.
+Amazon CloudFront provides the capabilities required to set up a secure static website\. Amazon S3 static websites only support HTTP endpoints\. CloudFront uses the durable storage of Amazon S3 while providing additional security headers like HTTPS\. HTTPS adds security by encrypting a normal HTTP request and protecting against common cyberattacks\.
 
 For more information, see [Getting started with a secure static website](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/getting-started-secure-static-website-cloudformation-template.html) in the *Amazon CloudFront Developer Guide*\.
 
@@ -99,7 +99,7 @@ For more information, see [Allowing an IAM user access to one of your buckets](e
 **Access control lists**  
 As a general rule, we recommend that you use S3 bucket policies or IAM policies for access control\. Amazon S3 ACLs are the original access control mechanism in Amazon S3 that predates IAM\. If you already use S3 ACLs and you find them sufficient, there is no need to change\. However, certain access control scenarios require the use of ACLs\. For example, when a bucket owner wants to grant permission to objects, but not all objects are owned by the bucket owner, the object owner must first grant permission to the bucket owner\. This is done using an object ACL\.
 
-A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you disable ACLs except in unusual circumstances where you need to control access for each object individually\. With Object Ownership, you can disable ACLs and rely on policies for access control\. When you disable ACLs, you can easily maintain a bucket with objects uploaded by different AWS accounts\. You, as the bucket owner, own all the objects in the bucket and can manage access to them using policies\. 
+A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you disable ACLs except in unusual circumstances where you must control access for each object individually\. With Object Ownership, you can disable ACLs and rely on policies for access control\. When you disable ACLs, you can easily maintain a bucket with objects uploaded by different AWS accounts\. You, as the bucket owner, own all the objects in the bucket and can manage access to them using policies\. 
 
 **Important**  
 If your bucket uses the bucket owner enforced setting for S3 Object Ownership, you must use policies to grant access to your bucket and the objects in it\. Requests to set ACLs or update ACLs fail and return the `AccessControlListNotSupported` error code\. Requests to read ACLs are still supported\.
@@ -122,9 +122,9 @@ Use the following tools to help protect data in transit and at rest, both of whi
 
 **Object encryption**  
 Amazon S3 offers several object encryption options that protect data in transit and at rest\. Server\-side encryption encrypts your object before saving it on disks in its data centers and then decrypts it when you download the objects\. As long as you authenticate your request and you have access permissions, there is no difference in the way you access encrypted or unencrypted objects\. When setting up server\-side encryption, you have three mutually exclusive options: 
-+ Amazon S3 managed keys \(SSE\-S3\)
-+ KMS keys stored in AWS Key Management Service \(SSE\-KMS\)
-+ Customer\-provided keys \(SSE\-C\)
++ Server\-side encryption with Amazon S3 managed keys \(SSE\-S3\)
++ Server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\)
++ Server\-side encryption with customer\-provided keys \(SSE\-C\)
 
 For more information, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.
 

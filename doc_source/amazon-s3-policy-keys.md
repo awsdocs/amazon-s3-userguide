@@ -317,9 +317,7 @@ This example bucket policy *allows* PutObject requests by clients that have a TL
     "Statement": [
         {
             "Effect": "Allow",
-            "Principal": {
-                "AWS": "arn:aws:iam::AWS-ACCOUNT-ID:role/ROLE-NAME"
-            },
+            "Principal": "*",
             "Action": "s3:PutObject",
             "Resource": [
                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET1",

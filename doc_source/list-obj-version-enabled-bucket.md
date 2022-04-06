@@ -229,3 +229,13 @@ The following are additional responses that satisfy the original GET request:
 3. Date: Wed, 28 Oct 2009 22:32:00 GMT
 4. Authorization: AWS AKIAIOSFODNN7EXAMPLE:0RQf4/cRonhpaBX5sCYVf1bNRuU=
 ```
+
+## Using the AWS CLI<a name="list-obj-version-enabled-bucket-cli"></a>
+
+The following command returns metadata about all versions of the objects in a bucket\. 
+
+```
+aws s3api list-object-versions --bucket DOC-EXAMPLE-BUCKET1
+```
+
+For more information about `list-object-versions` see [list\-object\-versions](https://docs.aws.amazon.com/cli/latest/reference/s3api/list-object-versions.html) in the *AWS CLI Command Reference*\.

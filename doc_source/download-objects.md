@@ -27,13 +27,8 @@ Objects with key names ending with period\(s\) "\." downloaded using the Amazon 
     
 
 1. You can download an object from an S3 bucket in any of the following ways:
-   + Choose the name of the object that you want to download\.
-
-      
-
-     On the **Overview** page, select the object and from the **Actions** menu choose **Download** or **Download as** if you want to download the object to a specific folder\.
-   + Choose the object that you want to download and then from the **Object actions** menu choose **Download** or **Download as** if you want to download the object to a specific folder\.
-   + If you want to download a specific version of the object, choose the name of the object that you want to download\. Choose the **Versions** tab and then from the **Actions** menu choose **Download** or **Download as** if you want to download the object to a specific folder\.
+   + Select the object and choose **Download** or choose **Download as** from the **Actions** menu if you want to download the object to a specific folder\.
+   + If you want to download a specific version of the object, select the **Show versions** button\. Select the version of the object that you want and choose **Download** or choose **Download as** from the **Actions** menu if you want to download the object to a specific folder\.
 
 ## Using the AWS SDKs<a name="download-object-sdk"></a>
 

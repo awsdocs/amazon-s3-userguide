@@ -58,7 +58,7 @@ Amazon S3 interface endpoints do *not* support the private DNS feature of interf
 
 You can use the AWS CLI or AWS SDK to access buckets, S3 access points, and S3\-control APIs through S3 interface endpoints\. 
 
-The following image shows the VPC console **Details** tab, where you can find the DNS name of a VPC endpoint\. In this example, the *VPC endpoint ID \(vpce\-id\)* is `vpce-0e25b8cdd720f900e` and the *DNS name* is `*.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\. Remember to replace *\** when using the *DNS name*\. For example, to access a bucket, the *DNS name* would be `bucket.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\.
+The following image shows the VPC console **Details** tab, where you can find the DNS name of a VPC endpoint\. In this example, the *VPC endpoint ID \(vpce\-id\)* is `vpce-0e25b8cdd720f900e` and the *DNS name* is `*.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\. Remember to replace *\** when using the *DNS name*\. For example, to access a bucket, the *DNS name* would be `bucket.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\. You can also append the name of your bucket to the start of the URL\. For example, if you wanted to access `my-bucket` the URL would be `my-bucket.bucket.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\.
 
 ![\[Screenshot of Details tab from the VPC console.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/vpc-console-details-tab.png)
 

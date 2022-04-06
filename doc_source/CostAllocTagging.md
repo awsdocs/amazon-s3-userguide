@@ -10,14 +10,14 @@ You must activate both types of tags separately in the Billing and Cost Manageme
 + To create tags in the console, see [Viewing the properties for an S3 bucket](view-bucket-properties.md)\.
 + To create tags using the Amazon S3 API, see [PUT Bucket tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTtagging.html) in the *Amazon Simple Storage Service API Reference*\.
 + To create tags using the AWS CLI, see [put\-bucket\-tagging](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-tagging.html) in the AWS CLI Command Reference\.
-+ For more information about activating tags, see [Using cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
++ For more information about activating tags, see [Using cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing User Guide*\.
 
 **User\-defined cost allocation tags**  
 A user\-defined cost allocation tag has the following components:
 + The tag key\. The tag key is the name of the tag\. For example, in the tag project/Trinity, project is the key\. The tag key is a case\-sensitive string that can contain 1 to 128 Unicode characters\. 
 + The tag value\. The tag value is a required string\. For example, in the tag project/Trinity, Trinity is the value\. The tag value is a case\-sensitive string that can contain from 0 to 256 Unicode characters\.
 
-For details on the allowed characters for user\-defined tags and other restrictions, see [User\-Defined Tag Restrictions](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html) in the *AWS Billing and Cost Management User Guide*\. For more information about user\-defined tags, see [User\-Defined Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+For details on the allowed characters for user\-defined tags and other restrictions, see [User\-Defined Tag Restrictions](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html) in the *AWS Billing User Guide*\. For more information about user\-defined tags, see [User\-Defined Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/custom-tags.html) in the *AWS Billing User Guide*\.
 
 **S3 bucket tags**  
 Each S3 bucket has a tag set\. A *tag set* contains all of the tags that are assigned to that bucket\. A tag set can contain as many as 50 tags, or it can be empty\. Keys must be unique within a tag set, but values in a tag set don't have to be unique\. For example, you can have the same value in tag sets named project/Trinity and cost\-center/Trinity\.
@@ -29,6 +29,6 @@ AWS doesn't apply any semantic meaning to your tags\. We interpret tags strictly
 To add, list, edit, or delete tags, you can use the Amazon S3 console, the AWS Command Line Interface \(AWS CLI\), or the Amazon S3 API\. 
 
 ## More Info<a name="CostAllocTagging-more-info"></a>
-+ [ Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*
++ [ Using Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing User Guide*
 + [Understanding your AWS billing and usage reports for Amazon S3](aws-usage-report-understand.md)
 + [AWS Billing reports for Amazon S3](aws-billing-reports.md)

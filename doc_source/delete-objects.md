@@ -1,6 +1,6 @@
 # Deleting a single object<a name="delete-objects"></a>
 
-You can use the Amazon S3 console or the DELETE API to delete a single existing object from an S3 bucket\.
+You can use the Amazon S3 console or the DELETE API to delete a single existing object from an S3 bucket\. For more information about deleting objects in Amazon S3, see [Deleting Amazon S3 objects](DeletingObjects.md)\.
 
 Because all objects in your S3 bucket incur storage costs, you should delete objects that you no longer need\. For example, if you are collecting log files, it's a good idea to delete them when they're no longer needed\. You can set up a lifecycle rule to automatically delete objects such as log files\. For more information, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)\.
 

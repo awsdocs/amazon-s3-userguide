@@ -48,7 +48,10 @@ Block public access settings don't alter existing policies or ACLs\. Therefore, 
 
 ## Performing block public access operations on an access point<a name="access-control-block-public-access-examples-access-point"></a>
 
-To perform block public access operations on an access point, use the AWS CLI service `s3control`\. Note that it isn't currently possible to change an access point's block public access settings after creating the access point\. Thus, the only way to specify block public access settings for an access point is by including them when creating the access point\.
+To perform block public access operations on an access point, use the AWS CLI service `s3control`\. 
+
+**Important**  
+Note that it isn't currently possible to change an access point's block public access settings after creating the access point\. Thus, the only way to specify block public access settings for an access point is by including them when creating the access point\.
 
 ## The meaning of "public"<a name="access-control-block-public-access-policy-status"></a>
 
@@ -159,7 +162,7 @@ To use Amazon S3 Block Public Access features, you must have the following permi
 | GET account Block Public Access settings | s3:GetAccountPublicAccessBlock | 
 | PUT account Block Public Access settings | s3:PutAccountPublicAccessBlock | 
 | DELETE account Block Public Access settings | s3:PutAccountPublicAccessBlock | 
-| PUT access point Block Public Access settings | s3:PutAccessPointPublicAccessBlock | 
+| PUT access point Block Public Access settings | s3:CreateAccessPoint | 
 
 **Note**  
 The DELETE operations require the same permissions as the PUT operations\. There are no separate permissions for the DELETE operations\.

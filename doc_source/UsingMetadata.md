@@ -29,6 +29,7 @@ The following table provides a list of system\-defined metadata and whether you 
 | Name | Description | Can user modify the value? | 
 | --- | --- | --- | 
 | Date | Current date and time\. | No | 
+| Content\-Disposition | Object presentational information\. | Yes | 
 | Content\-Length | Object size in bytes\. | No | 
 | Content\-Type | Object type\. | Yes | 
 | Last\-Modified |  Object creation date or the last modified date, whichever is the latest\.  | No | 

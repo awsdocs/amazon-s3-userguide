@@ -1,4 +1,4 @@
-# Uploading objects using presigned URLs<a name="PresignedUrlUploadObject"></a>
+# Generating a presigned URL to upload an object<a name="PresignedUrlUploadObject"></a>
 
 A presigned URL gives you access to the object identified in the URL, provided that the creator of the presigned URL has permissions to access that object\. That is, if you receive a presigned URL to upload an object, you can upload the object only if the creator of the presigned URL has the necessary permissions to upload that object\. 
 
@@ -194,18 +194,10 @@ For an AWS SDK for JavaScript example on using the presigned URL to upload objec
 ------
 #### [ Python ]
 
-Generate a presigned URL to upload an object by using the SDK for Python \(Boto3\)\. For example, use a Boto3 client and the `generate_presigned_url` function to generate a presigned URL that PUTs an object\.
-
-```
-import boto3
-    url = boto3.client('s3').generate_presigned_url(
-    ClientMethod='put_object', 
-    Params={'Bucket': 'BUCKET_NAME', 'Key': 'OBJECT_KEY'},
-    ExpiresIn=3600)
-```
+Generate a presigned URL to upload an object by using the SDK for Python \(Boto3\)\. For example, use a Boto3 client and the `generate_presigned_url` function to generate a presigned URL that PUTs an object\. For a full example of how to do this in Python, see [Create a presigned URL for Amazon S3 using an AWS SDK](example_s3_Scenario_PresignedUrl_section.md)\. 
 
 **Note**  
-For a complete example that shows how to generate presigned URLs and how to use the Requests package to upload and download objects, see the [ Python presigned URL](https://docs.aws.amazon.com/code-samples/latest/catalog/python-s3-s3_basics-presigned_url.py.html) example on GitHub\. For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.
+For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.
 
 ------
 #### [ Ruby ]

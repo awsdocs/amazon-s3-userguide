@@ -8,7 +8,7 @@ Athena can query Amazon S3 Inventory files in ORC, Parquet, or CSV format\. When
 
 1. Create an Athena table\. For information about creating a table, see [Creating Tables in Amazon Athena](https://docs.aws.amazon.com/athena/latest/ug/creating-tables.html) in the *Amazon Athena User Guide*\.
 
-   The following sample query includes all optional fields in an ORC\-formatted inventory report\. Drop any optional field that you did not choose for your inventory so that the query corresponds to the fields chosen for your inventory\. Also, you must use your bucket name and location to your inventory destination path\. Replace the following bucket name and inventory location as appropriate for your configuration: *`s3://destination-prefix/DOC-EXAMPLE-BUCKET/config-ID/hive/`*\.
+   The following sample query includes all optional fields in an ORC\-formatted inventory report\. Drop any optional field that you did not choose for your inventory so that the query corresponds to the fields chosen for your inventory\. Also, you must use your bucket name and location to your inventory destination path\. Replace the following bucket name and inventory location as appropriate for your configuration: *`s3://destination-prefix/DOC-EXAMPLE-BUCKET/config-ID/hive/`*\. You should also replace the initial date under `projection.dt.range` to the first day with data\.
 
    ```
    CREATE EXTERNAL TABLE your_table_name(
@@ -36,7 +36,15 @@ Athena can query Amazon S3 Inventory files in ORC, Parquet, or CSV format\. When
    ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.orc.OrcSerde'
      STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
      OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat'
-     LOCATION 's3://destination-prefix/source-bucket/config-ID/hive/';
+     LOCATION 's3://destination-prefix/source-bucket/config-ID/hive/'
+     TBLPROPERTIES (
+       "projection.enabled" = "true",
+       "projection.dt.type" = "date",
+       "projection.dt.format" = "yyyy-MM-dd-HH-mm",
+       "projection.dt.range" = "2022-01-01-00-00,NOW",
+       "projection.dt.interval" = "1",
+       "projection.dt.interval.unit" = "DAYS"
+     );
    ```
 
    When using Athena to query a Parquet\-formatted inventory report, use the following Parquet SerDe in place of the ORC SerDe in the `ROW FORMAT SERDE` statement\.
@@ -73,16 +81,18 @@ Athena can query Amazon S3 Inventory files in ORC, Parquet, or CSV format\. When
    ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
      STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat'
      OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat'
-     LOCATION 's3://destination-prefix/source-bucket/config-ID/hive/';
+     LOCATION 's3://destination-prefix/source-bucket/config-ID/hive/'
+     TBLPROPERTIES (
+       "projection.enabled" = "true",
+       "projection.dt.type" = "date",
+       "projection.dt.format" = "yyyy-MM-dd-HH-mm",
+       "projection.dt.range" = "2022-01-01-00-00,NOW",
+       "projection.dt.interval" = "1",
+       "projection.dt.interval.unit" = "DAYS"
+     );
    ```
 
-1. To add new inventory lists to your table, use the following `MSCK REPAIR TABLE` command\.
-
-   ```
-   MSCK REPAIR TABLE your_table_name;
-   ```
-
-1. After performing the first two steps, you can run ad hoc queries on your inventory, as shown in the following examples\. 
+1. After performing this step, you can run ad hoc queries on your inventory, as shown in the following examples\. 
 
    ```
    # Get list of latest inventory report dates available

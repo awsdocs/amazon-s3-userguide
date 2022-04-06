@@ -28,6 +28,8 @@ If the bucket contains any objects, empty the bucket before deleting it by selec
 
    
 
+1. To verify that you've deleted the bucket, open the **Buckets** list and enter the name of the bucket that you deleted\. If the bucket can't be found, your deletion was successful\. 
+
 ## Using the AWS SDK for Java<a name="delete-empty-bucket"></a>
 
 The following example shows you how to delete a bucket using the AWS SDK for Java\. First, the code deletes objects in the bucket and then it deletes the bucket\. For information about other AWS SDKs, see [Tools for Amazon Web Services](https://aws.amazon.com/tools/)\.

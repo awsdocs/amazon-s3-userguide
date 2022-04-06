@@ -1,6 +1,6 @@
 # Request routing<a name="UsingRouting"></a>
 
-Programs that make requests against buckets created using the <CreateBucketConfiguration> API must support redirects\. Additionally, some clients that do not respect DNS TTLs might encounter issues\.
+Programs that make requests against buckets created using the [CreateBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html) API that include a [CreateBucketConfiguration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucketConfiguration.html) must support redirects\. Additionally, some clients that do not respect DNS TTLs might encounter issues\.
 
 This section describes routing and DNS issues to consider when designing your service or application for use with Amazon S3\.
 

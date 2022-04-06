@@ -32,7 +32,7 @@ The following character sets are generally safe for use in key names\.
 |  |  | 
 | --- |--- |
 | Alphanumeric characters |    0\-9   a\-z   A\-Z    | 
-| Special characters |    Forward slash \(`/`\)   Exclamation point \(`!`\)   Hyphen \(`-`\)   Underscore \(`_`\)   Period \(`.`\)   Asterisk \(`*`\)   Single quote \(`'`\)   Open parenthesis \(`(`\)   Close parenthesis \(`)`\)    | 
+| Special characters |    Exclamation point \(`!`\)   Hyphen \(`-`\)   Underscore \(`_`\)   Period \(`.`\)   Asterisk \(`*`\)   Single quote \(`'`\)   Open parenthesis \(`(`\)   Close parenthesis \(`)`\)    | 
 
 The following are examples of valid object key names:
 + `4my-organization`
@@ -54,6 +54,7 @@ The following characters in a key name might require additional code handling an
 + 'At' symbol \("@"\) 
 + Equals \("="\) 
 + Semicolon \(";"\) 
++ Forward slash \("/"\)
 + Colon \(":"\) 
 + Plus \("\+"\) 
 + Space – Significant sequences of spaces might be lost in some uses \(especially multiple spaces\) 

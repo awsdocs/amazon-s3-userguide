@@ -22,7 +22,7 @@ You can't change this dashboard name after the dashboard is created\.
 
    1. You can optionally choose to add **Tags** to your dashboard\. You can use tags to manage permissions for your dashboard and track costs for S3 Storage Lens\. 
 
-      For more information, see [Controlling access using resource tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *IAM User Guide* and [AWS\-Generated Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+      For more information, see [Controlling access using resource tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *IAM User Guide* and [AWS\-Generated Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tags.html) in the *AWS Billing User Guide*\.
 **Note**  
 You can add up to 50 tags to your dashboard configuration\.
 

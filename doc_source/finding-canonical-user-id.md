@@ -15,7 +15,7 @@ Follow these steps to find the canonical user ID for your AWS account when you a
 
    For more information, see [Signing in to the AWS Management Console](https://docs.aws.amazon.com/IAM/latest/UserGuide/console.html) in the *IAM User Guide*\.
 
-1. In the navigation bar on the upper right, choose your account name or number, and then choose **Security credentials**\.
+1. In the navigation bar on the upper right, choose your account name or number, and then choose **Security Credentials**\.
 
 1. Find the canonical ID for the account:
    + If you are the root user, expand **Account identifiers** and find **Canonical User ID**\.
@@ -24,6 +24,8 @@ Follow these steps to find the canonical user ID for your AWS account when you a
 ## Using the S3 console \(federated user\)<a name="canonical-id-federated-user"></a>
 
 Follow these steps to find the canonical user ID for your account when you are signed in to the AWS Management Console as a federated user\. For more information about federated users, see [Federating existing users](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html##intro-identity-federation) in the *IAM User Guide*\.
+**Note**  
+To verify that you've signed into the AWS Management Console as a federated user, on the AWS Management Console page, choose your account information and check the expanded account information\. If **Federated user** is showing in the account information, you are signed in as a federated user\.
 
 1. Sign in to the console as a federated user\.
 
@@ -31,9 +33,9 @@ Follow these steps to find the canonical user ID for your account when you are s
 
 1. In the Amazon S3 console, choose a bucket name to view the bucket details\.
 
-1. Choose **Permissions**, and then scroll down to the **Access Control List** section\.
+1. Choose **Permissions**, and then scroll down to the **Access control list \(ACL\)** section\.
 
-   At the top of the page, under **Access for bucket owner**, the canonical user ID for the AWS account appears\.
+   Under **Bucket owner \(your AWS account\)**, the canonical user ID for the AWS account appears\.
 
 ## Using the AWS CLI<a name="canonical-user-id-cli"></a>
 

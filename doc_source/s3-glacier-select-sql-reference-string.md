@@ -60,7 +60,11 @@ LOWER('AbCdEfG!@#$') -- 'abcdefg!@#$'
 Given a string, a start index, and optionally a length, returns the substring from the start index up to the end of the string, or up to the length provided\.
 
 **Note**  
-The first character of the input string has index 1\. If `start` is < 1, it is set to 1\.
+The first character of the input string has index 1\.  
+ If `start` is < 1, with no length specified then it is set to 1\. 
+ If `start` is < 1, with length specified then it is set to `start + length -1`\. 
+ If `start + length -1` < 0 then an empty string is returned\. 
+ If `start + length -1` > = 0 then the sub\-string starting at index 1 with length `start + length - 1` is returned\. 
 
 ### Syntax<a name="s3-glacier-select-sql-reference-substring-syntax"></a>
 

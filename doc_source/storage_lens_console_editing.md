@@ -17,7 +17,7 @@ The dashboard scope of the default dashboard, which is scoped to your entire acc
 
 1. On the dashboard configuration page, in the **General** section, you can update and add tags to your dashboard\.
 
-   You can use tags to manage permissions for your dashboard and to track costs for S3 Storage Lens\. For more information, see [Controlling access using resource tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *IAM User Guide* and [AWS\-Generated Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+   You can use tags to manage permissions for your dashboard and to track costs for S3 Storage Lens\. For more information, see [Controlling access using resource tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *IAM User Guide* and [AWS\-Generated Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tags.html) in the *AWS Billing User Guide*\.
 **Note**  
 You can add up to 50 tags to your dashboard configuration\.
 

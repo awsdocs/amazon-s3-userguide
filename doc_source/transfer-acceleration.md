@@ -1,6 +1,6 @@
 # Configuring fast, secure file transfers using Amazon S3 Transfer Acceleration<a name="transfer-acceleration"></a>
 
-Amazon S3 Transfer Acceleration is a bucket\-level feature that enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket\. Transfer Acceleration takes advantage of the globally distributed edge locations in Amazon CloudFront\. As the data arrives at an edge location, the data is routed to Amazon S3 over an optimized network path\.
+Amazon S3 Transfer Acceleration is a bucket\-level feature that enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket\. Transfer Acceleration is designed to optimize transfer speeds from across the world into S3 buckets\. Transfer Acceleration takes advantage of the globally distributed edge locations in Amazon CloudFront\. As the data arrives at an edge location, the data is routed to Amazon S3 over an optimized network path\.
 
 When you use Transfer Acceleration, additional data transfer charges might apply\. For more information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 

@@ -117,7 +117,7 @@ The preceding bucket policy grants the `s3:GetBucketAcl` permission `DOC-EXAMPLE
       ],
       "Resource": [
         "arn:aws:s3:::DOC-EXAMPLE-BUCKET1",
-        "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
+	 	"arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
       ]
     },
     {
@@ -133,7 +133,7 @@ The preceding bucket policy grants the `s3:GetBucketAcl` permission `DOC-EXAMPLE
       ],
       "Resource": [
         "arn:aws:s3:::DOC-EXAMPLE-BUCKET1",
-        "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
+	    "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
       ]
     }
   ]

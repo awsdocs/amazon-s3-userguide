@@ -72,7 +72,7 @@ When you delete a delete marker, Amazon S3 includes the following in the respons
 
 ## Using the AWS SDKs<a name="remove-delete-marker-examples-sdk"></a>
 
-TFor information about using other AWS SDKs, see the [AWSDeveloper Center](https://aws.amazon.com/code/)\.
+For information about using other AWS SDKs, see the [AWSDeveloper Center](https://aws.amazon.com/code/)\.
 
 ------
 #### [ Python ]

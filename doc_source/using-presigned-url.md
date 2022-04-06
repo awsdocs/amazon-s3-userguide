@@ -50,5 +50,5 @@ For more information about using a presigned URL to share or upload objects, see
 + [Limiting presigned URL capabilities](#PresignedUrlUploadObject-LimitCapabilities)
 + [Who can create a presigned URL](#who-presigned-url)
 + [Sharing objects using presigned URLs](ShareObjectPreSignedURL.md)
-+ [Uploading objects using presigned URLs](PresignedUrlUploadObject.md)
++ [Generating a presigned URL to upload an object](PresignedUrlUploadObject.md)
 + [Deleting an object using a presigned URL with the AWS SDK for JavaScript](PresignedUrlDelete.md)

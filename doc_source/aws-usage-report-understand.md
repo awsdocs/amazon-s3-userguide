@@ -121,7 +121,9 @@ The first column in the following table lists usage types that appear in your bi
 |  `region-Select-Scanned-SIA-Bytes`  |  GB  |  Hourly  |  The amount of data scanned with Select requests from S3 Standard\-IA storage  | 
 |  `region-Select-Scanned-ZIA-Bytes`  |  GB  |  Hourly  |  The amount of data scanned with Select requests from S3 One Zone\-IA storage  | 
 |  `region-Standard-Retrieval-Bytes`  |  GB  |  Hourly  |  The amount of data retrieved with standard S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive requests  | 
-|  `region-StorageAnalytics-ObjCount`  |  Objects  |  Hourly  |  The number of unique objects in each object group \(where objects are grouped by bucket or prefix\) tracked by storage analytics  | 
+|  `region-StorageAnalytics-ObjCount`  |  Objects  |  Hourly  |  The number of unique objects monitored in each Storage Class Analysis configuration\.  | 
+|  `region-StorageLens-ObjCount`  |  Objects  |  Daily  |  The number of unique objects in each S3 Storage Lens dashboard that are tracked by S3 Storage Lens advanced metrics and recommendations\.  | 
+|  `region-StorageLensFreeTier-ObjCount`  |  Objects  |  Daily  |  The number of unique objects in each S3 Storage Lens dashboard that are tracked by S3 Storage Lens usage metrics\.  | 
 |  `region-TagStorage-TagHrs`  |  Tag\-Hours  |  Daily  |  The total of tags on all objects in the bucket reported by hour  | 
 |  `region-TimedStorage-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Standard storage  | 
 |  `region-TimedStorage-GDA-ByteHrs`  |  GB\-Hours  |  Daily  |  The number of GB\-hours that data was stored in S3 Glacier Deep Archive storage  | 

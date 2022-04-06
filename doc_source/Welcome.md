@@ -116,7 +116,7 @@ An object is uniquely identified within a bucket by a [key \(name\)](#BasicsKeys
 
 An *object key* \(or *key name*\) is the unique identifier for an object within a bucket\. Every object in a bucket has exactly one key\. The combination of a bucket, object key, and optionally, version ID \(if S3 Versioning is enabled for the bucket\) uniquely identify each object\. So you can think of Amazon S3 as a basic data map between "bucket \+ key \+ version" and the object itself\. 
 
-Every object in Amazon S3 can be uniquely addressed through the combination of the web service endpoint, bucket name, key, and optionally, a version\. For example, in the URL `https://DOC-EXAMPLE-BUCKET.s3.us-west-2.amazonaws.com/photos/puppy.jpg`, `DOC-EXAMPLE-BUCKET` is the name of the bucket and `/photos/puppy.jpg` is the key\.
+Every object in Amazon S3 can be uniquely addressed through the combination of the web service endpoint, bucket name, key, and optionally, a version\. For example, in the URL `https://DOC-EXAMPLE-BUCKET.s3.us-west-2.amazonaws.com/photos/puppy.jpg`, `DOC-EXAMPLE-BUCKET` is the name of the bucket and `photos/puppy.jpg` is the key\.
 
 For more information about object keys, see [Creating object key names](object-keys.md)\. 
 

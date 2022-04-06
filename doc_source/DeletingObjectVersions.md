@@ -22,7 +22,7 @@ A `DELETE` request has the following use cases:
 
 ## To delete object versions<a name="delete-object-version"></a>
 
-You can delete object versions in Amazon S3 using the console, AWS SDKs, or the REST API\.
+You can delete object versions in Amazon S3 using the console, AWS SDKs, the REST API, or the AWS Command Line Interface\.
 
 ### Using the S3 console<a name="deleting-object-versions"></a>
 
@@ -97,6 +97,16 @@ The following example deletes version `UIORUnfnd89493jJFJ` of `photo.gif`\.
 5. Content-Type: text/plain
 6. Content-Length: 0
 ```
+
+### Using the AWS CLI<a name="delete-obj-version-enabled-bucket-cli"></a>
+
+The following command deletes an object named test\.txt from a bucket named *DOC\-EXAMPLE\-BUCKET1*\. To remove a specific version of an object, you must be the bucket owner and you must use the version Id subresource\.
+
+```
+aws s3api delete-object --bucket DOC-EXAMPLE-BUCKET1 --key test.txt --version-id versionID
+```
+
+For more information about `delete-object` see [delete\-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html) in the *AWS CLI Command Reference*\.
 
 For more information about deleting object versions, see the following topics:
 + [Working with delete markers](DeleteMarker.md)

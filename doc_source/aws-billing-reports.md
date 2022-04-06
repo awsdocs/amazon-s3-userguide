@@ -1,6 +1,6 @@
 # AWS Billing reports for Amazon S3<a name="aws-billing-reports"></a>
 
-Your monthly bill from AWS separates your usage information and cost by AWS service and function\. There are several AWS billing reports available, the monthly report, the cost allocation report, and detailed billing reports\. For information about how to see your billing reports, see [Viewing Your Bill](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/getting-viewing-bill.html) in the *AWS Billing and Cost Management User Guide*\.
+Your monthly bill from AWS separates your usage information and cost by AWS service and function\. There are several AWS billing reports available, the monthly report, the cost allocation report, and detailed billing reports\. For information about how to see your billing reports, see [Viewing Your Bill](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/getting-viewing-bill.html) in the *AWS Billing User Guide*\.
 
 You can also download a usage report that gives more detail about your Amazon S3 storage usage than the billing reports\. For more information, see [AWS usage report for Amazon S3](aws-usage-report.md)\.
 

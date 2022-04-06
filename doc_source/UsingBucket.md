@@ -8,14 +8,16 @@ Every object is contained in a bucket\. For example, if the object named `photos
 
 In terms of implementation, buckets and objects are AWS resources, and Amazon S3 provides APIs for you to manage them\. For example, you can create a bucket and upload objects using the Amazon S3 API\. You can also use the Amazon S3 console to perform these operations\. The console uses the Amazon S3 APIs to send requests to Amazon S3\. 
 
-An Amazon S3 bucket name is globally unique, and the namespace is shared by all AWS accounts\. This means that after a bucket is created, the name of that bucket cannot be used by another AWS account in any AWS Region until the bucket is deleted\. You should not depend on specific bucket naming conventions for availability or security verification purposes\. For bucket naming guidelines, see [Bucket naming rules](bucketnamingrules.md)\.
+This section describes how to work with buckets\. For information about working with objects, see [Amazon S3 objects overview](UsingObjects.md)\.
+
+ Amazon S3 supports global buckets, which means that each bucket name must be unique across all AWS accounts in all the AWS Regions within a partition\. A partition is a grouping of Regions\. AWS currently has three partitions: `aws` \(Standard Regions\), `aws-cn` \(China Regions\), and `aws-us-gov` \(AWS GovCloud \(US\)\)\. 
+
+ After a bucket is created, the name of that bucket cannot be used by another AWS account in the same partition until the bucket is deleted\. You should not depend on specific bucket naming conventions for availability or security verification purposes\. For bucket naming guidelines, see [Bucket naming rules](bucketnamingrules.md)\.
 
 Amazon S3 creates buckets in a Region that you specify\. To optimize latency, minimize costs, or address regulatory requirements, choose any AWS Region that is geographically close to you\. For example, if you reside in Europe, you might find it advantageous to create buckets in the Europe \(Ireland\) or Europe \(Frankfurt\) Regions\. For a list of Amazon S3 Regions, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\.
 
 **Note**  
 Objects that belong to a bucket that you create in a specific AWS Region never leave that Region, unless you explicitly transfer them to another Region\. For example, objects that are stored in the Europe \(Ireland\) Region never leave it\. 
-
-This section describes how to work with buckets\. For information about working with objects, see [Amazon S3 objects overview](UsingObjects.md)\.
 
 **Topics**
 + [About permissions](#about-access-permissions-create-bucket)

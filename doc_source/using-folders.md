@@ -11,8 +11,9 @@ Here are two more examples:
 You can have folders within folders, but not buckets within buckets\. You can upload and copy objects directly into a folder\. Folders can be created, deleted, and made public, but they cannot be renamed\. Objects can be copied from one folder to another\. 
 
 **Important**  
-The Amazon S3 console treats all objects that have a forward slash \("/"\) character as the last \(trailing\) character in the key name as a folder, for example `examplekeyname/`\. You can't upload an object that has a key name with a trailing "/" character using the Amazon S3 console\. However, you can upload objects that are named with a trailing "/" with the Amazon S3 API by using the AWS CLI, AWS SDKs, or REST API\.   
-An object that is named with a trailing "/" appears as a folder in the Amazon S3 console\. The Amazon S3 console does not display the content and metadata for such an object\. When you use the console to copy an object named with a trailing "/", a new folder is created in the destination location, but the object's data and metadata are not copied\. 
+When you use the Amazon S3 console to create a folder, Amazon S3 creates a 0\-byte object with a key that's set to the folder name that you provided\. For example, if you create a folder named `photos` in your bucket, the Amazon S3 console creates a 0\-byte object with the key `photos/`\. The console creates this object to support the idea of folders\.   
+The Amazon S3 console treats all objects that have a forward slash \(`/`\) character as the last \(trailing\) character in the key name as a folder \(for example, `examplekeyname/`\)\. You can't upload an object that has a key name with a trailing `/` character by using the Amazon S3 console\. However, you can upload objects that are named with a trailing `/` with the Amazon S3 API by using the AWS CLI, AWS SDKs, or REST API\.   
+An object that is named with a trailing `/` appears as a folder in the Amazon S3 console\. The Amazon S3 console does not display the content and metadata for such an object\. When you use the console to copy an object named with a trailing `/`, a new folder is created in the destination location, but the object's data and metadata are not copied\. 
 
 **Topics**
 + [Creating a folder](#create-folder)

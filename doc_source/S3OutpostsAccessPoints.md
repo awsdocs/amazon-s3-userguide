@@ -1,6 +1,6 @@
 # Working with Amazon S3 on Outposts access points<a name="S3OutpostsAccessPoints"></a>
 
-To access your Amazon S3 on Outposts, you must create and configure an access point\.
+To access your Amazon S3 on Outposts bucket, you must create and configure an access point\.
 
 Access points simplify managing data access at scale for shared datasets in Amazon S3\. Access points are named network endpoints that are attached to buckets that you can use to perform Amazon S3 object operations, such as `GetObject` and `PutObject`\. With S3 on Outposts, you must use access points to access any object in an Outposts bucket\. Access points support only virtual\-host\-style addressing\.
 

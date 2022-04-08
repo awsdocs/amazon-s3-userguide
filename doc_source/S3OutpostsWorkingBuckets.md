@@ -79,7 +79,7 @@ For more information about creating and managing S3 on Outposts buckets, see the
 + [Creating an S3 on Outposts bucket](S3OutpostsCreateBucket.md)
 + [Adding tags for Amazon S3 on Outposts buckets](S3OutpostsBucketTags.md)
 + [Creating and managing a lifecycle configuration for your Amazon S3 on Outposts bucket](S3OutpostsLifecycleManaging.md)
-+ [Managing access to your Amazon S3 on Outposts bucket using your bucket policy](S3OutpostsBucketPolicy.md)
++ [Managing access to an Amazon S3 on Outposts bucket using a bucket policy](S3OutpostsBucketPolicy.md)
 + [Listing Amazon S3 on Outposts buckets](S3OutpostsListBuckets.md)
 + [Getting an S3 on Outposts bucket using the AWS CLI and the SDK for Java](S3OutpostsGetBucket.md)
 + [Deleting your Amazon S3 on Outposts bucket](S3OutpostsDeleteBucket.md)

@@ -6,7 +6,7 @@ Lifecycle rules for S3 on Outposts buckets are limited to object deletion\. You 
 The AWS account that creates the bucket owns it and is the only one that can create, enable, disable, or delete a lifecycle rule\.
 
 **Note**  
-The AWS account that creates the bucket owns it and is the only one that can commit actions to it\. Buckets have configuration properties, such as Outpost, tag, default encryption, and access point settings\. Access point settings include the virtual private cloud \(VPC\), the access point policy for accessing the objects in the bucket, and other metadata\. For more information, see [S3 on Outposts specifications](S3OnOutpostsRestrictionsLimitations.md#S3OnOutpostsSpecifications)\.
+The AWS account that creates the bucket owns it and is the only one that can commit actions to it\. Buckets have configuration properties, such as Outpost, tag, default encryption, and access point settings\. The access point settings include the virtual private cloud \(VPC\), the access point policy for accessing the objects in the bucket, and other metadata\. For more information, see [S3 on Outposts specifications](S3OnOutpostsRestrictionsLimitations.md#S3OnOutpostsSpecifications)\.
 
 To create and manage the lifecycle configuration for your S3 on Outposts bucket, see the following topics\.
 

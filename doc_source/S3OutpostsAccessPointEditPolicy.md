@@ -1,14 +1,14 @@
 # Adding or editing an access point policy<a name="S3OutpostsAccessPointEditPolicy"></a>
 
-Access points have distinct permissions and network controls that S3 on Outposts applies for any request that is made through that access point\. Each access point enforces a customized access point policy that works in conjunction with the bucket policy that is attached to the underlying bucket\. For more information, see [Access points](S3OutpostsWorkingBuckets.md#S3OutpostsAP)\.
+Access points have distinct permissions and network controls that Amazon S3 on Outposts applies for any request that is made through that access point\. Each access point enforces a customized access point policy that works in conjunction with the bucket policy that is attached to the underlying bucket\. For more information, see [Access points](S3OutpostsWorkingBuckets.md#S3OutpostsAP)\.
 
-The following topics show you how to add or edit the access point policy for your S3 on Outposts access point using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), and AWS SDK for Java\.
+The following topics show you how to add or edit the access point policy for your S3 on Outposts access point by using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), and AWS SDK for Java\.
 
 ## Using the S3 console<a name="s3-outposts-bucket-edit-accesspoint"></a>
 
 1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
-1. In the navigation pane, choose **Outposts buckets**\.
+1. In the left navigation pane, choose **Outposts buckets**\.
 
 1. Choose the Outposts bucket that you want to edit the access point policy for\.
 
@@ -22,7 +22,7 @@ The following topics show you how to add or edit the access point policy for you
 
 The following AWS CLI example puts a policy on an Outposts access point\.
 
-1. Save the access point policy to a JSON file\. In this example, the file is named `appolicy1.json`\.
+1. Save the following access point policy to a JSON file\. In this example, the file is named `appolicy1.json`\. Replace the `user input placeholders` with your own information\.
 
    ```
    {
@@ -36,16 +36,16 @@ The following AWS CLI example puts a policy on an Outposts access point\.
                "AWS":"123456789012"
             },
             "Action":"s3-outposts:*",
-            "Resource":"arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point
+            "Resource":"arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-outposts-access-point
          }
       ]
    }
    ```
 
-1. Submit the JSON file as part of the put access point policy CLI command\.
+1. Submit the JSON file as part of the `put-access-point-policy` CLI command\. Replace the `user input placeholders` with your own information\.
 
    ```
-   aws s3control put-access-point-policy --account-id 123456789012 --name arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point --policy file://appolicy1.json
+   aws s3control put-access-point-policy --account-id 123456789012 --name arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-outposts-access-point --policy file://appolicy1.json
    ```
 
 ## Using the AWS SDK for Java<a name="S3OutpostsPutAccessPointPolicyJava"></a>

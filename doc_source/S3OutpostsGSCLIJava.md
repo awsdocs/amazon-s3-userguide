@@ -1,6 +1,6 @@
 # Getting started using the AWS CLI and SDK for Java<a name="S3OutpostsGSCLIJava"></a>
 
-With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and easily store and retrieve objects on premises for applications that require local data access, local data processing, and data residency\. S3 on Outposts provides a new storage class, S3 Outposts \(`OUTPOSTS`\), which uses the S3 APIs, and is designed to store data durably and redundantly across multiple devices and servers on your AWS Outposts\. You communicate with your Outpost bucket by using an access point and endpoint connection over a virtual private cloud \(VPC\)\. You can use the same APIs and features on Outpost buckets as you do on Amazon S3 buckets, including access policies, encryption, and tagging\. You can use S3 on Outposts through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\. For more information, see [What is Amazon S3 on Outposts?](S3onOutposts.md)
+With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and easily store and retrieve objects on premises for applications that require local data access, local data processing, and data residency\. S3 on Outposts provides a new storage class, S3 Outposts \(`OUTPOSTS`\), which uses the Amazon S3 APIs, and is designed to store data durably and redundantly across multiple devices and servers on your AWS Outposts\. You communicate with your Outpost bucket by using an access point and endpoint connection over a virtual private cloud \(VPC\)\. You can use the same APIs and features on Outpost buckets as you do on Amazon S3 buckets, including access policies, encryption, and tagging\. You can use S3 on Outposts through the AWS Management Console, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\. For more information, see [What is Amazon S3 on Outposts?](S3onOutposts.md)
 
 To get started with S3 on Outposts, you must create a bucket, an access point, and an endpoint\. Then, you can upload objects to your bucket\. The following examples show you how to get started with S3 on Outposts using the AWS CLI and SDK for Java\. To get started using the console, see [Getting started using the AWS Management Console](S3OutpostsGSConsole.md)\.
 
@@ -18,7 +18,7 @@ The following AWS CLI and SDK for Java examples show you how to create an S3 on 
 #### [ AWS CLI ]
 
 **Example**  
-The following example creates an S3 on Outposts bucket \(`s3-outposts:CreateBucket`\) using the AWS CLI\.   
+The following example creates an S3 on Outposts bucket \(`s3-outposts:CreateBucket`\) by using the AWS CLI\. To run this command, replace the `user input placeholders` with your own information\.  
 
 ```
 aws s3control create-bucket --bucket example-outpost-bucket --outpost-id op-01ac5d28a6a232904
@@ -28,7 +28,7 @@ aws s3control create-bucket --bucket example-outpost-bucket --outpost-id op-01ac
 #### [ SDK for Java ]
 
 **Example**  
-The following example creates an S3 on Outposts bucket \(`s3-outposts:CreateBucket`\) using the SDK for Java\.   
+The following example creates an S3 on Outposts bucket \(`s3-outposts:CreateBucket`\) by using the SDK for Java\.   
 
 ```
 import com.amazonaws.services.s3control.model.*;
@@ -60,17 +60,17 @@ Access points simplify managing data access at scale for shared datasets in Amaz
 #### [ AWS CLI ]
 
 **Example**  
-The following AWS CLI example creates an access point for an Outposts bucket\.  
+The following AWS CLI example creates an access point for an Outposts bucket\. To run this command, replace the `user input placeholders` with your own information\.  
 
 ```
-aws s3control create-access-point --account-id 123456789012 --name example-Outposts-Access-Point --bucket "arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket" --vpc-configuration VpcId=example-vpc-12345
+aws s3control create-access-point --account-id 123456789012 --name example-outposts-access-point --bucket "arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket" --vpc-configuration VpcId=example-vpc-12345
 ```
 
 ------
 #### [ SDK for Java ]
 
 **Example**  
-The following SDK for Java example creates an access point for an Outposts bucket\.  
+The following SDK for Java example creates an access point for an Outposts bucket\. To use this example, replace the `user input placeholders` with your own information\.  
 
 ```
 import com.amazonaws.services.s3control.model.*;
@@ -95,7 +95,7 @@ public String createAccessPoint(String bucketArn, String accessPointName) {
 
 ## Step three: Create an endpoint<a name="S3OutpostsGSCreateEndpoint"></a>
 
-To route requests to an S3 on Outposts access point, you must create and configure an S3 on Outposts endpoint\. Each virtual private cloud \(VPC\) on your Outpost can have one associated endpoint\. For more information about endpoint quotas, see [ S3 on Outposts network requirements](S3OnOutpostsRestrictionsLimitations.md#S3OnOutpostsConnectivityRestrictions)\. You must create these endpoints to be able to access your Outposts buckets and perform object operations\. For more information, see [Endpoints](S3OutpostsWorkingBuckets.md#S3OutpostsEP)\.
+To route requests to an Amazon S3 on Outposts access point, you must create and configure an S3 on Outposts endpoint\. Each virtual private cloud \(VPC\) on your Outpost can have one associated endpoint\. For more information about endpoint quotas, see [ S3 on Outposts network requirements](S3OnOutpostsRestrictionsLimitations.md#S3OnOutpostsConnectivityRestrictions)\. You must create these endpoints to be able to access your Outposts buckets and perform object operations\. For more information, see [Endpoints](S3OutpostsWorkingBuckets.md#S3OutpostsEP)\.
 
 These examples show you how to create an endpoint using the AWS CLI and the SDK for Java\. For more information about permissions required to create and manage endpoints, see [Permissions for S3 on Outposts endpoints](S3OutpostsIAM.md#S3OutpostsEndpointPermissions)\.
 
@@ -103,12 +103,12 @@ These examples show you how to create an endpoint using the AWS CLI and the SDK 
 #### [ AWS CLI ]
 
 **Example**  
-The following AWS CLI example creates an endpoint for an Outpost using the AWS VPC resource access type\. The VPC is derived from the subnet\.  
+The following AWS CLI example creates an endpoint for an Outpost by using the VPC resource access type\. The VPC is derived from the subnet\. To run this command, replace the `user input placeholders` with your own information\.  
 
 ```
 aws s3outposts create-endpoint --outpost-id op-01ac5d28a6a232904 --subnet-id subnet-8c7a57c5 --security-group-id sg-ab19e0d1
 ```
-The following AWS CLI example creates an endpoint for an Outpost using the customer\-owned IP address pool \(CoIP pool\) access type\.  
+The following AWS CLI example creates an endpoint for an Outpost by using the customer\-owned IP address pool \(CoIP pool\) access type\. To run this command, replace the `user input placeholders` with your own information\.  
 
 ```
 aws s3outposts create-endpoint --outpost-id op-01ac5d28a6a232904 --subnet-id subnet-8c7a57c5 --security-group-id sg-ab19e0d1 --access-type CustomerOwnedIp --customer-owned-ipv4-pool ipv4pool-coip-12345678901234567
@@ -118,7 +118,7 @@ aws s3outposts create-endpoint --outpost-id op-01ac5d28a6a232904 --subnet-id sub
 #### [ SDK for Java ]
 
 **Example**  
-The following SDK for Java example creates an endpoint for an Outpost\.  
+The following SDK for Java example creates an endpoint for an Outpost\. To use this example, replace the `user input placeholders` with your own information\.  
 
 ```
 import com.amazonaws.services.s3outposts.AmazonS3Outposts;
@@ -147,13 +147,13 @@ public void createEndpoint() {
 
 ## Step four: Upload an object to an S3 on Outposts bucket<a name="S3OutpostsUploadObjects"></a>
 
-Objects are the fundamental entities stored in S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\), which includes the AWS Region code for the Region the Outpost is homed to, AWS account ID, Outpost ID, and access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
+Objects are the fundamental entities stored in S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\), which includes the AWS Region code for the Region that the Outpost is homed to, the AWS account ID, the Outpost ID, and the access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
 
 ```
 arn:aws:s3-outposts:region:account-id:outpost/outpost-id/accesspoint/accesspoint-name
 ```
 
-With S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS CLI, and AWS SDKs to upload and manage your objects through your access points\.
+With S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS CLI, and AWS SDKs to upload and manage your objects through your access points\.
 
 The following AWS Command Line Interface \(AWS CLI\) and AWS SDK for Java examples show you how to upload an object to an S3 on Outposts bucket using an access point\.
 
@@ -164,7 +164,7 @@ The following AWS Command Line Interface \(AWS CLI\) and AWS SDK for Java exampl
 The following example puts an object named `sample-object.xml` into an S3 on Outposts bucket \(`s3-outposts:PutObject`\) using the AWS CLI\. The example includes the object key and access point ARN \(with the AWS account ID, Outposts ID, and access point name\):  
 
 ```
-aws s3api put-object --bucket arn:aws:s3-outposts:Region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point --key sample-object.xml --body sample-object.xml
+aws s3api put-object --bucket arn:aws:s3-outposts:Region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-outposts-access-point --key sample-object.xml --body sample-object.xml
 ```
 
 ------

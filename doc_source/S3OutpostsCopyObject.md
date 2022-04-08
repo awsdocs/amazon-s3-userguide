@@ -1,4 +1,4 @@
-# Using HeadBucket to determine if an S3 on Outposts bucket exists and you have access permissions<a name="S3OutpostsHeadBucket"></a>
+# Copying an object in an Amazon S3 on Outposts bucket using the AWS SDK for Java<a name="S3OutpostsCopyObject"></a>
 
 Objects are the fundamental entities stored in S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\), which includes the AWS Region code for the Region that the Outpost is homed to, the AWS account ID, the Outpost ID, and the access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
 
@@ -6,36 +6,26 @@ Objects are the fundamental entities stored in S3 on Outposts\. Every object is 
 arn:aws:s3-outposts:region:account-id:outpost/outpost-id/accesspoint/accesspoint-name
 ```
 
-**Note**  
 With S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS CLI, and AWS SDKs to upload and manage your objects through your access points\.
 
-The following AWS Command Line Interface \(AWS CLI\) and AWS SDK for Java examples show you how to use HeadBucket to determine if an Amazon S3 on Outposts bucket exists and you have permission to access it\. For more information, see the [Head Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html) in the *Amazon Simple Storage Service API Reference*\.
+The following example shows you how to copy an object in an S3 on Outposts bucket by using the AWS SDK for Java\.
 
-## Using the AWS CLI<a name="S3OutpostsHeadBucketCLI"></a>
+## Using the AWS SDK for Java<a name="S3OutpostsCopyObjectJava"></a>
 
-The following S3 on Outposts AWS CLI example uses `head-bucket` to determine if a bucket exists and you have permissions to access it\.
-
-```
-aws s3api head-bucket --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-outposts-access-point
-```
-
-**Note**  
-When using this action with Amazon S3 on Outposts through the AWS SDKs, you provide the Outposts access point ARN in place of the bucket name, in the following form: `arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point`\. For more information about S3 on Outposts ARNs, see [ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
-
-## Using the AWS SDK for Java<a name="S3OutpostsHeadBucketJava"></a>
-
-The following S3 on Outposts example shows how to determine if a bucket exists and if you have permission to access it\.
+The following S3 on Outposts example copies an object into a new object in the same bucket by using the SDK for Java\. To use this example, replace the `user input placeholders` with your own information\.
 
 ```
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.HeadBucketRequest;
+import com.amazonaws.services.s3.model.CopyObjectRequest;
 
-public class HeadBucket {
+public class CopyObject {
     public static void main(String[] args) {
         String accessPointArn = "*** access point ARN ***";
+        String sourceKey = "*** Source object key ***";
+        String destinationKey = "*** Destination object key ***";
 
         try {
             // This code expects that you have AWS credentials set up per:
@@ -44,7 +34,9 @@ public class HeadBucket {
                     .enableUseArnRegion()
                     .build();
 
-            s3Client.headBucket(new HeadBucketRequest(accessPointArn));
+            // Copy the object into a new object in the same bucket.
+            CopyObjectRequest copyObjectRequest = new CopyObjectRequest(accessPointArn, sourceKey, accessPointArn, destinationKey);
+            s3Client.copyObject(copyObjectRequest);
         } catch (AmazonServiceException e) {
             // The call was transmitted successfully, but Amazon S3 couldn't process
             // it, so it returned an error response.

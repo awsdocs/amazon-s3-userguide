@@ -1,6 +1,6 @@
 # CORS configuration<a name="ManageCorsUsing"></a>
 
-To configure your bucket to allow cross\-origin requests, you create a CORS configuration\. The CORS configuration is a document with rules that identify the origins that you will allow to access your bucket, the operations \(HTTP methods\) that will support for each origin, and other operation\-specific information\. You can add up to 100 rules to the configuration\. You can add the CORS configuration as the `cors` subresource to the bucket\.
+To configure your bucket to allow cross\-origin requests, you create a CORS configuration\. The CORS configuration is a document with rules that identify the origins that you will allow to access your bucket, the operations \(HTTP methods\) that you will support for each origin, and other operation\-specific information\. You can add up to 100 rules to the configuration\. You can add the CORS configuration as the `cors` subresource to the bucket\.
 
 If you are configuring CORS in the S3 console, you must use JSON to create a CORS configuration\. The new S3 console only supports JSON CORS configurations\. 
 

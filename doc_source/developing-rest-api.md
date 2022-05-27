@@ -8,7 +8,7 @@ You can use any toolkit that supports HTTP to use the REST API\. You can even us
 
 The REST API uses the standard HTTP headers and status codes, so that standard browsers and toolkits work as expected\. In some areas, we have added functionality to HTTP \(for example, we added headers to support access control\)\. In these cases, we have done our best to add the new functionality in a way that matched the style of standard HTTP usage\.
 
-For more information about using the REST API to develop with Amazon S3, see the topics below\.
+For more information about sending requests using the REST API, see [Making requests using the REST API](RESTAPI.md)\. For some considerations you should keep in mind when using the REST API, see the topics below\.
 
 **Topics**
 + [Request routing](UsingRouting.md)

@@ -46,7 +46,7 @@ For more information about buckets, see [Working with S3 on Outposts buckets](S3
 
 Objects are the fundamental entities stored in S3 on Outposts\. Objects consist of object data and metadata\. The metadata is a set of name\-value pairs that describe the object\. These pairs include some default metadata, such as the date last modified, and standard HTTP metadata, such as `Content-Type`\. You can also specify custom metadata at the time that the object is stored\. An object is uniquely identified within a bucket by a [key \(or name\)](Welcome.md#BasicsKeys)\.
 
-With S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS CLI, and AWS SDKs to upload and manage your objects through your access points\.
+With Amazon S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS Command Line Interface \(AWS CLI\), and AWS SDKs to upload and manage your objects through your access points\.
 
 ### Keys<a name="BasicsKeysS3Outposts"></a>
 
@@ -143,12 +143,12 @@ For more information, see [AWS Outposts rack pricing](http://aws.amazon.com/outp
 ## Next steps<a name="S3OutpostsNextSteps"></a>
 
 For more information about working with S3 on Outposts, see the following topics:
-+ [Setting up your AWS Outpost](OrderOutposts.md)
++ [Setting up your Outpost](OrderOutposts.md)
 + [How is Amazon S3 on Outposts different from Amazon S3?](S3OnOutpostsRestrictionsLimitations.md)
-+ [Getting started with S3 on Outposts](S3OutpostsGS.md)
++ [Getting started with Amazon S3 on Outposts](S3OutpostsGS.md)
 + [Networking for S3 on Outposts](S3OutpostsNetworking.md)
 + [Working with S3 on Outposts buckets](S3OutpostsWorkingBuckets.md)
 + [Working with S3 on Outposts objects](S3OutpostsWorkingObjects.md)
 + [Security in S3 on Outposts](s3outposts-security.md)
 + [Managing S3 on Outposts storage ](S3OutpostsManaging.md)
-+ [Developing with S3 on Outposts](S3OutpostsDeveloping.md)
++ [Developing with Amazon S3 on Outposts](S3OutpostsDeveloping.md)

@@ -62,7 +62,7 @@ int main()
   
 
 ```
-    // Delete the bucket policy
+    // Delete the bucket policy.
     public static void deleteS3BucketPolicy(S3Client s3, String bucketName) {
 
        DeleteBucketPolicyRequest delReq = DeleteBucketPolicyRequest.builder()

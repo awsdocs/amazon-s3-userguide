@@ -140,13 +140,10 @@ It may take up to 48 hours to deliver the first report\.
       Amazon S3 server\-side encryption uses 256\-bit Advanced Encryption Standard \(AES\-256\)\. For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. For more information about SSE\-KMS, see [Protecting data using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
 
    1. To use an AWS KMS key, choose one of the following:
-      + **AWS managed key \(aws/s3\)**
       + **Choose from your AWS KMS keys**, and choose your **KMS key**\.
       + **Enter AWS KMS key ARN**, and enter your AWS KMS key ARN\.
 **Note**  
-To encrypt the inventory list file with SSE\-KMS, you must grant Amazon S3 permission to use the AWS KMS key\. For instructions, see [Grant Amazon S3 Permission to Encrypt Using Your KMS Keys](#configure-inventory-kms-key-policy)\.
-**Note**  
-If you use encryption for cross\-account operations of Amazon S3 inventory configuration in the destination bucket, you should use fully qualified KMS key ARN\. For more information, see [Using encryption for cross\-account operations](bucket-encryption.md#bucket-encryption-update-bucket-policy)\.
+To encrypt the inventory list file with SSE\-KMS, you must grant Amazon S3 permission to use the AWS KMS key\. Therefore, you can only use a [customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) and not the [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) \(aws/s3\)\. For instructions, see [Granting Amazon S3 permission to use your AWS KMS key for encryption](#configure-inventory-kms-key-policy)\.
 
 1. For **Additional fields**, select one or more of the following to add to the inventory report:
    + **Size** – The object size in bytes\.
@@ -154,7 +151,7 @@ If you use encryption for cross\-account operations of Amazon S3 inventory confi
    + **Storage class** – The storage class used for storing the object\. 
    + **ETag** – The entity tag is a hash of the object\. The ETag reflects changes only to the contents of an object, and not its metadata\. The ETag may or may not be an MD5 digest of the object data\. Whether it is depends on how the object was created and how it is encrypted\.
    +  **Multipart upload** – Specifies that the object was uploaded as a multipart upload\. For more information, see [Uploading and copying objects using multipart upload](mpuoverview.md)\.
-   + **Replication status** – The replication status of the object\. For more information, see [Using the S3 console](enable-replication.md)\.
+   + **Replication status** – The replication status of the object\. For more information, see [Using the S3 console](replication-walkthrough1.md#enable-replication)\.
    + **Encryption status** – The server\-side encryption used to encrypt the object\. For more information, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.
    + **S3 Object Lock configurations** – The Object Lock status of the object, including the following settings: 
      + **Retention mode** – The level of protection applied to the object, either *Governance* or *Compliance*\.

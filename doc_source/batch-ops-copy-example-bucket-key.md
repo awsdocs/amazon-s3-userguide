@@ -58,21 +58,21 @@ Although the following steps show how to filter using [Amazon S3 Select](http://
    The following JSON is an example `manifest.json` file for a CSV\-formatted inventory on a bucket with versioning enabled\. Depending on how you configured your inventory report, your manifest might look different\.
 
    ```
-     {
-       "sourceBucket": "batchoperationsdemo",
-       "destinationBucket": "arn:aws:s3:::testbucket",
-       "version": "2021-05-22",
-       "creationTimestamp": "1558656000000",
-       "fileFormat": "CSV",
-       "fileSchema": "Bucket, Key, VersionId, IsLatest, IsDeleteMarker, BucketKeyStatus",
-       "files": [
-         {
-           "key": "demoinv/batchoperationsdemo/DemoInventory/data/009a40e4-f053-4c16-8c75-6100f8892202.csv.gz",
-           "size": 72691,
-           "MD5checksum": "c24c831717a099f0ebe4a9d1c5d3935c"
-         }
-       ]
-     }
+   {
+     "sourceBucket": "batchoperationsdemo",
+     "destinationBucket": "arn:aws:s3:::testbucket",
+     "version": "2021-05-22",
+     "creationTimestamp": "1558656000000",
+     "fileFormat": "CSV",
+     "fileSchema": "Bucket, Key, VersionId, IsLatest, IsDeleteMarker, BucketKeyStatus",
+     "files": [
+       {
+         "key": "demoinv/batchoperationsdemo/DemoInventory/data/009a40e4-f053-4c16-8c75-6100f8892202.csv.gz",
+         "size": 72691,
+         "MD5checksum": "c24c831717a099f0ebe4a9d1c5d3935c"
+       }
+     ]
+   }
    ```
 
    If versioning isn't activated on the bucket, or if you choose to run the report for the latest versions, the `fileSchema` is `Bucket`, `Key`, and `BucketKeyStatus`\. 
@@ -247,7 +247,7 @@ As part of copying the objects, specify that Amazon S3 should encrypt the object
 
 1. Under **Encryption key type**, choose **AWS KMS key \(SSE\-KMS\)** and choose the AWS KMS key format that you prefer:
    + **AWS managed key \(aws/s3\)**\.
-   + **Choose from your AWS KMS keys**, and choose a symmetric KMS key in the same Region as your bucket\.
+   + **Choose from your AWS KMS keys**, and choose a symmetric encryption KMS key in the same Region as your bucket\.
    + **AWS KMS key ARN**
 
 1. Under **Bucket Key**, choose **Enable**, and then choose **Save changes**\.

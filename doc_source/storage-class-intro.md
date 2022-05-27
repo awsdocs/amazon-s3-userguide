@@ -79,15 +79,18 @@ To learn more about the Amazon S3 Glacier service, see the [Amazon S3 Glacier De
 
 ## Storage class for Amazon S3 on Outposts<a name="s3-outposts"></a>
 
-With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and store and retrieve objects on\-premises for applications that require local data access, local data processing, and data residency\. S3 on Outposts provides a new storage class, S3 Outposts \(`OUTPOSTS`\)\. You can use the same APIs and features on AWS Outposts as you do on Amazon S3, including access policies, encryption, and tagging\. 
+With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts resources and store and retrieve objects on\-premises for applications that require local data access, local data processing, and data residency\. You can use the same APIs and features on AWS Outposts as you do on Amazon S3, including access policies, encryption, and tagging\. You can use S3 on Outposts through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\.
 
-The S3 Outposts storage class is only available for objects stored in buckets on AWS Outposts\. If you try to use this storage class with an S3 bucket in an AWS Region, it results in an `InvalidStorageClass` error\. In addition, if you try to use other S3 storage classes with S3 on Outposts, it results in this same error response\. You can use S3 on Outposts through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\.
+S3 on Outposts provides a new storage class, S3 Outposts \(`OUTPOSTS`\)\. The S3 Outposts storage class is available only for objects stored in buckets on Outposts\. If you try to use this storage class with an S3 bucket in an AWS Region, an `InvalidStorageClass` error occurs\. In addition, if you try to use other S3 storage classes with objects stored in S3 on Outposts buckets, the same error occurs\. 
 
-Objects stored in the S3 Outposts \(`OUTPOSTS`\) storage class are always encrypted using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)\. For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. 
+Objects stored in the S3 Outposts \(`OUTPOSTS`\) storage class are always encrypted by using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)\. For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. 
 
-You can also explicitly choose to encrypt objects stored in the S3 Outposts storage class using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. For more information, see [Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)](ServerSideEncryptionCustomerKeys.md)\. 
+You can also explicitly choose to encrypt objects stored in the S3 Outposts storage class by using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. For more information, see [Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)](ServerSideEncryptionCustomerKeys.md)\. 
 
-For more information about S3 on Outposts, see [What is Amazon S3 on Outposts?](S3onOutposts.md)\.
+**Note**  
+S3 on Outposts doesn't support server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\.
+
+For more information about S3 on Outposts, see [What is Amazon S3 on Outposts?](S3onOutposts.md)
 
 ## Comparing the Amazon S3 storage classes<a name="sc-compare"></a>
 

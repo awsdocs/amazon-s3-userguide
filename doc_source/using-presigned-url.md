@@ -4,6 +4,9 @@ All objects and buckets are private by default\. However, you can use a presigne
 
 You can use presigned URLs to generate a URL that can be used to access your Amazon S3 buckets\. When you create a presigned URL, you associate it with a specific action\. You can share the URL, and anyone with access to it can perform the action embedded in the URL as if they were the original signing user\. The URL will expire and no longer work when it reaches its expiration time\.
 
+**Important**  
+For all Regions that launched after March 20, 2019, if a request arrives at the wrong Amazon S3 location, Amazon S3 returns an HTTP 400 Bad Request error\.
+
 ## Limiting presigned URL capabilities<a name="PresignedUrlUploadObject-LimitCapabilities"></a>
 
 The capabilities of a presigned URL are limited by the permissions of the user who created it\. In essence, presigned URLs are a bearer token that grants access to those who possess them\. As such, we recommend that you protect them appropriately\.
@@ -44,11 +47,16 @@ The following are credentials that you can use to create a presigned URL:
 If you created a presigned URL using a temporary token, the URL expires when the token expires, even if the URL was created with a later expiration time\.
 Because presigned URLs grant access to your Amazon S3 buckets to whoever has the URL, we recommend that you protect them appropriately\. For more information about protecting presigned URLs, see [Limiting presigned URL capabilities](#PresignedUrlUploadObject-LimitCapabilities)\.
 
+## When does Amazon S3 check the expiration date and time of a presigned URL?<a name="presigned-url-when-checked"></a>
+
+Amazon S3 checks the expiration date and time of a signed URL at the time of the HTTP request\. For example, if a client begins to download a large file immediately before the expiration time, the download should complete even if the expiration time passes during the download\. If the connection drops and the client tries to restart the download after the expiration time passes, the download will fail\.
+
 For more information about using a presigned URL to share or upload objects, see the following topics\.
 
 **Topics**
 + [Limiting presigned URL capabilities](#PresignedUrlUploadObject-LimitCapabilities)
 + [Who can create a presigned URL](#who-presigned-url)
++ [When does Amazon S3 check the expiration date and time of a presigned URL?](#presigned-url-when-checked)
 + [Sharing objects using presigned URLs](ShareObjectPreSignedURL.md)
 + [Generating a presigned URL to upload an object](PresignedUrlUploadObject.md)
 + [Deleting an object using a presigned URL with the AWS SDK for JavaScript](PresignedUrlDelete.md)

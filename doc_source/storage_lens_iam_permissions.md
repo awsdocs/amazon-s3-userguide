@@ -22,7 +22,7 @@ Using S3 Storage Lens on the Amazon S3 console can require multiple permissions\
 
 | Action | IAM permissions | 
 | --- | --- | 
-| Create or update an S3 Storage Lens dashboard in the Amazon S3 console\. |  `s3:ListStorageLensConfigurations` `s3:GetStorageLensConfiguration` `s3:GetStorageLensConfiguration` `s3:PutStorageLensConfiguration` `s3:PutStorageLensConfigurationTagging`  | 
+| Create or update an S3 Storage Lens dashboard in the Amazon S3 console\. |  `s3:ListStorageLensConfigurations` `s3:GetStorageLensConfiguration` `s3:GetStorageLensConfigurationTagging` `s3:PutStorageLensConfiguration` `s3:PutStorageLensConfigurationTagging`  | 
 | Get tags of an S3 Storage Lens dashboard on the Amazon S3 console\. |  `s3:ListStorageLensConfigurations` `s3:GetStorageLensConfigurationTagging`  | 
 | View an S3 Storage Lens dashboard on the Amazon S3 console\. |  `s3:ListStorageLensConfigurations` `s3:GetStorageLensConfiguration` `s3:GetStorageLensDashboard`  | 
 | Delete an S3 Storage Lens dashboard on Amazon S3 console\. |  `s3:ListStorageLensConfigurations` `s3:GetStorageLensConfiguration` `s3:DeleteStorageLensConfiguration`  | 

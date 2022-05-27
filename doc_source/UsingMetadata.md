@@ -29,6 +29,7 @@ The following table provides a list of system\-defined metadata and whether you 
 | Name | Description | Can user modify the value? | 
 | --- | --- | --- | 
 | Date | Current date and time\. | No | 
+| Cache\-Control | A general header field used to specify caching policies\. | Yes | 
 | Content\-Disposition | Object presentational information\. | Yes | 
 | Content\-Length | Object size in bytes\. | No | 
 | Content\-Type | Object type\. | Yes | 
@@ -39,9 +40,10 @@ The following table provides a list of system\-defined metadata and whether you 
 | x\-amz\-version\-id | Object version\. When you enable versioning on a bucket, Amazon S3 assigns a version number to objects added to the bucket\. For more information, see [Using versioning in S3 buckets](Versioning.md)\. | No | 
 | x\-amz\-delete\-marker | In a bucket that has versioning enabled, this Boolean marker indicates whether the object is a delete marker\.  | No | 
 | x\-amz\-storage\-class | Storage class used for storing the object\. For more information, see [Using Amazon S3 storage classes](storage-class-intro.md)\. | Yes | 
-| x\-amz\-website\-redirect\-location |  Redirects requests for the associated object to another object in the same bucket or an external URL\. For more information, see [\(Optional\) Configuring a webpage redirect](how-to-page-redirect.md)\. | Yes | 
-| x\-amz\-server\-side\-encryption\-aws\-kms\-key\-id | If x\-amz\-server\-side\-encryption is present and has the value of aws:kms, this indicates the ID of the AWS KMS symmetric KMS key that was used for the object\. | Yes | 
+| x\-amz\-website\-redirect\-location |  Redirects requests for the associated object to another object in the same bucket or an external URL\. For more information, see [\(Optional\) Configuring a webpage redirect](how-to-page-redirect.md)\. This value is unique to each individual object and is not copied by default\. | Yes | 
+| x\-amz\-server\-side\-encryption\-aws\-kms\-key\-id | If x\-amz\-server\-side\-encryption is present and has the value of aws:kms, this indicates the ID of the AWS KMS symmetric encryption KMS key that was used for the object\. | Yes | 
 | x\-amz\-server\-side\-encryption\-customer\-algorithm | Indicates whether server\-side encryption with customer\-provided encryption keys \(SSE\-C\) is enabled\. For more information, see [Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)](ServerSideEncryptionCustomerKeys.md)\.  | Yes | 
+| x\-amz\-tagging | The tag\-set for the object\. The tag\-set must be encoded as URL Query parameters\. | Yes | 
 
 ## User\-defined object metadata<a name="UserMetadata"></a>
 
@@ -50,7 +52,7 @@ When uploading an object, you can also assign metadata to the object\. You provi
 **Note**  
  SOAP support over HTTP is deprecated, but it is still available over HTTPS\. New Amazon S3 features will not be supported for SOAP\. We recommend that you use either the REST API or the AWS SDKs\. 
 
-When metadata is retrieved through the REST API, Amazon S3 combines headers that have the same name \(ignoring case\) into a comma\-delimited list\. If some metadata contains unprintable characters, it is not returned\. Instead, the `x-amz-missing-meta` header is returned with a value of the number of unprintable metadata entries\. The `HeadObject` action retrieves metadata from an object without returning the object itself\. This operation is useful if you're only interested in an object's metadata\. To use HEAD, you must have READ access to the object\. For more information, see [HeadObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html) in the * Amazon Simple Storage Service API Reference*\.
+When metadata is retrieved through the REST API, Amazon S3 combines headers that have the same name \(ignoring case\) into a comma\-delimited list\. If some metadata contains unprintable characters, it is not returned\. Instead, the `x-amz-missing-meta` header is returned with a value of the number of unprintable metadata entries\. The `HeadObject` action retrieves metadata from an object without returning the object itself\. This operation is useful if you're only interested in an object's metadata\. To use HEAD, you must following tablefollowinghave READ access to the object\. For more information, see [HeadObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html) in the * Amazon Simple Storage Service API Reference*\.
 
 User\-defined metadata is a set of key\-value pairs\. Amazon S3 stores user\-defined metadata keys in lowercase\.
 
@@ -58,7 +60,7 @@ Amazon S3 allows arbitrary Unicode characters in your metadata values\.
 
 To avoid issues around the presentation of these metadata values, you should conform to using US\-ASCII characters when using REST and UTF\-8 when using SOAP or browser\-based uploads via POST\.
 
-When using non US\-ASCII characters in your metadata values, the provided Unicode string is examined for non US\-ASCII characters\. If the string contains only US\-ASCII characters, it is presented as is\. If the string contains non US\-ASCII characters, it is first character\-encoded using UTF\-8 and then encoded into US\-ASCII\.
+When using non US\-ASCII characters in your metadata values, the provided unicode string is examined for non US\-ASCII characters\. Values of such headers are character decoded as per [RFC 2047](https://datatracker.ietf.org/doc/html/rfc2047) before storing and encoded as per [RFC 2047](https://datatracker.ietf.org/doc/html/rfc2047) to make them mail\-safe before returning\. If the string contains only US\-ASCII characters, it is presented as is\.
 
 The following is an example\.
 

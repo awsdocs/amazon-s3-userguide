@@ -1,6 +1,6 @@
-# Configure the S3 control client for S3 on Outposts using AWS SDK for Java<a name="S3OutpostsCongfigureS3ControlClientJava"></a>
+# Configure the S3 control client for S3 on Outposts by using the SDK for Java<a name="S3OutpostsCongfigureS3ControlClientJava"></a>
 
-The following example configures the S3 control client for S3 on Outposts using the SDK for Java\. 
+The following example configures the Amazon S3 control client for Amazon S3 on Outposts by using the AWS SDK for Java\. To use this example, replace each `user input placeholder` with your own information\. 
 
 ```
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

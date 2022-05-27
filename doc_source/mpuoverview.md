@@ -35,6 +35,12 @@ When you complete a multipart upload, Amazon S3 creates an object by concatenati
 
 Your *complete multipart upload* request must include the upload ID and a list of both part numbers and corresponding ETag values\. The Amazon S3 response includes an ETag that uniquely identifies the combined object data\. This ETag is not necessarily an MD5 hash of the object data\. 
 
+**Sample multipart upload calls**  
+ For this example, assume that you are generating a multipart upload for a 100 GB file\. In this case, you would have the following API calls for the entire process\. There would be a total of 1002 API calls\. 
++ A `[CreateMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html)` call to start the process\.
++ 1000 individual `[UploadPart](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)` calls, each uploading a part of 100 MB, for a total size of 100 GB\.
++ A `[CompleteMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html)` call to finish the process\.
+
 **Multipart upload listings**  
 You can list the parts of a specific multipart upload or all in\-progress multipart uploads\. The list parts operation returns the parts information that you have uploaded for a specific multipart upload\. For each list parts request, Amazon S3 returns the parts information for the specified multipart upload, up to a maximum of 1,000 parts\. If there are more than 1,000 parts in the multipart upload, you must send a series of list part requests to retrieve all the parts\. Note that the returned list of parts doesn't include parts that haven't finished uploading\. Using the *list multipart uploads* operation, you can obtain a list of multipart uploads that are in progress\.
 

@@ -5,7 +5,7 @@ To route requests to an Amazon S3 on Outposts access point, you must create and 
 **Permissions**  
 For more information about the permissions that are required to create an endpoint, see [Permissions for S3 on Outposts endpoints](S3OutpostsIAM.md#S3OutpostsEndpointPermissions)\.
 
-The following examples show you how to create an S3 on Outposts endpoint by using the AWS Command Line Interface \(AWS CLI\) and AWS SDK for Java\. 
+The following examples show you how to create an S3 on Outposts endpoint by using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), and AWS SDK for Java\. 
 
 ## Using the S3 console<a name="S3OutpostsCreateEndpointConsole"></a>
 

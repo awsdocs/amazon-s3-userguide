@@ -79,7 +79,7 @@ Follow the steps to create and subscribe to an Amazon Simple Queue Service \(Ama
 
    1. Choose **Save**\.
 
-1. \(Optional\) If the Amazon SQS queue or the Amazon SNS topic is server\-side encryption enabled with AWS Key Management Service \(AWS KMS\), add the following policy to the associated symmetric customer managed key\. 
+1. \(Optional\) If the Amazon SQS queue or the Amazon SNS topic is server\-side encryption enabled with AWS Key Management Service \(AWS KMS\), add the following policy to the associated symmetric encryption customer managed key\. 
 
    You must add the policy to a customer managed key because you cannot modify the AWS managed key for Amazon SQS or Amazon SNS\. 
 

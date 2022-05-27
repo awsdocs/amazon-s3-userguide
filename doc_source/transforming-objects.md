@@ -17,6 +17,7 @@ The topics in this section describe how to work with Object Lambda access points
 + [Using AWS built Lambda functions](olap-examples.md)
 + [Best practices and guidelines for S3 Object Lambda](olap-best-practices.md)
 + [Security considerations for S3 Object Lambda access points](olap-security.md)
++ [S3 Object Lambda tutorials](olap-tutorials.md)
 
 For S3 Object Lambda tutorials, see [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md) and [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)\.
 

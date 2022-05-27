@@ -1,30 +1,29 @@
 # Using HeadBucket to determine if an S3 on Outposts bucket exists and you have access permissions<a name="S3OutpostsHeadBucket"></a>
 
-Objects are the fundamental entities stored in S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\), which includes the AWS Region code for the Region that the Outpost is homed to, the AWS account ID, the Outpost ID, and the access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
+Objects are the fundamental entities stored in Amazon S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\), which includes the AWS Region code for the Region that the Outpost is homed to, the AWS account ID, the Outpost ID, and the access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
 
 ```
 arn:aws:s3-outposts:region:account-id:outpost/outpost-id/accesspoint/accesspoint-name
 ```
 
-**Note**  
-With S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS CLI, and AWS SDKs to upload and manage your objects through your access points\.
+For more information about S3 on Outposts ARNs, see [ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
 
-The following AWS Command Line Interface \(AWS CLI\) and AWS SDK for Java examples show you how to use HeadBucket to determine if an Amazon S3 on Outposts bucket exists and you have permission to access it\. For more information, see the [Head Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html) in the *Amazon Simple Storage Service API Reference*\.
+**Note**  
+With Amazon S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS Command Line Interface \(AWS CLI\), and AWS SDKs to upload and manage your objects through your access points\.
+
+The following AWS Command Line Interface \(AWS CLI\) and AWS SDK for Java examples show you how to use the HeadBucket API operation to determine if an Amazon S3 on Outposts bucket exists and whether you have permission to access it\. For more information, see [HeadBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html) in the *Amazon Simple Storage Service API Reference*\.
 
 ## Using the AWS CLI<a name="S3OutpostsHeadBucketCLI"></a>
 
-The following S3 on Outposts AWS CLI example uses `head-bucket` to determine if a bucket exists and you have permissions to access it\.
+The following S3 on Outposts AWS CLI example uses the `head-bucket` command to determine if a bucket exists and you have permissions to access it\. To use this command, replace each `user input placeholder` with your own information\. For more information about this command, see [head\-bucket](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/head-bucket.html) in the *AWS CLI Reference*\.
 
 ```
 aws s3api head-bucket --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-outposts-access-point
 ```
 
-**Note**  
-When using this action with Amazon S3 on Outposts through the AWS SDKs, you provide the Outposts access point ARN in place of the bucket name, in the following form: `arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point`\. For more information about S3 on Outposts ARNs, see [ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
-
 ## Using the AWS SDK for Java<a name="S3OutpostsHeadBucketJava"></a>
 
-The following S3 on Outposts example shows how to determine if a bucket exists and if you have permission to access it\.
+The following S3 on Outposts example shows how to determine if a bucket exists and if you have permission to access it\. To use this example, specify the access point ARN for the Outpost\. For more information, see [HeadBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html) in the *Amazon Simple Storage Service API Reference*\.
 
 ```
 import com.amazonaws.AmazonServiceException;

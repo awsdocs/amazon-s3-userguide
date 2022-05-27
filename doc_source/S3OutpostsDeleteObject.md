@@ -1,25 +1,31 @@
 # Deleting objects in Amazon S3 on Outposts buckets<a name="S3OutpostsDeleteObject"></a>
 
-Objects are the fundamental entities stored in S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\), which includes the AWS Region code for the Region that the Outpost is homed to, the AWS account ID, the Outpost ID, and the access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
+Objects are the fundamental entities stored in Amazon S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\), which includes the AWS Region code for the Region that the Outpost is homed to, the AWS account ID, the Outpost ID, and the access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
 
 ```
 arn:aws:s3-outposts:region:account-id:outpost/outpost-id/accesspoint/accesspoint-name
 ```
 
-With S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS CLI, and AWS SDKs to upload and manage your objects through your access points\.
+For more information about S3 on Outposts ARNs, see [ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
 
-The following examples show you how to a single object or multiple objects in an S3 on Outposts bucket using the AWS Command Line Interface \(AWS CLI\) and AWS SDK for Java\.
+With Amazon S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS Command Line Interface \(AWS CLI\), and AWS SDKs to upload and manage your objects through your access points\.
+
+The following examples show you how to delete a single object or multiple objects in an S3 on Outposts bucket by using the AWS Command Line Interface \(AWS CLI\) and AWS SDK for Java\.
 
 ## Using the AWS CLI<a name="S3OutpostsDeleteObjectsCLI"></a>
 
 The following examples show you how to delete a single object or multiple objects from an S3 on Outposts bucket\.
 
-When using these action with Amazon S3 on Outposts through the AWS SDKs, you provide the Outposts access point ARN in place of the bucket name, in the following form: `arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-Outposts-Access-Point`\. For more information about S3 on Outposts ARNs, see [ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
+
+
+
+
+
 
 ------
 #### [ delete\-object ]
 
-The following example deletes an object named `sample-object.xml` from an S3 on Outposts bucket \(`s3-outposts:DeleteObject`\) using the AWS CLI\.
+The following example deletes an object named `sample-object.xml` from an S3 on Outposts bucket \(`s3-outposts:DeleteObject`\) by using the AWS CLI\. To use this command, replace each `user input placeholder` with your own information\. For more information about this command, see [delete\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/delete-object.html) in the *AWS CLI Reference*\.
 
 ```
 aws s3api delete-object --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-outposts-access-point --key sample-object.xml
@@ -28,7 +34,7 @@ aws s3api delete-object --bucket arn:aws:s3-outposts:region:123456789012:outpost
 ------
 #### [ delete\-objects ]
 
-The following example deletes two objects named `sample-object.xml` and `test1.text` from an S3 on Outposts bucket \(`s3-outposts:DeleteObject`\) using the AWS CLI\. For more information about this action, see [delete\-objects](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/delete-objects.html) in the *AWS CLI Reference*\.
+The following example deletes two objects named `sample-object.xml` and `test1.text` from an S3 on Outposts bucket \(`s3-outposts:DeleteObject`\) by using the AWS CLI\. To use this command, replace each `user input placeholder` with your own information\. For more information about this command, see [delete\-objects](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/delete-objects.html) in the *AWS CLI Reference*\.
 
 ```
 aws s3api delete-objects --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-outposts-access-point --delete file://delete.json
@@ -56,7 +62,7 @@ The following examples show you how to delete a single object or multiple object
 ------
 #### [ DeleteObject ]
 
-The following S3 on Outposts example deletes an object in a bucket using the SDK for Java\. 
+The following S3 on Outposts example deletes an object in a bucket by using the SDK for Java\. To use this example, specify the access point ARN for the Outpost and the key name for the object that you want to delete\. For more information, see [DeleteObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html) in the *Amazon Simple Storage Service API Reference*\.
 
 ```
 import com.amazonaws.AmazonServiceException;
@@ -68,7 +74,7 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 public class DeleteObject {
     public static void main(String[] args) {
         String accessPointArn = "*** access point ARN ***";
-        String keyName = "*** Key name ****";
+        String keyName = "*** key name ****";
 
         try {
             // This code expects that you have AWS credentials set up per:
@@ -94,7 +100,7 @@ public class DeleteObject {
 ------
 #### [ DeleteObjects ]
 
-The following S3 on Outposts example uploads and then deletes objects in a bucket using the SDK for Java\. 
+The following S3 on Outposts example uploads and then deletes objects in a bucket by using the SDK for Java\. To use this example, specify the access point ARN for the Outpost\. For more information, see [DeleteObjects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html) in the *Amazon Simple Storage Service API Reference*\.
 
 ```
 import com.amazonaws.AmazonServiceException;
@@ -110,8 +116,8 @@ import java.util.ArrayList;
 public class DeleteObjects {
 
     public static void main(String[] args) {
-//        String accessPointArn = "*** access point ARN ***";
-        String accessPointArn = "arn:aws:s3-outposts:us-east-1:785856369849:outpost/ec2/accesspoint/mig-test-60";
+       String accessPointArn = "arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-outposts-access-point";
+        
 
         try {
             // This code expects that you have AWS credentials set up per:

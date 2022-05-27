@@ -47,7 +47,7 @@ When you request that your data be decrypted, Amazon S3 and AWS KMS perform the 
 + Amazon S3 decrypts the ciphertext and removes the plaintext data key from memory as soon as possible\.
 
 **Important**  
-When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a symmetric encryption KMS key\. Amazon S3 supports only symmetric keys and not asymmetric keys\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
+When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a symmetric encryption KMS key\. Amazon S3 supports only symmetric encryption KMS keys and not asymmetric keys\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
 ## Amazon S3 Bucket Keys<a name="sse-kms-bucket-keys"></a>
 

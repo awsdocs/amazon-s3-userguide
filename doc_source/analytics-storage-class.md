@@ -5,7 +5,7 @@ By using Amazon S3 analytics *Storage Class Analysis* you can analyze storage ac
 After storage class analysis observes the infrequent access patterns of a filtered set of data over a period of time, you can use the analysis results to help you improve your lifecycle policies\. You can configure storage class analysis to analyze all the objects in a bucket\. Or, you can configure filters to group objects together for analysis by common prefix \(that is, objects that have names that begin with a common string\), by object tags, or by both prefix and tags\. You'll most likely find that filtering by object groups is the best way to benefit from storage class analysis\. 
 
 **Important**  
-Storage class analysis does not give recommendations for transitions to the ONEZONE\_IA or S3 Glacier Flexible Retrieval storage classes\.
+Storage class analysis only provides recommendations for Standard to Standard IA classes\.
 
 You can have multiple storage class analysis filters per bucket, up to 1,000, and will receive a separate analysis for each filter\. Multiple filter configurations allow you analyze specific groups of objects to improve your lifecycle policies that transition objects to STANDARD\_IA\. 
 

@@ -36,7 +36,7 @@ If an object already has an S3 Bucket Key enabled, the S3 Bucket Key settings fo
 
 1. Choose an AWS KMS key:
    + Choose **AWS managed key \(aws/s3\)**\. 
-   + Choose **Customer managed key**, and choose a symmetric customer managed key in the same Region as your bucket\. 
+   + Choose **Customer managed key**, and choose a symmetric encryption customer managed key in the same Region as your bucket\. 
 
 1. Under **Bucket Key**, choose **Enable**\. 
 
@@ -60,7 +60,7 @@ If an object already has an S3 Bucket Key enabled, the S3 Bucket Key settings fo
 
 1. Choose an AWS KMS key:
    + Choose **AWS managed key \(aws/s3\)**\. 
-   + Choose **Customer managed key**, and choose a symmetric customer managed key in the same Region as your bucket\. 
+   + Choose **Customer managed key**, and choose a symmetric encryption customer managed key in the same Region as your bucket\. 
 
 1. Under **Bucket Key**, choose **Enable**\.
 

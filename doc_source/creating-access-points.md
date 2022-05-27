@@ -5,7 +5,7 @@ Amazon S3 provides functionality for creating and managing access points\. You c
 By default, you can create up to 1,000 access points per Region for each of your AWS accounts\. If you need more than 1,000 access points for a single account in a single Region, you can request a service quota increase\. For more information about service quotas and requesting an increase, see [AWS Service Quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *AWS General Reference*\.
 
 **Note**  
-Because you might want to publicize your access point name in order to allow users to use the access point, we recommend that you avoid including sensitive information in the access point name\.
+Because you might want to publicize your access point name so that other users can use the access point, avoid including sensitive information in the access point name\. Access point names are published in a publicly accessible database known as the Domain Name System \(DNS\)\.
 
 ## Rules for naming Amazon S3 access points<a name="access-points-names"></a>
 

@@ -7,7 +7,7 @@ To enable client\-side encryption, you have the following options:
 + Use a key that you store within your application\.
 
 **Note**  
-Amazon S3 only supports symmetric keys and not asymmetric keys\.
+Amazon S3 only supports symmetric encryption KMS keys and not asymmetric keys\.
 
 **AWS Encryption SDK**  
 The [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/) is a client\-side encryption library that is separate from the language–specific SDKs\. You can use this encryption library to more easily implement encryption best practices in Amazon S3\. Unlike the Amazon S3 encryption clients in the language–specific AWS SDKs, the AWS Encryption SDK is not tied to Amazon S3 and can be used to encrypt or decrypt data to be stored anywhere\. 
@@ -28,7 +28,7 @@ For information and examples, see [AWS SDK support for client\-side encryption](
 ## Option 1: Using a KMS key stored in AWS KMS<a name="client-side-encryption-kms-managed-master-key-intro"></a>
 
 With this option, you use an AWS KMS key for client\-side encryption when uploading or downloading data in Amazon S3\.
-+ **When uploading an object** — Using the KMS key ID, the client first sends a request to AWS KMS for a new symmetric key that it can use to encrypt their object data\. AWS KMS returns two versions of a randomly generated data key:
++ **When uploading an object** — Using the KMS key ID, the client first sends a request to AWS KMS for a new symmetric encryption key that it can use to encrypt their object data\. AWS KMS returns two versions of a randomly generated data key:
   + A plaintext version of the data key that the client uses to encrypt the object data\.
   + A cipher blob of the same data key that the client uploads to Amazon S3 as object metadata\.
 **Note**  
@@ -88,14 +88,14 @@ This is how it works:
 
   The following steps describe the process:
 
-  1. The Amazon S3 encryption client generates a one\-time\-use symmetric key \(also known as a *data encryption key* or *data key*\) locally\. It uses the data key to encrypt the data of a single Amazon S3 object\. The client generates a separate data key for each object\.
+  1. The Amazon S3 encryption client generates a one\-time\-use symmetric encryption key \(also known as a *data encryption key* or *data key*\) locally\. It uses the data key to encrypt the data of a single Amazon S3 object\. The client generates a separate data key for each object\.
 
   1. The client encrypts the data encryption key using the root key that you provide\. The client uploads the encrypted data key and its material description as part of the object metadata\. The client uses the material description to determine which client\-side root key to use for decryption\.
 
   1. The client uploads the encrypted data to Amazon S3 and saves the encrypted data key as object metadata \(`x-amz-meta-x-amz-key`\) in Amazon S3\.
 + **When downloading an object** — The client downloads the encrypted object from Amazon S3\. Using the material description from the object's metadata, the client determines which root key to use to decrypt the data key\. The client uses that root key to decrypt the data key and then uses the data key to decrypt the object\. 
 
-The client\-side root key that you provide can be either a symmetric key or a public/private key pair\. The following code examples show how to use each type of key\.
+The client\-side root key that you provide can be either a symmetric encryption key or a public/private key pair\. The following code examples show how to use each type of key\.
 
 For more information, see [Client\-Side Data Encryption with the AWS SDK for Java and Amazon S3](https://aws.amazon.com/articles/2850096021478074) and [AWS SDK support for client\-side encryption](https://docs.aws.amazon.com/general/latest/gr/aws_sdk_cryptography.html)\.
 

@@ -1,6 +1,6 @@
 # Using Amazon S3 Storage Lens with AWS Organizations<a name="storage_lens_with_organizations"></a>
 
-You can use Amazon S3 Storage Lens to collect storage metrics and usage data for all AWS accounts that are part of your AWS Organizations hierarchy\. To do this, you must be using AWS Organizations, and you must enable S3 Storage Lens trusted access using your AWS Organizations management\. 
+You can use Amazon S3 Storage Lens to collect storage metrics and usage data for all AWS accounts that are part of your AWS Organizations hierarchy\. To do this, you must be using AWS Organizations, and you must enable S3 Storage Lens trusted access using your AWS Organizations management account\. 
 
 After enabling trusted access, you can add delegated administrator access to accounts in your organization\. These accounts can then create S3 Storage Lens configurations and dashboards that collect organization\-wide storage metrics and user data\.
 

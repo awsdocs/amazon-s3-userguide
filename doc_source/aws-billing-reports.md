@@ -2,6 +2,8 @@
 
 Your monthly bill from AWS separates your usage information and cost by AWS service and function\. There are several AWS billing reports available, the monthly report, the cost allocation report, and detailed billing reports\. For information about how to see your billing reports, see [Viewing Your Bill](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/getting-viewing-bill.html) in the *AWS Billing User Guide*\.
 
+You may set up AWS Cost and Usage Report to track your AWS usage and provide estimated charges associated with your account\. For more information, see [What are AWS Cost and Usage Report?](https://docs.aws.amazon.com/cur/latest/userguide/what-is-cur.html) in the *AWS Cost and Usage Reports Guide*\.
+
 You can also download a usage report that gives more detail about your Amazon S3 storage usage than the billing reports\. For more information, see [AWS usage report for Amazon S3](aws-usage-report.md)\.
 
 The following table lists the charges associated with Amazon S3 usage\. 
@@ -11,7 +13,7 @@ The following table lists the charges associated with Amazon S3 usage\.
 
 | Charge | Comments | 
 | --- | --- | 
-|  Storage  |  You pay for storing objects in your S3 buckets\. The rate you’re charged depends on your objects' size, how long you stored the objects during the month, and the storage class—S3 Standard, S3 Intelligent\-Tiering, S3 Standard\-IA \(IA for infrequent access\), S3 One Zone\-IA, S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, S3 Glacier Deep Archive or Reduced Redundancy Storage \(RRS\)\. For more information about storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md)\.  | 
+|  Storage  |  You pay for storing objects in your S3 buckets\. The rate you’re charged depends on your objects' size, how long you stored the objects during the month, and the storage class—S3 Standard, S3 Intelligent\-Tiering, S3 Standard\-IA \(IA for infrequent access\), S3 One Zone\-IA, S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, S3 Glacier Deep Archive or Reduced Redundancy Storage \(RRS\)\. For more information about storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md)\. Be aware that if you have versioning enabled, you're charged for each version of an object that is retained\. For more information about versioning, see [How S3 Versioning works](versioning-workflows.md)\.  | 
 | Monitoring and Automation | You pay a monthly monitoring and automation fee per object stored in the S3 Intelligent\-Tiering storage class to monitor access patterns and move objects between access tiers in S3 Intelligent\-Tiering\. | 
 |  Requests  |  You pay for requests, for example, GET requests, made against your S3 buckets and objects\. This includes lifecycle requests\. The rates for requests depend on what kind of request you’re making\. For information about request pricing, see [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.  | 
 |  Retrievals  |  You pay for retrieving objects that are stored in S3 Standard\-IA, S3 One Zone\-IA, S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, and S3 Glacier Deep Archive storage\.  | 

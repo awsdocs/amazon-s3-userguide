@@ -152,7 +152,7 @@ Read data as a byte array\.
             ResponseBytes<GetObjectResponse> objectBytes = s3.getObjectAsBytes(objectRequest);
             byte[] data = objectBytes.asByteArray();
 
-            // Write the data to a local file
+            // Write the data to a local file.
             File myFile = new File(path );
             OutputStream os = new FileOutputStream(myFile);
             os.write(data);
@@ -181,16 +181,12 @@ Read tags that belong to an object\.
 
             GetObjectTaggingResponse tags = s3.getObjectTagging(getTaggingRequest);
             List<Tag> tagSet= tags.tagSet();
+            for (Tag tag : tagSet) {
+                 System.out.println(tag.key());
+                 System.out.println(tag.value());
+             }
 
-            // Write out the tags
-            Iterator<Tag> tagIterator = tagSet.iterator();
-            while(tagIterator.hasNext()) {
-
-                Tag tag = (Tag)tagIterator.next();
-                System.out.println(tag.key());
-                System.out.println(tag.value());
-            }
-        } catch (S3Exception e) {
+         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
         }
@@ -202,14 +198,13 @@ Get a URL for an object\.
     public static void getURL(S3Client s3, String bucketName, String keyName ) {
 
         try {
-
             GetUrlRequest request = GetUrlRequest.builder()
                     .bucket(bucketName)
                     .key(keyName)
                     .build();
 
             URL url = s3.utilities().getUrl(request);
-            System.out.println("The URL for  "+keyName +" is "+url.toString());
+            System.out.println("The URL for  "+keyName +" is "+ url);
 
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
@@ -229,18 +224,15 @@ Get an object by using the S3Presigner client object\.
                             .key(keyName)
                             .build();
 
-            GetObjectPresignRequest getObjectPresignRequest =  GetObjectPresignRequest.builder()
-                            .signatureDuration(Duration.ofMinutes(10))
+            GetObjectPresignRequest getObjectPresignRequest = GetObjectPresignRequest.builder()
+                            .signatureDuration(Duration.ofMinutes(60))
                             .getObjectRequest(getObjectRequest)
                              .build();
 
-            // Generate the presigned request
             PresignedGetObjectRequest presignedGetObjectRequest =
                     presigner.presignGetObject(getObjectPresignRequest);
-
-            // Log the presigned URL
-            System.out.println("Presigned URL: " + presignedGetObjectRequest.url());
-
+            String theUrl = presignedGetObjectRequest.url().toString();
+            System.out.println("Presigned URL: " + theUrl);
             HttpURLConnection connection = (HttpURLConnection) presignedGetObjectRequest.url().openConnection();
             presignedGetObjectRequest.httpRequest().headers().forEach((header, values) -> {
                 values.forEach(value -> {
@@ -263,12 +255,10 @@ Get an object by using the S3Presigner client object\.
                 IoUtils.copy(content, System.out);
             }
 
-        } catch (S3Exception e) {
-            e.getStackTrace();
-        } catch (IOException e) {
+        } catch (S3Exception | IOException e) {
             e.getStackTrace();
         }
-    }
+       }
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/s3#readme)\. 
 +  For API details, see [GetObject](https://docs.aws.amazon.com/goto/SdkForJavaV2/s3-2006-03-01/GetObject) in *AWS SDK for Java 2\.x API Reference*\. 

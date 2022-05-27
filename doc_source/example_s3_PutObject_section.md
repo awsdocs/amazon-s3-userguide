@@ -212,7 +212,7 @@ Upload an object to a bucket\.
         return "";
     }
 
-    // Return a byte array
+    // Return a byte array.
     private static byte[] getObjectFile(String filePath) {
 
         FileInputStream fileInputStream = null;
@@ -241,7 +241,7 @@ Upload an object to a bucket\.
 Upload an object to a bucket and set tags\.  
 
 ```
-    public static void putS3ObjectTags(S3Client s3,  String bucketName, String objectKey, String objectPath) {
+    public static void putS3ObjectTags(S3Client s3, String bucketName, String objectKey, String objectPath) {
 
         try {
             // Define the tags.
@@ -255,7 +255,7 @@ Upload an object to a bucket and set tags\.
                 .value("This is tag 2")
                 .build();
 
-            List<Tag> tags = new ArrayList<Tag>();
+            List<Tag> tags = new ArrayList<>();
             tags.add(tag1);
             tags.add(tag2);
 
@@ -277,7 +277,7 @@ Upload an object to a bucket and set tags\.
         }
     }
 
-    public static void updateObjectTags(S3Client s3,  String bucketName, String objectKey) {
+    public static void updateObjectTags(S3Client s3, String bucketName, String objectKey) {
 
         try {
 
@@ -290,7 +290,7 @@ Upload an object to a bucket and set tags\.
             GetObjectTaggingResponse getTaggingRes = s3.getObjectTagging(taggingRequest);
 
             // Write out the tags.
-            List<Tag> obTags =   getTaggingRes.tagSet();
+            List<Tag> obTags = getTaggingRes.tagSet();
             for (Tag sinTag: obTags) {
                 System.out.println("The tag key is: "+sinTag.key());
                 System.out.println("The tag value is: "+sinTag.value());
@@ -307,7 +307,7 @@ Upload an object to a bucket and set tags\.
                     .value("This is tag 4")
                     .build();
 
-            List<Tag> tags = new ArrayList<Tag>();
+            List<Tag> tags = new ArrayList<>();
             tags.add(tag3);
             tags.add(tag4);
 
@@ -325,7 +325,7 @@ Upload an object to a bucket and set tags\.
 
             // Write out the modified tags.
             GetObjectTaggingResponse getTaggingRes2 = s3.getObjectTagging(taggingRequest);
-            List<Tag> modTags =   getTaggingRes2.tagSet();
+            List<Tag> modTags = getTaggingRes2.tagSet();
             for (Tag sinTag: modTags) {
                 System.out.println("The tag key is: "+sinTag.key());
                 System.out.println("The tag value is: "+sinTag.value());

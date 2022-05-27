@@ -15,7 +15,6 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
     public static void restoreS3Object(S3Client s3, String bucketName, String keyName, String expectedBucketOwner) {
 
         try {
-
             RestoreRequest restoreRequest = RestoreRequest.builder()
                     .days(10)
                     .glacierJobParameters(GlacierJobParameters.builder().tier(Tier.STANDARD).build())

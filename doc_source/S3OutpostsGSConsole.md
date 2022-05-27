@@ -1,8 +1,8 @@
-# Getting started using the AWS Management Console<a name="S3OutpostsGSConsole"></a>
+# Getting started by using the AWS Management Console<a name="S3OutpostsGSConsole"></a>
 
 With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and easily store and retrieve objects on premises for applications that require local data access, local data processing, and data residency\. S3 on Outposts provides a new storage class, S3 Outposts \(`OUTPOSTS`\), which uses the Amazon S3 APIs, and is designed to store data durably and redundantly across multiple devices and servers on your AWS Outposts\. You communicate with your Outpost bucket by using an access point and endpoint connection over a virtual private cloud \(VPC\)\. You can use the same APIs and features on Outpost buckets as you do on Amazon S3 buckets, including access policies, encryption, and tagging\. You can use S3 on Outposts through the AWS Management Console, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\. For more information, see [What is Amazon S3 on Outposts?](S3onOutposts.md)
 
-To get started with S3 on Outposts using the console, see the following topics\. To get started using the AWS Command Line Interface \(AWS CLI\) or AWS SDK for Java, see [Getting started using the AWS CLI and SDK for Java](S3OutpostsGSCLIJava.md)\.
+To get started with S3 on Outposts by using the console, see the following topics\. To get started by using the AWS CLI or AWS SDK for Java, see [Getting started by using the AWS CLI and SDK for Java](S3OutpostsGSCLIJava.md)\.
 
 **Topics**
 + [Create a bucket, an access point, and an endpoint](#S3OutpostsGSConsoleCreateBucket)
@@ -10,7 +10,7 @@ To get started with S3 on Outposts using the console, see the following topics\.
 
 ## Create a bucket, an access point, and an endpoint<a name="S3OutpostsGSConsoleCreateBucket"></a>
 
-The following procedure shows you how to create your first bucket in S3 on Outposts\. The first time that you create a bucket using the console, you also create an access point and an endpoint associated with the bucket so that you can immediately begin storing objects in your bucket\. 
+The following procedure shows you how to create your first bucket in S3 on Outposts\. When you create a bucket using the console, you also create an access point and an endpoint associated with the bucket so that you can immediately begin storing objects in your bucket\. 
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -68,6 +68,6 @@ It can take up to 5 minutes for your Outposts endpoint to be created and your bu
 
 ## Next steps<a name="S3OutpostsGSConsoleNext"></a>
 
-With S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS CLI, and AWS SDKs to upload and manage your objects through your access points\.
+With Amazon S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS Command Line Interface \(AWS CLI\), and AWS SDKs to upload and manage your objects through your access points\.
 
-After you create an S3 on Outposts bucket, access point, and endpoint, you can use the AWS CLI or SDK for Java to upload an object to your bucket\. For more information, see [Step four: Upload an object to an S3 on Outposts bucket](S3OutpostsGSCLIJava.md#S3OutpostsUploadObjects)\.
+After you create an S3 on Outposts bucket, access point, and endpoint, you can use the AWS CLI or SDK for Java to upload an object to your bucket\. For more information, see [Step 4: Upload an object to an S3 on Outposts bucket](S3OutpostsGSCLIJava.md#S3OutpostsUploadObjects)\.

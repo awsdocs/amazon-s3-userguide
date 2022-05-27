@@ -14,7 +14,7 @@ Unlike in the S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive storage 
 When you use S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive, Amazon S3 restores a temporary copy of the object only for the specified duration\. After that, it deletes the restored object copy\. You can modify the expiration period of a restored copy by reissuing a restore\. In this case, Amazon S3 updates the expiration period relative to the current time\. 
 
 **Note**  
-When you restore an archive from S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive, you pay for both the archived object and a copy that you restored temporarily \(Reduced Redundancy Storage \[RRS\] or Standard, whichever is the lower\-cost storage in the Region\)\. For information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
+When you restore an archive from S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive, you pay for both the archived object and a copy that you restored temporarily\. For information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 
 Amazon S3 calculates the expiration time of the restored object copy by adding the number of days specified in the restoration request to the time when the requested restoring is completed\. It then rounds the resulting time to the next day at midnight Universal Coordinated Time \(UTC\)\. For example, suppose that a restored object copy was created on October 15, 2012 10:30 AM UTC, and the restoration period was specified as 3 days\. In this case, the restored copy expires on October 19, 2012 00:00 UTC, at which time Amazon S3 deletes the object copy\. 
 

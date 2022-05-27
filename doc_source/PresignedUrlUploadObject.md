@@ -31,194 +31,385 @@ For instructions on installing AWS Explorer, see [Developing with Amazon S3 usin
 
 The following examples show how to upload objects using presigned URLs\.
 
+The following code examples show how to create a presigned URL for Amazon S3 and upload an object\.
+
+------
+#### [ Go ]
+
+**SDK for Go V2**  
+  
+
+```
+	// Get a presigned URL for the object.
+	// In order to get a presigned URL for an object, you must
+	// create a Presignclient
+	fmt.Println("Create Presign client")
+	presignClient := s3.NewPresignClient(&client)
+
+	presignResult, err := presignClient.PresignGetObject(context.TODO(), &s3.GetObjectInput{
+		Bucket: aws.String(name),
+		Key:    aws.String("path/myfile.jpg"),
+	})
+
+	if err != nil {
+		panic("Couldn't get presigned URL for GetObject")
+	}
+
+	fmt.Printf("Presigned URL For object: %s\n", presignResult.URL)
+```
++  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3#code-examples)\. 
+
 ------
 #### [ Java ]
 
-To successfully complete an upload using the AWS SDK for Java, you must do the following:
-+ Specify the HTTP PUT verb when creating the `GeneratePresignedUrlRequest` and `HttpURLConnection` objects\.
-+ Interact with the `HttpURLConnection` object in some way after finishing the upload\. 
-
-  The following example accomplishes this by using the `HttpURLConnection` object to check the HTTP response code\.
-
-**Example**  
-This example generates a presigned URL and uses it to upload sample data as an object\. For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.  
+**SDK for Java 2\.x**  
+  
 
 ```
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.HttpMethod;
-import com.amazonaws.SdkClientException;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
-import com.amazonaws.services.s3.model.S3Object;
-
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-public class GeneratePresignedUrlAndUploadObject {
-
-    public static void main(String[] args) throws IOException {
-        Regions clientRegion = Regions.DEFAULT_REGION;
-        String bucketName = "*** Bucket name ***";
-        String objectKey = "*** Object key ***";
+    public static void signBucket(S3Presigner presigner, String bucketName, String keyName) {
 
         try {
-            AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-                    .withCredentials(new ProfileCredentialsProvider())
-                    .withRegion(clientRegion)
+            PutObjectRequest objectRequest = PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(keyName)
+                    .contentType("text/plain")
                     .build();
 
-            // Set the pre-signed URL to expire after one hour.
-            java.util.Date expiration = new java.util.Date();
-            long expTimeMillis = expiration.getTime();
-            expTimeMillis += 1000 * 60 * 60;
-            expiration.setTime(expTimeMillis);
+            PutObjectPresignRequest presignRequest = PutObjectPresignRequest.builder()
+                    .signatureDuration(Duration.ofMinutes(10))
+                    .putObjectRequest(objectRequest)
+                    .build();
 
-            // Generate the pre-signed URL.
-            System.out.println("Generating pre-signed URL.");
-            GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, objectKey)
-                    .withMethod(HttpMethod.PUT)
-                    .withExpiration(expiration);
-            URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
+            PresignedPutObjectRequest presignedRequest = presigner.presignPutObject(presignRequest);
+            String myURL = presignedRequest.url().toString();
+            System.out.println("Presigned URL to upload a file to: " +myURL);
+            System.out.println("Which HTTP method needs to be used when uploading a file: " +
+                    presignedRequest.httpRequest().method());
 
-            // Create the connection and use it to upload the new object using the pre-signed URL.
+            // Upload content to the Amazon S3 bucket by using this URL.
+            URL url = presignedRequest.url();
+
+            // Create the connection and use it to upload the new object by using the presigned URL.
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type","text/plain");
             connection.setRequestMethod("PUT");
             OutputStreamWriter out = new OutputStreamWriter(connection.getOutputStream());
-            out.write("This text uploaded as an object via presigned URL.");
+            out.write("This text was uploaded as an object by using a presigned URL.");
             out.close();
 
-            // Check the HTTP response code. To complete the upload and make the object available, 
-            // you must interact with the connection object in some way.
             connection.getResponseCode();
-            System.out.println("HTTP response code: " + connection.getResponseCode());
+            System.out.println("HTTP response code is " + connection.getResponseCode());
 
-            // Check to make sure that the object was uploaded successfully.
-            S3Object object = s3Client.getObject(bucketName, objectKey);
-            System.out.println("Object " + object.getKey() + " created in bucket " + object.getBucketName());
-        } catch (AmazonServiceException e) {
-            // The call was transmitted successfully, but Amazon S3 couldn't process 
-            // it, so it returned an error response.
-            e.printStackTrace();
-        } catch (SdkClientException e) {
-            // Amazon S3 couldn't be contacted for a response, or the client  
-            // couldn't parse the response from Amazon S3.
-            e.printStackTrace();
+        } catch (S3Exception | IOException e) {
+            e.getStackTrace();
         }
     }
-}
 ```
-
-------
-#### [ \.NET ]
-
-The following C\# example shows how to use the AWS SDK for \.NET to upload an object to an S3 bucket using a presigned URL\.
-
-This example generates a presigned URL for a specific object and uses it to upload a file\. For information about the example's compatibility with a specific version of the AWS SDK for \.NET and instructions on creating and testing a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\.
-
-```
-using Amazon;
-using Amazon.S3;
-using Amazon.S3.Model;
-using System;
-using System.IO;
-using System.Net;
-
-namespace Amazon.DocSamples.S3
-{
-    class UploadObjectUsingPresignedURLTest
-    {
-        private const string bucketName = "*** provide bucket name ***";
-        private const string objectKey  = "*** provide the name for the uploaded object ***";
-        private const string filePath   = "*** provide the full path name of the file to upload ***";
-        // Specify how long the presigned URL lasts, in hours
-        private const double timeoutDuration = 12;
-        // Specify your bucket region (an example region is shown).
-        private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USWest2; 
-        private static IAmazonS3 s3Client;
-
-        public static void Main()
-        {
-            s3Client = new AmazonS3Client(bucketRegion);
-            var url = GeneratePreSignedURL(timeoutDuration);
-            UploadObject(url);
-        }
-
-        private static void UploadObject(string url)
-        {
-            HttpWebRequest httpRequest = WebRequest.Create(url) as HttpWebRequest;
-            httpRequest.Method = "PUT";
-            using (Stream dataStream = httpRequest.GetRequestStream())
-            {
-                var buffer = new byte[8000];
-                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    int bytesRead = 0;
-                    while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) > 0)
-                    {
-                        dataStream.Write(buffer, 0, bytesRead);
-                    }
-                }
-            }
-            HttpWebResponse response = httpRequest.GetResponse() as HttpWebResponse;
-        }
-
-        private static string GeneratePreSignedURL(double duration)
-        {
-            var request = new GetPreSignedUrlRequest
-            {
-                BucketName = bucketName,
-                Key        = objectKey,
-                Verb       = HttpVerb.PUT,
-                Expires    = DateTime.UtcNow.AddHours(duration)
-            };
-
-           string url = s3Client.GetPreSignedURL(request);
-           return url;
-        }
-    }
-}
-```
++  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/s3#readme)\. 
 
 ------
 #### [ JavaScript ]
 
-**Example**  
-For an AWS SDK for JavaScript example on using the presigned URL to upload objects, see [ Create a presigned URL to upload objects to an Amazon S3 bucket](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-creating-buckets.html#s3-create-presigendurl-put)\.
+**SDK for JavaScript V3**  
+Create the client\.  
+
+```
+// Create service client module using ES6 syntax.
+import { S3Client } from "@aws-sdk/client-s3";
+// Set the AWS Region.
+const REGION = "REGION"; //e.g. "us-east-1"
+// Create an Amazon S3 service client object.
+const s3Client = new S3Client({ region: REGION });
+export { s3Client };
+```
+Create a presigned URL to upload an object to a bucket\.  
+
+```
+// Import the required AWS SDK clients and commands for Node.js
+import {
+  CreateBucketCommand,
+  DeleteObjectCommand,
+  PutObjectCommand,
+  DeleteBucketCommand }
+from "@aws-sdk/client-s3";
+import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import fetch from "node-fetch";
+
+// Set parameters
+// Create a random name for the Amazon Simple Storage Service (Amazon S3) bucket and key
+export const bucketParams = {
+  Bucket: `test-bucket-${Math.ceil(Math.random() * 10 ** 10)}`,
+  Key: `test-object-${Math.ceil(Math.random() * 10 ** 10)}`,
+  Body: "BODY"
+};
+export const run = async () => {
+  try {
+    // Create an S3 bucket.
+    console.log(`Creating bucket ${bucketParams.Bucket}`);
+    await s3Client.send(new CreateBucketCommand({ Bucket: bucketParams.Bucket }));
+    console.log(`Waiting for "${bucketParams.Bucket}" bucket creation...`);
+  } catch (err) {
+    console.log("Error creating bucket", err);
+  }
+  try {
+    // Create a command to put the object in the S3 bucket.
+    const command = new PutObjectCommand(bucketParams);
+    // Create the presigned URL.
+    const signedUrl = await getSignedUrl(s3Client, command, {
+      expiresIn: 3600,
+    });
+    console.log(
+      `\nPutting "${bucketParams.Key}" using signedUrl with body "${bucketParams.Body}" in v3`
+    );
+    console.log(signedUrl);
+    const response = await fetch(signedUrl, {method: 'PUT', body: bucketParams.Body});
+    console.log(
+      `\nResponse returned by signed URL: ${await response.text()}\n`
+    );
+  } catch (err) {
+    console.log("Error creating presigned URL", err);
+  }
+  try {
+    // Delete the object.
+    console.log(`\nDeleting object "${bucketParams.Key}"} from bucket`);
+    await s3Client.send(
+      new DeleteObjectCommand({ Bucket: bucketParams.Bucket, Key: bucketParams.Key })
+    );
+  } catch (err) {
+    console.log("Error deleting object", err);
+  }
+  try {
+    // Delete the S3 bucket.
+    console.log(`\nDeleting bucket ${bucketParams.Bucket}`);
+    await s3Client.send(
+      new DeleteBucketCommand({ Bucket: bucketParams.Bucket })
+    );
+  } catch (err) {
+    console.log("Error deleting bucket", err);
+  }
+};
+run();
+```
+Create a presigned URL to download an object from a bucket\.  
+
+```
+// Import the required AWS SDK clients and commands for Node.js
+import {
+  CreateBucketCommand,
+  PutObjectCommand,
+  GetObjectCommand,
+  DeleteObjectCommand,
+  DeleteBucketCommand }
+from "@aws-sdk/client-s3";
+import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+const fetch = require("node-fetch");
+
+// Set parameters
+// Create a random names for the S3 bucket and key.
+export const bucketParams = {
+  Bucket: `test-bucket-${Math.ceil(Math.random() * 10 ** 10)}`,
+  Key: `test-object-${Math.ceil(Math.random() * 10 ** 10)}`,
+  Body: "BODY"
+};
+
+export const run = async () => {
+  // Create an S3 bucket.
+  try {
+    console.log(`Creating bucket ${bucketParams.Bucket}`);
+    const data = await s3Client.send(
+      new CreateBucketCommand({ Bucket: bucketParams.Bucket })
+    );
+    return data; // For unit tests.
+    console.log(`Waiting for "${bucketParams.Bucket}" bucket creation...\n`);
+  } catch (err) {
+    console.log("Error creating bucket", err);
+  }
+  // Put the object in the S3 bucket.
+  try {
+    console.log(`Putting object "${bucketParams.Key}" in bucket`);
+    const data = await s3Client.send(
+      new PutObjectCommand({
+        Bucket: bucketParams.Bucket,
+        Key: bucketParams.Key,
+        Body: bucketParams.Body,
+      })
+    );
+    return data; // For unit tests.
+  } catch (err) {
+    console.log("Error putting object", err);
+  }
+  // Create a presigned URL.
+  try {
+    // Create the command.
+    const command = new GetObjectCommand(bucketParams);
+
+    // Create the presigned URL.
+    const signedUrl = await getSignedUrl(s3Client, command, {
+      expiresIn: 3600,
+    });
+    console.log(
+      `\nGetting "${bucketParams.Key}" using signedUrl with body "${bucketParams.Body}" in v3`
+    );
+    console.log(signedUrl);
+    const response = await fetch(signedUrl);
+    console.log(
+      `\nResponse returned by signed URL: ${await response.text()}\n`
+    );
+  } catch (err) {
+    console.log("Error creating presigned URL", err);
+  }
+  // Delete the object.
+  try {
+    console.log(`\nDeleting object "${bucketParams.Key}"} from bucket`);
+    const data = await s3Client.send(
+      new DeleteObjectCommand({ Bucket: bucketParams.Bucket, Key: bucketParams.Key })
+    );
+    return data; // For unit tests.
+  } catch (err) {
+    console.log("Error deleting object", err);
+  }
+  // Delete the S3 bucket.
+  try {
+    console.log(`\nDeleting bucket ${bucketParams.Bucket}`);
+    const data = await s3Client.send(
+      new DeleteBucketCommand({ Bucket: bucketParams.Bucket, Key: bucketParams.Key })
+    );
+    return data; // For unit tests.
+  } catch (err) {
+    console.log("Error deleting object", err);
+  }
+};
+run();
+```
++  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
++  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-creating-buckets.html#s3-create-presigendurl)\. 
 
 ------
 #### [ Python ]
 
-Generate a presigned URL to upload an object by using the SDK for Python \(Boto3\)\. For example, use a Boto3 client and the `generate_presigned_url` function to generate a presigned URL that PUTs an object\. For a full example of how to do this in Python, see [Create a presigned URL for Amazon S3 using an AWS SDK](example_s3_Scenario_PresignedUrl_section.md)\. 
+**SDK for Python \(Boto3\)**  
+Generate a presigned URL that can perform an Amazon S3 action for a limited time\. Use the Requests package to make a request with the URL\.  
 
-**Note**  
-For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.
+```
+import argparse
+import logging
+import boto3
+from botocore.exceptions import ClientError
+import requests
+
+logger = logging.getLogger(__name__)
+
+
+def generate_presigned_url(s3_client, client_method, method_parameters, expires_in):
+    """
+    Generate a presigned Amazon S3 URL that can be used to perform an action.
+
+    :param s3_client: A Boto3 Amazon S3 client.
+    :param client_method: The name of the client method that the URL performs.
+    :param method_parameters: The parameters of the specified client method.
+    :param expires_in: The number of seconds the presigned URL is valid for.
+    :return: The presigned URL.
+    """
+    try:
+        url = s3_client.generate_presigned_url(
+            ClientMethod=client_method,
+            Params=method_parameters,
+            ExpiresIn=expires_in
+        )
+        logger.info("Got presigned URL: %s", url)
+    except ClientError:
+        logger.exception(
+            "Couldn't get a presigned URL for client method '%s'.", client_method)
+        raise
+    return url
+
+
+def usage_demo():
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+
+    print('-'*88)
+    print("Welcome to the Amazon S3 presigned URL demo.")
+    print('-'*88)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('bucket', help="The name of the bucket.")
+    parser.add_argument(
+        'key', help="For a GET operation, the key of the object in Amazon S3. For a "
+                    "PUT operation, the name of a file to upload.")
+    parser.add_argument(
+        'action', choices=('get', 'put'), help="The action to perform.")
+    args = parser.parse_args()
+
+    s3_client = boto3.client('s3')
+    client_action = 'get_object' if args.action == 'get' else 'put_object'
+    url = generate_presigned_url(
+        s3_client, client_action, {'Bucket': args.bucket, 'Key': args.key}, 1000)
+
+    print("Using the Requests package to send a request to the URL.")
+    response = None
+    if args.action == 'get':
+        response = requests.get(url)
+    elif args.action == 'put':
+        print("Putting data to the URL.")
+        try:
+            with open(args.key, 'r') as object_file:
+                object_text = object_file.read()
+            response = requests.put(url, data=object_text)
+        except FileNotFoundError:
+            print(f"Couldn't find {args.key}. For a PUT operation, the key must be the "
+                  f"name of a file that exists on your computer.")
+
+    if response is not None:
+        print("Got response:")
+        print(f"Status: {response.status_code}")
+        print(response.text)
+
+    print('-'*88)
+
+
+if __name__ == '__main__':
+    usage_demo()
+```
+Generate a presigned POST request to upload a file\.  
+
+```
+class BucketWrapper:
+    def __init__(self, bucket):
+        self.bucket = bucket
+        self.name = bucket.name
+
+    def generate_presigned_post(self, object_key, expires_in):
+        """
+        Generate a presigned Amazon S3 POST request to upload a file.
+        A presigned POST can be used for a limited time to let someone without an AWS
+        account upload a file to a bucket.
+
+        :param object_key: The object key to identify the uploaded object.
+        :param expires_in: The number of seconds the presigned POST is valid.
+        :return: A dictionary that contains the URL and form fields that contain
+                 required access data.
+        """
+        try:
+            response = self.bucket.meta.client.generate_presigned_post(
+                Bucket=self.bucket.name, Key=object_key, ExpiresIn=expires_in)
+            logger.info("Got presigned POST URL: %s", response['url'])
+        except ClientError:
+            logger.exception(
+                "Couldn't get a presigned POST URL for bucket '%s' and object '%s'",
+                self.bucket.name, object_key)
+            raise
+        return response
+```
++  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/s3_basics#code-examples)\. 
 
 ------
 #### [ Ruby ]
 
-The following steps guide you through using a Ruby script to upload an object using a presigned URL for the AWS SDK for Ruby Version 3\.
-
-**To upload objects using the SDK for Ruby Version 3**
-
-1. Create an instance of the `Aws::S3::Resource` class\.
-
-1. Provide a bucket name and an object key by calling the `#bucket[]` and the `#object[]` methods of your `Aws::S3::Resource` class instance\.
-
-   Generate a presigned URL by creating an instance of the `URI` class, and use it to parse the `.presigned_url` method of your `Aws::S3::Resource` class instance\. You must specify `:put` as an argument to `.presigned_url`, and you must specify `PUT` to `Net::HTTP::Session#send_request` if you want to upload an object\.
-
-1. Anyone with the presigned URL can upload an object\. 
-
-   The upload creates an object or replaces any existing object with the same key that is specified in the presigned URL\.
-
-The following Ruby code example demonstrates the preceding tasks for SDK for Ruby Version 3\.
-
-**Example**  
+**SDK for Ruby**  
+  
 
 ```
 require "aws-sdk-s3"
@@ -260,10 +451,6 @@ end
 
 run_demo if $PROGRAM_NAME == __FILE__
 ```
-
-------
-#### [ Go ]
-
-You can use the SDK for Go to upload an object\. You can send a PUT request to upload data in a single operation\. For more information, see [Create pre\-signed URLs for Amazon S3 buckets](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/s3-example-presigned-urls.html) in the *AWS SDK for Go Developer Guide*\.
++  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/ruby/example_code/s3#code-examples)\. 
 
 ------

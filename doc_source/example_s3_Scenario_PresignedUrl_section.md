@@ -53,17 +53,15 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
                     .build();
 
             PresignedPutObjectRequest presignedRequest = presigner.presignPutObject(presignRequest);
-
-
             String myURL = presignedRequest.url().toString();
             System.out.println("Presigned URL to upload a file to: " +myURL);
             System.out.println("Which HTTP method needs to be used when uploading a file: " +
                     presignedRequest.httpRequest().method());
 
-            // Upload content to the Amazon S3 bucket by using this URL
+            // Upload content to the Amazon S3 bucket by using this URL.
             URL url = presignedRequest.url();
 
-            // Create the connection and use it to upload the new object by using the presigned URL
+            // Create the connection and use it to upload the new object by using the presigned URL.
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type","text/plain");
@@ -75,9 +73,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
             connection.getResponseCode();
             System.out.println("HTTP response code is " + connection.getResponseCode());
 
-        } catch (S3Exception e) {
-            e.getStackTrace();
-        } catch (IOException e) {
+        } catch (S3Exception | IOException e) {
             e.getStackTrace();
         }
     }
@@ -159,7 +155,9 @@ export const run = async () => {
   try {
     // Delete the S3 bucket.
     console.log(`\nDeleting bucket ${bucketParams.Bucket}`);
-    await s3.send(new DeleteBucketCommand({ Bucket: bucketParams.Bucket }));
+    await s3Client.send(
+      new DeleteBucketCommand({ Bucket: bucketParams.Bucket })
+    );
   } catch (err) {
     console.log("Error deleting bucket", err);
   }

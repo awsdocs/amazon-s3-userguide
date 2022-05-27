@@ -67,8 +67,8 @@ Delete all objects in an Amazon S3 bucket\.
         // Upload three sample objects to the specfied Amazon S3 bucket.
         ArrayList<ObjectIdentifier> keys = new ArrayList<>();
 
-        PutObjectRequest putOb = null ;
-        ObjectIdentifier objectId = null;
+        PutObjectRequest putOb;
+        ObjectIdentifier objectId;
 
         for (int i = 0; i < 3; i++) {
             String keyName = "delete object example " + i;

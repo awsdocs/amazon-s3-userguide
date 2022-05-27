@@ -212,9 +212,9 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
 ```
 /**
- * To run this AWS code example, ensure that you have set up your development environment, including your AWS credentials.
+ * Before running this Java V2 code example, set up your development environment, including your credentials.
  *
- * For information, see this documentation topic:
+ * For more information, see the following documentation topic:
  *
  * https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/get-started.html
  */
@@ -227,11 +227,11 @@ public class S3Scenario {
                 "Usage:\n" +
                 "    <bucketName> <key> <objectPath> <savePath> <toBucket>\n\n" +
                 "Where:\n" +
-                "    bucketName - the Amazon S3 bucket to create.\n\n" +
-                "    key - the key to use.\n\n" +
-                "    objectPath - the path where the file is located (for example, C:/AWS/book2.pdf). "+
-                "    savePath - the path where the file is saved after it's downloaded (for example, C:/AWS/book2.pdf). " +
-                "    toBucket - an Amazon S3 bucket to where an object is copied to (for example, C:/AWS/book2.pdf). ";
+                "    bucketName - The Amazon S3 bucket to create.\n\n" +
+                "    key - The key to use.\n\n" +
+                "    objectPath - The path where the file is located (for example, C:/AWS/book2.pdf). "+
+                "    savePath - The path where the file is saved after it's downloaded (for example, C:/AWS/book2.pdf). " +
+                "    toBucket - An Amazon S3 bucket to where an object is copied to (for example, C:/AWS/book2.pdf). ";
 
         if (args.length != 5) {
              System.out.println(usage);
@@ -244,9 +244,11 @@ public class S3Scenario {
         String savePath = args[3];
         String toBucket = args[4] ;
 
+        ProfileCredentialsProvider credentialsProvider = ProfileCredentialsProvider.create();
         Region region = Region.US_EAST_1;
         S3Client s3 = S3Client.builder()
                 .region(region)
+                .credentialsProvider(credentialsProvider)
                 .build();
 
         // Create an Amazon S3 bucket.

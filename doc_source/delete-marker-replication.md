@@ -13,7 +13,7 @@ If you are not using the latest replication configuration version, delete operat
 
 You can start using delete marker replication with a new or existing replication rule\. You can apply it to an entire S3 bucket or to Amazon S3 objects that have a specific prefix\.
 
-To enable delete marker replication using the Amazon S3 console, see [Using the S3 console](enable-replication.md)\. This topic provides instructions for enabling delete marker replication in your replication configuration when buckets are owned by the same or different AWS accounts\.
+To enable delete marker replication using the Amazon S3 console, see [Using the S3 console](replication-walkthrough1.md#enable-replication)\. This topic provides instructions for enabling delete marker replication in your replication configuration when buckets are owned by the same or different AWS accounts\.
 
 To enable delete marker replication using the AWS Command Line Interface \(AWS CLI\), you must add a replication configuration to the source bucket with `DeleteMarkerReplication` enabled\. 
 

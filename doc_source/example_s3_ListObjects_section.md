@@ -181,13 +181,11 @@ int main()
             ListObjectsResponse res = s3.listObjects(listObjects);
             List<S3Object> objects = res.contents();
 
-            for (ListIterator iterVals = objects.listIterator(); iterVals.hasNext(); ) {
-                S3Object myValue = (S3Object) iterVals.next();
-                System.out.print("\n The name of the key is " + myValue.key());
-                System.out.print("\n The object is " + calKb(myValue.size()) + " KBs");
-                System.out.print("\n The owner is " + myValue.owner());
-
-             }
+           for (S3Object myValue : objects) {
+               System.out.print("\n The name of the key is " + myValue.key());
+               System.out.print("\n The object is " + calKb(myValue.size()) + " KBs");
+               System.out.print("\n The owner is " + myValue.owner());
+           }
 
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());

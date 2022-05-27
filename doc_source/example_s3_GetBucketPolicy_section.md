@@ -81,7 +81,7 @@ int main()
 ```
     public static String getPolicy(S3Client s3, String bucketName) {
 
-        String policyText = "";
+        String policyText;
         System.out.format("Getting policy for bucket: \"%s\"\n\n", bucketName);
 
         GetBucketPolicyRequest policyReq = GetBucketPolicyRequest.builder()

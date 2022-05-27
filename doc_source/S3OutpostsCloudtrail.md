@@ -1,6 +1,6 @@
 # Managing S3 on Outposts capacity with AWS CloudTrail logs<a name="S3OutpostsCloudtrail"></a>
 
-Your Amazon S3 on Outposts management events are available via AWS CloudTrail logs\. For more information, see [Logging Amazon S3 API calls using AWS CloudTrail](cloudtrail-logging.md)\. 
+Your Amazon S3 on Outposts management events are available through AWS CloudTrail logs\. For more information, see [Logging Amazon S3 API calls using AWS CloudTrail](cloudtrail-logging.md)\. 
 
 In addition, you can optionally enable logging for data events in CloudTrail\. For more information, see [Enable logging for objects in a bucket using the console](enable-cloudtrail-logging-for-s3.md#enable-cloudtrail-events)\. 
 

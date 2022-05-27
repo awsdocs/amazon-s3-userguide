@@ -273,7 +273,7 @@ For examples on how to use object tagging condition keys with Amazon S3 operatio
 
 ### Example 7: Restricting access by the AWS account ID of the bucket owner<a name="example-object-resource-account"></a>
 
-You can use the s3:ResourceAccount condition key to write IAM or Virtual Private Cloud Endpoint policies that restrict user or application access to the Amazon S3 buckets that are owned by a specific AWS account ID\. You can use this condition key to restrict clients within your VPC from accessing buckets that you do not own\.
+You can use the `aws:ResourceAccount` or `s3:ResourceAccount` condition key to write IAM or Virtual Private Cloud Endpoint policies that restrict user or application access to the Amazon S3 buckets that are owned by a specific AWS account ID\. You can use this condition key to restrict clients within your VPC from accessing buckets that you do not own\.
 
 For information and examples, see the following resources:
 + [Restricting access to buckets in a specified AWS account](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html#vpc-endpoints-policies-s3) in the *AWS PrivateLink Guide*

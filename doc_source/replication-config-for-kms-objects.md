@@ -19,7 +19,7 @@ Replication of encrypted data is a server\-side process that occurs entirely wit
 ## Specifying additional information in the replication configuration<a name="replication-kms-extra-config"></a>
 
 In the replication configuration, you do the following:
-+ In the `Destination` configuration, add the symmetric AWS KMS customer managed key that you want Amazon S3 to use to encrypt object replicas\. 
++ In the `Destination` configuration, add the symmetric encryption AWS KMS customer managed key that you want Amazon S3 to use to encrypt object replicas\. 
 + Explicitly opt in by enabling replication of objects encrypted using KMS keys by adding the `SourceSelectionCriteria` element\.
 
  

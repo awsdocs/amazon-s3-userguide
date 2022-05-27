@@ -125,7 +125,7 @@ The following is a JSON example of a response for the Lambda function\.
     {
       "taskId": "dGFza2lkZ29lc2hlcmUK",
       "resultCode": "Succeeded",
-      "resultString": "[\"Mary Major\", \"John Stiles\"]"
+      "resultString": "[\"Mary Major", \"John Stiles\"]"
     }
   ]
 }

@@ -24,7 +24,7 @@ S3 Storage Lens metrics unit multiples are written using prefix symbols that are
 | Current Version Storage Bytes  | NA | The number of bytes that are a current version  |  Y  |  Usage  | Data Protection, Cost Efficiency  |  N  |   | 
 | % Current Version Bytes  | NA | The percentage of bytes in scope that are current version |  Y  |  Usage  | Data Protection, Cost Efficiency  |  Y  | Sum\(CurrentVersion Bytes\) /sum\(Storage Bytes\)  | 
 | Current Version Object Count  |  CurrentVersionObjectCount  | The count of current version objects |  Y  |  Usage  | Data Protection, Cost Efficiency  |  N  |   | 
-| % Current Version Objects  | NA | The percentage of objects in scope that are a noncurrent version  |  Y  |  Usage  | Data Protection, Cost Efficiency  |  Y  | Sum\(CurrentVersion Objects\)/sum\(ObjectCount\)  | 
+| % Current Version Objects  | NA | The percentage of objects in scope that are a current version  |  Y  |  Usage  | Data Protection, Cost Efficiency  |  Y  | Sum\(CurrentVersion Objects\)/sum\(ObjectCount\)  | 
 | Non\-Current Version Storage Bytes  |  NonCurrentVersionStorageBytes  | The number of noncurrent versioned bytes  |  Y  |  Usage  | Data Protection, Cost Efficiency  |  N  |   | 
 | % Non\-Current Version Bytes  | NA | The percentage of bytes in scope that are noncurrent version |  Y  |  Usage  | Data Protection, Cost Efficiency  |  Y  | Sum\(NonCurrentVersionSto rageBytes\)/ Sum\(StorageBytes\)  | 
 | Non\-Current Version Object Count  |  NonCurrentVersionObjectCount  | The count of the noncurrent version objects |  Y  |  Usage  | Data Protection, Cost Efficiency  |  N  |   | 

@@ -1,19 +1,21 @@
 # Listing the objects in an Amazon S3 on Outposts bucket<a name="S3OutpostsListObjects"></a>
 
-Objects are the fundamental entities stored in S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\), which includes the AWS Region code for the Region that the Outpost is homed to, the AWS account ID, the Outpost ID, and the access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
+Objects are the fundamental entities stored in Amazon S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\), which includes the AWS Region code for the Region that the Outpost is homed to, the AWS account ID, the Outpost ID, and the access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
 
 ```
 arn:aws:s3-outposts:region:account-id:outpost/outpost-id/accesspoint/accesspoint-name
 ```
 
-**Note**  
-With S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS CLI, and AWS SDKs to upload and manage your objects through your access points\.
+For more information about S3 on Outposts ARNs, see [ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
 
-The following examples show you how to list the objects in an S3 on Outposts bucket using the AWS Command Line Interface \(AWS CLI\) and AWS SDK for Java\.
+**Note**  
+With Amazon S3 on Outposts, object data is always stored on the Outpost\. When AWS installs an Outpost rack, your data stays local to your Outpost to meet data\-residency requirements\. Your objects never leave your Outpost and are not in an AWS Region\. Because the AWS Management Console is hosted in\-Region, you can't use the console to upload or manage objects in your Outpost\. However, you can use the REST API, AWS Command Line Interface \(AWS CLI\), and AWS SDKs to upload and manage your objects through your access points\.
+
+The following examples show you how to list the objects in an S3 on Outposts bucket using the AWS CLI and AWS SDK for Java\.
 
 ## Using the AWS CLI<a name="S3OutpostsListObjectsCLI"></a>
 
-The following example lists the objects in an S3 on Outposts bucket \(`s3-outposts:ListObjectsV2`\) using the AWS CLI\. 
+The following example lists the objects in an S3 on Outposts bucket \(`s3-outposts:ListObjectsV2`\) by using the AWS CLI\. To use this command, replace each `user input placeholder` with your own information\. For more information about this command, see [list\-objects\-v2](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/list-objects-v2.html) in the *AWS CLI Reference*\.
 
 ```
 aws s3api list-objects-v2 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-outposts-access-point
@@ -24,10 +26,10 @@ When using this action with Amazon S3 on Outposts through the AWS SDKs, you prov
 
 ## Using the AWS SDK for Java<a name="S3OutpostsListObjectsJava"></a>
 
-The following S3 on Outposts example lists objects in a bucket using the SDK for Java\. 
+The following S3 on Outposts example lists objects in a bucket by using the SDK for Java\. To use this example, replace each `user input placeholder` with your own information\. 
 
 **Important**  
-This section describes the latest revision of the [ListObjects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html) API operation\. We recommend that you use this revised API operation for application development\. For backward compatibility, Amazon S3 continues to support the prior version of this API operation\. 
+This example uses [ListObjectsV2](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html), which is the latest revision of the `ListObjects` API operation\. We recommend that you use this revised API operation for application development\. For backward compatibility, Amazon S3 continues to support the prior version of this API operation\. 
 
 ```
 import com.amazonaws.AmazonServiceException;

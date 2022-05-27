@@ -4,19 +4,19 @@ With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and e
 
 For more information about working with buckets in S3 on Outposts, see [Working with S3 on Outposts buckets](S3OutpostsWorkingBuckets.md)\.
 
-The following examples show you how to return a list of your S3 on Outposts bucket using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), and AWS SDK for Java\.
+The following examples show you how to return a list of your S3 on Outposts buckets by using the AWS Management Console, AWS CLI, and AWS SDK for Java\.
 
 ## Using the S3 console<a name="s3-outposts-bucket-list"></a>
 
 1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
-1. In the navigation pane, choose **Outposts buckets**\.
+1. In the left navigation pane, choose **Outposts buckets**\.
 
-1. Under **Outposts buckets**, review your lists of S3 on Outposts buckets\.
+1. Under **Outposts buckets**, review your list of S3 on Outposts buckets\.
 
 ## Using the AWS CLI<a name="S3OutpostsListRegionalBucketCLI"></a>
 
-The following AWS CLI example gets a list of buckets in an Outpost\.
+The following AWS CLI example gets a list of buckets in an Outpost\.To use this command, replace each `user input placeholder` with your own information\. For more information about this command, see [list\-regional\-buckets](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3control/list-regional-buckets.html) in the *AWS CLI Reference*\.
 
 ```
 aws s3control list-regional-buckets --account-id 123456789012 --outpost-id op-01ac5d28a6a232904
@@ -24,7 +24,7 @@ aws s3control list-regional-buckets --account-id 123456789012 --outpost-id op-01
 
 ## Using the AWS SDK for Java<a name="S3OutpostsListRegionalBucketJava"></a>
 
-The following SDK for Java example gets a list of buckets in an Outpost\. 
+The following SDK for Java example gets a list of buckets in an Outpost\. For more information, see [ListRegionalBuckets](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html) in the *Amazon Simple Storage Service API Reference*\.
 
 ```
 import com.amazonaws.services.s3control.model.*;

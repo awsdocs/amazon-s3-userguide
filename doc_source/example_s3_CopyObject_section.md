@@ -140,7 +140,7 @@ int main()
 ```
     public static String copyBucketObject (S3Client s3, String fromBucket, String objectKey, String toBucket) {
 
-        String encodedUrl = null;
+        String encodedUrl = "";
         try {
             encodedUrl = URLEncoder.encode(fromBucket + "/" + objectKey, StandardCharsets.UTF_8.toString());
         } catch (UnsupportedEncodingException e) {

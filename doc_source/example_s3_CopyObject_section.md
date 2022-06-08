@@ -218,28 +218,28 @@ This is prerelease documentation for a feature in preview release\. It is subjec
   
 
 ```
- suspend fun copyBucketObject(
-                         fromBucket: String,
-                         objectKey: String,
-                         toBucket: String) {
+suspend fun copyBucketObject(
+    fromBucket: String,
+    objectKey: String,
+    toBucket: String
+) {
 
-        var encodedUrl=""
-        try {
-            encodedUrl = URLEncoder.encode("$fromBucket/$objectKey", StandardCharsets.UTF_8.toString())
+    var encodedUrl = ""
+    try {
+        encodedUrl = URLEncoder.encode("$fromBucket/$objectKey", StandardCharsets.UTF_8.toString())
+    } catch (e: UnsupportedEncodingException) {
+        println("URL could not be encoded: " + e.message)
+    }
 
-        } catch (e: UnsupportedEncodingException) {
-            println("URL could not be encoded: " + e.message)
-        }
-
-        val request = CopyObjectRequest {
-            copySource = encodedUrl
-            bucket = toBucket
-            key= objectKey
-        }
-        S3Client { region = "us-east-1" }.use { s3 ->
-           s3.copyObject(request)
-        }
-  }
+    val request = CopyObjectRequest {
+        copySource = encodedUrl
+        bucket = toBucket
+        key = objectKey
+    }
+    S3Client { region = "us-east-1" }.use { s3 ->
+        s3.copyObject(request)
+    }
+}
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
 +  For API details, see [CopyObject](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 

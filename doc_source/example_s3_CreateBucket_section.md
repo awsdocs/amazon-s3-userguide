@@ -203,17 +203,17 @@ This is prerelease documentation for a feature in preview release\. It is subjec
   
 
 ```
-    suspend fun createNewBucket(bucketName: String) {
+suspend fun createNewBucket(bucketName: String) {
 
-        val request = CreateBucketRequest {
-             bucket = bucketName
-         }
+    val request = CreateBucketRequest {
+        bucket = bucketName
+    }
 
-        S3Client { region = "us-east-1" }.use { s3 ->
-            s3.createBucket(request)
-            println("$bucketName is ready")
-        }
- }
+    S3Client { region = "us-east-1" }.use { s3 ->
+        s3.createBucket(request)
+        println("$bucketName is ready")
+    }
+}
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
 +  For API details, see [CreateBucket](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 

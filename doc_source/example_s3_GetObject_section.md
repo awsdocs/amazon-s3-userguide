@@ -328,19 +328,19 @@ This is prerelease documentation for a feature in preview release\. It is subjec
 ```
 suspend fun getObjectBytes(bucketName: String, keyName: String, path: String) {
 
-         val request =  GetObjectRequest {
-             key = keyName
-             bucket= bucketName
-         }
+    val request = GetObjectRequest {
+        key = keyName
+        bucket = bucketName
+    }
 
-         S3Client { region = "us-east-1" }.use { s3 ->
-             s3.getObject(request) { resp ->
-                    val myFile = File(path)
-                    resp.body?.writeToFile(myFile)
-                    println("Successfully read $keyName from $bucketName")
-               }
-         }
- }
+    S3Client { region = "us-east-1" }.use { s3 ->
+        s3.getObject(request) { resp ->
+            val myFile = File(path)
+            resp.body?.writeToFile(myFile)
+            println("Successfully read $keyName from $bucketName")
+        }
+    }
+}
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
 +  For API details, see [GetObject](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 

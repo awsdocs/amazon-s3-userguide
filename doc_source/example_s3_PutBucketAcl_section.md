@@ -107,38 +107,38 @@ This is prerelease documentation for a feature in preview release\. It is subjec
 ```
 suspend fun setBucketAcl(bucketName: String, idVal: String) {
 
-        val myGrant = Grantee {
-             id = idVal
-             type = Type.CanonicalUser
-        }
+    val myGrant = Grantee {
+        id = idVal
+        type = Type.CanonicalUser
+    }
 
-        val ownerGrant = Grant {
-            grantee = myGrant
-            permission = Permission.FullControl
-         }
+    val ownerGrant = Grant {
+        grantee = myGrant
+        permission = Permission.FullControl
+    }
 
-        val grantList = mutableListOf<Grant>()
-        grantList.add(ownerGrant)
+    val grantList = mutableListOf<Grant>()
+    grantList.add(ownerGrant)
 
-        val ownerOb = Owner {
-           id = idVal
-         }
+    val ownerOb = Owner {
+        id = idVal
+    }
 
-        val acl = AccessControlPolicy {
-            owner = ownerOb
-            grants = grantList
-        }
+    val acl = AccessControlPolicy {
+        owner = ownerOb
+        grants = grantList
+    }
 
-        val request = PutBucketAclRequest {
-            bucket = bucketName
-            accessControlPolicy = acl
-        }
+    val request = PutBucketAclRequest {
+        bucket = bucketName
+        accessControlPolicy = acl
+    }
 
-       S3Client { region = "us-east-1" }.use { s3 ->
-           s3.putBucketAcl(request)
-           println("An ACL was successfully set on $bucketName")
-     }
-  }
+    S3Client { region = "us-east-1" }.use { s3 ->
+        s3.putBucketAcl(request)
+        println("An ACL was successfully set on $bucketName")
+    }
+}
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
 +  For API details, see [PutBucketAcl](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 

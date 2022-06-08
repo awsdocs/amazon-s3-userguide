@@ -13,7 +13,7 @@ To enable log delivery, perform the following basic steps\. For details, see [En
 
    You can have logs delivered to any bucket that you own that is in the same Region as the source bucket, including the source bucket itself\. But for simpler log management, we recommend that you save access logs in a different bucket\. 
 
-   When your source bucket and target bucket are the same bucket, additional logs are created for the logs that are written to the bucket\. This might not be ideal because it could result in a small increase in your storage billing\. In addition, the extra logs about logs might make it harder to find the log that you are looking for\. If you choose to save access logs in the source bucket, we recommend that you specify a prefix for all log object keys so that the object names begin with a common string and the log objects are easier to identify\. 
+   When your source bucket and target bucket are the same bucket, additional logs are created for the logs that are written to the bucket\. We do not recommend doing this because it could result in a small increase in your storage billing\. In addition, the extra logs about logs might make it harder to find the log that you are looking for\. If you choose to save access logs in the source bucket, we recommend that you specify a prefix for all log object keys so that the object names begin with a common string and the log objects are easier to identify\. 
 
    [Key prefixes](https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#keyprefix) are also useful to distinguish between source buckets when multiple buckets log to the same target bucket\.
 

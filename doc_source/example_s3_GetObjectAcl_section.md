@@ -177,20 +177,20 @@ This is prerelease documentation for a feature in preview release\. It is subjec
   
 
 ```
- suspend fun getBucketACL(objectKey: String, bucketName: String) {
+suspend fun getBucketACL(objectKey: String, bucketName: String) {
 
-        val request = GetObjectAclRequest {
-            bucket = bucketName
-            key = objectKey
-        }
+    val request = GetObjectAclRequest {
+        bucket = bucketName
+        key = objectKey
+    }
 
-        S3Client { region = "us-east-1" }.use { s3 ->
-                val response = s3.getObjectAcl(request)
-                response.grants?.forEach { grant ->
-                    println("Grant permission is ${grant.permission}")
-                }
+    S3Client { region = "us-east-1" }.use { s3 ->
+        val response = s3.getObjectAcl(request)
+        response.grants?.forEach { grant ->
+            println("Grant permission is ${grant.permission}")
         }
-  }
+    }
+}
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
 +  For API details, see [GetObjectAcl](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 

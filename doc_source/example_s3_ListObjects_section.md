@@ -289,24 +289,24 @@ This is prerelease documentation for a feature in preview release\. It is subjec
 ```
 suspend fun listBucketObjects(bucketName: String) {
 
-        val request = ListObjectsRequest {
-            bucket = bucketName
+    val request = ListObjectsRequest {
+        bucket = bucketName
+    }
+
+    S3Client { region = "us-east-1" }.use { s3 ->
+
+        val response = s3.listObjects(request)
+        response.contents?.forEach { myObject ->
+            println("The name of the key is ${myObject.key}")
+            println("The object is ${calKb(myObject.size)} KBs")
+            println("The owner is ${myObject.owner}")
         }
+    }
+}
 
-        S3Client { region = "us-east-1" }.use { s3 ->
-
-                val response = s3.listObjects(request)
-                response.contents?.forEach { myObject ->
-                    println("The name of the key is ${myObject.key}")
-                    println("The object is ${calKb(myObject.size)} KBs")
-                    println("The owner is ${myObject.owner}")
-                }
-            }
-       }
-
-    private fun calKb(intValue: Long): Long {
-        return intValue / 1024
-   }
+private fun calKb(intValue: Long): Long {
+    return intValue / 1024
+}
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
 +  For API details, see [ListObjects](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 

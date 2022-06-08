@@ -2,7 +2,7 @@
 
 Server access logging provides detailed records for the requests that are made to an Amazon S3 bucket\. Server access logs are useful for many applications\. For example, access log information can be useful in security and access audits\. It can also help you learn about your customer base and understand your Amazon S3 bill\.
 
-By default, Amazon S3 doesn't collect server access logs\. When you enable logging, Amazon S3 delivers access logs for a source bucket to a target bucket that you choose\. The target bucket must be in the same AWS Region as the source bucket and must not have a default retention period configuration\. 
+By default, Amazon S3 doesn't collect server access logs\. When you enable logging, Amazon S3 delivers access logs for a source bucket to a target bucket that you choose\. The target bucket must be in the same AWS Region and AWS account as the source bucket, and must not have a default retention period configuration\. 
 
 An access log record contains details about the requests that are made to a bucket\. This information can include the request type, the resources that are specified in the request, and the time and date that the request was processed\. For more information about logging basics, see [Logging requests using server access logging](ServerLogs.md)\. 
 

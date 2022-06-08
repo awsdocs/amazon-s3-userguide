@@ -481,6 +481,8 @@ Amazon's trademarks and trade dress may not be used in
       + [Using HeadBucket to determine if an S3 on Outposts bucket exists and you have access permissions](S3OutpostsHeadBucket.md)
       + [Performing and managing a multipart upload with the SDK for Java](S3OutpostsMPU.md)
    + [Security in S3 on Outposts](s3outposts-security.md)
+      + [Data encryption in S3 on Outposts](s3-outposts-data-encryption.md)
+      + [AWS PrivateLink for S3 on Outposts](s3-outposts-privatelink-interface-endpoints.md)
    + [Managing S3 on Outposts storage](S3OutpostsManaging.md)
       + [Managing S3 on Outposts capacity with Amazon CloudWatch metrics](S3OutpostsCapacity.md)
       + [Receiving S3 on Outposts event notifications using Amazon CloudWatch Events](S3OutpostsNotificationsCWE.md)

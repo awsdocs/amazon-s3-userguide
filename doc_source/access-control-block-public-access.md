@@ -59,7 +59,7 @@ Note that it isn't currently possible to change an access point's block public a
 + **ACLs**
   + Amazon S3 considers a bucket or object ACL public if it grants any permissions to members of the predefined `AllUsers` or `AuthenticatedUsers` groups\. For more information about predefined groups, see [Amazon S3 predefined groups](acl-overview.md#specifying-grantee-predefined-groups)\.
 + **Policies**
-  + When evaluating a bucket policy, Amazon S3 begins by assuming that the policy is public\. It then evaluates the policy to determine whether it qualifies as non\-public\. To be considered non\-public, a bucket policy must grant access only to fixed values \(values that don't contain a wildcard\) of one or more of the following:
+  + When evaluating a bucket policy, Amazon S3 begins by assuming that the policy is public\. It then evaluates the policy to determine whether it qualifies as non\-public\. To be considered non\-public, a bucket policy must grant access only to fixed values \(values that don't contain a wildcard or [an AWS Identity and Access Management Policy Variable](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html)\) of one or more of the following:
     + A set of Classless Inter\-Domain Routings \(CIDRs\), using `aws:SourceIp`\. For more information about CIDR, see [RFC 4632](http://www.rfc-editor.org/rfc/rfc4632.txt) on the RFC Editor website\.
     + An AWS principal, user, role, or service principal \(e\.g\. `aws:PrincipalOrgID`\)
     + `aws:SourceArn`

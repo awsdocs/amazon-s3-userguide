@@ -4,6 +4,8 @@ You can assign each job a numeric priority, which can be any positive integer\. 
 
 You can change a job's priority while it is running\. If you submit a new job with a higher priority while a job is running, the lower\-priority job can pause to allow the higher\-priority job to run\.
 
+Changing job priority does not affect job processing speed\.
+
 **Note**  
 S3 Batch Operations honor job priorities on a best\-effort basis\. Although jobs with higher priorities generally take precedence over jobs with lower priorities, Amazon S3 does not guarantee strict ordering of jobs\.
 

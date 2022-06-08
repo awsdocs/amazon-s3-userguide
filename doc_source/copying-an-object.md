@@ -10,7 +10,7 @@ You've already added an object to a bucket and downloaded the object\. Now, you 
 
    1. Enter a folder name \(for example, `favorite-pics`\)\.
 
-   1. For the folder encryption setting, choose **None**\.
+   1. For the folder encryption setting, choose **Disable**\.
 
    1. Choose **Save**\.
 

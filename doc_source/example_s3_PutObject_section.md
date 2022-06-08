@@ -530,21 +530,21 @@ This is prerelease documentation for a feature in preview release\. It is subjec
 ```
 suspend fun putS3Object(bucketName: String, objectKey: String, objectPath: String) {
 
-            val metadataVal = mutableMapOf<String, String>()
-            metadataVal["myVal"] = "test"
+    val metadataVal = mutableMapOf<String, String>()
+    metadataVal["myVal"] = "test"
 
-            val request = PutObjectRequest {
-                bucket = bucketName
-                key = objectKey
-                metadata = metadataVal
-                this.body = Paths.get(objectPath).asByteStream()
-            }
+    val request = PutObjectRequest {
+        bucket = bucketName
+        key = objectKey
+        metadata = metadataVal
+        this.body = Paths.get(objectPath).asByteStream()
+    }
 
-            S3Client { region = "us-east-1" }.use { s3 ->
-               val response =s3.putObject(request)
-               println("Tag information is ${response.eTag}")
-            }
-      }
+    S3Client { region = "us-east-1" }.use { s3 ->
+        val response = s3.putObject(request)
+        println("Tag information is ${response.eTag}")
+    }
+}
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
 +  For API details, see [PutObject](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 

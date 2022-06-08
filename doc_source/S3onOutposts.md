@@ -64,7 +64,7 @@ For more information about object keys, see [Working with S3 on Outposts objects
 
 S3 on Outposts provides a new storage class, S3 Outposts \(`OUTPOSTS`\)\. The S3 Outposts storage class is available only for objects stored in buckets on AWS Outposts\. If you try to use other S3 storage classes with S3 on Outposts, S3 on Outposts returns the `InvalidStorageClass` error\. 
 
-By default, objects stored in the S3 Outposts \(`OUTPOSTS`\) storage class are encrypted using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)\. For more information, see [Data encryption in S3 on Outposts](s3outposts-security.md#s3-outposts-data-encryption)\. 
+By default, objects stored in the S3 Outposts \(`OUTPOSTS`\) storage class are encrypted using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)\. For more information, see [Data encryption in S3 on Outposts](s3-outposts-data-encryption.md)\. 
 
 ### Bucket policy<a name="S3OutpostsBucketPolicies"></a>
 

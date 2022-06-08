@@ -8,11 +8,6 @@ Security is a shared responsibility between AWS and you\. The [shared responsibi
 
 This documentation helps you understand how to apply the shared responsibility model when using S3 on Outposts\. The following topics show you how to configure S3 on Outposts to meet your security and compliance objectives\. You also learn how to use other AWS services that help you to monitor and secure your S3 on Outposts resources\. 
 
-## Data encryption in S3 on Outposts<a name="s3-outposts-data-encryption"></a>
-
-By default, all data stored in Amazon S3 on Outposts is encrypted by using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)\. For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
-
-You can optionally use server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. To use SSE\-C, specify an encryption key as part of your object API requests\. Server\-side encryption encrypts only the object data, not the object metadata\. For more information, see [Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)](ServerSideEncryptionCustomerKeys.md)\.
-
-**Note**  
-S3 on Outposts doesn't support server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\)\. 
+**Topics**
++ [Data encryption in S3 on Outposts](s3-outposts-data-encryption.md)
++ [AWS PrivateLink for S3 on Outposts](s3-outposts-privatelink-interface-endpoints.md)

@@ -194,26 +194,26 @@ This is prerelease documentation for a feature in preview release\. It is subjec
   
 
 ```
-  suspend fun deleteBucketObjects(bucketName: String, objectName: String) {
+suspend fun deleteBucketObjects(bucketName: String, objectName: String) {
 
-        val objectId = ObjectIdentifier{
-            key = objectName
-        }
+    val objectId = ObjectIdentifier {
+        key = objectName
+    }
 
-        val delOb = Delete{
-            objects = listOf(objectId)
-        }
+    val delOb = Delete {
+        objects = listOf(objectId)
+    }
 
-        val request = DeleteObjectsRequest {
-            bucket = bucketName
-            delete= delOb
-        }
+    val request = DeleteObjectsRequest {
+        bucket = bucketName
+        delete = delOb
+    }
 
-        S3Client { region = "us-east-1" }.use { s3 ->
-                 s3.deleteObjects(request)
-                 println("$objectName was deleted from $bucketName")
-        }
-   }
+    S3Client { region = "us-east-1" }.use { s3 ->
+        s3.deleteObjects(request)
+        println("$objectName was deleted from $bucketName")
+    }
+}
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
 +  For API details, see [DeleteObjects](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 

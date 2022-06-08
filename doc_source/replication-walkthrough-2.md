@@ -26,7 +26,7 @@ For more information about configuring replication using server\-side encryption
                "AWS":"arn:aws:iam::source-bucket-acct-ID:role/service-role/source-acct-IAM-role"
             },
             "Action":["s3:ReplicateObject", "s3:ReplicateDelete"],
-            "Resource":"arn:aws:s3:::destination/*"
+            "Resource":"arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
          },
          {
             "Sid":"Set permissions on bucket",
@@ -35,7 +35,7 @@ For more information about configuring replication using server\-side encryption
                "AWS":"arn:aws:iam::source-bucket-acct-ID:role/service-role/source-acct-IAM-role"
             },
             "Action":["s3:List*", "s3:GetBucketVersioning", "s3:PutBucketVersioning"],
-            "Resource":"arn:aws:s3:::destination"
+            "Resource":"arn:aws:s3:::DOC-EXAMPLE-BUCKET"
          }
       ]
    }

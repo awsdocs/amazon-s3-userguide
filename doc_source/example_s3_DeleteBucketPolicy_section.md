@@ -130,17 +130,17 @@ This is prerelease documentation for a feature in preview release\. It is subjec
   
 
 ```
- suspend fun deleteS3BucketPolicy( bucketName: String?) {
+suspend fun deleteS3BucketPolicy(bucketName: String?) {
 
-         val request = DeleteBucketPolicyRequest {
-             bucket = bucketName
-         }
+    val request = DeleteBucketPolicyRequest {
+        bucket = bucketName
+    }
 
-        S3Client { region = "us-east-1" }.use { s3 ->
-             s3.deleteBucketPolicy(request)
-             println("Done!")
-         }
-       }
+    S3Client { region = "us-east-1" }.use { s3 ->
+        s3.deleteBucketPolicy(request)
+        println("Done!")
+    }
+}
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
 +  For API details, see [DeleteBucketPolicy](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 

@@ -110,27 +110,9 @@ int main()
   
 
 ```
-    public static void listAllObjects(S3Client s3, String bucket) {
-
-        try {
-            // To delete a bucket, all the objects in the bucket must be deleted first
-            ListObjectsV2Request listObjectsV2Request = ListObjectsV2Request.builder().bucket(bucket).build();
-            ListObjectsV2Response listObjectsV2Response;
-
-            do {
-                listObjectsV2Response = s3.listObjectsV2(listObjectsV2Request);
-                for (S3Object s3Object : listObjectsV2Response.contents()) {
-                    s3.deleteObject(DeleteObjectRequest.builder()
-                            .bucket(bucket)
-                            .key(s3Object.key())
-                            .build());
-                }
-
-                listObjectsV2Request = ListObjectsV2Request.builder().bucket(bucket)
-                        .continuationToken(listObjectsV2Response.nextContinuationToken())
-                        .build();
-
-            } while(listObjectsV2Response.isTruncated());
+        DeleteBucketRequest deleteBucketRequest = DeleteBucketRequest.builder().bucket(bucket).build();
+        s3.deleteBucket(deleteBucketRequest);
+        s3.close();
 ```
 +  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/s3#readme)\. 
 +  For API details, see [DeleteBucket](https://docs.aws.amazon.com/goto/SdkForJavaV2/s3-2006-03-01/DeleteBucket) in *AWS SDK for Java 2\.x API Reference*\. 

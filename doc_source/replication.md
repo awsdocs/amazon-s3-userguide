@@ -53,7 +53,7 @@ Same\-Region Replication \(SRR\) is used to copy objects across Amazon S3 bucket
 
 ## When to use S3 Batch Replication<a name="batch-replication-scenario"></a>
 
-Batch Replication replicates existing objects to different buckets as an on\-demand option\. Unlike live replication, these jobs can be ran as needed\. Batch Replication can help you do the following:
+Batch Replication replicates existing objects to different buckets as an on\-demand option\. Unlike live replication, these jobs can be executed as needed\. Batch Replication can help you do the following:
 + **Replicate existing objects** – You can use Batch Replication to replicate objects that were added to the bucket before Same\-Region Replication or Cross\-Region Replication were configured\.
 + **Replicate objects that previously failed to replicate** – You can filter a Batch Replication job to attempt to replicate objects with a replication status of **FAILED**\.
 + **Replicate objects that were already replicated** – You might be required to store multiple copies of your data in separate AWS accounts or AWS Regions\. Batch Replication can replicate existing objects to newly added destinations\.

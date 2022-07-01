@@ -278,7 +278,7 @@ WHERE
   AND eventTime BETWEEN '2019-07-05T00:00:00Z' and '2019-07-06T00:00:00Z'
 ```
 
-**Example — Select all anonymous requester events to a bucket in a certain period and print only EventTime, EventSource, SourceIP, UserAgent, BucketName, UserIdentity, and UserARN**  
+**Example — Select all anonymous requester events to a bucket in a certain period and print only EventTime, EventName, EventSource, SourceIP, UserAgent, BucketName, UserARN, and AccountID**  
 
 ```
 SELECT
@@ -289,11 +289,11 @@ SELECT
   userAgent, 
   json_extract_scalar(requestParameters, '$.bucketName') as bucketName, 
   userIdentity.arn as userArn,
-  userIdentity.principalId 
+  userIdentity.accountId 
 FROM
   s3_cloudtrail_events_db.cloudtrail_myawsexamplebucket_table
 WHERE
-  userIdentity.principalId='ANONYMOUS_PRINCIPAL'
+  userIdentity.accountId='ANONYMOUS_PRINCIPAL'
   AND eventTime BETWEEN '2019-07-05T00:00:00Z' and '2019-07-06T00:00:00Z'
 ```
 

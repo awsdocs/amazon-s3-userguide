@@ -89,24 +89,24 @@ The first column in the following table lists usage types that appear in your bi
 |  `region-OverwriteBytes-Put-STANDARD`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 Standard storage  | 
 |  `region-OverwriteBytes-Put-ZIA`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 One Zone\-IA storage  | 
 |  `region-Requests-GDA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on DEEP Archive objects  | 
-|  `region-Requests-GDA-Tier2`  |  Count  |  Hourly  |  The number of GET, HEAD, and LIST requests  | 
+|  `region-Requests-GDA-Tier2`  |  Count  |  Hourly  |  The number of GET and HEAD requests  | 
 |  `region-Requests-GDA-Tier3`  |  Count  |  Hourly  |  The number of S3 Glacier Deep Archive standard restore requests  | 
 |  `region-Requests-GDA-Tier5`  |  Count  |  Hourly  |  The number of Bulk S3 Glacier Deep Archive restore requests  | 
-|  `region-Requests-GIR-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on S3 Glacier Instant Retrieval objects\.  | 
+|  `region-Requests-GIR-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, or POST requests on S3 Glacier Instant Retrieval objects\.  | 
 |  `region-Requests-GIR-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-GIR\-Tier1 requests on S3 Glacier Instant Retrieval objects\.  | 
 |  `region-Requests-GLACIER-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on S3 Glacier Flexible Retrieval objects  | 
 |  `region-Requests-GLACIER-Tier2`  |  Count  |  Hourly  | The number of GET and all other requests not listed on S3 Glacier Flexible Retrieval objects | 
-|  `region-Requests-INT-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on S3 Intelligent\-Tiering objects  | 
+|  `region-Requests-INT-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, or POST requests on S3 Intelligent\-Tiering objects  | 
 |  `region-Requests-INT-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-Tier1 requests for S3 Intelligent\-Tiering objects  | 
-|  `region-Requests-SIA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on S3 Standard\-IA objects  | 
+|  `region-Requests-SIA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, or POST requests on S3 Standard\-IA objects  | 
 |  `region-Requests-SIA-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-SIA\-Tier1 requests on S3 Standard\-IA objects  | 
-|  `region-Requests-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests for STANDARD, RRS, and tags  | 
+|  `region-Requests-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, or POST requests for STANDARD, RRS, and tags, plus LIST requests for all buckets and objects  | 
 |  `region-Requests-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-Tier1 requests  | 
 |  `region-Requests-Tier3`  |  Count  |  Hourly  |  The number of lifecycle requests to S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive and standard S3 Glacier Flexible Retrieval restore requests  | 
 |  `region-Requests-Tier4`  |  Count  |  Hourly  |  The number of lifecycle transitions to S3 Glacier Instant Retrieval, S3 Intelligent\-Tiering, S3 Standard\-IA, or S3 One Zone\-IA storage  | 
 |  `region-Requests-Tier5`  |  Count  |  Hourly  |  The number of Bulk S3 Glacier Flexible Retrieval restore requests  | 
 |  `region-Requests-Tier6`  |  Count  |  Hourly  |  The number of Expedited S3 Glacier Flexible Retrieval restore requests  | 
-|  `region-Requests-ZIA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, or LIST requests on S3 One Zone\-IA objects  | 
+|  `region-Requests-ZIA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, or POST requests on S3 One Zone\-IA objects  | 
 |  `region-Requests-ZIA-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-ZIA\-Tier1 requests on S3 One Zone\-IA objects  | 
 |  `region-Retrieval-GIR`  |  GB  |  Hourly  |  The amount of data retrieved from S3 Glacier Instant Retrieval storage\.  | 
 |  `region-Retrieval-SIA`  |  GB  |  Hourly  |  The amount of data retrieved from S3 Standard\-IA storage  | 

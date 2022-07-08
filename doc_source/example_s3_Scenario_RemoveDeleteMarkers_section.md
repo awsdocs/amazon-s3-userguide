@@ -9,6 +9,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/s3_versioning#code-examples)\. 
 Create a Lambda handler that removes a delete marker from an Amazon S3 object\. This handler can be used to efficiently clean up extraneous delete markers in a versioned bucket\.  
 
 ```
@@ -107,7 +108,6 @@ def lambda_handler(event, context):
         'results': results
     }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/s3_versioning#code-examples)\. 
 
 ------
 

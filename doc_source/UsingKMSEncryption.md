@@ -1,6 +1,6 @@
 # Protecting data using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)<a name="UsingKMSEncryption"></a>
 
-Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses AWS KMS keys to encrypt your Amazon S3 objects\. AWS KMS encrypts only the object data\. Any object metadata is not encrypted\. 
+Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses AWS KMS keys to encrypt your Amazon S3 objects\. AWS KMS encrypts only the object data\. Object metadata isn't encrypted, unless server\-side encryption with KMS keys is requested for the object\. If server\-side encryption is requested for the object, then the checksum is stored in encrypted form\.
 
 If you use KMS keys, you can use AWS KMS through the [AWS Management Console](https://console.aws.amazon.com/kms) or the [AWS KMS APIs](https://docs.aws.amazon.com/kms/latest/APIReference/) to do the following: 
 + Centrally create KMS keys
@@ -127,7 +127,7 @@ When you use SSE\-KMS with the optional S3 Bucket Keys feature, the encryption c
 Signature Version 4 is the process of adding authentication information to AWS requests sent by HTTP\. For security, most requests to AWS must be signed with an access key, which consists of an access key ID and secret access key\. These two keys are commonly referred to as your security credentials\. For more information, see [Authenticating Requests \(AWS Signature Version 4\)](https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html) and [Signature Version 4 signing process](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)\.
 
 **Important**  
-All GET and PUT requests for an object protected by AWS KMS fail if you don't make them using Secure Sockets Layer \(SSL\), Transport Layer Security \(TLS\), or Signature Version 4\.
+All GET and PUT requests for AWS KMS encrypted objects must be made using Secure Sockets Layer \(SSL\) or Transport Layer Security \(TLS\)\. Requests must also be signed using valid credentials, such as AWS Signature Version 4 \(or AWS Signature Version 2\)\.
 If your object uses SSE\-KMS, don't send encryption request headers for `GET` requests and `HEAD` requests, or you’ll get an HTTP 400 BadRequest error\.
 
 **Topics**

@@ -45,9 +45,7 @@ By default, Amazon S3 doesn't replicate the following:
 + Objects in the source bucket that have already been replicated to a different destination\. For example, if you change the destination bucket in an existing replication configuration, Amazon S3 won't replicate the objects again\.
 
   To replicate previously replicated objects, use Batch Replication\. Learn more about configuring Batch Replication at [Replicate existing objects](s3-batch-replication-batch.md)\.
-+ Batch Replication does not support re\-replicating objects that were deleted with the version ID of the object from the destination bucket\. To re\-replicate these objects you can copy the source objects in place with a Batch Copy job\. Copying those objects in place will create new versions of the object in the source bucket and initiate replication automatically to the destination\.
-
-  For more information on Batch Copy, see, [Examples that use Batch Operations to copy objects](batch-ops-examples-copy.md)\.
++ Batch Replication does not support re\-replicating objects that were deleted with the version ID of the object from the destination bucket\. To re\-replicate these objects you can copy the source objects in place with a Batch Copy job\. Copying those objects in place will create new versions of the object in the source bucket and initiate replication automatically to the destination\. For more information about how to use Batch Copy, see, [Examples that use Batch Operations to copy objects](batch-ops-examples-copy.md)\.
 + Objects created with server\-side encryption using customer\-provided encryption keys \(SSE\-C\)\.
 + By default, when replicating from a different AWS account, delete markers added to the source bucket are not replicated\.
 

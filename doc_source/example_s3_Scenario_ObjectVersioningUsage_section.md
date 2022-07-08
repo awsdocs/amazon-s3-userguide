@@ -9,6 +9,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/s3_versioning#code-examples)\. 
 Call some of the functions defined in the API examples section to upload the stanza of a poem to a versioned object and perform a series of actions on it\.  
 
 ```
@@ -93,7 +94,6 @@ def usage_demo_single_object(obj_prefix='demo-versioning/'):
     print(f"{bucket.name} deleted.")
     print("Demo done!")
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/s3_versioning#code-examples)\. 
 
 ------
 

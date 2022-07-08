@@ -11,6 +11,7 @@ For more information, see [Uploading an object using multipart upload](https://d
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/file_transfer#code-examples)\. 
 Create functions that transfer files using several of the available transfer manager settings\. Use a callback class to write callback progress during file transfer\.  
 
 ```
@@ -540,7 +541,6 @@ if __name__ == '__main__':
         print("To run this example, you must have valid credentials in "
               "a shared credential file or set in environment variables.")
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/file_transfer#code-examples)\. 
 
 ------
 

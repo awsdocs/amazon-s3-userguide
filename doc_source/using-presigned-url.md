@@ -45,7 +45,7 @@ The following are credentials that you can use to create a presigned URL:
 
 **Note**  
 If you created a presigned URL using a temporary token, the URL expires when the token expires, even if the URL was created with a later expiration time\.
-Because presigned URLs grant access to your Amazon S3 buckets to whoever has the URL, we recommend that you protect them appropriately\. For more information about protecting presigned URLs, see [Limiting presigned URL capabilities](#PresignedUrlUploadObject-LimitCapabilities)\.
+Because presigned URLs grant access to your Amazon S3 buckets to whoever has the URL, we recommend that you protect them appropriately\.
 
 ## When does Amazon S3 check the expiration date and time of a presigned URL?<a name="presigned-url-when-checked"></a>
 

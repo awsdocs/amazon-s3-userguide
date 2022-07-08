@@ -9,6 +9,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/s3_basics#code-examples)\. 
   
 
 ```
@@ -30,13 +31,13 @@ class BucketWrapper:
             logger.exception("Couldn't delete CORS from bucket '%s'.", self.bucket.name)
             raise
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/s3_basics#code-examples)\. 
 +  For API details, see [DeleteBucketCors](https://docs.aws.amazon.com/goto/boto3/s3-2006-03-01/DeleteBucketCors) in *AWS SDK for Python \(Boto3\) API Reference*\. 
 
 ------
 #### [ Ruby ]
 
 **SDK for Ruby**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/ruby/example_code/s3#code-examples)\. 
   
 
 ```
@@ -64,7 +65,6 @@ class BucketCorsWrapper
 
 end
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/ruby/example_code/s3#code-examples)\. 
 +  For API details, see [DeleteBucketCors](https://docs.aws.amazon.com/goto/SdkForRubyV3/s3-2006-03-01/DeleteBucketCors) in *AWS SDK for Ruby API Reference*\. 
 
 ------

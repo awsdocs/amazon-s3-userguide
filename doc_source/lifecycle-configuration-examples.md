@@ -514,7 +514,7 @@ The following is an example S3 Lifecycle configuration that specifies a rule wit
 
 ## Example 9: Lifecycle configuration using size\-based rules<a name="lc-size-rules"></a>
 
-You can create rules that transition objects based only on their size\. You can specify a minimum size \(`ObjectSizeGreaterThan`\) or a maximum size \(`ObjectSizeLessThan`\), or you can specify a range of object sizes\. When using more than one filter, such as a prefix and size rule, you must wrap the filters in an `<And>` element\.
+You can create rules that transition objects based only on their size\. You can specify a minimum size \(`ObjectSizeGreaterThan`\) or a maximum size \(`ObjectSizeLessThan`\), or you can specify a range of object sizes in bytes\. When using more than one filter, such as a prefix and size rule, you must wrap the filters in an `<And>` element\.
 
 ```
 <LifecycleConfiguration>

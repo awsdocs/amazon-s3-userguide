@@ -21,7 +21,7 @@ For more information about bucket names, see [Bucket naming rules](bucketnamingr
 There is no max bucket size or limit to the number of objects that you can store in a bucket\. You can store all of your objects in a single bucket, or you can organize them across several buckets\. However, you can't create a bucket from within another bucket\.
 
 **Bucket operations**  
-The high availability engineering of Amazon S3 is focused on *get*, *put*, *list*, and *delete* operations\. Because bucket operations work against a centralized, global resource space, it is not appropriate to create, delete, or configure buckets on the high availability code path of your application\. It's better to create, delete, or configure buckets in a separate initialization or setup routine that you run less often\. 
+The high availability engineering of Amazon S3 is focused on *get*, *put*, *list*, and *delete* operations\. Because bucket operations work against a centralized, global resource space, it is not recommended to create, delete, or configure buckets on the high availability code path of your application\. It's better to create, delete, or configure buckets in a separate initialization or setup routine that you run less often\. 
 
 **Bucket naming and automatically created buckets**  
 If your application automatically creates buckets, choose a bucket naming scheme that is unlikely to cause naming conflicts\. Ensure that your application logic will choose a different bucket name if a bucket name is already taken\.

@@ -10,6 +10,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
 **SDK for Rust**  
 This documentation is for an SDK in preview release\. The SDK is subject to change and should not be used in production\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/rust_dev_preview/s3#code-examples)\. 
   
 
 ```
@@ -50,7 +51,6 @@ async fn show_buckets(strict: bool, client: &Client, region: &str) -> Result<(),
     Ok(())
 }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/rust_dev_preview/s3#code-examples)\. 
 +  For API details, see [GetBucketLocation](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
 
 ------

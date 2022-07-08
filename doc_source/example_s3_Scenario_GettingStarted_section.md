@@ -16,6 +16,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 #### [ \.NET ]
 
 **AWS SDK for \.NET**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
   
 
 ```
@@ -158,7 +159,6 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
         }
     }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
 + For API details, see the following topics in *AWS SDK for \.NET API Reference*\.
   + [CopyObject](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/CopyObject)
   + [CreateBucket](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/CreateBucket)
@@ -172,6 +172,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 #### [ Go ]
 
 **SDK for Go V2**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3/common#code-examples)\. 
   
 
 ```
@@ -194,7 +195,6 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 	AccountBucketOps(*s3client, myBucketName)
 	BucketDelOps(*s3client, myBucketName)
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3/common#code-examples)\. 
 + For API details, see the following topics in *AWS SDK for Go API Reference*\.
   + [CopyObject](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.CopyObject)
   + [CreateBucket](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.CreateBucket)
@@ -208,6 +208,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 #### [ Java ]
 
 **SDK for Java 2\.x**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/s3#readme)\. 
   
 
 ```
@@ -524,7 +525,6 @@ public class S3Scenario {
     }
 }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/s3#readme)\. 
 + For API details, see the following topics in *AWS SDK for Java 2\.x API Reference*\.
   + [CopyObject](https://docs.aws.amazon.com/goto/SdkForJavaV2/s3-2006-03-01/CopyObject)
   + [CreateBucket](https://docs.aws.amazon.com/goto/SdkForJavaV2/s3-2006-03-01/CreateBucket)
@@ -538,6 +538,7 @@ public class S3Scenario {
 #### [ JavaScript ]
 
 **SDK for JavaScript V3**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3/scenarios/s3_basics/src#code-examples)\. 
   
 
 ```
@@ -713,7 +714,6 @@ export const run = async (bucket_name, object_key, object_content) => {
 };
 run(bucket_name, object_key, object_content);
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3/scenarios/s3_basics/src#code-examples)\. 
 + For API details, see the following topics in *AWS SDK for JavaScript API Reference*\.
   + [CopyObject](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/copyobjectcommand.html)
   + [CreateBucket](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/createbucketcommand.html)
@@ -728,6 +728,7 @@ run(bucket_name, object_key, object_content);
 
 **SDK for Kotlin**  
 This is prerelease documentation for a feature in preview release\. It is subject to change\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
   
 
 ```
@@ -892,7 +893,6 @@ suspend fun deleteBucket(bucketName: String?) {
     }
 }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/s3#code-examples)\. 
 + For API details, see the following topics in *AWS SDK for Kotlin API reference*\.
   + [CopyObject](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
   + [CreateBucket](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
@@ -906,6 +906,7 @@ suspend fun deleteBucket(bucketName: String?) {
 #### [ PHP ]
 
 **SDK for PHP**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/php/example_code/s3/s3_basics#code-examples)\. 
   
 
 ```
@@ -1031,7 +1032,6 @@ try {
 
 echo "Successfully ran the Amazon S3 with PHP demo.\n";
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/php/example_code/s3/s3_basics#code-examples)\. 
 + For API details, see the following topics in *AWS SDK for PHP API Reference*\.
   + [CopyObject](https://docs.aws.amazon.com/goto/SdkForPHPV3/s3-2006-03-01/CopyObject)
   + [CreateBucket](https://docs.aws.amazon.com/goto/SdkForPHPV3/s3-2006-03-01/CreateBucket)
@@ -1045,6 +1045,7 @@ echo "Successfully ran the Amazon S3 with PHP demo.\n";
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/s3_basics#code-examples)\. 
   
 
 ```
@@ -1139,7 +1140,6 @@ def do_scenario(s3_resource):
 if __name__ == '__main__':
     do_scenario(boto3.resource('s3'))
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/s3_basics#code-examples)\. 
 + For API details, see the following topics in *AWS SDK for Python \(Boto3\) API Reference*\.
   + [CopyObject](https://docs.aws.amazon.com/goto/boto3/s3-2006-03-01/CopyObject)
   + [CreateBucket](https://docs.aws.amazon.com/goto/boto3/s3-2006-03-01/CreateBucket)
@@ -1153,6 +1153,7 @@ if __name__ == '__main__':
 #### [ Ruby ]
 
 **SDK for Ruby**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/ruby/example_code/s3#code-examples)\. 
   
 
 ```
@@ -1313,7 +1314,6 @@ end
 
 run_scenario(ScenarioGettingStarted.new(Aws::S3::Resource.new)) if $PROGRAM_NAME == __FILE__
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/ruby/example_code/s3#code-examples)\. 
 + For API details, see the following topics in *AWS SDK for Ruby API Reference*\.
   + [CopyObject](https://docs.aws.amazon.com/goto/SdkForRubyV3/s3-2006-03-01/CopyObject)
   + [CreateBucket](https://docs.aws.amazon.com/goto/SdkForRubyV3/s3-2006-03-01/CreateBucket)
@@ -1328,6 +1328,7 @@ run_scenario(ScenarioGettingStarted.new(Aws::S3::Resource.new)) if $PROGRAM_NAME
 
 **SDK for Rust**  
 This documentation is for an SDK in preview release\. The SDK is subject to change and should not be used in production\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/rust_dev_preview/s3#code-examples)\. 
 Code for the binary crate which runs the scenario\.  
 
 ```
@@ -1508,7 +1509,6 @@ pub async fn create_bucket(client: &Client, bucket_name: &str, region: &str) -> 
     Ok(())
 }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/rust_dev_preview/s3#code-examples)\. 
 + For API details, see the following topics in *AWS SDK for Rust API reference*\.
   + [CopyObject](https://docs.rs/releases/search?query=aws-sdk)
   + [CreateBucket](https://docs.rs/releases/search?query=aws-sdk)

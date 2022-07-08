@@ -18,7 +18,7 @@ There are two categories of system metadata:
 
    When you create objects, you can configure values of these system metadata items or update the values when you need to\. For more information about storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md)\. 
 
-   Amazon S3 uses AWS KMS keys to encrypt your Amazon S3 objects\. AWS KMS encrypts only the object data\. Any object metadata is *not* encrypted\. For more information about server\-side encryption, see [Protecting data using encryption](UsingEncryption.md)\. 
+   Amazon S3 uses AWS KMS keys to encrypt your Amazon S3 objects\. AWS KMS encrypts only the object data\. Object metadata isn't encrypted, unless server\-side encryption with KMS keys is requested for the object\. If server\-side encryption is requested for the object, then the checksum is stored in encrypted form\. For more information about server\-side encryption, see [Protecting data using encryption](UsingEncryption.md)\. 
 
 **Note**  
 The PUT request header is limited to 8 KB in size\. Within the PUT request header, the system\-defined metadata is limited to 2 KB in size\. The size of system\-defined metadata is measured by taking the sum of the number of bytes in the US\-ASCII encoding of each key and value\. 

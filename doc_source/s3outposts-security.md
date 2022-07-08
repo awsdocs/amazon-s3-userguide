@@ -11,3 +11,4 @@ This documentation helps you understand how to apply the shared responsibility m
 **Topics**
 + [Data encryption in S3 on Outposts](s3-outposts-data-encryption.md)
 + [AWS PrivateLink for S3 on Outposts](s3-outposts-privatelink-interface-endpoints.md)
++ [AWS Signature Version 4 \(SigV4\) authentication\-specific policy keys](s3-outposts-bucket-policy-s3-sigv4-conditions.md)

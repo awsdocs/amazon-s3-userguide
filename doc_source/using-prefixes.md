@@ -16,7 +16,7 @@ If you stored data for every city in the world in this manner, it would become a
 
 ## Listing objects using prefixes and delimiters<a name="prefixes-list-example"></a>
 
-If you issue a list request with a delimiter, you can browse your hierarchy at only one level, skipping over and summarizing the \(possibly millions of\) keys nested at deeper levels\. For example, assume that you have a bucket \(`ExampleBucket`\) with the following keys:
+If you issue a list request with a delimiter, you can browse your hierarchy at only one level, skipping over and summarizing the \(possibly millions of\) keys nested at deeper levels\. For example, assume that you have a bucket \(*DOC\-EXAMPLE\-BUCKET*\) with the following keys:
 
 `sample.jpg` 
 
@@ -34,7 +34,7 @@ The sample bucket has only the `sample.jpg` object at the root level\. To list o
 
 ```
  1. <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
- 2.   <Name>ExampleBucket</Name>
+ 2.   <Name>DOC-EXAMPLE-BUCKET</Name>
  3.   <Prefix></Prefix>
  4.   <Marker></Marker>
  5.   <MaxKeys>1000</MaxKeys>

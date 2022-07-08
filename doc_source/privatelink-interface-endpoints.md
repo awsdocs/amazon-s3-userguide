@@ -40,6 +40,8 @@ AWS PrivateLink for Amazon S3 does not support the following:
 + [Federal Information Processing Standard \(FIPS\) endpoints](http://aws.amazon.com/compliance/fips/)
 + [Website endpoints](WebsiteEndpoints.md)
 + [Legacy global endpoints](VirtualHosting.md#deprecated-global-endpoint)
++ Using [CopyObject API](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html) or [UploadPartCopy API](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html) between buckets in different AWS Regions
++ Transport Layer Security \(TLS\) 1\.0
 
 ## Accessing Amazon S3 interface endpoints<a name="accessing-s3-interface-endpoints"></a>
 

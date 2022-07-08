@@ -11,7 +11,7 @@ If your Amazon S3 bucket is configured for static website hosting, you can confi
 
 You can redirect all requests to a website endpoint for a bucket to another bucket or domain\. If you redirect all requests, any request made to the website endpoint is redirected to the specified bucket or domain\. 
 
-For example, if your root domain is `example.com`, and you want to serve requests for both `http://example.com` and `http://www.example.com`, you can create two buckets named `example.com` and `www.example.com`\. Then, maintain the content in the `example.com` bucket, and configure the other `www.example.com` bucket to redirect all requests to the `example.com` bucket\. For more information, see [Configuring a Static Website Using a Custom Domain Name](https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html)\.
+For example, if your root domain is `example.com`, and you want to serve requests for both `http://example.com` and `http://www.example.com`, you must create two buckets named `example.com` and `www.example.com`\. Then, maintain the content in the `example.com` bucket, and configure the other `www.example.com` bucket to redirect all requests to the `example.com` bucket\. For more information, see [Configuring a Static Website Using a Custom Domain Name](https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html)\.
 
 **To redirect requests for a bucket website endpoint**
 

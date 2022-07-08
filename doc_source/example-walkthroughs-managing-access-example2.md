@@ -105,9 +105,9 @@ Using the IAM user sign\-in URL for Account A first sign in to the AWS Managemen
 
 ### Step 1\.3: Attach a bucket policy to grant cross\-account permissions to Account B<a name="access-policies-walkthrough-example2a"></a>
 
-The bucket policy grants the `s3:GetBucketLocation` and `s3:ListBucket` permissions to Account B\. It is assumed you are still signed into the console using AccountAadmin user credentials\.
+The bucket policy grants the `s3:GetLifecycleConfiguration` and `s3:ListBucket` permissions to Account B\. It is assumed you are still signed into the console using AccountAadmin user credentials\.
 
-1. Attach the following bucket policy to `DOC-EXAMPLE-BUCKET`\. The policy grants Account B permission for the `s3:GetBucketLocation` and `s3:ListBucket` actions\.
+1. Attach the following bucket policy to `DOC-EXAMPLE-BUCKET`\. The policy grants Account B permission for the `s3:GetLifecycleConfiguration` and `s3:ListBucket` actions\.
 
    For instructions, see [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)\. 
 
@@ -122,7 +122,7 @@ The bucket policy grants the `s3:GetBucketLocation` and `s3:ListBucket` permissi
                "AWS": "arn:aws:iam::AccountB-ID:root"
             },
             "Action": [
-               "s3:GetBucketLocation",
+               "s3:GetLifecycleConfiguration",
                "s3:ListBucket"
             ],
             "Resource": [
@@ -138,13 +138,13 @@ The bucket policy grants the `s3:GetBucketLocation` and `s3:ListBucket` permissi
 
      ```
      aws s3 ls s3://DOC-EXAMPLE-BUCKET --profile AccountBadmin
-     aws s3api get-bucket-location --bucket DOC-EXAMPLE-BUCKET --profile AccountBadmin
+     aws s3api get-bucket-lifecycle-configuration --bucket DOC-EXAMPLE-BUCKET --profile AccountBadmin
      ```
    + Using the AWS Tools for Windows PowerShell
 
      ```
      get-s3object -BucketName DOC-EXAMPLE-BUCKET -StoredCredentials AccountBadmin 
-     get-s3bucketlocation -BucketName DOC-EXAMPLE-BUCKET -StoredCredentials AccountBadmin
+     get-s3bucketlifecycleconfiguration -BucketName DOC-EXAMPLE-BUCKET -StoredCredentials AccountBadmin
      ```
 
 ## Step 2: Do the Account B tasks<a name="access-policies-walkthrough-cross-account-permissions-acctB-tasks"></a>
@@ -208,10 +208,10 @@ Now Dave in Account B can list the contents of `DOC-EXAMPLE-BUCKET` owned by Acc
    aws s3 ls s3://DOC-EXAMPLE-BUCKET --profile UserDave
    ```
 
-   Dave does not have any other permissions\. So if he tries any other operation—for example, the following get bucket location—Amazon S3 returns permission denied\. 
+   Dave does not have any other permissions\. So if he tries any other operation—for example, the following get bucket lifecycle configuration—Amazon S3 returns permission denied\. 
 
    ```
-   aws s3api get-bucket-location --bucket DOC-EXAMPLE-BUCKET --profile UserDave
+   aws s3api get-bucket-lifecycle-configuration --bucket DOC-EXAMPLE-BUCKET --profile UserDave
    ```
 
 **Test using AWS Tools for Windows PowerShell**
@@ -228,10 +228,10 @@ Now Dave in Account B can list the contents of `DOC-EXAMPLE-BUCKET` owned by Acc
    get-s3object -BucketName DOC-EXAMPLE-BUCKET -StoredCredentials AccountBDave
    ```
 
-   Dave does not have any other permissions\. So if he tries any other operation—for example, the following get bucket location—Amazon S3 returns permission denied\. 
+   Dave does not have any other permissions\. So if he tries any other operation—for example, the following get bucket lifecycle configuration—Amazon S3 returns permission denied\. 
 
    ```
-   get-s3bucketlocation -BucketName DOC-EXAMPLE-BUCKET -StoredCredentials AccountBDave
+   get-s3bucketlifecycleconfiguration -BucketName DOC-EXAMPLE-BUCKET -StoredCredentials AccountBDave
    ```
 
 ## Step 3: \(Optional\) Try explicit deny<a name="access-policies-walkthrough-example2-explicit-deny"></a>
@@ -251,7 +251,7 @@ You can have permissions granted via an ACL, a bucket policy, and a user policy\
                "AWS": "arn:aws:iam::AccountB-ID:root"
             },
             "Action": [
-               "s3:GetBucketLocation",
+               "s3:GetLifecycleConfiguration",
                "s3:ListBucket"
             ],
             "Resource": [

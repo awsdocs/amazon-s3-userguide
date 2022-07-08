@@ -12,7 +12,7 @@ In S3 on Outposts, bucket names are unique to an Outpost and require the AWS Reg
 arn:aws:s3-outposts:region:account-id:outpost/outpost-id/bucket/bucket-name
 ```
 
-For more information, see [ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
+For more information, see [Resource ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
 
 ## Access points<a name="S3OutpostsAP"></a>
 

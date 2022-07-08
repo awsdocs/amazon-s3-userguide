@@ -54,7 +54,6 @@ The following Amazon S3 features are currently not supported by Amazon S3 on Out
 + S3 Select
 + AWS Lambda events
 + Server access logging
-+ Presigned URLs
 + HTTP POST requests
 + SOAP
 + Website access

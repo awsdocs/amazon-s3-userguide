@@ -7,7 +7,7 @@ The following examples show you how to get an S3 on Outposts bucket by using the
 **Note**  
 When you're working with Amazon S3 on Outposts through the AWS CLI or AWS SDKs, you provide the access point ARN for the Outpost in place of the bucket name\. The access point ARN takes the following form, where `region` is the AWS Region code for the Region that the Outpost is homed to:   
 `arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/accesspoint/example-outposts-access-point`   
-For more information about S3 on Outposts ARNs, see [ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
+For more information about S3 on Outposts ARNs, see [Resource ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
 
 ## Using the AWS CLI<a name="S3OutpostsGetBucketCLI"></a>
 

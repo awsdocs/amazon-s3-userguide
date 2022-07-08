@@ -31,10 +31,6 @@ Bypassing governance mode doesn't affect an object version's legal hold status\.
 
 ## Configuring events and notifications<a name="object-lock-managing-events"></a>
 
-You can configure Amazon S3 events for object\-level operations in an S3 Object Lock bucket\. When `PUT Object`, `HEAD Object`, and `GET Object` calls include Object Lock metadata, events for these calls include those metadata values\. When Object Lock metadata is added to or updated for an object, those actions also trigger events\. These events occur whenever you `PUT` or `GET` object retention or legal\-hold information\.
-
-For more information about Amazon S3 events, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
-
 You can use Amazon S3 Event Notifications to track access and changes to your Object Lock configurations and data using AWS CloudTrail\. For information about CloudTrail, see the [AWS CloudTrail documentation](https://docs.aws.amazon.com/cloudtrail/index.html)\. 
 
 You can also use Amazon CloudWatch to generate alerts based on this data\. For information about CloudWatch, see the [Amazon CloudWatch documentation](https://docs.aws.amazon.com/cloudwatch/index.html)\.

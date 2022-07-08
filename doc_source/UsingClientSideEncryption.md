@@ -7,7 +7,7 @@ To enable client\-side encryption, you have the following options:
 + Use a key that you store within your application\.
 
 **Note**  
-Amazon S3 only supports symmetric encryption KMS keys and not asymmetric keys\.
+Amazon S3 supports only symmetric encryption KMS keys, and not asymmetric KMS keys\. For more information, see [Using symmetric and asymmetric keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
 **AWS Encryption SDK**  
 The [AWS Encryption SDK](https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/) is a client\-side encryption library that is separate from the language–specific SDKs\. You can use this encryption library to more easily implement encryption best practices in Amazon S3\. Unlike the Amazon S3 encryption clients in the language–specific AWS SDKs, the AWS Encryption SDK is not tied to Amazon S3 and can be used to encrypt or decrypt data to be stored anywhere\. 

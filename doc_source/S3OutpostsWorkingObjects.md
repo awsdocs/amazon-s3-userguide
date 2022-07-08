@@ -8,7 +8,7 @@ Objects are the fundamental entities stored in Amazon S3 on Outposts\. Every obj
 arn:aws:s3-outposts:region:account-id:outpost/outpost-id/accesspoint/accesspoint-name
 ```
 
-For more information about S3 on Outposts ARNs, see [ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
+For more information about S3 on Outposts ARNs, see [Resource ARNs for S3 on Outposts](S3OutpostsIAM.md#S3OutpostsARN)\.
 
 Object ARNs use the following format, which includes the AWS Region that the Outpost is homed to, AWS account ID, Outpost ID, bucket name, and object key:
 
@@ -27,3 +27,4 @@ To upload an object, see [Step 4: Upload an object to an S3 on Outposts bucket](
 + [Deleting objects in Amazon S3 on Outposts buckets](S3OutpostsDeleteObject.md)
 + [Using HeadBucket to determine if an S3 on Outposts bucket exists and you have access permissions](S3OutpostsHeadBucket.md)
 + [Performing and managing a multipart upload with the SDK for Java](S3OutpostsMPU.md)
++ [Using presigned URLs for S3 on Outposts](S3OutpostsPresignedURL.md)

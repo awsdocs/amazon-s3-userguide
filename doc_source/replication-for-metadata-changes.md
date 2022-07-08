@@ -8,7 +8,10 @@ You can use Amazon S3 replica modification sync with new or existing replication
 
 To enable replica modification sync using the Amazon S3 console, see [Walkthroughs: Examples for configuring replication](replication-example-walkthroughs.md)\. This topic provides instructions for enabling replica modification sync in your replication configuration when buckets are owned by the same or different AWS accounts\.
 
-To enable replica modification sync using the AWS Command Line Interface \(AWS CLI\), you must add a replication configuration to the bucket containing the replicas with `ReplicaModifications` enabled\. To make replication bidirectional enable replica modification sync on the bucket containing the replicas and the bucket containing the source objects\. 
+To enable replica modification sync using the AWS Command Line Interface \(AWS CLI\), you must add a replication configuration to the bucket containing the replicas with `ReplicaModifications` enabled\. To set up two\-way replication, create a replication rule from the source bucket \(*DOC\-EXAMPLE\-BUCKET1*\) to the bucket containing the replicas \(*DOC\-EXAMPLE\-BUCKET2*\)\. Then, create a second replication rule from the bucket containing the replicas \(*DOC\-EXAMPLE\-BUCKET2*\) to the source bucket \(*DOC\-EXAMPLE\-BUCKET1*\)\. Buckets can be in the same, or in different, AWS Regions\.
+
+**Note**  
+You must enable replica modification sync on both buckets to replicate replica metadata changes like object access control lists \(ACLs\), object tags, or Object Lock settings on the replicated objects\. Like all replication rules, these rules can either be applied to the entire Amazon S3 bucket or a subset of Amazon S3 objects filtered by prefix or object tags\.
 
 In the following example configuration, Amazon S3 replicates metadata changes under the prefix *Tax* to the bucket *DOC\-EXAMPLE\-BUCKET*, which would contain the source objects\.
 

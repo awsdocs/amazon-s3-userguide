@@ -1,32 +1,49 @@
 # Setting up AWS Identity and Access Management with S3 on Outposts<a name="S3OutpostsIAM"></a>
 
-AWS Identity and Access Management \(IAM\) is an AWS service that administrators can use to securely control access to AWS Outposts resources\. To allow IAM users to manage AWS Outposts resources, you create an IAM policy that explicitly grants them permissions\. You then attach the policy to the IAM users or groups that require those permissions\. For more information, see [Identity and Access Management for AWS Outposts](https://docs.aws.amazon.com/outposts/latest/userguide/identity-access-management.html) in the *AWS Outposts User Guide*\. 
+AWS Identity and Access Management \(IAM\) is an AWS service that helps an administrator securely control access to AWS resources\. IAM administrators control who can be authenticated \(signed in\) and authorized \(have permissions\) to use AWS resources\. IAM enables you to create users and groups under your AWS account\. You control the permissions that users have to perform tasks using AWS resources\. You can use IAM for no additional charge\.
 
-Amazon S3 on Outposts supports both bucket and access point policies\. S3 on Outposts policies use a different IAM actions namespace from S3 \(`s3-outposts:*` instead of `s3:*`\) to provide you with distinct controls for data that's stored on your Outpost\.
+By default, IAM users don't have permissions for S3 on Outposts resources and operations\. To allow IAM users to manage S3 on Outposts resources, you must create an IAM policy that explicitly grants them permissions and attach the policy to the IAM users or groups that require those permissions\. 
 
-Requests made to the Amazon S3 on Outposts control API in an AWS Region and requests made to the object API endpoints on the Outpost are authenticated by using IAM and authorized against the `s3-outposts:*` IAM namespace\. 
+In additional to IAM policies, S3 on Outposts supports both bucket and access point policies\. Bucket policies and access point policies are [resource\-based policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) that are attached to the S3 on Outposts resource\. A bucket policy is attached to the bucket and allows or denies requests to the bucket and the objects in it based on the elements in the policy\. In contrast, an access point policy is attached to the access point and allows or denies requests to the access point\.
 
-To work with S3 on Outposts, configure your IAM users and authorize them against the `s3-outposts:*` IAM namespace\. In addition to IAM user policies, access point policies and bucket policies that are configured on the access point of the Outpost control the authorization of object API requests\. For a complete list of S3 on Outposts permissions, see [Actions, resources, and condition keys for Amazon S3 on Outposts](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3onoutposts.html) in the *Service Authorization Reference*\.
+The access point policy works with the bucket policy that is attached to the underlying S3 on Outposts bucket\. For an application or user to access objects in an S3 on Outposts bucket through an S3 on Outposts access point, both the access point and the bucket must permit the request\. Restrictions that you include in an access point policy apply only to requests made through that access point\. For example, if an access point is attached to a bucket, you can’t use the access point policy to allow or deny requests that are made directly to the bucket\. However, restrictions that you apply to a bucket policy can allow or deny requests made directly to the bucket or through the access point\. 
+
+In an IAM policy or a resource\-based policy, you define which S3 on Outposts actions will be allowed or denied\. S3 on Outposts actions correspond to specific S3 on Outposts API operations\. S3 on Outposts actions use the `s3-outposts:`namespace prefix\. Requests made to the S3 on Outposts control API in an AWS Region and requests made to the object API endpoints on the Outpost are authenticated using IAM and authorized against the `s3-outposts:` namespace prefix\. To work with S3 on Outposts, configure your IAM users and authorize them against the `s3-outposts:` IAM namespace\.
+
+For more information, see [Actions, resources, and condition keys for Amazon S3 on Outposts](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3onoutposts.html) in the *Service Authorization Reference*\.
 
 **Note**  
 Access control lists \(ACLs\) are not supported by S3 on Outposts\.
-S3 on Outposts defaults to the bucket owner as object owner, to help ensure that the owner of a bucket can't be prevented from accessing or deleting objects\.
+S3 on Outposts defaults to the bucket owner as object owner to help ensure that the owner of a bucket can't be prevented from accessing or deleting objects\.
 S3 on Outposts always has S3 Block Public Access enabled to help ensure that objects can never have public access\.
-S3 on Outposts uses the IAM actions namespace `s3-outposts:Action`\. For more information, see [Actions, resources, and condition keys for S3 on Outposts](https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazons3onoutposts.html) in the *Service Authorization Reference*\.
 
 For more information about setting up IAM for S3 on Outposts, see the following topics\.
 
 **Topics**
-+ [ARNs for S3 on Outposts](#S3OutpostsARN)
++ [Principals for S3 on Outposts policies](#S3OutpostsPrincipal)
++ [Resource ARNs for S3 on Outposts](#S3OutpostsARN)
++ [Example policies for S3 on Outposts](#S3OutpostsPolicyExamples)
 + [Permissions for S3 on Outposts endpoints](#S3OutpostsEndpointPermissions)
 
-## ARNs for S3 on Outposts<a name="S3OutpostsARN"></a>
+## Principals for S3 on Outposts policies<a name="S3OutpostsPrincipal"></a>
+
+When you create a resource\-based policy to grant access to your S3 on Outposts bucket, you must use the `Principal` element to specify the person or application that can make a request for an action or operation on that resource\. For S3 on Outposts policies, you can use one of the following principals:
++ AWS account
++ IAM user
++ IAM role
++ All Principals \(wildcard \*\) in a policy that uses a `Condition` element to limit access to a specific IP range
+
+**Important**  
+You can't write a policy for an S3 on Outposts bucket that uses a wildcard \(\*\) in the `Principal` element unless the policy also includes a `Condition` that limits access to a specific IP range\. This ensures that there is no public access to your S3 on Outposts bucket\. For an example, see [Example policies for S3 on Outposts](#S3OutpostsPolicyExamples)\. 
+
+For more information about the `Principal` element, see [AWS JSON policy elements: Principal](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html) in the *IAM User Guide*\. 
+
+## Resource ARNs for S3 on Outposts<a name="S3OutpostsARN"></a>
 
 Amazon Resource Names \(ARNs\) for S3 on Outposts contain the Outpost ID in addition to the AWS Region that the Outpost is homed to, the AWS account ID, and the resource name\. To access and perform actions on your Outposts buckets and objects, you must use one of the ARN formats shown in the following table\.
 
 The `partition` value in the ARN refers to a group of AWS Regions\. Each AWS account is scoped to one partition\. The following are the supported partitions:
 + `aws` – AWS Regions
-+ `aws-cn` – China Regions
 + `aws-us-gov` – AWS GovCloud \(US\) Regions
 
 
@@ -39,6 +56,55 @@ The `partition` value in the ARN refers to a group of AWS Regions\. Each AWS acc
 | Object ARN | arn:partition:s3\-outposts:region:​account\_id:​outpost/outpost\_id/bucket/bucket\_name/object/object\_key | arn:aws:s3\-outposts:us\-west\-2:123456789012:​outpost/op\-01ac5d28a6a232904/bucket/DOC\-EXAMPLE\-BUCKET1/object/myobject | 
 | S3 on Outposts access point object ARN \(used in policies\) | arn:partition:s3\-outposts:region:​account\_id:​outpost/outpost\_id/accesspoint/accesspoint\_name/object/object\_key | arn:aws:s3\-outposts:us\-west\-2:123456789012:​outpost/op\-01ac5d28a6a232904/accesspoint/access\-point\-name/object/myobject | 
 | S3 on Outposts ARN | arn:partition:s3\-outposts:region:​account\_id:​outpost/outpost\_id | arn:aws:s3\-outposts:us\-west\-2:123456789012:​outpost/op\-01ac5d28a6a232904 | 
+
+## Example policies for S3 on Outposts<a name="S3OutpostsPolicyExamples"></a>
+
+**Example : S3 on Outposts bucket policy with AWS account principal**  
+The following bucket policy uses an AWS account principal to grant access to an S3 on Outposts bucket\. To use this bucket policy, replace the example values with your own\.  
+
+```
+{
+   "Version":"2012-10-17",
+   "Id":"ExampleBucketPolicy1",
+   "Statement":[
+      {
+         "Sid":"statement1",
+         "Effect":"Allow",
+         "Principal":{
+            "AWS":"123456789012"
+         },
+         "Action":"s3-outposts:*",
+         "Resource":"arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket"
+      }
+   ]
+```
+
+**Example : S3 on Outposts bucket policy with wildcard \(\*\) principal and condition key to limit access to a specific IP range**  
+The following bucket policy uses a wildcard principal \(\*\) with the `aws:SourceIp` condition to limit access to a specific IP range\. To use this bucket policy, replace the example values with your own\.  
+
+```
+{
+    "Version": "2012-10-17",
+    "Id": "ExampleBucketPolicy2",
+    "Statement": [
+        {
+            "Sid": "statement1",
+            "Effect": "Allow",
+            "Principal": { "AWS" : "*" },
+            "Action":"s3-outposts:*",
+            "Resource":"arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket",
+            "Condition" : {
+                "IpAddress" : {
+                    "aws:SourceIp": "192.0.2.0/24" 
+                },
+                "NotIpAddress" : {
+                    "aws:SourceIp": "198.51.100.0/24" 
+                } 
+            } 
+        } 
+    ]
+}
+```
 
 ## Permissions for S3 on Outposts endpoints<a name="S3OutpostsEndpointPermissions"></a>
 

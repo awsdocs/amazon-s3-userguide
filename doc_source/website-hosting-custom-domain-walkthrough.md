@@ -101,9 +101,9 @@ In this step, you configure your root domain bucket \(`example.com`\) as a websi
 
 1. Under **Static website hosting**, choose **Edit**\.
 
-1. Choose **Use this bucket to host a website**\. 
-
 1. Under **Static website hosting**, choose **Enable**\.
+
+1. Choose **Host a static website**\. 
 
 1. In **Index document**, enter the file name of the index document, typically `index.html`\. 
 
@@ -141,7 +141,9 @@ After you configure your root domain bucket for website hosting, you can configu
 
 1. Under **Static website hosting**, choose **Edit**\.
 
-1. Choose **Redirect requests for an object**\. 
+1. Under **Static website hosting**, choose **Enable**\.
+
+3. Choose **Redirect requests for an object**\. 
 
 1. In the **Target bucket** box, enter your root domain, for example, **example\.com**\.
 

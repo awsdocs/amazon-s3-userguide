@@ -42,6 +42,20 @@ To help ensure that all of your Amazon S3 buckets and objects have their public 
 
 Before applying these settings, verify that your applications will work correctly without public access\. If you require some level of public access to your buckets or objects—for example, to host a static website as described at [Hosting a static website using Amazon S3](WebsiteHosting.md)—you can customize the individual settings to suit your storage use cases\. For more information, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
 
+**Note**  
+If you see an `Error` when you list your buckets and their public access settings, you might not have the required permissions\. Check to make sure you have the following permissions added to your user or role policy:  
+
+```
+s3:GetAccountPublicAccessBlock
+s3:GetBucketPublicAccessBlock
+s3:GetBucketPolicyStatus
+s3:GetBucketLocation
+s3:GetBucketAcl
+s3:ListAccessPoints
+s3:ListAllMyBuckets
+```
+In some rare cases, requests can also fail because of an AWS Region outage\.
+
 ## Bucket configuration options<a name="bucket-config-options-intro"></a>
 
 Amazon S3 supports various options for you to configure your bucket\. For example, you can configure your bucket for website hosting, add a configuration to manage the lifecycle of objects in the bucket, and configure the bucket to log all access to the bucket\. Amazon S3 supports subresources for you to store and manage the bucket configuration information\. You can use the Amazon S3 API to create and manage these subresources\. However, you can also use the console or the AWS SDKs\. 

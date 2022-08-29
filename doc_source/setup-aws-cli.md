@@ -16,7 +16,7 @@ Services in AWS, such as Amazon S3, require that you provide credentials when yo
    +  [Getting Set Up with the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html) 
    +  [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) 
 
-1.  Add a named profile for the administrator user in the AWS CLI config file\. You use this profile when executing the AWS CLI commands\. 
+1.  Add a named profile for the administrator user in the AWS CLI config file\. You use this profile when executing the AWS CLI commands\. For more information, see [Named profiles for the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)in the *AWS Command Line Interface User Guide*\.
 
    ```
    [adminuser] 
@@ -28,12 +28,12 @@ Services in AWS, such as Amazon S3, require that you provide credentials when yo
     For a list of available AWS Regions, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *AWS General Reference*\. 
 
 1.  Verify the setup by typing the following commands at the command prompt\. 
-   +  Try the `help` command to verify that the AWS CLI is installed on your computer: 
+   + Try the `help` command to verify that the AWS CLI is installed on your computer: 
 
      ```
      aws help  
      ```
-   +  Try an `S3` command to verify that the user can reach Amazon S3\. This command lists buckets in your account\. The AWS CLI uses the `adminuser` credentials to authenticate the request\. 
+   + Run an `S3` command using the `adminuser` credentials that you just created\. To do this, add the `--profile` parameter to your command to specify the profile name\. In this example, the `ls` command lists buckets in your account\. The AWS CLI uses the `adminuser` credentials to authenticate the request\. 
 
      ```
       aws s3 ls --profile adminuser

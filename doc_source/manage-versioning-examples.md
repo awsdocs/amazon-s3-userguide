@@ -56,7 +56,7 @@ The following example enables versioning on an S3 bucket\.
 aws s3api put-bucket-versioning --bucket DOC-EXAMPLE-BUCKET1 --versioning-configuration Status=Enabled
 ```
 
-The following example enables versioning and multi\-factor authentication \(MFA\) delete on a bucket\.
+The following example enables S3 Versioning and multi\-factor authentication \(MFA\) delete on a bucket\.
 
 ```
 aws s3api put-bucket-versioning --bucket DOC-EXAMPLE-BUCKET1 --versioning-configuration Status=Enabled,MFADelete=Enabled --mfa "SERIAL 123456"

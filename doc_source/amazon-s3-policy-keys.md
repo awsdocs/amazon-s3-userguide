@@ -273,6 +273,16 @@ For examples on how to use object tagging condition keys with Amazon S3 operatio
 
 ### Example 7: Restricting access by the AWS account ID of the bucket owner<a name="example-object-resource-account"></a>
 
+You can use either the `aws:ResourceAccount` or `s3:ResourceAccount` key to write IAM or Virtual Private Cloud endpoint policies that restrict user or application access to the Amazon S3 buckets that are owned by a specific AWS account ID\. You can use this condition key to restrict clients within your VPC from accessing buckets that you do not own\.
+
+However, be aware that some AWS services rely on access to AWS managed buckets\. Therefore, using the `aws:ResourceAccount` or `s3:ResourceAccount` key in your IAM policy might also impact access to these resources\.
+
+For more information and examples, see the following resources:
++ [Restrict access to buckets in a specified AWS account](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html#vpc-endpoints-policies-s3) in the *AWS PrivateLink Guide*
++ [Restrict access to buckets that Amazon ECR uses](https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html#ecr-minimum-s3-perms) in the *Amazon ECR Guide*
++ [Provide required access to Systems Manager for AWS managed Amazon S3 buckets](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent-minimum-s3-permissions.html) in the *AWS Systems Manager Guide*
++ [Limit access to Amazon S3 buckets owned by specific AWS accounts](http://aws.amazon.com/blogs/storage/limit-access-to-amazon-s3-buckets-owned-by-specific-aws-accounts/) in the *AWS Storage Blog*
+
 You can use the `aws:ResourceAccount` or `s3:ResourceAccount` condition key to write IAM or Virtual Private Cloud Endpoint policies that restrict user or application access to the Amazon S3 buckets that are owned by a specific AWS account ID\. You can use this condition key to restrict clients within your VPC from accessing buckets that you do not own\.
 
 For information and examples, see the following resources:

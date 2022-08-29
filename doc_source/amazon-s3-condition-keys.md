@@ -34,9 +34,7 @@ In the example, the `Condition` block specifies the `StringEquals` condition tha
 
 ## AWS‐wide condition keys<a name="AvailableKeys-iamV2"></a>
 
-AWS provides a set of common keys that are supported by all AWS services that support policies\. These keys are called *AWS‐wide keys* and use the prefix `aws:`\. For a complete list of AWS‐wide condition keys, see [Available AWS Keys for Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html) in the *IAM User Guide*\.
-
-You can use AWS‐wide condition keys in Amazon S3\. The following example bucket policy allows authenticated users permission to use the `s3:GetObject` action if the request originates from a specific range of IP addresses \(192\.0\.2\.0\.\*\), unless the IP address is 192\.0\.2\.188\. In the condition block, the `IpAddress` and the `NotIpAddress` are conditions, and each condition is provided a key\-value pair for evaluation\. Both the key\-value pairs in this example use the `aws:SourceIp` AWS‐wide key\.
+AWS provides a set of common keys that are supported by all AWS services that support policies\. These keys are called *AWS‐wide keys* and use the prefix `aws:`\. For a complete list of AWS‐wide condition keys, see [Available AWS Keys for Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html) in the *IAM User Guide*\. You can use AWS‐wide condition keys in Amazon S3\. The following example bucket policy allows authenticated users permission to use the `s3:GetObject` action if the request originates from a specific range of IP addresses \(192\.0\.2\.0\.\*\), unless the IP address is 192\.0\.2\.188\. In the condition block, the `IpAddress` and the `NotIpAddress` are conditions, and each condition is provided a key\-value pair for evaluation\. Both the key\-value pairs in this example use the `aws:SourceIp` AWS‐wide key\.
 
 **Note**  
 The `IPAddress` and `NotIpAddress` key values specified in the condition uses CIDR notation as described in RFC 4632\. For more information, see [http://www\.rfc\-editor\.org/rfc/rfc4632\.txt](http://www.rfc-editor.org/rfc/rfc4632.txt)\.
@@ -65,7 +63,10 @@ The `IPAddress` and `NotIpAddress` key values specified in the condition uses CI
 }
 ```
 
-You can also use other AWS‐wide condition keys in Amazon S3 policies\. For example, you can specify the `aws:SourceVpce` and `aws:SourceVpc` condition keys in bucket policies for VPC endpoints\. For examples, see [Controlling access from VPC endpoints with bucket policies](example-bucket-policies-vpc-endpoint.md)\.
+You can also use other AWS‐wide condition keys in Amazon S3 policies\. For example, you can specify the `aws:SourceVpce` and `aws:SourceVpc` condition keys in bucket policies for VPC endpoints\. For specific examples, see [Controlling access from VPC endpoints with bucket policies](example-bucket-policies-vpc-endpoint.md)\.
+
+**Note**  
+For some AWS global condition keys, only certain resource types are supported\. Therefore, check whether Amazon S3 supports the global condition key and resource type that you want to use, or if you'll need to use an Amazon S3\-specific condition key instead\. For a complete list of supported resource types and condition keys for Amazon S3, see [Actions, resources, and conditions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/list_amazons3.html)\.
 
 ## Amazon S3‐specific condition keys<a name="s3-specific-keys"></a>
 

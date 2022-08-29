@@ -1,6 +1,6 @@
 # Delete multiple objects from an Amazon S3 bucket using an AWS SDK<a name="example_s3_DeleteObjects_section"></a>
 
-The following code examples show how to delete multiple objects from an Amazon S3 bucket\.
+The following code examples show how to delete multiple objects from an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -10,7 +10,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
 **AWS SDK for \.NET**  
  To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
-Delete all objects in an Amazon S3 bucket\.  
+Delete all objects in an S3 bucket\.  
 
 ```
         /// <summary>
@@ -67,39 +67,40 @@ Delete all objects in an Amazon S3 bucket\.
 
         // Upload three sample objects to the specfied Amazon S3 bucket.
         ArrayList<ObjectIdentifier> keys = new ArrayList<>();
-
         PutObjectRequest putOb;
         ObjectIdentifier objectId;
 
         for (int i = 0; i < 3; i++) {
             String keyName = "delete object example " + i;
-
             objectId = ObjectIdentifier.builder()
-                    .key(keyName)
-                    .build();
+                .key(keyName)
+                .build();
 
             putOb = PutObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(keyName)
-                    .build();
+                .bucket(bucketName)
+                .key(keyName)
+                .build();
+            
             s3.putObject(putOb, RequestBody.fromString(keyName));
             keys.add(objectId);
         }
+        
         System.out.println(keys.size() + " objects successfully created.");
 
         // Delete multiple objects in one request.
         Delete del = Delete.builder()
-                .objects(keys)
-                .build();
+            .objects(keys)
+            .build();
 
         try {
             DeleteObjectsRequest multiObjectDeleteRequest = DeleteObjectsRequest.builder()
-                    .bucket(bucketName)
-                    .delete(del)
-                    .build();
+                .bucket(bucketName)
+                .delete(del)
+                .build();
 
             s3.deleteObjects(multiObjectDeleteRequest);
             System.out.println("Multiple objects are deleted!");
+        
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
@@ -119,7 +120,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -408,6 +409,33 @@ pub async fn delete_objects(client: &Client, bucket_name: &str) -> Result<(), Er
 }
 ```
 +  For API details, see [DeleteObjects](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
+
+------
+#### [ Swift ]
+
+**SDK for Swift**  
+This is prerelease documentation for an SDK in preview release\. It is subject to change\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/swift/example_code/s3/DeleteObjects#code-examples)\. 
+  
+
+```
+    public func deleteObjects(bucket: String, keys: [String]) async throws {
+        let input = DeleteObjectsInput(
+            bucket: bucket,
+            delete: S3ClientTypes.Delete(
+                objects: keys.map({ S3ClientTypes.ObjectIdentifier(key: $0) }),
+                quiet: true
+            )
+        )
+
+        do {
+            _ = try await client.deleteObjects(input: input)
+        } catch {
+            throw error
+        }
+    }
+```
++  For API details, see [DeleteObjects](https://awslabs.github.io/aws-sdk-swift/reference/0.x) in *AWS SDK for Swift API reference*\. 
 
 ------
 

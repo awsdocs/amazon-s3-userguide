@@ -1,6 +1,6 @@
 # Add CORS rules to an Amazon S3 bucket using an AWS SDK<a name="example_s3_PutBucketCors_section"></a>
 
-The following code examples show how to add cross\-origin resource sharing \(CORS\) rules to an Amazon S3 bucket\.
+The following code examples show how to add cross\-origin resource sharing \(CORS\) rules to an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -14,15 +14,14 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
 ```
     public static void deleteBucketCorsInformation(S3Client s3, String bucketName, String accountId) {
-
         try {
-
             DeleteBucketCorsRequest bucketCorsRequest = DeleteBucketCorsRequest.builder()
-                    .bucket(bucketName)
-                    .expectedBucketOwner(accountId)
-                    .build();
+                .bucket(bucketName)
+                .expectedBucketOwner(accountId)
+                .build();
 
             s3.deleteBucketCors(bucketCorsRequest) ;
+
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
@@ -32,11 +31,10 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
     public static void getBucketCorsInformation(S3Client s3, String bucketName, String accountId) {
 
         try {
-
             GetBucketCorsRequest bucketCorsRequest = GetBucketCorsRequest.builder()
-                    .bucket(bucketName)
-                    .expectedBucketOwner(accountId)
-                    .build();
+                .bucket(bucketName)
+                .expectedBucketOwner(accountId)
+                .build();
 
             GetBucketCorsResponse corsResponse = s3.getBucketCors(bucketCorsRequest);
             List<CORSRule> corsRules = corsResponse.corsRules();
@@ -46,23 +44,22 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
             }
 
         } catch (S3Exception e) {
-        System.err.println(e.awsErrorDetails().errorMessage());
-        System.exit(1);
+
+            System.err.println(e.awsErrorDetails().errorMessage());
+            System.exit(1);
         }
     }
 
     public static void setCorsInformation(S3Client s3, String bucketName, String accountId) {
 
-        List<String> allowMethods = new ArrayList();
+        List<String> allowMethods = new ArrayList<>();
         allowMethods.add("PUT");
         allowMethods.add("POST");
         allowMethods.add("DELETE");
 
-        List<String> allowOrigins = new ArrayList();
+        List<String> allowOrigins = new ArrayList<>();
         allowOrigins.add("http://example.com");
-
         try {
-
             // Define CORS rules.
             CORSRule corsRule = CORSRule.builder()
                 .allowedMethods(allowMethods)
@@ -71,7 +68,6 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
             List<CORSRule> corsRules = new ArrayList<>();
             corsRules.add(corsRule);
-
             CORSConfiguration configuration = CORSConfiguration.builder()
                 .corsRules(corsRules)
                 .build();
@@ -103,7 +99,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };

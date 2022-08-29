@@ -18,9 +18,9 @@ When an inventory list is published, the manifest files are published to the fol
 The inventory lists are published daily or weekly to the following location in the destination bucket\.
 
 ```
-      destination-prefix/source-bucket/config-ID/example-file-name.csv.gz
+      destination-prefix/source-bucket/config-ID/data/example-file-name.csv.gz
       ...
-      destination-prefix/source-bucket/config-ID/example-file-name-1.csv.gz
+      destination-prefix/source-bucket/config-ID/data/example-file-name-1.csv.gz
 ```
 + *destination\-prefix* is the \(object key name\) prefix set in the inventory configuration\. It can be used to group all the inventory list files in a common location in the destination bucket\.
 + *source\-bucket* is the source bucket that the inventory list is for\. It is added to prevent collisions when multiple inventory reports from different source buckets are sent to the same destination bucket\.

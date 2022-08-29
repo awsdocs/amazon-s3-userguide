@@ -1,6 +1,6 @@
 # Get the ACL of an Amazon S3 bucket using an AWS SDK<a name="example_s3_GetBucketAcl_section"></a>
 
-The following code examples show how to get the access control list \(ACL\) of an Amazon S3 bucket\.
+The following code examples show how to get the access control list \(ACL\) of an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -110,15 +110,16 @@ func main() {
             List<Grant> grants = aclRes.grants();
             String grantee = "";
             for (Grant grant : grants) {
-                System.out.format("  %s: %s\n", grant.grantee().id(),
-                        grant.permission());
+                System.out.format("  %s: %s\n", grant.grantee().id(), grant.permission());
                 grantee = grant.grantee().id();
             }
+            
             return grantee;
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
         }
+        
         return "";
     }
 ```
@@ -135,7 +136,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };

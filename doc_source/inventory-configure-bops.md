@@ -1,7 +1,7 @@
 # Converting empty version ID strings in Amazon S3 Inventory reports to null strings<a name="inventory-configure-bops"></a>
 
 **Note**  
-**The following procedure applies only to Amazon S3 Inventory reports that include all versions, and only if the "all versions" reports are used as manifests for S3 Batch Operations on buckets that have S3 Versioning enabled\.** You are not required to convert empty strings to `null` strings in S3 Inventory reports used as manifests for Batch Operations on unversioned buckets\. You also are not required to convert strings for S3 Inventory reports that specify the current version only\.
+**The following procedure applies only to Amazon S3 Inventory reports that include all versions, and only if the "all versions" reports are used as manifests for S3 Batch Operations on buckets that have S3 Versioning enabled\.** You are not required to convert strings for S3 Inventory reports that specify the current version only\.
 
 You can use S3 Inventory reports as manifests for S3 Batch Operations\. However, when S3 Versioning is enabled on a bucket, S3 Inventory reports that include all versions mark any null\-versioned objects with empty strings in the version ID field\. When an Inventory Report includes all object version IDs, Batch Operations recognizes `null` strings as version IDs, but not empty strings\. 
 

@@ -4,6 +4,8 @@ The Amazon S3 Block Public Access feature provides settings for access points, b
 
 With S3 Block Public Access, account administrators and bucket owners can easily set up centralized controls to limit public access to their Amazon S3 resources that are enforced regardless of how the resources are created\.
 
+For instructions on configuring public block access, see [Configuring block public access](#configuring-block-public-access)\.
+
 When Amazon S3 receives a request to access a bucket or an object, it determines whether the bucket or the bucket owner's account has a block public access setting applied\. If the request was made through an access point, Amazon S3 also checks for block public access settings for the access point\. If there is an existing block public access setting that prohibits the requested access, Amazon S3 rejects the request\. 
 
 Amazon S3 Block Public Access provides four settings\. These settings are independent and can be used in any combination\. Each setting can be applied to an access point, a bucket, or an entire AWS account\. If the block public access settings for the access point, bucket, or account differ, then Amazon S3 applies the most restrictive combination of the access point, bucket, and account settings\. 

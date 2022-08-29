@@ -1,11 +1,302 @@
 # Use a transfer manager to upload and download files to and from Amazon S3 using an AWS SDK<a name="example_s3_Scenario_TransferManager_section"></a>
 
-The following code example shows how to use a transfer manager to upload and download files to and from Amazon S3\.
+The following code examples show how to use a transfer manager to upload and download files to and from S3\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 For more information, see [Uploading an object using multipart upload](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpu-upload-object.html)\.
+
+------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3/#code-examples)\. 
+Call functions that transfer files to and from an S3 bucket using the Amazon S3 TransferUtility\.  
+
+```
+global using System.Text;
+global using Amazon;
+global using Amazon.S3;
+global using Amazon.S3.Model;
+global using Amazon.S3.Transfer;
+global using TransferUtilityBasics;
+
+
+
+// This Amazon S3 client uses the default user credentials
+// defined for this computer.
+IAmazonS3 client = new AmazonS3Client();
+var transferUtil = new TransferUtility(client);
+
+// Change the following values to an Amazon S3 bucket that
+// exists in your AWS account.
+var bucketName = "doc-example-bucket1";
+var localPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\TransferFolder";
+
+DisplayInstructions();
+
+PressEnter();
+
+// Upload a single file to an S3 bucket.
+var fileToUpload = "UploadTest.docx";
+
+Console.WriteLine($"Uploading {fileToUpload} to the S3 bucket, {bucketName}.");
+
+var success = await TransferMethods.UploadSingleFileAsync(transferUtil, bucketName, fileToUpload, localPath);
+if (success)
+{
+    Console.WriteLine($"Successfully uploaded the file, {fileToUpload} to {bucketName}.");
+}
+
+PressEnter();
+
+// Upload a local directory to an S3 bucket.
+var keyPrefix = "UploadFolder";
+var uploadPath = $"{localPath}\\UploadFolder";
+
+Console.WriteLine($"Uploading the files in {uploadPath} to {bucketName}");
+Console.WriteLine($"{uploadPath} contains the following files:");
+DisplayLocalFiles(uploadPath);
+Console.WriteLine();
+
+success = await TransferMethods.UploadFullDirectoryAsync(transferUtil, bucketName, keyPrefix, uploadPath);
+if (success)
+{
+    Console.WriteLine($"Successfully uploaded the files in {uploadPath} to {bucketName}.");
+    Console.WriteLine($"{bucketName} currently contains the following files:");
+    await DisplayBucketFiles(client, bucketName, keyPrefix);
+    Console.WriteLine();
+}
+
+PressEnter();
+
+
+// Download a single file from an S3 bucket.
+var keyName = "FileToDownload.docx";
+
+Console.WriteLine($"Downloading {keyName} from {bucketName}.");
+
+success = await TransferMethods.DownloadSingleFileAsync(transferUtil, bucketName, keyName, localPath);
+if (success)
+{
+    Console.WriteLine("$Successfully downloaded the file, {keyName} from {bucketName}.");
+}
+
+PressEnter();
+
+// Download the contents of a directory from an S3 bucket.
+var s3Path = "DownloadFolder";
+var downloadPath = $"{localPath}\\DownloadFolder";
+
+Console.WriteLine($"Downloading the contents of {bucketName}\\{s3Path}");
+Console.WriteLine($"{bucketName}\\{s3Path} contains the following files:");
+await DisplayBucketFiles(client, bucketName, s3Path);
+Console.WriteLine();
+
+success = await TransferMethods.DownloadS3DirectoryAsync(transferUtil, bucketName, s3Path, downloadPath);
+if (success)
+{
+    Console.WriteLine($"Downloaded the files in {bucketName} to {downloadPath}.");
+    Console.WriteLine($"{downloadPath} now contains the fillowing files:");
+    DisplayLocalFiles(downloadPath);
+}
+
+Console.WriteLine("\nThe TransferUtility Basics application has completed.");
+PressEnter();
+
+static void DisplayInstructions()
+{
+    var sepBar = new string('-', 80);
+
+    Console.Clear();
+    Console.WriteLine(sepBar);
+    Console.WriteLine(CenterText("Amazon S3 Transfer Utility Basics"));
+    Console.WriteLine(sepBar);
+    Console.WriteLine("This program shows how to use the Amazon S3 Transfer Utility.");
+    Console.WriteLine("It performs the following actions:");
+    Console.WriteLine("\t1. Upload a single object to an S3 bucket.");
+    Console.WriteLine("\t2. Upload all an entire directory from the local computer to an\n\t  S3 bucket.");
+    Console.WriteLine("\t3. Download a single object from an S3 bucket.");
+    Console.WriteLine("\t4. Download the objects in an S3 bucket to a local directory.");
+    Console.WriteLine($"\n{sepBar}");
+}
+
+static void PressEnter()
+{
+    Console.WriteLine("Press <Enter> to continue.");
+    _ = Console.ReadLine();
+    Console.WriteLine("\n");
+}
+
+static string CenterText(string textToCenter)
+{
+    var centeredText = new StringBuilder();
+    centeredText.Append(new string(' ', (int)(80 - textToCenter.Length) / 2));
+    centeredText.Append(textToCenter);
+    return centeredText.ToString();
+}
+
+static void DisplayLocalFiles(string localPath)
+{
+    var fileList = Directory.GetFiles(localPath);
+    if (fileList is not null)
+    {
+        foreach (var fileName in fileList)
+        {
+            Console.WriteLine(fileName);
+        }
+    }
+}
+
+static async Task DisplayBucketFiles(IAmazonS3 client, string bucketName, string s3Path)
+{
+    ListObjectsV2Request request = new()
+    {
+        BucketName = bucketName,
+        Prefix = s3Path,
+        MaxKeys = 5,
+    };
+
+    var response = new ListObjectsV2Response();
+
+    do
+    {
+        response = await client.ListObjectsV2Async(request);
+
+        response.S3Objects
+            .ForEach(obj => Console.WriteLine($"{obj.Key}"));
+
+        // If the response is truncated, set the request ContinuationToken
+        // from the NextContinuationToken property of the response.
+        request.ContinuationToken = response.NextContinuationToken;
+    } while (response.IsTruncated);
+}
+```
+Upload a single file\.  
+
+```
+        public static async Task<bool> UploadSingleFileAsync(
+            TransferUtility transferUtil,
+            string bucketName,
+            string fileName,
+            string localPath)
+        {
+            if (File.Exists($"{localPath}\\{fileName}"))
+            {
+                try
+                {
+                    await transferUtil.UploadAsync(new TransferUtilityUploadRequest
+                    {
+                        BucketName = bucketName,
+                        Key = fileName,
+                        FilePath = $"{localPath}\\{fileName}",
+                    });
+
+                    return true;
+                }
+                catch (AmazonS3Exception s3Ex)
+                {
+                    Console.WriteLine($"Could not upload {fileName} from {localPath} because:");
+                    Console.WriteLine(s3Ex.Message);
+                    return false;
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{fileName} does not exist in {localPath}");
+                return false;
+            }
+        }
+```
+Upload an entire local directory\.  
+
+```
+        public static async Task<bool> UploadFullDirectoryAsync(
+            TransferUtility transferUtil,
+            string bucketName,
+            string keyPrefix,
+            string localPath)
+        {
+            if (Directory.Exists(localPath))
+            {
+                try
+                {
+                    await transferUtil.UploadDirectoryAsync(new TransferUtilityUploadDirectoryRequest
+                    {
+                        BucketName = bucketName,
+                        KeyPrefix = keyPrefix,
+                        Directory = localPath,
+                    });
+
+                    return true;
+                }
+                catch (AmazonS3Exception s3Ex)
+                {
+                    Console.WriteLine($"Can't upload the contents of {localPath} because:");
+                    Console.WriteLine(s3Ex?.Message);
+                    return false;
+                }
+            }
+            else
+            {
+                Console.WriteLine($"The directory {localPath} does not exist.");
+                return false;
+            }
+        }
+```
+Download a single file\.  
+
+```
+        public static async Task<bool> DownloadSingleFileAsync(
+        TransferUtility transferUtil,
+            string bucketName,
+            string keyName,
+            string localPath)
+        {
+            await transferUtil.DownloadAsync(new TransferUtilityDownloadRequest
+            {
+                BucketName = bucketName,
+                Key = keyName,
+                FilePath = $"{localPath}\\{keyName}",
+            });
+
+            if (File.Exists($"{localPath}\\{keyName}"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+```
+Download contents of an S3 bucket\.  
+
+```
+        public static async Task<bool> DownloadS3DirectoryAsync(
+            TransferUtility transferUtil,
+            string bucketName,
+            string s3Path,
+            string localPath)
+        {
+            await transferUtil.DownloadDirectoryAsync(new TransferUtilityDownloadDirectoryRequest
+            {
+                BucketName = bucketName,
+                LocalDirectory = localPath,
+                S3Directory = s3Path,
+            });
+
+            if (Directory.Exists(localPath))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+```
 
 ------
 #### [ Python ]

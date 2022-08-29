@@ -35,3 +35,17 @@ To use MFA delete, you can use either a hardware or virtual MFA device to genera
 MFA delete and MFA\-protected API access are features intended to provide protection for different scenarios\. You configure MFA delete on a bucket to help ensure that the data in your bucket cannot be accidentally deleted\. MFA\-protected API access is used to enforce another authentication factor \(MFA code\) when accessing sensitive Amazon S3 resources\. You can require any operations against these Amazon S3 resources to be done with temporary credentials created using MFA\. For an example, see [Adding a bucket policy to require MFA](example-bucket-policies.md#example-bucket-policies-use-case-7)\. 
 
 For more information about how to purchase and activate an authentication device, see [Multi\-factor authentication](http://aws.amazon.com/iam/details/mfa/)\.
+
+## To enable S3 Versioning and configure MFA delete<a name="enable-versioning-mfa-delete"></a>
+
+### Using the AWS CLI<a name="enable-versioning-mfa-delete-cli"></a>
+
+The following example enables S3 Versioning and multi\-factor authentication \(MFA\) delete on a bucket\.
+
+```
+aws s3api put-bucket-versioning --bucket DOC-EXAMPLE-BUCKET1 --versioning-configuration Status=Enabled,MFADelete=Enabled --mfa "SERIAL 123456"
+```
+
+### Using the REST API<a name="enable-versioning-mfa-delete-rest-api"></a>
+
+For more information about specifying MFA delete using the Amazon S3 REST API, see [PutBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html) *Amazon Simple Storage Service API Reference*\.

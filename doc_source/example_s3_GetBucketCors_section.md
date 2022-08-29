@@ -1,6 +1,6 @@
 # Get CORS rules for an Amazon S3 bucket using an AWS SDK<a name="example_s3_GetBucketCors_section"></a>
 
-The following code examples show how to get cross\-origin resource sharing \(CORS\) rules for an Amazon S3 bucket\.
+The following code examples show how to get cross\-origin resource sharing \(CORS\) rules for an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -16,7 +16,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };

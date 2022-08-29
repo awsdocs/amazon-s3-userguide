@@ -5,6 +5,6 @@ With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and e
 With Amazon S3 on Outposts, you can use the Amazon S3 APIs and features, such as object storage, access policies, encryption, and tagging, on AWS Outposts as you do on Amazon S3\. For information about S3 on Outposts, see [What is Amazon S3 on Outposts?](S3onOutposts.md)
 
 **Topics**
-+ [Setting up AWS Identity and Access Management with S3 on Outposts](S3OutpostsIAM.md)
++ [Setting up IAM with S3 on Outposts](S3OutpostsIAM.md)
 + [Getting started by using the AWS Management Console](S3OutpostsGSConsole.md)
 + [Getting started by using the AWS CLI and SDK for Java](S3OutpostsGSCLIJava.md)

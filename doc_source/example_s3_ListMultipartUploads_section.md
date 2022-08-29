@@ -1,6 +1,6 @@
 # List in\-progress multipart uploads to an Amazon S3 bucket using an AWS SDK<a name="example_s3_ListMultipartUploads_section"></a>
 
-The following code example shows how to list in\-progress multipart uploads to an Amazon S3 bucket\.
+The following code example shows how to list in\-progress multipart uploads to an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -22,7 +22,6 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
             ListMultipartUploadsResponse response = s3.listMultipartUploads(listMultipartUploadsRequest);
             List<MultipartUpload> uploads = response.uploads();
-
             for (MultipartUpload upload: uploads) {
                 System.out.println("Upload in progress: Key = \"" + upload.key() + "\", id = " + upload.uploadId());
             }

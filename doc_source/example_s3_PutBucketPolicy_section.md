@@ -1,6 +1,6 @@
 # Add a policy to an Amazon S3 bucket using an AWS SDK<a name="example_s3_PutBucketPolicy_section"></a>
 
-The following code examples show how to add a policy to an Amazon S3 bucket\.
+The following code examples show how to add a policy to an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -113,14 +113,17 @@ int main()
 
         try {
             PutBucketPolicyRequest policyReq = PutBucketPolicyRequest.builder()
-                    .bucket(bucketName)
-                    .policy(policyText)
-                    .build();
+                .bucket(bucketName)
+                .policy(policyText)
+                .build();
+
             s3.putBucketPolicy(policyReq);
+
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
         }
+
         System.out.println("Done!");
     }
 
@@ -129,11 +132,11 @@ int main()
 
         StringBuilder fileText = new StringBuilder();
         try {
-            List<String> lines = Files.readAllLines(
-                    Paths.get(policyFile), Charset.forName("UTF-8"));
+            List<String> lines = Files.readAllLines(Paths.get(policyFile), StandardCharsets.UTF_8);
             for (String line : lines) {
                 fileText.append(line);
             }
+
         } catch (IOException e) {
             System.out.format("Problem reading file: \"%s\"", policyFile);
             System.out.println(e.getMessage());
@@ -144,10 +147,8 @@ int main()
             while (parser.nextToken() != null) {
             }
 
-        } catch (JsonParseException jpe) {
+        } catch (IOException jpe) {
             jpe.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
         }
         return fileText.toString();
     }
@@ -165,7 +166,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -216,6 +217,7 @@ export const run = async () => {
           new PutBucketPolicyCommand(bucketPolicyParams)
       );
       console.log("Success, permissions added to bucket", response);
+      return response;
     }
     catch (err) {
         console.log("Error adding policy to S3 bucket.", err);

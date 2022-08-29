@@ -1,7 +1,7 @@
 # Authenticating SOAP requests<a name="SOAPAuthentication"></a>
 
 **Note**  
- SOAP support over HTTP is deprecated, but it is still available over HTTPS\. New Amazon S3 features will not be supported for SOAP\. We recommend that you use either the REST API or the AWS SDKs\. 
+ SOAP support over HTTP is deprecated, but SOAP is still available over HTTPS\. New Amazon S3 features are not supported for SOAP\. Instead of using SOAP, we recommend that you use either the REST API or the AWS SDKs\. 
 
 Every non\-anonymous request must contain authentication information to establish the identity of the principal making the request\. In SOAP, the authentication information is put into the following elements of the SOAP request:
 + Your AWS Access Key ID

@@ -1,6 +1,6 @@
 # Delete CORS rules from an Amazon S3 bucket using an AWS SDK<a name="example_s3_DeleteBucketCors_section"></a>
 
-The following code examples show how to delete CORS rules from an Amazon S3 bucket\.
+The following code examples show how to delete CORS rules from an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 

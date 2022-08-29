@@ -236,6 +236,6 @@ For more information about modifying the AWS CloudFormation template's default c
 
 For more information about configuring Object Lambda access points using AWS CloudFormation without the template, see [AWS::S3ObjectLambda::AccessPoint](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3objectlambda-accesspoint.html) in the *AWS CloudFormation User Guide*\.
 
-### Using AWS Cloud Development Kit \(CDK\)<a name="olap-create-cdk"></a>
+### Using AWS Cloud Development Kit \(AWS CDK\)<a name="olap-create-cdk"></a>
 
-For more information about configuring Object Lambda access points using the AWS CDK, see [AWS::S3ObjectLambda Construct Library](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-s3objectlambda-readme.html) in the *AWS Cloud Development Kit \(CDK\) API Reference*\.
+For more information about configuring Object Lambda access points using the AWS CDK, see [AWS::S3ObjectLambda Construct Library](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-s3objectlambda-readme.html) in the *AWS Cloud Development Kit \(AWS CDK\) API Reference*\.

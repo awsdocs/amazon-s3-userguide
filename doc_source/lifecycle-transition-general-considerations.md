@@ -20,10 +20,12 @@ Amazon S3 supports the following lifecycle transitions between storage classes u
 
 You *can transition* from the following:
 + The S3 Standard storage class to any other storage class\.
-+ Any storage class to the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes\. 
-+ The S3 Standard\-IA storage class to the S3 Intelligent\-Tiering, S3 One Zone\-IA, or S3 Glacier Instant Retrieval storage classes\.
-+ The S3 Intelligent\-Tiering storage class to the S3 One Zone\-IA storage class\.
++ The S3 Standard\-IA storage class to the S3 Intelligent\-Tiering, S3 One Zone\-IA, S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, or S3 Glacier Deep Archive storage classes\.
++ The S3 Intelligent\-Tiering storage class to the S3 One Zone\-IA, S3 Glacier Instant Retrieval, S3 Glacier Flexible Retrieval, or S3 Glacier Deep Archive storage classes\.
++ The S3 One Zone\-IA storage class to the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes\.
++ The S3 Glacier Instant Retrieval storage class to the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes\.
 + The S3 Glacier Flexible Retrieval storage class to the S3 Glacier Deep Archive storage class\.
++ Any storage class to the S3 Glacier Deep Archive storage class\. 
 
 ### Unsupported lifecycle transitions<a name="unsupported-lifecycle-transitions"></a>
 

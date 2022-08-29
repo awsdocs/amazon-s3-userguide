@@ -1,6 +1,6 @@
 # Get the ACL of an Amazon S3 object using an AWS SDK<a name="example_s3_GetObjectAcl_section"></a>
 
-The following code examples show how to get the access control list \(ACL\) of an Amazon S3 object\.
+The following code examples show how to get the access control list \(ACL\) of an S3 object\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -13,7 +13,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool GetBucketAcl(const Aws::String& bucketName, const Aws::String& region)
+bool AwsDoc::S3::GetBucketAcl(const Aws::String& bucketName, const Aws::String& region)
 {
     Aws::Client::ClientConfiguration config;
     config.region = region;

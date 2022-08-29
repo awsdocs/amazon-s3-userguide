@@ -49,13 +49,13 @@
  2.     "Version": "2012-10-17",
  3.     "Statement": [
  4.     {
- 5.         "Sid": "Open-read-MRAP-policy"
+ 5.         "Sid": "Open-read-MRAP-policy",
  6.         "Effect": "Allow",
  7.         "Principal": "*",
  8.         "Action": [
  9.             "s3:GetObject"
 10.           ],
-11.         "Resource": "arn:aws:s3::123456789012:accesspoint/mfzwi23gnjvgw.mrap/object/*",
+11.         "Resource": "arn:aws:s3::123456789012:accesspoint/mfzwi23gnjvgw.mrap/object/*"
 12.     }]
 13. }
 ```

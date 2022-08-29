@@ -1,6 +1,6 @@
 # Managing S3 Intelligent\-Tiering<a name="intelligent-tiering-managing"></a>
 
-The S3 Intelligent\-Tiering storage class delivers automatic storage cost savings in three low latency and high throughput access tiers\. aIt also offers optional archive capabilities to help you get the lowest storage costs in the cloud for data that can be accessed in minutes to hours\. The S3 Intelligent\-Tiering storage class supports all Amazon S3 features, including the following:
+The S3 Intelligent\-Tiering storage class delivers automatic storage cost savings in three low latency and high throughput access tiers\. It also offers optional archive capabilities to help you get the lowest storage costs in the cloud for data that can be accessed in minutes to hours\. The S3 Intelligent\-Tiering storage class supports all Amazon S3 features, including the following:
 + S3 Inventory, for verifying the access tier of objects
 + S3 Replication, for replicating data to any AWS Region
 + S3 Storage Lens, for viewing storage usage and activity metrics

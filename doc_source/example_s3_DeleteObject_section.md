@@ -1,6 +1,6 @@
 # Delete an Amazon S3 object using an AWS SDK<a name="example_s3_DeleteObject_section"></a>
 
-The following code examples show how to delete an Amazon S3 object\.
+The following code examples show how to delete an S3 object\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -13,7 +13,34 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-using namespace Aws;
+bool AwsDoc::S3::DeleteObject(const Aws::String &objectKey, const Aws::String &fromBucket, const Aws::String &region) {
+    Aws::Client::ClientConfiguration clientConfig;
+    if (!region.empty()) {
+        clientConfig.region = region;
+    }
+
+    Aws::S3::S3Client client(clientConfig);
+    Aws::S3::Model::DeleteObjectRequest request;
+
+    request.WithKey(objectKey)
+            .WithBucket(fromBucket);
+
+    Aws::S3::Model::DeleteObjectOutcome outcome =
+            client.DeleteObject(request);
+
+    if (!outcome.IsSuccess())
+    {
+        auto err = outcome.GetError();
+        std::cout << "Error: DeleteObject: " <<
+                  err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
+        return false;
+    }
+    else
+    {
+        std::cout << "Successfully deleted the object." << std::endl;
+        return true;
+    }
+}
 
 int main()
 {
@@ -27,31 +54,9 @@ int main()
 
     Aws::SDKOptions options;
     Aws::InitAPI(options);
-    {
-        Aws::Client::ClientConfiguration clientConfig;
-        if (!region.empty())
-            clientConfig.region = region;
 
-        S3::S3Client client(clientConfig);
-        Aws::S3::Model::DeleteObjectRequest request;
+    AwsDoc::S3::DeleteObject(objectKey, fromBucket, region);
 
-        request.WithKey(objectKey)
-            .WithBucket(fromBucket);
-
-        Aws::S3::Model::DeleteObjectOutcome outcome =
-            client.DeleteObject(request);
-
-        if (!outcome.IsSuccess())
-        {
-            auto err = outcome.GetError();
-            std::cout << "Error: DeleteObject: " <<
-                err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-        }
-        else
-        {
-            std::cout << "Successfully deleted the object." << std::endl;
-        }
-    }
     ShutdownAPI(options);
 
     return 0;
@@ -90,7 +95,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -220,6 +225,104 @@ def revive_object(bucket, object_key):
     else:
         logger.error("Couldn't get any version info for %s.", object_key)
 ```
+Create a Lambda handler that removes a delete marker from an S3 object\. This handler can be used to efficiently clean up extraneous delete markers in a versioned bucket\.  
+
+```
+import logging
+from urllib import parse
+import boto3
+from botocore.exceptions import ClientError
+
+logger = logging.getLogger(__name__)
+logger.setLevel('INFO')
+
+s3 = boto3.client('s3')
+
+
+def lambda_handler(event, context):
+    """
+    Removes a delete marker from the specified versioned object.
+
+    :param event: The S3 batch event that contains the ID of the delete marker
+                  to remove.
+    :param context: Context about the event.
+    :return: A result structure that Amazon S3 uses to interpret the result of the
+             operation. When the result code is TemporaryFailure, S3 retries the
+             operation.
+    """
+    # Parse job parameters from Amazon S3 batch operations
+    invocation_id = event['invocationId']
+    invocation_schema_version = event['invocationSchemaVersion']
+
+    results = []
+    result_code = None
+    result_string = None
+
+    task = event['tasks'][0]
+    task_id = task['taskId']
+
+    try:
+        obj_key = parse.unquote(task['s3Key'], encoding='utf-8')
+        obj_version_id = task['s3VersionId']
+        bucket_name = task['s3BucketArn'].split(':')[-1]
+
+        logger.info("Got task: remove delete marker %s from object %s.",
+                    obj_version_id, obj_key)
+
+        try:
+            # If this call does not raise an error, the object version is not a delete
+            # marker and should not be deleted.
+            response = s3.head_object(
+                Bucket=bucket_name, Key=obj_key, VersionId=obj_version_id)
+            result_code = 'PermanentFailure'
+            result_string = f"Object {obj_key}, ID {obj_version_id} is not " \
+                            f"a delete marker."
+
+            logger.debug(response)
+            logger.warning(result_string)
+        except ClientError as error:
+            delete_marker = error.response['ResponseMetadata']['HTTPHeaders'] \
+                .get('x-amz-delete-marker', 'false')
+            if delete_marker == 'true':
+                logger.info("Object %s, version %s is a delete marker.",
+                            obj_key, obj_version_id)
+                try:
+                    s3.delete_object(
+                        Bucket=bucket_name, Key=obj_key, VersionId=obj_version_id)
+                    result_code = 'Succeeded'
+                    result_string = f"Successfully removed delete marker " \
+                                    f"{obj_version_id} from object {obj_key}."
+                    logger.info(result_string)
+                except ClientError as error:
+                    # Mark request timeout as a temporary failure so it will be retried.
+                    if error.response['Error']['Code'] == 'RequestTimeout':
+                        result_code = 'TemporaryFailure'
+                        result_string = f"Attempt to remove delete marker from  " \
+                                        f"object {obj_key} timed out."
+                        logger.info(result_string)
+                    else:
+                        raise
+            else:
+                raise ValueError(f"The x-amz-delete-marker header is either not "
+                                 f"present or is not 'true'.")
+    except Exception as error:
+        # Mark all other exceptions as permanent failures.
+        result_code = 'PermanentFailure'
+        result_string = str(error)
+        logger.exception(error)
+    finally:
+        results.append({
+            'taskId': task_id,
+            'resultCode': result_code,
+            'resultString': result_string
+        })
+    return {
+        'invocationSchemaVersion': invocation_schema_version,
+        'treatMissingKeysAs': 'PermanentFailure',
+        'invocationId': invocation_id,
+        'results': results
+    }
+```
 +  For API details, see [DeleteObject](https://docs.aws.amazon.com/goto/boto3/s3-2006-03-01/DeleteObject) in *AWS SDK for Python \(Boto3\) API Reference*\. 
 
 ------
@@ -245,6 +348,30 @@ async fn remove_object(client: &Client, bucket: &str, key: &str) -> Result<(), E
 }
 ```
 +  For API details, see [DeleteObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
+
+------
+#### [ Swift ]
+
+**SDK for Swift**  
+This is prerelease documentation for an SDK in preview release\. It is subject to change\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/swift/example_code/s3/basics#code-examples)\. 
+  
+
+```
+    public func deleteFile(bucket: String, key: String) async throws {
+        let input = DeleteObjectInput(
+            bucket: bucket,
+            key: key
+        )
+
+        do {
+            _ = try await client.deleteObject(input: input)
+        } catch {
+            throw error
+        }
+    }
+```
++  For API details, see [DeleteObject](https://awslabs.github.io/aws-sdk-swift/reference/0.x) in *AWS SDK for Swift API reference*\. 
 
 ------
 

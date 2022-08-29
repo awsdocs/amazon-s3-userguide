@@ -1,6 +1,6 @@
 # Restore an archived copy of an object back into an Amazon S3 bucket using an AWS SDK<a name="example_s3_RestoreObject_section"></a>
 
-The following code example shows how to restore an archived copy of an object back into an Amazon S3 bucket\.
+The following code example shows how to restore an archived copy of an object back into an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -17,9 +17,9 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
         try {
             RestoreRequest restoreRequest = RestoreRequest.builder()
-                    .days(10)
-                    .glacierJobParameters(GlacierJobParameters.builder().tier(Tier.STANDARD).build())
-                    .build();
+                .days(10)
+                .glacierJobParameters(GlacierJobParameters.builder().tier(Tier.STANDARD).build())
+                .build();
 
             RestoreObjectRequest objectRequest = RestoreObjectRequest.builder()
                 .expectedBucketOwner(expectedBucketOwner)
@@ -28,13 +28,12 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
                 .restoreRequest(restoreRequest)
                 .build();
 
-        s3.restoreObject(objectRequest);
+            s3.restoreObject(objectRequest);
 
-    } catch (S3Exception e) {
-        System.err.println(e.awsErrorDetails().errorMessage());
-        System.exit(1);
-    }
-        s3.close();
+        } catch (S3Exception e) {
+            System.err.println(e.awsErrorDetails().errorMessage());
+            System.exit(1);
+        }
     }
 ```
 +  For API details, see [RestoreObject](https://docs.aws.amazon.com/goto/SdkForJavaV2/s3-2006-03-01/RestoreObject) in *AWS SDK for Java 2\.x API Reference*\. 

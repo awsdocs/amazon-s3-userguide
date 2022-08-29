@@ -52,7 +52,7 @@ http://example-bucket.s3-website.us-west-2.amazonaws.com/docs/doc1.html
 
 If you have a registered domain, you can add a DNS CNAME entry to point to the Amazon S3 website endpoint\. For example, if you registered the domain `www.example-bucket.com`, you could create a bucket `www.example-bucket.com`, and add a DNS CNAME record that points to `www.example-bucket.com.s3-website.Region.amazonaws.com`\. All requests to `http://www.example-bucket.com` are routed to `www.example-bucket.com.s3-website.Region.amazonaws.com`\. 
 
-For more information, see [Customizing Amazon S3 URLs with CNAMEs](VirtualHosting.md#VirtualHostingCustomURLs)\. 
+For more information, see [Customizing Amazon S3 URLs with CNAME records](VirtualHosting.md#VirtualHostingCustomURLs)\. 
 
 ## Using a custom domain with Route 53<a name="custom-domain-s3-endpoint"></a>
 

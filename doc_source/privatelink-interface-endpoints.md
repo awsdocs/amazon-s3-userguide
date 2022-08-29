@@ -9,6 +9,7 @@ For general information about interface endpoints, see [Interface VPC endpoints 
 **Topics**
 + [Types of VPC endpoints for Amazon S3](#types-of-vpc-endpoints-for-s3)
 + [Restrictions and limitations of AWS PrivateLink for Amazon S3](#privatelink-limitations)
++ [Creating a VPC endpoint](#s3-creating-vpc)
 + [Accessing Amazon S3 interface endpoints](#accessing-s3-interface-endpoints)
 + [Accessing buckets and S3 access points from S3 interface endpoints](#accessing-bucket-and-aps-from-interface-endpoints)
 + [Updating an on\-premises DNS configuration](#updating-on-premises-dns-config)
@@ -43,6 +44,10 @@ AWS PrivateLink for Amazon S3 does not support the following:
 + Using [CopyObject API](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html) or [UploadPartCopy API](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html) between buckets in different AWS Regions
 + Transport Layer Security \(TLS\) 1\.0
 
+## Creating a VPC endpoint<a name="s3-creating-vpc"></a>
+
+To create a VPC interface endpoint, see [ Create a VPC endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/create-interface-endpoint.html#create-interface-endpoint-aws) in the *AWS PrivateLink Guide*\.
+
 ## Accessing Amazon S3 interface endpoints<a name="accessing-s3-interface-endpoints"></a>
 
 **Important**  
@@ -61,7 +66,7 @@ Amazon S3 interface endpoints do *not* support the private DNS feature of interf
 
 You can use the AWS CLI or AWS SDK to access buckets, S3 access points, and S3\-control APIs through S3 interface endpoints\. 
 
-The following image shows the VPC console **Details** tab, where you can find the DNS name of a VPC endpoint\. In this example, the *VPC endpoint ID \(vpce\-id\)* is `vpce-0e25b8cdd720f900e` and the *DNS name* is `*.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\. Remember to replace *\** when using the *DNS name*\. For example, to access a bucket, the *DNS name* would be `bucket.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\. You can also append the name of your bucket to the start of the URL\. For example, if you wanted to access `my-bucket` the URL would be `my-bucket.bucket.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\.
+The following image shows the VPC console **Details** tab, where you can find the DNS name of a VPC endpoint\. In this example, the *VPC endpoint ID \(vpce\-id\)* is `vpce-0e25b8cdd720f900e` and the *DNS name* is `*.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\. Remember to replace *\** when using the *DNS name*\. For example, to access a bucket, the *DNS name* would be `bucket.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\.
 
 ![\[Screenshot of Details tab from the VPC console.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/vpc-console-details-tab.png)
 
@@ -312,7 +317,7 @@ You can create a policy that restricts access only to the S3 buckets in a specif
 ```
 
 **Note**  
-You can use either the `aws:ResourceAccount` key or `s3:ResourceAccount` key in your IAM policy to specify the AWS account ID of the resource being accessed\.
+You can use either the `aws:ResourceAccount` or `s3:ResourceAccount` key in your IAM policy to specify the AWS account ID of the resource being accessed\. However, be aware that some AWS services rely on access to AWS managed buckets\. Therefore, using the `aws:ResourceAccount` or `s3:ResourceAccount` key in your IAM policy might also impact access to these resources\.
 
 ### Example: Restricting access to a specific VPC endpoint in the S3 bucket policy<a name="privatelink-example-restrict-access-to-vpc-endpoint"></a>
 

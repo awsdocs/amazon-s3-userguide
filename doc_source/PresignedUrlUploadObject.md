@@ -31,7 +31,7 @@ For instructions on installing AWS Explorer, see [Developing with Amazon S3 usin
 
 The following examples show how to upload objects using presigned URLs\.
 
-The following code examples show how to create a presigned URL for Amazon S3 and upload an object\.
+The following code examples show how to create a presigned URL for S3 and upload an object\.
 
 ------
 #### [ Go ]
@@ -71,21 +71,20 @@ The following code examples show how to create a presigned URL for Amazon S3 and
 
         try {
             PutObjectRequest objectRequest = PutObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(keyName)
-                    .contentType("text/plain")
-                    .build();
+                .bucket(bucketName)
+                .key(keyName)
+                .contentType("text/plain")
+                .build();
 
             PutObjectPresignRequest presignRequest = PutObjectPresignRequest.builder()
-                    .signatureDuration(Duration.ofMinutes(10))
-                    .putObjectRequest(objectRequest)
-                    .build();
+                .signatureDuration(Duration.ofMinutes(10))
+                .putObjectRequest(objectRequest)
+                .build();
 
             PresignedPutObjectRequest presignedRequest = presigner.presignPutObject(presignRequest);
             String myURL = presignedRequest.url().toString();
             System.out.println("Presigned URL to upload a file to: " +myURL);
-            System.out.println("Which HTTP method needs to be used when uploading a file: " +
-                    presignedRequest.httpRequest().method());
+            System.out.println("Which HTTP method needs to be used when uploading a file: " + presignedRequest.httpRequest().method());
 
             // Upload content to the Amazon S3 bucket by using this URL.
             URL url = presignedRequest.url();
@@ -119,7 +118,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -292,7 +291,7 @@ run();
 
 **SDK for Python \(Boto3\)**  
  To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3/s3_basics#code-examples)\. 
-Generate a presigned URL that can perform an Amazon S3 action for a limited time\. Use the Requests package to make a request with the URL\.  
+Generate a presigned URL that can perform an S3 action for a limited time\. Use the Requests package to make a request with the URL\.  
 
 ```
 import argparse

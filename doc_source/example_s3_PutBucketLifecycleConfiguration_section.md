@@ -1,6 +1,6 @@
 # Add a lifecycle configuration to an Amazon S3 bucket using an AWS SDK<a name="example_s3_PutBucketLifecycleConfiguration_section"></a>
 
-The following code examples show how to add a lifecycle configuration to an Amazon S3 bucket\.
+The following code examples show how to add a lifecycle configuration to an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -18,40 +18,40 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
         try {
             // Create a rule to archive objects with the "glacierobjects/" prefix to Amazon S3 Glacier.
             LifecycleRuleFilter ruleFilter = LifecycleRuleFilter.builder()
-                    .prefix("glacierobjects/")
-                    .build();
+                .prefix("glacierobjects/")
+                .build();
 
             Transition transition = Transition.builder()
-                    .storageClass(TransitionStorageClass.GLACIER)
-                    .days(0)
-                    .build();
+                .storageClass(TransitionStorageClass.GLACIER)
+                .days(0)
+                .build();
 
             LifecycleRule rule1 = LifecycleRule.builder()
-                    .id("Archive immediately rule")
-                    .filter(ruleFilter)
-                    .transitions(transition)
-                    .status(ExpirationStatus.ENABLED)
-                    .build();
+                .id("Archive immediately rule")
+                .filter(ruleFilter)
+                .transitions(transition)
+                .status(ExpirationStatus.ENABLED)
+                .build();
 
             // Create a second rule.
             Transition transition2 = Transition.builder()
-                    .storageClass(TransitionStorageClass.GLACIER)
-                    .days(0)
-                    .build();
+                .storageClass(TransitionStorageClass.GLACIER)
+                .days(0)
+                .build();
 
             List<Transition> transitionList = new ArrayList<>();
             transitionList.add(transition2);
 
             LifecycleRuleFilter ruleFilter2 = LifecycleRuleFilter.builder()
-                    .prefix("glacierobjects/")
-                    .build();
+                .prefix("glacierobjects/")
+                .build();
 
             LifecycleRule rule2 = LifecycleRule.builder()
-                    .id("Archive and then delete rule")
-                    .filter(ruleFilter2)
-                    .transitions(transitionList)
-                    .status(ExpirationStatus.ENABLED)
-                    .build();
+                .id("Archive and then delete rule")
+                .filter(ruleFilter2)
+                .transitions(transitionList)
+                .status(ExpirationStatus.ENABLED)
+                .build();
 
             // Add the LifecycleRule objects to an ArrayList.
             ArrayList<LifecycleRule> ruleList = new ArrayList<>();
@@ -59,14 +59,14 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
             ruleList.add(rule2);
 
             BucketLifecycleConfiguration lifecycleConfiguration = BucketLifecycleConfiguration.builder()
-                    .rules(ruleList)
-                    .build();
+                .rules(ruleList)
+                .build();
 
             PutBucketLifecycleConfigurationRequest putBucketLifecycleConfigurationRequest = PutBucketLifecycleConfigurationRequest.builder()
-                    .bucket(bucketName)
-                    .lifecycleConfiguration(lifecycleConfiguration)
-                    .expectedBucketOwner(accountId)
-                    .build();
+                .bucket(bucketName)
+                .lifecycleConfiguration(lifecycleConfiguration)
+                .expectedBucketOwner(accountId)
+                .build();
 
             s3.putBucketLifecycleConfiguration(putBucketLifecycleConfigurationRequest);
 
@@ -81,13 +81,11 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
         try {
             GetBucketLifecycleConfigurationRequest getBucketLifecycleConfigurationRequest = GetBucketLifecycleConfigurationRequest.builder()
-                    .bucket(bucketName)
-                    .expectedBucketOwner(accountId)
-                    .build();
+                .bucket(bucketName)
+                .expectedBucketOwner(accountId)
+                .build();
 
             GetBucketLifecycleConfigurationResponse response = s3.getBucketLifecycleConfiguration(getBucketLifecycleConfigurationRequest);
-
-            // Create a new List.
             List<LifecycleRule> newList = new ArrayList<>();
             List<LifecycleRule> rules = response.rules();
             for (LifecycleRule rule: rules) {
@@ -96,32 +94,32 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
             // Add a new rule with both a prefix predicate and a tag predicate.
             LifecycleRuleFilter ruleFilter = LifecycleRuleFilter.builder()
-                    .prefix("YearlyDocuments/")
-                    .build();
+                .prefix("YearlyDocuments/")
+                .build();
 
             Transition transition = Transition.builder()
-                    .storageClass(TransitionStorageClass.GLACIER)
-                    .days(3650)
-                    .build();
+                .storageClass(TransitionStorageClass.GLACIER)
+                .days(3650)
+                .build();
 
             LifecycleRule rule1 = LifecycleRule.builder()
-                    .id("NewRule")
-                    .filter(ruleFilter)
-                    .transitions(transition)
-                    .status(ExpirationStatus.ENABLED)
-                    .build();
+                .id("NewRule")
+                .filter(ruleFilter)
+                .transitions(transition)
+                .status(ExpirationStatus.ENABLED)
+                .build();
 
             // Add the new rule to the list.
             newList.add(rule1);
             BucketLifecycleConfiguration lifecycleConfiguration = BucketLifecycleConfiguration.builder()
-                    .rules(newList)
-                    .build();
+                .rules(newList)
+                .build();
 
             PutBucketLifecycleConfigurationRequest putBucketLifecycleConfigurationRequest = PutBucketLifecycleConfigurationRequest.builder()
-                    .bucket(bucketName)
-                    .lifecycleConfiguration(lifecycleConfiguration)
-                    .expectedBucketOwner(accountId)
-                    .build();
+                .bucket(bucketName)
+                .lifecycleConfiguration(lifecycleConfiguration)
+                .expectedBucketOwner(accountId)
+                .build();
 
             s3.putBucketLifecycleConfiguration(putBucketLifecycleConfigurationRequest);
 
@@ -131,22 +129,22 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
         }
     }
 
-  // Delete the configuration from the Amazon S3 bucket.
-  public static void deleteLifecycleConfig(S3Client s3, String bucketName, String accountId) {
+    // Delete the configuration from the Amazon S3 bucket.
+    public static void deleteLifecycleConfig(S3Client s3, String bucketName, String accountId) {
 
         try {
-                DeleteBucketLifecycleRequest deleteBucketLifecycleRequest = DeleteBucketLifecycleRequest.builder()
-                    .bucket(bucketName)
-                    .expectedBucketOwner(accountId)
-                    .build();
+            DeleteBucketLifecycleRequest deleteBucketLifecycleRequest = DeleteBucketLifecycleRequest.builder()
+                .bucket(bucketName)
+                .expectedBucketOwner(accountId)
+                .build();
 
-                s3.deleteBucketLifecycle(deleteBucketLifecycleRequest);
+            s3.deleteBucketLifecycle(deleteBucketLifecycleRequest);
 
-           } catch (S3Exception e) {
+        } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
         }
-  }
+    }
 ```
 +  For API details, see [PutBucketLifecycleConfiguration](https://docs.aws.amazon.com/goto/SdkForJavaV2/s3-2006-03-01/PutBucketLifecycleConfiguration) in *AWS SDK for Java 2\.x API Reference*\. 
 

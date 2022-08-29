@@ -54,7 +54,7 @@ The following IAM policy statement requires the principal to access AWS only fro
 }
 ```
 
-For an example bucket policy that uses the `aws:SourceIP` AWS global condition key to restrict access to an S3 on Outposts bucket to a specific network range, see [Setting up AWS Identity and Access Management with S3 on Outposts](S3OutpostsIAM.md)\.
+For an example bucket policy that uses the `aws:SourceIP` AWS global condition key to restrict access to an S3 on Outposts bucket to a specific network range, see [Setting up IAM with S3 on Outposts](S3OutpostsIAM.md)\.
 
 ## Who can create a presigned URL<a name="S3Outpostswho-presigned-url"></a>
 

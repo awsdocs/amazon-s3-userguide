@@ -1,6 +1,6 @@
 # Get an object from an Amazon S3 bucket using an AWS SDK<a name="example_s3_GetObject_section"></a>
 
-The following code examples show how to read data from an object in an Amazon S3 bucket\.
+The following code examples show how to read data from an object in an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -64,7 +64,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool GetObject(const Aws::String& objectKey,
+bool AwsDoc::S3::GetObject(const Aws::String& objectKey,
     const Aws::String& fromBucket, const Aws::String& region)
 {
     Aws::Client::ClientConfiguration config;
@@ -121,7 +121,7 @@ int main()
         //TODO: Set to the AWS Region in which the bucket was created.
         const Aws::String region = "us-east-1";
 
-        if (!GetObject(object_name, bucket_name, region))
+        if (!AwsDoc::S3::GetObject(object_name, bucket_name, region))
         {
             return 1;
         }
@@ -141,14 +141,14 @@ int main()
 Read data as a byte array\.  
 
 ```
-    public static void getObjectBytes (S3Client s3, String bucketName, String keyName, String path ) {
+    public static void getObjectBytes (S3Client s3, String bucketName, String keyName, String path) {
 
         try {
             GetObjectRequest objectRequest = GetObjectRequest
-                    .builder()
-                    .key(keyName)
-                    .bucket(bucketName)
-                    .build();
+                .builder()
+                .key(keyName)
+                .bucket(bucketName)
+                .build();
 
             ResponseBytes<GetObjectResponse> objectBytes = s3.getObjectAsBytes(objectRequest);
             byte[] data = objectBytes.asByteArray();
@@ -163,31 +163,31 @@ Read data as a byte array\.
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (S3Exception e) {
-          System.err.println(e.awsErrorDetails().errorMessage());
-           System.exit(1);
+            System.err.println(e.awsErrorDetails().errorMessage());
+            System.exit(1);
         }
     }
 ```
 Read tags that belong to an object\.  
 
 ```
-    public static void listTags(S3Client s3, String bucketName, String keyName ) {
+    public static void listTags(S3Client s3, String bucketName, String keyName) {
 
-         try {
-             GetObjectTaggingRequest getTaggingRequest = GetObjectTaggingRequest
-                    .builder()
-                    .key(keyName)
-                    .bucket(bucketName)
-                    .build();
+        try {
+            GetObjectTaggingRequest getTaggingRequest = GetObjectTaggingRequest
+                .builder()
+                .key(keyName)
+                .bucket(bucketName)
+                .build();
 
             GetObjectTaggingResponse tags = s3.getObjectTagging(getTaggingRequest);
             List<Tag> tagSet= tags.tagSet();
             for (Tag tag : tagSet) {
-                 System.out.println(tag.key());
-                 System.out.println(tag.value());
-             }
+                System.out.println(tag.key());
+                System.out.println(tag.value());
+            }
 
-         } catch (S3Exception e) {
+        } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
         }
@@ -200,9 +200,9 @@ Get a URL for an object\.
 
         try {
             GetUrlRequest request = GetUrlRequest.builder()
-                    .bucket(bucketName)
-                    .key(keyName)
-                    .build();
+                .bucket(bucketName)
+                .key(keyName)
+                .build();
 
             URL url = s3.utilities().getUrl(request);
             System.out.println("The URL for  "+keyName +" is "+ url);
@@ -218,48 +218,47 @@ Get an object by using the S3Presigner client object\.
 ```
        public static void getPresignedUrl(S3Presigner presigner, String bucketName, String keyName ) {
 
-        try {
-            GetObjectRequest getObjectRequest =
-                    GetObjectRequest.builder()
-                            .bucket(bucketName)
-                            .key(keyName)
-                            .build();
+           try {
+               GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                   .bucket(bucketName)
+                   .key(keyName)
+                   .build();
 
-            GetObjectPresignRequest getObjectPresignRequest = GetObjectPresignRequest.builder()
-                            .signatureDuration(Duration.ofMinutes(60))
-                            .getObjectRequest(getObjectRequest)
-                             .build();
+               GetObjectPresignRequest getObjectPresignRequest = GetObjectPresignRequest.builder()
+                   .signatureDuration(Duration.ofMinutes(60))
+                   .getObjectRequest(getObjectRequest)
+                   .build();
 
-            PresignedGetObjectRequest presignedGetObjectRequest =
-                    presigner.presignGetObject(getObjectPresignRequest);
-            String theUrl = presignedGetObjectRequest.url().toString();
-            System.out.println("Presigned URL: " + theUrl);
-            HttpURLConnection connection = (HttpURLConnection) presignedGetObjectRequest.url().openConnection();
-            presignedGetObjectRequest.httpRequest().headers().forEach((header, values) -> {
+               PresignedGetObjectRequest presignedGetObjectRequest = presigner.presignGetObject(getObjectPresignRequest);
+               String theUrl = presignedGetObjectRequest.url().toString();
+               System.out.println("Presigned URL: " + theUrl);
+               HttpURLConnection connection = (HttpURLConnection) presignedGetObjectRequest.url().openConnection();
+               presignedGetObjectRequest.httpRequest().headers().forEach((header, values) -> {
                 values.forEach(value -> {
                     connection.addRequestProperty(header, value);
-                });
-            });
+                 });
+               });
 
-            // Send any request payload that the service needs (not needed when isBrowserExecutable is true)
-            if (presignedGetObjectRequest.signedPayload().isPresent()) {
-                connection.setDoOutput(true);
-                try (InputStream signedPayload = presignedGetObjectRequest.signedPayload().get().asInputStream();
-                     OutputStream httpOutputStream = connection.getOutputStream()) {
+               // Send any request payload that the service needs (not needed when isBrowserExecutable is true).
+               if (presignedGetObjectRequest.signedPayload().isPresent()) {
+                   connection.setDoOutput(true);
+
+               try (InputStream signedPayload = presignedGetObjectRequest.signedPayload().get().asInputStream();
+                    OutputStream httpOutputStream = connection.getOutputStream()) {
                     IoUtils.copy(signedPayload, httpOutputStream);
-                }
-            }
+               }
+           }
 
-            // Download the result of executing the request
-            try (InputStream content = connection.getInputStream()) {
-                System.out.println("Service returned response: ");
-                IoUtils.copy(content, System.out);
-            }
+           // Download the result of executing the request.
+           try (InputStream content = connection.getInputStream()) {
+               System.out.println("Service returned response: ");
+               IoUtils.copy(content, System.out);
+           }
 
-        } catch (S3Exception | IOException e) {
-            e.getStackTrace();
-        }
+       } catch (S3Exception | IOException e) {
+           e.getStackTrace();
        }
+    }
 ```
 +  For API details, see [GetObject](https://docs.aws.amazon.com/goto/SdkForJavaV2/s3-2006-03-01/GetObject) in *AWS SDK for Java 2\.x API Reference*\. 
 
@@ -274,7 +273,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -516,6 +515,53 @@ pub async fn download_object(client: &Client, bucket_name: &str, key: &str) -> R
 }
 ```
 +  For API details, see [GetObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
+
+------
+#### [ Swift ]
+
+**SDK for Swift**  
+This is prerelease documentation for an SDK in preview release\. It is subject to change\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/swift/example_code/s3/basics#code-examples)\. 
+Download an object from a bucket to a local file\.  
+
+```
+    public func downloadFile(bucket: String, key: String, to: String) async throws {
+        let fileUrl = URL(fileURLWithPath: to).appendingPathComponent(key)
+
+        let input = GetObjectInput(
+            bucket: bucket,
+            key: key
+        )
+        let output = try await client.getObject(input: input)
+
+        // Get the data stream object. Return immediately if there isn't one.
+        guard let body = output.body else {
+            return
+        }
+        let data = body.toBytes().toData()
+        try data.write(to: fileUrl)
+    }
+```
+Read an object into a Swift Data object\.  
+
+```
+    public func readFile(bucket: String, key: String) async throws -> Data {
+        let input = GetObjectInput(
+            bucket: bucket,
+            key: key
+        )
+        let output = try await client.getObject(input: input)
+
+        // Get the stream and return its contents in a `Data` object. If
+        // there is no stream, return an empty `Data` object instead.
+        guard let body = output.body else {
+            return "".data(using: .utf8)!
+        }
+        let data = body.toBytes().toData()
+        return data
+    }
+```
++  For API details, see [GetObject](https://awslabs.github.io/aws-sdk-swift/reference/0.x) in *AWS SDK for Swift API reference*\. 
 
 ------
 

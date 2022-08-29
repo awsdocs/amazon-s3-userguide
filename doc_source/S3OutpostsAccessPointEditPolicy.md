@@ -16,7 +16,7 @@ The following topics show you how to add or edit the access point policy for you
 
 1. In the **Outposts access points** section, choose the access point whose policy you want to edit, and choose **Edit policy**\.
 
-1. Add or edit the policy in the **Outposts access point policy** section\. For more information, see [Setting up AWS Identity and Access Management with S3 on Outposts](S3OutpostsIAM.md)\.
+1. Add or edit the policy in the **Outposts access point policy** section\. For more information, see [Setting up IAM with S3 on Outposts](S3OutpostsIAM.md)\.
 
 ## Using the AWS CLI<a name="S3OutpostsPutAccessPointPolicyCLI"></a>
 

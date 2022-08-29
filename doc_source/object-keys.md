@@ -2,7 +2,10 @@
 
 The *object key* \(or key name\) uniquely identifies the object in an Amazon S3 bucket\. *Object metadata* is a set of name\-value pairs\. For more information about object metadata, see [Working with object metadata](UsingMetadata.md)\.
 
-When you create an object, you specify the key name, which uniquely identifies the object in the bucket\. For example, on the [Amazon S3 console](https://console.aws.amazon.com/s3/home), when you highlight a bucket, a list of objects in your bucket appears\. These names are the *object keys*\. The name for a key is a sequence of Unicode characters whose UTF\-8 encoding is at most 1,024 bytes long\. 
+When you create an object, you specify the key name, which uniquely identifies the object in the bucket\. For example, on the [Amazon S3 console](https://console.aws.amazon.com/s3/home), when you highlight a bucket, a list of objects in your bucket appears\. These names are the *object keys*\. The object key name is a sequence of Unicode characters with UTF\-8 encoding of up to 1,024 bytes long\.
+
+**Note**  
+Object key names with the value "soap" aren't supported for [virtual\-hosted\-style requests](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html#virtual-hosted-style-access)\. For object key name values where "soap" is used, a [path\-style URL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html#path-style-access) must be used instead\.
 
 The Amazon S3 data model is a flat structure: You create a bucket, and the bucket stores objects\. There is no hierarchy of subbuckets or subfolders\. However, you can infer logical hierarchy using key name prefixes and delimiters as the Amazon S3 console does\. The Amazon S3 console supports a concept of folders\. For more information about how to edit metadata from the Amazon S3 console, see [Editing object metadata in the Amazon S3 console](add-object-metadata.md)\.
 

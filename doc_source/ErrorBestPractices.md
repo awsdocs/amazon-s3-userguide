@@ -17,7 +17,7 @@ As with any distributed system, S3 has protection mechanisms which detect intent
 ## Isolate errors<a name="UsingErrorsIsolate"></a>
 
 **Note**  
- SOAP support over HTTP is deprecated, but it is still available over HTTPS\. New Amazon S3 features will not be supported for SOAP\. We recommend that you use either the REST API or the AWS SDKs\. 
+ SOAP support over HTTP is deprecated, but SOAP is still available over HTTPS\. New Amazon S3 features are not supported for SOAP\. Instead of using SOAP, we recommend that you use either the REST API or the AWS SDKs\. 
 
  Amazon S3 provides a set of error codes that are used by both the SOAP and REST API\. The SOAP API returns standard Amazon S3 error codes\. The REST API is designed to look like a standard HTTP server and interact with existing HTTP clients \(e\.g\., browsers, HTTP client libraries, proxies, caches, and so on\)\. To ensure the HTTP clients handle errors properly, we map each Amazon S3 error to an HTTP status code\. 
 

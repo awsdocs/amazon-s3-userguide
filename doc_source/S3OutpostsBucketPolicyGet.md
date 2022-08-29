@@ -16,7 +16,7 @@ The following topics show you how to view your Amazon S3 on Outposts bucket poli
 
 1. Choose the **Permissions** tab\.
 
-1. In the **Outposts bucket policy** section, you can review your existing bucket policy\. For more information, see [Setting up AWS Identity and Access Management with S3 on Outposts](S3OutpostsIAM.md)\.
+1. In the **Outposts bucket policy** section, you can review your existing bucket policy\. For more information, see [Setting up IAM with S3 on Outposts](S3OutpostsIAM.md)\.
 
 ## Using the AWS CLI<a name="S3OutpostsGetBucketPolicyCLI"></a>
 

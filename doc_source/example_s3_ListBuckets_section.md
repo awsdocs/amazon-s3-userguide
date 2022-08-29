@@ -1,6 +1,6 @@
 # List Amazon S3 buckets using an AWS SDK<a name="example_s3_ListBuckets_section"></a>
 
-The following code examples show how to list Amazon S3 buckets\.
+The following code examples show how to list S3 buckets\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -13,32 +13,35 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-using namespace Aws;
+bool AwsDoc::S3::ListBuckets() {
+    Aws::S3::S3Client client;
+
+    auto outcome = client.ListBuckets();
+    if (outcome.IsSuccess()) {
+        std::cout << "Found " << outcome.GetResult().GetBuckets().size() << " buckets\n";
+        for (auto&& b : outcome.GetResult().GetBuckets()) {
+            std::cout << b.GetName() << std::endl;
+        }
+        return true;
+    }
+    else {
+        std::cout << "Failed with error: " << outcome.GetError() << std::endl;
+        return false;
+    }
+}
 
 int main()
 {
     //The Aws::SDKOptions struct contains SDK configuration options.
     //An instance of Aws::SDKOptions is passed to the Aws::InitAPI and 
     //Aws::ShutdownAPI methods.  The same instance should be sent to both methods.
-    SDKOptions options;
-    options.loggingOptions.logLevel = Utils::Logging::LogLevel::Debug;
+    Aws::SDKOptions options;
+    options.loggingOptions.logLevel = Aws::Utils::Logging::LogLevel::Debug;
 
     //The AWS SDK for C++ must be initialized by calling Aws::InitAPI.
     InitAPI(options);
-    {
-        S3::S3Client client;
 
-        auto outcome = client.ListBuckets();
-        if (outcome.IsSuccess()) {
-            std::cout << "Found " << outcome.GetResult().GetBuckets().size() << " buckets\n";
-            for (auto&& b : outcome.GetResult().GetBuckets()) {
-                std::cout << b.GetName() << std::endl;
-            }
-        }
-        else {
-            std::cout << "Failed with error: " << outcome.GetError() << std::endl;
-        }
-    }
+    AwsDoc::S3::ListBuckets();
 
     //Before the application terminates, the SDK must be shut down. 
     ShutdownAPI(options);
@@ -78,7 +81,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };

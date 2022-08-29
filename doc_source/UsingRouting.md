@@ -96,7 +96,7 @@ The following are examples of temporary request redirection responses\.
 #### SOAP API temporary redirect response<a name="RedirectsTemporaryRedirection-respose-soap-ex2"></a>
 
 **Note**  
- SOAP support over HTTP is deprecated, but it is still available over HTTPS\. New Amazon S3 features will not be supported for SOAP\. We recommend that you use either the REST API or the AWS SDKs\. 
+ SOAP support over HTTP is deprecated, but SOAP is still available over HTTPS\. New Amazon S3 features are not supported for SOAP\. Instead of using SOAP, we recommend that you use either the REST API or the AWS SDKs\. 
 
 ```
  1. <soapenv:Body>

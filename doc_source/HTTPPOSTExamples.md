@@ -48,7 +48,7 @@ The following is a Base64\-encoded version of this policy\.
 
 Using your credentials create a signature, for example `0RavWzkygo6QX9caELEqKi9kDbU=` is the signature for the preceding policy document\.
 
-The following form supports a POST request to the awsexamplebucket1\.net bucket that uses this policy\.
+The following form supports a POST request to the DOC\-EXAMPLE\-BUCKET bucket that uses this policy\.
 
 ```
  1. <html>
@@ -59,7 +59,7 @@ The following form supports a POST request to the awsexamplebucket1\.net bucket 
  6.   </head>
  7.   <body>
  8.   ...
- 9.   <form action="https://awsexamplebucket1.s3.us-west-1.amazonaws.com/" method="post" enctype="multipart/form-data">
+ 9.   <form action="https://DOC-EXAMPLE-BUCKET.s3.us-west-1.amazonaws.com/" method="post" enctype="multipart/form-data">
 10.     Key to upload: <input type="input" name="key" value="user/eric/" /><br />
 11.     <input type="hidden" name="acl" value="public-read" />
 12.     <input type="hidden" name="success_action_redirect" value="https://awsexamplebucket1.s3.us-west-1.amazonaws.com/successful_upload.html" />
@@ -205,7 +205,7 @@ Following is a Base64\-encoded version of this policy\.
 
 Using your credentials, create a signature\. For example, `qA7FWXKq6VvU68lI9KdveT1cWgF=` is the signature for the preceding policy document\.
 
-The following form supports a POST request to the awsexamplebucket1\.net bucket that uses this policy\.
+The following form supports a POST request to the DOC\-EXAMPLE\-BUCKET bucket that uses this policy\.
 
 ```
  1. <html>
@@ -216,7 +216,7 @@ The following form supports a POST request to the awsexamplebucket1\.net bucket 
  6.   </head>
  7.   <body>
  8.   ...
- 9.   <form action="https://awsexamplebucket1.s3.us-west-1.amazonaws.com/" method="post" enctype="multipart/form-data">
+ 9.   <form action="https://DOC-EXAMPLE-BUCKET.s3.us-west-1.amazonaws.com/" method="post" enctype="multipart/form-data">
 10.     Key to upload: <input type="input" name="key" value="user/eric/" /><br />
 11.     <input type="hidden" name="acl" value="public-read" />
 12.     <input type="hidden" name="success_action_redirect" value="https://awsexamplebucket1.s3.us-west-1.amazonaws.com/new_post.html" />

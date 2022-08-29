@@ -55,5 +55,4 @@ aws s3api get-object --bucket my-access-point-aqfqprnstn7aefdfbarligizwgyfouse1a
 + Aliases cannot be used in IAM policies\.
 + Aliases cannot be used as a logging destination for S3 server access logs\.
 + Aliases cannot be used as a logging destination for AWS CloudTrail logs\.
-+ Amazon SageMaker GroundTruth and Amazon SageMaker Feature Store do not support access point alias\.
-+ Unload command for RedShift does not support using an access point alias\.
++ Amazon SageMaker GroundTruth does not support access point alias\.

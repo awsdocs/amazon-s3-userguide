@@ -21,7 +21,7 @@ For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints
 When making requests by using the REST API, you can use virtual hosted–style or path\-style URIs for the Amazon S3 endpoints\. For more information, see [Virtual hosting of buckets](VirtualHosting.md)\.
 
 **Example Virtual hosted–Style request**  
-Following is an example of a virtual hosted–style request to delete the `puppy.jpg` file from the bucket named `examplebucket` in the US West \(Oregon\) Region\. For more information about virtual hosted\-style requests, see [Virtual Hosted\-Style Requests](VirtualHosting.md#virtual-hosted-style-access)\.  
+Following is an example of a virtual hosted–style request to delete the `puppy.jpg` file from the bucket named `examplebucket` in the US West \(Oregon\) Region\. For more information about virtual hosted\-style requests, see [Virtual\-hosted–style requests](VirtualHosting.md#virtual-hosted-style-access)\.  
 
 ```
 1. DELETE /puppy.jpg HTTP/1.1
@@ -41,9 +41,9 @@ Following is an example of a path\-style version of the same request\.
 4. x-amz-date: Mon, 11 Apr 2016 12:00:00 GMT
 5. Authorization: authorization string
 ```
-Currently Amazon S3 supports virtual hosted\-style and path\-style access in all Regions, but this will be changing \(see the following **Important** note\.  
-For more information about path\-style requests, see [Path\-Style Requests](VirtualHosting.md#path-style-access)\.  
-Update \(September 23, 2020\) – We have decided to delay the deprecation of path\-style URLs to ensure that customers have the time that they need to transition to virtual hosted\-style URLs\. For more information, see [Amazon S3 Path Deprecation Plan – The Rest of the Story](https://aws.amazon.com/blogs/aws/amazon-s3-path-deprecation-plan-the-rest-of-the-story/) in the *AWS News Blog*\.
+Currently, Amazon S3 supports both virtual\-hosted–style and path\-style URL access in all AWS Regions\. However, path\-style URLs will be discontinued in the future\. For more information, see the following **Important** note\.  
+For more information about path\-style requests, see [Path\-style requests](VirtualHosting.md#path-style-access)\.  
+Update \(September 23, 2020\) – To make sure that customers have the time that they need to transition to virtual\-hosted–style URLs, we have decided to delay the deprecation of path\-style URLs\. For more information, see [Amazon S3 Path Deprecation Plan – The Rest of the Story](https://aws.amazon.com/blogs/aws/amazon-s3-path-deprecation-plan-the-rest-of-the-story/) in the *AWS News Blog*\.
 
 ## Making requests to dual\-stack endpoints by using the REST API<a name="rest-api-dual-stack"></a>
 

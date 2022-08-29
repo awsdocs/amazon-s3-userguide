@@ -10,6 +10,20 @@ You can see if your bucket is publicly accessible in the **Buckets** list\. In t
 
 You can also filter bucket searches by access type\. Choose an access type from the drop\-down list that is next to the **Search for buckets** bar\. 
 
+If you see an `Error` when you list your buckets and their public access settings, you might not have the required permissions\. Check to make sure you have the following permissions added to your user or role policy:
+
+```
+s3:GetAccountPublicAccessBlock
+s3:GetBucketPublicAccessBlock
+s3:GetBucketPolicyStatus
+s3:GetBucketLocation
+s3:GetBucketAcl
+s3:ListAccessPoints
+s3:ListAllMyBuckets
+```
+
+In some rare cases, requests can also fail because of an AWS Region outage\.
+
 **To edit the Amazon S3 block public access settings for a single S3 bucket**
 
 Follow these steps if you need to change the public access settings for a single S3 bucket\.

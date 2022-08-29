@@ -4,13 +4,13 @@
 *****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
-Amazon's trademarks and trade dress may not be used in 
-     connection with any product or service that is not Amazon's, 
-     in any manner that is likely to cause confusion among customers, 
-     or in any manner that disparages or discredits Amazon. All other 
-     trademarks not owned by Amazon are the property of their respective
-     owners, who may or may not be affiliated with, connected to, or 
-     sponsored by Amazon.
+Amazon's trademarks and trade dress may not be used in
+connection with any product or service that is not Amazon's,
+in any manner that is likely to cause confusion among customers,
+or in any manner that disparages or discredits Amazon. All other
+trademarks not owned by Amazon are the property of their respective
+owners, who may or may not be affiliated with, connected to, or
+sponsored by Amazon.
 
 -----
 ## Contents
@@ -445,7 +445,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Setting up your Outpost](OrderOutposts.md)
    + [How is Amazon S3 on Outposts different from Amazon S3?](S3OnOutpostsRestrictionsLimitations.md)
    + [Getting started with Amazon S3 on Outposts](S3OutpostsGS.md)
-      + [Setting up AWS Identity and Access Management with S3 on Outposts](S3OutpostsIAM.md)
+      + [Setting up IAM with S3 on Outposts](S3OutpostsIAM.md)
       + [Getting started by using the AWS Management Console](S3OutpostsGSConsole.md)
       + [Getting started by using the AWS CLI and SDK for Java](S3OutpostsGSCLIJava.md)
    + [Networking for S3 on Outposts](S3OutpostsNetworking.md)
@@ -533,12 +533,13 @@ Amazon's trademarks and trade dress may not be used in
       + [Create a presigned URL for Amazon S3 using an AWS SDK](example_s3_Scenario_PresignedUrl_section.md)
       + [Getting started with Amazon S3 buckets and objects using an AWS SDK](example_s3_Scenario_GettingStarted_section.md)
       + [Manage versioned Amazon S3 objects in batches with a Lambda function using an AWS SDK](example_s3_Scenario_BatchObjectVersioning_section.md)
-      + [Remove delete markers from versioned Amazon S3 objects using an AWS SDK](example_s3_Scenario_RemoveDeleteMarkers_section.md)
       + [Use a transfer manager to upload and download files to and from Amazon S3 using an AWS SDK](example_s3_Scenario_TransferManager_section.md)
       + [Work with Amazon S3 versioned objects using an AWS SDK](example_s3_Scenario_ObjectVersioningUsage_section.md)
    + [Cross-service examples for Amazon S3 using AWS SDKs](service_code_examples_cross-service_examples.md)
       + [Build an Amazon Transcribe app](example_cross_TranscriptionApp_section.md)
       + [Convert text to speech and back to text using an AWS SDK](example_cross_Telephone_section.md)
+      + [Create a long-lived Amazon EMR cluster and run several steps using an AWS SDK](example_cross_LongLivedEmrCluster_section.md)
+      + [Create a short-lived Amazon EMR cluster and run a step using an AWS SDK](example_cross_ShortLivedEmrCluster_section.md)
       + [Create an Amazon Textract explorer application](example_cross_TextractExplorer_section.md)
       + [Detect PPE in images with Amazon Rekognition using an AWS SDK](example_cross_RekognitionPhotoAnalyzerPPE_section.md)
       + [Detect entities in text extracted from an image using an AWS SDK](example_cross_TextractComprehendDetectEntities_section.md)

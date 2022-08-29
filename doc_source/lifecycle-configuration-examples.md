@@ -133,7 +133,9 @@ In the policy, Rule 1 is enabled and Rule 2 is disabled\. Amazon S3 ignores disa
   </Rule>
   <Rule>
     <ID>Rule2</ID>
-    <Prefix>documents/</Prefix>
+    <Filter>
+      <Prefix>documents/</Prefix>
+    </Filter>
     <Status>Disabled</Status>
     <Transition>
       <Days>0</Days>

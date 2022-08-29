@@ -1,6 +1,6 @@
 # Get the policy for an Amazon S3 bucket using an AWS SDK<a name="example_s3_GetBucketPolicy_section"></a>
 
-The following code examples show how to get the policy for an Amazon S3 bucket\.
+The following code examples show how to get the policy for an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -13,7 +13,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool GetBucketPolicy(const Aws::String& bucketName, 
+bool AwsDoc::S3::GetBucketPolicy(const Aws::String& bucketName,
     const Aws::String& region)
 {
     Aws::Client::ClientConfiguration config;
@@ -60,7 +60,7 @@ int main()
     Aws::SDKOptions options;
     Aws::InitAPI(options);
     {
-        if (!GetBucketPolicy(bucket_name, region))
+        if (!AwsDoc::S3::GetBucketPolicy(bucket_name, region))
         {
             return 1;
         }
@@ -84,19 +84,20 @@ int main()
 
         String policyText;
         System.out.format("Getting policy for bucket: \"%s\"\n\n", bucketName);
-
         GetBucketPolicyRequest policyReq = GetBucketPolicyRequest.builder()
-                .bucket(bucketName)
-                .build();
+            .bucket(bucketName)
+            .build();
 
         try {
             GetBucketPolicyResponse policyRes = s3.getBucketPolicy(policyReq);
             policyText = policyRes.policy();
             return policyText;
+
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
         }
+
         return "";
     }
 ```
@@ -113,7 +114,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };

@@ -1,6 +1,6 @@
 # Upload an object to an Amazon S3 bucket using an AWS SDK<a name="example_s3_PutObject_section"></a>
 
-The following code examples show how to upload an object to an Amazon S3 bucket\.
+The following code examples show how to upload an object to an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -61,7 +61,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool PutObject(const Aws::String& bucketName, 
+bool AwsDoc::S3::PutObject(const Aws::String& bucketName,
     const Aws::String& objectName,
     const Aws::String& region)
 {
@@ -128,7 +128,7 @@ int main()
         //TODO: Set to the AWS Region in which the bucket was created.
         const Aws::String region = "us-east-1";
 
-        if (!PutObject(bucket_name, object_name, region)) {
+        if (!AwsDoc::S3::PutObject(bucket_name, object_name, region)) {
             
             return 1;
         }
@@ -185,31 +185,25 @@ int main()
 Upload an object to a bucket\.  
 
 ```
-    public static String putS3Object(S3Client s3,
-                                     String bucketName,
-                                     String objectKey,
-                                     String objectPath) {
+    public static String putS3Object(S3Client s3, String bucketName, String objectKey, String objectPath) {
 
         try {
-
             Map<String, String> metadata = new HashMap<>();
             metadata.put("x-amz-meta-myVal", "test");
-
             PutObjectRequest putOb = PutObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(objectKey)
-                    .metadata(metadata)
-                    .build();
+                .bucket(bucketName)
+                .key(objectKey)
+                .metadata(metadata)
+                .build();
 
-            PutObjectResponse response = s3.putObject(putOb,
-                    RequestBody.fromBytes(getObjectFile(objectPath)));
-
-           return response.eTag();
+            PutObjectResponse response = s3.putObject(putOb, RequestBody.fromBytes(getObjectFile(objectPath)));
+            return response.eTag();
 
         } catch (S3Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);
         }
+
         return "";
     }
 
@@ -236,6 +230,7 @@ Upload an object to a bucket\.
                 }
             }
         }
+
         return bytesArray;
     }
 ```
@@ -245,7 +240,7 @@ Upload an object to a bucket and set tags\.
     public static void putS3ObjectTags(S3Client s3, String bucketName, String objectKey, String objectPath) {
 
         try {
-            // Define the tags.
+
             Tag tag1 = Tag.builder()
                 .key("Tag 1")
                 .value("This is tag 1")
@@ -281,16 +276,12 @@ Upload an object to a bucket and set tags\.
     public static void updateObjectTags(S3Client s3, String bucketName, String objectKey) {
 
         try {
-
-            // Retrieve the object's tags.
             GetObjectTaggingRequest taggingRequest = GetObjectTaggingRequest.builder()
-                    .bucket(bucketName)
-                    .key(objectKey)
-                    .build();
+                .bucket(bucketName)
+                .key(objectKey)
+                .build();
 
             GetObjectTaggingResponse getTaggingRes = s3.getObjectTagging(taggingRequest);
-
-            // Write out the tags.
             List<Tag> obTags = getTaggingRes.tagSet();
             for (Tag sinTag: obTags) {
                 System.out.println("The tag key is: "+sinTag.key());
@@ -299,32 +290,30 @@ Upload an object to a bucket and set tags\.
 
             // Replace the object's tags with two new tags.
             Tag tag3 = Tag.builder()
-                    .key("Tag 3")
-                    .value("This is tag 3")
-                    .build();
+                .key("Tag 3")
+                .value("This is tag 3")
+                .build();
 
             Tag tag4 = Tag.builder()
-                    .key("Tag 4")
-                    .value("This is tag 4")
-                    .build();
+                .key("Tag 4")
+                .value("This is tag 4")
+                .build();
 
             List<Tag> tags = new ArrayList<>();
             tags.add(tag3);
             tags.add(tag4);
 
             Tagging updatedTags = Tagging.builder()
-                    .tagSet(tags)
-                    .build();
+                .tagSet(tags)
+                .build();
 
             PutObjectTaggingRequest taggingRequest1 = PutObjectTaggingRequest.builder()
-                    .bucket(bucketName)
-                    .key(objectKey)
-                    .tagging(updatedTags)
-                    .build();
+                .bucket(bucketName)
+                .key(objectKey)
+                .tagging(updatedTags)
+                .build();
 
             s3.putObjectTagging(taggingRequest1);
-
-            // Write out the modified tags.
             GetObjectTaggingResponse getTaggingRes2 = s3.getObjectTagging(taggingRequest);
             List<Tag> modTags = getTaggingRes2.tagSet();
             for (Tag sinTag: modTags) {
@@ -341,37 +330,31 @@ Upload an object to a bucket and set tags\.
 Upload an object to a bucket and set metadata\.  
 
 ```
-    public static String putS3Object(S3Client s3,
-                                     String bucketName,
-                                     String objectKey,
-                                     String objectPath) {
+    public static String putS3Object(S3Client s3, String bucketName, String objectKey, String objectPath) {
 
         try {
-
-           // Define the metadata
             Map<String, String> metadata = new HashMap<>();
             metadata.put("author", "Mary Doe");
             metadata.put("version", "1.0.0.0");
 
             PutObjectRequest putOb = PutObjectRequest.builder()
-                    .bucket(bucketName)
-                    .key(objectKey)
-                    .metadata(metadata)
-                    .build();
+                .bucket(bucketName)
+                .key(objectKey)
+                .metadata(metadata)
+                .build();
 
-            PutObjectResponse response = s3.putObject(putOb,
-                    RequestBody.fromBytes(getObjectFile(objectPath)));
-
+            PutObjectResponse response = s3.putObject(putOb, RequestBody.fromBytes(getObjectFile(objectPath)));
             return response.eTag();
 
         } catch (S3Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);
         }
+
         return "";
     }
 
-    // Return a byte array
+    // Return a byte array.
     private static byte[] getObjectFile(String filePath) {
 
         FileInputStream fileInputStream = null;
@@ -394,6 +377,7 @@ Upload an object to a bucket and set metadata\.
                 }
             }
         }
+
         return bytesArray;
     }
 ```
@@ -419,9 +403,7 @@ Upload an object to a bucket and set an object retention value\.
                 .retention(lockRetention)
                 .build();
 
-            /**
-             * To set Retention on an object, the Amazon S3 bucket must support object locking, otherwise an exception is thrown.
-             */
+            // To set Retention on an object, the Amazon S3 bucket must support object locking, otherwise an exception is thrown.
             s3.putObjectRetention(retentionRequest);
             System.out.print("An object retention configuration was successfully placed on the object");
 
@@ -444,7 +426,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -538,7 +520,7 @@ suspend fun putS3Object(bucketName: String, objectKey: String, objectPath: Strin
         bucket = bucketName
         key = objectKey
         metadata = metadataVal
-        this.body = Paths.get(objectPath).asByteStream()
+        body = File(objectPath).asByteStream()
     }
 
     S3Client { region = "us-east-1" }.use { s3 ->
@@ -772,6 +754,44 @@ pub async fn upload_object(
 }
 ```
 +  For API details, see [PutObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
+
+------
+#### [ Swift ]
+
+**SDK for Swift**  
+This is prerelease documentation for an SDK in preview release\. It is subject to change\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/swift/example_code/s3/basics#code-examples)\. 
+Upload a file from local storage to a bucket\.  
+
+```
+    public func uploadFile(bucket: String, key: String, file: String) async throws {
+        let fileUrl = URL(fileURLWithPath: file)
+        let fileData = try Data(contentsOf: fileUrl)
+        let dataStream = ByteStream.from(data: fileData)
+
+        let input = PutObjectInput(
+            body: dataStream,
+            bucket: bucket,
+            key: key
+        )
+        _ = try await client.putObject(input: input)
+    }
+```
+Upload the contents of a Swift Data object to a bucket\.  
+
+```
+    public func createFile(bucket: String, key: String, withData data: Data) async throws {
+        let dataStream = ByteStream.from(data: data)
+
+        let input = PutObjectInput(
+            body: dataStream,
+            bucket: bucket,
+            key: key
+        )
+        _ = try await client.putObject(input: input)
+    }
+```
++  For API details, see [PutObject](https://awslabs.github.io/aws-sdk-swift/reference/0.x) in *AWS SDK for Swift API reference*\. 
 
 ------
 

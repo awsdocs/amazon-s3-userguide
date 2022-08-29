@@ -1,6 +1,6 @@
 # Delete the website configuration from an Amazon S3 bucket using an AWS SDK<a name="example_s3_DeleteBucketWebsite_section"></a>
 
-The following code examples show how to delete the website configuration from an Amazon S3 bucket\.
+The following code examples show how to delete the website configuration from an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -13,7 +13,34 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-using namespace Aws;
+bool AwsDoc::S3::DeleteBucketWebsite(const Aws::String &bucketName, const Aws::String &region) {
+    // Create the bucket.
+    Aws::Client::ClientConfiguration clientConfig;
+    if (!region.empty()) {
+        clientConfig.region = region;
+    }
+
+    Aws::S3::S3Client client(clientConfig);
+    Aws::S3::Model::DeleteBucketWebsiteRequest request;
+    request.SetBucket(bucketName);
+
+    Aws::S3::Model::DeleteBucketWebsiteOutcome outcome =
+            client.DeleteBucketWebsite(request);
+
+    if (!outcome.IsSuccess())
+    {
+        auto err = outcome.GetError();
+        std::cout << "Error: DeleteBucketWebsite: " <<
+                  err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
+        return false;
+    }
+    else
+    {
+        std::cout << "Website configuration was removed." << std::endl;
+        return true;
+    }
+}
+
 int main()
 {
     //TODO: Change bucket_name to the name of a bucket in your account.
@@ -23,30 +50,9 @@ int main()
 
     Aws::SDKOptions options;
     Aws::InitAPI(options);
-    {
-        // Create the bucket.
-        Aws::Client::ClientConfiguration clientConfig;
-        if (!region.empty())
-            clientConfig.region = region;
 
-        S3::S3Client client(clientConfig);
-        Aws::S3::Model::DeleteBucketWebsiteRequest request;
-        request.SetBucket(bucketName);
+    AwsDoc::S3::DeleteBucketWebsite(bucketName, region);
 
-        Aws::S3::Model::DeleteBucketWebsiteOutcome outcome =
-            client.DeleteBucketWebsite(request);
-
-        if (!outcome.IsSuccess())
-        {
-            auto err = outcome.GetError();
-            std::cout << "Error: DeleteBucketWebsite: " <<
-                err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-        }
-        else
-        {
-            std::cout << "Website configuration was removed." << std::endl;
-        }
-    }
     ShutdownAPI(options);
 }
 ```
@@ -62,9 +68,10 @@ int main()
 ```
     public static void deleteBucketWebsiteConfig(S3Client s3,String bucketName ) {
 
-       DeleteBucketWebsiteRequest delReq = DeleteBucketWebsiteRequest.builder()
-                .bucket(bucketName)
-                .build();
+        DeleteBucketWebsiteRequest delReq = DeleteBucketWebsiteRequest.builder()
+            .bucket(bucketName)
+            .build();
+        
         try {
             s3.deleteBucketWebsite(delReq);
 
@@ -73,7 +80,7 @@ int main()
             System.out.println("Failed to delete website configuration!");
             System.exit(1);
         }
-   }
+    }
 ```
 +  For API details, see [DeleteBucketWebsite](https://docs.aws.amazon.com/goto/SdkForJavaV2/s3-2006-03-01/DeleteBucketWebsite) in *AWS SDK for Java 2\.x API Reference*\. 
 
@@ -88,7 +95,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };

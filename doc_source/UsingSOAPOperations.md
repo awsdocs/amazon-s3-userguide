@@ -1,7 +1,7 @@
 # Common SOAP API elements<a name="UsingSOAPOperations"></a>
 
 **Note**  
- SOAP support over HTTP is deprecated, but it is still available over HTTPS\. New Amazon S3 features will not be supported for SOAP\. We recommend that you use either the REST API or the AWS SDKs\. 
+ SOAP support over HTTP is deprecated, but SOAP is still available over HTTPS\. New Amazon S3 features are not supported for SOAP\. Instead of using SOAP, we recommend that you use either the REST API or the AWS SDKs\. 
 
 You can interact with Amazon S3 using SOAP 1\.1 over HTTP\. The Amazon S3 WSDL, which describes the Amazon S3 API in a machine\-readable way, is available at: [https://doc\.s3\.amazonaws\.com/2006\-03\-01/AmazonS3\.wsdl](https://doc.s3.amazonaws.com/2006-03-01/AmazonS3.wsdl)\. The Amazon S3 schema is available at [https://doc\.s3\.amazonaws\.com/2006\-03\-01/AmazonS3\.xsd](https://doc.s3.amazonaws.com/2006-03-01/AmazonS3.xsd)\.
 

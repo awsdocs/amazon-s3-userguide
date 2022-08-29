@@ -1,6 +1,6 @@
 # Delete an empty Amazon S3 bucket using an AWS SDK<a name="example_s3_DeleteBucket_section"></a>
 
-The following code examples show how to delete an empty Amazon S3 bucket\.
+The following code examples show how to delete an empty S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -42,6 +42,37 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
 ```
 using namespace Aws;
+
+bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName, const Aws::String &region)
+{
+    Aws::Client::ClientConfiguration clientConfig;
+    if (!region.empty()) {
+        clientConfig.region = region;
+    }
+
+    Aws::S3::S3Client client(clientConfig);
+
+    Aws::S3::Model::DeleteBucketRequest request;
+    request.SetBucket(bucketName);
+
+    Aws::S3::Model::DeleteBucketOutcome outcome =
+            client.DeleteBucket(request);
+
+    if (!outcome.IsSuccess())
+    {
+        auto err = outcome.GetError();
+        std::cout << "Error: DeleteBucket: " <<
+                  err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
+        return false;
+    }
+    else
+    {
+        std::cout << "The bucket was deleted" << std::endl;
+        return true;
+
+    }
+}
+
 int main()
 {
     //TODO: Change bucket_name to the name of a bucket in your account.
@@ -52,34 +83,11 @@ int main()
 
     Aws::SDKOptions options;
     Aws::InitAPI(options);
-    {
-       
-        Aws::Client::ClientConfiguration clientConfig;
-        if (!region.empty())
-            clientConfig.region = region;
 
-        S3::S3Client client(clientConfig);
+    AwsDoc::S3::DeleteBucket(bucketName, region);
 
-        Aws::S3::Model::DeleteBucketRequest request;
-        request.SetBucket(bucketName);
-
-        Aws::S3::Model::DeleteBucketOutcome outcome =
-            client.DeleteBucket(request);
-
-        if (!outcome.IsSuccess())
-        {
-            auto err = outcome.GetError();
-            std::cout << "Error: DeleteBucket: " <<
-                err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-        }
-        else
-        {
-            std::cout << "The bucket was deleted" << std::endl;
-        }
-    }
     ShutdownAPI(options);
-    
-}
+ }
 ```
 +  For API details, see [DeleteBucket](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/DeleteBucket) in *AWS SDK for C\+\+ API Reference*\. 
 
@@ -111,7 +119,10 @@ int main()
   
 
 ```
-        DeleteBucketRequest deleteBucketRequest = DeleteBucketRequest.builder().bucket(bucket).build();
+        DeleteBucketRequest deleteBucketRequest = DeleteBucketRequest.builder()
+            .bucket(bucket)
+            .build();
+
         s3.deleteBucket(deleteBucketRequest);
         s3.close();
 ```
@@ -128,7 +139,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -250,6 +261,24 @@ pub async fn delete_bucket(client: &Client, bucket_name: &str) -> Result<(), Err
 }
 ```
 +  For API details, see [DeleteBucket](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
+
+------
+#### [ Swift ]
+
+**SDK for Swift**  
+This is prerelease documentation for an SDK in preview release\. It is subject to change\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/swift/example_code/s3/basics#code-examples)\. 
+  
+
+```
+    public func deleteBucket(name: String) async throws {
+        let input = DeleteBucketInput(
+            bucket: name
+        )
+        _ = try await client.deleteBucket(input: input)
+    }
+```
++  For API details, see [DeleteBucket](https://awslabs.github.io/aws-sdk-swift/reference/0.x) in *AWS SDK for Swift API reference*\. 
 
 ------
 

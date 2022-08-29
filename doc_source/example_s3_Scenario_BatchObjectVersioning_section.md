@@ -1,6 +1,6 @@
 # Manage versioned Amazon S3 objects in batches with a Lambda function using an AWS SDK<a name="example_s3_Scenario_BatchObjectVersioning_section"></a>
 
-The following code example shows how to manage versioned Amazon S3 objects in batches with a Lambda function\.
+The following code example shows how to manage versioned S3 objects in batches with a Lambda function\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 

@@ -1,6 +1,6 @@
 # Delete a policy from an Amazon S3 bucket using an AWS SDK<a name="example_s3_DeleteBucketPolicy_section"></a>
 
-The following code examples show how to delete a policy from an Amazon S3 bucket\.
+The following code examples show how to delete a policy from an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -13,7 +13,33 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-using namespace Aws;
+bool AwsDoc::S3::DeleteBucketPolicy(const Aws::String &bucketName, const Aws::String &region) {
+    Aws::Client::ClientConfiguration clientConfig;
+    if (!region.empty()) {
+        clientConfig.region = region;
+    }
+
+    Aws::S3::S3Client client(clientConfig);
+
+    Aws::S3::Model::DeleteBucketPolicyRequest request;
+    request.SetBucket(bucketName);
+
+    Aws::S3::Model::DeleteBucketPolicyOutcome outcome =  client.DeleteBucketPolicy(request);
+
+    if (!outcome.IsSuccess())
+    {
+        auto err = outcome.GetError();
+        std::cout << "Error: DeleteBucketPolicy: " <<
+                  err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
+
+        return false;
+    }
+    else
+    {
+        std::cout << "Policy was deleted from the bucket." << std::endl;
+        return true;
+    }
+}
 
 int main()
 {
@@ -25,31 +51,9 @@ int main()
 
     Aws::SDKOptions options;
     Aws::InitAPI(options);
-    {
-        Aws::Client::ClientConfiguration clientConfig;
-        if (!region.empty())
-            clientConfig.region = region;
 
-        S3::S3Client client(clientConfig);
-        
-        Aws::S3::Model::DeleteBucketPolicyRequest request;
-        request.SetBucket(bucketName);
+    AwsDoc::S3::DeleteBucketPolicy(bucketName, region);
 
-        Aws::S3::Model::DeleteBucketPolicyOutcome outcome =  client.DeleteBucketPolicy(request);
-
-        if (!outcome.IsSuccess())
-        {
-            auto err = outcome.GetError();
-            std::cout << "Error: DeleteBucketPolicy: " <<
-                err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-
-            return false;
-        }
-        else
-        {
-            std::cout << "Policy was deleted from the bucket." << std::endl;
-        }
-    }
     ShutdownAPI(options);
 }
 ```
@@ -66,9 +70,10 @@ int main()
     // Delete the bucket policy.
     public static void deleteS3BucketPolicy(S3Client s3, String bucketName) {
 
-       DeleteBucketPolicyRequest delReq = DeleteBucketPolicyRequest.builder()
-                .bucket(bucketName)
-                .build();
+        DeleteBucketPolicyRequest delReq = DeleteBucketPolicyRequest.builder()
+           .bucket(bucketName)
+           .build();
+        
         try {
             s3.deleteBucketPolicy(delReq);
             System.out.println("Done!");
@@ -92,7 +97,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };

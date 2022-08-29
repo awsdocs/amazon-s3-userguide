@@ -13,6 +13,7 @@ For more information about SSE\-C, see the following topics\.
 
 **Topics**
 + [SSE\-C overview](#sse-c-highlights)
++ [Requiring and restricting SSE\-C](#ssec-require-condition-key)
 + [Presigned URLs and SSE\-C](#ssec-and-presignedurl)
 + [Specifying server\-side encryption with customer\-provided keys \(SSE\-C\)](#specifying-s3-c-encryption)
 
@@ -28,6 +29,58 @@ Amazon S3 rejects any requests made over HTTP when using SSE\-C\. For security c
   + Because you manage encryption keys on the client side, you manage any additional safeguards, such as key rotation, on the client side\.
 **Warning**  
 If you lose the encryption key, any GET request for an object without its encryption key fails, and you lose the object\.
+
+## Requiring and restricting SSE\-C<a name="ssec-require-condition-key"></a>
+
+To require server\-side encryption with customer provided keys \(SSE\-C\) for all objects in a particular Amazon S3 bucket, you can use a bucket policy\.
+
+For example, the following bucket policy denies upload object \(`s3:PutObject`\) permissions for all requests that don't include the `x-amz-server-side-encryption-customer-algorithm` header requesting SSE\-C\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Id": "PutObjectPolicy",
+    "Statement": [
+        {
+            "Sid": "RequireSSECObjectUploads",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
+            "Condition": {
+                "Null": {
+                    "s3:x-amz-server-side-encryption-customer-algorithm": "true"
+                }
+            }
+        }
+    ]
+}
+```
+
+To restrict server\-side encryption of all objects in a particular Amazon S3 bucket, you can also use a policy\.
+
+For example, the following bucket policy denies the upload object \(`s3:PutObject`\) permission to everyone if the request includes the `x-amz-server-side-encryption-customer-algorithm` header requesting server\-side encryption with customer provided keys \(SSE\-C\)\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Id": "PutObjectPolicy",
+    "Statement": [
+        {
+            "Sid": "RestrictSSECObjectUploads",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
+            "Condition": {
+                "Null": {
+                    "s3:x-amz-server-side-encryption-customer-algorithm": "false"
+                }
+            }
+        }
+    ]
+}
+```
 
 ## Presigned URLs and SSE\-C<a name="ssec-and-presignedurl"></a>
 

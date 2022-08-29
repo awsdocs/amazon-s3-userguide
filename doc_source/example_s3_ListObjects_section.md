@@ -1,6 +1,6 @@
 # List objects in an Amazon S3 bucket using an AWS SDK<a name="example_s3_ListObjects_section"></a>
 
-The following code examples show how to list objects in an Amazon S3 bucket\.
+The following code examples show how to list objects in an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -173,27 +173,27 @@ int main()
 ```
     public static void listBucketObjects(S3Client s3, String bucketName ) {
 
-       try {
+        try {
             ListObjectsRequest listObjects = ListObjectsRequest
-                    .builder()
-                    .bucket(bucketName)
-                    .build();
+                .builder()
+                .bucket(bucketName)
+                .build();
 
             ListObjectsResponse res = s3.listObjects(listObjects);
             List<S3Object> objects = res.contents();
-
-           for (S3Object myValue : objects) {
-               System.out.print("\n The name of the key is " + myValue.key());
-               System.out.print("\n The object is " + calKb(myValue.size()) + " KBs");
-               System.out.print("\n The owner is " + myValue.owner());
-           }
+            for (S3Object myValue : objects) {
+                System.out.print("\n The name of the key is " + myValue.key());
+                System.out.print("\n The object is " + calKb(myValue.size()) + " KBs");
+                System.out.print("\n The owner is " + myValue.owner());
+            }
 
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
         }
     }
-    //convert bytes to kbs
+
+    //convert bytes to kbs.
     private static long calKb(Long val) {
         return val/1024;
     }
@@ -211,7 +211,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -443,6 +443,37 @@ pub async fn list_objects(client: &Client, bucket_name: &str) -> Result<(), Erro
 }
 ```
 +  For API details, see [ListObjects](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
+
+------
+#### [ Swift ]
+
+**SDK for Swift**  
+This is prerelease documentation for an SDK in preview release\. It is subject to change\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/swift/example_code/s3/basics#code-examples)\. 
+  
+
+```
+    public func listBucketFiles(bucket: String) async throws -> [String] {
+        let input = ListObjectsV2Input(
+            bucket: bucket
+        )
+        let output = try await client.listObjectsV2(input: input)
+        var names: [String] = []
+
+        guard let objList = output.contents else {
+            return []
+        }
+
+        for obj in objList {
+            if let objName = obj.key {
+                names.append(objName)
+            }
+        }
+
+        return names
+    }
+```
++  For API details, see [ListObjects](https://awslabs.github.io/aws-sdk-swift/reference/0.x) in *AWS SDK for Swift API reference*\. 
 
 ------
 

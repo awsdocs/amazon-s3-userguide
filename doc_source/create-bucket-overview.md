@@ -53,11 +53,11 @@ To apply the **Bucket owner enforced** setting or the **Bucket owner preferred**
 
 1. \(Optional\) If you want to enable S3 Object Lock, do the following:
 
-   1. Choose **Advanced settings**, and read the message that appears\.
+   1. Choose **Advanced settings**\.
 **Important**  
 You can only enable S3 Object Lock for a bucket when you create it\. If you enable Object Lock for the bucket, you cannot disable it later\. Enabling Object Lock also enables versioning for the bucket\. After you enable Object Lock for the bucket, you must configure the Object Lock default retention and legal hold settings to protect new objects from being deleted or overwritten\. For more information, see [Configuring S3 Object Lock using the console](object-lock-console.md)\.
 
-   1. If you want to enable Object Lock, enter **enable** in the text box and choose **Confirm**\.
+   1. If you want to enable Object Lock, choose **Enable**, read the warning that appears, and acknowledge it\.
 
    For more information about the S3 Object Lock feature, see [Using S3 Object Lock](object-lock.md)\.
 **Note**  
@@ -71,7 +71,7 @@ When you use the AWS SDKs to create a bucket, you must create a client and then 
 
 To create a client to access a dual\-stack endpoint, you must specify an AWS Region\. For more information, see [Dual\-stack endpoints](dual-stack-endpoints.md#dual-stack-endpoints-description)\. For a list of available AWS Regions, see [Regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\. 
 
-When you create a client, the Region maps to the Region\-specific endpoint\. The client uses this endpoint to communicate with Amazon S3: `s3.<region>.amazonaws.com`\. If your Region launched after March 20, 2019, your client and bucket must be in the same Region\. However, you can use a client in the US East \(N\. Virginia\) Region to create a bucket in any Region that launched before March 20, 2019\. For more information, see [Legacy Endpoints](VirtualHosting.md#s3-legacy-endpoints)\.
+When you create a client, the Region maps to the Region\-specific endpoint\. The client uses this endpoint to communicate with Amazon S3: `s3.<region>.amazonaws.com`\. If your Region launched after March 20, 2019, your client and bucket must be in the same Region\. However, you can use a client in the US East \(N\. Virginia\) Region to create a bucket in any Region that launched before March 20, 2019\. For more information, see [Legacy endpoints](VirtualHosting.md#s3-legacy-endpoints)\.
 
 These AWS SDK code examples perform the following tasks:
 + **Create a client by explicitly specifying an AWS Region** — In the example, the client uses the `s3.us-west-2.amazonaws.com` endpoint to communicate with Amazon S3\. You can specify any AWS Region\. For a list of AWS Regions, see [Regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\. 

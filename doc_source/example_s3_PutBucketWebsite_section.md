@@ -1,6 +1,6 @@
 # Set the website configuration for an Amazon S3 bucket using an AWS SDK<a name="example_s3_PutBucketWebsite_section"></a>
 
-The following code examples show how to set the website configuration for an Amazon S3 bucket\.
+The following code examples show how to set the website configuration for an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -97,9 +97,7 @@ int main()
   
 
 ```
-    public static void setWebsiteConfig( S3Client s3,
-                                         String bucketName,
-                                         String indexDoc) {
+    public static void setWebsiteConfig( S3Client s3, String bucketName, String indexDoc) {
 
         try {
             WebsiteConfiguration websiteConfig = WebsiteConfiguration.builder()
@@ -133,7 +131,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -169,6 +167,7 @@ export const run = async () => {
   try {
     const data = await s3Client.send(new PutBucketWebsiteCommand(staticHostParams));
     console.log("Success", data);
+    return data;
   } catch (err) {
     console.log("Error", err);
   }

@@ -13,38 +13,38 @@ Virtual\-hosted\-style and path\-style requests use the S3 dot Region endpoint s
 
 In a virtual\-hosted–style request, the bucket name is part of the domain name in the URL\.
 
-Amazon S3 virtual\-hosted\-style URLs use the following format\.
+Amazon S3 virtual\-hosted–style URLs use the following format:
 
 ```
-https://bucket-name.s3.Region.amazonaws.com/key-name
+https://bucket-name.s3.region-code.amazonaws.com/key-name
 ```
 
-In this example, `my-bucket` is the bucket name, US West \(Oregon\) is the Region, and `puppy.png` is the key name:
+In this example, `DOC-EXAMPLE-BUCKET1` is the bucket name, US West \(Oregon\) is the Region, and `puppy.png` is the key name:
 
 ```
-https://my-bucket.s3.us-west-2.amazonaws.com/puppy.png
+https://DOC-EXAMPLE-BUCKET1.s3.us-west-2.amazonaws.com/puppy.png
 ```
 
-For more information about virtual hosted style access, see [Virtual Hosted\-Style Requests](VirtualHosting.md#virtual-hosted-style-access)\.
+For more information about virtual hosted style access, see [Virtual\-hosted–style requests](VirtualHosting.md#virtual-hosted-style-access)\.
 
 ## Path\-style access<a name="path-style-url-ex"></a>
 
-In Amazon S3, path\-style URLs use the following format\.
+In Amazon S3, path\-style URLs use the following format:
 
 ```
-https://s3.Region.amazonaws.com/bucket-name/key-name
+https://s3.region-code.amazonaws.com/bucket-name/key-name
 ```
 
-For example, if you create a bucket named `mybucket` in the US West \(Oregon\) Region, and you want to access the `puppy.jpg` object in that bucket, you can use the following path\-style URL:
+For example, if you create a bucket named `DOC-EXAMPLE-BUCKET1` in the US West \(Oregon\) Region, and you want to access the `puppy.jpg` object in that bucket, you can use the following path\-style URL:
 
 ```
-https://s3.us-west-2.amazonaws.com/mybucket/puppy.jpg
+https://s3.us-west-2.amazonaws.com/DOC-EXAMPLE-BUCKET1/puppy.jpg
 ```
 
- For more information, see [Path\-Style Requests](VirtualHosting.md#path-style-access)\.
+ For more information, see [Path\-style requests](VirtualHosting.md#path-style-access)\.
 
 **Important**  
-Update \(September 23, 2020\) – We have decided to delay the deprecation of path\-style URLs to ensure that customers have the time that they need to transition to virtual hosted\-style URLs\. For more information, see [Amazon S3 Path Deprecation Plan – The Rest of the Story](https://aws.amazon.com/blogs/aws/amazon-s3-path-deprecation-plan-the-rest-of-the-story/) in the *AWS News Blog*\.
+Update \(September 23, 2020\) – To make sure that customers have the time that they need to transition to virtual\-hosted–style URLs, we have decided to delay the deprecation of path\-style URLs\. For more information, see [Amazon S3 Path Deprecation Plan – The Rest of the Story](https://aws.amazon.com/blogs/aws/amazon-s3-path-deprecation-plan-the-rest-of-the-story/) in the *AWS News Blog*\.
 
 ## Accessing an S3 bucket over IPv6<a name="accessing-bucket-s3-ipv6"></a>
 

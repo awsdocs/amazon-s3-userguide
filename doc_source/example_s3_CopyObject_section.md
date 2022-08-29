@@ -1,6 +1,6 @@
 # Copy an object from one Amazon S3 bucket to another using an AWS SDK<a name="example_s3_CopyObject_section"></a>
 
-The following code examples show how to copy an Amazon S3 object from one bucket to another\.
+The following code examples show how to copy an S3 object from one bucket to another\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -60,44 +60,51 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-using namespace Aws;
+ bool AwsDoc::S3::CopyObject(const Aws::String &objectKey, const Aws::String &fromBucket, const Aws::String &toBucket,
+                             const Aws::String &region) {
+     Aws::Client::ClientConfiguration clientConfig;
+     if (!region.empty()) {
+         clientConfig.region = region;
+     }
 
-int main()
-{
+     Aws::S3::S3Client client(clientConfig);
+     Aws::S3::Model::CopyObjectRequest request;
+
+     request.WithCopySource(fromBucket + "/" + objectKey)
+             .WithKey(objectKey)
+             .WithBucket(toBucket);
+
+     Aws::S3::Model::CopyObjectOutcome outcome = client.CopyObject(request);
+
+     if (!outcome.IsSuccess())
+     {
+         const auto err = outcome.GetError();
+         std::cout << "Error: CopyObject: " <<
+                   err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
+         return false;
+     }
+
+     return true;
+ }
+
+int main() {
     Aws::SDKOptions options;
     Aws::InitAPI(options);
-    {
-        //TODO: Name of object already in bucket.
-        Aws::String objectKey = "<enter object key>";
-        
-        //TODO: Change from_bucket to the name of your bucket that already contains "my-file.txt". 
-        Aws::String fromBucket = "<Enter bucket name>";
-        
-        //TODO: Change to the name of another bucket in your account.
-        Aws::String toBucket = "<Enter bucket name>";
-        
-        //TODO: Set to the AWS Region in which the bucket was created.
-        Aws::String region = "us-east-1";
-        Aws::Client::ClientConfiguration clientConfig;
-        if (!region.empty())
-            clientConfig.region = region;
-        
-        S3::S3Client client(clientConfig);
-        S3::Model::CopyObjectRequest request;
 
-        request.WithCopySource(fromBucket + "/" + objectKey)
-            .WithKey(objectKey)
-            .WithBucket(toBucket);
+    //TODO: Name of object already in bucket.
+    Aws::String objectKey = "<enter object key>";
 
-        S3::Model::CopyObjectOutcome outcome = client.CopyObject(request);
+    //TODO: Change from_bucket to the name of your bucket that already contains "my-file.txt".
+    Aws::String fromBucket = "<Enter bucket name>";
 
-        if (!outcome.IsSuccess())
-        {
-            auto err = outcome.GetError();
-            std::cout << "Error: CopyObject: " <<
-               err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-        }
-    }
+    //TODO: Change to the name of another bucket in your account.
+    Aws::String toBucket = "<Enter bucket name>";
+
+    //TODO: Set to the AWS Region in which the bucket was created.
+    Aws::String region = "us-east-1";
+
+    AwsDoc::S3::CopyObject(objectKey, fromBucket, toBucket, region);
+
     ShutdownAPI(options);
     return 0;
 }
@@ -144,18 +151,21 @@ int main()
         String encodedUrl = "";
         try {
             encodedUrl = URLEncoder.encode(fromBucket + "/" + objectKey, StandardCharsets.UTF_8.toString());
+        
         } catch (UnsupportedEncodingException e) {
             System.out.println("URL could not be encoded: " + e.getMessage());
         }
+        
         CopyObjectRequest copyReq = CopyObjectRequest.builder()
-                .copySource(encodedUrl)
-                .destinationBucket(toBucket)
-                .destinationKey(objectKey)
-                .build();
+            .copySource(encodedUrl)
+            .destinationBucket(toBucket)
+            .destinationKey(objectKey)
+            .build();
 
         try {
             CopyObjectResponse copyRes = s3.copyObject(copyReq);
             return copyRes.copyObjectResult().toString();
+
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
@@ -176,7 +186,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -296,12 +306,12 @@ class ObjectWrapper:
             dest_object.wait_until_exists()
             logger.info(
                 "Copied object from %s:%s to %s:%s.",
-                self.object.key, self.object.bucket_name,
+                self.object.bucket_name, self.object.key,
                 dest_object.bucket_name, dest_object.key)
         except ClientError:
             logger.exception(
                 "Couldn't copy object from %s/%s to %s/%s.",
-                self.object.key, self.object.bucket_name,
+                self.object.bucket_name, self.object.key,
                 dest_object.bucket_name, dest_object.key)
             raise
 ```
@@ -442,6 +452,28 @@ pub async fn copy_object(
 }
 ```
 +  For API details, see [CopyObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
+
+------
+#### [ Swift ]
+
+**SDK for Swift**  
+This is prerelease documentation for an SDK in preview release\. It is subject to change\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/swift/example_code/s3/basics#code-examples)\. 
+  
+
+```
+    public func copyFile(from sourceBucket: String, name: String, to destBucket: String) async throws {
+        let srcUrl = ("\(sourceBucket)/\(name)").addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
+
+        let input = CopyObjectInput(
+            bucket: destBucket,
+            copySource: srcUrl,
+            key: name
+        )
+        _ = try await client.copyObject(input: input)
+    }
+```
++  For API details, see [CopyObject](https://awslabs.github.io/aws-sdk-swift/reference/0.x) in *AWS SDK for Swift API reference*\. 
 
 ------
 

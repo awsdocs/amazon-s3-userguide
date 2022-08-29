@@ -25,7 +25,7 @@ The AWS account that creates the Outposts bucket owns it and is the only one tha
 
 1. If you want to add a policy for your access point, enter it in the **Outposts access point policy** section\.
 
-   For more information, see [Setting up AWS Identity and Access Management with S3 on Outposts](S3OutpostsIAM.md)\.
+   For more information, see [Setting up IAM with S3 on Outposts](S3OutpostsIAM.md)\.
 
 ## Using the AWS CLI<a name="S3OutpostsCreateAccessPointCLI"></a>
 

@@ -60,11 +60,11 @@ To apply the **Bucket owner enforced** setting or the **Bucket owner preferred**
 
 1. \(Optional\) If you want to enable S3 Object Lock, do the following:
 
-   1. Choose **Advanced settings**, and read the message that appears\.
+   1. Choose **Advanced settings**\.
 **Important**  
 You can only enable S3 Object Lock for a bucket when you create it\. If you enable Object Lock for the bucket, you cannot disable it later\. Enabling Object Lock also enables versioning for the bucket\. After you enable Object Lock for the bucket, you must configure the Object Lock default retention and legal hold settings to protect new objects from being deleted or overwritten\. For more information, see [Configuring S3 Object Lock using the console](object-lock-console.md)\.
 
-   1. If you want to enable Object Lock, enter **enable** in the text box and choose **Confirm**\.
+   1. If you want to enable Object Lock, choose **Enable**, read the warning that appears, and acknowledge it\.
 
    For more information about the S3 Object Lock feature, see [Using S3 Object Lock](object-lock.md)\.
 **Note**  

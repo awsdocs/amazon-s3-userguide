@@ -18,7 +18,7 @@ The following topics show you how to update your Amazon S3 on Outposts bucket po
 
 1. In the **Outposts bucket policy** section, to create or edit new policy, choose **Edit**\.
 
-   You can now add or edit the S3 on Outposts bucket policy\. For more information, see [Setting up AWS Identity and Access Management with S3 on Outposts](S3OutpostsIAM.md)\.
+   You can now add or edit the S3 on Outposts bucket policy\. For more information, see [Setting up IAM with S3 on Outposts](S3OutpostsIAM.md)\.
 
 ## Using the AWS CLI<a name="S3OutpostsPutBucketPolicyCLI"></a>
 

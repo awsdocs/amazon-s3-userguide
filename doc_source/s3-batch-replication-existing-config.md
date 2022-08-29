@@ -18,7 +18,7 @@ When the Batch Replication job finishes, you receive a completion report\. For m
 
 1. Select the **Manifest format**\. This example will show how to create a manifest based on an existing S3 replication configuration\. 
 **Note**  
-If you have a manifest prepared, choose **S3 inventory report \(manifest\.json\)** or **CSV**\. If the objects in your manifest are in a versioned bucket, you should specify the version IDs for the objects\. For more information about creating a manifest see, [Specifying a manifest](batch-ops-create-job.md#specify-batchjob-manifest)\.
+The manifest is a list of all of the objects that you want to run the specified action on\. To learn more about Batch Operations manifests, see [Specifying a manifest](batch-ops-create-job.md#specify-batchjob-manifest)\. If you have a manifest prepared, choose **S3 inventory report \(manifest\.json\)** or **CSV**\. If the objects in your manifest are in a versioned bucket, you should specify the version IDs for the objects\. For more information about creating a manifest see, [Specifying a manifest](batch-ops-create-job.md#specify-batchjob-manifest)\.
 
 1. To create a manifest based on your replication configuration, choose **Create manifest using S3 Replication configuration**\. Then chose the source bucket of your replication configuration\.
 

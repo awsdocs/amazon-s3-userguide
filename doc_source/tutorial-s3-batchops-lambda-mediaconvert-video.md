@@ -114,7 +114,7 @@ A JSON CORS configuration defines a way for client web applications \(video play
 
 ## Step 2: Create an IAM role for MediaConvert<a name="batchops-s3-step2"></a>
 
-To use AWS Elemental MediaConvert to transcode input videos stored in your S3 bucket, you must have an AWS Identity and Access Management \(IAM\) service role to grant MediaConvert permissions to read and write video files from and to your S3 source and destination buckets\. \. When you run transcoding jobs, the MediaConvert console uses this role\. 
+To use AWS Elemental MediaConvert to transcode input videos stored in your S3 bucket, you must have an AWS Identity and Access Management \(IAM\) service role to grant MediaConvert permissions to read and write video files from and to your S3 source and destination buckets\. When you run transcoding jobs, the MediaConvert console uses this role\. 
 
 **To create an IAM role for MediaConvert**
 

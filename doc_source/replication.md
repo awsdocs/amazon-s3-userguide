@@ -64,7 +64,7 @@ Batch Replication replicates existing objects to different buckets as an on\-dem
 Replication requires the following:
 + The source bucket owner must have the source and destination AWS Regions enabled for their account\. The destination bucket owner must have the destination Region enabled for their account\. 
 
-  For more information about enabling or disabling an AWS Region, see [AWS Service Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *AWS General Reference*\.
+  For more information about enabling or disabling an AWS Region, see [Managing AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande-manage.html) in the *AWS General Reference*\.
 + Both source and destination buckets must have versioning enabled\. For more information about versioning, see [Using versioning in S3 buckets](Versioning.md)\.
 + Amazon S3 must have permissions to replicate objects from the source bucket to the destination bucket or buckets on your behalf\. For more information about these permissions, see [Setting up permissions](setting-repl-config-perm-overview.md)\.
 + If the owner of the source bucket doesn't own the object in the bucket, the object owner must grant the bucket owner `READ` and `READ_ACP` permissions with the object access control list \(ACL\)\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\. 

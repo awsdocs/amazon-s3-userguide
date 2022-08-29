@@ -1,6 +1,6 @@
 # Create an Amazon S3 bucket using an AWS SDK<a name="example_s3_CreateBucket_section"></a>
 
-The following code examples show how to create an Amazon S3 bucket\.
+The following code examples show how to create an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -50,46 +50,49 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-using namespace Aws;
+bool AwsDoc::S3::CreateBucket(const Aws::String &bucketName, const Aws::String &region) {
+    // Create the bucket.
+    Aws::Client::ClientConfiguration clientConfig;
+    if (!region.empty())
+        clientConfig.region = region;
+
+    Aws::S3::S3Client client(clientConfig);
+    Aws::S3::Model::CreateBucketRequest request;
+    request.SetBucket(bucketName);
+
+    Aws::S3::Model::CreateBucketOutcome outcome = client.CreateBucket(request);
+    if (!outcome.IsSuccess())
+    {
+        auto err = outcome.GetError();
+        std::cout << "Error: CreateBucket: " <<
+                  err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
+        return false;
+    }
+    else
+    {
+        std::cout << "Created bucket " << bucketName <<
+                  " in the specified AWS Region." << std::endl;
+        return true;
+    }
+
+}
 int main()
 {
     Aws::SDKOptions options;
     InitAPI(options);
-    {
-        //TODO: Set to the AWS Region of your account.  If not, you will get a runtime
+        //TODO: Set to the AWS Region of your account.  If you don't, you will get a runtime
         //IllegalLocationConstraintException Message: "The unspecified location constraint is incompatible
         //for the Region specific endpoint this request was sent to."
-        Aws::String region = "us-east-1";
-
-        // Create a unique bucket name to increase the chance of success 
+    Aws::String region = "us-east-1";
+        // Create a unique bucket name to increase the chance of success
         // when trying to create the bucket.
-        // Format: "my-bucket-" + lowercase UUID.
-        Aws::String uuid = Aws::Utils::UUID::RandomUUID();
-        Aws::String bucketName = "my-bucket-" +
-            Aws::Utils::StringUtils::ToLower(uuid.c_str());
+        // Format: "doc-example-bucket-" + lowercase UUID.
+    Aws::String uuid = Aws::Utils::UUID::RandomUUID();
+    Aws::String bucketName = "doc-example-bucket-" +
+                             Aws::Utils::StringUtils::ToLower(uuid.c_str());
 
-        // Create the bucket.
-        Aws::Client::ClientConfiguration clientConfig;
-        if (!region.empty())
-            clientConfig.region = region;
+    AwsDoc::S3::CreateBucket(bucketName, region);
 
-        S3::S3Client client(clientConfig);
-        Aws::S3::Model::CreateBucketRequest request;
-        request.SetBucket(bucketName);
-        
-        Aws::S3::Model::CreateBucketOutcome outcome = client.CreateBucket(request);
-        if (!outcome.IsSuccess())
-        {
-            auto err = outcome.GetError();
-            std::cout << "Error: CreateBucket: " <<
-               err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-        }
-        else
-        {
-            std::cout << "Created bucket " << bucketName <<
-                " in the specified AWS Region." << std::endl;
-        }
-    }
     ShutdownAPI(options);
 }
 ```
@@ -132,13 +135,13 @@ int main()
         try {
             S3Waiter s3Waiter = s3Client.waiter();
             CreateBucketRequest bucketRequest = CreateBucketRequest.builder()
-                    .bucket(bucketName)
-                    .build();
+                .bucket(bucketName)
+                .build();
 
             s3Client.createBucket(bucketRequest);
             HeadBucketRequest bucketRequestWait = HeadBucketRequest.builder()
-                    .bucket(bucketName)
-                    .build();
+                .bucket(bucketName)
+                .build();
 
             // Wait until the bucket is created and print out the response.
             WaiterResponse<HeadBucketResponse> waiterResponse = s3Waiter.waitUntilBucketExists(bucketRequestWait);
@@ -164,7 +167,7 @@ Create the client\.
 // Create service client module using ES6 syntax.
 import { S3Client } from "@aws-sdk/client-s3";
 // Set the AWS Region.
-const REGION = "REGION"; //e.g. "us-east-1"
+const REGION = "us-east-1";
 // Create an Amazon S3 service client object.
 const s3Client = new S3Client({ region: REGION });
 export { s3Client };
@@ -427,6 +430,28 @@ pub async fn create_bucket(client: &Client, bucket_name: &str, region: &str) -> 
 }
 ```
 +  For API details, see [CreateBucket](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
+
+------
+#### [ Swift ]
+
+**SDK for Swift**  
+This is prerelease documentation for an SDK in preview release\. It is subject to change\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/swift/example_code/s3/basics#code-examples)\. 
+  
+
+```
+    public func createBucket(name: String) async throws {
+        let config = S3ClientTypes.CreateBucketConfiguration(
+            locationConstraint: .usEast2
+        )
+        let input = CreateBucketInput(
+            bucket: name,
+            createBucketConfiguration: config
+        )
+        _ = try await client.createBucket(input: input)
+    }
+```
++  For API details, see [CreateBucket](https://awslabs.github.io/aws-sdk-swift/reference/0.x) in *AWS SDK for Swift API reference*\. 
 
 ------
 

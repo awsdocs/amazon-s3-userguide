@@ -47,10 +47,17 @@ The following code examples show how to create a presigned URL for S3 and upload
 	fmt.Println("Create Presign client")
 	presignClient := s3.NewPresignClient(&client)
 
-	presignResult, err := presignClient.PresignGetObject(context.TODO(), &s3.GetObjectInput{
+	presignParams := &s3.GetObjectInput{
 		Bucket: aws.String(name),
 		Key:    aws.String("path/myfile.jpg"),
-	})
+	}
+
+	// Apply an expiration via an option function
+	presignDuration := func(po *s3.PresignOptions) {
+		po.Expires = 5 * time.Minute
+	}
+
+	presignResult, err := presignClient.PresignGetObject(context.TODO(), presignParams, presignDuration)
 
 	if err != nil {
 		panic("Couldn't get presigned URL for GetObject")

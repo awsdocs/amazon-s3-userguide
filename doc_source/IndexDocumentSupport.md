@@ -68,12 +68,12 @@ When you enable static website hosting for your bucket, you enter the name of th
 
    After enabling static website hosting, proceed to step 6\. 
 
-1. To upload the index document to your bucket, do one of the following:
+1. To upload the index document to your bucket via the Amazon S3 console, do one of the following:
    + Drag and drop the index file into the console bucket listing\.
    + Choose **Upload**, and follow the prompts to choose and upload the index file\.
 
    For step\-by\-step instructions, see [Uploading objects](upload-objects.md)\.
-
+   If you upload the index document object with a tool other than the console, make sure that the content-type of the object is `text/html`. Otherwise, the webpage won't be rendered as an HTML document on the client web browser.
 1. \(Optional\) Upload other website content to your bucket\.
 
 Next, you must set permissions for website access\. For information, see [Setting permissions for website access](WebsiteAccessPermissionsReqd.md)\. 

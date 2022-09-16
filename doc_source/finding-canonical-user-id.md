@@ -44,3 +44,17 @@ Use the [list\-buckets](https://docs.aws.amazon.com/cli/latest/reference/s3api/l
 ```
 aws s3api list-buckets --query Owner.ID --output text
 ```
+
+## Using the AWS SDK For Python (boto3) <a name="canonical-user-id-python"></a>
+
+Use the [list\-buckets](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.list_buckets) api as follows to find the canonical user ID.
+
+```py
+import boto3
+
+client = boto3.client("s3")
+
+response = client.list_buckets()
+
+canonical_id = response["Owner"]["ID"]
+```

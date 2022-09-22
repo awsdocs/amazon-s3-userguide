@@ -17,7 +17,7 @@ Anyone with valid security credentials can create a presigned URL\. However, for
 
 ## Generating a presigned URL for uploading objects<a name="generating-presigned-url"></a>
 
-You can generate a presigned URL programmatically using the AWS SDKs for \.NET, Java, Ruby, [JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, and [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
+You can generate a presigned URL programmatically using the AWS SDKs for \.NET, Java, Ruby, [JavaScript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), PHP, Go, and [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url)\.
 
 You can use the AWS SDK to generate a presigned URL that you or anyone that you give the URL to can use to upload an object to Amazon S3\. When you use the URL to upload an object, Amazon S3 creates the object in the specified bucket\. If an object with the same key that is specified in the presigned URL already exists in the bucket, Amazon S3 replaces the existing object with the uploaded object\.
 

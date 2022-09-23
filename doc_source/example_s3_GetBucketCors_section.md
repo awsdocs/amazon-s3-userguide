@@ -54,7 +54,12 @@ run();
 
 ```
 class BucketWrapper:
+    """Encapsulates S3 bucket actions."""
     def __init__(self, bucket):
+        """
+        :param bucket: A Boto3 Bucket resource. This is a high-level resource in Boto3
+                       that wraps bucket actions in a class-like structure.
+        """
         self.bucket = bucket
         self.name = bucket.name
 

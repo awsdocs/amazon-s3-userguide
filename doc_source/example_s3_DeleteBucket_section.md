@@ -200,7 +200,12 @@ try {
 
 ```
 class BucketWrapper:
+    """Encapsulates S3 bucket actions."""
     def __init__(self, bucket):
+        """
+        :param bucket: A Boto3 Bucket resource. This is a high-level resource in Boto3
+                       that wraps bucket actions in a class-like structure.
+        """
         self.bucket = bucket
         self.name = bucket.name
 
@@ -256,7 +261,7 @@ This documentation is for an SDK in preview release\. The SDK is subject to chan
 ```
 pub async fn delete_bucket(client: &Client, bucket_name: &str) -> Result<(), Error> {
     client.delete_bucket().bucket(bucket_name).send().await?;
-    println!("bucket deleted");
+    println!("Bucket deleted");
     Ok(())
 }
 ```

@@ -1,4 +1,4 @@
-# Getting started with Amazon S3 buckets and objects using an AWS SDK<a name="example_s3_Scenario_GettingStarted_section"></a>
+# Get started with Amazon S3 buckets and objects using an AWS SDK<a name="example_s3_Scenario_GettingStarted_section"></a>
 
 The following code examples show how to:
 + Create a bucket\.
@@ -819,7 +819,7 @@ import {
   DeleteBucketCommand,
   GetObjectCommand
 } from "@aws-sdk/client-s3";
-import { s3Client, REGION } from "../libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import { s3Client } from "../libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
 
 if (process.argv.length < 5) {
   console.log(
@@ -1625,7 +1625,8 @@ async fn initialize_variables() -> (Region, Client, String, String, String, Stri
     let shared_config = aws_config::from_env().region(region_provider).load().await;
     let client = Client::new(&shared_config);
 
-    let bucket_name = format!("{}{}", "doc-example-bucket-", Uuid::new_v4());
+    let bucket_name = format!("doc-example-bucket-{}", Uuid::new_v4());
+
     let file_name = "s3/testfile.txt".to_string();
     let key = "test file key name".to_string();
     let target_key = "target_key".to_string();
@@ -1643,7 +1644,7 @@ async fn run_s3_operations(
 ) -> Result<(), Error> {
     s3_service::create_bucket(&client, &bucket_name, region.as_ref()).await?;
     s3_service::upload_object(&client, &bucket_name, &file_name, &key).await?;
-    s3_service::download_object(&client, &bucket_name, &key).await?;
+    let _object = s3_service::download_object(&client, &bucket_name, &key).await;
     s3_service::copy_object(&client, &bucket_name, &key, &target_key).await?;
     s3_service::list_objects(&client, &bucket_name).await?;
     s3_service::delete_objects(&client, &bucket_name).await?;
@@ -1658,7 +1659,7 @@ A library crate with common actions called by the binary\.
 use aws_sdk_s3::model::{
     BucketLocationConstraint, CreateBucketConfiguration, Delete, ObjectIdentifier,
 };
-use aws_sdk_s3::output::ListObjectsV2Output;
+use aws_sdk_s3::output::{GetObjectOutput, ListObjectsV2Output};
 use aws_sdk_s3::types::ByteStream;
 use aws_sdk_s3::{Client, Error};
 use std::path::Path;
@@ -1666,7 +1667,7 @@ use std::str;
 
 pub async fn delete_bucket(client: &Client, bucket_name: &str) -> Result<(), Error> {
     client.delete_bucket().bucket(bucket_name).send().await?;
-    println!("bucket deleted");
+    println!("Bucket deleted");
     Ok(())
 }
 
@@ -1728,20 +1729,14 @@ pub async fn copy_object(
     Ok(())
 }
 
-pub async fn download_object(client: &Client, bucket_name: &str, key: &str) -> Result<(), Error> {
+pub async fn download_object(client: &Client, bucket_name: &str, key: &str) -> GetObjectOutput {
     let resp = client
         .get_object()
         .bucket(bucket_name)
         .key(key)
         .send()
-        .await?;
-    let data = resp.body.collect().await;
-    println!(
-        "Data from downloaded object: {:?}",
-        data.unwrap().into_bytes().slice(0..20)
-    );
-
-    Ok(())
+        .await;
+    resp.unwrap()
 }
 
 pub async fn upload_object(
@@ -1774,7 +1769,7 @@ pub async fn create_bucket(client: &Client, bucket_name: &str, region: &str) -> 
         .bucket(bucket_name)
         .send()
         .await?;
-    println!("{}", bucket_name);
+    println!("Creating bucket named: {bucket_name}");
     Ok(())
 }
 ```

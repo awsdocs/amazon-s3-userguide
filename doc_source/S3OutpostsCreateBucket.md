@@ -18,7 +18,7 @@ The following examples show you how to create an S3 on Outposts bucket by using 
 1. For **Bucket name**, enter a Domain Name System \(DNS\)\-compliant name for your bucket\.
 
    The bucket name must:
-   + Be unique within the AWS account, the Outpost, and the AWS Region the Outpost is homed to\.
+   + Be unique within the AWS account, the Outpost, and the AWS Region that the Outpost is homed to\.
    + Be 3–63 characters long\.
    + Not contain uppercase characters\.
    + Start with a lowercase letter or number\.
@@ -28,6 +28,12 @@ The following examples show you how to create an S3 on Outposts bucket by using 
 Avoid including sensitive information such as account numbers in the bucket name\. The bucket name is visible in the URLs that point to the objects in the bucket\.
 
 1. For **Outpost**, choose the Outpost where you want the bucket to reside\. 
+
+1. Under **Bucket Versioning**, set the S3 Versioning state for your S3 on Outposts bucket to one of the following options:
+   + **Disable** \(default\) – The bucket remains unversioned\.
+   + **Enable** – Enables S3 Versioning for the objects in the bucket\. All objects added to the bucket receive a unique version ID\.
+
+   For more information about S3 Versioning, see [Managing S3 Versioning for your S3 on Outposts bucket](S3OutpostsManagingVersioning.md)\.
 
 1. \(Optional\) Add any **optional tags** that you would like to associate with the Outposts bucket\. You can use tags to track criteria for individual projects or groups of projects, or to label your buckets by using cost\-allocation tags\.
 

@@ -22,21 +22,9 @@ If you need server\-side encryption for all of the objects that are stored in a 
 13.           "s3:x-amz-server-side-encryption": "AES256"
 14.         }
 15.       }
-16.     },
-17.     {
-18.       "Sid": "DenyUnencryptedObjectUploads",
-19.       "Effect": "Deny",
-20.       "Principal": "*",
-21.       "Action": "s3:PutObject",
-22.       "Resource": "arn:aws:s3:::awsexamplebucket1/*",
-23.       "Condition": {
-24.         "Null": {
-25.           "s3:x-amz-server-side-encryption": "true"
-26.         }
-27.       }
-28.     }
-29.   ]
-30. }
+16.     }
+17.   ]
+18. }
 ```
 
 **Note**  

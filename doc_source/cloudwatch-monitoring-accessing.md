@@ -27,11 +27,11 @@ This example produces the following output\.
 
 ## Using the S3 console<a name="accessing-cw-metrics-console"></a>
 
-**To view metrics using the CloudWatch console**
+**To view metrics by using the Amazon CloudWatch console**
 
 1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Metrics**\. 
+1. In the left navigation pane, choose **Metrics**\. 
 
 1. Choose the **S3** namespace\.
 
@@ -39,7 +39,7 @@ This example produces the following output\.
 
 1. \(Optional\) To filter by the **StorageType** dimension, enter the name of the storage class in the search box\.
 
-**To view a list of valid metrics stored for your AWS account using the AWS CLI**
+**To view a list of valid metrics stored for your AWS account by using the AWS CLI**
 + At a command prompt, use the following command\.
 
   ```

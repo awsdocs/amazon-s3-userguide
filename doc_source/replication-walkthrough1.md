@@ -26,46 +26,41 @@ If the destination bucket is in a different account from the source bucket, you 
 
 1. Under **Rule name**, enter a name for your rule to help identify the rule later\. The name is required and must be unique within the bucket\.
 
-1. Set up an AWS Identity and Access Management \(IAM\) role that Amazon S3 can assume to replicate objects on your behalf\.
-
-   To set up an IAM role, on the **Replication rule configuration** section, under **IAM role**, do one of the following:
-   + We highly recommend that you choose **Create new role** to have Amazon S3 create a new IAM role for you\. When you save the rule, a new policy is generated for the IAM role that matches the source and destination buckets that you choose\.
-   + You can choose to use an existing IAM role\. If you do, you must choose a role that grants Amazon S3 the necessary permissions for replication\. Replication fails if this role does not grant Amazon S3 sufficient permissions to follow your replication rule\.
-**Important**  
-When you add a replication rule to a bucket, you must have the `iam:PassRole` permission to be able to pass the IAM role that grants Amazon S3 replication permissions\. For more information, see [Granting a user permissions to pass a role to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\.
-
 1. Under **Status**, see that **Enabled** is selected by default\. An enabled rule starts to work as soon as you save it\. If you want to enable the rule later, select **Disabled**\.
 
 1.  If the bucket has existing replication rules, you are instructed to set a priority for the rule\. You must set a priority for the rule to avoid conflicts caused by objects that are included in the scope of more than one rule\. In the case of overlapping rules, Amazon S3 uses the rule priority to determine which rule to apply\. The higher the number, the higher the priority\. For more information about rule priority, see [Replication configuration](replication-add-config.md)\.
 
 1. In the **Replication rule configuration**, under **Source bucket**, you have the following options for setting the replication source:
-   + To replicate the whole bucket, choose **This rule applies to all objects in the bucket**\. 
+   + To replicate the whole bucket, choose **Apply to all objects in the bucket**\. 
    + To replicate all objects that have the same prefix, choose **Limit the scope of this rule using one or more filters**\. This limits replication to all objects that have names that begin with the string \(for example `pictures`\)\. Enter a prefix in the box\. 
-**Note**  
-If you enter a prefix that is the name of a folder, you must use **/** \(forward slash\) as the last character \(for example, `pictures/`\)\.
-   + To replicate all objects with one or more object tags, select **Add tag** and enter the key\-value pair in the boxes\. Repeat the procedure to add another tag\. You can combine a prefix and tags\. For more information about object tags, see [Categorizing your storage using tags](object-tagging.md)\.
+
+     If you enter a prefix that is the name of a folder, you must use **/** \(forward slash\) as the last character \(for example, `pictures/`\)\.
+
+     To replicate all objects with one or more object tags, select **Add tag** and enter the key\-value pair in the boxes\. Repeat the procedure to add another tag\. You can combine a prefix and tags\. For more information about object tags, see [Categorizing your storage using tags](object-tagging.md)\.
 
    The new schema supports prefix and tag filtering and the prioritization of rules\. For more information about the new schema, see [Backward compatibility](replication-add-config.md#replication-backward-compat-considerations)\. For more information about the XML used with the Amazon S3 API that works behind the user interface, see [Replication configuration](replication-add-config.md)\. The new schema is described as *replication configuration XML V2*\.
 
 1. Under **Destination**, select the bucket where you want Amazon S3 to replicate objects\.
 **Note**  
- The number of destination buckets is limited to the number of AWS Regions in a given partition\. A partition is a grouping of Regions\. AWS currently has three partitions: `aws` \(Standard Regions\), `aws-cn` \(China Regions\), and `aws-us-gov` \(AWS GovCloud \[US\] Regions\)\. You can use [service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) to request an increase in your destination bucket limit\.
+The number of destination buckets is limited to the number of AWS Regions in a given partition\. A partition is a grouping of Regions\. AWS currently has three partitions: `aws` \(Standard Regions\), `aws-cn` \(China Regions\), and `aws-us-gov` \(AWS GovCloud \[US\] Regions\)\. You can use [service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) to request an increase in your destination bucket limit\.
    + To replicate to a bucket or buckets in your account, select **Choose a bucket in this account**, and enter or browse for the destination bucket names\. 
    + To replicate to a bucket or buckets in a different AWS account, select **Choose a bucket in another account**, and enter the destination bucket account ID and name\. 
 
      If the destination is in a different account from the source bucket, you must add a bucket policy to the destination buckets to grant the owner of the source bucket account permission to replicate objects\. For more information, see [Granting permissions when the source and destination buckets are owned by different AWS accounts](setting-repl-config-perm-overview.md#setting-repl-config-crossacct)\.
+
+     If you want to enable **Object Ownership** to help standardize ownership of new objects in the destination bucket, choose **Change object ownership to the destination bucket owner**\. For more information about this option, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 **Note**  
 If versioning is not enabled on the destination bucket, you get a warning that contains an **Enable versioning** button\. Choose this button to enable versioning on the bucket\.
 
-1. You have the following additional options while setting the **Destination**:
-   + If you want to enable **Object Ownership** to help standardize ownership of new objects in the destination bucket, choose **Change object ownership to the destination bucket owner**\. For more information about this option, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
-   + If you want to replicate your data into a specific storage class in the destination, choose **Change the storage class for the replicated objects**\. Then choose the storage class that you want to use for the replicated objects in the destination\. If you don't choose this option, the storage class for replicated objects is the same class as the original objects\. 
-   + If you want to enable delete marker replication in your replication configuration, select **Delete marker replication**\. For more information see, [Replicating delete markers between buckets](delete-marker-replication.md)\.
-   + If you want to enable Amazon S3 replica modification sync in your replication configuration, select **Replica modification sync**\. For more information see, [Replicating metadata changes with Amazon S3 replica modification sync](replication-for-metadata-changes.md)\.
-   + If you want to enable S3 replication metrics in your replication configuration, select **Replication metrics and events**\. For more information see, [Monitoring progress with replication metrics and Amazon S3 event notifications](replication-metrics.md)\.
-   + If you want to enable S3 Replication Time Control \(S3 RTC\) in your replication configuration, select **S3 Replication Time Control**\. For more information about this option, see [Meeting compliance requirements using S3 Replication Time Control \(S3 RTC\)](replication-time-control.md)\.
-**Note**  
-When you use S3 RTC or S3 replication metrics, additional fees apply\.
+1. Set up an AWS Identity and Access Management \(IAM\) role that Amazon S3 can assume to replicate objects on your behalf\.
+
+   To set up an IAM role, on the **Replication rule configuration** section, under **IAM role**, do one of the following:
+   + Under **Choose from existing IAM roles** you may choose to **Create new role** to have Amazon S3 create a new IAM role for you\. When you save the rule, a new policy is generated for the IAM role that matches the source and destination buckets that you choose\.
+   + You may can choose to use an existing IAM role\. If you do, you must choose a role that grants Amazon S3 the necessary permissions for replication\. Replication fails if this role does not grant Amazon S3 sufficient permissions to follow your replication rule\.
+
+     To choose an existing role, select the role from the dropdown menu or enter the IAM role ARN\. 
+**Important**  
+When you add a replication rule to a bucket, you must have the `iam:PassRole` permission to be able to pass the IAM role that grants Amazon S3 replication permissions\. For more information, see [Granting a user permissions to pass a role to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html) in the *IAM User Guide*\.
 
 1. To replicate objects in the source bucket that are encrypted with AWS Key Management Service \(AWS KMS\), under **Replication criteria**, select **Replicate objects encrypted with AWS KMS**\. Under **AWS KMS key for encrypting destination objects** are the source keys that you allow replication to use\. All source KMS keys are included by default\. You can choose to narrow the KMS key selection\. 
 
@@ -80,6 +75,15 @@ To see your PUT object request rate in the source bucket, view `PutRequests` in 
    For more information about creating an AWS KMS key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
 **Important**  
 The Amazon S3 console lists only 100 KMS keys per AWS Region\. If you have more than 100 KMS keys in the same Region, you can see only the first 100 KMS keys in the S3 console\. To use a KMS key that is not listed in the console, choose **Custom KMS ARN**, and enter the KMS key ARN\.
+
+1. You have the following additional options while setting the Replication rule configuration:
+   + If you want to replicate your data into a specific storage class in the destination, choose **Change the storage class for the replicated objects**\. Then choose the storage class that you want to use for the replicated objects in the destination\. If you don't choose this option, the storage class for replicated objects is the same class as the original objects\. 
+   + If you want to enable S3 Replication Time Control \(S3 RTC\) in your replication configuration, select **S3 Replication Time Control**\. For more information about this option, see [Meeting compliance requirements using S3 Replication Time Control \(S3 RTC\)](replication-time-control.md)\.
+**Note**  
+When you use S3 RTC or S3 Replication metrics, additional fees apply\.
+   + If you want to enable S3 Replication metrics in your replication configuration, select **Replication metrics and events**\. For more information see, [Monitoring progress with replication metrics and Amazon S3 event notifications](replication-metrics.md)\.
+   + If you want to enable delete marker replication in your replication configuration, select **Delete marker replication**\. For more information see, [Replicating delete markers between buckets](delete-marker-replication.md)\.
+   + If you want to enable Amazon S3 replica modification sync in your replication configuration, select **Replica modification sync**\. For more information see, [Replicating metadata changes with Amazon S3 replica modification sync](replication-for-metadata-changes.md)\.
 
 1. To finish, choose **Save**\.
 

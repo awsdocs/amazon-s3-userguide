@@ -2,7 +2,7 @@
 
 AWS Outposts is a fully managed service that offers the same AWS infrastructure, AWS services, APIs, and tools to virtually any data center, co\-location space, or on\-premises facility for a truly consistent hybrid experience\. AWS Outposts is ideal for workloads that require low\-latency access to on\-premises systems, local data processing, data residency, and migration of applications with local system interdependencies\. For more information, see [What is AWS Outposts?](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.htm) in the *AWS Outposts User Guide*\.
 
-With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and easily store and retrieve objects on premises\. S3 on Outposts provides a new storage class, `OUTPOSTS`, which uses the Amazon S3 APIs and is designed to store data durably and redundantly across multiple devices and servers on your AWS Outposts\. You communicate with your Outposts bucket using an access point and endpoint connection over a virtual private cloud \(VPC\)\. You can use the same APIs and features on Outposts buckets as you do on Amazon S3, including access policies, encryption, and tagging\. You can use S3 on Outposts through the AWS Management Console, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\.
+With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and easily store and retrieve objects on premises\. S3 on Outposts provides a new storage class, `OUTPOSTS`, which uses the Amazon S3 APIs and is designed to store data durably and redundantly across multiple devices and servers on your AWS Outposts\. You communicate with your Outposts bucket by using an access point and endpoint connection over a virtual private cloud \(VPC\)\. You can use the same APIs and features on Outposts buckets as you do on Amazon S3, including access policies, encryption, and tagging\. You can use S3 on Outposts through the AWS Management Console, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\.
 + [How S3 on Outposts works](#S3OutpostsConcepts)
 + [Features of S3 on Outposts](#S3OutpostsFeatures)
 + [Related services ](#S3OutpostsRelatedAmazonWebServices)
@@ -59,6 +59,18 @@ arn:aws:s3-outposts:us-west-2:123456789012:​outpost/op-01ac5d28a6a232904/bucke
 ```
 
 For more information about object keys, see [Working with S3 on Outposts objects](S3OutpostsWorkingObjects.md)\. 
+
+### S3 Versioning<a name="S3OutpostsVersioning"></a>
+
+You can use S3 Versioning on Outposts buckets to keep multiple variants of an object in the same bucket\. With S3 Versioning, you can preserve, retrieve, and restore every version of every object stored in your buckets\. S3 Versioning helps you recover from unintended user actions and application failures\. 
+
+For more information, see [Managing S3 Versioning for your S3 on Outposts bucket](S3OutpostsManagingVersioning.md)\.
+
+### Version ID<a name="S3OutpostsVersionID"></a>
+
+When you enable S3 Versioning in a bucket, S3 on Outposts generates a unique version ID for each object added to the bucket\. Objects that already existed in the bucket at the time that you enable versioning have a version ID of `null`\. If you modify these \(or any other\) objects with other operations, such as [PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html), the new objects get a unique version ID\.
+
+For more information, see [Managing S3 Versioning for your S3 on Outposts bucket](S3OutpostsManagingVersioning.md)\.
 
 ### Storage class and encryption<a name="S3OutpostsStorageClasses"></a>
 

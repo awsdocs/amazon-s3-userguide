@@ -378,7 +378,12 @@ try {
 
 ```
 class ObjectWrapper:
+    """Encapsulates S3 object actions."""
     def __init__(self, s3_object):
+        """
+        :param s3_object: A Boto3 Object resource. This is a high-level resource in Boto3
+                          that wraps object actions in a class-like structure.
+        """
         self.object = s3_object
         self.key = self.object.key
 
@@ -498,20 +503,14 @@ This documentation is for an SDK in preview release\. The SDK is subject to chan
   
 
 ```
-pub async fn download_object(client: &Client, bucket_name: &str, key: &str) -> Result<(), Error> {
+pub async fn download_object(client: &Client, bucket_name: &str, key: &str) -> GetObjectOutput {
     let resp = client
         .get_object()
         .bucket(bucket_name)
         .key(key)
         .send()
-        .await?;
-    let data = resp.body.collect().await;
-    println!(
-        "Data from downloaded object: {:?}",
-        data.unwrap().into_bytes().slice(0..20)
-    );
-
-    Ok(())
+        .await;
+    resp.unwrap()
 }
 ```
 +  For API details, see [GetObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 

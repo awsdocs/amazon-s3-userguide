@@ -16,7 +16,7 @@ The following examples show you how to return a list of your S3 on Outposts buck
 
 ## Using the AWS CLI<a name="S3OutpostsListRegionalBucketCLI"></a>
 
-The following AWS CLI example gets a list of buckets in an Outpost\.To use this command, replace each `user input placeholder` with your own information\. For more information about this command, see [list\-regional\-buckets](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3control/list-regional-buckets.html) in the *AWS CLI Reference*\.
+The following AWS CLI example gets a list of buckets in an Outpost\. To use this command, replace each `user input placeholder` with your own information\. For more information about this command, see [list\-regional\-buckets](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3control/list-regional-buckets.html) in the *AWS CLI Reference*\.
 
 ```
 aws s3control list-regional-buckets --account-id 123456789012 --outpost-id op-01ac5d28a6a232904

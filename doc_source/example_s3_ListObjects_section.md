@@ -345,7 +345,12 @@ try {
 
 ```
 class ObjectWrapper:
+    """Encapsulates S3 object actions."""
     def __init__(self, s3_object):
+        """
+        :param s3_object: A Boto3 Object resource. This is a high-level resource in Boto3
+                          that wraps object actions in a class-like structure.
+        """
         self.object = s3_object
         self.key = self.object.key
 
@@ -354,7 +359,7 @@ class ObjectWrapper:
         """
         Lists the objects in a bucket, optionally filtered by a prefix.
 
-        :param bucket: The bucket to query.
+        :param bucket: The bucket to query. This is a Boto3 Bucket resource.
         :param prefix: When specified, only objects that start with this prefix are listed.
         :return: The list of objects.
         """

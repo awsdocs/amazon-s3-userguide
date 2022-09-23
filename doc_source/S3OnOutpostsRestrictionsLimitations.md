@@ -42,7 +42,6 @@ The following Amazon S3 features are currently not supported by Amazon S3 on Out
 + S3 Lifecycle transitions \(aside from object deletion and stopping incomplete multipart uploads\)
 + S3 Object Lock legal hold
 + Object Lock retention
-+ S3 Versioning
 + Server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\)
 + S3 Replication
 + S3 Replication Time Control \(S3 RTC\)

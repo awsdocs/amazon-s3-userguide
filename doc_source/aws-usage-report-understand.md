@@ -88,8 +88,10 @@ The first column in the following table lists usage types that appear in your bi
 |  `region-OverwriteBytes-Put-SIA`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 Standard\-IA storage  | 
 |  `region-OverwriteBytes-Put-STANDARD`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 Standard storage  | 
 |  `region-OverwriteBytes-Put-ZIA`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 One Zone\-IA storage  | 
-|  `region-Requests-GDA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on DEEP Archive objects  | 
-|  `region-Requests-GDA-Tier2`  |  Count  |  Hourly  |  The number of GET and HEAD requests  | 
+|  `region1-region2-S3RTC-In-Bytes`  |  GB  |  Monthly  |  The amount of data transferred for S3 Replication Time Control \(S3 RTC\) from Region 2 to Region 1  | 
+|  `region1-region2-S3RTC-Out-Bytes`  |  GB  |  Monthly  |  The amount of data transferred for S3 Replication Time Control \(S3 RTC\) from Region 1 to Region 2  | 
+|  `region-Requests-GDA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on S3 Glacier Deep Archive objects  | 
+|  `region-Requests-GDA-Tier2`  |  Count  |  Hourly  |  The number of GET and HEAD requests on S3 Glacier Deep Archive objects  | 
 |  `region-Requests-GDA-Tier3`  |  Count  |  Hourly  |  The number of S3 Glacier Deep Archive standard restore requests  | 
 |  `region-Requests-GDA-Tier5`  |  Count  |  Hourly  |  The number of Bulk S3 Glacier Deep Archive restore requests  | 
 |  `region-Requests-GIR-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, or POST requests on S3 Glacier Instant Retrieval objects\.  | 

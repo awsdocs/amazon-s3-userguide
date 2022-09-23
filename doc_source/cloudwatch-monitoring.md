@@ -14,7 +14,7 @@ When enabled, request metrics are reported for all object operations\. By defaul
 To align these metrics to specific business applications, workflows, or internal organizations, you can filter on a shared prefix, object tag, or access point\. 
 
 **Replication metrics**  
-**Replication metrics** – Monitor the total number of S3 API operations that are pending replication, the total size of objects pending replication, and the maximum replication time to the destination Region\. Replication rules that have S3 Replication Time Control \(S3 RTC\) or S3 replication metrics enabled will publish replication metrics\.   
+**Replication metrics** – Monitor the total number of S3 API operations that are pending replication, the total size of objects pending replication, and the maximum replication time to the destination Region\. Replication rules that have S3 Replication Time Control \(S3 RTC\) or S3 Replication metrics enabled will publish replication metrics\.   
 For more information, see [Monitoring progress with replication metrics and Amazon S3 event notifications](replication-metrics.md) or [Meeting compliance requirements using S3 Replication Time Control \(S3 RTC\)](replication-time-control.md)\.
 
 **Amazon S3 Storage Lens metrics**  

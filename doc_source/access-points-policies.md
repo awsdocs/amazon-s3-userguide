@@ -5,67 +5,6 @@ Amazon S3 access points support AWS Identity and Access Management \(IAM\) resou
 **Important**  
 Adding an S3 access point to a bucket doesn't change the bucket's behavior when accessed through the existing bucket name or ARN\. All existing operations against the bucket will continue to work as before\. Restrictions that you include in an access point policy apply only to requests made through that access point\. 
 
-## Condition keys<a name="access-points-condition-keys"></a>
-
-S3 access points introduce three new condition keys that can be used in IAM policies to control access to your resources:
-
-**s3:DataAccessPointArn**  
-This is a string that you can use to match on an access point ARN\. The following example matches all access points for AWS account `123456789012` in Region `us-west-2`:  
-
-```
-"Condition" : {
-    "StringLike": {
-        "s3:DataAccessPointArn": "arn:aws:s3:us-west-2:123456789012:accesspoint/*"
-    }
-}
-```
-
-**s3:DataAccessPointAccount**  
-This is a string operator that you can use to match on the account ID of the owner of an access point\. The following example matches all access points owned by AWS account `123456789012`\.  
-
-```
-"Condition" : {
-    "StringEquals": {
-        "s3:DataAccessPointAccount": "123456789012"
-    }
-}
-```
-
-**s3:AccessPointNetworkOrigin**  
-This is a string operator that you can use to match on the network origin, either `Internet` or `VPC`\. The following example matches only access points with a VPC origin\.  
-
-```
-"Condition" : {
-    "StringEquals": {
-        "s3:AccessPointNetworkOrigin": "VPC"
-    }
-}
-```
-
-For more information about using condition keys with Amazon S3, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\.
-
-## Delegating access control to access points<a name="access-points-delegating-control"></a>
-
-You can delegate access control for a bucket to the bucket's access points\. The following example bucket policy allows full access to all access points owned by the bucket owner's account\. Thus, all access to this bucket is controlled by the policies attached to its access points\. We recommend configuring your buckets this way for all use cases that don't require direct access to the bucket\.
-
-**Example Bucket policy delegating access control to access points**  
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement" : [
-    {
-        "Effect": "Allow",
-        "Principal" : { "AWS": "*" },
-        "Action" : "*",
-        "Resource" : [ "Bucket ARN", "Bucket ARN/*"],
-        "Condition": {
-            "StringEquals" : { "s3:DataAccessPointAccount" : "Bucket owner's account ID" }
-        }
-    }]
-}
-```
-
 ## Access point policy examples<a name="access-points-policy-examples"></a>
 
 The following examples demonstrate how to create IAM policies to control requests made through an access point\.
@@ -217,5 +156,66 @@ Before using a statement like this example, make sure you don't need to use feat
             }
         }
     ]
+}
+```
+
+## Condition keys<a name="access-points-condition-keys"></a>
+
+S3 access points use condition keys that can be used in IAM policies to control access to your resources\. These condition keys are part of an IAM policies, for a full policy example see, [Access point policy examples](#access-points-policy-examples)\.
+
+**s3:DataAccessPointArn**  
+This is a string that you can use to match on an access point ARN\. The following example matches all access points for AWS account `123456789012` in Region `us-west-2`:  
+
+```
+"Condition" : {
+    "StringLike": {
+        "s3:DataAccessPointArn": "arn:aws:s3:us-west-2:123456789012:accesspoint/*"
+    }
+}
+```
+
+**s3:DataAccessPointAccount**  
+This is a string operator that you can use to match on the account ID of the owner of an access point\. The following example matches all access points owned by AWS account `123456789012`\.  
+
+```
+"Condition" : {
+    "StringEquals": {
+        "s3:DataAccessPointAccount": "123456789012"
+    }
+}
+```
+
+**s3:AccessPointNetworkOrigin**  
+This is a string operator that you can use to match on the network origin, either `Internet` or `VPC`\. The following example matches only access points with a VPC origin\.  
+
+```
+"Condition" : {
+    "StringEquals": {
+        "s3:AccessPointNetworkOrigin": "VPC"
+    }
+}
+```
+
+For more information about using condition keys with Amazon S3, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\.
+
+## Delegating access control to access points<a name="access-points-delegating-control"></a>
+
+You can delegate access control for a bucket to the bucket's access points\. The following example bucket policy allows full access to all access points owned by the bucket owner's account\. Thus, all access to this bucket is controlled by the policies attached to its access points\. We recommend configuring your buckets this way for all use cases that don't require direct access to the bucket\.
+
+**Example Bucket policy delegating access control to access points**  
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement" : [
+    {
+        "Effect": "Allow",
+        "Principal" : { "AWS": "*" },
+        "Action" : "*",
+        "Resource" : [ "Bucket ARN", "Bucket ARN/*"],
+        "Condition": {
+            "StringEquals" : { "s3:DataAccessPointAccount" : "Bucket owner's account ID" }
+        }
+    }]
 }
 ```

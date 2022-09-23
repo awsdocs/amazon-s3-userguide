@@ -58,65 +58,73 @@ Note that it isn't currently possible to change an access point's block public a
 ## The meaning of "public"<a name="access-control-block-public-access-policy-status"></a>
 
 ### Buckets<a name="access-control-block-public-access-policy-status-buckets"></a>
-+ **ACLs**
-  + Amazon S3 considers a bucket or object ACL public if it grants any permissions to members of the predefined `AllUsers` or `AuthenticatedUsers` groups\. For more information about predefined groups, see [Amazon S3 predefined groups](acl-overview.md#specifying-grantee-predefined-groups)\.
-+ **Policies**
-  + When evaluating a bucket policy, Amazon S3 begins by assuming that the policy is public\. It then evaluates the policy to determine whether it qualifies as non\-public\. To be considered non\-public, a bucket policy must grant access only to fixed values \(values that don't contain a wildcard or [an AWS Identity and Access Management Policy Variable](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html)\) of one or more of the following:
-    + A set of Classless Inter\-Domain Routings \(CIDRs\), using `aws:SourceIp`\. For more information about CIDR, see [RFC 4632](http://www.rfc-editor.org/rfc/rfc4632.txt) on the RFC Editor website\.
-    + An AWS principal, user, role, or service principal \(e\.g\. `aws:PrincipalOrgID`\)
-    + `aws:SourceArn`
-    + `aws:SourceVpc`
-    + `aws:SourceVpce`
-    + `aws:SourceOwner`
-    + `aws:SourceAccount`
-    + `s3:x-amz-server-side-encryption-aws-kms-key-id`
-    + `aws:userid`, outside the pattern "`AROLEID:*`"
-    + `s3:DataAccessPointArn`
+
+#### ACLs<a name="public-acls"></a>
+
+Amazon S3 considers a bucket or object ACL public if it grants any permissions to members of the predefined `AllUsers` or `AuthenticatedUsers` groups\. For more information about predefined groups, see [Amazon S3 predefined groups](acl-overview.md#specifying-grantee-predefined-groups)\.
+
+#### Bucket policies<a name="public-bucket-policies"></a>
+
+When evaluating a bucket policy, Amazon S3 begins by assuming that the policy is public\. It then evaluates the policy to determine whether it qualifies as non\-public\. To be considered non\-public, a bucket policy must grant access only to fixed values \(values that don't contain a wildcard or [an AWS Identity and Access Management Policy Variable](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html)\) for one or more of the following:
++ An AWS principal, user, role, or service principal \(e\.g\. `aws:PrincipalOrgID`\)
++ A set of Classless Inter\-Domain Routings \(CIDRs\), using `aws:SourceIp`\. For more information about CIDR, see [RFC 4632](http://www.rfc-editor.org/rfc/rfc4632.txt) on the RFC Editor website\.
+**Note**  
+Bucket policies that grant access conditioned on the `aws:SourceIp` condition key with very broad IP ranges \(for example, 0\.0\.0\.0/1\) are evaluated as "public\." This includes values broader than /8 for IPv4 and /32 for IPv6 \(excluding RFC1918 private ranges\)\. Block public access will reject these "public" policies and prevent cross\-account access to buckets already using these "public" policies\.
++ `aws:SourceArn`
++ `aws:SourceVpc`
++ `aws:SourceVpce`
++ `aws:SourceOwner`
++ `aws:SourceAccount`
++ `s3:x-amz-server-side-encryption-aws-kms-key-id`
++ `aws:userid`, outside the pattern "`AROLEID:*`"
++ `s3:DataAccessPointArn`
 **Note**  
 When used in a bucket policy, this value can contain a wildcard for the access point name without rendering the policy public, as long as the account id is fixed\. For example, allowing access to `arn:aws:s3:us-west-2:123456789012:accesspoint/*` would permit access to any access point associated with account `123456789012` in Region `us-west-2`, without rendering the bucket policy public\. Note that this behavior is different for access point policies\. For more information, see [Access points](#access-control-block-public-access-policy-status-access-points)\.
-    + `s3:DataAccessPointAccount`
-  + Under these rules, the following example policies are considered public\.
++ `s3:DataAccessPointAccount`
 
-    ```
-    { 
-    		"Principal": { "Federated": "graph.facebook.com" }, 
-    		"Resource": "*", 
-    		"Action": "s3:PutObject", 
-    		"Effect": "Allow"
-    	}
-    ```
+For more information about bucket policies, see [Bucket policies and user policies](using-iam-policies.md)\.
 
-    ```
-    {
-    		"Principal": "*", 
-    		"Resource": "*", 
-    		"Action": "s3:PutObject", 
-    		"Effect": "Allow" 
-    	}
-    ```
+**Example : Public bucket policies**  
+Under these rules, the following example policies are considered public\.  
 
-    ```
-    {
-    		"Principal": "*", 
-    		"Resource": "*", 
-    		"Action": "s3:PutObject", 
-    		"Effect": "Allow", 
-    		"Condition": { "StringLike": {"aws:SourceVpc": "vpc-*"}}
-    	}
-    ```
+```
+{ 
+		"Principal": { "Federated": "graph.facebook.com" }, 
+		"Resource": "*", 
+		"Action": "s3:PutObject", 
+		"Effect": "Allow"
+	}
+```
 
-    You can make these policies non\-public by including any of the condition keys listed previously, using a fixed value\. For example, you can make the last policy preceding non\-public by setting `aws:SourceVpc` to a fixed value, like the following\.
+```
+{
+		"Principal": "*", 
+		"Resource": "*", 
+		"Action": "s3:PutObject", 
+		"Effect": "Allow" 
+	}
+```
 
-    ```
-    {
-    		"Principal": "*", 
-    		"Resource": "*", 
-    		"Action": "s3:PutObject", 
-    		"Effect": "Allow", 
-    		"Condition": {"StringEquals": {"aws:SourceVpc": "vpc-91237329"}}
-    	}
-    ```
-  + For more information about bucket policies, see [Bucket policies and user policies](using-iam-policies.md)\.
+```
+{
+		"Principal": "*", 
+		"Resource": "*", 
+		"Action": "s3:PutObject", 
+		"Effect": "Allow", 
+		"Condition": { "StringLike": {"aws:SourceVpc": "vpc-*"}}
+	}
+```
+You can make these policies non\-public by including any of the condition keys listed previously, using a fixed value\. For example, you can make the last policy preceding non\-public by setting `aws:SourceVpc` to a fixed value, like the following\.  
+
+```
+{
+		"Principal": "*", 
+		"Resource": "*", 
+		"Action": "s3:PutObject", 
+		"Effect": "Allow", 
+		"Condition": {"StringEquals": {"aws:SourceVpc": "vpc-91237329"}}
+	}
+```
 
 #### Example<a name="access-control-block-public-access-policy-example"></a>
 

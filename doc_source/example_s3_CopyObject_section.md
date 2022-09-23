@@ -157,7 +157,7 @@ int main() {
         }
         
         CopyObjectRequest copyReq = CopyObjectRequest.builder()
-            .copySource(encodedUrl)
+            .copySourceIfMatch(encodedUrl)
             .destinationBucket(toBucket)
             .destinationKey(objectKey)
             .build();
@@ -288,7 +288,12 @@ try {
 
 ```
 class ObjectWrapper:
+    """Encapsulates S3 object actions."""
     def __init__(self, s3_object):
+        """
+        :param s3_object: A Boto3 Object resource. This is a high-level resource in Boto3
+                          that wraps object actions in a class-like structure.
+        """
         self.object = s3_object
         self.key = self.object.key
 
@@ -297,6 +302,7 @@ class ObjectWrapper:
         Copies the object to another bucket.
 
         :param dest_object: The destination object initialized with a bucket and key.
+                            This is a Boto3 Object resource.
         """
         try:
             dest_object.copy_from(CopySource={

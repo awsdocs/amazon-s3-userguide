@@ -6,10 +6,10 @@ The notification message that Amazon S3 sends to publish an event is in the JSON
 + **detail\-type** — The type of event that's being sent\. See [Using EventBridge](EventBridge.md) for a list of event types\.
 + **source** — Identifies the service that generated the event\.
 + **account** — The 12\-digit AWS account ID of the bucket owner\.
-+ **time** — The time the event occured\.
++ **time** — The time the event occurred\.
 + **region** — Identifies the AWS Region of the bucket\.
 + **resource** — A JSON array that contains the Amazon Resource Name \(ARN\) of the bucket\.
-+ **detail** — A JSON object that contains information about the event\. For more information about what can be included in thie field, see [Event message detail field](#ev-events-detail)\.
++ **detail** — A JSON object that contains information about the event\. For more information about what can be included in this field, see [Event message detail field](#ev-events-detail)\.
 
 ## Event message structure examples<a name="ev-events-list"></a>
 
@@ -151,7 +151,7 @@ The following are examples of some of the Amazon S3 event notification messages 
 
 ## Event message detail field<a name="ev-events-detail"></a>
 
-The detail feild contains a JSON object with information about the event\. The following fields may be present in the detail field\.
+The detail field contains a JSON object with information about the event\. The following fields may be present in the detail field\.
 + **version** — Currently 0 \(zero\) for all events\.
 + **bucket** — Information about the Amazon S3 bucket involved in the event\.
 + **object** — Information about the Amazon S3 object involved in the event\.

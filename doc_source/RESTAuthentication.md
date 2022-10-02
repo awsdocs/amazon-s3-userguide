@@ -153,7 +153,7 @@ This example gets an object from the awsexamplebucket1 bucket\.
  Note that the CanonicalizedResource includes the bucket name, but the HTTP Request\-URI does not\. \(The bucket is specified by the Host header\.\) 
 
 **Note**  
-The following Python script calculates the preceeding signature, using the provided parameters\. You can use this script to construct your own signatures, replacing the keys and StringToSign as appropriate\.  
+The following Python script calculates the preceding signature, using the provided parameters\. You can use this script to construct your own signatures, replacing the keys and StringToSign as appropriate\.  
 
 ```
  1. import base64

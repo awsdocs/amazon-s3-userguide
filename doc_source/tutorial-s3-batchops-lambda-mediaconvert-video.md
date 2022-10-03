@@ -804,7 +804,7 @@ In this section of the tutorial, you build a Lambda function using the SDK for P
    
            job_settings['Inputs'][0]['FileInput'] = source_s3
    
-           # The path of each ouput video is constructed based on the values of 
+           # The path of each output video is constructed based on the values of 
            # the attributes in each object of OutputGroups in the job.json file. 
            destination_s3 = 's3://{0}/{1}/{2}' \
                .format(os.environ['DestinationBucket'],

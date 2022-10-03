@@ -98,7 +98,7 @@ success = await TransferMethods.DownloadS3DirectoryAsync(transferUtil, bucketNam
 if (success)
 {
     Console.WriteLine($"Downloaded the files in {bucketName} to {downloadPath}.");
-    Console.WriteLine($"{downloadPath} now contains the fillowing files:");
+    Console.WriteLine($"{downloadPath} now contains the following files:");
     DisplayLocalFiles(downloadPath);
 }
 

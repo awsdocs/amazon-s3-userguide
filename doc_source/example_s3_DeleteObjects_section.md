@@ -65,7 +65,7 @@ Delete all objects in an S3 bucket\.
 ```
     public static void deleteBucketObjects(S3Client s3, String bucketName) {
 
-        // Upload three sample objects to the specfied Amazon S3 bucket.
+        // Upload three sample objects to the specified Amazon S3 bucket.
         ArrayList<ObjectIdentifier> keys = new ArrayList<>();
         PutObjectRequest putOb;
         ObjectIdentifier objectId;

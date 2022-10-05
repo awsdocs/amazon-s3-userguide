@@ -47,7 +47,7 @@ The following code examples show how to create a presigned URL for S3 and upload
 	fmt.Println("Create Presign client")
 	presignClient := s3.NewPresignClient(&client)
 
-	presignResult, err := presignClient.PresignGetObject(context.TODO(), &s3.GetObjectInput{
+	presignResult, err := presignClient.PresignPutObject(context.TODO(), &s3.PutObjectInput{
 		Bucket: aws.String(name),
 		Key:    aws.String("path/myfile.jpg"),
 	})

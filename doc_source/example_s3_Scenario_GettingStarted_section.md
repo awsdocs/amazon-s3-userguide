@@ -201,38 +201,33 @@ namespace AwsDoc {
         //! Delete an S3 bucket.
         /*!
           \sa DeleteBucket()
-          \param bucketName the S3 bucket's name.
-          \param client an S3 client.
-          \param logProgress enables verbose logging.
+          \param bucketName The S3 bucket's name.
+          \param client An S3 client.
         */
-        static bool DeleteBucket(const Aws::String &bucketName, Aws::S3::S3Client &client, bool logProgress);
+        static bool DeleteBucket(const Aws::String &bucketName, Aws::S3::S3Client &client);
 
         //! Delete an object in an S3 bucket.
         /*!
           \sa DeleteObjectFromBucket()
-          \param bucketName the S3 bucket's name.
-          \param key the key for the object in the S3 bucket.
-          \param client an S3 client.
-          \param logProgress enables verbose logging.
-        */
+          \param bucketName The S3 bucket's name.
+          \param key The key for the object in the S3 bucket.
+          \param client An S3 client.
+         */
         static bool
-        DeleteObjectFromBucket(const Aws::String &bucketName, const Aws::String &key, Aws::S3::S3Client &client,
-                               bool logProgress);
+        DeleteObjectFromBucket(const Aws::String &bucketName, const Aws::String &key, Aws::S3::S3Client &client);
     }
 }
 
 
-    //! Scenario to create, copy, and delete S3 buckets and objects.
-    /*!
-      \sa S3_GettingStartedScenario()
-      \param uploadFilePath path to file to upload to an S3 bucket.
-      \param saveFilePath path for saving a downloaded S3 object.
-      \param clientConfig Aws client configuration.
-      \param logProgress enables verbose logging.
-    */
+//! Scenario to create, copy, and delete S3 buckets and objects.
+/*!
+  \sa S3_GettingStartedScenario()
+  \param uploadFilePath Path to file to upload to an Amazon S3 bucket.
+  \param saveFilePath Path for saving a downloaded S3 object.
+  \param clientConfig Aws client configuration.
+ */
 bool AwsDoc::S3::S3_GettingStartedScenario(const Aws::String &uploadFilePath, const Aws::String &saveFilePath,
-                                           const Aws::Client::ClientConfiguration &clientConfig,
-                                           bool logProgress) {
+                                           const Aws::Client::ClientConfiguration &clientConfig) {
 
     Aws::S3::S3Client client(clientConfig);
 
@@ -263,7 +258,7 @@ bool AwsDoc::S3::S3_GettingStartedScenario(const Aws::String &uploadFilePath, co
                       err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
             return false;
         }
-        else if (logProgress) {
+        else {
             std::cout << "Created the bucket, '" << bucketName <<
                       "', in the region, '" << clientConfig.region << "'." << std::endl;
         }
@@ -282,8 +277,8 @@ bool AwsDoc::S3::S3_GettingStartedScenario(const Aws::String &uploadFilePath, co
                                               std::ios_base::in | std::ios_base::binary);
 
         if (!input_data->is_open()) {
-            std::cout << "Error: unable to open file, '" << uploadFilePath << "'." << std::endl;
-            AwsDoc::S3::DeleteBucket(bucketName, client, logProgress);
+            std::cerr << "Error: unable to open file, '" << uploadFilePath << "'." << std::endl;
+            AwsDoc::S3::DeleteBucket(bucketName, client);
             return false;
         }
 
@@ -293,13 +288,13 @@ bool AwsDoc::S3::S3_GettingStartedScenario(const Aws::String &uploadFilePath, co
                 client.PutObject(request);
 
         if (!outcome.IsSuccess()) {
-            std::cout << "Error: PutObject: " <<
+            std::cerr << "Error: PutObject: " <<
                       outcome.GetError().GetMessage() << std::endl;
-            AwsDoc::S3::DeleteObjectFromBucket(bucketName, key, client, logProgress);
-            AwsDoc::S3::DeleteBucket(bucketName, client, logProgress);
+            AwsDoc::S3::DeleteObjectFromBucket(bucketName, key, client);
+            AwsDoc::S3::DeleteBucket(bucketName, client);
             return false;
         }
-        else if (logProgress) {
+        else {
             std::cout << "Added the object with the key, '" << key << "', to the bucket, '"
                       << bucketName << "'." << std::endl;
         }
@@ -316,14 +311,12 @@ bool AwsDoc::S3::S3_GettingStartedScenario(const Aws::String &uploadFilePath, co
 
         if (!outcome.IsSuccess()) {
             const Aws::S3::S3Error &err = outcome.GetError();
-            std::cout << "Error: GetObject: " <<
+            std::cerr << "Error: GetObject: " <<
                       err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
         }
         else {
-            if (logProgress) {
-                std::cout << "Downloaded the object with the key, '" << key << "', in the bucket, '"
-                          << bucketName << "'." << std::endl;
-            }
+            std::cout << "Downloaded the object with the key, '" << key << "', in the bucket, '"
+                      << bucketName << "'." << std::endl;
 
             Aws::IOStream &ioStream = outcome.GetResultWithOwnership().
                     GetBody();
@@ -331,7 +324,7 @@ bool AwsDoc::S3::S3_GettingStartedScenario(const Aws::String &uploadFilePath, co
             if (!outStream.is_open()) {
                 std::cout << "Error: unable to open file, '" << saveFilePath << "'." << std::endl;
             }
-            else if (logProgress) {
+            else {
                 outStream << ioStream.rdbuf();
                 std::cout << "Wrote the downloaded object to the file '"
                           << saveFilePath << "'." << std::endl;
@@ -350,10 +343,10 @@ bool AwsDoc::S3::S3_GettingStartedScenario(const Aws::String &uploadFilePath, co
         Aws::S3::Model::CopyObjectOutcome outcome =
                 client.CopyObject(request);
         if (!outcome.IsSuccess()) {
-            std::cout << "Error: CopyObject: " <<
+            std::cerr << "Error: CopyObject: " <<
                       outcome.GetError().GetMessage() << std::endl;
         }
-        else if (logProgress) {
+        else {
             std::cout << "Copied the object with the key, '" << key << "', to the key, '" << copiedToKey
                       << ", in the bucket, '" << bucketName << "'." << std::endl;
         }
@@ -367,10 +360,10 @@ bool AwsDoc::S3::S3_GettingStartedScenario(const Aws::String &uploadFilePath, co
         Aws::S3::Model::ListObjectsOutcome outcome = client.ListObjects(request);
 
         if (!outcome.IsSuccess()) {
-            std::cout << "Error: ListObjects: " <<
+            std::cerr << "Error: ListObjects: " <<
                       outcome.GetError().GetMessage() << std::endl;
         }
-        else if (logProgress) {
+        else {
             Aws::Vector<Aws::S3::Model::Object> objects =
                     outcome.GetResult().GetContents();
 
@@ -384,15 +377,15 @@ bool AwsDoc::S3::S3_GettingStartedScenario(const Aws::String &uploadFilePath, co
 
     // 6. Delete all objects in the bucket.
     // All objects in the bucket must be deleted before deleting the bucket.
-    AwsDoc::S3::DeleteObjectFromBucket(bucketName, copiedToKey, client, logProgress);
-    AwsDoc::S3::DeleteObjectFromBucket(bucketName, key, client, logProgress);
+    AwsDoc::S3::DeleteObjectFromBucket(bucketName, copiedToKey, client);
+    AwsDoc::S3::DeleteObjectFromBucket(bucketName, key, client);
 
     // 7. Delete the bucket.
-    return AwsDoc::S3::DeleteBucket(bucketName, client, logProgress);
+    return AwsDoc::S3::DeleteBucket(bucketName, client);
 }
 
 bool AwsDoc::S3::DeleteObjectFromBucket(const Aws::String &bucketName, const Aws::String &key,
-                            Aws::S3::S3Client &client, bool logProgress) {
+                                        Aws::S3::S3Client &client) {
     Aws::S3::Model::DeleteObjectRequest request;
     request.SetBucket(bucketName);
     request.SetKey(key);
@@ -401,19 +394,18 @@ bool AwsDoc::S3::DeleteObjectFromBucket(const Aws::String &bucketName, const Aws
             client.DeleteObject(request);
 
     if (!outcome.IsSuccess()) {
-        std::cout << "Error: DeleteObject: " <<
+        std::cerr << "Error: DeleteObject: " <<
                   outcome.GetError().GetMessage() << std::endl;
-        return false;
     }
-    else if (logProgress) {
+    else {
         std::cout << "Deleted the object with the key, '" << key << "', from the bucket, '"
                   << bucketName << "'." << std::endl;
     }
 
-    return true;
+    return outcome.IsSuccess();
 }
 
-bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName, Aws::S3::S3Client &client, bool logProgress) {
+bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName, Aws::S3::S3Client &client) {
     Aws::S3::Model::DeleteBucketRequest request;
     request.SetBucket(bucketName);
 
@@ -424,12 +416,11 @@ bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName, Aws::S3::S3Client &
         const Aws::S3::S3Error &err = outcome.GetError();
         std::cerr << "Error: DeleteBucket: " <<
                   err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-        return false;
     }
-    else if (logProgress) {
+    else {
         std::cout << "Deleted the bucket, '" << bucketName << "'." << std::endl;
     }
-    return true;
+    return outcome.IsSuccess();
 }
 ```
 + For API details, see the following topics in *AWS SDK for C\+\+ API Reference*\.
@@ -1445,7 +1436,7 @@ class ScenarioGettingStarted
     bucket = @s3_resource.create_bucket(
       bucket: "doc-example-bucket-#{Random.uuid}",
       create_bucket_configuration: {
-        location_constraint: s3_resource.client.config.region
+        location_constraint: "us-east-2" # Note: only certain regions permitted
       }
     )
     puts("Created demo bucket named #{bucket.name}.")
@@ -1461,30 +1452,21 @@ class ScenarioGettingStarted
   # Requests a file name from the user.
   #
   # @return The name of the file.
-  def request_file_name
-    file_name = ""
-    while file_name.empty?
-      puts("\nEnter a file you want to upload to your bucket: ")
-      file_name = gets.chomp
-      unless File.file?(file_name)
-        puts("Couldn't find file #{file_name}. Are you sure it exists?")
-        file_name = ""
-      end
-    end
-    file_name
+  def create_file
+    File.open("demo.txt", w) { |f| f.write("This is a demo file.") }
   end
 
-  # Uploads a file from your computer to an Amazon S3 bucket.
+  # Uploads a file to an Amazon S3 bucket.
   #
-  # @param bucket [Aws::S3::Bucket] The bucket where the file is uploaded.
+  # @param bucket [Aws::S3::Bucket] The bucket object representing the upload destination
   # @return [Aws::S3::Object] The Amazon S3 object that contains the uploaded file.
   def upload_file(bucket)
-    file_name = request_file_name
-    s3_object = bucket.object(File.basename(file_name))
-    s3_object.upload_file(file_name)
-    puts("Uploaded file #{file_name} into bucket #{bucket.name} with key #{s3_object.key}.")
+    File.open("demo.txt", "w+") { |f| f.write("This is a demo file.") }
+    s3_object = bucket.object(File.basename("demo.txt"))
+    s3_object.upload_file("demo.txt")
+    puts("Uploaded file demo.txt into bucket #{bucket.name} with key #{s3_object.key}.")
   rescue Aws::Errors::ServiceError => e
-    puts("Couldn't upload file #{file_name} to #{bucket.name}.")
+    puts("Couldn't upload file demo.txt to #{bucket.name}.")
     puts("\t#{e.code}: #{e.message}")
     raise
   else

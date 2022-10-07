@@ -84,7 +84,7 @@ This section explains the trust policy and minimum required permissions policy\.
     
   + `s3:ReplicateObject` and `s3:ReplicateDelete` – Permissions for these actions on all objects in the `DOC-EXAMPLE-BUCKET2` bucket \(the destination bucket\) allow Amazon S3 to replicate objects or delete markers to the destination bucket\. For information about delete markers, see [How delete operations affect replication](replication-what-is-isnot-replicated.md#replication-delete-op)\. 
 **Note**  
-Permissions for the `s3:ReplicateObject` action on the `DOC-EXAMPLE-BUCKET2` bucket \(the destination bucket\) also allow replication of object tags, so you don't need to explicitly grant permission for the `s3:ReplicateTags` action\.
+Permissions for the `s3:ReplicateObject` action on the `DOC-EXAMPLE-BUCKET2` bucket \(the destination bucket\) also allow replication of metadata such as object tags and ACLS\. Therefore you do not need to explicitly grant permission for the `s3:ReplicateTags` action\.
   + `s3:GetObjectVersionTagging` – Permissions for this action on objects in the `DOC-EXAMPLE-BUCKET1` bucket \(the source bucket\) allow Amazon S3 to read object tags for replication\. For more information, see [Categorizing your storage using tags](object-tagging.md)\. If Amazon S3 doesn't have these permissions, it replicates the objects, but not the object tags\.
 
   For a list of Amazon S3 actions, see [Amazon S3 actions](using-with-s3-actions.md)\.

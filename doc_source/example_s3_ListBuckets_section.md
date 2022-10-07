@@ -13,39 +13,24 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool AwsDoc::S3::ListBuckets() {
-    Aws::S3::S3Client client;
+bool AwsDoc::S3::ListBuckets(const Aws::Client::ClientConfiguration &clientConfig) {
+    Aws::S3::S3Client client(clientConfig);
 
     auto outcome = client.ListBuckets();
-    if (outcome.IsSuccess()) {
-        std::cout << "Found " << outcome.GetResult().GetBuckets().size() << " buckets\n";
-        for (auto&& b : outcome.GetResult().GetBuckets()) {
-            std::cout << b.GetName() << std::endl;
-        }
-        return true;
+
+    bool result = true;
+    if (!outcome.IsSuccess()) {
+        std::cerr << "Failed with error: " << outcome.GetError() << std::endl;
+        result = false;
     }
     else {
-        std::cout << "Failed with error: " << outcome.GetError() << std::endl;
-        return false;
+        std::cout << "Found " << outcome.GetResult().GetBuckets().size() << " buckets\n";
+        for (auto &&b: outcome.GetResult().GetBuckets()) {
+            std::cout << b.GetName() << std::endl;
+        }
     }
-}
 
-int main()
-{
-    //The Aws::SDKOptions struct contains SDK configuration options.
-    //An instance of Aws::SDKOptions is passed to the Aws::InitAPI and 
-    //Aws::ShutdownAPI methods.  The same instance should be sent to both methods.
-    Aws::SDKOptions options;
-    options.loggingOptions.logLevel = Aws::Utils::Logging::LogLevel::Debug;
-
-    //The AWS SDK for C++ must be initialized by calling Aws::InitAPI.
-    InitAPI(options);
-
-    AwsDoc::S3::ListBuckets();
-
-    //Before the application terminates, the SDK must be shut down. 
-    ShutdownAPI(options);
-    return 0;
+    return result;
 }
 ```
 +  For API details, see [ListBuckets](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/ListBuckets) in *AWS SDK for C\+\+ API Reference*\. 

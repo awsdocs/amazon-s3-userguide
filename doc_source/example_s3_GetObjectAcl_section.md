@@ -13,77 +13,114 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool AwsDoc::S3::GetBucketAcl(const Aws::String& bucketName, const Aws::String& region)
-{
-    Aws::Client::ClientConfiguration config;
-    config.region = region;
-
-    Aws::S3::S3Client s3_client(config);
+bool AwsDoc::S3::GetBucketAcl(const Aws::String &bucketName,
+                              const Aws::Client::ClientConfiguration &clientConfig) {
+    Aws::S3::S3Client s3_client(clientConfig);
 
     Aws::S3::Model::GetBucketAclRequest request;
     request.SetBucket(bucketName);
 
-    Aws::S3::Model::GetBucketAclOutcome outcome = 
-        s3_client.GetBucketAcl(request);
+    Aws::S3::Model::GetBucketAclOutcome outcome =
+            s3_client.GetBucketAcl(request);
 
-    if (outcome.IsSuccess())
-    {
-        Aws::Vector<Aws::S3::Model::Grant> grants = 
-            outcome.GetResult().GetGrants();
+    if (!outcome.IsSuccess()) {
+        const Aws::S3::S3Error &err = outcome.GetError();
+        std::cerr << "Error: GetBucketAcl: "
+                  << err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
+    }
+    else {
+        Aws::Vector<Aws::S3::Model::Grant> grants =
+                outcome.GetResult().GetGrants();
 
-        for (auto it = grants.begin(); it != grants.end(); it++)
-        {
+        for (auto it = grants.begin(); it != grants.end(); it++) {
             Aws::S3::Model::Grant grant = *it;
             Aws::S3::Model::Grantee grantee = grant.GetGrantee();
-            
-            std::cout << "For bucket " << bucketName << ": " 
-                << std::endl << std::endl;
 
-            if (grantee.TypeHasBeenSet())
-            {
+            std::cout << "For bucket " << bucketName << ": "
+                      << std::endl << std::endl;
+
+            if (grantee.TypeHasBeenSet()) {
                 std::cout << "Type:          "
-                    << GetGranteeTypeString(grantee.GetType()) << std::endl;
-            }
-            
-            if (grantee.DisplayNameHasBeenSet())
-            {
-                std::cout << "Display name:  " 
-                    << grantee.GetDisplayName() << std::endl;
+                          << GetGranteeTypeString(grantee.GetType()) << std::endl;
             }
 
-            if (grantee.EmailAddressHasBeenSet())
-            {
-                std::cout << "Email address: " 
-                    << grantee.GetEmailAddress() << std::endl;
+            if (grantee.DisplayNameHasBeenSet()) {
+                std::cout << "Display name:  "
+                          << grantee.GetDisplayName() << std::endl;
             }
 
-            if (grantee.IDHasBeenSet())
-            {
-                std::cout << "ID:            " 
-                    << grantee.GetID() << std::endl;
+            if (grantee.EmailAddressHasBeenSet()) {
+                std::cout << "Email address: "
+                          << grantee.GetEmailAddress() << std::endl;
             }
-            
-            if (grantee.URIHasBeenSet())
-            {
-                std::cout << "URI:           " 
-                    << grantee.GetURI() << std::endl;
+
+            if (grantee.IDHasBeenSet()) {
+                std::cout << "ID:            "
+                          << grantee.GetID() << std::endl;
             }
-            
-            std::cout << "Permission:    " << 
-                GetPermissionString("bucket", grant.GetPermission()) << 
-                std::endl << std::endl;
+
+            if (grantee.URIHasBeenSet()) {
+                std::cout << "URI:           "
+                          << grantee.GetURI() << std::endl;
+            }
+
+            std::cout << "Permission:    " <<
+                      GetPermissionString(grant.GetPermission()) <<
+                      std::endl << std::endl;
         }
     }
-    else
-    {
-        auto err = outcome.GetError();
-        std::cout << "Error: GetBucketAcl: " 
-            << err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
 
-        return false;
+    return outcome.IsSuccess();
+}
+
+//! Routine which converts a built-in type enumeration to a human-readable string.
+/*!
+ \sa GetGranteeTypeString()
+ \param type Type enumeration.
+*/
+
+Aws::String GetGranteeTypeString(const Aws::S3::Model::Type &type) {
+    switch (type) {
+        case Aws::S3::Model::Type::AmazonCustomerByEmail:
+            return "Email address of an AWS account";
+        case Aws::S3::Model::Type::CanonicalUser:
+            return "Canonical user ID of an AWS account";
+        case Aws::S3::Model::Type::Group:
+            return "Predefined Amazon S3 group";
+        case Aws::S3::Model::Type::NOT_SET:
+            return "Not set";
+        default:
+            return "Type unknown";
+    }
+}
+
+//! Routine which converts a built-in type enumeration to a human-readable string.
+/*!
+ \sa GetPermissionString()
+ \param permission Permission enumeration.
+*/
+
+Aws::String GetPermissionString(const Aws::S3::Model::Permission &permission) {
+    switch (permission) {
+        case Aws::S3::Model::Permission::FULL_CONTROL:
+            return "Can list objects in this bucket, create/overwrite/delete "
+                   "objects in this bucket, and read/write this "
+                   "bucket's permissions";
+        case Aws::S3::Model::Permission::NOT_SET:
+            return "Permission not set";
+        case Aws::S3::Model::Permission::READ:
+            return "Can list objects in this bucket";
+        case Aws::S3::Model::Permission::READ_ACP:
+            return "Can read this bucket's permissions";
+        case Aws::S3::Model::Permission::WRITE:
+            return "Can create, overwrite, and delete objects in this bucket";
+        case Aws::S3::Model::Permission::WRITE_ACP:
+            return "Can write this bucket's permissions";
+        default:
+            return "Permission unknown";
     }
 
-    return true;
+    return "Permission unknown";
 }
 ```
 +  For API details, see [GetObjectAcl](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/GetObjectAcl) in *AWS SDK for C\+\+ API Reference*\. 

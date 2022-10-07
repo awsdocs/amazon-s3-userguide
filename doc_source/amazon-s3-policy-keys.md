@@ -283,12 +283,6 @@ For more information and examples, see the following resources:
 + [Provide required access to Systems Manager for AWS managed Amazon S3 buckets](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent-minimum-s3-permissions.html) in the *AWS Systems Manager Guide*
 + [Limit access to Amazon S3 buckets owned by specific AWS accounts](http://aws.amazon.com/blogs/storage/limit-access-to-amazon-s3-buckets-owned-by-specific-aws-accounts/) in the *AWS Storage Blog*
 
-You can use the `aws:ResourceAccount` or `s3:ResourceAccount` condition key to write IAM or Virtual Private Cloud Endpoint policies that restrict user or application access to the Amazon S3 buckets that are owned by a specific AWS account ID\. You can use this condition key to restrict clients within your VPC from accessing buckets that you do not own\.
-
-For information and examples, see the following resources:
-+ [Restricting access to buckets in a specified AWS account](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html#vpc-endpoints-policies-s3) in the *AWS PrivateLink Guide*
-+ [Limit access to AWSowned by specific AWS accounts](http://aws.amazon.com/blogs/storage/limit-access-to-amazon-s3-buckets-owned-by-specific-aws-accounts/) in the *AWS Storage Blog*
-
 ### Example 8: Requiring a minimum TLS version<a name="example-object-tls-version"></a>
 
 You can use the s3:TlsVersion condition key to write IAM, Virtual Private Cloud Endpoint \(VPCE\), or bucket policies that restrict user or application access to Amazon S3 buckets based on the TLS version used by the client\. You can use this condition key to write policies that require a minimum TLS version\. 

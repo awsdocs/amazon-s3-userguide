@@ -20,7 +20,8 @@ The following figure shows how deleting the current version \(121212\) of an obj
 
 A subsequent `GET` retrieves version 111111\.
 
-
+**Note**  
+To restore object versions in batches, you can [use the `COPY` operation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-copy-object.html)\. The `COPY` operation copies each object that is specified in the manifest\. However, be aware that objects aren't necessarily copied in the same order as they appear in the manifest\. For versioned buckets, if preserving current/non\-current version order is important, you should copy all non\-current versions first\. Then, after the first job is complete, copy the current versions in a subsequent job\.
 
 ## To restore previous object versions<a name="restoring-obj-version-version-enabled-bucket-examples"></a>
 

@@ -1,21 +1,25 @@
-# Writing and debugging AWS Lambda functions for Amazon S3 Object Lambda Access Points<a name="olap-writing-lambda"></a>
+# Writing Lambda functions for S3 Object Lambda access points<a name="olap-writing-lambda"></a>
 
-This section details how to write and debug Lambda functions for use with S3 Object Lambda access points\.
+This section details how to write AWS Lambda functions for use with Amazon S3 Object Lambda access points\.
 
 **Topics**
-+ [Working with WriteGetObjectResponse](#olap-getobject-response)
-+ [Debugging S3 Object Lambda](#olap-debugging-lambda)
-+ [Working with Range and partNumber headers](#range-get-olap)
-+ [Event context format and usage](#olap-event-context)
++ [Working with `GetObject` requests in Lambda](#olap-getobject-response)
++ [Working with `HeadObject` requests in Lambda](#olap-headobject)
++ [Working with `ListObjects` requests in Lambda](#olap-listobjects)
++ [Working with `ListObjectsV2` requests in Lambda](#olap-listobjectsv2)
++ [Event context format and usage](olap-event-context.md)
++ [Working with Range and partNumber headers](range-get-olap.md)
 
-## Working with WriteGetObjectResponse<a name="olap-getobject-response"></a>
+## Working with `GetObject` requests in Lambda<a name="olap-getobject-response"></a>
 
-S3 Object Lambda includes a new Amazon S3 API operation, `WriteGetObjectResponse`, which enables the Lambda function to provide customized data and response headers to the `GetObject` caller\. `WriteGetObjectResponse` affords the Lambda author extensive control over the status code, response headers, and response body, based on their processing needs\. You can use `WriteGetObjectResponse` to respond with the whole transformed object, portions of the transformed object, or other responses based on the context of your application\. The following section shows unique examples of using the `WriteGetObjectResponse` API operation\.
-+ **Example 1:** Respond with an HTTP status code 403 \(Forbidden\) 
+This section assumes that your Object Lambda access point is configured to call the Lambda function for `GetObject`\. S3 Object Lambda includes the Amazon S3 API operation, `WriteGetObjectResponse`, which enables the Lambda function to provide customized data and response headers to the `GetObject` caller\. 
+
+`WriteGetObjectResponse` gives you extensive control over the status code, response headers, and response body, based on your processing needs\. You can use `WriteGetObjectResponse` to respond with the whole transformed object, portions of the transformed object, or other responses based on the context of your application\. The following section shows unique examples of using the `WriteGetObjectResponse` API operation\.
++ **Example 1:** Respond with HTTP status code 403 \(Forbidden\) 
 + **Example 2:** Respond with a transformed image
 + **Example 3:** Stream compressed content
 
-**Example 1:**
+**Example 1: Respond with HTTP status code 403 \(Forbidden\) **
 
 You can use `WriteGetObjectResponse` to respond with the HTTP status code 403 \(Forbidden\) based on the content of the object\.
 
@@ -167,7 +171,7 @@ exports.handler = async (event) => {
 
 ------
 
-**Example 2:**
+**Example 2: Respond with a transformed image**
 
 When performing an image transformation, you might find that you need all the bytes of the source object before you can start processing them\. In this case, your `WriteGetObjectResponse` request returns the whole object to the requesting application in one call\.
 
@@ -211,7 +215,7 @@ public class Example2 {
 
         // The entire image is loaded into memory here so that we can resize it.
         // Once the resizing is completed, we write the bytes into the body
-        // of the WriteGetObjectResponse.
+        // of the WriteGetObjectResponse request.
         var originalImage = ImageIO.read(presignedResponse.body());
         var resizingImage = originalImage.getScaledInstance(WIDTH, HEIGHT, Image.SCALE_DEFAULT);
         var resizedImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -253,7 +257,7 @@ def handler(event, context):
     s3_url = get_context["inputS3Url"]
 
     """
-    In this case, we're resizing '.png' images that are stored in S3 and are accessible through the presigned URL
+    In this case, we're resizing .png images that are stored in S3 and are accessible through the presigned URL
     'inputS3Url'.
     """
     image_request = requests.get(s3_url)
@@ -284,12 +288,12 @@ const sharp = require('sharp');
 exports.handler = async (event) => {
     const s3 = new S3();
 
-    // Retrieve the operation context object from event. This object indicates where the WriteGetObjectResponse request
+    // Retrieve the operation context object from the event. This object indicates where the WriteGetObjectResponse request
     // should be delivered and has a presigned URL in 'inputS3Url' where we can download the requested object from.
     const { getObjectContext } = event;
     const { outputRoute, outputToken, inputS3Url } = getObjectContext;
 
-    // In this case, we're resizing '.png' images that are stored in S3 and are accessible through the presigned URL
+    // In this case, we're resizing .png images that are stored in S3 and are accessible through the presigned URL
     // 'inputS3Url'.
     const { data } = await axios.get(inputS3Url, { responseType: 'arraybuffer' });
 
@@ -312,7 +316,7 @@ exports.handler = async (event) => {
 
 ------
 
-**Example 3:**
+**Example 3: Stream compressed content**
 
 When you're compressing objects, compressed data is produced incrementally\. Consequently, you can use your `WriteGetObjectResponse` request to return the compressed data as soon as it's ready\. As shown in this example, you don't need to know the length of the completed transformation\.
 
@@ -484,102 +488,183 @@ exports.handler = async (event) => {
 ------
 
 **Note**  
-Although S3 Object Lambda allows up to 60 seconds to send a complete response to the caller through the `WriteGetObjectResponse` request, the actual amount of time available might be less\. For instance, your Lambda function timeout might be less than 60 seconds\. In other cases, the caller might have more stringent timeouts\. 
+Although S3 Object Lambda allows up to 60 seconds to send a complete response to the caller through the `WriteGetObjectResponse` request, the actual amount of time available might be less\. For example, your Lambda function timeout might be less than 60 seconds\. In other cases, the caller might have more stringent timeouts\. 
 
-For the original caller to receive a non\-500 \(Internal Server Error\) response, the `WriteGetObjectResponse` call must be completed\. If the Lambda function returns, with an exception or otherwise, before the `WriteGetObjectResponse` API operation is called, the original caller receives a 500 response\. Exceptions thrown during the time it takes to complete the response result in truncated responses to the caller\. If the Lambda function receives a 200 \(OK\) response from the `WriteGetObjectResponse` API call, then the original caller has sent the complete request\. The Lambda function's response, whether an exception is thrown or not, is ignored by S3 Object Lambda\.
+For the original caller to receive a response other than HTTP status code 500 \(Internal Server Error\), the `WriteGetObjectResponse` call must be completed\. If the Lambda function returns, with an exception or otherwise, before the `WriteGetObjectResponse` API operation is called, the original caller receives a 500 \(Internal Server Error\) response\. Exceptions thrown during the time it takes to complete the response result in truncated responses to the caller\. If the Lambda function receives an HTTP status code 200 \(OK\) response from the `WriteGetObjectResponse` API call, then the original caller has sent the complete request\. The Lambda function's response, whether an exception is thrown or not, is ignored by S3 Object Lambda\.
 
-When calling this API operation, Amazon S3 requires the route and request token from the event context\. For more information, see [Event context format and usage](#olap-event-context)\.
+When calling the `WriteGetObjectResponse` API operation, Amazon S3 requires the route and request token from the event context\. For more information, see [Event context format and usage](olap-event-context.md)\.
 
-These parameters are required to connect the `WriteGetObjectResult` response with the original caller\. Even though it is always appropriate to retry 500 responses, note that because the request token is a single\-use token, subsequent attempts to use it might result in 400 \(Bad Request\) responses\. Although the call to `WriteGetObjectResponse` with the route and request tokens does not need to be made from the invoked Lambda function, it must be made by an identity in the same account\. The call also must be completed before the Lambda function finishes execution\.
+The route and request token parameters are required to connect the `WriteGetObjectResult` response with the original caller\. Even though it is always appropriate to retry 500 \(Internal Server Error\) responses, because the request token is a single\-use token, subsequent attempts to use it might result in HTTP status code 400 \(Bad Request\) responses\. Although the call to `WriteGetObjectResponse` with the route and request tokens doesn't need to be made from the invoked Lambda function, it must be made by an identity in the same account\. The call also must be completed before the Lambda function finishes execution\.
 
-## Debugging S3 Object Lambda<a name="olap-debugging-lambda"></a>
+## Working with `HeadObject` requests in Lambda<a name="olap-headobject"></a>
 
-`GetObject` requests to S3 Object Lambda access points might result in a new error response when something goes wrong with the Lambda function invocation or execution\. These errors follow the same format as standard Amazon S3 errors\. For information about S3 Object Lambda errors, see [S3 Object Lambda Error Code List](https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#S3ObjectLambdaErrorCodeList) in the *Amazon Simple Storage Service API Reference*\.
+This section assumes that your Object Lambda access point is configured to call the Lambda function for `HeadObject`\. Lambda will receive a JSON payload that contains a key called `headObjectContext`\. Inside the context, there is a single property called `inputS3Url`, which is a presigned URL for the supporting access point for `HeadObject`\.
 
-For more information about general Lambda function debugging, see [Monitoring and troubleshooting Lambda applications](https://docs.aws.amazon.com/lambda/latest/dg/lambda-monitoring.html ) in the *AWS Lambda Developer Guide*\.
+The presigned URL will include the following properties if they're specified: 
++ `versionId` \(in the query parameters\)
++ `requestPayer` \(in the `x-amz-request-payer` header\)
++ `expectedBucketOwner` \(in the `x-amz-expected-bucket-owner` header\)
 
-For information about standard Amazon S3 errors, see [Error Responses](https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html) in the *Amazon Simple Storage Service API Reference*\.
+Other properties won't be presigned, and thus won't be included\. Non\-signed options sent as headers can be added manually to the request when calling the presigned URL that's found in the `userRequest` headers\. Server\-side encryption options are not supported for `HeadObject`\.
 
-You can enable request metrics in Amazon CloudWatch for your Object Lambda access points\. These metrics can be used to monitor the operational performance of your access point\.
+For the request syntax URI parameters, see [https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html) in the *Amazon Simple Storage Service API Reference*\.
 
-To get more granular logging about requests made to your Object Lambda access points, you can enable AWS CloudTrail data events\. For more information, see [Logging data events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html) in the *AWS CloudTrail User Guide*\.
+The following example shows a Lambda JSON input payload for `HeadObject`\.
 
-## Working with Range and partNumber headers<a name="range-get-olap"></a>
+```
+{
+  "xAmzRequestId": "requestId",
+  "**headObjectContext**": {
+    "**inputS3Url**": "https://my-s3-ap-111122223333.s3-accesspoint.us-east-1.amazonaws.com/example?X-Amz-Security-Token=<snip>"
+  },
+  "configuration": {
+       "accessPointArn": "arn:aws:s3-object-lambda:us-east-1:111122223333:accesspoint/example-object-lambda-ap",
+       "supportingAccessPointArn": "arn:aws:s3:us-east-1:111122223333:accesspoint/example-ap",
+       "payload": "{}"
+  },
+  "userRequest": {
+       "url": "https://object-lambda-111122223333.s3-object-lambda.us-east-1.amazonaws.com/example",
+       "headers": {
+           "Host": "object-lambda-111122223333.s3-object-lambda.us-east-1.amazonaws.com",
+           "Accept-Encoding": "identity",
+           "X-Amz-Content-SHA256": "e3b0c44298fc1example"
+       }
+   },
+   "userIdentity": {
+       "type": "AssumedRole",
+       "principalId": "principalId",
+       "arn": "arn:aws:sts::111122223333:assumed-role/Admin/example",       
+       "accountId": "111122223333",
+       "accessKeyId": "accessKeyId",
+       "sessionContext": {
+            "attributes": {
+            "mfaAuthenticated": "false",
+            "creationDate": "Wed Mar 10 23:41:52 UTC 2021"
+       },
+       "sessionIssuer": {
+            "type": "Role",
+            "principalId": "principalId",
+            "arn": "arn:aws:iam::111122223333:role/Admin",
+            "accountId": "111122223333",
+            "userName": "Admin"
+            }
+       }
+    },
+  "protocolVersion": "1.00"
+}
+```
 
-When working with large objects, you can use the `Range` HTTP header to download a specified byte range from an object\. You can use concurrent connections to Amazon S3 to fetch different byte ranges from within the same object\. You can also specify the `partNumber` parameter \(an integer between 1 and 10,000\), which effectively performs a "ranged" GET request for the specified part from the object\. For more information, see [GetObject Request Syntax](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html#API_GetObject_RequestSyntax) in the *Amazon Simple Storage Service API Reference*\.
+Your Lambda function should return a JSON object that contains the headers and values that will be returned for the `HeadObject` call\.
 
-Because there are multiple ways that you might want to handle a request that includes the `Range` or `partNumber` parameters, S3 Object Lambda doesn't apply these parameters to the transformed object\. Instead, your Lambda function must implement this functionality as needed for your application\.
+The following example shows the structure of the Lambda response JSON for `HeadObject`\.
 
-To use the `Range` and `partNumber` parameters with S3 Object Lambda, you enable these parameters for your Object Lambda access point, then write a Lambda function that can handle requests that include these parameters\. The following steps describe how to accomplish this\.
+```
+{
+    "statusCode": <number>; // Required
+    "errorCode": <string>;
+    "errorMessage": <string>;
+    "headers": {
+        "Accept-Ranges": <string>,
+        "x-amz-archive-status": <string>,
+        "x-amz-server-side-encryption-bucket-key-enabled": <boolean>,
+        "Cache-Control": <string>,
+        "Content-Disposition": <string>,
+        "Content-Encoding": <string>,
+        "Content-Language": <string>,
+        "Content-Length": <number>, // Required
+        "Content-Type": <string>,
+        "x-amz-delete-marker": <boolean>,
+        "ETag": <string>,
+        "Expires": <string>,
+        "x-amz-expiration": <string>,
+        "Last-Modified": <string>,
+        "x-amz-missing-meta": <number>,
+        "x-amz-object-lock-mode": <string>,
+        "x-amz-object-lock-legal-hold": <string>,
+        "x-amz-object-lock-retain-until-date": <string>,
+        "x-amz-mp-parts-count": <number>,
+        "x-amz-replication-status": <string>,
+        "x-amz-request-charged": <string>,
+        "x-amz-restore": <string>,
+        "x-amz-server-side-encryption": <string>,
+        "x-amz-server-side-encryption-customer-algorithm": <string>,
+        "x-amz-server-side-encryption-aws-kms-key-id": <string>,
+        "x-amz-server-side-encryption-customer-key-MD5": <string>,
+        "x-amz-storage-class": <string>,
+        "x-amz-tagging-count": <number>,
+        "x-amz-version-id": <string>,
+        <x-amz-meta-headers>: <string>, // user-defined metadata 
+        "x-amz-meta-meta1": <string>, // example of the user-defined metadata header, it will need the x-amz-meta prefix
+        "x-amz-meta-meta2": <string>
+        ...
+    };
+}
+```
 
-### Step 1: Configure your Object Lambda access point<a name="range-get-olap-step-1"></a>
+The following example shows how to use the presigned URL to populate your response by modifying the header values as needed before returning the JSON\.
 
-By default, Object Lambda access points respond with an HTTP 501 \(Not Implemented\) error to any `GetObject` request that contains a `Range` or `partNumber` parameter, either in the headers or query parameters\. To enable an Object Lambda access point to accept such requests, you must update your Object Lambda access point configuration by using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), or AWS SDKs\. For more information about updating your Object Lambda access point configuration, see [Creating Object Lambda Access Points](olap-create.md)\. 
-
-### Step 2: Implement Range or partNumber handling in your Lambda function<a name="range-get-olap-step-2"></a>
-
-When your Object Lambda access point invokes your Lambda function with a ranged `GetObject` request, the `Range` or `partNumber` parameter is included in the event context\. The location of the parameter in the event context depends on which parameter was used and how it was included in the original request to the Object Lambda access point, as explained in the following table\. 
+------
+#### [ Python ]
 
 
-| Parameter | Event context location | 
-| --- | --- | 
-|  `Range` \(header\)  |  `userRequest.headers.Range`  | 
-|  `Range` \(query parameter\)  |  `userRequest.url` \(query parameter `Range`\)  | 
-|  `partNumber`  |  `userRequest.url` \(query parameter `partNumber`\)  | 
+
+```
+import requests
+
+def lambda_handler(event, context):
+    print(event)
+    
+    # Extract the presigned URL from the input.
+    s3_url = event["headObjectContext"]["inputS3Url"]
+
+    # Get the head of the object from S3.     
+    response = requests.head(s3_url)
+    
+    # Return the error to S3 Object Lambda (if applicable).           
+    if (response.status_code >= 400):
+        return {
+            "statusCode": response.status_code,
+            "errorCode": "RequestFailure",                         
+            "errorMessage": "Request to S3 failed"    
+    }
+    
+    # Store the headers in a dictionary.
+    response_headers = dict(response.headers)
+
+    # This obscures Content-Type in a transformation, it is optional to add
+    response_headers["Content-Type"] = "" 
+
+    # Return the headers to S3 Object Lambda.     
+    return {
+        "statusCode": response.status_code,
+        "headers": response_headers     
+        }
+```
+
+------
+
+## Working with `ListObjects` requests in Lambda<a name="olap-listobjects"></a>
+
+This section assumes that your Object Lambda access point is configured to call the Lambda function for `ListObjects`\. Lambda will receive the JSON payload with a new object named `listObjectsContext`\. `listObjectsContext`contains a single property, `inputS3Url`, which is a presigned URL for the supporting access point for `ListObjects`\.
+
+Unlike `GetObject` and `HeadObject`, the presigned URL will include the following properties if they're specified:
++ All the query parameters
++ `requestPayer` \(in the `x-amz-request-payer` header\) 
++ `expectedBucketOwner` \(in the `x-amz-expected-bucket-owner` header\)
+
+For the request syntax URI parameters, see [https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html) in the *Amazon Simple Storage Service API Reference*\.
 
 **Important**  
-The presigned URL provided does not contain the `Range` or `partNumber` parameter from the original request\. If you want to retrieve only the specified range from Amazon S3, you must add the parameter to the presigned URL\.
+We recommend that you use the newer version, [ListObjectsV2](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html), when developing applications\. For backward compatibility, Amazon S3 continues to support `ListObjects`\.
 
-After you extract the `Range` or `partNumber` value, you can take one of the following approaches based on your application's needs:
-
-1. **Map the requested Range or partNumber to the transformed object** \(recommended\)
-
-   The most reliable way to handle `Range` or `partNumber` requests is to retrieve the full object from S3, transform the object, and then apply the requested `Range` or `partNumber` parameters to the transformed object\. To do this, use the provided presigned URL to fetch the entire object from Amazon S3 and then process the object as needed\. For an example Lambda function that processes a `Range` parameter in this way, see [ this sample](https://github.com/aws-samples/amazon-s3-object-lambda-default-configuration/blob/main/function/nodejs_14_x/src/response/range_mapper.ts) in the AWS Samples GitHub repository\.
-
-1. **Map the requested Range or partNumber to the presigned URL**
-
-   In some cases, your Lambda function can map the requested Range or partNumber directly to the presigned URL to retrieve only part of the object from Amazon S3\. This approach is appropriate only if your transformation meets both of the following criteria:
-
-   1. Your transformation function can be applied to partial object ranges\.
-
-   1. The `Range` or `partNumber` parameter acts on the same data in the original object as in the transformed object\.
-
-   For example, a transformation function that converts all characters in an ASCII\-encoded object to uppercase meets both of the preceding criteria\. The transform can be applied to part of an object, and applying the `Range` or `partNumber` parameter before the transformation achieves the same result as applying the parameter after the transformation\.
-
-   By contrast, a function that reverses the characters in an ASCII\-encoded object doesn't meet these criteria\. Such a function meets criterion 1, because it can be applied to partial object ranges\. However, it doesn't meet criterion 2, because applying the `Range` parameter before the transformation achieves different results than applying the parameter after the transformation\. 
-
-   For example, consider a request to apply the function to the first three characters of an object with the contents `abcdefg`\. Applying the `Range` parameter before the transformation retrieves only `abc` and then reverses the data, returning `cba`\. But if the parameter is applied after the transformation, the function retrieves the entire object, reverses it, and then applies the `Range` parameter, returning `gfe`\. Because these results are different, this function should not apply the `Range` parameter when retrieving the object from Amazon S3\. Instead, it should retrieve the entire object, perform the transformation, and only then apply the `Range` parameter\. 
-**Warning**  
-In many cases, applying the `Range` or `partNumber` parameter to the presigned URL will result in unexpected behavior by the Lambda function or the requesting client\. Unless you are sure that your application will work properly when retrieving only a partial object from Amazon S3, we recommend that you retrieve and transform full objects as described earlier in approach A\. 
-
-   If your application meets the criteria described earlier, you can simplify your AWS Lambda function and minimize data\-transfer costs by fetching only the requested object range and then running your transformation on that range\.
-
-   The following Java code example demonstrates how to retrieve the `Range` header from the `GetObject` request and add it to the presigned URL that Lambda can use to retrieve the requested range from Amazon S3\.
-
-   ```
-   private HttpRequest.Builder applyRangeHeader(ObjectLambdaEvent event, HttpRequest.Builder presignedRequest) {
-       var header = event.getUserRequest().getHeaders().entrySet().stream()
-               .filter(e -> e.getKey().toLowerCase(Locale.ROOT).equals("range"))
-               .findFirst();
-   
-       // Add check in the query string itself.
-       header.ifPresent(entry -> presignedRequest.header(entry.getKey(), entry.getValue()));
-       return presignedRequest;
-   }
-   ```
-
-## Event context format and usage<a name="olap-event-context"></a>
-
-S3 Object Lambda provides context about the request being made in the event passed to your Lambda function\. The following shows an example request and field descriptions\. 
+The following example shows the Lambda JSON input payload for `ListObjects`\.
 
 ```
 {
     "xAmzRequestId": "requestId",
-    "getObjectContext": {
-        "inputS3Url": "https://my-s3-ap-111122223333.s3-accesspoint.us-east-1.amazonaws.com/example?X-Amz-Security-Token=<snip>",
-        "outputRoute": "io-use1-001",
-        "outputToken": "OutputToken"
-    },
+     "**listObjectsContext**": {
+     "**inputS3Url**": "https://my-s3-ap-111122223333.s3-accesspoint.us-east-1.amazonaws.com/?X-Amz-Security-Token=<snip>",
+     },
     "configuration": {
         "accessPointArn": "arn:aws:s3-object-lambda:us-east-1:111122223333:accesspoint/example-object-lambda-ap",
         "supportingAccessPointArn": "arn:aws:s3:us-east-1:111122223333:accesspoint/example-ap",
@@ -613,28 +698,176 @@ S3 Object Lambda provides context about the request being made in the event pass
             }
         }
     },
-    "protocolVersion": "1.00"
+  "protocolVersion": "1.00"
 }
 ```
-+ `xAmzRequestId` – The Amazon S3 request ID for this request\. We recommend that you log this value to help with debugging\.
-+ `getObjectContext` – The input and output details for connections to Amazon S3 and S3 Object Lambda\.
-  + `inputS3Url` – A presigned URL that can be used to fetch the original object from Amazon S3\. The URL is signed using the original caller's identity, and their permissions will apply when the URL is used\. If there are signed headers in the URL, the Lambda function must include these in the call to Amazon S3, except for the `Host` header\.
-  + `outputRoute` – A routing token that is added to the S3 Object Lambda URL when the Lambda function calls `WriteGetObjectResponse`\.
-  + `outputToken` – An opaque token used by S3 Object Lambda to match the `WriteGetObjectResponse` call with the original caller\.
-+ `configuration` – Configuration information about the Object Lambda access point\.
-  + `accessPointArn` – The Amazon Resource Name \(ARN\) of the Object Lambda access point that received this request\.
-  + `supportingAccessPointArn` – The ARN of the supporting access point that is specified in the Object Lambda access point configuration\.
-  + `payload` – Custom data that is applied to the Object Lambda access point configuration\. S3 Object Lambda treats this data as an opaque string, so it might need to be decoded before use\.
-+ `userRequest` – Information about the original call to S3 Object Lambda\.
-  + `url` – The decoded URL of the request as received by S3 Object Lambda, excluding any authorization\-related query parameters\.
-  + `headers` – A map of string to strings containing the HTTP headers and their values from the original call, excluding any authorization\-related headers\. If the same header appears multiple times, the values from each instance of the same header are combined into a comma\-delimited list\. The case of the original headers is retained in this map\.
-+ `userIdentity` – Details about the identity that made the call to S3 Object Lambda\. For more information, see [Logging data events for trails](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html) in the *AWS CloudTrail User Guide*\.
-  + `type` – The type of identity\.
-  + `accountId` – The AWS account to which the identity belongs\.
-  + `userName` – The friendly name of the identity that made the call\.
-  + `principalId` – The unique identifier for the identity that made the call\.
-  + `arn` – The ARN of the principal who made the call\. The last section of the ARN contains the user or role that made the call\.
-  + `sessionContext` – If the request was made with temporary security credentials, this element provides information about the session that was created for those credentials\.
-  + `invokedBy` – The name of the AWS service that made the request, such as Amazon EC2 Auto Scaling or AWS Elastic Beanstalk\.
-  + `sessionIssuer` – If the request was made with temporary security credentials, this element provides information about how the credentials were obtained\.
-+ `protocolVersion` – The version ID of the context provided\. The format of this field is `{Major Version}.{Minor Version}`\. The minor version numbers are always two\-digit numbers\. Any removal or change to the semantics of a field necessitates a major version bump and requires active opt\-in\. Amazon S3 can add new fields at any time, at which point you might experience a minor version bump\. Because of the nature of software rollouts, you might see multiple minor versions in use at once\.
+
+Your Lambda function should return a JSON object that contains the status code, list XML result, or error information that will be returned from S3 Object Lambda\.
+
+The following example demonstrates how to use the presigned URL to call Amazon S3 and use the result to populate a response, including error checking\.
+
+------
+#### [ Python ]
+
+```
+import requests import xmltodict
+
+def lambda_handler(event, context):
+    
+    # Extract the presigned URL from the input.
+    s3_url = event["listObjectsContext"]["inputS3Url"]
+
+    # Get the head of the object from Amazon S3.     
+    response = requests.get(s3_url)
+
+    # Return the error to S3 Object Lambda (if applicable).     
+    if (response.status_code >= 400):
+        error = xmltodict.parse(response.content)         
+        return {
+            "statusCode": response.status_code,
+            "errorCode": error["Error"]["Code"],
+            "errorMessage": error["Error"]["Message"]
+        }
+
+    # Store the XML result in a dict.
+    response_dict = xmltodict.parse(response.content)
+    
+    # This obscures StorageClass in a transformation, it is optional to add   
+    for item in response_dict['ListBucketResult']['Contents']:
+        item['StorageClass'] = ""
+
+    # Convert back to XML.
+    listResultXml = xmltodict.unparse(response_dict)
+
+    # Return the list to S3 Object Lambda.     
+    return {
+        'statusCode': 200,
+        'listResultXml': listResultXml
+    }
+```
+
+------
+
+The following example shows the structure of the Lambda response JSON for `ListObjects`\.
+
+```
+{ 
+  "statusCode": <number>; // Required
+  "errorCode": <string>;
+  "errorMessage": <string>;
+  "listResultXml": <string>;
+}
+```
+
+## Working with `ListObjectsV2` requests in Lambda<a name="olap-listobjectsv2"></a>
+
+This section assumes that your Object Lambda access point is configured to call the Lambda function for `ListObjectsV2`\. Lambda will receive the JSON payload with a new object named `listObjectsV2Context`\. `listObjectsV2Context` contains a single property, `inputS3Url`, which is a presigned URL for the supporting access point for `ListObjectsV2`\.
+
+Unlike `GetObject` and `HeadObject`, the presigned URL will include the following properties, if they're specified: 
++ All the query parameters
++ `requestPayer` \(in the `x-amz-request-payer` header\) 
++ `expectedBucketOwner` \(in the `x-amz-expected-bucket-owner` header\)
+
+For the request syntax URI parameters, see [https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html) in the *Amazon Simple Storage Service API Reference*\.
+
+The following example shows the Lambda JSON input payload for `ListObjectsV2`\.
+
+```
+{
+    "xAmzRequestId": "requestId",
+     "**listObjectsV2Context**": {
+     "**inputS3Url**": "https://my-s3-ap-111122223333.s3-accesspoint.us-east-1.amazonaws.com/?list-type=2&X-Amz-Security-Token=<snip>",
+     },
+    "configuration": {
+        "accessPointArn": "arn:aws:s3-object-lambda:us-east-1:111122223333:accesspoint/example-object-lambda-ap",
+        "supportingAccessPointArn": "arn:aws:s3:us-east-1:111122223333:accesspoint/example-ap",
+        "payload": "{}"
+    },
+    "userRequest": {
+        "url": "https://object-lambda-111122223333.s3-object-lambda.us-east-1.amazonaws.com/example",
+        "headers": {
+            "Host": "object-lambda-111122223333.s3-object-lambda.us-east-1.amazonaws.com",
+            "Accept-Encoding": "identity",
+            "X-Amz-Content-SHA256": "e3b0c44298fc1example"
+        }
+    },
+    "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "principalId",
+        "arn": "arn:aws:sts::111122223333:assumed-role/Admin/example",
+        "accountId": "111122223333",
+        "accessKeyId": "accessKeyId",
+        "sessionContext": {
+            "attributes": {
+                "mfaAuthenticated": "false",
+                "creationDate": "Wed Mar 10 23:41:52 UTC 2021"
+            },
+            "sessionIssuer": {
+                "type": "Role",
+                "principalId": "principalId",
+                "arn": "arn:aws:iam::111122223333:role/Admin",
+                "accountId": "111122223333",
+                "userName": "Admin"
+            }
+        }
+    },
+  "protocolVersion": "1.00" 
+}
+```
+
+Your Lambda function should return a JSON object that contains the status code, list XML result, or error information that will be returned from S3 Object Lambda\.
+
+The following example demonstrates how to use the presigned URL to call Amazon S3 and use the result to populate a response, including error checking\.
+
+------
+#### [ Python ]
+
+```
+import requests import xmltodict
+
+def lambda_handler(event, context):
+    
+    # Extract the presigned URL from the input.
+    s3_url = event["listObjectsContext"]["inputS3Url"]
+
+    # Get the head of the object from Amazon S3.     
+    response = requests.get(s3_url)
+
+    # Return the error to S3 Object Lambda (if applicable).     
+    if (response.status_code >= 400):
+        error = xmltodict.parse(response.content)         
+        return {
+            "statusCode": response.status_code,
+            "errorCode": error["Error"]["Code"],
+            "errorMessage": error["Error"]["Message"]
+        }
+
+    # Store the XML result in a dict.
+    response_dict = xmltodict.parse(response.content)
+
+    # This obscures StorageClass in a transformation, it is optional to add   
+    for item in response_dict['ListBucketResult']['Contents']:
+        item['StorageClass'] = ""
+
+    # Convert back to XML.
+    listResultXml = xmltodict.unparse(response_dict)
+
+    # Return the list to S3 Object Lambda.     
+    return {
+        'statusCode': 200,
+        'listResultXml': listResultXml
+    }
+```
+
+------
+
+The following example shows the structure of the Lambda response JSON for `ListObjectsV2`\.
+
+```
+{ 
+  "statusCode": <number>; // Required
+  "errorCode": <string>;
+  "errorMessage": <string>;
+  "listResultXml": <string>;
+}
+```

@@ -13,48 +13,25 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool AwsDoc::S3::DeleteBucketPolicy(const Aws::String &bucketName, const Aws::String &region) {
-    Aws::Client::ClientConfiguration clientConfig;
-    if (!region.empty()) {
-        clientConfig.region = region;
-    }
-
+bool AwsDoc::S3::DeleteBucketPolicy(const Aws::String &bucketName,
+                                    const Aws::Client::ClientConfiguration &clientConfig) {
     Aws::S3::S3Client client(clientConfig);
 
     Aws::S3::Model::DeleteBucketPolicyRequest request;
     request.SetBucket(bucketName);
 
-    Aws::S3::Model::DeleteBucketPolicyOutcome outcome =  client.DeleteBucketPolicy(request);
+    Aws::S3::Model::DeleteBucketPolicyOutcome outcome = client.DeleteBucketPolicy(request);
 
-    if (!outcome.IsSuccess())
-    {
-        auto err = outcome.GetError();
-        std::cout << "Error: DeleteBucketPolicy: " <<
+    if (!outcome.IsSuccess()) {
+        const Aws::S3::S3Error &err = outcome.GetError();
+        std::cerr << "Error: DeleteBucketPolicy: " <<
                   err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-
-        return false;
     }
-    else
-    {
+    else {
         std::cout << "Policy was deleted from the bucket." << std::endl;
-        return true;
     }
-}
 
-int main()
-{
-    //TODO: Change bucket_name to the name of a bucket in your account.
-    const Aws::String bucketName = "<Enter bucket name>";
-    //TODO: Set to the AWS Region in which the bucket was created.
-    const Aws::String region = "us-east-1";
-
-
-    Aws::SDKOptions options;
-    Aws::InitAPI(options);
-
-    AwsDoc::S3::DeleteBucketPolicy(bucketName, region);
-
-    ShutdownAPI(options);
+    return outcome.IsSuccess();
 }
 ```
 +  For API details, see [DeleteBucketPolicy](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/DeleteBucketPolicy) in *AWS SDK for C\+\+ API Reference*\. 

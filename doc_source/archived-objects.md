@@ -36,4 +36,3 @@ The following sections provide more information about restoring archived objects
 **Topics**
 + [Archive retrieval options](restoring-objects-retrieval-options.md)
 + [Restoring an archived object](restoring-objects.md)
-+ [Querying archived objects](querying-glacier-archives.md)

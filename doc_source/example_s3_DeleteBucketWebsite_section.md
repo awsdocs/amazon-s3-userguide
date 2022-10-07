@@ -13,13 +13,8 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool AwsDoc::S3::DeleteBucketWebsite(const Aws::String &bucketName, const Aws::String &region) {
-    // Create the bucket.
-    Aws::Client::ClientConfiguration clientConfig;
-    if (!region.empty()) {
-        clientConfig.region = region;
-    }
-
+bool AwsDoc::S3::DeleteBucketWebsite(const Aws::String &bucketName,
+                                     const Aws::Client::ClientConfiguration &clientConfig) {
     Aws::S3::S3Client client(clientConfig);
     Aws::S3::Model::DeleteBucketWebsiteRequest request;
     request.SetBucket(bucketName);
@@ -27,33 +22,16 @@ bool AwsDoc::S3::DeleteBucketWebsite(const Aws::String &bucketName, const Aws::S
     Aws::S3::Model::DeleteBucketWebsiteOutcome outcome =
             client.DeleteBucketWebsite(request);
 
-    if (!outcome.IsSuccess())
-    {
+    if (!outcome.IsSuccess()) {
         auto err = outcome.GetError();
-        std::cout << "Error: DeleteBucketWebsite: " <<
+        std::cerr << "Error: DeleteBucketWebsite: " <<
                   err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-        return false;
     }
-    else
-    {
+    else {
         std::cout << "Website configuration was removed." << std::endl;
-        return true;
     }
-}
 
-int main()
-{
-    //TODO: Change bucket_name to the name of a bucket in your account.
-    const Aws::String bucketName = "<Enter bucket name>";
-    //TODO: Set to the AWS Region in which the bucket was created.
-    const Aws::String region = "us-east-1";
-
-    Aws::SDKOptions options;
-    Aws::InitAPI(options);
-
-    AwsDoc::S3::DeleteBucketWebsite(bucketName, region);
-
-    ShutdownAPI(options);
+    return outcome.IsSuccess();
 }
 ```
 +  For API details, see [DeleteBucketWebsite](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/DeleteBucketWebsite) in *AWS SDK for C\+\+ API Reference*\. 

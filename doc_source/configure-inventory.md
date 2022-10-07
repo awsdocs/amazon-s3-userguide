@@ -84,7 +84,7 @@ To grant Amazon S3 permission to encrypt using a customer managed AWS Key Manage
             "aws:SourceAccount":"source-account-id"
         },
          "ArnLike":{
-           "aws:SourceARN": "arn:aws:s3:::source-bucket-name"
+           "aws:SourceArn": "arn:aws:s3:::source-bucket-name"
         }
       }
    }

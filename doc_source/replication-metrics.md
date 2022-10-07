@@ -19,6 +19,7 @@ S3 Replication metrics are turned on automatically when you enable S3 Replicatio
 + [Enabling S3 Replication metrics](#enabling-replication-metrics)
 + [Receiving replication failure events with Amazon S3 event notifications](#replication-metrics-events)
 + [Viewing replication metrics using the Amazon S3 console](viewing-replication-metrics.md)
++ [Amazon S3 replication failure reasons](replication-failure-codes.md)
 
 ## Enabling S3 Replication metrics<a name="enabling-replication-metrics"></a>
 
@@ -55,4 +56,6 @@ For more information about viewing replication metrics in the S3 console, see [V
 
 ## Receiving replication failure events with Amazon S3 event notifications<a name="replication-metrics-events"></a>
 
-Amazon S3 event notifications can notify you in the rare instance when objects do not replicate to their destination Region\. Amazon S3 events are available through Amazon Simple Queue Service \(Amazon SQS\), Amazon Simple Notification Service \(Amazon SNS\), or AWS Lambda\. For more information, see [Configuring Amazon S3 event notifications](https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)\.
+Amazon S3 event notifications can notify you in instances when objects do not replicate to their destination AWS Region\. Amazon S3 events are available through Amazon Simple Queue Service \(Amazon SQS\), Amazon Simple Notification Service \(Amazon SNS\), or AWS Lambda\. For more information, see [Configuring Amazon S3 event notifications](https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)\.
+
+For a list of failure codes captured by Amazon S3 event notifications, see [Amazon S3 replication failure reasons](replication-failure-codes.md)\.

@@ -10,6 +10,9 @@ To retrieve a specific version, you have to specify its version ID\. The followi
 
 You can retrieve object versions in Amazon S3 using the console, AWS SDKs, or REST API\.
 
+**Note**  
+ To access object versions older than 300 versions, you must use the AWS CLI or the object's URL\.
+
 ## Using the S3 console<a name="retrieving-object-versions"></a>
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.

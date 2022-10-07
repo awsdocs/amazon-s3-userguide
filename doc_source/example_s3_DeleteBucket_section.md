@@ -41,14 +41,8 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-using namespace Aws;
-
-bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName, const Aws::String &region)
-{
-    Aws::Client::ClientConfiguration clientConfig;
-    if (!region.empty()) {
-        clientConfig.region = region;
-    }
+bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName,
+                              const Aws::Client::ClientConfiguration &clientConfig) {
 
     Aws::S3::S3Client client(clientConfig);
 
@@ -58,36 +52,17 @@ bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName, const Aws::String &
     Aws::S3::Model::DeleteBucketOutcome outcome =
             client.DeleteBucket(request);
 
-    if (!outcome.IsSuccess())
-    {
-        auto err = outcome.GetError();
-        std::cout << "Error: DeleteBucket: " <<
+    if (!outcome.IsSuccess()) {
+        const Aws::S3::S3Error &err = outcome.GetError();
+        std::cerr << "Error: DeleteBucket: " <<
                   err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-        return false;
     }
-    else
-    {
+    else {
         std::cout << "The bucket was deleted" << std::endl;
-        return true;
-
     }
+
+    return outcome.IsSuccess();
 }
-
-int main()
-{
-    //TODO: Change bucket_name to the name of a bucket in your account.
-    //If the bucket is not in your account, you will get one of two errors:
-    Aws::String bucketName = "<Bucket Name>";
-    //TODO:  Set to the AWS Region of the bucket bucket_name.
-    Aws::String region = "us-east-1";
-
-    Aws::SDKOptions options;
-    Aws::InitAPI(options);
-
-    AwsDoc::S3::DeleteBucket(bucketName, region);
-
-    ShutdownAPI(options);
- }
 ```
 +  For API details, see [DeleteBucket](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/DeleteBucket) in *AWS SDK for C\+\+ API Reference*\. 
 

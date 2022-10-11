@@ -167,11 +167,9 @@ export const bucketParams = { Bucket: "BUCKET_NAME" };
 export const run = async () => {
   try {
     const data = await s3Client.send(new ListObjectsCommand(bucketParams));
-    return data; // For unit tests.
-    let i = 0;
     let noOfObjects = data.Contents;
     for (let i = 0; i < noOfObjects.length; i++) {
-      const data = await s3Client.send(
+      await s3Client.send(
         new DeleteObjectCommand({
           Bucket: bucketParams.Bucket,
           Key: noOfObjects[i].Key,
@@ -179,6 +177,7 @@ export const run = async () => {
       );
     }
     console.log("Success. Objects deleted.");
+    return data; // For unit tests.
   } catch (err) {
     console.log("Error", err);
   }
@@ -266,7 +265,12 @@ Delete a set of objects by using a list of object keys\.
 
 ```
 class ObjectWrapper:
+    """Encapsulates S3 object actions."""
     def __init__(self, s3_object):
+        """
+        :param s3_object: A Boto3 Object resource. This is a high-level resource in Boto3
+                          that wraps object actions in a class-like structure.
+        """
         self.object = s3_object
         self.key = self.object.key
 
@@ -276,7 +280,8 @@ class ObjectWrapper:
         Removes a list of objects from a bucket.
         This operation is done as a batch in a single request.
 
-        :param bucket: The bucket that contains the objects.
+        :param bucket: The bucket that contains the objects. This is a Boto3 Bucket
+                       resource.
         :param object_keys: The list of keys that identify the objects to remove.
         :return: The response that contains data about which objects were deleted
                  and any that could not be deleted.
@@ -307,7 +312,12 @@ Delete all objects in a bucket\.
 
 ```
 class ObjectWrapper:
+    """Encapsulates S3 object actions."""
     def __init__(self, s3_object):
+        """
+        :param s3_object: A Boto3 Object resource. This is a high-level resource in Boto3
+                          that wraps object actions in a class-like structure.
+        """
         self.object = s3_object
         self.key = self.object.key
 
@@ -316,7 +326,7 @@ class ObjectWrapper:
         """
         Remove all objects from a bucket.
 
-        :param bucket: The bucket to empty.
+        :param bucket: The bucket to empty. This is a Boto3 Bucket resource.
         """
         try:
             bucket.objects.delete()

@@ -4,7 +4,7 @@ The following code examples show you how to implement common scenarios in Amazon
 
 **Topics**
 + [Create a presigned URL](example_s3_Scenario_PresignedUrl_section.md)
-+ [Getting started with buckets and objects](example_s3_Scenario_GettingStarted_section.md)
++ [Get started with buckets and objects](example_s3_Scenario_GettingStarted_section.md)
 + [Manage versioned objects in batches with a Lambda function](example_s3_Scenario_BatchObjectVersioning_section.md)
-+ [Use a transfer manager to upload and download files](example_s3_Scenario_TransferManager_section.md)
++ [Upload or download large files](example_s3_Scenario_UsingLargeFiles_section.md)
 + [Work with versioned objects](example_s3_Scenario_ObjectVersioningUsage_section.md)

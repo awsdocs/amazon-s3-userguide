@@ -50,7 +50,14 @@ The following code examples show how to create a presigned URL for S3 and upload
 	presignResult, err := presignClient.PresignPutObject(context.TODO(), &s3.PutObjectInput{
 		Bucket: aws.String(name),
 		Key:    aws.String("path/myfile.jpg"),
-	})
+	}
+
+	// Apply an expiration via an option function
+	presignDuration := func(po *s3.PresignOptions) {
+		po.Expires = 5 * time.Minute
+	}
+
+	presignResult, err := presignClient.PresignGetObject(context.TODO(), presignParams, presignDuration)
 
 	if err != nil {
 		panic("Couldn't get presigned URL for GetObject")
@@ -377,7 +384,12 @@ Generate a presigned POST request to upload a file\.
 
 ```
 class BucketWrapper:
+    """Encapsulates S3 bucket actions."""
     def __init__(self, bucket):
+        """
+        :param bucket: A Boto3 Bucket resource. This is a high-level resource in Boto3
+                       that wraps bucket actions in a class-like structure.
+        """
         self.bucket = bucket
         self.name = bucket.name
 

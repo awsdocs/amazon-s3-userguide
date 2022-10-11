@@ -1,6 +1,6 @@
-# SQL reference for Amazon S3 Select and S3 Glacier Select<a name="s3-glacier-select-sql-reference"></a>
+# SQL reference for Amazon S3 Select<a name="s3-glacier-select-sql-reference"></a>
 
-This reference contains a description of the structured query language \(SQL\) elements that are supported by Amazon S3 Select and S3 Glacier Select\.
+This reference contains a description of the structured query language \(SQL\) elements that are supported by Amazon S3 Select\.
 
 **Topics**
 + [SELECT Command](s3-glacier-select-sql-reference-select.md)

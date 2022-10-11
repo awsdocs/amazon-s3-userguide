@@ -13,6 +13,8 @@ This section explains how to manage and use your Amazon S3 access points using t
 
 ## Listing access points for your account<a name="access-points-detail-page-nav"></a>
 
+**To list all access points created in your AWS account**
+
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the navigation pane on the left side of the console, choose **access points**\.
@@ -25,7 +27,7 @@ This section explains how to manage and use your Amazon S3 access points using t
 
 ## Listing access points for a bucket<a name="listing-access-points-bucket"></a>
 
-**To list all access points for a single bucket**
+**To list all access points in you AWS account for a single bucket**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 

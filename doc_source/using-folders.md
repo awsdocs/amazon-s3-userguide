@@ -18,6 +18,7 @@ An object that is named with a trailing `/` appears as a folder in the Amazon S3
 **Topics**
 + [Creating a folder](#create-folder)
 + [Making folders public](#public-folders)
++ [Calculating folder size](#calculate-folder)
 + [Deleting folders](#delete-folders)
 
 ## Creating a folder<a name="create-folder"></a>
@@ -47,6 +48,35 @@ In the Amazon S3 console, you can make a folder public\. You can also make a fol
 
 **Warning**  
 After you make a folder public in the Amazon S3 console, you can't make it private again\. Instead, you must set permissions on each individual object in the public folder so that the objects have no public access\. For more information, see [Configuring ACLs](managing-acls.md)\.
+
+**Topics**
++ [Creating a folder](#create-folder)
++ [Making folders public](#public-folders)
++ [Calculating folder size](#calculate-folder)
++ [Deleting folders](#delete-folders)
+
+## Calculating folder size<a name="calculate-folder"></a>
+
+This section describes how to use the Amazon S3 console to calculate a folder's size\.
+
+**To calculate a folder's size**
+
+1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the left navigation pane, choose **Buckets**\.
+
+1. In the **Buckets** list, choose the name of the bucket in which your folder is stored\.
+
+1. In the **Objects** list, select the check box next to the name of the folder\.
+
+1. Choose **Actions**, and then choose **Calculate total size**\.
+
+**Note**  
+ The folder information will no longer be available after you navigate away from the page\.
+
+**Important**  
+When you use the **Calculate total size** action on specified objects or folders within your bucket, Amazon S3 calculates the total number of objects and the total storage size\. However, incomplete or in\-progress multipart uploads and previous or noncurrent versions aren't calculated in the total number of objects or the total size\. This action calculates only the total number of objects and the total size for the current or newest version of each object that is stored in the bucket\.  
+For example, if there are two versions of an object in your bucket, then the storage calculator in Amazon S3 counts them as only one object\. As a result, the total number of objects that is calculated in the Amazon S3 console can differ from the **Object Count** metric shown in S3 Storage Lens and from the number reported by the Amazon CloudWatch metric, `NumberOfObjects`\. Likewise, the total storage size can also differ from the **Total Storage** metric shown in S3 Storage Lens and from the `BucketSizeBytes` metric shown in CloudWatch\.
 
 ## Deleting folders<a name="delete-folders"></a>
 

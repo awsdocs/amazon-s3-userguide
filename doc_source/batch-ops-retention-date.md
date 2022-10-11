@@ -6,7 +6,7 @@ You can use S3 Batch Operations with Object Lock to manage retention dates of ma
 
 Your S3 Batch Operations job with retention dates runs *until completion, until cancellation, or until a failure state* is reached\. You should use S3 Batch Operations and S3 Object Lock retention when you want to add, change, or remove the retention date for many objects with a single request\. 
 
-Batch Operations verifies that Object Lock is enabled on your bucket before processing any keys in the manifest\. To perform the operations and validation, Batch Operations needs `s3:GetBucketObjectLockConfiguration` and `s3:PutObjectRetention` permissions in an IAM role to allow Batch Operations to call Object Lock on your behalf\. For more information, see [Managing Object Lock ](object-lock-managing.md)\.
+Batch Operations verifies that Object Lock is enabled on your bucket before processing any keys in the manifest\. To perform the operations and validation, Batch Operations needs `s3:GetBucketObjectLockConfiguration` and `s3:PutObjectRetention` permissions in an IAM role to allow Batch Operations to call Object Lock on your behalf\. For more information, see [Managing Object Lock](object-lock-managing.md)\.
 
 For information about using this operation with the REST API, see `S3PutObjectRetention` in the [CreateJob](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html) operation in the *Amazon Simple Storage Service API Reference*\. 
 

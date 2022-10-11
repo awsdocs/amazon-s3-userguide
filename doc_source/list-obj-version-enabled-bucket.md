@@ -20,6 +20,9 @@ Follow these steps to use the Amazon S3 console to see the different versions of
 
 You also can view, download, and delete object versions in the object overview pane on the console\. For more information, see [Viewing an object overview in the Amazon S3 console](view-object-overview.md)\.
 
+**Note**  
+ To access object versions older than 300 versions, you must use the AWS CLI or the object's URL\.
+
 **Important**  
 You can undelete an object only if it was deleted as the latest \(current\) version\. You can't undelete a previous version of an object that was deleted\. For more information, see [Using versioning in S3 buckets](Versioning.md)\.
 

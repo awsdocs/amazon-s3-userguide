@@ -2,7 +2,7 @@
 
 You can use S3 Object Lock to store objects using a *write\-once\-read\-many* \(WORM\) model\. Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely\. You can use S3 Object Lock to meet regulatory requirements that require WORM storage, or add an extra layer of protection against object changes and deletion\. 
 
-For information about managing the lock status of your Amazon S3 objects, see [Managing Object Lock ](object-lock-managing.md)\.
+For information about managing the lock status of your Amazon S3 objects, see [Managing Object Lock](object-lock-managing.md)\.
 
 **Note**  
  S3 buckets with S3 Object Lock can't be used as destination buckets for server access logs\. For more information, see [Logging requests using server access logging](ServerLogs.md)\.

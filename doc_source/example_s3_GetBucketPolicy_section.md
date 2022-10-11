@@ -13,61 +13,33 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool AwsDoc::S3::GetBucketPolicy(const Aws::String& bucketName,
-    const Aws::String& region)
-{
-    Aws::Client::ClientConfiguration config;
-    config.region = region;
-
-    Aws::S3::S3Client s3_client(config);
+bool AwsDoc::S3::GetBucketPolicy(const Aws::String &bucketName,
+                                 const Aws::Client::ClientConfiguration &clientConfig) {
+    Aws::S3::S3Client s3_client(clientConfig);
 
     Aws::S3::Model::GetBucketPolicyRequest request;
     request.SetBucket(bucketName);
 
     Aws::S3::Model::GetBucketPolicyOutcome outcome =
-        s3_client.GetBucketPolicy(request);
+            s3_client.GetBucketPolicy(request);
 
-    if (outcome.IsSuccess())
-    {
+    if (!outcome.IsSuccess()) {
+        const Aws::S3::S3Error &err = outcome.GetError();
+        std::cerr << "Error: GetBucketPolicy: "
+                  << err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
+    }
+    else {
         Aws::StringStream policy_stream;
         Aws::String line;
 
         outcome.GetResult().GetPolicy() >> line;
         policy_stream << line;
 
-        std::cout << "Policy:" << std::endl << std::endl << 
-            policy_stream.str() << std::endl;
-
-        return true;
+        std::cout << "Retrieve the policy for bucket '" << bucketName << "':\n\n" <<
+                  policy_stream.str() << std::endl;
     }
-    else
-    {
-        auto err = outcome.GetError();
-        std::cout << "Error: GetBucketPolicy: "
-            << err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
 
-        return false;
-    }
-}
-
-int main()
-{
-    //TODO: Change bucket_name to the name of a bucket in your account.
-    const Aws::String bucket_name = "<Enter bucket name>";
-    //TODO: Set to the AWS Region in which the bucket was created.
-    const Aws::String region = "us-east-1";
-
-    Aws::SDKOptions options;
-    Aws::InitAPI(options);
-    {
-        if (!AwsDoc::S3::GetBucketPolicy(bucket_name, region))
-        {
-            return 1;
-        }
-    }
-    Aws::ShutdownAPI(options);
-
-    return 0;
+    return outcome.IsSuccess();
 }
 ```
 +  For API details, see [GetBucketPolicy](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/GetBucketPolicy) in *AWS SDK for C\+\+ API Reference*\. 
@@ -177,7 +149,12 @@ suspend fun getPolicy(bucketName: String): String? {
 
 ```
 class BucketWrapper:
+    """Encapsulates S3 bucket actions."""
     def __init__(self, bucket):
+        """
+        :param bucket: A Boto3 Bucket resource. This is a high-level resource in Boto3
+                       that wraps bucket actions in a class-like structure.
+        """
         self.bucket = bucket
         self.name = bucket.name
 

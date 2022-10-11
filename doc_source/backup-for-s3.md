@@ -7,7 +7,7 @@ When using AWS Backup for Amazon S3, you can perform the following actions:
 + Automate backup scheduling and retention by centrally configuring backup policies\.
 + Restore backups of Amazon S3 data to a point in time that you specify\.
 
-Along with AWS Backup, you can use S3 Versioning and Amazon S3 Replication to help recover from accidental deletions and perform your own self\-recovery operations\. 
+Along with AWS Backup, you can use S3 Versioning and S3 Replication to help recover from accidental deletions and perform your own self\-recovery operations\. 
 
 **Prerequisites**  
 You must activate [S3 Versioning](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html) on your bucket before AWS Backup can back it up\. 

@@ -98,21 +98,25 @@ If your bucket has a write ACL that grants AWS account 111122223333 permission t
 
 ## Using the S3 console to review and migrate ACL permissions<a name="review-migrate-acl-console"></a>
 
-**To review ACL permissions**
+**To review a bucket's ACL permissions**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
-1. To view bucket ACL permissions, in the **Buckets** list, choose the bucket name\.
+1. In the **Buckets** list, choose the bucket name\.
 
-1. Choose **Permissions**\.
+1. Choose the **Permissions** tab\.
 
 1. Under **Access control list \(ACL\)**, review your bucket ACL permissions\.
 
-1. Choose the **Objects** tab\.
+**To review an object's ACL permissions**
+
+1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the **Buckets** list, choose the bucket name containing your object\.
 
 1. In the **Objects** list, choose your object name\.
 
-1. Choose **Permissions**\.
+1. Choose the **Permissions** tab\.
 
 1. Under **Access control list \(ACL\)**, review your object ACL permissions\.
 

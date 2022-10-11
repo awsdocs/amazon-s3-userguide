@@ -84,7 +84,7 @@ This section explains the trust policy and minimum required permissions policy\.
     
   + `s3:ReplicateObject` and `s3:ReplicateDelete` – Permissions for these actions on all objects in the `DOC-EXAMPLE-BUCKET2` bucket \(the destination bucket\) allow Amazon S3 to replicate objects or delete markers to the destination bucket\. For information about delete markers, see [How delete operations affect replication](replication-what-is-isnot-replicated.md#replication-delete-op)\. 
 **Note**  
-Permissions for the `s3:ReplicateObject` action on the `DOC-EXAMPLE-BUCKET2` bucket \(the destination bucket\) also allow replication of object tags, so you don't need to explicitly grant permission for the `s3:ReplicateTags` action\.
+Permissions for the `s3:ReplicateObject` action on the `DOC-EXAMPLE-BUCKET2` bucket \(the destination bucket\) also allow replication of metadata such as object tags and ACLS\. Therefore you do not need to explicitly grant permission for the `s3:ReplicateTags` action\.
   + `s3:GetObjectVersionTagging` – Permissions for this action on objects in the `DOC-EXAMPLE-BUCKET1` bucket \(the source bucket\) allow Amazon S3 to read object tags for replication\. For more information, see [Categorizing your storage using tags](object-tagging.md)\. If Amazon S3 doesn't have these permissions, it replicates the objects, but not the object tags\.
 
   For a list of Amazon S3 actions, see [Amazon S3 actions](using-with-s3-actions.md)\.
@@ -97,6 +97,8 @@ The permissions described here are related to the minimum replication configurat
 ## Granting permissions when the source and destination buckets are owned by different AWS accounts<a name="setting-repl-config-crossacct"></a>
 
 When the source and destination buckets aren't owned by the same accounts, the owner of the destination bucket must also add a bucket policy to grant the owner of the source bucket permissions to perform replication actions, as follows\. In this policy, `DOC-EXAMPLE-BUCKET2` is the destination bucket\.
+
+If creating the role manually set the role path as `role/service-role/` per the below policy\. For more information, see [IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html) in the *IAM User Guide*\. 
 
 ```
 {

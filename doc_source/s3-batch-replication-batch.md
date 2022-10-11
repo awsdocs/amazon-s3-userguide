@@ -48,3 +48,9 @@ If you do not filter based on replication status Batch Operations will attempt t
 + If you want to both replicate existing objects and retry replicating objects that previously failed to replicate, include both `"NONE"` and `"FAILED"`\.
 + If you want to back\-fill a destination bucket with objects that have been replicated to another destination, include `"COMPLETED"`\.
 + If you want replicate objects previously replicated, include `"REPLICA"`\.
+
+## Batch Replication completion report<a name="batch-replication-completion-report"></a>
+
+When you create a Batch Replication job, you can request a CVS completion report\. This report shows objects, replication success or failure codes, outputs, and descriptions\. For more information about job tracking and completion reports see, [Completion reports](batch-ops-job-status.md#batch-ops-completion-report)\. 
+
+For a list of Replication failure codes and descriptions see, [Amazon S3 replication failure reasons](replication-failure-codes.md)\.

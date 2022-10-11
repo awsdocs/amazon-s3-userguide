@@ -2,6 +2,8 @@
 
 Lifecycle rules for Amazon S3 on Outposts buckets are limited to object deletion\. You can use lifecycle rules to define when to initiate object deletion based on age or date\. You can create, enable, disable, or delete a lifecycle rule\.
 
+For more information about S3 Lifecycle, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
+
 **Note**  
 The AWS account that creates the bucket owns it and is the only one that can create, enable, disable, or delete a lifecycle rule\.
 

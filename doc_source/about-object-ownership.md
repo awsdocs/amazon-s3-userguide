@@ -148,7 +148,7 @@ You can require that all new buckets are created with ACLs disabled by using IAM
 
 When you use S3 replication and the source and destination buckets are owned by different AWS accounts, you can disable ACLs \(with the bucket owner enforced setting for Object Ownership\) to change replica ownership to the AWS account that owns the destination bucket\. This setting mimics the existing owner override behavior without the need of the `s3:ObjectOwnerOverrideToBucketOwner` permission\. All objects that are replicated to the destination bucket with the bucket owner enforced setting are owned by the destination bucket owner\. For more information about the owner override option for replication configurations, see [Changing the replica owner](replication-change-owner.md)\. 
 
-If you use the default object writer setting for Object Ownership or apply the bucket owner preferred setting for the destination bucket, you can use the Amazon S3 Replication owner override option to transfer ownership of replicated objects to the destination bucket owner\. 
+If you use the default object writer setting for Object Ownership or apply the bucket owner preferred setting for the destination bucket, you can use the S3 Replication owner override option to transfer ownership of replicated objects to the destination bucket owner\. 
 
 ## Setting Object Ownership<a name="object-ownership-setting"></a>
 

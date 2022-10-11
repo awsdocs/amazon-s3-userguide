@@ -14,5 +14,6 @@ After you create buckets and upload objects in Amazon S3, you can manage your ob
 + [Replicating objects](replication.md)
 + [Categorizing your storage using tags](object-tagging.md)
 + [Using cost allocation S3 bucket tags](CostAllocTagging.md)
++ [Billing and usage reporting for S3 buckets](BucketBilling.md)
 + [Filtering and retrieving data using Amazon S3 Select](selecting-content-from-objects.md)
 + [Performing large\-scale batch operations on Amazon S3 objects](batch-ops.md)

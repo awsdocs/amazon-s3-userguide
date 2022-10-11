@@ -69,69 +69,29 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool AwsDoc::S3::ListObjects(const Aws::String& bucketName, 
-    const Aws::String& region)
-{
-    Aws::Client::ClientConfiguration config;
-
-    if (!region.empty())
-    {
-        config.region = region;
-    }
-
-    Aws::S3::S3Client s3_client(config);
+bool AwsDoc::S3::ListObjects(const Aws::String &bucketName,
+                             const Aws::Client::ClientConfiguration &clientConfig) {
+    Aws::S3::S3Client s3_client(clientConfig);
 
     Aws::S3::Model::ListObjectsRequest request;
     request.WithBucket(bucketName);
 
     auto outcome = s3_client.ListObjects(request);
 
-    if (outcome.IsSuccess())
-    {
-        std::cout << "Objects in bucket '" << bucketName << "':" 
-            << std::endl << std::endl;
-
+    if (!outcome.IsSuccess()) {
+        std::cerr << "Error: ListObjects: " <<
+                  outcome.GetError().GetMessage() << std::endl;
+    }
+    else {
         Aws::Vector<Aws::S3::Model::Object> objects =
-            outcome.GetResult().GetContents();
+                outcome.GetResult().GetContents();
 
-        for (Aws::S3::Model::Object& object : objects)
-        {
+        for (Aws::S3::Model::Object &object: objects) {
             std::cout << object.GetKey() << std::endl;
         }
-
-        return true;
     }
-    else
-    {
-        std::cout << "Error: ListObjects: " <<
-            outcome.GetError().GetMessage() << std::endl;
 
-        return false;
-    }
-}
-
-int main()
-{
-    Aws::SDKOptions options;
-    Aws::InitAPI(options);
-    {
-        //TODO: Name of a bucket in your account.
-        //The bucket must have at least one object in it.  One way to achieve
-        //this is to configure and run put_object.cpp's executable first.
-        const Aws::String bucket_name = "DOC-EXAMPLE-BUCKET";
-
-        //TODO: Set to the AWS Region in which the bucket was created.
-        Aws::String region = "us-east-1";
-
-        if (!AwsDoc::S3::ListObjects(bucket_name, region))
-        {
-            return 1;
-        }
-        
-    }
-    Aws::ShutdownAPI(options);
-
-    return 0;
+    return outcome.IsSuccess();
 }
 ```
 +  For API details, see [ListObjects](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/ListObjects) in *AWS SDK for C\+\+ API Reference*\. 
@@ -345,7 +305,12 @@ try {
 
 ```
 class ObjectWrapper:
+    """Encapsulates S3 object actions."""
     def __init__(self, s3_object):
+        """
+        :param s3_object: A Boto3 Object resource. This is a high-level resource in Boto3
+                          that wraps object actions in a class-like structure.
+        """
         self.object = s3_object
         self.key = self.object.key
 
@@ -354,7 +319,7 @@ class ObjectWrapper:
         """
         Lists the objects in a bucket, optionally filtered by a prefix.
 
-        :param bucket: The bucket to query.
+        :param bucket: The bucket to query. This is a Boto3 Bucket resource.
         :param prefix: When specified, only objects that start with this prefix are listed.
         :return: The list of objects.
         """

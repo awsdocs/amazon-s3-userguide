@@ -293,7 +293,7 @@ SELECT
 FROM
   s3_cloudtrail_events_db.cloudtrail_myawsexamplebucket_table
 WHERE
-  userIdentity.accountId = 'ANONYMOUS_PRINCIPAL'
+  userIdentity.accountId = 'anonymous'
   AND eventTime BETWEEN '2019-07-05T00:00:00Z' and '2019-07-06T00:00:00Z'
 ```
 

@@ -89,7 +89,7 @@ When you choose the S3 Glacier Flexible Retrieval or Glacier Deep Archive storag
 **Important**  
 In a non\-versioned bucket the expiration action results in Amazon S3 permanently removing the object\. For more information about lifecycle actions, see [Elements to describe lifecycle actions](intro-lifecycle-rules.md#intro-lifecycle-rules-actions)\.
 
-1. To permanently delete previous versions of objects, under **Permanently delete noncurrent versions of objects**, in **Days after objects become noncurrent**, enter the number of days\. You can optionall specify the number of newer versions to retain by entering a value under **Number of newer versions to retain**\.
+1. To permanently delete previous versions of objects, under **Permanently delete noncurrent versions of objects**, in **Days after objects become noncurrent**, enter the number of days\. You can optionally specify the number of newer versions to retain by entering a value under **Number of newer versions to retain**\.
 
 1. Under **Delete expired delete markers or incomplete multipart uploads**, choose **Delete expired object delete markers** and **Delete incomplete multipart uploads**\. Then, enter the number of days after the multipart upload initiation that you want to end and clean up incomplete multipart uploads\.
 

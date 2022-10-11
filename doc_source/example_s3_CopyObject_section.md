@@ -60,53 +60,28 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
- bool AwsDoc::S3::CopyObject(const Aws::String &objectKey, const Aws::String &fromBucket, const Aws::String &toBucket,
-                             const Aws::String &region) {
-     Aws::Client::ClientConfiguration clientConfig;
-     if (!region.empty()) {
-         clientConfig.region = region;
-     }
+bool AwsDoc::S3::CopyObject(const Aws::String &objectKey, const Aws::String &fromBucket, const Aws::String &toBucket,
+                            const Aws::Client::ClientConfiguration &clientConfig) {
+    Aws::S3::S3Client client(clientConfig);
+    Aws::S3::Model::CopyObjectRequest request;
 
-     Aws::S3::S3Client client(clientConfig);
-     Aws::S3::Model::CopyObjectRequest request;
+    request.WithCopySource(fromBucket + "/" + objectKey)
+            .WithKey(objectKey)
+            .WithBucket(toBucket);
 
-     request.WithCopySource(fromBucket + "/" + objectKey)
-             .WithKey(objectKey)
-             .WithBucket(toBucket);
+    Aws::S3::Model::CopyObjectOutcome outcome = client.CopyObject(request);
+    if (!outcome.IsSuccess()) {
+        const Aws::S3::S3Error &err = outcome.GetError();
+        std::cerr << "Error: CopyObject: " <<
+                  err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
 
-     Aws::S3::Model::CopyObjectOutcome outcome = client.CopyObject(request);
+    }
+    else {
+        std::cout << "Successfully copied " << objectKey << " from " << fromBucket <<
+                  " to " << toBucket << "." << std::endl;
+    }
 
-     if (!outcome.IsSuccess())
-     {
-         const auto err = outcome.GetError();
-         std::cout << "Error: CopyObject: " <<
-                   err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-         return false;
-     }
-
-     return true;
- }
-
-int main() {
-    Aws::SDKOptions options;
-    Aws::InitAPI(options);
-
-    //TODO: Name of object already in bucket.
-    Aws::String objectKey = "<enter object key>";
-
-    //TODO: Change from_bucket to the name of your bucket that already contains "my-file.txt".
-    Aws::String fromBucket = "<Enter bucket name>";
-
-    //TODO: Change to the name of another bucket in your account.
-    Aws::String toBucket = "<Enter bucket name>";
-
-    //TODO: Set to the AWS Region in which the bucket was created.
-    Aws::String region = "us-east-1";
-
-    AwsDoc::S3::CopyObject(objectKey, fromBucket, toBucket, region);
-
-    ShutdownAPI(options);
-    return 0;
+    return outcome.IsSuccess();
 }
 ```
 +  For API details, see [CopyObject](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/CopyObject) in *AWS SDK for C\+\+ API Reference*\. 
@@ -157,7 +132,7 @@ int main() {
         }
         
         CopyObjectRequest copyReq = CopyObjectRequest.builder()
-            .copySource(encodedUrl)
+            .copySourceIfMatch(encodedUrl)
             .destinationBucket(toBucket)
             .destinationKey(objectKey)
             .build();
@@ -288,7 +263,12 @@ try {
 
 ```
 class ObjectWrapper:
+    """Encapsulates S3 object actions."""
     def __init__(self, s3_object):
+        """
+        :param s3_object: A Boto3 Object resource. This is a high-level resource in Boto3
+                          that wraps object actions in a class-like structure.
+        """
         self.object = s3_object
         self.key = self.object.key
 
@@ -297,6 +277,7 @@ class ObjectWrapper:
         Copies the object to another bucket.
 
         :param dest_object: The destination object initialized with a bucket and key.
+                            This is a Boto3 Object resource.
         """
         try:
             dest_object.copy_from(CopySource={

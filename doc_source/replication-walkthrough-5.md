@@ -2,7 +2,7 @@
 
 S3 Replication Time Control \(S3 RTC\) helps you meet compliance or business requirements for data replication and provides visibility into Amazon S3 replication times\. S3 RTC replicates most objects that you upload to Amazon S3 in seconds, and 99\.99 percent of those objects within 15 minutes\. 
 
-With S3 RTC, you can monitor the total number and size of objects that are pending replication, and the maximum replication time to the destination Region\. Replication metrics are available through the [AWS Management Console](https://console.aws.amazon.com/s3/) and [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/)\. For more information, see [Amazon S3 replication metrics in CloudWatch ](metrics-dimensions.md#s3-cloudwatch-replication-metrics)\. 
+With S3 RTC, you can monitor the total number and size of objects that are pending replication, and the maximum replication time to the destination Region\. Replication metrics are available through the [AWS Management Console](https://console.aws.amazon.com/s3/) and [Amazon CloudWatch User Guide](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/)\. For more information, see [S3 Replication metrics in CloudWatch ](metrics-dimensions.md#s3-cloudwatch-replication-metrics)\. 
 
 **Topics**
 

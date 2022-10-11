@@ -4,7 +4,7 @@ With Amazon S3 Select, you can use simple structured query language \(SQL\) stat
 
 Amazon S3 Select works on objects stored in CSV, JSON, or Apache Parquet format\. It also works with objects that are compressed with GZIP or BZIP2 \(for CSV and JSON objects only\), and server\-side encrypted objects\. You can specify the format of the results as either CSV or JSON, and you can determine how the records in the result are delimited\.
 
-You pass SQL expressions to Amazon S3 in the request\. Amazon S3 Select supports a subset of SQL\. For more information about the SQL elements that are supported by Amazon S3 Select, see [SQL reference for Amazon S3 Select and S3 Glacier Select](s3-glacier-select-sql-reference.md)\.
+You pass SQL expressions to Amazon S3 in the request\. Amazon S3 Select supports a subset of SQL\. For more information about the SQL elements that are supported by Amazon S3 Select, see [SQL reference for Amazon S3 Select](s3-glacier-select-sql-reference.md)\.
 
 You can perform SQL queries using AWS SDKs, the SELECT Object Content REST API, the AWS Command Line Interface \(AWS CLI\), or the Amazon S3 console\. The Amazon S3 console limits the amount of data returned to 40 MB\. To retrieve more data, use the AWS CLI or the API\.
 
@@ -63,4 +63,4 @@ For more information about Amazon S3 Select, see the topics below:
 + [Constructing a request](#selecting-content-from-objects-contructing-request)
 + [Errors](#selecting-content-from-objects-errors)
 + [Examples of using Amazon S3 Select on objects](using-select.md)
-+ [SQL reference for Amazon S3 Select and S3 Glacier Select](s3-glacier-select-sql-reference.md)
++ [SQL reference for Amazon S3 Select](s3-glacier-select-sql-reference.md)

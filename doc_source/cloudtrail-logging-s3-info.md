@@ -139,4 +139,4 @@ Consider the following cross\-account scenario:
 + Account\-A owns the bucket\.
 +  Account\-B \(the requester\) sends a request to set an object ACL grant using an email address\. For more information about ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
-The request gets the logs along with the email information\. However, the bucket owner—if they are eligible to receive logs, as in example 1—gets the CloudTrail log reporting the event\. However, the bucket owner doesn't get the ACL configuration information, specifically the grantee email and the grant\. The only information that the log tells the bucket owner is that an ACL API call was made by Account\-B\.
+The requester gets the logs along with the email information\. However, the bucket owner—if they are eligible to receive logs, as in example 1—gets the CloudTrail log reporting the event\. However, the bucket owner doesn't get the ACL configuration information, specifically the grantee email and the grant\. The only information that the log tells the bucket owner is that an ACL API call was made by Account\-B\.

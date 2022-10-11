@@ -13,12 +13,9 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool AwsDoc::S3::DeleteObject(const Aws::String &objectKey, const Aws::String &fromBucket, const Aws::String &region) {
-    Aws::Client::ClientConfiguration clientConfig;
-    if (!region.empty()) {
-        clientConfig.region = region;
-    }
-
+bool AwsDoc::S3::DeleteObject(const Aws::String &objectKey,
+                              const Aws::String &fromBucket,
+                              const Aws::Client::ClientConfiguration &clientConfig) {
     Aws::S3::S3Client client(clientConfig);
     Aws::S3::Model::DeleteObjectRequest request;
 
@@ -28,38 +25,16 @@ bool AwsDoc::S3::DeleteObject(const Aws::String &objectKey, const Aws::String &f
     Aws::S3::Model::DeleteObjectOutcome outcome =
             client.DeleteObject(request);
 
-    if (!outcome.IsSuccess())
-    {
+    if (!outcome.IsSuccess()) {
         auto err = outcome.GetError();
-        std::cout << "Error: DeleteObject: " <<
+        std::cerr << "Error: DeleteObject: " <<
                   err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-        return false;
     }
-    else
-    {
+    else {
         std::cout << "Successfully deleted the object." << std::endl;
-        return true;
     }
-}
 
-int main()
-{
-    //TODO: The object_key is the unique identifier for the object in the bucket. In this example set,
-    //it is the filename you added in put_object.cpp.
-    Aws::String objectKey = "<Enter object key>";
-    //TODO: Change from_bucket to the name of a bucket in your account.
-    Aws::String fromBucket = "<Enter bucket name>";
-    //TODO: Set to the AWS Region in which the bucket was created.
-    Aws::String region = "us-east-1";
-
-    Aws::SDKOptions options;
-    Aws::InitAPI(options);
-
-    AwsDoc::S3::DeleteObject(objectKey, fromBucket, region);
-
-    ShutdownAPI(options);
-
-    return 0;
+    return outcome.IsSuccess();
 }
 ```
 +  For API details, see [DeleteObject](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/DeleteObject) in *AWS SDK for C\+\+ API Reference*\. 
@@ -130,7 +105,12 @@ Delete an object\.
 
 ```
 class ObjectWrapper:
+    """Encapsulates S3 object actions."""
     def __init__(self, s3_object):
+        """
+        :param s3_object: A Boto3 Object resource. This is a high-level resource in Boto3
+                          that wraps object actions in a class-like structure.
+        """
         self.object = s3_object
         self.key = self.object.key
 

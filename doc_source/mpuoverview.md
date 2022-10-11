@@ -50,7 +50,7 @@ An in\-progress multipart upload is an upload that you have initiated, but have 
 
 When you upload an object to Amazon S3, you can specify a checksum algorithm for Amazon S3 to use\. Amazon S3 uses MD5 by default to verify data integrity; however, you can specify an additional checksum algorithm to use\. When using MD5, Amazon S3 calculates the checksum of the entire multipart object after the upload is complete\. This checksum is not a checksum of the entire object, but rather a checksum of the checksums for each individual part\.
 
-When you instruct Amazon S3 to use additional checksums, Amazon S3 calculates the checksum value for each part and stores the values\. You can use the API or SDK to retrieve the checksum value for individual parts by using `GetObject` or `HeadObject`\.
+When you instruct Amazon S3 to use additional checksums, Amazon S3 calculates the checksum value for each part and stores the values\. You can use the API or SDK to retrieve the checksum value for individual parts by using `GetObject` or `HeadObject`\. If you want to retrieve the checksum values for individual parts of multipart uploads still in process, you can use `ListParts`\.
 
 **Important**  
 If you are using a multipart upload with additional checksums, the multipart part numbers must use consecutive part numbers\. When using additional checksums, if you try to complete a multipart upload request with nonconsecutive part numbers, Amazon S3 generates HTTP `500 Internal Server Error` error\.
@@ -95,13 +95,13 @@ The following topics in the AWS Command Line Interface describe the operations f
 
 
 You can use an AWS SDKs to upload an object in parts\. For a list of AWS SDKs supported by API action see:
-+ [Create Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html#API_CreateMultipartUpload_SeeAlso)
-+ [Upload Part](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html#API_UploadPart_SeeAlso)
++ [Create Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html)
++ [Upload Part](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
 + [Upload Part \(Copy\)](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html)
-+ [Complete Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html#API_CompleteMultipartUpload_SeeAlso)
-+ [Abort Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html#API_AbortMultipartUpload_SeeAlso)
-+ [List Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html#API_ListParts_SeeAlso)
-+ [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html#API_ListMultipartUploads_SeeAlso.html)
++ [Complete Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html)
++ [Abort Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html)
++ [List Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)
++ [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html)
 
 ## Multipart upload API and permissions<a name="mpuAndPermissions"></a>
 

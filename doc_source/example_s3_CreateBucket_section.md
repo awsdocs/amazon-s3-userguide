@@ -50,50 +50,33 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool AwsDoc::S3::CreateBucket(const Aws::String &bucketName, const Aws::String &region) {
-    // Create the bucket.
-    Aws::Client::ClientConfiguration clientConfig;
-    if (!region.empty())
-        clientConfig.region = region;
-
+bool AwsDoc::S3::CreateBucket(const Aws::String &bucketName,
+                              const Aws::Client::ClientConfiguration &clientConfig) {
     Aws::S3::S3Client client(clientConfig);
     Aws::S3::Model::CreateBucketRequest request;
     request.SetBucket(bucketName);
 
-    Aws::S3::Model::CreateBucketOutcome outcome = client.CreateBucket(request);
-    if (!outcome.IsSuccess())
-    {
-        auto err = outcome.GetError();
-        std::cout << "Error: CreateBucket: " <<
-                  err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
-        return false;
+    //TODO(user): Change the bucket location constraint enum to your target Region.
+    if (clientConfig.region != "us-east-1") {
+        Aws::S3::Model::CreateBucketConfiguration createBucketConfig;
+        createBucketConfig.SetLocationConstraint(
+                Aws::S3::Model::BucketLocationConstraintMapper::GetBucketLocationConstraintForName(
+                        clientConfig.region));
+        request.SetCreateBucketConfiguration(createBucketConfig);
     }
-    else
-    {
+
+    Aws::S3::Model::CreateBucketOutcome outcome = client.CreateBucket(request);
+    if (!outcome.IsSuccess()) {
+        auto err = outcome.GetError();
+        std::cerr << "Error: CreateBucket: " <<
+                  err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
+    }
+    else {
         std::cout << "Created bucket " << bucketName <<
                   " in the specified AWS Region." << std::endl;
-        return true;
     }
 
-}
-int main()
-{
-    Aws::SDKOptions options;
-    InitAPI(options);
-        //TODO: Set to the AWS Region of your account.  If you don't, you will get a runtime
-        //IllegalLocationConstraintException Message: "The unspecified location constraint is incompatible
-        //for the Region specific endpoint this request was sent to."
-    Aws::String region = "us-east-1";
-        // Create a unique bucket name to increase the chance of success
-        // when trying to create the bucket.
-        // Format: "doc-example-bucket-" + lowercase UUID.
-    Aws::String uuid = Aws::Utils::UUID::RandomUUID();
-    Aws::String bucketName = "doc-example-bucket-" +
-                             Aws::Utils::StringUtils::ToLower(uuid.c_str());
-
-    AwsDoc::S3::CreateBucket(bucketName, region);
-
-    ShutdownAPI(options);
+    return outcome.IsSuccess();
 }
 ```
 +  For API details, see [CreateBucket](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/CreateBucket) in *AWS SDK for C\+\+ API Reference*\. 
@@ -253,7 +236,12 @@ Create a bucket with default settings\.
 
 ```
 class BucketWrapper:
+    """Encapsulates S3 bucket actions."""
     def __init__(self, bucket):
+        """
+        :param bucket: A Boto3 Bucket resource. This is a high-level resource in Boto3
+                       that wraps bucket actions in a class-like structure.
+        """
         self.bucket = bucket
         self.name = bucket.name
 
@@ -425,7 +413,7 @@ pub async fn create_bucket(client: &Client, bucket_name: &str, region: &str) -> 
         .bucket(bucket_name)
         .send()
         .await?;
-    println!("{}", bucket_name);
+    println!("Creating bucket named: {bucket_name}");
     Ok(())
 }
 ```

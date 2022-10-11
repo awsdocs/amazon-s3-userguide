@@ -19,10 +19,17 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 	fmt.Println("Create Presign client")
 	presignClient := s3.NewPresignClient(&client)
 
-	presignResult, err := presignClient.PresignGetObject(context.TODO(), &s3.GetObjectInput{
+	presignParams := &s3.GetObjectInput{
 		Bucket: aws.String(name),
 		Key:    aws.String("path/myfile.jpg"),
-	})
+	}
+
+	// Apply an expiration via an option function
+	presignDuration := func(po *s3.PresignOptions) {
+		po.Expires = 5 * time.Minute
+	}
+
+	presignResult, err := presignClient.PresignGetObject(context.TODO(), presignParams, presignDuration)
 
 	if err != nil {
 		panic("Couldn't get presigned URL for GetObject")
@@ -349,7 +356,12 @@ Generate a presigned POST request to upload a file\.
 
 ```
 class BucketWrapper:
+    """Encapsulates S3 bucket actions."""
     def __init__(self, bucket):
+        """
+        :param bucket: A Boto3 Bucket resource. This is a high-level resource in Boto3
+                       that wraps bucket actions in a class-like structure.
+        """
         self.bucket = bucket
         self.name = bucket.name
 

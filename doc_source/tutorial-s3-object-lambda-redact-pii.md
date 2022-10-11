@@ -218,7 +218,7 @@ To redact PII data, configure and deploy the prebuilt AWS Lambda function `Compr
 
 An S3 Object Lambda access point provides the flexibility to invoke a Lambda function directly from an S3 GET request so that the function can redact PII data retrieved from an S3 access point\. When creating and configuring an S3 Object Lambda access point, you must specify the redacting Lambda function to invoke and provide the event context in JSON format as custom parameters for Lambda to use\. 
 
-The event context provides information about the request being made in the event passed from S3 Object Lambda to Lambda\. For more information about all the fields in the event context, see [Event context format and usage](olap-writing-lambda.md#olap-event-context)\.
+The event context provides information about the request being made in the event passed from S3 Object Lambda to Lambda\. For more information about all the fields in the event context, see [Event context format and usage](olap-event-context.md)\.
 
 **To create an S3 Object Lambda access point**
 
@@ -240,13 +240,13 @@ The event context provides information about the request being made in the event
 
 1. \(Optional\) If you need your Lambda function to recognize and process GET requests with range and part number headers, select **Lambda function supports requests using range** and **Lambda function supports requests using part numbers**\. Otherwise, clear these two check boxes\.
 
-   For more information about how to use range or part numbers with S3 Object Lambda, see [Working with Range and partNumber headers](olap-writing-lambda.md#range-get-olap)\.
+   For more information about how to use range or part numbers with S3 Object Lambda, see [Working with Range and partNumber headers](range-get-olap.md)\.
 
 1. \(Optional\) Under **Payload \- *optional***, add JSON text to provide your Lambda function with additional information\.
 
    A payload is optional JSON text that you can provide to your Lambda function as input for all invocations coming from a specific S3 Object Lambda access point\. To customize the behaviors for multiple Object Lambda access points that invoke the same Lambda function, you can configure payloads with different parameters, thereby extending the flexibility of your Lambda function\.
 
-   For more information about payload, see [Event context format and usage](olap-writing-lambda.md#olap-event-context)\.
+   For more information about payload, see [Event context format and usage](olap-event-context.md)\.
 
 1. \(Optional\) For **Request metrics \- *optional***, choose **Disable** or **Enable** to add Amazon S3 monitoring to your Object Lambda access point\. Request metrics are billed at the standard Amazon CloudWatch rate\. For more information, see [CloudWatch pricing](http://aws.amazon.com/cloudwatch/pricing/)\.
 

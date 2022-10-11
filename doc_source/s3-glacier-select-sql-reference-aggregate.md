@@ -1,9 +1,6 @@
-# Aggregate Functions \(Amazon S3 Select only\)<a name="s3-glacier-select-sql-reference-aggregate"></a>
+# Aggregate Functions<a name="s3-glacier-select-sql-reference-aggregate"></a>
 
 Amazon S3 Select supports the following aggregate functions\.
-
-**Note**  
-S3 Glacier Select does not support aggregate functions\.
 
 
 | Function | Argument Type | Return Type | 

@@ -13,70 +13,38 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool AwsDoc::S3::GetWebsiteConfig(const Aws::String& bucketName, 
-    const Aws::String& region)
-{
-    Aws::Client::ClientConfiguration config;
-
-    if (!region.empty())
-    {
-        config.region = region;
-    }
-
-    Aws::S3::S3Client s3_client(config);
+bool AwsDoc::S3::GetWebsiteConfig(const Aws::String &bucketName,
+                                  const Aws::Client::ClientConfiguration &clientConfig) {
+    Aws::S3::S3Client s3_client(clientConfig);
 
     Aws::S3::Model::GetBucketWebsiteRequest request;
     request.SetBucket(bucketName);
 
-    Aws::S3::Model::GetBucketWebsiteOutcome outcome = 
-        s3_client.GetBucketWebsite(request);
+    Aws::S3::Model::GetBucketWebsiteOutcome outcome =
+            s3_client.GetBucketWebsite(request);
 
-    if (outcome.IsSuccess())
-    {
-        Aws::S3::Model::GetBucketWebsiteResult result = outcome.GetResult();
+    if (!outcome.IsSuccess()) {
+        const Aws::S3::S3Error &err = outcome.GetError();
+
+        std::cerr << "Error: GetBucketWebsite: "
+                  << err.GetMessage() << std::endl;
+    }
+    else {
+        Aws::S3::Model::GetBucketWebsiteResult websiteResult = outcome.GetResult();
 
         std::cout << "Success: GetBucketWebsite: "
-            << std::endl << std::endl
-            << "For bucket '" << bucketName << "':" 
-            << std::endl
-            << "Index page : "
-            << result.GetIndexDocument().GetSuffix()
-            << std::endl
-            << "Error page: "
-            << result.GetErrorDocument().GetKey()
-            << std::endl;
-
-        return true;
+                  << std::endl << std::endl
+                  << "For bucket '" << bucketName << "':"
+                  << std::endl
+                  << "Index page : "
+                  << websiteResult.GetIndexDocument().GetSuffix()
+                  << std::endl
+                  << "Error page: "
+                  << websiteResult.GetErrorDocument().GetKey()
+                  << std::endl;
     }
-    else
-    {
-        auto err = outcome.GetError();
 
-        std::cout << "Error: GetBucketWebsite: "
-            << err.GetMessage() << std::endl;
-
-        return false;
-    }
-}
-
-int main()
-{
-    Aws::SDKOptions options;
-    Aws::InitAPI(options);
-    {
-        //TODO: Change bucket_name to the name of a bucket in your account.
-        const Aws::String bucket_name = "DOC-EXAMPLE-BUCKET";
-        //TODO: Set to the AWS Region in which the bucket was created.
-        const Aws::String region = "us-east-1";
-
-        if (!AwsDoc::S3::GetWebsiteConfig(bucket_name, region))
-        {
-            return 1;
-        }
-    }
-    Aws::ShutdownAPI(options);
-
-    return 0;
+    return outcome.IsSuccess();
 }
 ```
 +  For API details, see [GetBucketWebsite](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/GetBucketWebsite) in *AWS SDK for C\+\+ API Reference*\. 

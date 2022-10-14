@@ -43,7 +43,7 @@ Amazon S3 provides features for auditing and managing access to your buckets and
 ### Data processing<a name="features-data-processing"></a>
 
 To transform data and trigger workflows to automate a variety of other processing activities at scale, you can use the following features\.
-+ [S3 Object Lambda](https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html) – Add your own code to S3 GET requests to modify and process data as it is returned to an application\. Filter rows, dynamically resize images, redact confidential data, and much more\.
++ [S3 Object Lambda](https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html) – Add your own code to S3 GET, HEAD, and LIST requests to modify and process data as it is returned to an application\. Filter rows, dynamically resize images, redact confidential data, and much more\.
 + [Event notifications](https://docs.aws.amazon.com/AmazonS3/latest/userguide/NotificationHowTo.html) – Trigger workflows that use Amazon Simple Notification Service \(Amazon SNS\), Amazon Simple Queue Service \(Amazon SQS\), and AWS Lambda when a change is made to your S3 resources\.
 
 ### Storage logging and monitoring<a name="features-storage-monitoring"></a>

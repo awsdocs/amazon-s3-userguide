@@ -22,9 +22,9 @@ The inventory lists are published daily or weekly to the following location in t
       ...
       destination-prefix/source-bucket/config-ID/data/example-file-name-1.csv.gz
 ```
-+ *destination\-prefix* is the \(object key name\) prefix set in the inventory configuration\. It can be used to group all the inventory list files in a common location in the destination bucket\.
-+ *source\-bucket* is the source bucket that the inventory list is for\. It is added to prevent collisions when multiple inventory reports from different source buckets are sent to the same destination bucket\.
-+ *example\-file\-name*`.csv.gz` is one of the CSV inventory files\. ORC inventory names end with the file name extension `.orc`, and Parquet inventory names end with the file name extension `.parquet`\.
++ `destination-prefix` is the \(object key name\) prefix set in the inventory configuration\. It can be used to group all the inventory list files in a common location in the destination bucket\.
++ `source-bucket` is the source bucket that the inventory list is for\. It is added to prevent collisions when multiple inventory reports from different source buckets are sent to the same destination bucket\.
++ `example-file-name``.csv.gz` is one of the CSV inventory files\. ORC inventory names end with the file name extension `.orc`, and Parquet inventory names end with the file name extension `.parquet`\.
 
 ## Inventory manifest<a name="storage-inventory-location-manifest"></a>
 

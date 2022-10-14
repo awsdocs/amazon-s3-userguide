@@ -58,11 +58,13 @@ The inventory list contains a list of the objects in an S3 bucket and the follow
 
 We recommend that you create a lifecycle policy that deletes old inventory lists\. For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 
+The `s3:PutInventoryConfiguration` permission allows a user to both select all the metadata fields that are listed earlier for each object when configuring an inventory list and to specify the destination bucket to store the inventory\. A user with read access to objects in the destination bucket can access all object metadata fields that are available in the inventory list\. To restrict access to an inventory report, see [Restricting access to an Amazon S3 Inventory report](example-bucket-policies.md#example-bucket-policies-use-case-10)\.
+
 ### Inventory consistency<a name="storage-inventory-contents-consistency"></a>
 
-All of your objects might not appear in each inventory list\. The inventory list provides eventual consistency for PUTs of both new objects and overwrites, and DELETEs\. Inventory lists are a rolling snapshot of bucket items, which are eventually consistent \(that is, the list might not include recently added or deleted objects\)\. 
+All of your objects might not appear in each inventory list\. The inventory list provides eventual consistency for `PUT` requests of both new objects and overwrites, and `DELETE` requests\. Inventory lists are a rolling snapshot of bucket items, which are eventually consistent \(that is, the list might not include recently added or deleted objects\)\. 
 
-To validate the state of the object before you take action on the object, we recommend that you perform a `HEAD Object` REST API request to retrieve metadata for the object, or check the object's properties in the Amazon S3 console\. You can also check object metadata with the AWS CLI or the AWS SDKS\. For more information, see [HEAD Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html) in the *Amazon Simple Storage Service API Reference*\.
+To validate the state of the object before you take action on the object, we recommend that you perform a `HEAD Object` REST API request to retrieve metadata for the object, or check the object's properties in the Amazon S3 console\. You can also check object metadata with the AWS CLI or the AWS SDKS\. For more information, see [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html) in the *Amazon Simple Storage Service API Reference*\.
 
 For more information about working with Amazon S3 Inventory, see the following topics\.
 

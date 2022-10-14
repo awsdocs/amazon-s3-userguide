@@ -8,7 +8,7 @@ A delete marker has a key name \(or key\) and version ID like any other object\.
 + It does not retrieve anything from a `GET` request because it has no data; you get a 404 error\.
 + The only operation that you can use on a delete marker is an Amazon S3 API `DELETE` call\. To do this, you must make the `DELETE` request using an AWS Identity and Access Management \(IAM\) user or role with the appropriate permissions\.
 
-Delete markers accrue a nominal charge for storage in Amazon S3\. The storage size of a delete marker is equal to the size of the key name of the delete marker\. A key name is a sequence of Unicode characters\. The UTF\-8 encoding adds 1–4 bytes of storage to your bucket for each character in the name\. 
+Delete markers accrue a minimal charge for storage in Amazon S3\. The storage size of a delete marker is equal to the size of the key name of the delete marker\. A key name is a sequence of Unicode characters\. The UTF\-8 encoding adds 1‐4 bytes of storage to your bucket for each character in the name\. Delete markers are stored in the S3 Standard storage class\. If you want to find out how many delete markers you have and what storage class they are stored in, you can use Amazon S3 Storage Lens\. For more information, see [Assessing your storage activity and usage with Amazon S3 Storage Lens](storage_lens.md) and [Amazon S3 Storage Lens metrics glossary](storage_lens_metrics_glossary.md)\.
 
 For more information about key names, see [Creating object key names](object-keys.md)\. For information about deleting a delete marker, see [Managing delete markers](ManagingDelMarkers.md)\.  
 

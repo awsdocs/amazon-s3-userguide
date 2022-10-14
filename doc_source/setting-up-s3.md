@@ -65,7 +65,7 @@ If you don't want the URL for your sign\-in link to contain your AWS account ID,
    Your sign\-in link includes your AWS account ID \(without dashes\) or your AWS account alias:
 
    ```
-   https://aws_account_id_or_alias.signin.aws.amazon.com/console
+   https://AccountIDorAlias.signin.aws.amazon.com/console
    ```
 
 1. Enter the IAM user name and password that you just created\. 

@@ -6,7 +6,7 @@ Amazon S3 Select supports only the `SELECT` SQL command\. The following ANSI sta
 + `SELECT` list
 + `FROM` clause 
 + `WHERE` clause
-+ `LIMIT` clause \(Amazon S3 Select only\)
++ `LIMIT` clause
 
 **Note**  
 Amazon S3 Select queries currently do not support subqueries or joins\.
@@ -128,7 +128,7 @@ WHERE condition
 
 The `WHERE` clause filters rows based on the *condition*\. A condition is an expression that has a Boolean result\. Only rows for which the condition evaluates to `TRUE` are returned in the result\.
 
-## LIMIT Clause \(Amazon S3 Select only\)<a name="s3-glacier-select-sql-reference-limit"></a>
+## LIMIT Clause<a name="s3-glacier-select-sql-reference-limit"></a>
 
 The `LIMIT` clause follows this syntax: 
 
@@ -148,7 +148,7 @@ The `SELECT` and `WHERE` clauses can refer to record data using one of the metho
   You can refer to a column as `_N` or `alias._N`\. For example, `_2` and `myAlias._2` are both valid ways to refer to a column in the `SELECT` list and `WHERE` clause\.
 + **Column Headers** – For objects in CSV format that have a header row, the headers are available to the `SELECT` list and `WHERE` clause\. In particular, as in traditional SQL, within `SELECT` and `WHERE` clause expressions, you can refer to the columns by `alias.column_name` or `column_name`\.
 
-### JSON \(Amazon S3 Select only\)<a name="s3-glacier-select-sql-reference-attribute-access-json"></a>
+### JSON<a name="s3-glacier-select-sql-reference-attribute-access-json"></a>
 + **Document** – You can access JSON document fields as `alias.name`\. Nested fields can also be accessed; for example, `alias.name1.name2.name3`\.
 + **List** – You can access elements in a JSON list using zero\-based indexes with the `[]` operator\. For example, you can access the second element of a list as `alias[1]`\. Accessing list elements can be combined with fields as `alias.name1.name2[1].name3`\.
 + **Examples:** Consider this JSON object as a sample dataset:

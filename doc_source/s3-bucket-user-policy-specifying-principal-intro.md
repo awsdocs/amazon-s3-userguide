@@ -52,6 +52,8 @@ For detailed examples that provide step\-by\-step instructions, see [Example 1: 
 
 To grant permission to everyone, also referred as anonymous access, you set the wildcard \(`"*"`\) as the `Principal` value\. For example, if you configure your bucket as a website, you want all the objects in the bucket to be publicly accessible\.
 
+For anonymous users, the following elements are equivalent:
+
 ```
 "Principal":"*"
 ```
@@ -60,9 +62,7 @@ To grant permission to everyone, also referred as anonymous access, you set the 
 "Principal":{"AWS":"*"}
 ```
 
-Using `"Principal": "*"` with an `Allow` effect in a resource\-based policy allows anyone, even if they’re not signed in to AWS, to access your resource\. 
-
-Using `"Principal" : { "AWS" : "*" }` with an `Allow` effect in a resource\-based policy allows any root user, IAM user, assumed\-role session, or federated user in any account in the same partition to access your resource\. For more information, see [All principals](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#principal-anonymous) in the *IAM User Guide*\.
+For more information, see [All principals](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#principal-anonymous) in the *IAM User Guide*\.
 
 You cannot use a wildcard to match part of a principal name or ARN\.
 

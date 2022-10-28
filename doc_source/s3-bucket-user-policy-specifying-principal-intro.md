@@ -66,9 +66,6 @@ For more information, see [All principals](https://docs.aws.amazon.com/IAM/lates
 
 You cannot use a wildcard to match part of a principal name or ARN\.
 
-**Important**  
-Because anyone can create an AWS account, the **security level** of these two methods is equivalent, even though they function differently\.
-
 **Warning**  
 Use caution when granting anonymous access to your Amazon S3 bucket\. When you grant anonymous access, anyone in the world can access your bucket\. We highly recommend that you never grant any kind of anonymous write access to your S3 bucket\.
 

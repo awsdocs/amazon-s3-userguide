@@ -25,5 +25,5 @@ The following topics show you how to view your Amazon S3 on Outposts bucket poli
 The following example deletes the bucket policy for an S3 on Outposts bucket \(`s3-outposts:DeleteBucket`\) by using the AWS CLI\. To run this command, replace the `user input placeholders` with your own information\.
 
 ```
-aws s3control delete-bucket-policy --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket
+aws s3control delete-bucket-policy --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket
 ```

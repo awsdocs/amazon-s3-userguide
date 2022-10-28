@@ -42,7 +42,7 @@ The following table provides a list of system\-defined metadata and whether you 
 | x\-amz\-storage\-class | Storage class used for storing the object\. For more information, see [Using Amazon S3 storage classes](storage-class-intro.md)\. | Yes | 
 | x\-amz\-website\-redirect\-location |  Redirects requests for the associated object to another object in the same bucket or an external URL\. For more information, see [\(Optional\) Configuring a webpage redirect](how-to-page-redirect.md)\. This value is unique to each individual object and is not copied by default\. | Yes | 
 | x\-amz\-server\-side\-encryption\-aws\-kms\-key\-id | If x\-amz\-server\-side\-encryption is present and has the value of aws:kms, this indicates the ID of the AWS KMS symmetric encryption KMS key that was used for the object\. | Yes | 
-| x\-amz\-server\-side\-encryption\-customer\-algorithm | Indicates whether server\-side encryption with customer\-provided encryption keys \(SSE\-C\) is enabled\. For more information, see [Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)](ServerSideEncryptionCustomerKeys.md)\.  | Yes | 
+| x\-amz\-server\-side\-encryption\-customer\-algorithm | Indicates whether server\-side encryption with customer\-provided encryption keys \(SSE\-C\) is enabled\. For more information, see [Using server\-side encryption with customer\-provided keys \(SSE\-C\)](ServerSideEncryptionCustomerKeys.md)\.  | Yes | 
 | x\-amz\-tagging | The tag\-set for the object\. The tag\-set must be encoded as URL Query parameters\. | Yes | 
 
 ## User\-defined object metadata<a name="UserMetadata"></a>

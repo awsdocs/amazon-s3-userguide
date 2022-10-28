@@ -125,7 +125,7 @@ Different permission are needed if you are generating a manifest or supplying on
 
 1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. Under **Access management**, choose **Roles**\. and select your newly created role\.
+1. Under **Access management**, choose **Roles**, and select your newly created role\.
 
 1. Under **Trust relationships** tab, choose **Edit trust relationship**\.
 

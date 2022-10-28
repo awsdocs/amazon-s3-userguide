@@ -2,7 +2,9 @@
 
 AWS Outposts is a fully managed service that offers the same AWS infrastructure, AWS services, APIs, and tools to virtually any data center, co\-location space, or on\-premises facility for a truly consistent hybrid experience\. AWS Outposts is ideal for workloads that require low\-latency access to on\-premises systems, local data processing, data residency, and migration of applications with local system interdependencies\. For more information, see [What is AWS Outposts?](https://docs.aws.amazon.com/outposts/latest/userguide/what-is-outposts.htm) in the *AWS Outposts User Guide*\.
 
-With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts and easily store and retrieve objects on premises\. S3 on Outposts provides a new storage class, `OUTPOSTS`, which uses the Amazon S3 APIs and is designed to store data durably and redundantly across multiple devices and servers on your AWS Outposts\. You communicate with your Outposts bucket by using an access point and endpoint connection over a virtual private cloud \(VPC\)\. You can use the same APIs and features on Outposts buckets as you do on Amazon S3, including access policies, encryption, and tagging\. You can use S3 on Outposts through the AWS Management Console, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\.
+With Amazon S3 on Outposts, you can create S3 buckets on your Outposts and easily store and retrieve objects on premises\. S3 on Outposts provides a new storage class, `OUTPOSTS`, which uses the Amazon S3 APIs and is designed to store data durably and redundantly across multiple devices and servers on your Outposts\. You communicate with your Outposts bucket by using an access point and endpoint connection over a virtual private cloud \(VPC\)\. 
+
+You can use the same APIs and features on Outposts buckets as you do on Amazon S3, including access policies, encryption, and tagging\. You can use S3 on Outposts through the AWS Management Console, AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\.
 + [How S3 on Outposts works](#S3OutpostsConcepts)
 + [Features of S3 on Outposts](#S3OutpostsFeatures)
 + [Related services ](#S3OutpostsRelatedAmazonWebServices)
@@ -28,13 +30,17 @@ During AWS Outposts provisioning, you or AWS creates a service link connection t
 
 A bucket is a container for objects stored in S3 on Outposts\. You can store any number of objects in a bucket and can have up to 100 buckets per account per Outpost\. 
 
-When you create a bucket, you enter a bucket name and choose the Outpost where the bucket will reside\. After you create a bucket, you cannot change the bucket name or move the bucket to a different Outpost\. Bucket names must follow [Amazon S3 bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)\. In S3 on Outposts, bucket names are unique to an Outpost and AWS account\. S3 on Outposts buckets require the `outpost-id`, `account-id`, and bucket name to identify them\. The following example shows the Amazon Resource Name \(ARN\) format for S3 on Outposts buckets\. The ARN is comprised of the Region your Outpost is homed to, your Outpost account, the Outpost ID, and the bucket name\.
+When you create a bucket, you enter a bucket name and choose the Outpost where the bucket will reside\. After you create a bucket, you cannot change the bucket name or move the bucket to a different Outpost\. Bucket names must follow [Amazon S3 bucket naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html)\. In S3 on Outposts, bucket names are unique to an Outpost and AWS account\. S3 on Outposts buckets require the `outpost-id`, `account-id`, and bucket name to identify them\. 
+
+The following example shows the Amazon Resource Name \(ARN\) format for S3 on Outposts buckets\. The ARN is comprised of the Region your Outpost is homed to, your Outpost account, the Outpost ID, and the bucket name\.
 
 ```
 arn:aws:s3-outposts:region:account-id:outpost/outpost-id/bucket/bucket-name
 ```
 
-Every object is contained in a bucket\. You must use access points to access any object in an Outposts bucket\. When you specify the bucket for object operations, you use the access point ARN, which includes the `outpost-id`, `account-id`, and access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
+Every object is contained in a bucket\. You must use access points to access any object in an Outposts bucket\. When you specify the bucket for object operations, you use the access point ARN or access point alias\. For more information about access point aliases, see [Using a bucket\-style alias for your S3 on Outposts bucket access point](s3-outposts-access-points-alias.md)\. 
+
+The following example shows the access point ARN format for S3 on Outposts, which includes the `outpost-id`, `account-id`, and access point name:
 
 ```
 arn:aws:s3-outposts:region:account-id:outpost/outpost-id/accesspoint/accesspoint-name
@@ -88,7 +94,9 @@ In your bucket policy, you can use wildcard characters \(`*`\) in ARNs and other
 
 ### S3 on Outposts access points<a name="BasicsAccessPointsS3Outposts"></a>
 
-S3 on Outposts access points are named network endpoints with dedicated access policies that describe how data can be accessed using that endpoint\. Access points simplify managing data access at scale for shared datasets in S3 on Outposts\. Access points are attached to buckets that you can use to perform S3 object operations, such as `GetObject` and `PutObject`\.
+S3 on Outposts access points are named network endpoints with dedicated access policies that describe how data can be accessed using that endpoint\. Access points simplify managing data access at scale for shared datasets in S3 on Outposts\. Access points are attached to buckets that you can use to perform S3 object operations, such as `GetObject` and `PutObject`\. 
+
+When you specify the bucket for object operations, you use the access point ARN or access point alias\. For more information about access point aliases, see [Using a bucket\-style alias for your S3 on Outposts bucket access point](s3-outposts-access-points-alias.md)\.
 
 Access points have distinct permissions and network controls that S3 on Outposts applies for any request that is made through that access point\. Each access point enforces a customized access point policy that works in conjunction with the bucket policy that is attached to the underlying bucket\.
 

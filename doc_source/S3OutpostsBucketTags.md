@@ -28,7 +28,7 @@ The AWS account that creates the bucket owns it and is the only one that can cha
 The following AWS CLI example applies a tagging configuration to an S3 on Outposts bucket by using a JSON document in the current folder that specifies tags \(`tagging.json`\)\. To use this example, replace each `user input placeholder` with your own information\.
 
 ```
-aws s3control put-bucket-tagging --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket --tagging file://tagging.json
+aws s3control put-bucket-tagging --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket --tagging file://tagging.json
 
 tagging.json
 
@@ -45,7 +45,7 @@ tagging.json
 The following AWS CLI example applies a tagging configuration to an S3 on Outposts bucket directly from the command line\.
 
 ```
-aws s3control put-bucket-tagging --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket --tagging 'TagSet=[{Key=organization,Value=marketing}]'
+aws s3control put-bucket-tagging --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket --tagging 'TagSet=[{Key=organization,Value=marketing}]'
 ```
 
 For more information about this command, see [put\-bucket\-tagging](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3control/put-bucket-tagging.html) in the *AWS CLI Reference*\.

@@ -84,7 +84,7 @@ To grant Amazon S3 permission to encrypt using a customer managed AWS Key Manage
             "aws:SourceAccount":"source-account-id"
         },
          "ArnLike":{
-           "aws:SourceArn": "arn:aws:s3:::source-bucket-name"
+           "aws:SourceARN": "arn:aws:s3:::source-bucket-name"
         }
       }
    }
@@ -137,7 +137,7 @@ It may take up to 48 hours to deliver the first report\.
 
    1. Under **Encryption key type**, choose **Amazon S3 key \(SSE\-S3\)** or **AWS Key Management Service key \(SSE\-KMS\)**\.
 
-      Amazon S3 server\-side encryption uses 256\-bit Advanced Encryption Standard \(AES\-256\)\. For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. For more information about SSE\-KMS, see [Protecting data using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+      Amazon S3 server\-side encryption uses 256\-bit Advanced Encryption Standard \(AES\-256\)\. For more information, see [Using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. For more information about SSE\-KMS, see [Using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
 
    1. To use an AWS KMS key, choose one of the following:
       + **Choose from your AWS KMS keys**, and choose your **KMS key**\.

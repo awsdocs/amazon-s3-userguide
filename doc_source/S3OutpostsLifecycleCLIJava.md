@@ -54,7 +54,7 @@ The following AWS CLI example puts a lifecycle configuration policy on an Outpos
 1. Submit the JSON file as part of the `put-bucket-lifecycle-configuration` CLI command\. To use this command, replace each `user input placeholder` with your own information\. For more information about this command, see [put\-bucket\-lifecycle\-configuration](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3control/put-bucket-lifecycle-configuration.html) in the *AWS CLI Reference*\.
 
    ```
-   aws s3control put-bucket-lifecycle-configuration --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket --lifecycle-configuration file://lifecycle1.json
+   aws s3control put-bucket-lifecycle-configuration --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket --lifecycle-configuration file://lifecycle1.json
    ```
 
 ------
@@ -111,7 +111,7 @@ public void putBucketLifecycleConfiguration(String bucketArn) {
 The following AWS CLI example gets a lifecycle configuration on an Outposts bucket\. To use this command, replace each `user input placeholder` with your own information\. For more information about this command, see [get\-bucket\-lifecycle\-configuration](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3control/get-bucket-lifecycle-configuration.html) in the *AWS CLI Reference*\.
 
 ```
-aws s3control get-bucket-lifecycle-configuration --account-id 123456789012 --bucket arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket
+aws s3control get-bucket-lifecycle-configuration --account-id 123456789012 --bucket arn:aws:s3-outposts:<your-region>:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket
 ```
 
 ------

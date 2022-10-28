@@ -11,9 +11,7 @@ Amazon S3 replicates only specific items in buckets that are configured for repl
 By default, Amazon S3 replicates the following:
 + Objects created after you add a replication configuration\.
 + Unencrypted objects\. 
-+ Objects encrypted at rest under an Amazon S3 managed key \(SSE\-S3\) or a KMS key stored in AWS Key Management Service \(SSE\-KMS\)\. 
-
-  To replicate objects encrypted with a KMS key stored in AWS KMS, you must explicitly enable the option\. The replicated copy of the object is encrypted using the same type of server\-side encryption that was used for the source object\. For more information about server\-side encryption, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.
++  Objects encrypted using customer provided keys \(SSE\-C\), objects encrypted at rest under Amazon S3 managed keys \(SSE\-S3\) and objects encrypted with KMS keys stored in AWS Key Management Service \(SSE\-KMS\)\. For more information, see [Replicating objects created with server\-side encryption \(SSE\-C, SSE\-S3, SSE\-KMS\)](replication-config-for-kms-objects.md)\. 
 + Object metadata from the source objects to the replicas\. For information about replicating metadata from the replicas to the source objects, see [Replicating metadata changes with Amazon S3 replica modification sync](replication-for-metadata-changes.md)\.
 + Only objects in the source bucket for which the bucket owner has permissions to read objects and access control lists \(ACLs\)\. 
 
@@ -45,8 +43,7 @@ By default, Amazon S3 doesn't replicate the following:
 + Objects in the source bucket that have already been replicated to a different destination\. For example, if you change the destination bucket in an existing replication configuration, Amazon S3 won't replicate the objects again\.
 
   To replicate previously replicated objects, use Batch Replication\. Learn more about configuring Batch Replication at [Replicate existing objects](s3-batch-replication-batch.md)\.
-+ Batch Replication does not support re\-replicating objects that were deleted with the version ID of the object from the destination bucket\. To re\-replicate these objects you can copy the source objects in place with a Batch Copy job\. Copying those objects in place will create new versions of the object in the source bucket and initiate replication automatically to the destination\. For more information about how to use Batch Copy, see, [Examples that use Batch Operations to copy objects](batch-ops-examples-copy.md)\.
-+ Objects created with server\-side encryption using customer\-provided encryption keys \(SSE\-C\)\.
++ Batch Replication does not support re\-replicating objects that were deleted with the version ID of the object from the destination bucket\. To re\-replicate these objects, you can copy the source objects in place with a Batch Copy job\. Copying those objects in place creates new versions of the objects in the source bucket and initiates replication automatically to the destination\. For more information about how to use Batch Copy, see, [Examples that use Batch Operations to copy objects](batch-ops-examples-copy.md)\.
 + By default, when replicating from a different AWS account, delete markers added to the source bucket are not replicated\.
 
   For information about how to replicate delete markers, see [Replicating delete markers between buckets](delete-marker-replication.md)\.

@@ -23,7 +23,7 @@ The following topics show you how to view your Amazon S3 on Outposts bucket poli
 The following AWS CLI example gets a policy for an Outposts bucket\. To run this command, replace the `user input placeholders` with your own information\.
 
 ```
-aws s3control get-bucket-policy --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket
+aws s3control get-bucket-policy --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket
 ```
 
 ## Using the AWS SDK for Java<a name="S3OutpostsGetBucketPolicyJava"></a>

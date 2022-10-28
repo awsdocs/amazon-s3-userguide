@@ -83,9 +83,9 @@ With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts resou
 
 S3 on Outposts provides a new storage class, S3 Outposts \(`OUTPOSTS`\)\. The S3 Outposts storage class is available only for objects stored in buckets on Outposts\. If you try to use this storage class with an S3 bucket in an AWS Region, an `InvalidStorageClass` error occurs\. In addition, if you try to use other S3 storage classes with objects stored in S3 on Outposts buckets, the same error occurs\. 
 
-Objects stored in the S3 Outposts \(`OUTPOSTS`\) storage class are always encrypted by using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)\. For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. 
+Objects stored in the S3 Outposts \(`OUTPOSTS`\) storage class are always encrypted by using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)\. For more information, see [Using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. 
 
-You can also explicitly choose to encrypt objects stored in the S3 Outposts storage class by using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. For more information, see [Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)](ServerSideEncryptionCustomerKeys.md)\. 
+You can also explicitly choose to encrypt objects stored in the S3 Outposts storage class by using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. For more information, see [Using server\-side encryption with customer\-provided keys \(SSE\-C\)](ServerSideEncryptionCustomerKeys.md)\. 
 
 **Note**  
 S3 on Outposts doesn't support server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\.

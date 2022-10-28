@@ -2,18 +2,15 @@
 
 The following code examples show how to use Amazon S3 with an AWS software development kit \(SDK\)\. 
 
-The examples are divided into the following categories:
+*Actions* are code excerpts that show you how to call individual service functions\.
 
-**Actions**  
-Code excerpts that show you how to call individual service functions\.
+*Scenarios* are code examples that show you how to accomplish a specific task by calling multiple functions within the same service\.
 
-**Scenarios**  
-Code examples that show you how to accomplish a specific task by calling multiple functions within the same service\.
-
-**Cross\-service examples**  
-Sample applications that work across multiple AWS services\.
+*Cross\-service examples* are sample applications that work across multiple AWS services\.
 
 For a complete list of AWS SDK developer guides and code examples, see [Using this service with an AWS SDK](UsingAWSSDK.md#sdk-general-information-section)\. This topic also includes information about getting started and details about previous SDK versions\.
+
+**Get started**
 
 ## Hello Amazon S3<a name="example_s3_Hello_section"></a>
 
@@ -23,7 +20,7 @@ The following code example shows how to get started using Amazon Simple Storage 
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
- To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3#code-examples)\. 
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/s3#code-examples)\. 
   
 
 ```
@@ -64,7 +61,7 @@ if __name__ == '__main__':
   + [Delete multiple objects](example_s3_DeleteObjects_section.md)
   + [Delete the lifecycle configuration of a bucket](example_s3_DeleteBucketLifecycle_section.md)
   + [Delete the website configuration from a bucket](example_s3_DeleteBucketWebsite_section.md)
-  + [Determine the existence and content type of an object](example_s3_HeadObject_section.md)
+  + [Determine the content type of an object](example_s3_HeadObject_section.md)
   + [Determine the existence of a bucket](example_s3_HeadBucket_section.md)
   + [Get CORS rules for a bucket](example_s3_GetBucketCors_section.md)
   + [Get an object from a bucket](example_s3_GetObject_section.md)

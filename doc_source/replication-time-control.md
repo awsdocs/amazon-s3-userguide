@@ -27,7 +27,7 @@ For more information about creating a rule with S3 RTC, see [Replicating objects
 
 Replication rules with S3 Replication Time Control \(S3 RTC\) enabled publishes replication metrics\. With replication metrics, you can monitor the total number of S3 API operations that are pending replication, the total size of objects pending replication, and the maximum replication time to the destination Region\. You can then monitor each dataset that you replicate separately\.
 
-Replication metrics are available within 15 minutes of enabling S3 RTC\. Replication metrics are available through the [Amazon S3 console](https://console.aws.amazon.com/s3/), the [Amazon S3 API](https://docs.aws.amazon.com/AmazonS3/latest/API/), the AWS SDKs, the [AWS Command Line Interface \(AWS CLI\)](https://docs.aws.amazon.com/cli/latest/reference/), and [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/)\. For more information, see [Monitoring metrics with Amazon CloudWatch](cloudwatch-monitoring.md)\.
+Replication metrics are available within 15 minutes of enabling S3 RTC\. Replication metrics are available through the [Amazon S3 console](https://console.aws.amazon.com/s3/), the [Amazon S3 API](https://docs.aws.amazon.com/AmazonS3/latest/API/), the AWS SDKs, the [AWS Command Line Interface \(AWS CLI\)](https://docs.aws.amazon.com/cli/latest/reference/), and [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\. For more information, see [Monitoring metrics with Amazon CloudWatch](cloudwatch-monitoring.md)\.
 
 For more information about finding replication metrics via the Amazon S3 console, see [Viewing replication metrics using the Amazon S3 console](viewing-replication-metrics.md)\.
 

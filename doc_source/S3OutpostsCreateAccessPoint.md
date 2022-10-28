@@ -33,7 +33,7 @@ The AWS account that creates the Outposts bucket owns it and is the only one tha
 The following AWS CLI example creates an access point for an Outposts bucket\. To run this command, replace the `user input placeholders` with your own information\.  
 
 ```
-aws s3control create-access-point --account-id 123456789012 --name example-outposts-access-point --bucket "arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket" --vpc-configuration VpcId=example-vpc-12345
+aws s3control create-access-point --account-id 123456789012 --name example-outposts-access-point --bucket "arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket" --vpc-configuration VpcId=example-vpc-12345
 ```
 
 ## Using the AWS SDK for Java<a name="S3OutpostsCreateAccessPointJava"></a>

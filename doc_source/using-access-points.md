@@ -16,5 +16,5 @@ ARNs for objects accessed through an access point use the format `arn:aws:s3:reg
 **Topics**
 + [Monitoring and logging access points](access-points-monitoring-logging.md)
 + [Using Amazon S3 access points with the Amazon S3 console](access-points-manage.md)
-+ [Using a bucket\-style alias for your access point](access-points-alias.md)
++ [Using a bucket\-style alias for your S3 bucket access point](access-points-alias.md)
 + [Using access points with compatible Amazon S3 operations](access-points-usage-examples.md)

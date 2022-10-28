@@ -321,7 +321,7 @@ Your source bucket might contain objects that were created with server\-side enc
 ...
 ```
 
-For more information, see [Replicating objects created with server\-side encryption \(SSE\) using KMS keys](replication-config-for-kms-objects.md)\.
+For more information, see [Replicating objects created with server\-side encryption \(SSE\-C, SSE\-S3, SSE\-KMS\)](replication-config-for-kms-objects.md)\.
 
 ## Example replication configurations<a name="replication-config-example-configs"></a>
 

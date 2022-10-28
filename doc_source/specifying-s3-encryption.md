@@ -31,7 +31,7 @@ If you change an object's encryption, a new object is created to replace the old
 
 1. To enable server\-side encryption using an Amazon S3\-managed key, under **Encryption key type**, choose **Amazon S3 key \(SSE\-S3\)**\.
 
-   For more information about using Amazon S3 server\-side encryption to encrypt your data, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
+   For more information about using Amazon S3 server\-side encryption to encrypt your data, see [Using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
 
 1. Choose **Save changes**\.
 

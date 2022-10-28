@@ -828,7 +828,7 @@ import requests import xmltodict
 def lambda_handler(event, context):
     
     # Extract the presigned URL from the input.
-    s3_url = event["listObjectsContext"]["inputS3Url"]
+    s3_url = event["listObjectsV2Context"]["inputS3Url"]
 
     # Get the head of the object from Amazon S3.     
     response = requests.get(s3_url)

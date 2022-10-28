@@ -66,13 +66,13 @@ When you upload a folder, Amazon S3 uploads all of the files and subfolders from
 
    1. To encrypt the uploaded files using keys that are managed by Amazon S3, choose **Amazon S3 key \(SSE\-S3\)**\.
 
-      For more information, see [Protecting data using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
+      For more information, see [Using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
 
    1. To encrypt the uploaded files using the AWS Key Management Service \(AWS KMS\), choose **AWS Key Management Service key \(SSE\-KMS\)**\. Then choose an option for **AWS KMS key**\.
       + **AWS managed key** – Choose an [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)\.
       + **Choose from your KMS root keys** – Choose a [customer managed key ](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) from a list of KMS keys in the same Region as your bucket\.
 
-        For more information about creating a customer managed key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/UsingServerSideEncryption.html) in the *AWS Key Management Service Developer Guide*\. For more information about protecting data with AWS KMS, see [Protecting data using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+        For more information about creating a customer managed key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/UsingServerSideEncryption.html) in the *AWS Key Management Service Developer Guide*\. For more information about protecting data with AWS KMS, see [Using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\.
       + **Enter KMS root key ARN** – Specify the AWS KMS key ARN for a customer managed key, and enter the Amazon Resource Name \(ARN\)\.
 
         You can use the KMS root key ARN to give an external account the ability to use an object that is protected by an AWS KMS key\. To do this, choose **Enter KMS root key ARN**, and enter the Amazon Resource Name \(ARN\) for the external account\. Administrators of an external account that have usage permissions to an object protected by your KMS key can further restrict access by creating a resource\-level IAM policy\. 

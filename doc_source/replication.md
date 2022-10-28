@@ -53,7 +53,7 @@ Same\-Region Replication \(SRR\) is used to copy objects across Amazon S3 bucket
 
 ## When to use S3 Batch Replication<a name="batch-replication-scenario"></a>
 
-Batch Replication replicates existing objects to different buckets as an on\-demand option\. Unlike live replication, these jobs can be executed as needed\. Batch Replication can help you do the following:
+Batch Replication replicates existing objects to different buckets as an on\-demand option\. Unlike live replication, these jobs can be run as needed\. Batch Replication can help you do the following:
 + **Replicate existing objects** – You can use Batch Replication to replicate objects that were added to the bucket before Same\-Region Replication or Cross\-Region Replication were configured\.
 + **Replicate objects that previously failed to replicate** – You can filter a Batch Replication job to attempt to replicate objects with a replication status of **FAILED**\.
 + **Replicate objects that were already replicated** – You might be required to store multiple copies of your data in separate AWS accounts or AWS Regions\. Batch Replication can replicate existing objects to newly added destinations\.
@@ -74,6 +74,6 @@ Replication requires the following:
 
 For more information, see [Setting up replication](replication-how-setup.md)\. 
 
-If you are setting the replication configuration in a *cross\-account scenario*, where source and destination buckets are owned by different AWS accounts, the following additional requirement applies:
+If you are setting the replication configuration in a *cross\-account scenario*, where the source and destination buckets are owned by different AWS accounts, the following additional requirement applies:
 + The owner of the destination buckets must grant the owner of the source bucket permissions to replicate objects with a bucket policy\. For more information, see [Granting permissions when the source and destination buckets are owned by different AWS accounts](setting-repl-config-perm-overview.md#setting-repl-config-crossacct)\.
 + The destination buckets cannot be configured as Requester Pays buckets\. For more information, see [Using Requester Pays buckets for storage transfers and usage](RequesterPaysBuckets.md)\.

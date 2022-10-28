@@ -35,6 +35,25 @@ This section explains the trust policy and minimum required permissions policy\.
      ]
   }
   ```
++ The following example shows a *trust policy*, where you identify Amazon S3 and S3 Batch Operations as service principals\. This is useful if you are creating a Batch Replication job\. For more information, see [Create a Batch Replication job for a first replication rule or new destination](s3-batch-replication-new-config.md)\.
+
+  ```
+  {
+     "Version":"2012-10-17",
+     "Statement":[
+        {
+           "Effect":"Allow",
+           "Principal":{
+              "Service": [
+                "s3.amazonaws.com",
+                "batchoperations.s3.amazonaws.com"
+             ]
+           },
+           "Action":"sts:AssumeRole"
+        }
+     ]
+  }
+  ```
 
   For more information about IAM roles, see [IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) in the *IAM User Guide*\.
 + The following example shows an *access policy*, where you grant the role permissions to perform replication tasks on your behalf\. When Amazon S3 assumes the role, it has the permissions that you specify in this policy\. In this policy, `DOC-EXAMPLE-BUCKET1` is the source bucket, and `DOC-EXAMPLE-BUCKET2` is the destination bucket\.

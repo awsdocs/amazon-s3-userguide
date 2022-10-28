@@ -11,6 +11,7 @@ The following sections describe how to create and manage access points for S3 on
 
 **Topics**
 + [Creating an S3 on Outposts access point](S3OutpostsCreateAccessPoint.md)
++ [Using a bucket\-style alias for your S3 on Outposts bucket access point](s3-outposts-access-points-alias.md)
 + [Viewing information about an access point configuration](S3OutpostsAccessPointGet.md)
 + [View a list of your Amazon S3 on Outposts access points](S3OutpostsAccessPointList.md)
 + [Deleting an access point](S3OutpostsAccessPointsDelete.md)

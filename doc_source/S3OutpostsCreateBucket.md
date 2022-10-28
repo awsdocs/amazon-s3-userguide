@@ -75,7 +75,7 @@ It can take up to 5 minutes for your Outposts endpoint to be created and your bu
 The following example creates an S3 on Outposts bucket \(`s3-outposts:CreateBucket`\) by using the AWS CLI\. To run this command, replace the `user input placeholders` with your own information\.  
 
 ```
-aws s3control create-bucket --bucket example-outpost-bucket --outpost-id op-01ac5d28a6a232904
+aws s3control create-bucket --bucket example-outposts-bucket --outpost-id op-01ac5d28a6a232904
 ```
 
 ## Using the AWS SDK for Java<a name="S3OutpostsCreateBucketJava"></a>

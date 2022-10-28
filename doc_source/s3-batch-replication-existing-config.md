@@ -69,7 +69,7 @@ aws s3control describe-job --account-id 111122223333 --job-id job-id --region so
 
 ## Using the AWS CLI with a user\-provided manifest<a name="batch-replication-existing-config-cli-customer-manifest"></a>
 
-The following example creates an S3 Batch Replication job using a user\-defined manifest for AWS account `111122223333`\. If the objects in your manifest are in a versioned bucket, you must specify the version IDs for the objects\. Only the object with the version ID specified in the maifest will be replicated\. For more information about creating a manifest see, [Specifying a manifest](batch-ops-create-job.md#specify-batchjob-manifest)\.
+The following example creates an S3 Batch Replication job using a user\-defined manifest for AWS account `111122223333`\. If the objects in your manifest are in a versioned bucket, you must specify the version IDs for the objects\. Only the object with the version ID specified in the manifest will be replicated\. For more information about creating a manifest see, [Specifying a manifest](batch-ops-create-job.md#specify-batchjob-manifest)\.
 
 ```
 aws s3control create-job --account-id 111122223333 --operation '{"S3ReplicateObject":{}}' --report '{"Bucket":"arn:aws:s3:::*** completion report bucket ****","Prefix":"batch-replication-report", "Format":"Report_CSV_20180820","Enabled":true,"ReportScope":"AllTasks"}' --manifest '{"Spec":{"Format":"S3BatchOperations_CSV_20180820","Fields":["Bucket","Key","VersionId"]},"Location":{"ObjectArn":"arn:aws:s3:::*** completion report bucket ****/manifest.csv","ETag":"Manifest Etag"}}' --priority 1 --role-arn arn:aws:iam::111122223333:role/batch-Replication-IAM-policy --no-confirmation-required --region source-bucket-region

@@ -1,4 +1,4 @@
-# Protecting data using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)<a name="UsingKMSEncryption"></a>
+# Using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)<a name="UsingKMSEncryption"></a>
 
 Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses AWS KMS keys to encrypt your Amazon S3 objects\. AWS KMS encrypts only the object data\. The checksum, along with the specified algorithm, are stored as part of the object's metadata\. If server\-side encryption is requested for the object, then the checksum is stored in encrypted form\.
 

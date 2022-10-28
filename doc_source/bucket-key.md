@@ -4,7 +4,7 @@ Amazon S3 Bucket Keys reduce the cost of Amazon S3 server\-side encryption using
 
 ## S3 Bucket Keys for SSE\-KMS<a name="bucket-key-overview"></a>
 
-Workloads that access millions or billions of objects encrypted with SSE\-KMS can generate large volumes of requests to AWS KMS\. When you use SSE\-KMS to protect your data without an S3 Bucket Key, Amazon S3 uses an individual AWS KMS [data key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) for every object\. It makes a call to AWS KMS every time a request is made against a KMS\-encrypted object\. For information about how SSE\-KMS works, see [Protecting data using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\. 
+Workloads that access millions or billions of objects encrypted with SSE\-KMS can generate large volumes of requests to AWS KMS\. When you use SSE\-KMS to protect your data without an S3 Bucket Key, Amazon S3 uses an individual AWS KMS [data key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) for every object\. It makes a call to AWS KMS every time a request is made against a KMS\-encrypted object\. For information about how SSE\-KMS works, see [Using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)](UsingKMSEncryption.md)\. 
 
 When you configure your bucket to use an S3 Bucket Key for SSE\-KMS, AWS KMS generates a bucket\-level key that is used to create unique data keys for *new* objects that you add to the bucket\. This S3 Bucket Key is used for a time\-limited period within Amazon S3, reducing the need for Amazon S3 to make requests to AWS KMS to complete encryption operations\. This reduces traffic from S3 to AWS KMS, allowing you to access AWS KMS\-encrypted objects in S3 at a fraction of the previous cost\.
 
@@ -70,7 +70,7 @@ You can use S3 Bucket Keys with Same\-Region Replication \(SRR\) and Cross\-Regi
 
 When Amazon S3 replicates an encrypted object, it generally preserves the encryption settings of the replica object in the destination bucket\. However, if the source object is not encrypted and your destination bucket uses default encryption or an S3 Bucket Key, Amazon S3 encrypts the object with the destination bucket’s configuration\. 
 
-The following examples illustrate how an S3 Bucket Key works with replication\. For more information, see [Replicating objects created with server\-side encryption \(SSE\) using KMS keys](replication-config-for-kms-objects.md)\. 
+The following examples illustrate how an S3 Bucket Key works with replication\. For more information, see [Replicating objects created with server\-side encryption \(SSE\-C, SSE\-S3, SSE\-KMS\)](replication-config-for-kms-objects.md)\. 
 
 **Example 1 – Source object uses S3 Bucket Keys, destination bucket uses default encryption**  
 If your source object uses an S3 Bucket Key but your destination bucket uses default encryption with SSE\-KMS, the replica object maintains its S3 Bucket Key encryption settings in the destination bucket\. The destination bucket still uses default encryption with SSE\-KMS\.   

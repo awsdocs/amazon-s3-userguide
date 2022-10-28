@@ -58,17 +58,29 @@ To apply the **Bucket owner enforced** setting or the **Bucket owner preferred**
 
    We recommend that you keep all settings enabled unless you know that you need to turn off one or more of them for your use case, such as to host a public website\. Block Public Access settings that you enable for the bucket are also enabled for all access points that you create on the bucket\. For more information about blocking public access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
 
+1. \(Optional\) Under **Bucket Versioning**, you can choose if you wish to keep variants of objects in your bucket\. For more information about versioning, see [Using versioning in S3 buckets](Versioning.md)\.
+
+   To disable or enable versioning on your bucket, choose either **Disable** or **Enable**\.
+
+1. \(Optional\) Under **Tags**, you can choose to add tags to your bucket\. Tags are key\-value pairs used to categorize storage\.
+
+   To add a bucket tag, enter a **Key** and optionally a **Value** and choose **Add Tag**\.
+
+1. \(Optional\) Under **Default encryption**, you can choose to configure your bucket to use server\-side encryption with either Amazon S3\-managed keys \(SSE\-S3\) or AWS KMS keys stored in AWS Key Management Service \(AWS KMS\) \(SSE\-KMS\)\. For more information, see [ Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\.
+
+   To disable or enable encryption, choose either **Disable** or **Enable**\.
+
 1. \(Optional\) If you want to enable S3 Object Lock, do the following:
 
    1. Choose **Advanced settings**\.
 **Important**  
-You can only enable S3 Object Lock for a bucket when you create it\. If you enable Object Lock for the bucket, you cannot disable it later\. Enabling Object Lock also enables versioning for the bucket\. After you enable Object Lock for the bucket, you must configure the Object Lock default retention and legal hold settings to protect new objects from being deleted or overwritten\. For more information, see [Configuring S3 Object Lock using the console](object-lock-console.md)\.
+You can only enable Object Lock for a bucket when you create it, and you cannot disable it later\. Enabling Object Lock also enables versioning for the bucket\. After enabling you must configure the Object Lock default retention and legal hold settings to protect new objects from being deleted or overwritten\.
 
    1. If you want to enable Object Lock, choose **Enable**, read the warning that appears, and acknowledge it\.
 
-   For more information about the S3 Object Lock feature, see [Using S3 Object Lock](object-lock.md)\.
+   For more information, see [Using S3 Object Lock](object-lock.md)\.
 **Note**  
-To create an Object Lock enabled bucket, you must have the following permissions: s3:CreateBucket, s3:PutBucketVersioning and s3:PutBucketObjectLockConfiguration\.
+To create an Object Lock enabled bucket, you must have the following permissions: `s3:CreateBucket`, `s3:PutBucketVersioning` and `s3:PutBucketObjectLockConfiguration`\.
 
 1. Choose **Create bucket**\.
 

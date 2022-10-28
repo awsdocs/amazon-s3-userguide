@@ -46,9 +46,7 @@ In the S3 console, you can view the replication status for an object on the obje
 
 1. In the **Objects** list, choose the object name\.
 
-   The object **Details** page opens\.
-
-1. Under **Object management overview**, you can see the **Replication status**\.
+1. Under the **Properties** tab find **Object management overview**, here you can see the **Replication status**\.
 
 ### Using the AWS CLI<a name="replication-status-cli"></a>
 

@@ -16,7 +16,7 @@ Access point names must meet the following conditions:
 + Must be between 3 and 50 characters long
 + Can't begin or end with a dash
 + Can't contain underscores, uppercase letters, or periods
-+ Can't end with the suffix `-s3alias`\. This suffix is reserved for access point alias names\. For more information, see [Using a bucket\-style alias for your access point](access-points-alias.md)\.
++ Can't end with the suffix `-s3alias`\. This suffix is reserved for access point alias names\. For more information, see [Using a bucket\-style alias for your S3 bucket access point](access-points-alias.md)\.
 
 To create an access point, see the topics below\.
 

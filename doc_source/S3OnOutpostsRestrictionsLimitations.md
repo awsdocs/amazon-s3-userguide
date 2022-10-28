@@ -1,6 +1,6 @@
 # How is Amazon S3 on Outposts different from Amazon S3?<a name="S3OnOutpostsRestrictionsLimitations"></a>
 
-Amazon S3 on Outposts delivers object storage to your on\-premises AWS Outposts environment and helps you to meet local processing, data residency, and demanding performance needs by keeping data close to on\-premises applications\. Using Amazon S3 APIs and features, S3 on Outposts makes it easy to store, secure, tag, report on, and control access to the data on your Outposts and extend AWS infrastructure to your in\-premises facility for a consistent hybrid experience\.
+Amazon S3 on Outposts delivers object storage to your on\-premises AWS Outposts environment\. Using S3 on Outposts helps you to meet local processing, data residency, and demanding performance needs by keeping data close to on\-premises applications\. Because it uses Amazon S3 APIs and features, S3 on Outposts makes it easy to store, secure, tag, report on, and control access to the data on your Outposts and extend AWS infrastructure to your on\-premises facility for a consistent hybrid experience\.
 
 For more information about how S3 on Outposts is unique, see the following topics\.
 
@@ -32,7 +32,6 @@ For a list of API operations supported by S3 on Outposts, see [Amazon S3 on Outp
 
 The following Amazon S3 features are currently not supported by Amazon S3 on Outposts\. Any attempts to use them are rejected\.
 + Access control lists \(ACLs\)
-+ Access point alias names
 + Cross\-origin resource sharing \(CORS\)
 + S3 Batch Operations
 + S3 Inventory reports

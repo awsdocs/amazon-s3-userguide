@@ -35,7 +35,7 @@ When you enable default encryption for a replication destination bucket, the fol
 + If objects in the source bucket are not encrypted, the replica objects in the destination bucket are encrypted using the default encryption settings of the destination bucket\. This results in the `ETag` of the source object being different from the `ETag` of the replica object\. You must update applications that use the `ETag` to accommodate for this difference\.
 + If objects in the source bucket are encrypted using SSE\-S3 or SSE\-KMS, the replica objects in the destination bucket use the same encryption as the source object encryption\. The default encryption settings of the destination bucket are not used\.
 
-For more information about using default encryption with SSE\-KMS, see [Replicating encrypted objects](replication-config-for-kms-objects.md)\.
+For more information about using default encryption with SSE\-KMS, see [Replicating encrypted objects \(SSE\-C, SSE\-S3, SSE\-KMS\)](replication-config-for-kms-objects.md)\.
 
 ## Using Amazon S3 Bucket Keys with default encryption<a name="bucket-key-default-encryption"></a>
 

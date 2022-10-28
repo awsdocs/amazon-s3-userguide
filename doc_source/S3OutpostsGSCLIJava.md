@@ -21,7 +21,7 @@ The following AWS CLI and SDK for Java examples show you how to create an S3 on 
 The following example creates an S3 on Outposts bucket \(`s3-outposts:CreateBucket`\) by using the AWS CLI\. To run this command, replace the `user input placeholders` with your own information\.  
 
 ```
-aws s3control create-bucket --bucket example-outpost-bucket --outpost-id op-01ac5d28a6a232904
+aws s3control create-bucket --bucket example-outposts-bucket --outpost-id op-01ac5d28a6a232904
 ```
 
 ------
@@ -63,7 +63,7 @@ Access points simplify managing data access at scale for shared datasets in Amaz
 The following AWS CLI example creates an access point for an Outposts bucket\. To run this command, replace the `user input placeholders` with your own information\.  
 
 ```
-aws s3control create-access-point --account-id 123456789012 --name example-outposts-access-point --bucket "arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket" --vpc-configuration VpcId=example-vpc-12345
+aws s3control create-access-point --account-id 123456789012 --name example-outposts-access-point --bucket "arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket" --vpc-configuration VpcId=example-vpc-12345
 ```
 
 ------
@@ -147,7 +147,9 @@ public void createEndpoint() {
 
 ## Step 4: Upload an object to an S3 on Outposts bucket<a name="S3OutpostsUploadObjects"></a>
 
-Objects are the fundamental entities stored in Amazon S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\), which includes the AWS Region code for the Region that the Outpost is homed to, the AWS account ID, the Outpost ID, and the access point name\. The following example shows the ARN format for S3 on Outposts access points in object operations:
+Objects are the fundamental entities stored in Amazon S3 on Outposts\. Every object is contained in a bucket\. You must use access points to access any object in an Outpost bucket\. When you specify the bucket for object operations, you use the access point Amazon Resource Name \(ARN\) or the access point alias\. For more information about access point aliases, see [Using a bucket\-style alias for your S3 on Outposts bucket access point](s3-outposts-access-points-alias.md)\.
+
+The following example shows the ARN format for S3 on Outposts access points, which includes the AWS Region code for the Region that the Outpost is homed to, the AWS account ID, the Outpost ID, and the access point name:
 
 ```
 arn:aws:s3-outposts:region:account-id:outpost/outpost-id/accesspoint/accesspoint-name

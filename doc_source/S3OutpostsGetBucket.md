@@ -14,7 +14,7 @@ For more information about S3 on Outposts ARNs, see [Resource ARNs for S3 on Out
 The following S3 on Outposts example gets a bucket by using the AWS CLI\. To use this command, replace each `user input placeholder` with your own information\. For more information about this command, see [get\-bucket](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3control/get-bucket.html) in the *AWS CLI Reference*\.
 
 ```
-aws s3control get-bucket --account-id 123456789012 --bucket "arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket"
+aws s3control get-bucket --account-id 123456789012 --bucket "arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket"
 ```
 
 ## Using the AWS SDK for Java<a name="S3OutpostsGetBucketJava"></a>

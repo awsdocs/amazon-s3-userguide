@@ -45,3 +45,5 @@ This example produces the following output\.
   ```
   1. aws cloudwatch list-metrics --namespace "AWS/S3"
   ```
+
+For more information about the permissions required to access CloudWatch dashboards, see [Amazon CloudWatch dashboard permissions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/dashboard-permissions-update.html) in the *Amazon CloudWatch User Guide*\.

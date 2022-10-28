@@ -8,7 +8,7 @@ The notification message that Amazon S3 sends to publish an event is in the JSON
 + **account** — The 12\-digit AWS account ID of the bucket owner\.
 + **time** — The time the event occurred\.
 + **region** — Identifies the AWS Region of the bucket\.
-+ **resource** — A JSON array that contains the Amazon Resource Name \(ARN\) of the bucket\.
++ **resources** — A JSON array that contains the Amazon Resource Name \(ARN\) of the bucket\.
 + **detail** — A JSON object that contains information about the event\. For more information about what can be included in this field, see [Event message detail field](#ev-events-detail)\.
 
 ## Event message structure examples<a name="ev-events-list"></a>

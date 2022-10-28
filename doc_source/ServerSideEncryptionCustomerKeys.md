@@ -1,13 +1,15 @@
-# Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)<a name="ServerSideEncryptionCustomerKeys"></a>
+# Using server\-side encryption with customer\-provided keys \(SSE\-C\)<a name="ServerSideEncryptionCustomerKeys"></a>
 
-Server\-side encryption is about protecting data at rest\. Server\-side encryption encrypts only the object data, not object metadata\. Using server\-side encryption with customer\-provided encryption keys \(SSE\-C\) allows you to set your own encryption keys\. With the encryption key you provide as part of your request, Amazon S3 manages the encryption as it writes to disks and decryption when you access your objects\. Therefore, you don't need to maintain any code to perform data encryption and decryption\. The only thing you do is manage the encryption keys you provide\. 
+Server\-side encryption is about protecting data at rest\. Server\-side encryption encrypts only the object data, not the object metadata\. By using server\-side encryption with customer\-provided keys \(SSE\-C\), you can store your own encryption keys\. With the encryption key that you provide as part of your request, Amazon S3 manages data encryption as it writes to disks and data decryption when you access your objects\. Therefore, you don't need to maintain any code to perform data encryption and decryption\. The only thing that you need to do is manage the encryption keys that you provide\. 
 
-When you upload an object, Amazon S3 uses the encryption key you provide to apply AES\-256 encryption to your data and removes the encryption key from memory\.  When you retrieve an object, you must provide the same encryption key as part of your request\. Amazon S3 first verifies that the encryption key you provided matches and then decrypts the object before returning the object data to you\. 
+When you upload an object, Amazon S3 uses the encryption key that you provide to apply AES\-256 encryption to your data\. Amazon S3 then removes the encryption key from memory\.  When you retrieve an object, you must provide the same encryption key as part of your request\. Amazon S3 first verifies that the encryption key that you provided matches, and then it decrypts the object before returning the object data to you\. 
 
-There are no new charges for using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. However, requests to configure and use SSE\-C incur standard Amazon S3 request charges\. For information about pricing, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)\.
+There are no additional charges for using SSE\-C\. However, requests to configure and use SSE\-C incur standard Amazon S3 request charges\. For information about pricing, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)\.
 
-**Important**  
-Amazon S3 does not store the encryption key you provide\. Instead, it stores a randomly salted HMAC value of the encryption key to validate future requests\. The salted HMAC value cannot be used to derive the value of the encryption key or to decrypt the contents of the encrypted object\. That means if you lose the encryption key, you lose the object\. 
+**Note**  
+Amazon S3 does not store the encryption key that you provide\. Instead, it stores a randomly salted Hash\-based Message Authentication Code \(HMAC\) value of the encryption key to validate future requests\. The salted HMAC value cannot be used to derive the value of the encryption key or to decrypt the contents of the encrypted object\. That means if you lose the encryption key, you lose the object\. 
+
+S3 Replication supports objects that are encrypted with SSE\-C\. For more information about replicating encrypted objects, see [Replicating objects created with server\-side encryption \(SSE\-C, SSE\-S3, SSE\-KMS\)](replication-config-for-kms-objects.md)\.
 
 For more information about SSE\-C, see the following topics\.
 
@@ -19,20 +21,20 @@ For more information about SSE\-C, see the following topics\.
 
 ## SSE\-C overview<a name="sse-c-highlights"></a>
 
-This section provides an overview of SSE\-C:
+This section provides an overview of SSE\-C\. When using SSE\-C, keep the following considerations in mind\. 
 +  You must use HTTPS\. 
 **Important**  
-Amazon S3 rejects any requests made over HTTP when using SSE\-C\. For security considerations, we recommend that you consider any key you erroneously send using HTTP to be compromised\. You should discard the key and rotate as appropriate\.
-+ The ETag in the response is not the MD5 of the object data\. 
+Amazon S3 rejects any requests made over HTTP when using SSE\-C\. For security considerations, we recommend that you consider any key that you erroneously send over HTTP to be compromised\. Discard the key and rotate as appropriate\.
++ The entity tag \(ETag\) in the response is not the MD5 hash of the object data\. 
 + You manage a mapping of which encryption key was used to encrypt which object\. Amazon S3 does not store encryption keys\. You are responsible for tracking which encryption key you provided for which object\.
-  + If your bucket is versioning\-enabled, each object version you upload using this feature can have its own encryption key\. You are responsible for tracking which encryption key was used for which object version\. 
+  + If your bucket is versioning\-enabled, each object version that you upload by using this feature can have its own encryption key\. You are responsible for tracking which encryption key was used for which object version\. 
   + Because you manage encryption keys on the client side, you manage any additional safeguards, such as key rotation, on the client side\.
 **Warning**  
-If you lose the encryption key, any GET request for an object without its encryption key fails, and you lose the object\.
+If you lose the encryption key, any `GET` request for an object without its encryption key fails, and you lose the object\.
 
 ## Requiring and restricting SSE\-C<a name="ssec-require-condition-key"></a>
 
-To require server\-side encryption with customer provided keys \(SSE\-C\) for all objects in a particular Amazon S3 bucket, you can use a bucket policy\.
+To require SSE\-C for all objects in a particular Amazon S3 bucket, you can use a bucket policy\.
 
 For example, the following bucket policy denies upload object \(`s3:PutObject`\) permissions for all requests that don't include the `x-amz-server-side-encryption-customer-algorithm` header requesting SSE\-C\.
 
@@ -57,9 +59,9 @@ For example, the following bucket policy denies upload object \(`s3:PutObject`\)
 }
 ```
 
-To restrict server\-side encryption of all objects in a particular Amazon S3 bucket, you can also use a policy\.
 
-For example, the following bucket policy denies the upload object \(`s3:PutObject`\) permission to everyone if the request includes the `x-amz-server-side-encryption-customer-algorithm` header requesting server\-side encryption with customer provided keys \(SSE\-C\)\.
+
+You can also use a policy to restrict server\-side encryption of all objects in a particular Amazon S3 bucket\. For example, the following bucket policy denies the upload object \(`s3:PutObject`\) permission to everyone if the request includes the `x-amz-server-side-encryption-customer-algorithm` header requesting SSE\-C\.
 
 ```
 {
@@ -84,21 +86,23 @@ For example, the following bucket policy denies the upload object \(`s3:PutObjec
 
 ## Presigned URLs and SSE\-C<a name="ssec-and-presignedurl"></a>
 
-You can generate a presigned URL that can be used for operations such as upload a new object, retrieve an existing object, or object metadata\. Presigned URLs support the SSE\-C as follows:
-+ When creating a presigned URL, you must specify the algorithm using the `x-amz-server-side​-encryption​-customer-algorithm` in the signature calculation\.
-+ When using the presigned URL to upload a new object, retrieve an existing object, or retrieve only object metadata, you must provide all the encryption headers in your client application\. 
+You can generate a presigned URL that can be used for operations such as uploading a new object, retrieving an existing object, or retrieving object metadata\. Presigned URLs support SSE\-C as follows:
++ When creating a presigned URL, you must specify the algorithm by using the `x-amz-server-side​-encryption​-customer-algorithm` header in the signature calculation\.
++ When using the presigned URL to upload a new object, retrieve an existing object, or retrieve only object metadata, you must provide all the encryption headers in your client application's request\. 
 **Note**  
-For non\-SSE\-C objects, you can generate a presigned URL and directly paste that into a browser, for example to access the data\.   
-However, this is not true for SSE\-C objects because in addition to the presigned URL, you also need to include HTTP headers that are specific to SSE\-C objects\. Therefore, you can use the presigned URL for SSE\-C objects only programmatically\.
+For non\-SSE\-C objects, you can generate a presigned URL and directly paste that URL into a browser to access the data\.   
+However, you cannot do this for SSE\-C objects, because in addition to the presigned URL, you also must include HTTP headers that are specific to SSE\-C objects\. Therefore, you can use presigned URLs for SSE\-C objects only programmatically\.
+
+For more information about presigned URLs, see [Using presigned URLs](using-presigned-url.md)\.
 
 ## Specifying server\-side encryption with customer\-provided keys \(SSE\-C\)<a name="specifying-s3-c-encryption"></a>
 
-At the time of object creation with the REST API, you can specify server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. When you use SSE\-C, you must provide encryption key information using the following request headers\. 
+At the time of object creation with the REST API, you can specify server\-side encryption with customer\-provided keys \(SSE\-C\)\. When you use SSE\-C, you must provide encryption key information using the following request headers\. 
 
 
 |  Name  |  Description  | 
 | --- | --- | 
-| x\-amz\-server\-side​\-encryption​\-customer\-algorithm  |  Use this header to specify the encryption algorithm\. The header value must be "AES256"\.   | 
+| x\-amz\-server\-side​\-encryption​\-customer\-algorithm  |  Use this header to specify the encryption algorithm\. The header value must be `AES256`\.   | 
 | x\-amz\-server\-side​\-encryption​\-customer\-key  |  Use this header to provide the 256\-bit, base64\-encoded encryption key for Amazon S3 to use to encrypt or decrypt your data\.   | 
 | x\-amz\-server\-side​\-encryption​\-customer\-key\-MD5  |  Use this header to provide the base64\-encoded 128\-bit MD5 digest of the encryption key according to [RFC 1321](http://tools.ietf.org/html/rfc1321)\. Amazon S3 uses this header for a message integrity check to ensure that the encryption key was transmitted without error\.  | 
 
@@ -112,16 +116,12 @@ You cannot use the Amazon S3 console to upload an object and request SSE\-C\. Yo
 #### Amazon S3 rest APIs that support SSE\-C<a name="sse-c-supported-apis"></a>
 
 The following Amazon S3 APIs support server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\.
-+ **GET operation** — When retrieving objects using the GET API \(see [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html)\), you can specify the request headers\.
-+ **HEAD operation** — To retrieve object metadata using the HEAD API \(see [HEAD Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html)\), you can specify these request headers\.
-+ **PUT operation** — When uploading data using the PUT Object API \(see [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html)\), you can specify these request headers\. 
-+ **Multipart Upload **— When uploading large objects using the multipart upload API, you can specify these headers\. You specify these headers in the initiate request \(see [Initiate Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html)\) and each subsequent part upload request \(see [Upload Part](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPart.html) or 
-
-  [Upload Part \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPartCopy.html)\)
-
-  \)\. For each part upload request, the encryption information must be the same as what you provided in the initiate multipart upload request\.
-+ **POST operation **— When using a POST operation to upload an object \(see [POST Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html)\), instead of the request headers, you provide the same information in the form fields\.
-+ **Copy operation **— When you copy an object \(see [PUT Object \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html)\), you have both a source object and a target object:
++ **GET operation** – When retrieving objects using the GET API \(see [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html)\), you can specify the request headers\.
++ **HEAD operation** – To retrieve object metadata using the HEAD API \(see [HEAD Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html)\), you can specify these request headers\.
++ **PUT operation** – When uploading data using the PUT Object API \(see [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html)\), you can specify these request headers\. 
++ **Multipart Upload** – When uploading large objects using the multipart upload API, you can specify these headers\. You specify these headers in the initiate request \(see [Initiate Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html)\) and each subsequent part upload request \(see [Upload Part](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPart.html) or [Upload Part \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadUploadPartCopy.html)\)\. For each part upload request, the encryption information must be the same as what you provided in the initiate multipart upload request\.
++ **POST operation** – When using a POST operation to upload an object \(see [POST Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html)\), instead of the request headers, you provide the same information in the form fields\.
++ **Copy operation** – When you copy an object \(see [PUT Object \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html)\), you have both a source object and a target object:
   + If you want the target object encrypted using server\-side encryption with AWS managed keys, you must provide the `x-amz-server-side​-encryption` request header\.
   +  If you want the target object encrypted using SSE\-C, you must provide encryption information using the three headers described in the preceding table\.
   +  If the source object is encrypted using SSE\-C, you must provide encryption key information using the following headers so that Amazon S3 can decrypt the object for copying\.    
@@ -130,10 +130,10 @@ The following Amazon S3 APIs support server\-side encryption with customer\-prov
 ### Using the AWS SDKs to specify SSE\-C for PUT, GET, Head, and Copy operations<a name="sse-c-using-sdks"></a>
 
 The following examples show how to request server\-side encryption with customer\-provided keys \(SSE\-C\) for objects\. The examples perform the following operations\. Each operation shows how to specify SSE\-C\-related headers in the request:
-+ **Put object**—Uploads an object and requests server\-side encryption using a customer\-provided encryption key\.
-+ **Get object**—Downloads the object uploaded in the previous step\. In the request, you provide the same encryption information you provided when you uploaded the object\. Amazon S3 needs this information to decrypt the object so that it can return it to you\.
-+ **Get object metadata**—Retrieves the object's metadata\. You provide the same encryption information used when the object was created\.
-+ **Copy object**—Makes a copy of the previously\-uploaded object\. Because the source object is stored using SSE\-C, you must provide its encryption information in your copy request\. By default, Amazon S3 encrypts the copy of the object only if you explicitly request it\. This example directs Amazon S3 to store an encrypted copy of the object\.
++ **Put object** – Uploads an object and requests server\-side encryption using a customer\-provided encryption key\.
++ **Get object** – Downloads the object uploaded in the previous step\. In the request, you provide the same encryption information you provided when you uploaded the object\. Amazon S3 needs this information to decrypt the object so that it can return it to you\.
++ **Get object metadata** – Retrieves the object's metadata\. You provide the same encryption information used when the object was created\.
++ **Copy object** – Makes a copy of the previously\-uploaded object\. Because the source object is stored using SSE\-C, you must provide its encryption information in your copy request\. By default, Amazon S3 encrypts the copy of the object only if you explicitly request it\. This example directs Amazon S3 to store an encrypted copy of the object\.
 
 ------
 #### [ Java ]
@@ -143,7 +143,7 @@ This example shows how to upload an object in a single operation\. When using th
 
 To add the required encryption information, you include an `SSECustomerKey` in your request\. For more information about the `SSECustomerKey` class, see the REST API section\.
 
-For information about SSE\-C, see [Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)](#ServerSideEncryptionCustomerKeys)\. For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\. 
+For information about SSE\-C, see [Using server\-side encryption with customer\-provided keys \(SSE\-C\)](#ServerSideEncryptionCustomerKeys)\. For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\. 
 
 **Example**  
 
@@ -262,7 +262,7 @@ public class ServerSideEncryptionUsingClientSideEncryptionKey {
 **Note**  
 For examples of uploading large objects using the multipart upload API, see [Uploading an object using multipart upload](mpu-upload-object.md) and [Using the AWS SDKs \(low\-level\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
 
-For information about SSE\-C, see [Protecting data using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)](#ServerSideEncryptionCustomerKeys)\)\. For information about creating and testing a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\. 
+For information about SSE\-C, see [Using server\-side encryption with customer\-provided keys \(SSE\-C\)](#ServerSideEncryptionCustomerKeys)\. For information about creating and testing a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\. 
 
 **Example**  
 
@@ -417,7 +417,7 @@ To upload large objects, you can use multipart upload API \(see [Uploading and c
 + When using the low\-level API, you provide encryption\-related information in the `InitiateMultipartUploadRequest`, followed by identical encryption information in each `UploadPartRequest`\. You do not need to provide any encryption\-specific headers in your `CompleteMultipartUploadRequest`\. For examples, see [Using the AWS SDKs \(low\-level\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\. 
 
 The following example uses `TransferManager` to create objects and shows how to provide SSE\-C related information\. The example does the following:
-+ Creates an object using the `TransferManager.upload()` method\. In the `PutObjectRequest` instance, you provide encryption key information to request\. Amazon S3 encrypts the object using the customer\-provided encryption key\.
++ Creates an object using the `TransferManager.upload()` method\. In the `PutObjectRequest` instance, you provide encryption key information to request\. Amazon S3 encrypts the object using the customer\-provided key\.
 + Makes a copy of the object by calling the `TransferManager.copy()` method\. The example directs Amazon S3 to encrypt the object copy using a new `SSECustomerKey`\. Because the source object is encrypted using SSE\-C, the `CopyObjectRequest` also provides the encryption key of the source object so that Amazon S3 can decrypt the object before copying it\. 
 
 **Example**  

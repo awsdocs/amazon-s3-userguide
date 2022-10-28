@@ -66,7 +66,7 @@ Amazon S3 interface endpoints do *not* support the private DNS feature of interf
 
 You can use the AWS CLI or AWS SDK to access buckets, S3 access points, and S3\-control APIs through S3 interface endpoints\. 
 
-The following image shows the VPC console **Details** tab, where you can find the DNS name of a VPC endpoint\. In this example, the *VPC endpoint ID \(vpce\-id\)* is `vpce-0e25b8cdd720f900e` and the *DNS name* is `*.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\. Remember to replace *\** when using the *DNS name*\. For example, to access a bucket, the *DNS name* would be `bucket.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\.
+The following image shows the VPC console **Details** tab, where you can find the DNS name of a VPC endpoint\. In this example, the *VPC endpoint ID \(vpce\-id\)* is `vpce-0e25b8cdd720f900e` and the *DNS name* is `*.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\. Remember to replace *\** when using the *DNS name*\. For example, to access a bucket, use a *DNS name* like this `bucket.vpce-0e25b8cdd720f900e-argc85vg.s3.us-east-1.vpce.amazonaws.com`\.
 
 ![\[Screenshot of Details tab from the VPC console.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/vpc-console-details-tab.png)
 
@@ -77,7 +77,7 @@ For more about how to view your endpoint\-specific DNS names, see [Viewing endpo
 Use the `--region` and `--endpoint-url` parameters to access S3 buckets, S3 access points, or S3 control APIs through S3 interface endpoints\. 
 
 **Example: Use the endpoint URL to list objects in your bucket**  
-In the following example, replace the region `us-east-1`, VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com`, and bucket name `my-bucket` with appropriate information\.
+In the following example, replace the region `us-east-1`, DNS name of the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com`, and bucket name `my-bucket` with appropriate information\.
 
 ```
 aws s3 --region us-east-1 --endpoint-url https://bucket.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com ls s3://my-bucket/

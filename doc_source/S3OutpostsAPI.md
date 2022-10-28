@@ -9,7 +9,7 @@ This topic lists the Amazon S3, Amazon S3 Control, and Amazon S3 on Outposts API
 
 ## Amazon S3 API operations for managing objects<a name="S3OutpostsAPIsObject"></a>
 
-S3 on Outposts is designed to use the same object API operations as Amazon S3\. Therefore, you can use most of your existing code and many of your existing policies by passing the S3 on Outposts Amazon Resource Name \(ARN\) as your identifier\.
+S3 on Outposts is designed to use the same object API operations as Amazon S3\. You must use access points to access any object in an Outpost bucket\. When you use an object API operation with S3 on Outposts, you provide either the Outposts access point Amazon Resource Name \(ARN\) or the access point alias\. For more information about access point aliases, see [Using a bucket\-style alias for your S3 on Outposts bucket access point](s3-outposts-access-points-alias.md)\.
 
 Amazon S3 on Outposts supports the following Amazon S3 API operations:
 + [AbortMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html)

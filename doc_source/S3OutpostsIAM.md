@@ -80,7 +80,7 @@ The following bucket policy uses an AWS account principal to grant access to an 
             "AWS":"123456789012"
          },
          "Action":"s3-outposts:*",
-         "Resource":"arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket"
+         "Resource":"arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket"
       }
    ]
 }
@@ -99,7 +99,7 @@ The following bucket policy uses a wildcard principal \(`*`\) with the `aws:Sour
             "Effect": "Allow",
             "Principal": { "AWS" : "*" },
             "Action":"s3-outposts:*",
-            "Resource":"arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket",
+            "Resource":"arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket",
             "Condition" : {
                 "IpAddress" : {
                     "aws:SourceIp": "192.0.2.0/24" 

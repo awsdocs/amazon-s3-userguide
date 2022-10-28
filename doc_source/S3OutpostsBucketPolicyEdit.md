@@ -38,7 +38,7 @@ The following AWS CLI example puts a policy on an Outposts bucket\.
                "AWS":"123456789012"
             },
             "Action":"s3-outposts:*",
-            "Resource":"arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket"
+            "Resource":"arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket"
          }
       ]
    }
@@ -47,7 +47,7 @@ The following AWS CLI example puts a policy on an Outposts bucket\.
 1. Submit the JSON file as part of the `put-bucket-policy` CLI command\. To run this command, replace the `user input placeholders` with your own information\.
 
    ```
-   aws s3control put-bucket-policy --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outpost-bucket --policy file://policy1.json
+   aws s3control put-bucket-policy --account-id 123456789012 --bucket arn:aws:s3-outposts:region:123456789012:outpost/op-01ac5d28a6a232904/bucket/example-outposts-bucket --policy file://policy1.json
    ```
 
 ## Using the AWS SDK for Java<a name="S3OutpostsPutBucketPolicyJava"></a>

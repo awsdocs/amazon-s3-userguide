@@ -7,7 +7,7 @@ These failure reasons can also be viewed in a S3 Batch Replication completion re
 
 | Replication failure reason | Description | 
 | --- | --- | 
-| AssumeRoleNotPermitted | Amazon S3 can not assume the IAM role specified in replication configuration\. | 
+| AssumeRoleNotPermitted | Amazon S3 can not assume the IAM role specified in replication configuration or the Batch Operations job\. | 
 | DstBucketNotFound | Amazon S3 is unable to find the destination bucket specified in the replication configuration\. | 
 | DstBucketObjectLockConfigMissing | To replicate objects from a source bucket with Object Lock enabled the destination must also have Object Lock enabled\. Error indicates Object Lock may not be enabled in the destination bucket\. For more information, see [[Managing Object Lock](object-lock-managing.md)Managing Object Lock](object-lock-managing.md)\. | 
 | DstBucketUnversioned | Versioning is not enabled on S3 destination bucket\. Enable versioning on destination bucket to replicate objects with S3 Replication\. | 
@@ -23,15 +23,17 @@ These failure reasons can also be viewed in a S3 Batch Replication completion re
 | DstPutObjNotPermitted | Amazon S3 is unable to replicate objects to the destination bucket\. The s3:ReplicateObject permission may be missing for the destination bucket\.  | 
 | DstPutTaggingNotPermitted | Amazon S3 is unable to replicate object tags to the destination bucket\. The s3:ReplicateObject permission may be missing for the destination bucket\.  | 
 | DstVersionNotFound  | Amazon S3 is unable to find the required object version in the destination bucket for which metadata needs to be replicated\.  | 
-| SrcBucketInvalidRegion | Source bucket not found in specified AWS Region\. This error is specific to S3 Batch Replication\. | 
-| SrcBucketNotFound | Amazon S3 is unable to find the source bucket specified in the replication configuration\.  | 
+| InitiateReplicationNotPermitted | Initiate replication on object failed\. The s3:InitiateReplication permission may be missing for the Batch Operations job\. This error is specific to Batch Replication\. | 
+| SrcBucketInvalidRegion | Source bucket is not in same AWS Region as specified by the Batch Operations job\. This error is specific to Batch Replication\. | 
+| SrcBucketNotFound | Amazon S3 is unable to find the source bucket\. | 
 | SrcBucketReplicationConfigMissing | Replication configuration not found for source bucket\. | 
 | SrcGetAclNotPermitted | Amazon S3 is unable to access the object in the source bucket for replication\. The s3:GetObjectVersionAcl permission may be missing for the source bucket object\.  | 
 | SrcGetObjNotPermitted | Amazon S3 is unable to access the object in the source bucket for replication\. The s3:GetObjectVersionForReplication permission may be missing for the source bucket\.  | 
 | SrcGetTaggingNotPermitted | Amazon S3 is unable to access object tag information from source bucket\. The s3:GetObjectVersionTagging permission may be missing for the source bucket\. | 
 | SrcHeadObjectNotPermitted | Amazon S3 is unable to retrieve object metadata from source bucket\. The s3:GetObjectVersionForReplication permission may be missing for the source bucket\.  | 
 | SrcKmsKeyInvalidState | The AWS Key Management Service key for the source bucket is in invalid state\. Review and enable the required AWS KMS key\. For more information on managing AWS KMS keys, see [Key states of AWS KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html) in the AWS Key Management Service Developer Guide\. | 
-| SrcObjectNotEligible | Object is not eligible for replication\. This error is specific to S3 Batch Replication\. | 
+| SrcObjectNotEligible | Object is not eligible for replication\. Object or object tags do not match replication configuration\. | 
+| SrcVersionNotFound | Amazon S3 is unable to find the required object version in the source bucket for which metadata needs to be replicated\. | 
 
 ## Related topics<a name="replication-metrics-related-topics"></a>
 

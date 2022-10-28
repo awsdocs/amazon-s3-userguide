@@ -10,8 +10,6 @@ You can optionally enable Amazon S3 server access logging for a bucket that is c
 
 1. Create a folder for the server access logging log files \(for example, `logs`\)\.
 
-   When you group your log data files in a folder, they are easier to locate\.
-
 1. \(Optional\) If you want to use CloudFront to improve your website performance, create a folder for the CloudFront log files \(for example, `cdn`\)\.
 
    For more information, see [Speeding up your website with Amazon CloudFront](website-hosting-cloudfront-walkthrough.md)\.

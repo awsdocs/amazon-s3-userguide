@@ -62,9 +62,16 @@ For anonymous users, the following elements are equivalent:
 "Principal":{"AWS":"*"}
 ```
 
-For more information, see [All principals](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#principal-anonymous) in the *IAM User Guide*\.
+Using `"Principal": "*"` with an `Allow` effect in a resource\-based policy allows anyone, even if they’re not signed in to AWS, to access your resource\. 
+
+Using `"Principal" : { "AWS" : "*" }` with an `Allow` effect in a resource\-based policy allows any root user, IAM user, assumed\-role session, or federated user in any account in the same partition to access your resource\. 
+
+For anonymous users, these two methods are equivalent. For more information, see [All principals](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#principal-anonymous) in the *IAM User Guide*\.
 
 You cannot use a wildcard to match part of a principal name or ARN\.
+
+**Important**  
+Because anyone can create an AWS account, the **security level** of these two methods is equivalent, even though they function differently\.
 
 **Warning**  
 Use caution when granting anonymous access to your Amazon S3 bucket\. When you grant anonymous access, anyone in the world can access your bucket\. We highly recommend that you never grant any kind of anonymous write access to your S3 bucket\.

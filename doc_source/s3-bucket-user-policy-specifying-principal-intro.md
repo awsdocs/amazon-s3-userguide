@@ -52,8 +52,6 @@ For detailed examples that provide step\-by\-step instructions, see [Example 1: 
 
 To grant permission to everyone, also referred as anonymous access, you set the wildcard \(`"*"`\) as the `Principal` value\. For example, if you configure your bucket as a website, you want all the objects in the bucket to be publicly accessible\.
 
-For anonymous users, the following elements are equivalent:
-
 ```
 "Principal":"*"
 ```

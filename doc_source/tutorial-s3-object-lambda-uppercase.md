@@ -197,6 +197,7 @@ To transform original data, create a Lambda function for use with your S3 Object
    ```
    import boto3
    import requests
+   from botocore.config import Config
    
    # This function capitalizes all text in the original object
    def lambda_handler(event, context):
@@ -217,7 +218,7 @@ To transform original data, create a Lambda function for use with your S3 Object
        transformed_object = original_object.upper()
    
        # Write object back to S3 Object Lambda
-       s3 = boto3.client('s3')
+       s3 = boto3.client('s3', config=Config(signature_version='s3v4'))
        # The WriteGetObjectResponse API sends the transformed data
        # back to S3 Object Lambda and then to the user
        s3.write_get_object_response(

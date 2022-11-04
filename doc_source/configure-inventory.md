@@ -36,7 +36,7 @@ The easiest way to set up an inventory is by using the AWS Management Console, b
 
 1. **To configure inventory, see [Configuring inventory using the S3 console](#configure-inventory-console)\.**
 
-   If you use encryption for cross\-account operations of Amazon S3 inventory configuration in the destination bucket, you should use fully qualified KMS key ARN\. For more information, see [Using encryption for cross\-account operations](bucket-encryption.md#bucket-encryption-update-bucket-policy) and [ServerSideEncryptionByDefault](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ServerSideEncryptionByDefault.html)\.
+   If you use encryption for cross\-account operations of Amazon S3 inventory configuration in the destination bucket, you should use fully qualified KMS key ARN\. For more information, see [Using SSE\-KMS encryption for cross\-account operations](bucket-encryption.md#bucket-encryption-update-bucket-policy) and [ServerSideEncryptionByDefault](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ServerSideEncryptionByDefault.html)\.
 
 ## Creating a destination bucket policy<a name="configure-inventory-destination-bucket-policy"></a>
 

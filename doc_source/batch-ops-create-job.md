@@ -25,7 +25,7 @@ Specify the operation that you want S3 Batch Operations to run against the objec
 
 **Manifest**  
 The manifest is a list of all of the objects that you want S3 Batch Operations to run the specified action on\. You can use a CSV\-formatted [Amazon S3 Inventory](storage-inventory.md) report as a manifest or use your own customized CSV list of objects\.   
-If the objects in your manifest are in a versioned bucket, you must specify the version IDs for the objects\. For more information, see [Specifying a manifest](#specify-batchjob-manifest)\.
+If the objects in your manifest are in a versioned bucket, specifying the version IDs for the objects will perform the operation on a specific version\. Batch Operations will perform the operation on the latest version if no version ID is specified\. If your manifest includes a version ID field, you must provide a version ID for all objects in the manifest\. For more information, see [Specifying a manifest](#specify-batchjob-manifest)\.
 
 **Priority**  
 Use job priorities to indicate the relative priority of this job to others running in your account\. A higher number indicates higher priority\.  

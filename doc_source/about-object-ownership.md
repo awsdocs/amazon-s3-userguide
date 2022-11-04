@@ -63,6 +63,8 @@ You can re\-enable ACLs by changing from the bucket owner enforced setting to an
 
 For example, if you change from the bucket owner enforced setting back to object writer, you, as the bucket owner, no longer own and have full control over objects that were previously owned by other AWS accounts\. Instead, the uploading accounts again own these objects\. Objects owned by other accounts use ACLs for permissions, so you can't use policies to grant permissions to these objects\. However, you, as the bucket owner, still own any objects that were written to the bucket while the bucket owner enforced setting was applied\. These objects are not owned by the object writer, even if you re\-enable ACLs\.
 
+For instructions on enabling and managing ACLs using the AWS Management Console, AWS Command Line Interface \(CLI\), REST API, or AWS SDKs, see [Configuring ACLs](managing-acls.md)\.
+
 ## Prerequisites for disabling ACLs<a name="object-ownership-considerations"></a>
 
 Before you disable ACLs for an existing bucket, complete the following prerequisites\.

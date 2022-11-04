@@ -1,6 +1,6 @@
 # Creating and managing a lifecycle configuration by using the AWS CLI and SDK for Java<a name="S3OutpostsLifecycleCLIJava"></a>
 
-Lifecycle rules for Amazon S3 on Outposts buckets are limited to object deletion\. You can use lifecycle rules to define when to initiate object deletion based on age or date\. You can create, enable, disable, or delete a lifecycle rule\.
+You can use S3 Lifecycle to optimize storage capacity for Amazon S3 on Outposts\. You can create lifecycle rules to expire objects as they age or are replaced by newer versions\. You can create, enable, disable, or delete a lifecycle rule\.
 
 For more information about S3 Lifecycle, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 
@@ -39,7 +39,9 @@ The following AWS CLI example puts a lifecycle configuration policy on an Outpos
                                "Value": "mytagvalue2", 
                                "Key": "mytagkey2"
                            }
-                       ]
+                       ],
+                       "ObjectSizeGreaterThan": 1000,
+                       "ObjectSizeLessThan": 5000
                    }
                }, 
                "Status": "Enabled", 
@@ -47,7 +49,7 @@ The following AWS CLI example puts a lifecycle configuration policy on an Outpos
                    "Days": 10
                }
            }
-       ]S3OutpostsPutBucketLifecycleConfigurationCLI
+       ]
    }
    ```
 
@@ -67,13 +69,15 @@ import com.amazonaws.services.s3control.model.*;
 
 public void putBucketLifecycleConfiguration(String bucketArn) {
 
-    S3Tag tag1 = new S3Tag().withKey("mytagkey1").withValue("mytagvalue1");
-    S3Tag tag2 = new S3Tag().withKey("mytagkey2").withValue("mytagvalue2");
+    S3Tag tag1 = new S3Tag().withKey("mytagkey1").withValue("mytagkey1");
+    S3Tag tag2 = new S3Tag().withKey("mytagkey2").withValue("mytagkey2");
 
     LifecycleRuleFilter lifecycleRuleFilter = new LifecycleRuleFilter()
             .withAnd(new LifecycleRuleAndOperator()
                     .withPrefix("myprefix")
-                    .withTags(tag1, tag2));
+                    .withTags(tag1, tag2))
+                    .withObjectSizeGreaterThan(1000)
+                    .withObjectSizeLessThan(5000);
 
     LifecycleExpiration lifecycleExpiration = new LifecycleExpiration()
             .withExpiredObjectDeleteMarker(false)
@@ -85,7 +89,6 @@ public void putBucketLifecycleConfiguration(String bucketArn) {
             .withExpiration(lifecycleExpiration)
             .withID("id-1");
 
-
     LifecycleConfiguration lifecycleConfiguration = new LifecycleConfiguration()
             .withRules(lifecycleRule);
 
@@ -96,7 +99,6 @@ public void putBucketLifecycleConfiguration(String bucketArn) {
 
     PutBucketLifecycleConfigurationResult respPutBucketLifecycle = s3ControlClient.putBucketLifecycleConfiguration(reqPutBucketLifecycle);
     System.out.printf("PutBucketLifecycleConfiguration Response: %s%n", respPutBucketLifecycle.toString());
-
 
 }
 ```

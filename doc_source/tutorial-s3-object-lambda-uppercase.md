@@ -442,6 +442,8 @@ An S3 Object Lambda access point provides the flexibility to invoke a Lambda fun
 
 1. For **Supporting Access Point**, enter or browse to the standard access point that you created in [Step 3](#ol-upper-step3) \(for example, **tutorial\-access\-point**\), and then choose **Choose supporting Access Point**\. 
 
+1. For **S3 APIs**, to retrieve objects from the S3 bucket for Lambda function to process, select **GetObject**\.
+
 1. For **Invoke Lambda function**, you can choose either of the following two options for this tutorial\. 
    + Choose **Choose from functions in your account**, and then choose the Lambda function that you created in [Step 4](#ol-upper-step4) \(for example, **tutorial\-object\-lambda\-function**\) from the **Lambda function** dropdown list\.
    + Choose **Enter ARN**, and then enter the Amazon Resource Name \(ARN\) of the Lambda function that you created in [Step 4](#ol-upper-step4)\.
@@ -510,8 +512,9 @@ The following example Python script prints both the original data from the S3 bu
 
    ```
    import boto3
+   from botocore.config import Config
    
-   s3 = boto3.client('s3')
+   s3 = boto3.client('s3', config=Config(signature_version='s3v4'))
    
    def getObject(bucket, key):
        objectBody = s3.get_object(Bucket = bucket, Key = key)

@@ -232,6 +232,8 @@ The event context provides information about the request being made in the event
 
 1. For **Supporting Access Point**, enter or browse to the standard access point that you created in [Step 3](#ol-pii-step3) \(for example, **tutorial\-pii\-access\-point**\), and then choose **Choose supporting Access Point**\. 
 
+1. For **S3 APIs**, to retrieve objects from the S3 bucket for Lambda function to process, select **GetObject**\.
+
 1. For **Invoke Lambda function**, you can choose either of the following two options for this tutorial\. 
    + Choose **Choose from functions in your account** and choose the Lambda function that you deployed in [Step 4](#ol-pii-step4) \(for example, **serverlessrepo\-ComprehendPiiRedactionS3ObjectLambda**\) from the **Lambda function** dropdown list\.
    + Choose **Enter ARN**, and then enter the Amazon Resource Name \(ARN\) of the Lambda function that you created in [Step 4](#ol-pii-step4)\.

@@ -84,7 +84,7 @@ aws s3 --region us-east-1 --endpoint-url https://bucket.vpce-1a2b3c4d-5e6f.s3.us
 ```
 
 **Example: Use the endpoint URL to list objects from an access point**  
-In the following example, replace the ARN `us-east-1:123456789012:accesspoint/test`, region `us-east-1`, and VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\.
+In the following example, replace the ARN `us-east-1:123456789012:accesspoint/test`, region `us-east-1`, and VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\. This command can be used in only AWS CLI V2. In AWS CLI V1, The accesspoint arn does not work. It is necessary to replace the arn with access point alias. 
 
 ```
 aws s3api list-objects-v2 --bucket arn:aws:s3:us-east-1:123456789012:accesspoint/test --region us-east-1 --endpoint-url https://accesspoint.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com

@@ -1,6 +1,6 @@
 # Checking object integrity<a name="checking-object-integrity"></a>
 
-Amazon S3 uses checksum values to verify the integrity of data that you upload to or download from Amazon S3\. In addition, you can request that another checksum value be calculated for any object that you store in Amazon S3\. You can select from one of several checksum algorithms to use when uploading or copying your data\. Amazon S3 uses this algorithm to compute an additional checksum value and store it as part of the object metadata\.
+Amazon S3 uses checksum values to verify the integrity of data that you upload to or download from Amazon S3\. In addition, you can request that another checksum value be calculated for any object that you store in Amazon S3\. You can select from one of several checksum algorithms to use when uploading or copying your data\. Amazon S3 uses this algorithm to compute an additional checksum value and store it as part of the object metadata\. To learn more about how to use additional checksums to verify data integrity, see [Tutorial: Checking the integrity of data in Amazon S3 with additional checksums](http://aws.amazon.com/getting-started/hands-on/amazon-s3-with-additional-checksums/?ref=docs_gateway/amazons3/checking-object-integrity.html)\.
 
 When you upload an object, you can optionally include a precalculated checksum as part of your request\. Amazon S3 compares the provided checksum to the checksum that it calculates by using your specified algorithm\. If the two values don't match, Amazon S3 reports an error\.
 

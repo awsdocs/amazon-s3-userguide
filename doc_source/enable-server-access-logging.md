@@ -24,10 +24,10 @@ Amazon S3 uses a special log delivery account to write server access logs\. Thes
 
 To grant access using the bucket policy on the target bucket, you update the bucket policy to allow `s3:PutObject` access for the logging service principal\. If you use the Amazon S3 console to enable server access logging, the console automatically updates the bucket policy on the target bucket to grant these permissions to the logging service principal\. If you enable server access logging programmatically, you can manually update the bucket policy for the target bucket to grant access to the logging service principal\. 
 
-You can alternately use bucket ACLs to grant access for access log delivery\. You add a grant entry to the bucket ACL that grants `WRITE` and `READ_ACP` permissions to the S3 log delivery group\. Granting access to the S3 log delivery group using your bucket ACL is not recommended\. 
+You can alternately use bucket ACLs to grant access for access log delivery\. You add a grant entry to the bucket ACL that grants `WRITE` and `READ_ACP` permissions to the S3 log delivery group\. Granting access to the S3 log delivery group using your bucket ACL is not recommended\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 
 **Bucket owner enforced setting for S3 Object Ownership**  
-If the target bucket uses the bucket owner enforced setting for Object Ownership, ACLs are disabled and no longer affect permissions\. You must update the bucket policy for the target bucket to grant access to the logging service principal\. You can't update your bucket ACL to grant access to the S3 log delivery group\. You also can't include target grants in your [PutBucketLogging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) configuration\. For information about migrating existing bucket ACLs for access log delivery to a bucket policy, see [Grant access to S3 log delivery group for server access logging](object-ownership-migrating-acls-prerequisites.md#object-ownership-server-access-logs)\. For more information about Object Ownership see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
+If the target bucket uses the bucket owner enforced setting for Object Ownership, ACLs are disabled and no longer affect permissions\. You must update the bucket policy for the target bucket to grant access to the logging service principal\. You can't update your bucket ACL to grant access to the S3 log delivery group\. You also can't include target grants in your [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) configuration\. For information about migrating existing bucket ACLs for access log delivery to a bucket policy, see [Grant access to S3 log delivery group for server access logging](object-ownership-migrating-acls-prerequisites.md#object-ownership-server-access-logs)\. For more information about Object Ownership see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 
 ### Grant permissions to the logging service principal using a bucket policy<a name="grant-log-delivery-permissions-bucket-policy"></a>
 
@@ -62,7 +62,7 @@ This example bucket policy grants `s3:PutObject` permissions to the logging serv
 
 ### Grant permissions to the log delivery group using the bucket ACL<a name="grant-log-delivery-permissions-acl"></a>
 
-While we do not recommend this approach, you can grant permissions to the log delivery group using bucket ACL\. However, if the target bucket uses the bucket owner enforced setting for Object Ownership, you can't set bucket or object ACLs\. You also can't include target grants in your [PutBucketLogging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) configuration\. You must use a bucket policy to grant access to the logging service principal \(`logging.s3.amazonaws.com`\)\. For more information, see [Permissions for log delivery](#grant-log-delivery-permissions-general)\.
+While we do not recommend this approach, you can grant permissions to the log delivery group using bucket ACL\. However, if the target bucket uses the bucket owner enforced setting for Object Ownership, you can't set bucket or object ACLs\. You also can't include target grants in your [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) configuration\. You must use a bucket policy to grant access to the logging service principal \(`logging.s3.amazonaws.com`\)\. For more information, see [Permissions for log delivery](#grant-log-delivery-permissions-general)\.
 
 In the bucket ACL, the log delivery group is represented by the following URL\.
 
@@ -140,7 +140,7 @@ The log objects are written and owned by the S3 log delivery account, and the bu
 **Note**  
 If the target bucket uses the bucket owner enforced setting for Object Ownership, you can't use target grants to grant permissions to other users\. To grant permissions to others, you can use update the bucket policy on the target bucket\. For more information, see [Permissions for log delivery](#grant-log-delivery-permissions-general)\. 
 
-Amazon S3 also provides the [GET Bucket logging](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlogging.html) API to retrieve logging configuration on a bucket\. To delete the logging configuration, you send the PUT Bucket logging request with an empty `BucketLoggingStatus`\. 
+Amazon S3 also provides the [GET Bucket logging](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlogging.html) API to retrieve logging configuration on a bucket\. To delete the logging configuration, you send the `PUT` Bucket logging request with an empty `BucketLoggingStatus`\. 
 
 ```
 1. <BucketLoggingStatus xmlns="http://doc.s3.amazonaws.com/2006-03-01">
@@ -244,34 +244,34 @@ If the target bucket uses the bucket owner enforced setting for Object Ownership
 
 ### Using the AWS CLI<a name="enabling-s3-access-logs-for-requests"></a>
 
-We recommend that you create a dedicated logging bucket in each AWS Region that you have S3 buckets in\. Then have the Amazon S3 access log delivered to that S3 bucket\. For more information and examples, see [put\-bucket\-logging](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-logging.html) in the *AWS CLI Reference*\.
+We recommend that you create a dedicated logging bucket in each AWS Region that you have S3 buckets in\. Then have the Amazon S3 access log delivered to that S3 bucket\. For more information and examples, see [https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-logging.html](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-logging.html) in the *AWS CLI Reference*\.
 
 If the target bucket uses the bucket owner enforced setting for Object Ownership, you can't set bucket or object ACLs\. You also can't include target grants in your [PutBucketLogging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) configuration\. You must use a bucket policy to grant access to the logging service principal \(`logging.s3.amazonaws.com`\)\. For more information, see [Permissions for log delivery](#grant-log-delivery-permissions-general)\.
 
 **Example — Enable access logs with five buckets across two Regions**  
 In this example, you have the following five buckets:  
-+ `1-awsexamplebucket1-us-east-1`
-+ `2-awsexamplebucket1-us-east-1`
-+ `3-awsexamplebucket1-us-east-1`
-+ `1-awsexamplebucket1-us-west-2`
-+ `2-awsexamplebucket1-us-west-2`
++ `1-DOC-EXAMPLE-BUCKET1-us-east-1`
++ `2-DOC-EXAMPLE-BUCKET1-us-east-1`
++ `3-DOC-EXAMPLE-BUCKET1-us-east-1`
++ `1-DOC-EXAMPLE-BUCKET1-us-west-2`
++ `2-DOC-EXAMPLE-BUCKET1-us-west-2`
 
 1. Create two logging buckets in the following Regions:
-   + `awsexamplebucket1-logs-us-east-1`
-   + `awsexamplebucket1-logs-us-west-2`
+   + `DOC-EXAMPLE-BUCKET1-logs-us-east-1`
+   + `DOC-EXAMPLE-BUCKET1-logs-us-west-2`
 
 1. Then enable the Amazon S3 access logs as follows:
-   + `1-awsexamplebucket1-us-east-1` logs to the S3 bucket `awsexamplebucket1-logs-us-east-1` with prefix `1-awsexamplebucket1-us-east-1`
-   + `2-awsexamplebucket1-us-east-1` logs to the S3 bucket `awsexamplebucket1-logs-us-east-1` with prefix `2-awsexamplebucket1-us-east-1`
-   + `3-awsexamplebucket1-us-east-1` logs to the S3 bucket `awsexamplebucket1-logs-us-east-1` with prefix `3-awsexamplebucket1-us-east-1`
-   + `1-awsexamplebucket1-us-west-2` logs to the S3 bucket `awsexamplebucket1-logs-us-west-2` with prefix `1-awsexamplebucket1-us-west-2`
-   + `2-awsexamplebucket1-us-west-2` logs to the S3 bucket `awsexamplebucket1-logs-us-west-2` with prefix `2-awsexamplebucket1-us-west-2`
+   + `1-DOC-EXAMPLE-BUCKET1-us-east-1` logs to the S3 bucket `DOC-EXAMPLE-BUCKET1-logs-us-east-1` with prefix `1-DOC-EXAMPLE-BUCKET1-us-east-1`
+   + `2-DOC-EXAMPLE-BUCKET1-us-east-1` logs to the S3 bucket `DOC-EXAMPLE-BUCKET1-logs-us-east-1` with prefix `2-DOC-EXAMPLE-BUCKET1-us-east-1`
+   + `3-DOC-EXAMPLE-BUCKET1-us-east-1` logs to the S3 bucket `DOC-EXAMPLE-BUCKET1-logs-us-east-1` with prefix `3-DOC-EXAMPLE-BUCKET1-us-east-1`
+   + `1-DOC-EXAMPLE-BUCKET1-us-west-2` logs to the S3 bucket `DOC-EXAMPLE-BUCKET1-logs-us-west-2` with prefix `1-DOC-EXAMPLE-BUCKET1-us-west-2`
+   + `2-DOC-EXAMPLE-BUCKET1-us-west-2` logs to the S3 bucket `DOC-EXAMPLE-BUCKET1-logs-us-west-2` with prefix `2-DOC-EXAMPLE-BUCKET1-us-west-2`
 
 1. Grant permissions for server access log delivery using a bucket ACL or a bucket policy:
    + **Update the bucket policy** \(Recommended\) – To grant permissions to the logging service principal, use `put-bucket-policy`:
 
      ```
-     1. aws s3api put-bucket-policy --bucket awsexamplebucket1-logs --policy file://policy.json
+     1. aws s3api put-bucket-policy --bucket DOC-EXAMPLE-BUCKET1-logs --policy file://policy.json
      ```
 
      `Policy.json` is a JSON document in the current folder that contains the bucket policy\. To use this bucket policy, replace the example values\.
@@ -289,7 +289,7 @@ In this example, you have the following five buckets:
                  "Action": [
                      "s3:PutObject"
                  ],
-                 "Resource": "arn:aws:s3:::awsexamplebucket1-logs/*",
+                 "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET1-logs/*",
                  "Condition": {
                      "ArnLike": {
                          "aws:SourceArn": "arn:aws:s3:::SOURCE-BUCKET-NAME"
@@ -305,13 +305,13 @@ In this example, you have the following five buckets:
    + **Update the bucket ACL** – To grant permissions to the S3 log delivery group, use `put-bucket-acl`\.
 
      ```
-     1. aws s3api put-bucket-acl --bucket awsexamplebucket1-logs  --grant-write URI=http://acs.amazonaws.com/groups/s3/LogDelivery --grant-read-acp URI=http://acs.amazonaws.com/groups/s3/LogDelivery 
+     1. aws s3api put-bucket-acl --bucket DOC-EXAMPLE-BUCKET1-logs  --grant-write URI=http://acs.amazonaws.com/groups/s3/LogDelivery --grant-read-acp URI=http://acs.amazonaws.com/groups/s3/LogDelivery 
      ```
 
 1. Then, apply the logging policy\.
 
    ```
-   1. aws s3api put-bucket-logging --bucket awsexamplebucket1 --bucket-logging-status file://logging.json 
+   1. aws s3api put-bucket-logging --bucket DOC-EXAMPLE-BUCKET1 --bucket-logging-status file://logging.json 
    ```
 
    `Logging.json` is a JSON document in the current folder that contains the logging configuration\. If a bucket uses the bucket owner enforced setting for Object Ownership, your logging configuration can't contain target grants\. For more information, see [Permissions for log delivery](#grant-log-delivery-permissions-general)\.  
@@ -322,8 +322,8 @@ In this example, you have the following five buckets:
    ```
      {
          "LoggingEnabled": {
-             "TargetBucket": "awsexamplebucket1-logs",
-             "TargetPrefix": "awsexamplebucket1/"
+             "TargetBucket": "DOC-EXAMPLE-BUCKET1-logs",
+             "TargetPrefix": "DOC-EXAMPLE-BUCKET1/"
           }
       }
    ```  
@@ -331,13 +331,13 @@ In this example, you have the following five buckets:
 
    The following example `Logging.json` file contains target grants\.
 
-   If the target bucket uses the bucket owner enforced setting for Object Ownership, you can't include target grants in your [PutBucketLogging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) configuration\. For more information, see [Permissions for log delivery](#grant-log-delivery-permissions-general)\.
+   If the target bucket uses the bucket owner enforced setting for Object Ownership, you can't include target grants in your [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) configuration\. For more information, see [Permissions for log delivery](#grant-log-delivery-permissions-general)\.
 
    ```
      {
          "LoggingEnabled": {
-             "TargetBucket": "awsexamplebucket1-logs",
-             "TargetPrefix": "awsexamplebucket1/",
+             "TargetBucket": "DOC-EXAMPLE-BUCKET1-logs",
+             "TargetPrefix": "DOC-EXAMPLE-BUCKET1/",
              "TargetGrants": [
                   {
                      "Grantee": {
@@ -357,7 +357,7 @@ This script only works if all your buckets are in the same Region\. If you have 
 **Example – Grant access with bucket policies and add logging for the buckets in your account**  
 
    ```
-     loggingBucket='awsexamplebucket1-logs'
+     loggingBucket='DOC-EXAMPLE-BUCKET1-logs'
      region='us-west-2'
      
      
@@ -388,7 +388,7 @@ This script only works if all your buckets are in the same Region\. If you have 
 **Example – Grant access with bucket ACLs and add logging for the buckets in your account**  
 
    ```
-     loggingBucket='awsexamplebucket1-logs'
+     loggingBucket='DOC-EXAMPLE-BUCKET1-logs'
      region='us-west-2'
      
      

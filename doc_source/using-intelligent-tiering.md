@@ -161,3 +161,7 @@ Host: Bucket.s3.amazonaws.com
 ### Using the PUT API operation<a name="enable-auto-archiving-int-tiering-api"></a>
 
 You can use the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) operation for a specified bucket and up to 1,000 S3 Intelligent\-Tiering configurations per bucket\. You can define which objects within a bucket are eligible for the archive access tiers using a shared prefix or object tag\. Using a shared prefix or object tag allows you to align to specific business applications, workflows, or internal organizations\. You also have the flexibility to activate the Archive Access tier, the Deep Archive Access tier, or both\.
+
+## Getting started with S3 Intelligent\-Tiering<a name="intelligent-tiering-tutorial"></a>
+
+To learn more about how to use S3 Intelligent\-Tiering, see [Tutorial: Getting started using S3 Intelligent\-Tiering](http://aws.amazon.com/getting-started/hands-on/getting-started-using-amazon-s3-intelligent-tiering/?ref=docs_gateway/amazons3/using-intelligent-tiering.html)\.

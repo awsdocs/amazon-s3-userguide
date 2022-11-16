@@ -4,11 +4,11 @@ Amazon S3 objects that are stored in the S3 Glacier Flexible Retrieval or S3 Gla
 
 Restored objects from S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive are stored in Amazon S3 Standard only for the number of days that you specify\. If you want a permanent copy of the object, create a copy of it in your Amazon S3 bucket\. Unless you make a copy, the object will still be stored in the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes\.
 
-To calculate the expiry date, Amazon S3 adds the number of days that you specify to the time you request to restore the object, and then rounds to the next day at midnight UTC\. This calculation applies to the initial restoration of the object and to any extensions to availability that you request\. For example, if an object was restored on Oct 15, 2012 10:30 AM UTC, and the number of days that you specified is **3**, the object is available until Oct 19, 2012 00:00 UTC\. If, on Oct 16, 2012 11:00 AM UTC, you change the number of days that you want it to be accessible to **1**, Amazon S3 makes the restored object available until Oct 18, 2012 00:00 UTC\.
+To calculate the expiry date, Amazon S3 adds the number of days that you specify to the time that you request to restore the object, and then rounds to the next day at midnight UTC\. This calculation applies to the initial restoration of the object and to any changes to availability that you request\. For example, if an object was restored on October 15, 2012, at 10:30 AM UTC, and the number of days that you specified is **3**, the object is available until October 19, 2012, at 00:00 UTC\. If, on October 16, 2012, at 11:00 AM UTC, you change the number of days that you want the object to be accessible to **1**, Amazon S3 makes the restored object available until October 18, 2012, at 00:00 UTC\.
 
 When you restore an archived object, you are paying for both the archive and a copy that you restored temporarily\. For information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\. 
 
-You can restore an archived object using the Amazon S3 console, the REST API, the AWS SDKs, and the AWS Command Line Interface \(AWS CLI\)\. 
+You can restore an archived object by using the Amazon S3 console, the REST API, the AWS SDKs, and the AWS Command Line Interface \(AWS CLI\)\. 
 
 ## Using the S3 console<a name="restore-archived-objects"></a>
 
@@ -67,7 +67,7 @@ After restoring an object, you can download it from the **Overview** page\. For 
 ------
 #### [ Java ]
 
-The following example restores a copy of an object that has been archived using the AWS SDK for Java\. The example initiates a restoration request for the specified archived object and checks its restoration status\. 
+The following example restores a copy of an object that has been archived by using the AWS SDK for Java\. The example initiates a restoration request for the specified archived object and checks its restoration status\. 
 
 For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.
 
@@ -191,16 +191,16 @@ namespace Amazon.DocSamples.S3
 
 ## Using the REST API<a name="restoring-objects-rest"></a>
 
-Amazon S3 provides an API for you to initiate an archive restoration\. For more information, see [RestoreObject](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html) in the *Amazon Simple Storage Service API Reference*\.
+Amazon S3 provides an API for you to initiate an archive restoration\. For more information, see [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html) in the *Amazon Simple Storage Service API Reference*\.
 
 ## Using the AWS CLI<a name="restoring-objects-cli"></a>
 
 Use the `restore-object` command to restore objects from S3 Glacier Flexible Retrieval\.
 
-The following example restores object *dir1/example\.obj* in *awsexamplebucket* for 25 days\.
+The following example restores the object *`dir1/example.obj`* in `DOC-EXAMPLE-BUCKET` for 25 days\.
 
 ```
-aws s3api restore-object --bucket awsexamplebucket --key dir1/example.obj --restore-request '{"Days":25,"GlacierJobParameters":{"Tier":"Standard"}}'
+aws s3api restore-object --bucket DOC-EXAMPLE-BUCKET --key dir1/example.obj --restore-request '{"Days":25,"GlacierJobParameters":{"Tier":"Standard"}}'
 ```
 
 If the JSON syntax used in the example results in an error on a Windows client, replace the restore request with the following syntax:
@@ -209,10 +209,10 @@ If the JSON syntax used in the example results in an error on a Windows client, 
 --restore-request Days=25,GlacierJobParameters={"Tier"="Standard"}
 ```
 
-You can use the following command to monitor the status of your `restore-object` request:
+To monitor the status of your `restore-object` request, use the following command:
 
 ```
-aws s3api head-object --bucket awsexamplebucket --key dir1/example.obj
+aws s3api head-object --bucket DOC-EXAMPLE-BUCKET --key dir1/example.obj
 ```
 
-For more information, see [restore\-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/restore-object.html) in the AWS CLI Command Reference\.
+For more information, see [https://docs.aws.amazon.com/cli/latest/reference/s3api/restore-object.html](https://docs.aws.amazon.com/cli/latest/reference/s3api/restore-object.html) in the *AWS CLI Command Reference*\.

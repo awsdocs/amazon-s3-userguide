@@ -4,7 +4,7 @@ When you configure a bucket as a static website, you must enable static website 
 
 You can enable static website hosting using the Amazon S3 console, REST API, the AWS SDKs, the AWS CLI, or AWS CloudFormation\.
 
-To configure your website with a custom domain, see [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)\.
+To configure your website with a custom domain, see [Tutorial: Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)\.
 
 ## Using the S3 console<a name="HowDoIWebsiteConfiguration"></a>
 

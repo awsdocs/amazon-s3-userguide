@@ -11,6 +11,7 @@ The following sections explain how you can get started using S3 Batch Operations
 + [Creating a Lambda function to use with S3 Batch Operations](#batch-ops-invoke-lambda-custom-functions)
 + [Creating an S3 Batch Operations job that invokes a Lambda function](#batch-ops-invoke-lambda-create-job)
 + [Providing task\-level information in Lambda manifests](#storing-task-level-information-in-lambda)
++ [Learning from S3 Batch Operations tutorial](#batch-ops-tutorials-lambda)
 
 ## Using Lambda with Amazon S3 batch operations<a name="batch-ops-invoke-lambda-using"></a>
 
@@ -374,3 +375,8 @@ def lambda_handler(event, context):
         'results': results
     }
 ```
+
+## Learning from S3 Batch Operations tutorial<a name="batch-ops-tutorials-lambda"></a>
+
+The following tutorial presents complete end\-to\-end procedures for some Batch Operations tasks with Lambda\.
++ [Tutorial: Batch\-transcoding videos with S3 Batch Operations, AWS Lambda, and AWS Elemental MediaConvert](tutorial-s3-batchops-lambda-mediaconvert-video.md)

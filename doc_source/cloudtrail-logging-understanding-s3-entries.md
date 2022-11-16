@@ -10,7 +10,7 @@ For more information, see the following examples\.
 
 ## Example: CloudTrail log file entry for Amazon S3<a name="example-ct-log-s3"></a>
 
-The following example shows a CloudTrail log entry that demonstrates the [GET Service](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTServiceGET.html), [PUT Bucket acl](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTacl.html), and [GET Bucket versioning](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETversioningStatus.html) actions\.
+The following example shows a CloudTrail log entry that demonstrates the [GET Service](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTServiceGET.html), [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTacl.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTacl.html), and [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETversioningStatus.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETversioningStatus.html) actions\.
 
 ```
 {
@@ -39,12 +39,14 @@ The following example shows a CloudTrail log entry that demonstrates the [GET Se
         "responseElements": null,
         "additionalEventData": {
             "SignatureVersion": "SigV2",
-            "AuthenticationMethod": "QueryString"
+            "AuthenticationMethod": "QueryString",
+            "aclRequired": "Yes"
     },
         "requestID": "47B8E8D397DCE7A6",
         "eventID": "cdc4b7ed-e171-4cef-975a-ad829d4123e8",
         "eventType": "AwsApiCall",
-        "recipientAccountId": "111122223333"
+
+        "recipientAccountId": "444455556666"   
     },
     {
        "eventVersion": "1.03",
@@ -137,6 +139,9 @@ The following example shows a CloudTrail log entry that demonstrates the [GET Se
   ]
 }
 ```
+
+**Important**  
+During the next few weeks, we are adding a new field, `aclRequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclRequired` field, the rollout hasn't been completed in your Region\. 
 
 ## Example: Amazon S3 on Outposts log file entries<a name="cloudtrail-logging-understanding-s3outposts-entries"></a>
 

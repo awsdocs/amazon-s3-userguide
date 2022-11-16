@@ -30,3 +30,8 @@ For information about the operations that S3 Batch Operations supports, see [Ope
 A batch job performs a specified operation on every object that is included in its *manifest*\. A manifest lists the objects that you want a batch job to process and it is stored as an object in a bucket\. You can use a comma\-separated values \(CSV\)\-formatted [Amazon S3 Inventory](storage-inventory.md) report as a manifest, which makes it easy to create large lists of objects located in a bucket\. You can also specify a manifest in a simple CSV format that enables you to perform batch operations on a customized list of objects contained within a single bucket\. 
 
 After you create a job, Amazon S3 processes the list of objects in the manifest and runs the specified operation against each object\. While a job is running, you can monitor its progress programmatically or through the Amazon S3 console\. You can also configure a job to generate a completion report when it finishes\. The completion report describes the results of each task that was performed by the job\. For more information about monitoring jobs, see [Managing S3 Batch Operations jobs](batch-ops-managing-jobs.md)\.
+
+## S3 Batch Operations tutorial<a name="batch-ops-basics-tutorial"></a>
+
+The following tutorial presents complete end\-to\-end procedures for some Batch Operations tasks\.
++ [Tutorial: Batch\-transcoding videos with S3 Batch Operations, AWS Lambda, and AWS Elemental MediaConvert](tutorial-s3-batchops-lambda-mediaconvert-video.md)

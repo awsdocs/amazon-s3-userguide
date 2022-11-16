@@ -73,7 +73,7 @@ This example resource element grants access to a specific object\.
 ```
 
 **Example – Write ACL that grants permissions to write objects to a bucket**  
-If your bucket has a write ACL that grants AWS account 111122223333 permission to write objects to your bucket, you can write a bucket policy that grants `s3:PutObject` permission for your bucket\.  
+If your bucket has a write ACL that grants AWS account `111122223333` permission to write objects to your bucket, you can write a bucket policy that grants `s3:PutObject` permission for your bucket\.  
 
 ```
 {
@@ -140,7 +140,7 @@ If your bucket has a write ACL that grants AWS account 111122223333 permission t
 
 ## Using the AWS CLI to review and migrate ACL permissions<a name="review-migrate-acl-cli"></a>
 
-1. To return the bucket ACL for your bucket, use the [get\-bucket\-acl](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-bucket-acl.html) AWS CLI command:
+1. To return the bucket ACL for your bucket, use the [https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-bucket-acl.html](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-bucket-acl.html) AWS CLI command:
 
    ```
    aws s3api get-bucket-acl --bucket DOC-EXAMPLE-BUCKET
@@ -218,7 +218,7 @@ If your bucket has a write ACL that grants AWS account 111122223333 permission t
 
    For more example bucket policies, see [Bucket policies examples](#migrate-acl-permissions-bucket-policies) and [Example walkthroughs](#object-ownership-migrating-acls)\.
 
-1. To return the ACL for a specific object, use the [get\-object\-acl](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-object-acl.html) AWS CLI command\.
+1. To return the ACL for a specific object, use the [https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-object-acl.html](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-object-acl.html) AWS CLI command\.
 
    ```
    aws s3api get-object-acl --bucket DOC-EXAMPLE-BUCKET --key EXAMPLE-OBJECT-KEY

@@ -9,7 +9,7 @@ Live replication refers to Same\-Region Replication \(SRR\) and Cross\-Region Re
 
 For information about AWS SDKs, see [AWS SDK for Java](https://aws.amazon.com/sdk-for-java/) and [AWS SDK for \.NET](https://aws.amazon.com/sdk-for-net/)\.
 
-
+To learn more about how to use S3 Replication to replicate data, see [Tutorial: Replicating data within and between AWS Regions using S3 Replication](http://aws.amazon.com/getting-started/hands-on/replicate-data-using-amazon-s3-replication/?ref=docs_gateway/amazons3/replication-example-walkthroughs.html)\.
 
 **Topics**
 + [Configuring for buckets in the same account](replication-walkthrough1.md)

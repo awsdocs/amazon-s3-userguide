@@ -20,7 +20,7 @@ You must grant Amazon S3 permissions to post messages to an Amazon SNS topic or 
 
 ### Amazon SNS topic<a name="amazon-sns-topic"></a>
 
-Amazon SNS is a flexible, fully managed push messaging service\. You can use this service to push messages to mobile devices or distributed services\. With SNS, you can publish a message once, and deliver it one or more times\. Currently, Standard SNS is only allowed as an S3 event notification destination, whereas SNS FIFO is not allowed\.
+Amazon SNS is a flexible, fully managed push messaging service\. You can use this service to push messages to mobile devices or distributed services\. With SNS,you can publish a message once, and deliver it one or more times\. Currently, Standard SNS is only allowed as an S3 event notification destination, whereas SNS FIFO is not allowed\.
 
 Amazon SNS both coordinates and manages sending and delivering messages to subscribing endpoints or clients\. You can use the Amazon SNS console to create an Amazon SNS topic that your notifications can be sent to\. 
 

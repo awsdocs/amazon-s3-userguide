@@ -9,6 +9,8 @@ Amazon S3 standard storage offers the following features:
 
 Amazon S3 further protects your data using versioning\. You can use versioning to preserve, retrieve, and restore every version of every object that is stored in your Amazon S3 bucket\. With versioning, you can easily recover from both unintended user actions and application failures\. By default, requests retrieve the most recently written version\. You can retrieve older versions of an object by specifying a version of the object in a request\. 
 
+Apart from S3 Versioning, you can also use Amazon S3 Object Lock and S3 Replication to protect your data\. For more information, see [Tutorial: Protecting data on Amazon S3 against accidental deletion or application bugs using S3 Versioning, S3 Object Lock, and S3 Replication](http://aws.amazon.com/getting-started/hands-on/protect-data-on-amazon-s3/?ref=docs_gateway/amazons3/DataDurability.html)\.
+
 For data protection purposes, we recommend that you protect AWS account credentials and set up individual user accounts with AWS Identity and Access Management, so that each user is given only the permissions necessary to fulfill their job duties\.
 
 If you require FIPS 140\-2 validated cryptographic modules when accessing AWS through a command line interface or an API, use a FIPS endpoint\. For more information about the available FIPS endpoints, see [Federal Information Processing Standard \(FIPS\) 140\-2](http://aws.amazon.com/compliance/fips/)\.

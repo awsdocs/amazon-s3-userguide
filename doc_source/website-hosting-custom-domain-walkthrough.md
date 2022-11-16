@@ -1,4 +1,4 @@
-# Configuring a static website using a custom domain registered with Route 53<a name="website-hosting-custom-domain-walkthrough"></a>
+# Tutorial: Configuring a static website using a custom domain registered with Route 53<a name="website-hosting-custom-domain-walkthrough"></a>
 
 Suppose that you want to host a static website on Amazon S3\. You've registered a domain with Amazon Route 53 \(for example, `example.com`\), and you want requests for `http://www.example.com` and `http://example.com` to be served from your Amazon S3 content\. You can use this walkthrough to learn how to host a static website and create redirects on Amazon S3 for a website with a custom domain name that is registered with Route 53\. You can work with an existing website that you want to host on Amazon S3, or use this walkthrough to start from scratch\. 
 

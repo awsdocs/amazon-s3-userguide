@@ -41,6 +41,8 @@ You can add or view this function on the AWS Management Console by using the fol
 
 To view this function on GitHub, see [Amazon Comprehend S3 Object Lambda](https://github.com/aws-samples/amazon-comprehend-s3-object-lambdas)\.
 
+To learn about complete end\-to\-end procedures for some S3 Object Lambda tasks in PII redaction, see [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)\.
+
 ## Example 3: Decompression<a name="olap-examples-3"></a>
 
 The Lambda function `S3ObjectLambdaDecompression` can decompress objects that are stored in Amazon S3 in one of six compressed file formats: `bzip2`, `gzip`, `snappy`, `zlib`, `zstandard`, and `ZIP`\. 

@@ -7,6 +7,8 @@ You can use S3 Versioning to keep multiple versions of an object in one bucket\.
 
 For more information about S3 Versioning, see [Using versioning in S3 buckets](Versioning.md)\. For information about working with objects that are in versioning\-enabled buckets, see [Working with objects in a versioning\-enabled bucket](manage-objects-versioned-bucket.md)\.
 
+To learn more about how to use S3 Versioning to protect data, see [Tutorial: Protecting data on Amazon S3 against accidental deletion or application bugs using S3 Versioning, S3 Object Lock, and S3 Replication](http://aws.amazon.com/getting-started/hands-on/protect-data-on-amazon-s3/?ref=docs_gateway/amazons3/manage-versioning-examples.html)\.
+
 Each S3 bucket that you create has a *versioning* subresource associated with it\. \(For more information, see [Bucket configuration options](UsingBucket.md#bucket-config-options-intro)\.\) By default, your bucket is *unversioned*, and the versioning subresource stores the empty versioning configuration, as follows\.
 
 ```

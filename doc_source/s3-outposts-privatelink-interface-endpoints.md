@@ -33,6 +33,9 @@ To access S3 on Outposts bucket management and endpoint management APIs using AW
 
 Endpoint\-specific S3 on Outposts DNS names can be resolved from the S3 on Outposts public DNS domain\. S3 on Outposts interface endpoints also support the private DNS feature of interface endpoints\. For more information about [Private DNS for interface endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-interface.html#vpce-private-dns), see the *AWS PrivateLink Guide*\.
 
+**Note**  
+If you enable Private DNS on your VPC endpoints, the `--endpoint-url` parameter isn’t required when using the AWS CLI and AWS SDKs\.
+
 ### AWS CLI examples<a name="s3-outposts-privatelink-aws-cli-examples"></a>
 
 Use the `--region` and `--endpoint-url` parameters to access bucket management and endpoint management APIs through S3 on Outposts interface endpoints\. 

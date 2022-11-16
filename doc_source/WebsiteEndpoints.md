@@ -58,7 +58,7 @@ For more information, see [Customizing Amazon S3 URLs with CNAME records](Virtua
 
 Instead of accessing the website using an Amazon S3 website endpoint, you can use your own domain registered with Amazon Route 53 to serve your content—for example, `example.com`\. You can use Amazon S3 with Route 53 to host a website at the root domain\. For example, if you have the root domain `example.com` and you host your website on Amazon S3, your website visitors can access the site from their browser by entering either `http://www.example.com` or `http://example.com`\. 
 
-For an example walkthrough, see [Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)\. 
+For an example walkthrough, see [Tutorial: Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)\. 
 
 ## Key differences between a website endpoint and a REST API endpoint<a name="WebsiteRestEndpointDiff"></a>
 

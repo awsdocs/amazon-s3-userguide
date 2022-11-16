@@ -79,7 +79,7 @@ This example applies the `BucketOwnerEnforced` setting for Object Ownership on a
 
 ## Using AWS CloudFormation<a name="object-ownership-existing-bucket-cfn"></a>
 
-To use AWS CloudFormation to apply an Object Ownership setting for an existing bucket, see [AWS::S3::Bucket OwnershipControls](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrols.html) in the *AWS CloudFormation User Guide*\.
+To use AWS CloudFormation to apply an Object Ownership setting for an existing bucket, see [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrols.html](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrols.html) in the *AWS CloudFormation User Guide*\.
 
 ## Using the REST API<a name="object-ownership-existing-bucket-rest-api"></a>
 

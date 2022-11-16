@@ -7,9 +7,10 @@ The following topics explain the learning paths that you can use to gain a deepe
 **Topics**
 + [Understand common use cases](#s3-use-cases)
 + [Control access to your buckets and objects](#control-access-resources)
-+ [Explore training and support](#explore-training-and-support)
 + [Manage and monitor your storage](#manage-monitor-storage)
 + [Develop with Amazon S3](#develop-with-s3)
++ [Learn from tutorials](#s3-getting-started-tutorials-list)
++ [Explore training and support](#explore-training-and-support)
 
 ## Understand common use cases<a name="s3-use-cases"></a>
 
@@ -30,13 +31,6 @@ By default, S3 buckets and the objects in them are private\. You have access onl
 + [Access control lists \(ACLs\)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acls.html) – Grant read and write permissions for individual buckets and objects to authorized users\. As a general rule, we recommend using S3 resource\-based policies \(bucket policies and access point policies\) or IAM policies for access control instead of ACLs\. ACLs are an access control mechanism that predates resource\-based policies and IAM\. For more information about when you'd use ACLs instead of resource\-based policies or IAM policies, see [Access policy guidelines](access-policy-alternatives-guidelines.md)\.
 + [S3 Object Ownership](https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html) – Disable ACLs and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. You, as the bucket owner, automatically own and have full control over every object in your bucket, and access control for your data is based on policies\.
 + [Access Analyzer for S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html) – Evaluate and monitor your S3 bucket access policies, ensuring that the policies provide only the intended access to your S3 resources\. 
-
-## Explore training and support<a name="explore-training-and-support"></a>
-
-You can learn from AWS experts to advance your skills and get expert assistance achieving your objectives\.
-+ **Training** – Training resources provide a hands\-on approach to learning Amazon S3\. For more information, see [AWS training and certification](https://www.aws.training) and [AWS online tech talks](http://aws.amazon.com/events/online-tech-talks)\.
-+ **Discussion Forums** – On the forum, you can review posts to understand what you can and can't do with Amazon S3\. You can also post your questions\. For more information, see [Discussion Forums](http://forums.aws.amazon.com/index.jspa)\.
-+ **Technical Support** – If you have further questions, you can contact [Technical Support](http://aws.amazon.com/contact-us)\.
 
 ## Manage and monitor your storage<a name="manage-monitor-storage"></a>
 + [Managing your storage](managing-storage.md) – After you create buckets and upload objects in Amazon S3, you can manage your object storage\. For example, you can use S3 Versioning and S3 Replication for disaster recovery, S3 Lifecycle to manage storage costs, and S3 Object Lock to meet compliance requirements\.
@@ -67,3 +61,39 @@ For more information, see [Developing with Amazon S3 using the AWS SDKs, and exp
 
 **Sample Code and Libraries**  
 The [AWS Developer Center](http://aws.amazon.com/code/Amazon-S3) and [AWS Code Sample Catalog](https://docs.aws.amazon.com/code-samples/latest/catalog/welcome.html) have sample code and libraries written especially for Amazon S3\. You can use these code samples to understand how to implement the Amazon S3 API\. You can also view the [https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html](https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html) to understand the Amazon S3 API operations in detail\.
+
+## Learn from tutorials<a name="s3-getting-started-tutorials-list"></a>
+
+You can get started with step\-by\-step tutorials to learn more about Amazon S3\. These tutorials are intended for a lab\-type environment, and they use fictitious company names, user names, and so on\. Their purpose is to provide general guidance\. They are not intended for direct use in a production environment without careful review and adaptation to meet the unique needs of your organization's environment\.
+
+### Getting started<a name="getting-started-tutorials"></a>
++ [Tutorial: Storing and retrieving a file with Amazon S3](http://aws.amazon.com/getting-started/hands-on/backup-files-to-amazon-s3/?ref=docs_gateway/amazons3/tutorials.html)
++ [Tutorial: Getting started using S3 Intelligent\-Tiering](http://aws.amazon.com/getting-started/hands-on/getting-started-using-amazon-s3-intelligent-tiering/?ref=docs_gateway/amazons3/tutorials.html)
++ [Tutorial: Getting started using the Amazon S3 Glacier storage classes](http://aws.amazon.com/getting-started/hands-on/getting-started-using-amazon-s3-glacier-storage-classes/?ref=docs_gateway/amazons3/tutorials.html)
+
+### Optimizing storage costs<a name="storage-costs-tutorials"></a>
++ [Tutorial: Getting started using S3 Intelligent\-Tiering](http://aws.amazon.com/getting-started/hands-on/getting-started-using-amazon-s3-intelligent-tiering/?ref=docs_gateway/amazons3/tutorials.html)
++ [Tutorial: Getting started using the Amazon S3 Glacier storage classes](http://aws.amazon.com/getting-started/hands-on/getting-started-using-amazon-s3-glacier-storage-classes/?ref=docs_gateway/amazons3/tutorials.html)
++ [Tutorial: Optimizing costs and gaining visibility into usage with S3 Storage Lens](http://aws.amazon.com/getting-started/hands-on/amazon-s3-storage-lens/?ref=docs_gateway/amazons3/tutorials.html)
+
+### Hosting videos and websites<a name="host-web-video-tutorials"></a>
++ [Tutorial: Hosting on\-demand streaming video with Amazon S3, Amazon CloudFront, and Amazon Route 53](tutorial-s3-cloudfront-route53-video-streaming.md)
++ [Tutorial: Configuring a static website on Amazon S3](HostingWebsiteOnS3Setup.md)
++ [Tutorial: Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)
+
+### Data processing<a name="data-processing-tutorials"></a>
++ [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md)
++ [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)
++ [Tutorial: Batch\-transcoding videos with S3 Batch Operations, AWS Lambda, and AWS Elemental MediaConvert](tutorial-s3-batchops-lambda-mediaconvert-video.md)
+
+### Protecting data<a name="protect-data-tutorials"></a>
++ [Tutorial: Checking the integrity of data in Amazon S3 with additional checksums](http://aws.amazon.com/getting-started/hands-on/amazon-s3-with-additional-checksums/?ref=docs_gateway/amazons3/tutorials.html)
++ [Tutorial: Replicating data within and between AWS Regions using S3 Replication](http://aws.amazon.com/getting-started/hands-on/replicate-data-using-amazon-s3-replication/?ref=docs_gateway/amazons3/tutorials.html)
++ [Tutorial: Protecting data on Amazon S3 against accidental deletion or application bugs using S3 Versioning, S3 Object Lock, and S3 Replication](http://aws.amazon.com/getting-started/hands-on/protect-data-on-amazon-s3/?ref=docs_gateway/amazons3/tutorials.html)
+
+## Explore training and support<a name="explore-training-and-support"></a>
+
+You can learn from AWS experts to advance your skills and get expert assistance achieving your objectives\.
++ **Training** – Training resources provide a hands\-on approach to learning Amazon S3\. For more information, see [AWS training and certification](https://www.aws.training) and [AWS online tech talks](http://aws.amazon.com/events/online-tech-talks)\.
++ **Discussion Forums** – On the forum, you can review posts to understand what you can and can't do with Amazon S3\. You can also post your questions\. For more information, see [Discussion Forums](http://forums.aws.amazon.com/index.jspa)\.
++ **Technical Support** – If you have further questions, you can contact [Technical Support](http://aws.amazon.com/contact-us)\.

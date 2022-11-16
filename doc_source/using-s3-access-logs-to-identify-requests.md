@@ -58,7 +58,9 @@ It's a best practice to create the database in the same AWS Region as your S3 bu
      `ciphersuite` STRING, 
      `authtype` STRING, 
      `endpoint` STRING, 
-     `tlsversion` STRING)
+     `tlsversion` STRING,
+     `accesspointarn` STRING,
+     `aclrequired` STRING)
    ROW FORMAT SERDE 
      'org.apache.hadoop.hive.serde2.RegexSerDe' 
    WITH SERDEPROPERTIES ( 
@@ -68,8 +70,10 @@ It's a best practice to create the database in the same AWS Region as your S3 bu
    OUTPUTFORMAT 
      'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
    LOCATION
-     's3://awsexamplebucket1-logs/prefix/'
+     's3://DOC-EXAMPLE-BUCKET1-logs/prefix/'
    ```
+**Important**  
+During the next few weeks, we are adding a new field, `aclRequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclRequired` field, the rollout hasn't been completed in your Region\. 
 
 1. In the navigation pane, under **Database**, choose your database\.
 
@@ -125,7 +129,7 @@ To reduce the time that you retain your log, you can create an Amazon S3 Lifecyc
 Amazon S3 support for Signature Version 2 will be turned off \(deprecated\)\. After that, Amazon S3 will no longer accept requests that use Signature Version 2, and all requests must use *Signature Version 4* signing\. You can identify Signature Version 2 access requests using Amazon S3 access logs\. 
 
 **Note**  
-We recommend that you use AWS CloudTrail data events instead of Amazon S3 access logs\. CloudTrail data events are easier to set up and contain more information\. For more information, see [Identifying Amazon S3 Signature Version 2 requests using CloudTrail](cloudtrail-request-identification.md#cloudtrail-identification-sigv2-requests)\.
+We recommend that you use AWS CloudTrail data events instead of Amazon S3 access logs\. CloudTrail data events are easier to set up and contain more information\. For more information, see [Identifying Amazon S3 Signature Version 2 requests by using CloudTrail](cloudtrail-request-identification.md#cloudtrail-identification-sigv2-requests)\.
 
 **Example — Show all requesters that are sending Signature Version 2 traffic**  
 
@@ -137,11 +141,11 @@ We recommend that you use AWS CloudTrail data events instead of Amazon S3 access
 
 ## Identifying object access requests using Amazon S3 access logs<a name="using-s3-access-logs-to-identify-objects-access"></a>
 
-You can use queries on Amazon S3 server access logs to identify Amazon S3 object access requests, for operations such as GET, PUT, and DELETE, and discover further information about those requests\.
+You can use queries on Amazon S3 server access logs to identify Amazon S3 object access requests, for operations such as `GET`, `PUT`, and `DELETE`, and discover further information about those requests\.
 
-The following Amazon Athena query example shows how to get all PUT object requests for Amazon S3 from the server access log\. 
+The following Amazon Athena query example shows how to get all `PUT` object requests for Amazon S3 from the server access log\. 
 
-**Example — Show all requesters that are sending PUT object requests in a certain period**  
+**Example — Show all requesters that are sending `PUT` object requests in a certain period**  
 
 ```
 SELECT Bucket, Requester, RemoteIP, Key, HTTPStatus, ErrorCode, RequestDateTime
@@ -153,9 +157,9 @@ AND
 parse_datetime('2019-07-02:00:42:42','yyyy-MM-dd:HH:mm:ss')
 ```
 
-The following Amazon Athena query example shows how to get all GET object requests for Amazon S3 from the server access log\. 
+The following Amazon Athena query example shows how to get all `GET` object requests for Amazon S3 from the server access log\. 
 
-**Example — Show all requesters that are sending GET object requests in a certain period**  
+**Example — Show all requesters that are sending `GET` object requests in a certain period**  
 
 ```
 SELECT Bucket, Requester, RemoteIP, Key, HTTPStatus, ErrorCode, RequestDateTime
@@ -169,7 +173,7 @@ parse_datetime('2019-07-02:00:42:42','yyyy-MM-dd:HH:mm:ss')
 
 The following Amazon Athena query example shows how to get all anonymous requests to your S3 buckets from the server access log\. 
 
-**Example — Show all anonymous requesters that are making requests to a bucket in a certain period**  
+**Example — Show all anonymous requesters that are making requests to a bucket during a certain period**  
 
 ```
 SELECT Bucket, Requester, RemoteIP, Key, HTTPStatus, ErrorCode, RequestDateTime
@@ -181,8 +185,24 @@ AND
 parse_datetime('2019-07-02:00:42:42','yyyy-MM-dd:HH:mm:ss')
 ```
 
+The following Amazon Athena query shows how to identify all requests to your S3 buckets that required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. After you've created these bucket policies, you can disable ACLs for these buckets\. For more information about disabling ACLs, see [Prerequisites for disabling ACLs](object-ownership-migrating-acls-prerequisites.md)\. 
+
+**Example — Identify all requests that required an ACL for authorization**  
+
+```
+SELECT Bucket, Requester, Key, Operation, aclRequired, RequestDateTime
+FROM s3_access_logs_db
+WHERE aclRequired = 'Yes' AND
+parse_datetime(RequestDateTime,'dd/MMM/yyyy:HH:mm:ss Z')
+BETWEEN parse_datetime('2022-05-10:00:00:00','yyyy-MM-dd:HH:mm:ss')
+AND parse_datetime('2022-08-10:00:00:00','yyyy-MM-dd:HH:mm:ss')
+```
+
+**Important**  
+During the next few weeks, we are adding a new field, `aclRequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclRequired` field, the rollout hasn't been completed in your Region\. 
+
 **Note**  
 You can modify the date range as needed to suit your needs\.
 These query examples might also be useful for security monitoring\. You can review the results for `PutObject` or `GetObject` calls from unexpected or unauthorized IP addresses/requesters and for identifying any anonymous requests to your buckets\.
 This query only retrieves information from the time at which logging was enabled\. 
-If you are using Amazon S3 AWS CloudTrail logs, see [Identifying access to S3 objects using CloudTrail](cloudtrail-request-identification.md#cloudtrail-identification-object-access)\. 
+If you are using Amazon S3 AWS CloudTrail logs, see [Identifying access to S3 objects by using CloudTrail](cloudtrail-request-identification.md#cloudtrail-identification-object-access)\. 

@@ -51,3 +51,5 @@ For information about creating a bucket with S3 Object Lock enabled, see [Creati
 For more information about legal hold and retention settings, see [How S3 Object Lock works](object-lock-overview.md)\.
 
 For information about managing Object Lock using the AWS CLI, AWS SDKs, and the Amazon S3 REST APIs, see [[Managing Object Lock](object-lock-managing.md)Managing Object Lock](object-lock-managing.md)\.
+
+To learn more about how to use S3 Object Lock to protect data, see [Tutorial: Protecting data on Amazon S3 against accidental deletion or application bugs using S3 Versioning, S3 Object Lock, and S3 Replication](http://aws.amazon.com/getting-started/hands-on/protect-data-on-amazon-s3/?ref=docs_gateway/amazons3/object-lock-console.html)\.

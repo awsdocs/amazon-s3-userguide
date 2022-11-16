@@ -2,6 +2,8 @@
 
 This section details how to write AWS Lambda functions for use with Amazon S3 Object Lambda access points\.
 
+To learn about complete end\-to\-end procedures for some S3 Object Lambda tasks, see [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md)\.
+
 **Topics**
 + [Working with `GetObject` requests in Lambda](#olap-getobject-response)
 + [Working with `HeadObject` requests in Lambda](#olap-headobject)

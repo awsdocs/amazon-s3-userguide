@@ -12,7 +12,7 @@ AWS CloudTrail logs provide a record of actions taken by a user, role, or an AWS
 
 You can use AWS CloudTrail logs together with server access logs for Amazon S3\. CloudTrail logs provide you with detailed API tracking for Amazon S3 bucket\-level and object\-level operations\. Server access logs for Amazon S3 provide you visibility into object\-level operations on your data in Amazon S3\. For more information about server access logs, see [Logging requests using server access logging](ServerLogs.md)\.
 
-You can also use CloudTrail logs together with CloudWatch for Amazon S3\. CloudTrail integration with CloudWatch Logs delivers S3 bucket\-level API activity captured by CloudTrail to a CloudWatch log stream in the CloudWatch log group that you specify\. You can create CloudWatch alarms for monitoring specific API activity and receive email notifications when the specific API activity occurs\. For more information about CloudWatch alarms for monitoring specific API activity, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\. For more information about using CloudWatch with Amazon S3, see [Monitoring metrics with Amazon CloudWatch](cloudwatch-monitoring.md)\.
+You can also use CloudTrail logs together with Amazon CloudWatch for Amazon S3\. CloudTrail integration with CloudWatch Logs delivers S3 bucket\-level API activity captured by CloudTrail to a CloudWatch log stream in the CloudWatch log group that you specify\. You can create CloudWatch alarms for monitoring specific API activity and receive email notifications when the specific API activity occurs\. For more information about CloudWatch alarms for monitoring specific API activity, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\. For more information about using CloudWatch with Amazon S3, see [Monitoring metrics with Amazon CloudWatch](cloudwatch-monitoring.md)\.
 
 ## CloudTrail tracking with Amazon S3 SOAP API calls<a name="cloudtrail-s3-soap"></a>
 
@@ -26,13 +26,13 @@ Newer Amazon S3 features are not supported for SOAP\. We recommend that you use 
 
 | SOAP API name | API event name used in CloudTrail log | 
 | --- | --- | 
-|  [ListAllMyBuckets](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPListAllMyBuckets.html)  | ListBuckets | 
-|  [CreateBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPCreateBucket.html)  | CreateBucket | 
-|  [DeleteBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPDeleteBucket.html)  | DeleteBucket | 
-|  [GetBucketAccessControlPolicy](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPGetBucketAccessControlPolicy.html)  | GetBucketAcl | 
-|  [SetBucketAccessControlPolicy](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPSetBucketAccessControlPolicy.html)  | PutBucketAcl | 
-|  [GetBucketLoggingStatus](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPGetBucketLoggingStatus.html)  | GetBucketLogging | 
-|  [SetBucketLoggingStatus](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPSetBucketLoggingStatus.html)  | PutBucketLogging | 
+|  [https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPListAllMyBuckets.html](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPListAllMyBuckets.html)  | ListBuckets | 
+|  [https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPCreateBucket.html](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPCreateBucket.html)  | CreateBucket | 
+|  [https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPDeleteBucket.html](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPDeleteBucket.html)  | DeleteBucket | 
+|  [https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPGetBucketAccessControlPolicy.html](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPGetBucketAccessControlPolicy.html)  | GetBucketAcl | 
+|  [https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPSetBucketAccessControlPolicy.html](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPSetBucketAccessControlPolicy.html)  | PutBucketAcl | 
+|  [https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPGetBucketLoggingStatus.html](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPGetBucketLoggingStatus.html)  | GetBucketLogging | 
+|  [https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPSetBucketLoggingStatus.html](https://docs.aws.amazon.com/AmazonS3/latest/API/SOAPSetBucketLoggingStatus.html)  | PutBucketLogging | 
 
  For more information about CloudTrail and Amazon S3, see the following topics: 
 

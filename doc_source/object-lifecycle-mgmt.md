@@ -12,6 +12,8 @@ If there is any delay between when an object becomes eligible for a lifecycle ac
 
 For more information about S3 Lifecycle rules, see [Lifecycle configuration elements](intro-lifecycle-rules.md)\. 
 
+To get detailed metrics for S3 Lifecycle, you can use Amazon S3 Storage Lens metrics\. S3 Storage Lens is a cloud\-storage analytics feature that you can use to gain organization\-wide visibility into object\-storage usage and activity\. S3 Storage Lens provides S3 Lifecycle rule\-count metrics and metrics that you can use to identify buckets with S3 Versioning enabled or a high percentage of noncurrent version bytes\. For more information, see [ Using S3 Storage Lens to optimize your storage costs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-optimize-storage.html?icmpid=docs_s3_user_guide_object-lifecycle-mgmt.html)\.
+
 ## Managing object lifecycle<a name="lifecycle-config-overview-what"></a>
 
 Define S3 Lifecycle configuration rules for objects that have a well\-defined lifecycle\. For example: 

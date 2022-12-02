@@ -4,7 +4,9 @@ You can delete object versions from Amazon S3 buckets whenever you want\. You ca
 + The `Expiration` action applies to the current object version\. Instead of deleting the current object version, Amazon S3 retains the current version as a noncurrent version by adding a *delete marker*, which then becomes the current version\.
 + The `NoncurrentVersionExpiration` action applies to noncurrent object versions, and Amazon S3 permanently removes these object versions\. You cannot recover permanently removed objects\.
 
-For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
+For more information about S3 Lifecycle, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
+
+To see how many current and noncurrent object versions that your buckets have, you can use Amazon S3 Storage Lens metrics\. S3 Storage Lens is a cloud\-storage analytics feature that you can use to gain organization\-wide visibility into object\-storage usage and activity\. For more information, see [ Using S3 Storage Lens to optimize your storage costs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-optimize-storage.html?icmpid=docs_s3_user_guide_DeletingObjectVersions.html)\. For a complete list of metrics, see [ S3 Storage Lens metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html?icmpid=docs_s3_user_guide_replication.html)\.
 
 ## Delete request use cases<a name="delete-request-use-cases"></a>
 
@@ -100,13 +102,13 @@ The following example deletes version `UIORUnfnd89493jJFJ` of `photo.gif`\.
 
 ### Using the AWS CLI<a name="delete-obj-version-enabled-bucket-cli"></a>
 
-The following command deletes an object named test\.txt from a bucket named *DOC\-EXAMPLE\-BUCKET1*\. To remove a specific version of an object, you must be the bucket owner and you must use the version Id subresource\.
+The following command deletes an object named test\.txt from a bucket named `DOC-EXAMPLE-BUCKET1`\. To remove a specific version of an object, you must be the bucket owner and you must use the version Id subresource\.
 
 ```
 aws s3api delete-object --bucket DOC-EXAMPLE-BUCKET1 --key test.txt --version-id versionID
 ```
 
-For more information about `delete-object` see [delete\-object](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html) in the *AWS CLI Command Reference*\.
+For more information about `delete-object` see [https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-object.html) in the *AWS CLI Command Reference*\.
 
 For more information about deleting object versions, see the following topics:
 + [Working with delete markers](DeleteMarker.md)

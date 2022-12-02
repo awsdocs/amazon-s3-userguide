@@ -1,4 +1,4 @@
-# Complete the multipart upload action using an AWS SDK<a name="example_s3_CompleteMultipartUpload_section"></a>
+# Complete a multipart upload action using an AWS SDK<a name="example_s3_CompleteMultipartUpload_section"></a>
 
 The following code example shows how to complete a multipart upload action\.
 

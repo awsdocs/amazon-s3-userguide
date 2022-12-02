@@ -12,7 +12,7 @@ S3 access points support AWS Identity and Access Management \(IAM\) resource pol
 
 ## Encryption behavior<a name="olap-encryption"></a>
 
-Because Object Lambda access points use both Amazon S3 and AWS Lambda, there are differences in encryption behavior\. For more information about default S3 encryption behavior, see [ Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\.
+Because Object Lambda access points use both Amazon S3 and AWS Lambda, there are differences in encryption behavior\. For more information about default S3 encryption behavior, see [Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\.
 + When you're using S3 server\-side encryption with Object Lambda access points, the object is decrypted before being sent to Lambda\. After the object is sent to Lambda, it is processed unencrypted \(in the case of a `GET` or `HEAD` request\)\.
 + To prevent the encryption key from being logged, S3 rejects `GET` and `HEAD` requests for objects that are encrypted by using server\-side encryption with customer\-provided keys \(SSE\-C\)\. However, the Lambda function might still retrieve these objects if it has access to the client\-provided key\.
 + When using S3 client\-side encryption with Object Lambda access points, make sure that Lambda has access to the encryption key so that it can decrypt and re\-encrypt the object\.

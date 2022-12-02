@@ -105,7 +105,7 @@ To use replication with an S3 Bucket Key, the AWS KMS key policy for the KMS key
 When an S3 Bucket Key is enabled for the source or destination bucket, the encryption context will be the bucket Amazon Resource Name \(ARN\), not the object ARN \(for example, `arn:aws:s3:::bucket_ARN`\)\. You must update your IAM policies to use the bucket ARN for the encryption context:
 
 ```
-"kms:EncryptionContext:arn:aws:arn": [
+"kms:EncryptionContext:aws:s3:arn": [
 "arn:aws:s3:::bucket_ARN"
 ]
 ```
@@ -126,7 +126,7 @@ The following example policy shows statements for using SSE\-KMS with separate d
     "Condition": {
         "StringLike": {
             "kms:ViaService": "s3.source-bucket-region.amazonaws.com",
-            "kms:EncryptionContext:arn:aws:arn": [
+            "kms:EncryptionContext:aws:s3:arn": [
                 "arn:aws:s3:::source-bucket-name/key-prefix1*",
             ]
         }
@@ -269,6 +269,6 @@ In a cross\-account scenario, where the source and destination buckets are owned
 
 ### AWS KMS transaction quota considerations<a name="crr-kms-considerations"></a>
 
-When you add many new objects with AWS KMS encryption after enabling Cross\-Region Replication \(CRR\), you might experience throttling \(HTTP 503 rvice Unavailable errors\)\. Throttling occurs when the number of AWS KMS transactions per second exceeds the current quota\. For more information, see [Quotas]( http://docs.aws.amazon.com/kms/latest/developerguide/limits.html) in the *AWS Key Management Service Developer Guide*\.
+When you add many new objects with AWS KMS encryption after enabling Cross\-Region Replication \(CRR\), you might experience throttling \(HTTP 503 Service Unavailable errors\)\. Throttling occurs when the number of AWS KMS transactions per second exceeds the current quota\. For more information, see [Quotas]( http://docs.aws.amazon.com/kms/latest/developerguide/limits.html) in the *AWS Key Management Service Developer Guide*\.
 
 To request a quota increase, use Service Quotas\. For more information, see [Amazon Web Services Quotas](https://docs.aws.amazon.com/kms/latest/developerguide/limits.html)\. If Service Quotas isn't supported in your Region, [open an AWS Support case](https://console.aws.amazon.com/support/home#/)\. 

@@ -706,25 +706,28 @@ The following example shows the Lambda JSON input payload for `ListObjects`\.
 
 Your Lambda function should return a JSON object that contains the status code, list XML result, or error information that will be returned from S3 Object Lambda\.
 
+S3 Object Lambda does not process or validate `listResultXml`, but instead forwards it to `ListObjects` caller\. For `listBucketResult`, S3 Object Lambda expects certain properties to be of a specific type and will throw exceptions if it cannot parse them\. `listResultXml` and `listBucketResult` can not be provided at the same time\.
+
 The following example demonstrates how to use the presigned URL to call Amazon S3 and use the result to populate a response, including error checking\.
 
 ------
 #### [ Python ]
 
 ```
-import requests import xmltodict
+import requests 
+import xmltodict
 
 def lambda_handler(event, context):
-    
     # Extract the presigned URL from the input.
     s3_url = event["listObjectsContext"]["inputS3Url"]
 
-    # Get the head of the object from Amazon S3.     
+
+    # Get the head of the object from Amazon S3.
     response = requests.get(s3_url)
 
-    # Return the error to S3 Object Lambda (if applicable).     
+    # Return the error to S3 Object Lambda (if applicable).
     if (response.status_code >= 400):
-        error = xmltodict.parse(response.content)         
+        error = xmltodict.parse(response.content)
         return {
             "statusCode": response.status_code,
             "errorCode": error["Error"]["Code"],
@@ -733,19 +736,47 @@ def lambda_handler(event, context):
 
     # Store the XML result in a dict.
     response_dict = xmltodict.parse(response.content)
-    
-    # This obscures StorageClass in a transformation, it is optional to add   
+
+    # This obscures StorageClass in a transformation, it is optional to add
     for item in response_dict['ListBucketResult']['Contents']:
         item['StorageClass'] = ""
 
     # Convert back to XML.
     listResultXml = xmltodict.unparse(response_dict)
-
-    # Return the list to S3 Object Lambda.     
-    return {
+    
+    # Create response with listResultXml.
+    response_with_list_result_xml = {
         'statusCode': 200,
         'listResultXml': listResultXml
     }
+
+    # Create response with listBucketResult.
+    response_dict['ListBucketResult'] = sanitize_response_dict(response_dict['ListBucketResult'])
+    response_with_list_bucket_result = {
+        'statusCode': 200,
+        'listBucketResult': response_dict['ListBucketResult']
+    }
+
+    # Return the list to S3 Object Lambda.
+    # Can return response_with_list_result_xml or response_with_list_bucket_result
+    return response_with_list_result_xml
+
+# Converting the response_dict's key to correct casing
+def sanitize_response_dict(response_dict: dict):
+    new_response_dict = dict()
+    for key, value in response_dict.items():
+        new_key = key[0].lower() + key[1:] if key != "ID" else 'id'
+        if type(value) == list:
+            newlist = []
+            for element in value:
+                if type(element) == type(dict()):
+                    element = sanitize_response_dict(element)
+                newlist.append(element)
+            value = newlist
+        elif type(value) == dict:
+            value = sanitize_response_dict(value)
+        new_response_dict[new_key] = value
+    return new_response_dict
 ```
 
 ------
@@ -757,7 +788,37 @@ The following example shows the structure of the Lambda response JSON for `ListO
   "statusCode": <number>; // Required
   "errorCode": <string>;
   "errorMessage": <string>;
-  "listResultXml": <string>;
+  "listResultXml": <string>; // This can also be Error XML string in case S3 returned error response when calling the pre-signed URL
+
+  "listBucketResult": {  // listBucketResult can be provided instead of listResultXml, however they can not both be provided in the JSON response  
+        "name": <string>,  // Required for 'listBucketResult'
+        "prefix": <string>,  
+        "marker": <string>, 
+        "nextMarker": <string>, 
+        "maxKeys": <int>,   // Required for 'listBucketResult'
+        "delimiter": <string>, 
+        "encodingType": <string>  
+        "isTruncated": <boolean>,  // Required for 'listBucketResult'
+        "contents": [  { 
+            "key": <string>,  // Required for 'content'
+            "lastModified": <string>,  
+            "eTag": <string>,  
+            "checksumAlgorithm": <string>,   // CRC32,  CRC32C,  SHA1,  SHA256
+            "size": <int>,   // Required for 'content'
+            "owner": {  
+                "displayName": <string>,  // Required for 'owner'
+                "id": <string>,  // Required for 'owner'
+            },  
+            "storageClass": <string>  
+            },  
+        ...  
+        ],  
+        "commonPrefixes": [  {  
+            "prefix": <string>   // Required for 'commonPrefix'
+        },  
+        ...  
+        ],  
+    }
 }
 ```
 
@@ -819,25 +880,28 @@ The following example shows the Lambda JSON input payload for `ListObjectsV2`\.
 
 Your Lambda function should return a JSON object that contains the status code, list XML result, or error information that will be returned from S3 Object Lambda\.
 
+S3 Object Lambda does not process or validate `listResultXml`, but instead forwards it to `ListObjectsV2` caller\. For `listBucketResult`, S3 Object Lambda expects certain properties to be of a specific type and will throw exceptions if it cannot parse them\. `listResultXml` and `listBucketResult` can not be provided at the same time\.
+
 The following example demonstrates how to use the presigned URL to call Amazon S3 and use the result to populate a response, including error checking\.
 
 ------
 #### [ Python ]
 
 ```
-import requests import xmltodict
+import requests 
+import xmltodict
 
 def lambda_handler(event, context):
-    
     # Extract the presigned URL from the input.
     s3_url = event["listObjectsV2Context"]["inputS3Url"]
 
-    # Get the head of the object from Amazon S3.     
+
+    # Get the head of the object from Amazon S3.
     response = requests.get(s3_url)
 
-    # Return the error to S3 Object Lambda (if applicable).     
+    # Return the error to S3 Object Lambda (if applicable).
     if (response.status_code >= 400):
-        error = xmltodict.parse(response.content)         
+        error = xmltodict.parse(response.content)
         return {
             "statusCode": response.status_code,
             "errorCode": error["Error"]["Code"],
@@ -847,18 +911,46 @@ def lambda_handler(event, context):
     # Store the XML result in a dict.
     response_dict = xmltodict.parse(response.content)
 
-    # This obscures StorageClass in a transformation, it is optional to add   
+    # This obscures StorageClass in a transformation, it is optional to add
     for item in response_dict['ListBucketResult']['Contents']:
         item['StorageClass'] = ""
 
     # Convert back to XML.
     listResultXml = xmltodict.unparse(response_dict)
-
-    # Return the list to S3 Object Lambda.     
-    return {
+    
+    # Create response with listResultXml.
+    response_with_list_result_xml = {
         'statusCode': 200,
         'listResultXml': listResultXml
     }
+
+    # Create response with listBucketResult.
+    response_dict['ListBucketResult'] = sanitize_response_dict(response_dict['ListBucketResult'])
+    response_with_list_bucket_result = {
+        'statusCode': 200,
+        'listBucketResult': response_dict['ListBucketResult']
+    }
+
+    # Return the list to S3 Object Lambda.
+    # Can return response_with_list_result_xml or response_with_list_bucket_result
+    return response_with_list_result_xml
+
+# Converting the response_dict's key to correct casing
+def sanitize_response_dict(response_dict: dict):
+    new_response_dict = dict()
+    for key, value in response_dict.items():
+        new_key = key[0].lower() + key[1:] if key != "ID" else 'id'
+        if type(value) == list:
+            newlist = []
+            for element in value:
+                if type(element) == type(dict()):
+                    element = sanitize_response_dict(element)
+                newlist.append(element)
+            value = newlist
+        elif type(value) == dict:
+            value = sanitize_response_dict(value)
+        new_response_dict[new_key] = value
+    return new_response_dict
 ```
 
 ------
@@ -866,10 +958,42 @@ def lambda_handler(event, context):
 The following example shows the structure of the Lambda response JSON for `ListObjectsV2`\.
 
 ```
-{ 
-  "statusCode": <number>; // Required
-  "errorCode": <string>;
-  "errorMessage": <string>;
-  "listResultXml": <string>;
+{  
+    "statusCode": <number>; // Required  
+    "errorCode": <string>;  
+    "errorMessage": <string>;  
+    "listResultXml": <string>; // This can also be Error XML string in case S3 returned error response when calling the pre-signed URL  
+  
+    "listBucketResult": {  // listBucketResult can be provided instead of listResultXml, however they can not both be provided in the JSON response 
+        "name": <string>, // Required for 'listBucketResult'  
+        "prefix": <string>,  
+        "startAfter": <string>,  
+        "continuationToken": <string>,  
+        "nextContinuationToken": <string>,
+        "keyCount": <int>, // Required for 'listBucketResult'  
+        "maxKeys": <int>, // Required for 'listBucketResult'  
+        "delimiter": <string>,  
+        "encodingType": <string>  
+        "isTruncated": <boolean>, // Required for 'listBucketResult'  
+        "contents": [ {  
+            "key": <string>, // Required for 'content'  
+            "lastModified": <string>,  
+            "eTag": <string>,  
+            "checksumAlgorithm": <string>, // CRC32, CRC32C, SHA1, SHA256  
+            "size": <int>, // Required for 'content'  
+            "owner": {  
+                "displayName": <string>, // Required for 'owner'  
+                "id": <string>, // Required for 'owner'  
+            },  
+            "storageClass": <string>  
+            },  
+            ...  
+        ],  
+        "commonPrefixes": [ {  
+            "prefix": <string> // Required for 'commonPrefix'  
+            },  
+        ...  
+        ],  
+    }  
 }
 ```

@@ -49,6 +49,8 @@ When you request that your data be decrypted, Amazon S3 and AWS KMS perform the 
 **Important**  
 When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a symmetric encryption KMS key\. Amazon S3 supports only symmetric encryption KMS keys and not asymmetric keys\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
 
+To identify requests that specify SSE\-KMS, you can use the **All SSE\-KMS requests** and **% all SSE\-KMS requests** metrics in Amazon S3 Storage Lens metrics\. S3 Storage Lens is a cloud\-storage analytics feature that you can use to gain organization\-wide visibility into object\-storage usage and activity\. For more information, see [ Assessing your storage activity and usage with S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html?icmpid=docs_s3_user_guide_UsingKMSEncryption.html)\. For a complete list of metrics, see [ S3 Storage Lens metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html?icmpid=docs_s3_user_guide_UsingKMSEncryption.html)\.
+
 ## Amazon S3 Bucket Keys<a name="sse-kms-bucket-keys"></a>
 
 When you configure server\-side encryption using AWS KMS \(SSE\-KMS\), you can configure your bucket to use S3 Bucket Keys for SSE\-KMS\. Using a bucket\-level key for SSE\-KMS can reduce your AWS KMS request costs by up to 99 percent by decreasing the request traffic from Amazon S3 to AWS KMS\. 

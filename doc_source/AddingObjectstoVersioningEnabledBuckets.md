@@ -25,9 +25,9 @@ For information about using other AWS SDKs, see the [AWS Developer Center](https
 
 **To add objects to versioning\-enabled buckets**
 
-1. Enable versioning on a bucket using a `PUT Bucket versioning` request\.
+1. Enable versioning on a bucket using a `PutBucketVersioning` request\.
 
-   For more information, see [PutBucketVersioning](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html) in the *Amazon Simple Storage Service API Reference*\.
+   For more information, see [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html) in the *Amazon Simple Storage Service API Reference*\.
 
 1. Send a `PUT`, `POST`, or `COPY` request to store an object in the bucket\.
 

@@ -60,7 +60,7 @@ When you use an AWS KMS key for server\-side encryption in Amazon S3, you must c
 
 These examples show you how to configure default encryption using Amazon S3\-managed encryption \(SSE\-S3\) or AWS KMS encryption \(SSE\-KMS\) with an S3 Bucket Key\.
 
-For more information about default encryption, see [ Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\. For more information about using the AWS CLI to configure default encryption, see [put\-bucket\-encryption](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-encryption.html)\.
+For more information about default encryption, see [Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\. For more information about using the AWS CLI to configure default encryption, see [put\-bucket\-encryption](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-encryption.html)\.
 
 **Example – Default encryption with SSE\-S3**  
 This example configures default bucket encryption with Amazon S3\-managed encryption\.  

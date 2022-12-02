@@ -36,7 +36,7 @@ To request server\-side encryption using the object creation REST APIs, provide 
 
 The following Amazon S3 APIs support this header:
 + PUT operations—Specify the request header when uploading data using the PUT API\. For more information, see [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html)\.
-+ Initiate Multipart Upload—Specify the header in the initiate request when uploading large objects using the multipart upload API \. For more information, see [Initiate Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html)\.
++ Initiate Multipart Upload—Specify the header in the initiate request when uploading large objects using the multipart upload API\. For more information, see [Initiate Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html)\.
 + COPY operations—When you copy an object, you have both a source object and a target object\. For more information, see [PUT Object \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html)\.
 
 **Note**  

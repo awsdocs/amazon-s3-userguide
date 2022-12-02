@@ -17,7 +17,7 @@ To review and migrate ACL permissions to bucket policies, see the following topi
 These example bucket policies show you how to migrate `READ` and `WRITE` bucket and object ACL permissions for a third\-party AWS account to a bucket policy\. `READ_ACP` and `WRITE_ACP` ACLs are less relevant for policies because they grant ACL\-related permissions \(`s3:GetBucketAcl`, `s3:GetObjectAcl`, `s3:PutBucketAcl`, and `s3:PutObjectAcl`\)\.
 
 **Example – READ ACL for a bucket**  
-If your bucket had a READ ACL that grants AWS account 111122223333 permission to list the contents of your bucket, you can write a bucket policy that grants `s3:ListBucket`, `s3:ListBucketVersions`, `s3:ListBucketMultipartUploads` permissions for your bucket\.   
+If your bucket had a READ ACL that grants AWS account `111122223333` permission to list the contents of your bucket, you can write a bucket policy that grants `s3:ListBucket`, `s3:ListBucketVersions`, `s3:ListBucketMultipartUploads` permissions for your bucket\.   
 
 ```
 {
@@ -28,6 +28,7 @@ If your bucket had a READ ACL that grants AWS account 111122223333 permission to
             "Effect": "Allow",
             "Principal": {
                 "AWS": [
+
                     "arn:aws:iam::111122223333:root"
                 ]
             },
@@ -43,7 +44,7 @@ If your bucket had a READ ACL that grants AWS account 111122223333 permission to
 ```
 
 **Example – READ ACLs for every object in a bucket**  
-If every object in your bucket has a READ ACL that grants access to AWS account 111122223333, you can write a bucket policy that grants `s3:GetObject` and `s3:GetObjectVersion` permissions to this account for every object in your bucket\.  
+If every object in your bucket has a READ ACL that grants access to AWS account `111122223333`, you can write a bucket policy that grants `s3:GetObject` and `s3:GetObjectVersion` permissions to this account for every object in your bucket\.  
 
 ```
 {
@@ -187,7 +188,7 @@ If your bucket has a write ACL that grants AWS account `111122223333` permission
 
 1. Migrate your bucket ACL permissions to a bucket policy:
 
-   This example bucket policy grants `s3:PutObject` and `s3:ListBucket` permissions for a third\-party account\. In the bucket policy, the third\-party account is identified by the AWS account ID \(*111122223333*\)\.
+   This example bucket policy grants `s3:PutObject` and `s3:ListBucket` permissions for a third\-party account\. In the bucket policy, the third\-party account is identified by the AWS account ID \(`111122223333`\)\.
 
    ```
    aws s3api put-bucket-policy --bucket DOC-EXAMPLE-BUCKET --policy file://policy.json

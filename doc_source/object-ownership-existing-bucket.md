@@ -73,7 +73,7 @@ This example applies the `BucketOwnerEnforced` setting for Object Ownership on a
                         .ownershipControls(ownershipControls)
                         .build();
                         
-          // Send the request to S3 
+          // Send the request to Amazon S3 
           s3client.putBucketOwnershipControls(putBucketOwnershipControlsRequest);
 ```
 
@@ -83,7 +83,7 @@ To use AWS CloudFormation to apply an Object Ownership setting for an existing b
 
 ## Using the REST API<a name="object-ownership-existing-bucket-rest-api"></a>
 
-To use the REST API to apply an Object Ownership setting to an existing S3 bucket, use `PutBucketOwnershipControls`\. For more information, see [PutBucketOwnershipControls](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketOwnershipControls.html) in the *Amazon Simple Storage Service API Reference*\.
+To use the REST API to apply an Object Ownership setting to an existing S3 bucket, use `PutBucketOwnershipControls`\. For more information, see [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketOwnershipControls.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketOwnershipControls.html) in the *Amazon Simple Storage Service API Reference*\.
 
 **Next steps**: After you apply the bucket owner enforced or bucket owner preferred settings for Object Ownership, you can further take the following steps:
 + [Bucket owner enforced](ensure-object-ownership.md#object-ownership-requiring-bucket-owner-enforced) – Require that all new buckets are created with ACLs disabled by using an IAM or Organizations policy\. 

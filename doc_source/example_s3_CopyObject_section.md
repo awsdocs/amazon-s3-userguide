@@ -435,6 +435,30 @@ pub async fn copy_object(
 +  For API details, see [CopyObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
 
 ------
+#### [ SAP ABAP ]
+
+**SDK for SAP ABAP**  
+This documentation is for an SDK in developer preview release\. The SDK is subject to change and is not recommended for use in production\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/sap-abap/services/s3#code-examples)\. 
+  
+
+```
+    TRY.
+        lo_s3->copyobject(
+          iv_bucket = iv_dest_bucket
+          iv_key = iv_dest_object
+          iv_copysource = |{ iv_src_bucket }/{ iv_src_object }|
+        ).
+        MESSAGE 'Object copied to another bucket' TYPE 'I'.
+      CATCH /aws1/cx_s3_nosuchbucket.
+        MESSAGE 'Bucket does not exist' TYPE 'E'.
+      CATCH /aws1/cx_s3_nosuchkey.
+        MESSAGE 'Object key does not exist' TYPE 'E'.
+    ENDTRY.
+```
++  For API details, see [CopyObject](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 
+
+------
 #### [ Swift ]
 
 **SDK for Swift**  

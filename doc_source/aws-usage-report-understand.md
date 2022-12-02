@@ -90,13 +90,13 @@ The first column in the following table lists usage types that appear in your bi
 |  `region-OverwriteBytes-Put-ZIA`  |  GB  |  Monthly  |  The amount of data overwritten by a PutObject operation from S3 One Zone\-IA storage  | 
 |  `region1-region2-S3RTC-In-Bytes`  |  GB  |  Monthly  |  The amount of data transferred for S3 Replication Time Control \(S3 RTC\) from Region 2 to Region 1  | 
 |  `region1-region2-S3RTC-Out-Bytes`  |  GB  |  Monthly  |  The amount of data transferred for S3 Replication Time Control \(S3 RTC\) from Region 1 to Region 2  | 
-|  `region-Requests-GDA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on S3 Glacier Deep Archive objects  | 
+|  `region-Requests-GDA-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on S3 Glacier Deep Archive objects 6  | 
 |  `region-Requests-GDA-Tier2`  |  Count  |  Hourly  |  The number of GET and HEAD requests on S3 Glacier Deep Archive objects  | 
 |  `region-Requests-GDA-Tier3`  |  Count  |  Hourly  |  The number of S3 Glacier Deep Archive standard restore requests  | 
 |  `region-Requests-GDA-Tier5`  |  Count  |  Hourly  |  The number of Bulk S3 Glacier Deep Archive restore requests  | 
 |  `region-Requests-GIR-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, or POST requests on S3 Glacier Instant Retrieval objects\.  | 
 |  `region-Requests-GIR-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-GIR\-Tier1 requests on S3 Glacier Instant Retrieval objects\.  | 
-|  `region-Requests-GLACIER-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on S3 Glacier Flexible Retrieval objects  | 
+|  `region-Requests-GLACIER-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, POST, InitiateMultipartUpload, UploadPart, or CompleteMultipartUpload requests on S3 Glacier Flexible Retrieval objects 6  | 
 |  `region-Requests-GLACIER-Tier2`  |  Count  |  Hourly  | The number of GET and all other requests not listed on S3 Glacier Flexible Retrieval objects | 
 |  `region-Requests-INT-Tier1`  |  Count  |  Hourly  |  The number of PUT, COPY, or POST requests on S3 Intelligent\-Tiering objects  | 
 |  `region-Requests-INT-Tier2`  |  Count  |  Hourly  |  The number of GET and all other non\-Tier1 requests for S3 Intelligent\-Tiering objects  | 
@@ -160,6 +160,8 @@ The first column in the following table lists usage types that appear in your bi
 1. For small objects \(smaller than 128 KB\) that are in S3 Standard\-IA or S3 One Zone\-IA storage, when they are deleted, overwritten, or transitioned to a different storage class prior to 30 days, there is a prorated charge per gigabyte for the remaining days\.
 
 1. There is no minimum billable object size for objects in the S3 Intelligent\-Tiering storage class\. Objects that are smaller than 128 KB are not monitored or eligible for auto\-tiering\. Smaller objects are always stored in the S3 Intelligent\-Tiering Frequent Access tier\.
+
+1. When you initiate an “InitiateMultipartUpload,” “UploadPart,” or “CopyPart” request to either the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes, requests are billed at S3 Standard request rates until you complete the multipart upload\. Once the upload completes, the single “CompleteMultipartUpload” request is billed at the PUT rate for the destination S3 Glacier storage\. In\-progress multipart parts for a PUT to the S3 Glacier Flexible Retrieval storage class are billed as S3 Glacier Staging Storage at S3 Standard storage rates until the upload completes\. Similarly, in\-progress multipart parts for a PUT to the S3 Glacier Deep Archive storage class are billed as S3 Glacier Deep Archive Staging Storage at S3 Standard storage rates until the upload completes\.
 
 ## Tracking Operations in Your Usage Reports<a name="aws-usage-report-understand-operations"></a>
 

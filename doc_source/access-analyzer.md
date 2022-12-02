@@ -12,7 +12,8 @@ For more information about IAM Access Analyzer, see [What is Access Analyzer?](h
 
 **Important**  
 Access Analyzer for S3 requires an account\-level analyzer\. To use Access Analyzer for S3, you must visit IAM Access Analyzer and create an analyzer that has an account as the zone of trust\. For more information, see [Enabling Access Analyzer](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#access-analyzer-enabling) in *IAM User Guide*\.
-When a bucket policy or bucket ACL is added or modified, Access Analyzer generates and updates findings based on the change within 30 minutes\. Findings related to account level block public access settings may not be generated or updated for up to 6 hours after you change the settings\. Findings related to Multi\-Region Access Points may not be generated or updated for up to six hours after the Multi\-Region Access Point is created, deleted, or you change its policy\.
+Access Analyzer for S3 doesn't analyze the access point policy that's attached to cross\-account access points\. This behavior occurs because the access point and its policy are outside the zone of trust, that is, the account\. Buckets that delegate access to a cross\-account access point are listed under **Buckets with public access** if you haven't applied the `RestrictPublicBuckets` block public access setting to the bucket or account\. When you apply the `RestrictPublicBuckets` block public access setting, the bucket is reported under **Buckets with access from other AWS accounts — including third\-party AWS accounts**\.
+When a bucket policy or bucket ACL is added or modified, Access Analyzer generates and updates findings based on the change within 30 minutes\. Findings related to account level block public access settings might not be generated or updated for up to 6 hours after you change the settings\. Findings related to Multi\-Region Access Points might not be generated or updated for up to six hours after the Multi\-Region Access Point is created, deleted, or you change its policy\.
 
 ****Topics****
 + [What information does Access Analyzer for S3 provide?](#access-analyzer-information-s3)
@@ -31,7 +32,7 @@ Access Analyzer for S3 provides findings for buckets that can be accessed outsid
 For each bucket, Access Analyzer for S3 provides the following information:
 + **Bucket name**
 + **Discovered by Access analyzer** ‐ When Access Analyzer for S3 discovered the public or shared bucket access\.
-+ **Shared through** ‐ How the bucket is shared—through a bucket policy, a bucket ACL, a Multi\-Region Access Point policy, or an access point policy\. Multi\-Region Access Points are reflected under access points\. A bucket can be shared through both policies and ACLs\. If you want to find and review the source for your bucket access, you can use the information in this column as a starting point for taking immediate and precise corrective action\. 
++ **Shared through** ‐ How the bucket is shared—through a bucket policy, a bucket ACL, a Multi\-Region Access Point policy, or an access point policy\. Multi\-Region Access Points and cross\-account access points are reflected under access points\. A bucket can be shared through both policies and ACLs\. If you want to find and review the source for your bucket access, you can use the information in this column as a starting point for taking immediate and precise corrective action\. 
 + **Status** ‐ The status of the bucket finding\. Access Analyzer for S3 displays findings for all public and shared buckets\. 
   + **Active **‐ Finding has not been reviewed\. 
   + **Archived** ‐ Finding has been reviewed and confirmed as intended\. 
@@ -79,7 +80,7 @@ In rare events, Access Analyzer for S3 might report no findings for a bucket tha
 
 ## Reviewing and changing bucket access<a name="changing-bucket-access"></a>
 
-If you did not intend to grant access to the public or other AWS accounts, including accounts outside of your organization, you can modify the bucket ACL, bucket policy, the Multi\-Region Access Point policy, or the access point policy to remove the access to the bucket\. The **Shared through** column shows all sources of bucket access: bucket policy, bucket ACL, and/or access point policy\. Multi\-Region Access Points are reflected under access points\.
+If you did not intend to grant access to the public or other AWS accounts, including accounts outside of your organization, you can modify the bucket ACL, bucket policy, the Multi\-Region Access Point policy, or the access point policy to remove the access to the bucket\. The **Shared through** column shows all sources of bucket access: bucket policy, bucket ACL, and/or access point policy\. Multi\-Region Access Points and cross\-account access points are reflected under access points\.
 
 **To review and change a bucket policy, a bucket ACL, a Multi\-Region Access Point, or an access point policy**
 

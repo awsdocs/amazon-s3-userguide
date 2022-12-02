@@ -1,8 +1,16 @@
-# Viewing storage usage and activity metrics with Amazon S3 Storage Lens<a name="storage_lens_view_metrics"></a>
+# Viewing metrics with Amazon S3 Storage Lens<a name="storage_lens_view_metrics"></a>
 
-By default, all dashboards are configured with **free metrics**, which include [usage metrics](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_metrics_types) aggregated down to the bucket level and data is available for queries for 14 days\. This means that you can see all the usage metrics that S3 Storage Lens aggregates, and your data will be available for queries for 14 days from the day it was aggregated\. 
+S3 Storage Lens aggregates your metrics and displays the information in the **Account snapshot** section on the Amazon S3 console **Buckets** page\. S3 Storage Lens also provides an interactive dashboard that you can use to visualize insights and trends, flag outliers, and receive recommendations for optimizing storage costs and applying data\-protection best practices\. Your dashboard has drill\-down options to generate insights at the organization, account, bucket, object, or prefix level\. You can also send a once\-daily metrics export in CSV or Parquet format to an S3 bucket\.
 
-**Advanced metrics and recommendations** include usage metrics with prefix\-level aggregation, activity metrics aggregated by bucket, and contextual recommendations \(available only in the dashboard\)\. [Activity metrics](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_metrics_types) are available for queries for 15 months\. There are additional charges for using S3 Storage Lens with advanced metrics\. For more information, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing)\.
+By default, all dashboards are configured with free metrics, which include metrics that you can use to understand usage and activity across your S3 storage, optimize your storage costs, and implement data\-protection and access\-management best practices\. Free metrics are aggregated down to the bucket level\. With free metrics, data is available for queries for 14 days\.
+
+Advanced metrics and recommendations include the following additional features that you can use to gain further insight into usage and activity across your storage and best practices for optimizing your storage:
++ Contextual recommendations \(available only in the dashboard\)
++ Advanced metrics \(including activity metrics aggregated by bucket\)
++ Prefix aggregation
++ Amazon CloudWatch publishing
+
+Advanced metrics data is available for queries for 15 months\. There are additional charges for using S3 Storage Lens with advanced metrics\. For more information, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing)\. For more information about free and advanced metrics, see [Metrics selection](storage_lens_basics_metrics_recommendations.md#storage_lens_basics_metrics_selection)\.
 
 **Topics**
 + [Viewing S3 Storage Lens metrics on the dashboards](storage_lens_view_metrics_dashboard.md)

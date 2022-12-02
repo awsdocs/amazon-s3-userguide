@@ -24,6 +24,8 @@ To use S3 Object Lock, you follow these basic steps:
 
 1. Apply a retention period, a legal hold, or both, to the objects that you want to protect\.
 
+To see metrics for Object Lock\-enabled storage bytes and object count, you can use Amazon S3 Storage Lens\. S3 Storage Lens is a cloud\-storage analytics feature that you can use to gain organization\-wide visibility into object\-storage usage and activity\. For more information, see [ Using S3 Storage Lens to protect your data](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-lens-data-protection?icmpid=docs_s3_user_guide_replication.html)\. For a complete list of metrics, see [ S3 Storage Lens metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html?icmpid=docs_s3_user_guide_replication.html)\.
+
 For information about configuring and managing S3 Object Lock, see the following sections:
 
 **Topics**

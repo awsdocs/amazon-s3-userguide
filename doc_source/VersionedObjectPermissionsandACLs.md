@@ -3,7 +3,7 @@
 Permissions for objects in Amazon S3 are set at the version level\. Each version has its own object owner\. The AWS account that creates the object version is the owner\. So, you can set different permissions for different versions of the same object\. To do so, you must specify the version ID of the object whose permissions you want to set in a `PUT Object versionId acl` request\. For a detailed description and instructions on using ACLs, see [Identity and access management in Amazon S3](s3-access-control.md)\.
 
 **Example — Setting permissions for an object version**  
-The following request sets the permission of the grantee, `BucketOwner@amazon.com`, to `FULL_CONTROL` on the key, `my-image.jpg`, version ID, 3HL4kqtJvjVBH40Nrjfkd\.  
+The following request sets the permission of the grantee, `BucketOwner@amazon.com`, to `FULL_CONTROL` on the key, `my-image.jpg`, version ID, `3HL4kqtJvjVBH40Nrjfkd`\.  
 
 ```
  1. PUT /my-image.jpg?acl&versionId=3HL4kqtJvjVBH40Nrjfkd HTTP/1.1
@@ -32,7 +32,7 @@ The following request sets the permission of the grantee, `BucketOwner@amazon.co
 Likewise, to get the permissions of a specific object version, you must specify its version ID in a `GET Object versionId acl` request\. You need to include the version ID because, by default, `GET Object acl` returns the permissions of the current version of the object\. 
 
 **Example — Retrieving the permissions for a specified object version**  
-In the following example, Amazon S3 returns the permissions for the key, `my-image.jpg`, version ID, DVBH40Nr8X8gUMLUo\.  
+In the following example, Amazon S3 returns the permissions for the key, `my-image.jpg`, version ID, `DVBH40Nr8X8gUMLUo`\.  
 
 ```
 1. GET /my-image.jpg?versionId=DVBH40Nr8X8gUMLUo&acl HTTP/1.1
@@ -41,4 +41,4 @@ In the following example, Amazon S3 returns the permissions for the key, `my-ima
 4. Authorization: AWS AKIAIOSFODNN7EXAMPLE:0RQf4/cRonhpaBX5sCYVf1bNRuU
 ```
 
-For more information, see [GetObjectAcl](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGETacl.html) in the *Amazon Simple Storage Service API Reference*\.
+For more information, see [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGETacl.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGETacl.html) in the *Amazon Simple Storage Service API Reference*\.

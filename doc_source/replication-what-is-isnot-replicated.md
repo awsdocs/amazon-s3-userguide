@@ -32,7 +32,7 @@ If you delete an object from the source bucket, the following actions occur by d
 + If you make a DELETE request without specifying an object version ID, Amazon S3 adds a delete marker\. Amazon S3 deals with the delete marker as follows:
   + If you are using the latest version of the replication configuration \(that is, you specify the `Filter` element in a replication configuration rule\), Amazon S3 does not replicate the delete marker by default\. However, you can add *delete marker replication* to non\-tag\-based rules\. For more information, see [Replicating delete markers between buckets](delete-marker-replication.md)\.
   + If you don't specify the `Filter` element, Amazon S3 assumes that the replication configuration is version V1, and it replicates delete markers that resulted from user actions\. However, if Amazon S3 deletes an object due to a lifecycle action, the delete marker is not replicated to the destination buckets\.
-+ If you specify an object version ID to delete in a DELETE request, Amazon S3 deletes that object version in the source bucket\. But it doesn't replicate the deletion in the destination buckets\. In other words, it doesn't delete the same object version from the destination buckets\. This protects data from malicious deletions\. 
++ If you specify an object version ID to delete in a `DELETE` request, Amazon S3 deletes that object version in the source bucket\. But it doesn't replicate the deletion in the destination buckets\. In other words, it doesn't delete the same object version from the destination buckets\. This protects data from malicious deletions\. 
 
 ## What isn't replicated with replication configurations?<a name="replication-what-is-not-replicated"></a>
 

@@ -298,24 +298,24 @@ WHERE
 ```
 
 **Example — Identify all requests that required an ACL for authorization**  
- The following Amazon Athena query example shows how to identify all requests to your S3 buckets that required an access control list \(ACL\) for authorization\. If the request required an ACL for authorization, the `aclRequired` value in `additionaleventdata` is `Yes`\. If no ACLs were required, `aclRequired` is not present\. You can use this information to migrate those ACL permissions to the appropriate bucket policies\. After you've created these bucket policies, you can disable ACLs for these buckets\. and disable ACLs\. For more information about disabling ACLs, see [Prerequisites for disabling ACLs](object-ownership-migrating-acls-prerequisites.md)\.  
+ The following Amazon Athena query example shows how to identify all requests to your S3 buckets that required an access control list \(ACL\) for authorization\. If the request required an ACL for authorization, the `aclRequired` value in `additionalEventData` is `Yes`\. If no ACLs were required, `aclRequired` is not present\. You can use this information to migrate those ACL permissions to the appropriate bucket policies\. After you've created these bucket policies, you can disable ACLs for these buckets\. and disable ACLs\. For more information about disabling ACLs, see [Prerequisites for disabling ACLs](object-ownership-migrating-acls-prerequisites.md)\.  
 
 ```
- SELECT
+SELECT
   eventTime, 
   eventName, 
   eventSource, 
   sourceIpAddress, 
   userAgent, 
   userIdentity.arn as userArn,
-  cast(json_extract(requestparameters, '$.bucketName') as varchar) as bucketName,
-  cast(json_extract(requestparameters, '$.key') as varchar) as object,
-  cast(json_extract(additionaleventdata, '$.aclRequired') as varchar) as aclRequired,
-  FROM 
-        s3_cloudtrail_events_db.cloudtrail_DOC-EXAMPLE-BUCKET1_table
+  json_extract_scalar(requestParameters, '$.bucketName') as bucketName,
+  json_extract_scalar(requestParameters, '$.key') as object,
+  json_extract_scalar(additionalEventData, '$.aclRequired') as aclRequired
+FROM 
+  s3_cloudtrail_events_db.cloudtrail_DOC-EXAMPLE-BUCKET1_table
 WHERE
-  cast(json_extract(additionaleventdata, '$.aclRequired') as varchar) = 'yes' AND
-  AND eventTime '2022-05-10T00:00:00Z' and '2022-08-10T00:00:00Z'
+  json_extract_scalar(additionalEventData, '$.aclRequired') = 'Yes'
+  AND eventTime BETWEEN '2022-05-10T00:00:00Z' and '2022-08-10T00:00:00Z'
 ```
 
 **Important**  

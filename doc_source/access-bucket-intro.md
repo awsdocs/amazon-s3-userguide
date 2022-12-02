@@ -57,7 +57,7 @@ In addition to accessing a bucket directly, you can access a bucket through an a
 S3 access points only support virtual\-host\-style addressing\. To address a bucket through an access point, use the following format\.
 
 ```
-https://AccessPointName-AccountId.s3-accesspoint.region.amazonaws.com
+https://AccessPointName-AccountId.s3-accesspoint.region.amazonaws.com.
 ```
 
 **Note**  

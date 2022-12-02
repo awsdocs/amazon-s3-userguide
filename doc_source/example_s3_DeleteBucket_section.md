@@ -243,6 +243,27 @@ pub async fn delete_bucket(client: &Client, bucket_name: &str) -> Result<(), Err
 +  For API details, see [DeleteBucket](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
 
 ------
+#### [ SAP ABAP ]
+
+**SDK for SAP ABAP**  
+This documentation is for an SDK in developer preview release\. The SDK is subject to change and is not recommended for use in production\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/sap-abap/services/s3#code-examples)\. 
+  
+
+```
+    TRY.
+
+        lo_s3->deletebucket(
+            iv_bucket = iv_bucket_name
+        ).
+        MESSAGE 'Deleted S3 bucket' TYPE 'I'.
+      CATCH /aws1/cx_s3_nosuchbucket.
+        MESSAGE 'Bucket does not exist' TYPE 'E'.
+    ENDTRY.
+```
++  For API details, see [DeleteBucket](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 
+
+------
 #### [ Swift ]
 
 **SDK for Swift**  

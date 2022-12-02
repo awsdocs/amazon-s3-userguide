@@ -4,7 +4,7 @@ S3 Replication Time Control \(S3 RTC\) helps you meet compliance or business req
 
 S3 RTC by default includes S3 Replication metrics and S3 event notifications, with which you can monitor the total number of S3 API operations that are pending replication, the total size of objects pending replication, and the maximum replication time\. Replication metrics can be enabled independently of S3 RTC, see [Monitoring progress with replication metrics](https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-metrics.html)\. Additionally, S3 RTC provides `OperationMissedThreshold` and `OperationReplicatedAfterThreshold` events that notify the bucket owner if object replication exceeds or replicates after the 15\-minute threshold\. 
 
-With S3 RTC, Amazon S3 events can notify you in the rare instance when objects do not replicate within 15 minutes and when those objects replicate successfully to their destination Region\. Amazon S3 events are available through Amazon SQS, Amazon SNS, or AWS Lambda\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
+With S3 RTC, Amazon S3 events can notify you in the rare instance when objects do not replicate within 15 minutes and when those objects replicate after the 15 minute threshold\. Amazon S3 events are available through Amazon SQS, Amazon SNS, or AWS Lambda\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
 
 **Topics**
 + [Enabling S3 Replication Time Control](#enabling-replication-time-control)
@@ -33,6 +33,6 @@ For more information about finding replication metrics via the Amazon S3 console
 
 ## Using Amazon S3 event notifications to track replication objects<a name="using-s3-events-to-track-rtc"></a>
 
-You can track replication time for objects that did not replicate within 15 minutes by monitoring specific event notifications that S3 Replication Time Control \(S3 RTC\) publishes\. These events are published when an object that was eligible for replication using S3 RTC didn't replicate within 15 minutes, and when that object replicates to the destination Region\. 
+You can track replication time for objects that did not replicate within 15 minutes by monitoring specific event notifications that S3 Replication Time Control \(S3 RTC\) publishes\. These events are published when an object that was eligible for replication using S3 RTC didn't replicate within 15 minutes, and when that object replicates after the 15 minute threshold\. 
 
 Replication events are available within 15 minutes of enabling S3 RTC\. Amazon S3 events are available through Amazon SQS, Amazon SNS, or AWS Lambda\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.

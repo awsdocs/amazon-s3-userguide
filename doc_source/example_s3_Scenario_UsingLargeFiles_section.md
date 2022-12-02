@@ -26,21 +26,35 @@ global using TransferUtilityBasics;
 
 // This Amazon S3 client uses the default user credentials
 // defined for this computer.
+using Microsoft.Extensions.Configuration;
+
 IAmazonS3 client = new AmazonS3Client();
 var transferUtil = new TransferUtility(client);
+IConfiguration _configuration;
 
-// Change the following values to an Amazon S3 bucket that
-// exists in your AWS account.
-var bucketName = "doc-example-bucket1";
+_configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("settings.json") // Load test settings from JSON file.
+    .AddJsonFile("settings.local.json",
+        true) // Optionally load local settings.
+    .Build();
+
+// Edit the values in settings.json to use an S3 bucket and files that
+// exist on your AWS account and on the local computer where you
+// run this scenario.
+var bucketName = _configuration["BucketName"];
 var localPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\TransferFolder";
 
 DisplayInstructions();
 
 PressEnter();
 
-// Upload a single file to an S3 bucket.
-var fileToUpload = "UploadTest.docx";
+Console.WriteLine();
 
+// Upload a single file to an S3 bucket.
+DisplayTitle("Upload a single file");
+
+var fileToUpload = _configuration["FileToUpload"];
 Console.WriteLine($"Uploading {fileToUpload} to the S3 bucket, {bucketName}.");
 
 var success = await TransferMethods.UploadSingleFileAsync(transferUtil, bucketName, fileToUpload, localPath);
@@ -52,13 +66,17 @@ if (success)
 PressEnter();
 
 // Upload a local directory to an S3 bucket.
-var keyPrefix = "UploadFolder";
+DisplayTitle("Upload all files from a local directory");
+Console.WriteLine("Upload all the files in a local folder to an S3 bucket.");
+const string keyPrefix = "UploadFolder";
 var uploadPath = $"{localPath}\\UploadFolder";
 
 Console.WriteLine($"Uploading the files in {uploadPath} to {bucketName}");
-Console.WriteLine($"{uploadPath} contains the following files:");
+DisplayTitle($"{uploadPath} files");
 DisplayLocalFiles(uploadPath);
 Console.WriteLine();
+
+PressEnter();
 
 success = await TransferMethods.UploadFullDirectoryAsync(transferUtil, bucketName, keyPrefix, uploadPath);
 if (success)
@@ -71,9 +89,11 @@ if (success)
 
 PressEnter();
 
-
 // Download a single file from an S3 bucket.
-var keyName = "FileToDownload.docx";
+DisplayTitle("Download a single file");
+Console.WriteLine("Now we will download a single file from an S3 bucket.");
+
+var keyName = _configuration["FileToDownload"];
 
 Console.WriteLine($"Downloading {keyName} from {bucketName}.");
 
@@ -86,8 +106,9 @@ if (success)
 PressEnter();
 
 // Download the contents of a directory from an S3 bucket.
-var s3Path = "DownloadFolder";
-var downloadPath = $"{localPath}\\DownloadFolder";
+DisplayTitle("Download the contents of an S3 bucket");
+var s3Path = _configuration["S3Path"];
+var downloadPath = $"{localPath}\\{s3Path}";
 
 Console.WriteLine($"Downloading the contents of {bucketName}\\{s3Path}");
 Console.WriteLine($"{bucketName}\\{s3Path} contains the following files:");
@@ -98,30 +119,39 @@ success = await TransferMethods.DownloadS3DirectoryAsync(transferUtil, bucketNam
 if (success)
 {
     Console.WriteLine($"Downloaded the files in {bucketName} to {downloadPath}.");
-    Console.WriteLine($"{downloadPath} now contains the fillowing files:");
+    Console.WriteLine($"{downloadPath} now contains the following files:");
     DisplayLocalFiles(downloadPath);
 }
 
 Console.WriteLine("\nThe TransferUtility Basics application has completed.");
 PressEnter();
 
+// Displays the title for a section of the scenario.
+static void DisplayTitle(string titleText)
+{
+    var sepBar = new string('-', Console.WindowWidth);
+
+    Console.WriteLine(sepBar);
+    Console.WriteLine(CenterText(titleText));
+    Console.WriteLine(sepBar);
+}
+
+// Displays a description of the actions to be performed by the scenario.
 static void DisplayInstructions()
 {
-    var sepBar = new string('-', 80);
+    var sepBar = new string('-', Console.WindowWidth);
 
-    Console.Clear();
-    Console.WriteLine(sepBar);
-    Console.WriteLine(CenterText("Amazon S3 Transfer Utility Basics"));
-    Console.WriteLine(sepBar);
+    DisplayTitle("Amazon S3 Transfer Utility Basics");
     Console.WriteLine("This program shows how to use the Amazon S3 Transfer Utility.");
     Console.WriteLine("It performs the following actions:");
     Console.WriteLine("\t1. Upload a single object to an S3 bucket.");
-    Console.WriteLine("\t2. Upload all an entire directory from the local computer to an\n\t  S3 bucket.");
+    Console.WriteLine("\t2. Upload an entire directory from the local computer to an\n\t  S3 bucket.");
     Console.WriteLine("\t3. Download a single object from an S3 bucket.");
     Console.WriteLine("\t4. Download the objects in an S3 bucket to a local directory.");
     Console.WriteLine($"\n{sepBar}");
 }
 
+// Pauses the scenario.
 static void PressEnter()
 {
     Console.WriteLine("Press <Enter> to continue.");
@@ -129,18 +159,22 @@ static void PressEnter()
     Console.WriteLine("\n");
 }
 
+// Returns the string textToCenter, padded on the left with spaces
+// that center the text on the console display.
 static string CenterText(string textToCenter)
 {
     var centeredText = new StringBuilder();
-    centeredText.Append(new string(' ', (int)(80 - textToCenter.Length) / 2));
+    var screenWidth = Console.WindowWidth;
+    centeredText.Append(new string(' ', (int)(screenWidth - textToCenter.Length) / 2));
     centeredText.Append(textToCenter);
     return centeredText.ToString();
 }
 
+// Displays a list of file names included in the specified path.
 static void DisplayLocalFiles(string localPath)
 {
     var fileList = Directory.GetFiles(localPath);
-    if (fileList is not null)
+    if (fileList.Length > 0)
     {
         foreach (var fileName in fileList)
         {
@@ -149,6 +183,7 @@ static void DisplayLocalFiles(string localPath)
     }
 }
 
+// Displays a list of the files in the specified S3 bucket and prefix.
 static async Task DisplayBucketFiles(IAmazonS3 client, string bucketName, string s3Path)
 {
     ListObjectsV2Request request = new()
@@ -176,6 +211,16 @@ static async Task DisplayBucketFiles(IAmazonS3 client, string bucketName, string
 Upload a single file\.  
 
 ```
+        /// <summary>
+        /// Uploads a single file from the local computer to an S3 bucket.
+        /// </summary>
+        /// <param name="transferUtil">The transfer initialized TransferUtility
+        /// object.</param>
+        /// <param name="bucketName">The name of the S3 bucket where the file
+        /// will be stored.</param>
+        /// <param name="fileName">The name of the file to upload.</param>
+        /// <param name="localPath">The local path where the file is stored.</param>
+        /// <returns>A boolean value indicating the success of the action.</returns>
         public static async Task<bool> UploadSingleFileAsync(
             TransferUtility transferUtil,
             string bucketName,
@@ -212,6 +257,19 @@ Upload a single file\.
 Upload an entire local directory\.  
 
 ```
+        /// <summary>
+        /// Uploads all the files in a local directory to a directory in an S3
+        /// bucket.
+        /// </summary>
+        /// <param name="transferUtil">The transfer initialized TransferUtility
+        /// object.</param>
+        /// <param name="bucketName">The name of the S3 bucket where the files
+        /// will be stored.</param>
+        /// <param name="keyPrefix">The key prefix is the S3 directory where
+        /// the files will be stored.</param>
+        /// <param name="localPath">The local directory that contains the files
+        /// to be uploaded.</param>
+        /// <returns>A Boolean value representing the success of the action.</returns>
         public static async Task<bool> UploadFullDirectoryAsync(
             TransferUtility transferUtil,
             string bucketName,
@@ -248,6 +306,17 @@ Upload an entire local directory\.
 Download a single file\.  
 
 ```
+        /// <summary>
+        /// Download a single file from an S3 bucket to the local computer.
+        /// </summary>
+        /// <param name="transferUtil">The transfer initialized TransferUtility
+        /// object.</param>
+        /// <param name="bucketName">The name of the S3 bucket containing the
+        /// file to download.</param>
+        /// <param name="keyName">The name of the file to download.</param>
+        /// <param name="localPath">The path on the local computer where the
+        /// downloaded file will be saved.</param>
+        /// <returns>A Boolean value indicating the results of the action.</returns>
         public static async Task<bool> DownloadSingleFileAsync(
         TransferUtility transferUtil,
             string bucketName,
@@ -261,25 +330,38 @@ Download a single file\.
                 FilePath = $"{localPath}\\{keyName}",
             });
 
-            if (File.Exists($"{localPath}\\{keyName}"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (File.Exists($"{localPath}\\{keyName}"));
         }
 ```
 Download contents of an S3 bucket\.  
 
 ```
+        /// <summary>
+        /// Downloads the contents of a directory in an S3 bucket to a
+        /// directory on the local computer.
+        /// </summary>
+        /// <param name="transferUtil">The transfer initialized TransferUtility
+        /// object.</param>
+        /// <param name="bucketName">The bucket containing the files to download.</param>
+        /// <param name="s3Path">The S3 directory where the files are located.</param>
+        /// <param name="localPath">The local path to which the files will be
+        /// saved.</param>
+        /// <returns>A Boolean value representing the success of the action.</returns>
         public static async Task<bool> DownloadS3DirectoryAsync(
             TransferUtility transferUtil,
             string bucketName,
             string s3Path,
             string localPath)
         {
+            int fileCount = 0;
+
+            // If the directory doesn't exist, it will be created.
+            if (Directory.Exists(s3Path))
+            {
+                var files = Directory.GetFiles(localPath);
+                fileCount = files.Length;
+            }
+
             await transferUtil.DownloadDirectoryAsync(new TransferUtilityDownloadDirectoryRequest
             {
                 BucketName = bucketName,
@@ -289,12 +371,20 @@ Download contents of an S3 bucket\.
 
             if (Directory.Exists(localPath))
             {
-                return true;
-            }
-            else
-            {
+                var files = Directory.GetFiles(localPath);
+                if (files.Length > fileCount)
+                {
+                    return true;
+                }
+
+                // No change in the number of files. Assume
+                // the download failed.
                 return false;
             }
+
+            // The local directory doesn't exist. No files
+            // were downloaded.
+            return false;
         }
 ```
 
@@ -850,10 +940,13 @@ use std::path::Path;
 use aws_config::meta::region::RegionProviderChain;
 use aws_sdk_s3::model::{CompletedMultipartUpload, CompletedPart};
 use aws_sdk_s3::output::{CreateMultipartUploadOutput, GetObjectOutput};
-use aws_sdk_s3::{Client as S3Client, Error, Region};
+use aws_sdk_s3::types::DisplayErrorContext;
+use aws_sdk_s3::{Client as S3Client, Region};
 use aws_smithy_http::byte_stream::{ByteStream, Length};
 use rand::distributions::Alphanumeric;
 use rand::{thread_rng, Rng};
+use s3_service::error::Error;
+use std::process;
 use uuid::Uuid;
 
 //In bytes, minimum chunk size of 5MB. Increase CHUNK_SIZE to send larger chunks.
@@ -861,7 +954,14 @@ const CHUNK_SIZE: u64 = 1024 * 1024 * 5;
 const MAX_CHUNKS: u64 = 10000;
 
 #[tokio::main]
-pub async fn main() -> Result<(), Error> {
+pub async fn main() {
+    if let Err(err) = run_example().await {
+        eprintln!("Error: {}", DisplayErrorContext(err));
+        process::exit(1);
+    }
+}
+
+async fn run_example() -> Result<(), Error> {
     let shared_config = aws_config::load_from_env().await;
     let client = S3Client::new(&shared_config);
 

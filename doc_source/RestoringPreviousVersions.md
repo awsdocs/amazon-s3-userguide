@@ -58,7 +58,7 @@ For instructions on how to create and test a working sample, see [Using the AWS 
 The following Python code example restores a versioned object's previous version by deleting all versions that occurred after the specified rollback version\.
 
 ```
-def rollback_object(bucket, object_key, version_id):
+									def rollback_object(bucket, object_key, version_id):
     """
     Rolls back an object to an earlier version by deleting all versions that
     occurred after the specified rollback version.

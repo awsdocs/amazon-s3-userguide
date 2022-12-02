@@ -8,7 +8,9 @@ Data protection refers to protecting data while in\-transit \(as it travels to a
 
   To configure client\-side encryption, see [Protecting data using client\-side encryption](UsingClientSideEncryption.md)\.
 
-For more information about server\-side encryption and client\-side encryption, review the topics listed below\.
+To see which percentage of your storage bytes are encrypted, you can use Amazon S3 Storage Lens metrics\. S3 Storage Lens is a cloud\-storage analytics feature that you can use to gain organization\-wide visibility into object\-storage usage and activity\. For more information, see [ Assessing your storage activity and usage with S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens?icmpid=docs_s3_user_guide_UsingEncryption.html)\. For a complete list of metrics, see [ S3 Storage Lens metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html?icmpid=docs_s3_user_guide_UsingEncryption)\.
+
+For more information about server\-side encryption and client\-side encryption, review the following topics\.
 
 **Topics**
 + [Protecting data using server\-side encryption](serv-side-encryption.md)

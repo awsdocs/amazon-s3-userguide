@@ -9,7 +9,7 @@ If you only want to retrieve the metadata of an object \(and not its content\), 
 1. Send a `HEAD Object versionId` request\.
 
 **Example — Retrieving the metadata of a versioned object**  
-The following request retrieves the metadata of version 3HL4kqCxf3vjVBH40Nrjfkd of `my-image.jpg`\.  
+The following request retrieves the metadata of version `3HL4kqCxf3vjVBH40Nrjfkd` of `my-image.jpg`\.  
 
 ```
 1. HEAD /my-image.jpg?versionId=3HL4kqCxf3vjVBH40Nrjfkd HTTP/1.1

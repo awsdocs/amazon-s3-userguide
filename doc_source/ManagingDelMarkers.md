@@ -37,7 +37,7 @@ Use the following steps to recover deleted objects that are not folders from you
 
 1. Confirm the deletion on the **Delete objects** page\.
 
-   1. For **Pemanently delete objects?** enter **permanently delete**\.
+   1. For **Permanently delete objects?** enter **permanently delete**\.
 
    1. Choose **Delete objects**\.
 

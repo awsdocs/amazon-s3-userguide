@@ -61,7 +61,7 @@ if __name__ == '__main__':
   + [Delete multiple objects](example_s3_DeleteObjects_section.md)
   + [Delete the lifecycle configuration of a bucket](example_s3_DeleteBucketLifecycle_section.md)
   + [Delete the website configuration from a bucket](example_s3_DeleteBucketWebsite_section.md)
-  + [Determine the content type of an object](example_s3_HeadObject_section.md)
+  + [Determine the existence and content type of an object](example_s3_HeadObject_section.md)
   + [Determine the existence of a bucket](example_s3_HeadBucket_section.md)
   + [Get CORS rules for a bucket](example_s3_GetBucketCors_section.md)
   + [Get an object from a bucket](example_s3_GetObject_section.md)

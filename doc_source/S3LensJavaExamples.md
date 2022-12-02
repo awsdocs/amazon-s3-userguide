@@ -1,12 +1,12 @@
 # Amazon S3 Storage Lens examples using the SDK for Java<a name="S3LensJavaExamples"></a>
 
-Amazon S3 Storage Lens aggregates your usage and activity metrics and displays the information in the account snapshot on the Amazon S3 console home \(**Buckets**\) page, interactive dashboards, or through a metrics export that you can download in CSV or Parquet format\. You can use the dashboard to visualize insights and trends, flag outliers, and receive recommendations for optimizing storage costs and applying data protection best practices\. You can use S3 Storage Lens through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\.\. For more information, see [Assessing storage activity and usage with Amazon S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)\. 
+S3 Storage Lens aggregates your metrics and displays the information in the **Account snapshot** section on the Amazon S3 console **Buckets** page\. S3 Storage Lens also provides an interactive dashboard that you can use to visualize insights and trends, flag outliers, and receive recommendations for optimizing storage costs and applying data\-protection best practices\. Your dashboard has drill\-down options to generate insights at the organization, account, bucket, object, or prefix level\. You can also send a once\-daily metrics export in CSV or Parquet format to an S3 bucket\.\. For more information, see [Assessing storage activity and usage with Amazon S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html)\. 
 
 The following examples show how you can use S3 Storage Lens with the AWS SDK for Java\.
 
 **Topics**
 + [Using Amazon S3 Storage Lens configurations using the SDK for Java](#S3LensConfigurationsJava)
-+ [Using Amazon S3 Storage Lens with your AWS Organizations using the SDK for Java](#S3LensOrganizationsJava)
++ [Using Amazon S3 Storage Lens with AWS Organizations examples using the SDK for Java](#S3LensOrganizationsJava)
 
 ## Using Amazon S3 Storage Lens configurations using the SDK for Java<a name="S3LensConfigurationsJava"></a>
 
@@ -15,12 +15,12 @@ You can use the SDK for Java to list, create, get and update your S3 Storage Len
 **Topics**
 + [Create and update an S3 Storage Lens configuration](#S3CreateandUpdateStorageLensConfigurationJava)
 + [Delete an S3 Storage Lens configuration](#S3DeleteStorageLensConfigurationJava)
-+ [Gets an S3 Storage Lens configuration](#S3GetStorageLensConfigurationJava)
-+ [Lists S3 Storage Lens configurations](#S3ListStorageLensConfigurationsJava)
-+ [Put tags to an S3 Storage Lens configuration](#S3PutStorageLensConfigurationTaggingJava)
++ [Get an S3 Storage Lens configuration](#S3GetStorageLensConfigurationJava)
++ [List S3 Storage Lens configurations](#S3ListStorageLensConfigurationsJava)
++ [Add tags to an S3 Storage Lens configuration](#S3PutStorageLensConfigurationTaggingJava)
 + [Get tags for an S3 Storage Lens configuration](#S3GetStorageLensConfigurationTaggingJava)
 + [Delete tags for an S3 Storage Lens configuration](#S3DeleteStorageLensConfigurationTaggingJava)
-+ [Update default S3 Storage Lens configuration with Advanced Metrics and Recommendations](#S3UpdateStorageLensConfigurationAdvancedJava)
++ [Update the default S3 Storage Lens configuration with advanced metrics and recommendations](#S3UpdateStorageLensConfigurationAdvancedJava)
 
 ### Create and update an S3 Storage Lens configuration<a name="S3CreateandUpdateStorageLensConfigurationJava"></a>
 
@@ -37,6 +37,7 @@ import com.amazonaws.services.s3control.AWSS3ControlClient;
 import com.amazonaws.services.s3control.model.AccountLevel;
 import com.amazonaws.services.s3control.model.ActivityMetrics;
 import com.amazonaws.services.s3control.model.BucketLevel;
+import com.amazonaws.services.s3control.model.CloudWatchMetrics;
 import com.amazonaws.services.s3control.model.Format;
 import com.amazonaws.services.s3control.model.Include;
 import com.amazonaws.services.s3control.model.OutputSchemaVersion;
@@ -64,7 +65,7 @@ public class CreateAndUpdateDashboard {
         String sourceAccountId = "Source Account ID";
         String exportAccountId = "Destination Account ID";
         String exportBucketArn = "arn:aws:s3:::destBucketName"; // The destination bucket for your metrics export must be in the same Region as your S3 Storage Lens configuration.
-        String awsOrgARN = "arn:aws:organizations::222222222222:organization/o-abcdefgh";
+        String awsOrgARN = "arn:aws:organizations::123456789012:organization/o-abcdefgh";
         Format exportFormat = Format.CSV;
 
         try {
@@ -77,9 +78,15 @@ public class CreateAndUpdateDashboard {
                     .withSelectionCriteria(selectionCriteria);
             BucketLevel bucketLevel = new BucketLevel()
                     .withActivityMetrics(new ActivityMetrics().withIsEnabled(true))
+                    .withAdvancedCostOptimizationMetrics(new AdvancedCostOptimizationMetrics().withIsEnabled(true))
+                    .withAdvancedDataProtectionMetrics(new AdvancedDataProtectionMetrics().withIsEnabled(true))
+                    .withDetailedStatusCodesMetrics(new DetailedStatusCodesMetrics().withIsEnabled(true))
                     .withPrefixLevel(new PrefixLevel().withStorageMetrics(prefixStorageMetrics));
             AccountLevel accountLevel = new AccountLevel()
                     .withActivityMetrics(new ActivityMetrics().withIsEnabled(true))
+                    .withAdvancedCostOptimizationMetrics(new AdvancedCostOptimizationMetrics().withIsEnabled(true))
+                    .withAdvancedDataProtectionMetrics(new AdvancedDataProtectionMetrics().withIsEnabled(true))
+                    .withDetailedStatusCodesMetrics(new DetailedStatusCodesMetrics().withIsEnabled(true))
                     .withBucketLevel(bucketLevel);
 
             Include include = new Include()
@@ -95,7 +102,10 @@ public class CreateAndUpdateDashboard {
                     .withFormat(exportFormat)
                     .withOutputSchemaVersion(OutputSchemaVersion.V_1)
                     .withPrefix("Prefix");
+            CloudWatchMetrics cloudWatchMetrics = new CloudWatchMetrics()
+                    .withIsEnabled(true);
             StorageLensDataExport dataExport = new StorageLensDataExport()
+                    .withCloudWatchMetrics(cloudWatchMetrics)
                     .withS3BucketDestination(s3BucketDestination);
 
             StorageLensAwsOrg awsOrg = new StorageLensAwsOrg()
@@ -140,7 +150,7 @@ public class CreateAndUpdateDashboard {
 
 ### Delete an S3 Storage Lens configuration<a name="S3DeleteStorageLensConfigurationJava"></a>
 
-**Example Delete an S3 Storage Lens configuration\.**  
+**Example Delete an S3 Storage Lens configuration**  
 
 ```
 package aws.example.s3control;
@@ -182,7 +192,7 @@ public class DeleteDashboard {
 }
 ```
 
-### Gets an S3 Storage Lens configuration<a name="S3GetStorageLensConfigurationJava"></a>
+### Get an S3 Storage Lens configuration<a name="S3GetStorageLensConfigurationJava"></a>
 
 **Example Get an S3 Storage Lens configuration**  
 
@@ -232,9 +242,9 @@ public class GetDashboard {
 }
 ```
 
-### Lists S3 Storage Lens configurations<a name="S3ListStorageLensConfigurationsJava"></a>
+### List S3 Storage Lens configurations<a name="S3ListStorageLensConfigurationsJava"></a>
 
-**Example Lists S3 Storage Lens configurations**  
+**Example List S3 Storage Lens configurations**  
 
 ```
 package aws.example.s3control;
@@ -283,9 +293,9 @@ public class ListDashboard {
 }
 ```
 
-### Put tags to an S3 Storage Lens configuration<a name="S3PutStorageLensConfigurationTaggingJava"></a>
+### Add tags to an S3 Storage Lens configuration<a name="S3PutStorageLensConfigurationTaggingJava"></a>
 
-**Example Put tags to an S3 Storage Lens configuration**  
+**Example Add tags to an S3 Storage Lens configuration**  
 
 ```
 package aws.example.s3control;
@@ -433,9 +443,9 @@ public class DeleteDashboardTagging {
 }
 ```
 
-### Update default S3 Storage Lens configuration with Advanced Metrics and Recommendations<a name="S3UpdateStorageLensConfigurationAdvancedJava"></a>
+### Update the default S3 Storage Lens configuration with advanced metrics and recommendations<a name="S3UpdateStorageLensConfigurationAdvancedJava"></a>
 
-**Example Update default S3 Storage Lens configuration with Advanced Metrics and Recommendations**  
+**Example Update the default S3 Storage Lens configuration with advanced metrics and recommendations**  
 
 ```
 package aws.example.s3control;
@@ -471,7 +481,7 @@ import static com.amazonaws.regions.Regions.US_WEST_2;
 public class UpdateDefaultConfigWithPaidFeatures {
 
     public static void main(String[] args) {
-        String configurationId = "default-account-dashboard"; // This configuration ID cannot be modified
+        String configurationId = "default-account-dashboard"; // This configuration ID cannot be modified.
         String sourceAccountId = "Source Account ID";
 
         try {
@@ -519,9 +529,9 @@ public class UpdateDefaultConfigWithPaidFeatures {
 ```
 
 **Note**  
-Additional charges apply for Advanced Metrics and Recommendations\. For more information, see [Advanced Metrics and Recommendations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_metrics_selection)\.
+Additional charges apply for advanced metrics and recommendations\. For more information, see [advanced metrics and recommendations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_basics_metrics_recommendations.html#storage_lens_basics_metrics_selection)\.
 
-## Using Amazon S3 Storage Lens with your AWS Organizations using the SDK for Java<a name="S3LensOrganizationsJava"></a>
+## Using Amazon S3 Storage Lens with AWS Organizations examples using the SDK for Java<a name="S3LensOrganizationsJava"></a>
 
 Use Amazon S3 Storage Lens to collect storage metrics and usage data for all accounts that are part of your AWS Organizations hierarchy\. For more information, see [Using Amazon S3 Storage Lens with AWS Organizations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_with_organizations.html)\. 
 
@@ -594,7 +604,8 @@ public class DisableOrganizationsTrustedAccess {
                 .withRegion(Regions.US_EAST_1)
                 .build();
 
-            // Make sure to remove any existing delegated administrator for S3 Storage Lens before disabling access, otherwise the request will fail.
+            // Make sure to remove any existing delegated administrator for S3 Storage Lens 
+            // before disabling access; otherwise, the request will fail.
             organizationsClient.disableAWSServiceAccess(new DisableAWSServiceAccessRequest()
                 .withServicePrincipal(S3_STORAGE_LENS_SERVICE_PRINCIPAL));
         } catch (AmazonServiceException e) {
@@ -628,7 +639,7 @@ public class RegisterOrganizationsDelegatedAdministrator {
 
 	public static void main(String[] args) {
 		try {
-            String delegatedAdminAccountId = "253880222538"; // Account Id for the delegated administrator
+            String delegatedAdminAccountId = "111122223333"; // Account Id for the delegated administrator.
             AWSOrganizations organizationsClient = AWSOrganizationsClient.builder()
                 .withCredentials(new ProfileCredentialsProvider())
                 .withRegion(Regions.US_EAST_1)
@@ -668,7 +679,7 @@ public class DeregisterOrganizationsDelegatedAdministrator {
 
 	public static void main(String[] args) {
 		try {
-            String delegatedAdminAccountId = "Account ID"; // Account Id for the delegated administrator
+            String delegatedAdminAccountId = "111122223333"; // Account Id for the delegated administrator.
             AWSOrganizations organizationsClient = AWSOrganizationsClient.builder()
                 .withCredentials(new ProfileCredentialsProvider())
                 .withRegion(Regions.US_EAST_1)

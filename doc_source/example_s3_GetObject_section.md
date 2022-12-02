@@ -44,7 +44,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
             try
             {
                 // Save object to local file
-                await response.WriteResponseStreamToFileAsync($"{filePath}\\{objectName}", true, System.Threading.CancellationToken.None);
+                await response.WriteResponseStreamToFileAsync($"{filePath}\\{objectName}", true, CancellationToken.None);
                 return response.HttpStatusCode == System.Net.HttpStatusCode.OK;
             }
             catch (AmazonS3Exception ex)
@@ -461,6 +461,30 @@ pub async fn download_object(client: &Client, bucket_name: &str, key: &str) -> G
 }
 ```
 +  For API details, see [GetObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 
+
+------
+#### [ SAP ABAP ]
+
+**SDK for SAP ABAP**  
+This documentation is for an SDK in developer preview release\. The SDK is subject to change and is not recommended for use in production\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/sap-abap/services/s3#code-examples)\. 
+  
+
+```
+    TRY.
+        oo_result = lo_s3->getobject(           " oo_result is returned for testing purpose "
+                  iv_bucket = iv_bucket_name
+                  iv_key = iv_object_key
+               ).
+        DATA(lv_object_data) = oo_result->get_body( ).
+        MESSAGE 'Object retrieved from S3 bucket' TYPE 'I'.
+      CATCH /aws1/cx_s3_nosuchbucket.
+        MESSAGE 'Bucket does not exist' TYPE 'E'.
+      CATCH /aws1/cx_s3_nosuchkey.
+        MESSAGE 'Object key does not exist' TYPE 'E'.
+    ENDTRY.
+```
++  For API details, see [GetObject](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 
 
 ------
 #### [ Swift ]

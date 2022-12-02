@@ -34,8 +34,8 @@ If object replicas don't appear in the destination bucket after you configure re
   2.            "s3:ReplicateDelete",
   3.            "s3:ReplicateTags"
   ```
-+ Amazon S3 event notifications can notify you in instances when objects do not replicate to their destination AWS Region\. For more information, see [Receiving replication failure events with Amazon S3 event notifications](replication-metrics.md#replication-metrics-events)\.
++ Amazon S3 Event Notifications can notify you in instances when objects do not replicate to their destination AWS Region\. For more information, see [Receiving replication failure events with Amazon S3 Event Notifications](replication-metrics.md#replication-metrics-events)\.
 
 ## Receiving replication failure events with Amazon S3 event notifications<a name="replication-metrics-events-troubleshooting"></a>
 
-Amazon S3 event notifications can notify you in the rare instance when objects do not replicate to their destination Region\. Amazon S3 events are available through Amazon Simple Queue Service \(Amazon SQS\), Amazon Simple Notification Service \(Amazon SNS\), or AWS Lambda\. For more information, see [Receiving replication failure events with Amazon S3 event notifications](replication-metrics.md#replication-metrics-events)\.
+Amazon S3 event notifications can notify you in the rare instance when objects do not replicate to their destination Region\. Amazon S3 events are available through Amazon Simple Queue Service \(Amazon SQS\), Amazon Simple Notification Service \(Amazon SNS\), or AWS Lambda\. For more information, see [Receiving replication failure events with Amazon S3 Event Notifications](replication-metrics.md#replication-metrics-events)\.

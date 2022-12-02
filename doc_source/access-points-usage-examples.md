@@ -43,7 +43,7 @@ You can use access points to access a bucket using the following subset of Amazo
 + `[ListObjects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html)`
 + `[ListObjectsV2](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html)`
 + `[ListParts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)`
-+ `[Presign](https://docs.aws.amazon.com/s3/presign.html)`
++ `[Presign](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)`
 + `[PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)`
 + `[PutObjectLegalHold](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLegalHold.html)`
 + `[PutObjectRetention](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectRetention.html)`

@@ -20,11 +20,6 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-    using System;
-    using System.IO;
-    using System.Threading.Tasks;
-    using Amazon.S3;
-
     public class S3_Basics
     {
         public static async Task Main()
@@ -38,6 +33,9 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
             string filePath = string.Empty;
             string keyName = string.Empty;
 
+            var sepBar = new string('-', Console.WindowWidth);
+
+            Console.WriteLine(sepBar);
             Console.WriteLine("Amazon Simple Storage Service (Amazon S3) basic");
             Console.WriteLine("procedures. This application will:");
             Console.WriteLine("\n\t1. Create a bucket");
@@ -46,10 +44,12 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
             Console.WriteLine("\n\t4. List the items in the new bucket");
             Console.WriteLine("\n\t5. Delete all the items in the bucket");
             Console.WriteLine("\n\t6. Delete the bucket");
-            Console.WriteLine("----------------------------------------------------------");
+            Console.WriteLine(sepBar);
 
             // Create a bucket.
+            Console.WriteLine($"\n{sepBar}");
             Console.WriteLine("\nCreate a new Amazon S3 bucket.\n");
+            Console.WriteLine(sepBar);
 
             Console.Write("Please enter a name for the new bucket: ");
             bucketName = Console.ReadLine();
@@ -64,7 +64,9 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
                 Console.WriteLine($"Could not create bucket: {bucketName}.\n");
             }
 
+            Console.WriteLine(sepBar);
             Console.WriteLine("Upload a file to the new bucket.");
+            Console.WriteLine(sepBar);
 
             // Get the local path and filename for the file to upload.
             while (string.IsNullOrEmpty(filePath))
@@ -1611,7 +1613,8 @@ Code for the binary crate which runs the scenario\.
 
 ```
 use aws_config::meta::region::RegionProviderChain;
-use aws_sdk_s3::{Client, Error, Region};
+use aws_sdk_s3::{Client, Region};
+use s3_service::error::Error;
 use uuid::Uuid;
 
 
@@ -1670,9 +1673,12 @@ use aws_sdk_s3::model::{
 };
 use aws_sdk_s3::output::{GetObjectOutput, ListObjectsV2Output};
 use aws_sdk_s3::types::ByteStream;
-use aws_sdk_s3::{Client, Error};
+use aws_sdk_s3::Client;
+use error::Error;
 use std::path::Path;
 use std::str;
+
+pub mod error;
 
 pub async fn delete_bucket(client: &Client, bucket_name: &str) -> Result<(), Error> {
     client.delete_bucket().bucket(bucket_name).send().await?;
@@ -1700,9 +1706,9 @@ pub async fn delete_objects(client: &Client, bucket_name: &str) -> Result<(), Er
     let objects: ListObjectsV2Output = client.list_objects_v2().bucket(bucket_name).send().await?;
     match objects.key_count {
         0 => Ok(()),
-        _ => Err(Error::Unhandled(Box::from(
+        _ => Err(Error::unhandled(
             "There were still objects left in the bucket.",
-        ))),
+        )),
     }
 }
 
@@ -1790,6 +1796,129 @@ pub async fn create_bucket(client: &Client, bucket_name: &str, region: &str) -> 
   + [GetObject](https://docs.rs/releases/search?query=aws-sdk)
   + [ListObjects](https://docs.rs/releases/search?query=aws-sdk)
   + [PutObject](https://docs.rs/releases/search?query=aws-sdk)
+
+------
+#### [ SAP ABAP ]
+
+**SDK for SAP ABAP**  
+This documentation is for an SDK in developer preview release\. The SDK is subject to change and is not recommended for use in production\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/sap-abap/services/s3#code-examples)\. 
+  
+
+```
+    DATA(lo_session) = /aws1/cl_rt_session_aws=>create( cv_pfl ).
+    DATA(lo_s3) = /aws1/cl_s3_factory=>create( lo_session ).
+
+    " Create S3 Bucket "
+    TRY.
+        lo_s3->createbucket(
+            iv_bucket = iv_bucket_name
+        ).
+        MESSAGE 'S3 bucket created' TYPE 'I'.
+      CATCH /aws1/cx_s3_bucketalrdyexists.
+        MESSAGE 'Bucket name already exists' TYPE 'E'.
+      CATCH /aws1/cx_s3_bktalrdyownedbyyou.
+        MESSAGE 'Bucket already exist and is owned by you' TYPE 'E'.
+    ENDTRY.
+
+
+    "Upload an object to a S3 bucket"
+    TRY.
+        "Get contents of file from application server"
+        DATA lv_file_content TYPE xstring.
+        OPEN DATASET iv_key FOR INPUT IN BINARY MODE.
+        READ DATASET iv_key INTO lv_file_content.
+        CLOSE DATASET iv_key.
+
+        lo_s3->putobject(
+            iv_bucket = iv_bucket_name
+            iv_key = iv_key
+            iv_body = lv_file_content
+        ).
+        MESSAGE 'Object uploaded to S3 bucket' TYPE 'I'.
+      CATCH /aws1/cx_s3_nosuchbucket.
+        MESSAGE 'Bucket does not exist' TYPE 'E'.
+    ENDTRY.
+
+    " Get an object from a bucket "
+    TRY.
+        DATA(lo_result) = lo_s3->getobject(
+                   iv_bucket = iv_bucket_name
+                   iv_key = iv_key
+                ).
+        DATA(lv_object_data) = lo_result->get_body( ).
+        MESSAGE 'Object retrieved from S3 bucket' TYPE 'I'.
+      CATCH /aws1/cx_s3_nosuchbucket.
+        MESSAGE 'Bucket does not exist' TYPE 'E'.
+      CATCH /aws1/cx_s3_nosuchkey.
+        MESSAGE 'Object key does not exist' TYPE 'E'.
+    ENDTRY.
+
+    " Copy an object to a subfolder in a bucket "
+    TRY.
+        lo_s3->copyobject(
+          iv_bucket = iv_bucket_name
+          iv_key = |{ iv_copy_to_folder }/{ iv_key }|
+          iv_copysource = |{ iv_bucket_name }/{ iv_key }|
+        ).
+        MESSAGE 'Object copied to a subfolder' TYPE 'I'.
+      CATCH /aws1/cx_s3_nosuchbucket.
+        MESSAGE 'Bucket does not exist' TYPE 'E'.
+      CATCH /aws1/cx_s3_nosuchkey.
+        MESSAGE 'Object key does not exist' TYPE 'E'.
+    ENDTRY.
+
+    " List objects in the bucket "
+    TRY.
+        DATA(lo_list) = lo_s3->listobjects(
+           iv_bucket = iv_bucket_name
+         ).
+        MESSAGE 'Retrieved list of object(s) in S3 bucket' TYPE 'I'.
+      CATCH /aws1/cx_s3_nosuchbucket.
+        MESSAGE 'Bucket does not exist' TYPE 'E'.
+    ENDTRY.
+    DATA text TYPE string VALUE 'Object List - '.
+    DATA lv_object_key TYPE /aws1/s3_objectkey.
+    LOOP AT lo_list->get_contents( ) INTO DATA(lo_object).
+      lv_object_key = lo_object->get_key( ).
+      CONCATENATE lv_object_key ', ' INTO text.
+    ENDLOOP.
+    MESSAGE text TYPE'I'.
+
+    " Delete the objects in a bucket "
+    TRY.
+        lo_s3->deleteobject(
+            iv_bucket = iv_bucket_name
+            iv_key = iv_key
+        ).
+        lo_s3->deleteobject(
+            iv_bucket = iv_bucket_name
+            iv_key = |{ iv_copy_to_folder }/{ iv_key }|
+        ).
+        MESSAGE 'Object(s) deleted from S3 bucket' TYPE 'I'.
+      CATCH /aws1/cx_s3_nosuchbucket.
+        MESSAGE 'Bucket does not exist' TYPE 'E'.
+    ENDTRY.
+
+
+    " Delete the bucket "
+    TRY.
+        lo_s3->deletebucket(
+            iv_bucket = iv_bucket_name
+        ).
+        MESSAGE 'Deleted S3 bucket' TYPE 'I'.
+      CATCH /aws1/cx_s3_nosuchbucket.
+        MESSAGE 'Bucket does not exist' TYPE 'E'.
+    ENDTRY.
+```
++ For API details, see the following topics in *AWS SDK for SAP ABAP API reference*\.
+  + [CopyObject](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html)
+  + [CreateBucket](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html)
+  + [DeleteBucket](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html)
+  + [DeleteObjects](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html)
+  + [GetObject](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html)
+  + [ListObjects](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html)
+  + [PutObject](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html)
 
 ------
 #### [ Swift ]

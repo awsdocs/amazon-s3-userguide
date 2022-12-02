@@ -30,7 +30,7 @@ You use this name when invoking Multi\-Region Access Point management operations
 
 When Amazon S3 creates a Multi\-Region Access Point, it automatically assigns an alias to it\. This alias is a unique alphanumeric string that ends in `.mrap`\. The alias is used to construct the hostname and the Amazon Resource Name \(ARN\) for a Multi\-Region Access Point\. The fully qualified name is also based on the alias for the Multi\-Region Access Point\.
 
-You can’t determine the name of a Multi\-Region Access Point from its alias, so you can disclose an alias without risk of exposing the name, purpose, or owner of the Multi\-Region Access Point\. Amazon S3 selects the alias for each new Multi\-Region Access Point, and the alias can’t be changed\. For more information about addressing a Multi\-Region Access Point, see [Making requests using a Multi\-Region Access Point](MultiRegionAccessPointRequests.md)\. 
+You can’t determine the name of a Multi\-Region Access Point from its alias, so you can disclose an alias without risk of exposing the name, purpose, or owner of the Multi\-Region Access Point\. Amazon S3 selects the alias for each new Multi\-Region Access Point, and the alias can’t be changed\. For more information about addressing a Multi\-Region Access Point, see [Making requests through a Multi\-Region Access Point](MultiRegionAccessPointRequests.md)\. 
 
 Multi\-Region Access Point aliases are unique throughout time and aren’t based on the name or configuration of a Multi\-Region Access Point\. If you create a Multi\-Region Access Point, and then delete it and create another one with the same name and configuration, the second Multi\-Region Access Point will have a different alias than the first\. New Multi\-Region Access Points can never have the same alias as a previous Multi\-Region Access Point\.
 
@@ -52,7 +52,7 @@ It is important to realize that when you make a request to a Multi\-Region Acces
 
 ## Blocking public access with Amazon S3 Multi\-Region Access Points<a name="multi-region-access-point-block-public-access"></a>
 
-Each Multi\-Region Access Point has distinct settings for Amazon S3 Block Public Access\. These settings operate in conjunction with the Block Public Access settings for the buckets that underly the Multi\-Region Access Point and for the AWS account that owns both the Multi\-Region Access Point and the underlying buckets\. 
+Each Multi\-Region Access Point has distinct settings for Amazon S3 Block Public Access\. These settings operate in conjunction with the Block Public Access settings for the buckets that underlie the Multi\-Region Access Point and for the AWS account that owns both the Multi\-Region Access Point and the underlying buckets\. 
 
 When Amazon S3 authorizes a request, it applies the most restrictive combination of these settings\. If the Block Public Access settings for any of these resources \(the Multi\-Region Access Point, the underlying bucket, or the owner account\) block access for the requested action or resource, Amazon S3 rejects the request\. 
 
@@ -77,7 +77,7 @@ The following example demonstrates how to create a Multi\-Region Access Point us
 
 1. In the **Multi\-Region Access Point name** field, supply a name for the Multi\-Region Access Point\.
 
-1. To select the buckets that will be associated with this Multi\-Region Access Point, choose **Add buckets** \. 
+1. To select the buckets that will be associated with this Multi\-Region Access Point, choose **Add buckets**\. 
 
    To create a new bucket, choose **Create bucket**\. After creating the bucket, choose **Add buckets** to add the bucket to the Multi\-Region Access Point\.
 

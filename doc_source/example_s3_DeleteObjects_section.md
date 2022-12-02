@@ -31,10 +31,11 @@ Delete all objects in an S3 bucket\.
 
             try
             {
-                var response = await client.ListObjectsV2Async(request);
+                ListObjectsV2Response response;
 
                 do
                 {
+                    response = await client.ListObjectsV2Async(request);
                     response.S3Objects
                         .ForEach(async obj => await client.DeleteObjectAsync(bucketName, obj.Key));
 
@@ -412,9 +413,9 @@ pub async fn delete_objects(client: &Client, bucket_name: &str) -> Result<(), Er
     let objects: ListObjectsV2Output = client.list_objects_v2().bucket(bucket_name).send().await?;
     match objects.key_count {
         0 => Ok(()),
-        _ => Err(Error::Unhandled(Box::from(
+        _ => Err(Error::unhandled(
             "There were still objects left in the bucket.",
-        ))),
+        )),
     }
 }
 ```

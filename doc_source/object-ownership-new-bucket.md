@@ -66,7 +66,7 @@ To apply the **Bucket owner enforced** setting or the **Bucket owner preferred**
 
    To add a bucket tag, enter a **Key** and optionally a **Value** and choose **Add Tag**\.
 
-1. \(Optional\) Under **Default encryption**, you can choose to configure your bucket to use server\-side encryption with either Amazon S3\-managed keys \(SSE\-S3\) or AWS KMS keys stored in AWS Key Management Service \(AWS KMS\) \(SSE\-KMS\)\. For more information, see [ Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\.
+1. \(Optional\) Under **Default encryption**, you can choose to configure your bucket to use server\-side encryption with either Amazon S3\-managed keys \(SSE\-S3\) or AWS KMS keys stored in AWS Key Management Service \(AWS KMS\) \(SSE\-KMS\)\. For more information, see [Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\.
 
    To disable or enable encryption, choose either **Disable** or **Enable**\.
 
@@ -105,7 +105,7 @@ This example sets the bucket owner enforced setting for a new bucket using the A
             .objectOwnership(ObjectOwnership.BucketOwnerEnforced)
             .build()
 
-     // Send the request to S3 
+     // Send the request to Amazon S3 
      s3client.createBucket(createBucketRequest);
 ```
 

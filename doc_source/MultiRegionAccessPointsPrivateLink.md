@@ -18,9 +18,9 @@
 
 1. Verify that the individual bucket policies will allow access to the users of the Multi\-Region Access Point\.
 
- Remember that Multi\-Region Access Points work by routing requests to buckets, not by fulfilling requests themselves\. This is important to remember because the originator of the request must have permissions to the Multi\-Region Access Point and be allowed to access the individual buckets in the Multi\-Region Access Point\. Otherwise, the request might be routed to a bucket where the originator doesn't have permissions to fulfill the request\. A Multi\-Region Access Point and the buckets must be owned by the same AWS account\. However, VPCs from different accounts can use a Multi\-Region Access Point if the permissions are configured correctly\. 
+Remember that Multi\-Region Access Points work by routing requests to buckets, not by fulfilling requests themselves\. This is important to remember because the originator of the request must have permissions to the Multi\-Region Access Point and be allowed to access the individual buckets in the Multi\-Region Access Point\. Otherwise, the request might be routed to a bucket where the originator doesn't have permissions to fulfill the request\. A Multi\-Region Access Point and the buckets must be owned by the same AWS account\. However, VPCs from different accounts can use a Multi\-Region Access Point if the permissions are configured correctly\. 
 
- Because of this, the VPC endpoint policy must allow access both to the Multi\-Region Access Point and to each underlying bucket that you want to be able to fulfill requests\. For example, suppose that you have a Multi\-Region Access Point with alias `mfzwi23gnjvgw.mrap`\. It is backed by buckets `doc-examplebucket1` and `doc-examplebucket2`, all owned by AWS account `123456789012`\. In this case, the following VPCE policy would allow `GetObject` requests from the VPC made to `mfzwi23gnjvgw.mrap` to be fulfilled by either backing bucket\. 
+Because of this, the VPC endpoint policy must allow access both to the Multi\-Region Access Point and to each underlying bucket that you want to be able to fulfill requests\. For example, suppose that you have a Multi\-Region Access Point with the alias `mfzwi23gnjvgw.mrap`\. It is backed by buckets `DOC-EXAMPLE-BUCKET1` and `DOC-EXAMPLE-BUCKET2`, all owned by AWS account `123456789012`\. In this case, the following VPC endpoint policy would allow `GetObject` requests from the VPC made to `mfzwi23gnjvgw.mrap` to be fulfilled by either backing bucket\. 
 
 ```
  1. {
@@ -34,15 +34,15 @@
  9.         ],
 10.         "Effect": "Allow",
 11.         "Resource": [
-12.             "arn:aws:s3:::doc-examplebucket1/*",
-13.             "arn:aws:s3:::doc-examplebucket2/*",
+12.             "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*",
+13.             "arn:aws:s3:::DOC-EXAMPLE-BUCKET2/*",
 14.             "arn:aws:s3::123456789012:accesspoint/mfzwi23gnjvgw.mrap/object/*"
 15.         ]
 16.     }]
 17. }
 ```
 
- As mentioned previously, you also must make sure that the Multi\-Region Access Point policy is configured to support access through a VPC endpoint\. You don't need to specify the VPC endpoint that is requesting access\. The following sample policy would grant access to any requestor trying to use the Multi\-Region Access Point for the `GetObject` requests\. 
+As mentioned previously, you also must make sure that the Multi\-Region Access Point policy is configured to support access through a VPC endpoint\. You don't need to specify the VPC endpoint that is requesting access\. The following sample policy would grant access to any requester trying to use the Multi\-Region Access Point for the `GetObject` requests\. 
 
 ```
  1. {
@@ -60,7 +60,7 @@
 13. }
 ```
 
- And of course, the individual buckets would each need a policy to support access from requests submitted through VPC endpoint\. The following example policy grants read access to any anonymous users, which would include requests made through the VPC endpoint\. 
+And of course, the individual buckets would each need a policy to support access from requests submitted through VPC endpoint\. The following example policy grants read access to any anonymous users, which would include requests made through the VPC endpoint\. 
 
 ```
  1. {
@@ -72,19 +72,19 @@
  7.        "Principal": "*",
  8.        "Action": "s3:GetObject",
  9.        "Resource": [
-10.            "arn:aws:s3:::doc-examplebucket1",
-11.            "arn:aws:s3:::doc-examplebucket2/*"]
+10.            "arn:aws:s3:::DOC-EXAMPLE-BUCKET1",
+11.            "arn:aws:s3:::DOC-EXAMPLE-BUCKET2/*"]
 12.     }]
 13. }
 ```
 
- For more information about editing a VPCE policy, see [Control access to services with VPC endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html) in the *VPC User Guide*\. 
+ For more information about editing a VPC endpoint policy, see [Control access to services with VPC endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html) in the *VPC User Guide*\. 
 
 ## Removing access to a Multi\-Region Access Point from a VPC endpoint<a name="RemovingMultiRegionAccessPointAccess"></a>
 
  If you own a Multi\-Region Access Point and want to remove access to it from an interface endpoint, you must supply a new access policy to the Multi\-Region Access Point that prevents access for requests coming through VPC endpoints\. Keep in mind that if the buckets in your Multi\-Region Access Point support requests through VPC endpoints, they will continue to support these requests\. If you want to prevent that support, you must also update the policies for the buckets\. Supplying a new access policy to the Multi\-Region Access Point only prevents access to the Multi\-Region Access Point\. 
 
 **Note**  
- You can't delete an access policy for a Multi\-Region Access Point\. To remove access to a Multi\-Region Access Point, you must provide a new access policy with the modified access that you want\. 
+You can't delete an access policy for a Multi\-Region Access Point\. To remove access to a Multi\-Region Access Point, you must provide a new access policy with the modified access that you want\. 
 
  As an alternative, you could update the bucket policies to prevent requests through VPC endpoints\. In this case, the user could still access the Multi\-Region Access Point through the VPC endpoint\. But if the request is routed to a bucket where the bucket policy prevents access, it would generate an error message\. 

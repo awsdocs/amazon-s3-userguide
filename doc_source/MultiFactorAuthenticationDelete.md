@@ -12,6 +12,8 @@ MFA delete requires two forms of authentication together:
 
 MFA delete thus provides added security if, for example, your security credentials are compromised\. MFA delete can help prevent accidental bucket deletions by requiring the user who initiates the delete action to prove physical possession of an MFA device with an MFA code and adding an extra layer of friction and security to the delete action\.
 
+To identify buckets that have MFA delete enabled, you can use Amazon S3 Storage Lens metrics\. S3 Storage Lens is a cloud\-storage analytics feature that you can use to gain organization\-wide visibility into object\-storage usage and activity\. For more information, see [ Assessing your storage activity and usage with S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens?icmpid=docs_s3_user_guide_MultiFactorAuthenticationDelete.html)\. For a complete list of metrics, see [ S3 Storage Lens metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html?icmpid=docs_s3_user_guide_MultiFactorAuthenticationDelete.html)\.
+
 The bucket owner, the AWS account that created the bucket \(root account\), and all authorized IAM users can enable versioning\. However, only the bucket owner \(root account\) can enable MFA delete\. For more information, see [Securing Access to AWS Using MFA](http://aws.amazon.com/blogs/security/securing-access-to-aws-using-mfa-part-3/) on the AWS Security Blog\.
 
 **Note**  

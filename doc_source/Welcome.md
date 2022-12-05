@@ -106,7 +106,7 @@ When you create a bucket, you enter a bucket name and choose the AWS Region wher
 
  For more information about buckets, see [Buckets overview](UsingBucket.md)\. 
 
-### Objects<a name="BasicsObjects"></a>
+### Objects<a name="BasicsObjects"></a> 
 
 Objects are the fundamental entities stored in Amazon S3\. Objects consist of object data and metadata\. The metadata is a set of name\-value pairs that describe the object\. These pairs include some default metadata, such as the date last modified, and standard HTTP metadata, such as `Content-Type`\. You can also specify custom metadata at the time that the object is stored\.
 

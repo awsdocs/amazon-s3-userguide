@@ -1,6 +1,6 @@
 # Configuring ACLs<a name="managing-acls"></a>
 
-This section explains how to manage access permissions for S3 buckets and objects using access control lists \(ACLs\)\. You can add grants to your resource AC using the AWS Management Console, AWS Command Line Interface \(CLI\), REST API, or AWS SDKs\.
+This section explains how to manage access permissions for S3 buckets and objects using access control lists \(ACLs\)\. You can add grants to your resource ACL using the AWS Management Console, AWS Command Line Interface \(CLI\), REST API, or AWS SDKs\.
 
 Bucket and object permissions are independent of each other\. An object does not inherit the permissions from its bucket\. For example, if you create a bucket and grant write access to a user, you can't access that user’s objects unless the user explicitly grants you access\.
 

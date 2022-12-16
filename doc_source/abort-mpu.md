@@ -140,7 +140,7 @@ Instead of a specific multipart upload, you can stop all your multipart uploads 
 ------
 #### [ \.NET ]
 
-The following C\# example shows how to stop a multipart upload\. For a complete C\# sample that includes the following code, see [Using the AWS SDKs \(low\-level\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
+The following C\# example shows how to stop a multipart upload\. For a complete C\# sample that includes the following code, see [Using the AWS SDKs \(low\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
 
 ```
 AbortMultipartUploadRequest abortMPURequest = new AbortMultipartUploadRequest

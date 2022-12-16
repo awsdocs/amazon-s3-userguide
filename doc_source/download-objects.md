@@ -33,7 +33,7 @@ Objects with key names ending with period\(s\) "\." downloaded using the Amazon 
 ## Using the AWS SDKs<a name="download-object-sdk"></a>
 
 ------
-#### [ Java ]
+#### [ SDK for Java ]
 
 When you download an object through the AWS SDK for Java, Amazon S3 returns all of the object's metadata and an input stream from which to read the object's contents\.
 
@@ -134,6 +134,35 @@ public class GetObject2 {
         System.out.println();
     }
 }
+```
+
+------
+#### [ SDK for JavaScript ]
+
+The following SDK for JavaScript code example retrieves an object from an Amazon S3 bucket\. When you run the code, the object inside the bucket is returned as `ReadableStream`, which is then converted into a string\. For more information about getting objects from Amazon S3, see [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html)\. For instructions on creating and testing a working sample, see [Testing the AWS SDK for JavaScript](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-aws-javascript.html)\.
+
+```
+// Import required AWS SDK clients and commands for Node.js.
+import { GetObjectCommand } from "@aws-sdk/client-s3";
+import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+
+export const bucketParams = {
+  Bucket: "BUCKET_NAME",
+  Key: "KEY",
+};
+
+export const run = async () => {
+  try {
+    // Get the object} from the Amazon S3 bucket. It is returned as a ReadableStream.
+    const data = await s3Client.send(new GetObjectCommand(bucketParams));
+    // Convert the ReadableStream to a string.
+    return await data.Body.transformToString();
+  } catch (err) {
+    console.log("Error", err);
+  }
+};
+
+run();
 ```
 
 ------
@@ -302,8 +331,8 @@ For more information about the request and response format, see [Get Object](htt
 
 ## Using the AWS CLI<a name="download-object-cli"></a>
 
-The example below shows you how you can use the AWS CLI to download an object from Amazon S3\. For more information and examples, see [get\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-object.html) in the *AWS CLI Command Reference*\.
+The example below shows you how you can use the AWS CLI to download an object from Amazon S3\. This command gets the object `dir/my_images.tar.bz2` from the bucket *DOC\-EXAMPLE\-BUCKET1*\. The object will output to a file named `my_downloaded_image.tar.bz2`\. For more information and examples, see [get\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-object.html) in the *AWS CLI Command Reference*\.
 
 ```
-aws s3api get-object --bucket DOC-EXAMPLE-BUCKET1 --key dir/my_images.tar.bz2 my_images.tar.bz2
+aws s3api get-object --bucket DOC-EXAMPLE-BUCKET1 --key dir/my_images.tar.bz2 my_downloaded_image.tar.bz2
 ```

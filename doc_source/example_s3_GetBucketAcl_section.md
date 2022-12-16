@@ -6,89 +6,33 @@ The following code examples show how to get the access control list \(ACL\) of a
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
-#### [ Go ]
+#### [ \.NET ]
 
-**SDK for Go V2**  
- There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3#code-examples)\. 
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
   
 
 ```
-package main
+        /// <summary>
+        /// Get the access control list (ACL) for the new bucket.
+        /// </summary>
+        /// <param name="client">The initialized client object used to get the
+        /// access control list (ACL) of the bucket.</param>
+        /// <param name="newBucketName">The name of the newly created bucket.</param>
+        /// <returns>An S3AccessControlList.</returns>
+        public static async Task<S3AccessControlList> GetACLForBucketAsync(IAmazonS3 client, string newBucketName)
+        {
+            // Retrieve bucket ACL to show that the ACL was properly applied to
+            // the new bucket.
+            GetACLResponse getACLResponse = await client.GetACLAsync(new GetACLRequest
+            {
+                BucketName = newBucketName,
+            });
 
-import (
-	"context"
-	"flag"
-	"fmt"
-
-	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/aws/aws-sdk-go-v2/service/s3"
-)
-
-// S3GetBucketAclAPI defines the interface for the GetBucketAcl function.
-// We use this interface to test the function using a mocked service.
-type S3GetBucketAclAPI interface {
-	GetBucketAcl(ctx context.Context,
-		params *s3.GetBucketAclInput,
-		optFns ...func(*s3.Options)) (*s3.GetBucketAclOutput, error)
-}
-
-// FindBucketAcl retrieves the access control list (ACL) for an Amazon Simple Storage Service (Amazon S3) bucket.
-// Inputs:
-//     c is the context of the method call, which includes the AWS Region
-//     api is the interface that defines the method call
-//     input defines the input arguments to the service call.
-// Output:
-//     If success, a GetBucketAclOutput object containing the result of the service call and nil
-//     Otherwise, nil and an error from the call to GetBucketAcl
-func FindBucketAcl(c context.Context, api S3GetBucketAclAPI, input *s3.GetBucketAclInput) (*s3.GetBucketAclOutput, error) {
-	return api.GetBucketAcl(c, input)
-}
-
-func main() {
-	bucket := flag.String("b", "", "The bucket for which the ACL is returned")
-	flag.Parse()
-
-	if *bucket == "" {
-		fmt.Println("You must supply a bucket name (-b BUCKET)")
-		return
-	}
-
-	cfg, err := config.LoadDefaultConfig(context.TODO())
-	if err != nil {
-		panic("configuration error, " + err.Error())
-	}
-
-	client := s3.NewFromConfig(cfg)
-
-	input := &s3.GetBucketAclInput{
-		Bucket: bucket,
-	}
-
-	result, err := FindBucketAcl(context.TODO(), client, input)
-	if err != nil {
-		fmt.Println("Got an error retrieving ACL for " + *bucket)
-		return
-	}
-
-	fmt.Println("Owner:", *result.Owner.DisplayName)
-	fmt.Println("")
-	fmt.Println("Grants")
-
-	for _, g := range result.Grants {
-		// If we add a canned ACL, the name is nil
-		if g.Grantee.DisplayName == nil {
-			fmt.Println("  Grantee:    EVERYONE")
-		} else {
-			fmt.Println("  Grantee:   ", *g.Grantee.DisplayName)
-		}
-
-		fmt.Println("  Type:      ", string(g.Grantee.Type))
-		fmt.Println("  Permission:", string(g.Permission))
-		fmt.Println("")
-	}
-}
+            return getACLResponse.AccessControlList;
+        }
 ```
-+  For API details, see [GetBucketAcl](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.GetBucketAcl) in *AWS SDK for Go API Reference*\. 
++  For API details, see [GetBucketAcl](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/GetBucketAcl) in *AWS SDK for \.NET API Reference*\. 
 
 ------
 #### [ Java ]

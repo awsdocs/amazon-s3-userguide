@@ -38,7 +38,7 @@ Your IAM user requires the following policies:
 + [AWSLambda\_FullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AWSLambda_FullAccess$jsonEditor) – Grants permissions to all Lambda actions\. 
 + [IAMFullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/IAMFullAccess$jsonEditor) – Grants permissions to all IAM actions\. 
 + [IAMAccessAnalyzerReadOnlyAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/IAMAccessAnalyzerReadOnlyAccess$jsonEditor) – Grants permissions to read all access information provided by IAM Access Analyzer\. 
-+ [CloudWatchLogsFullAccess](https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/CloudWatchLogsFullAccess$serviceLevelSummary) – Provides full access to CloudWatch Logs\.
++ [CloudWatchLogsFullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/CloudWatchLogsFullAccess$jsonEditor) – Grants full access to CloudWatch Logs\. 
 
 **Note**  
 For simplicity, this tutorial uses full\-access AWS managed policies\. For production use, we recommend that you instead grant only the minimum permissions necessary for your use case, in accordance with [security best practices](security-best-practices.md#security-best-practices-prevent)\.  
@@ -381,7 +381,7 @@ The following commands might need to be adjusted to work in your particular envi
 
 1. In the AWS Lambda console at [https://console\.aws\.amazon\.com/lambda/](https://console.aws.amazon.com/lambda/), choose **Functions** in the left navigation pane\. 
 
-1. Choose the the Lambda function that you created earlier \(for example, **tutorial\-object\-lambda\-function**\)\. 
+1. Choose the Lambda function that you created earlier \(for example, **tutorial\-object\-lambda\-function**\)\. 
 
 1. On the Lambda function's details page, choose the **Code** tab\. In the **Code Source** section, choose **Upload from** and then **\.zip file**\.
 
@@ -421,11 +421,11 @@ To enable your Lambda function to provide customized data and response headers t
 
 1. Under **Execution role**, choose the link of the **Role name**\. The IAM console opens\. 
 
-1. On the IAM console's **Summary** page for your Lambda function's execution role, choose the **Permissions** tab, and then choose **Attach policies**\.
+1. On the IAM console's **Summary** page for your Lambda function's execution role, choose the **Permissions** tab\. Then, from the **Add Permissions** menu, choose **Attach policies**\.
 
 1. On the **Attach Permissions** page, enter **AmazonS3ObjectLambdaExecutionRolePolicy** in the search box to filter the list of policies\. Select the check box next to the name of the **AmazonS3ObjectLambdaExecutionRolePolicy** policy\. 
 
-1. Choose **Attach policy**\. 
+1. Choose **Attach policies**\. 
 
 ## Step 6: Create an S3 Object Lambda access point<a name="ol-upper-step6"></a>
 

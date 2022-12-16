@@ -45,7 +45,7 @@ The following are examples of valid object key names:
 **Note**  
 Objects with key names ending with period\(s\) "\." downloaded using the Amazon S3 console will have the period\(s\) "\." removed from the key name of the downloaded object\. To download an object with the key name ending in period\(s\) "\." retained in the downloaded object, you must use the AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\.  
 In addition, be aware of the following prefix limitations:  
-Objects with a prefix of "\./" must uploaded or downloaded with the AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\. You cannot use the Amazon S3 console\.
+Objects with a prefix of "\./" must be uploaded or downloaded with the AWS Command Line Interface \(AWS CLI\), AWS SDKs, or REST API\. You cannot use the Amazon S3 console\.
 Objects with a prefix of "\.\./" cannot be uploaded using the AWS Command Line Interface \(AWS CLI\) or Amazon S3 console\.
 
 ### Characters that might require special handling<a name="object-key-guidelines-special-handling"></a>

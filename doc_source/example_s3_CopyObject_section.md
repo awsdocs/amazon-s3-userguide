@@ -13,42 +13,82 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-        /// <summary>
-        /// Copies an object in an Amazon S3 bucket to a folder within the
-        /// same bucket.
-        /// </summary>
-        /// <param name="client">An initialized Amazon S3 client object.</param>
-        /// <param name="bucketName">The name of the Amazon S3 bucket where the
-        /// object to copy is located.</param>
-        /// <param name="objectName">The object to be copied.</param>
-        /// <param name="folderName">The folder to which the object will
-        /// be copied.</param>
-        /// <returns>A boolean value that indicates the success or failure of
-        /// the copy operation.</returns>
-        public static async Task<bool> CopyObjectInBucketAsync(
-            IAmazonS3 client,
-            string bucketName,
-            string objectName,
-            string folderName)
+    using System;
+    using System.Threading.Tasks;
+    using Amazon;
+    using Amazon.S3;
+    using Amazon.S3.Model;
+
+    public class CopyObject
+    {
+        public static async Task Main()
         {
+            // Specify the AWS Region where your buckets are located if it is
+            // different from the AWS Region of the default user.
+            IAmazonS3 s3Client = new AmazonS3Client();
+
+            // Remember to change these values to refer to your Amazon S3 objects.
+            string sourceBucketName = "doc-example-bucket1";
+            string destinationBucketName = "doc-example-bucket2";
+            string sourceObjectKey = "testfile.txt";
+            string destinationObjectKey = "testfilecopy.txt";
+
+            Console.WriteLine($"Copying {sourceObjectKey} from {sourceBucketName} to ");
+            Console.WriteLine($"{destinationBucketName} as {destinationObjectKey}");
+
+            var response = await CopyingObjectAsync(
+                s3Client,
+                sourceObjectKey,
+                destinationObjectKey,
+                sourceBucketName,
+                destinationBucketName);
+
+            if (response.HttpStatusCode == System.Net.HttpStatusCode.OK)
+            {
+                Console.WriteLine("\nCopy complete.");
+            }
+        }
+
+        /// <summary>
+        /// This method calls the AWS SDK for .NET to copy an
+        /// object from one Amazon S3 bucket to another.
+        /// </summary>
+        /// <param name="client">The Amazon S3 client object.</param>
+        /// <param name="sourceKey">The name of the object to be copied.</param>
+        /// <param name="destinationKey">The name under which to save the copy.</param>
+        /// <param name="sourceBucketName">The name of the Amazon S3 bucket
+        /// where the file is located now.</param>
+        /// <param name="destinationBucketName">The name of the Amazon S3
+        /// bucket where the copy should be saved.</param>
+        /// <returns>Returns a CopyObjectResponse object with the results from
+        /// the async call.</returns>
+        public static async Task<CopyObjectResponse> CopyingObjectAsync(
+            IAmazonS3 client,
+            string sourceKey,
+            string destinationKey,
+            string sourceBucketName,
+            string destinationBucketName)
+        {
+            var response = new CopyObjectResponse();
             try
             {
                 var request = new CopyObjectRequest
                 {
-                    SourceBucket = bucketName,
-                    SourceKey = objectName,
-                    DestinationBucket = bucketName,
-                    DestinationKey = $"{folderName}\\{objectName}",
+                    SourceBucket = sourceBucketName,
+                    SourceKey = sourceKey,
+                    DestinationBucket = destinationBucketName,
+                    DestinationKey = destinationKey,
                 };
-                var response = await client.CopyObjectAsync(request);
-                return response.HttpStatusCode == System.Net.HttpStatusCode.OK;
+                response = await client.CopyObjectAsync(request);
             }
             catch (AmazonS3Exception ex)
             {
                 Console.WriteLine($"Error copying object: '{ex.Message}'");
-                return false;
             }
+
+            return response;
         }
+    }
 ```
 +  For API details, see [CopyObject](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/CopyObject) in *AWS SDK for \.NET API Reference*\. 
 
@@ -94,22 +134,29 @@ bool AwsDoc::S3::CopyObject(const Aws::String &objectKey, const Aws::String &fro
   
 
 ```
-	// Copy an object to another name.
+// BucketBasics encapsulates the Amazon Simple Storage Service (Amazon S3) actions
+// used in the examples.
+// It contains S3Client, an Amazon S3 service client that is used to perform bucket
+// and object actions.
+type BucketBasics struct {
+	S3Client *s3.Client
+}
 
-	// CopyObject is "Pull an object from the source bucket + path".
-	// The semantics of CopySource varies depending on whether you're using Amazon S3 on Outposts,
-	// or through access points.
-	// See https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html#API_CopyObject_RequestSyntax
-	fmt.Println("Copy an object from another bucket to our bucket.")
-	_, err = client.CopyObject(context.TODO(), &s3.CopyObjectInput{
-		Bucket:     aws.String(name),
-		CopySource: aws.String(name + "/path/myfile.jpg"),
-		Key:        aws.String("other/file.jpg"),
+
+
+// CopyToFolder copies an object in a bucket to a subfolder in the same bucket.
+func (basics BucketBasics) CopyToFolder(bucketName string, objectKey string, folderName string) error {
+	_, err := basics.S3Client.CopyObject(context.TODO(), &s3.CopyObjectInput{
+		Bucket:     aws.String(bucketName),
+		CopySource: aws.String(fmt.Sprintf("%v/%v", bucketName, objectKey)),
+		Key:        aws.String(fmt.Sprintf("%v/%v", folderName, objectKey)),
 	})
-
 	if err != nil {
-		panic("Couldn't copy the object to a new key")
+		log.Printf("Couldn't copy object from %v:%v to %v:%v/%v. Here's why: %v\n",
+			bucketName, objectKey, bucketName, folderName, objectKey, err)
 	}
+	return err
+}
 ```
 +  For API details, see [CopyObject](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.CopyObject) in *AWS SDK for Go API Reference*\. 
 
@@ -449,11 +496,11 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
           iv_key = iv_dest_object
           iv_copysource = |{ iv_src_bucket }/{ iv_src_object }|
         ).
-        MESSAGE 'Object copied to another bucket' TYPE 'I'.
+        MESSAGE 'Object copied to another bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
       CATCH /aws1/cx_s3_nosuchkey.
-        MESSAGE 'Object key does not exist' TYPE 'E'.
+        MESSAGE 'Object key does not exist.' TYPE 'E'.
     ENDTRY.
 ```
 +  For API details, see [CopyObject](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 

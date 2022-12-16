@@ -21,4 +21,4 @@ For other troubleshooting and support topics, see the following:
 + [Handling REST and SOAP errors](HandlingErrors.md)
 + [AWS Support Documentation](https://aws.amazon.com/documentation/aws-support/)
 
-For troubleshooting information regarding third\-party tools, see [Getting Amazon S3 request IDs](https://forums.aws.amazon.com/thread.jspa?threadID=182409) in the AWS Developer Forums\.
+For troubleshooting information regarding third\-party tools, see [Amazon S3 request ID values requested by AWS Support](https://aws.amazon.com/premiumsupport/knowledge-center/s3-request-id-values/) in the AWS Knowledge Center\.

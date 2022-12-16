@@ -80,6 +80,57 @@ The following code examples show how to list objects in an S3 bucket\.
             }
         }
 ```
+List objects with a paginator\.  
+
+```
+    using System;
+    using System.Threading.Tasks;
+    using Amazon.S3;
+    using Amazon.S3.Model;
+
+    /// <summary>
+    /// The following example lists objects in an Amazon Simple Storage
+    /// Service (Amazon S3) bucket. It was created using AWS SDK for .NET 3.5
+    /// and .NET Core 5.0.
+    /// </summary>
+    public class ListObjectsPaginator
+    {
+        private const string BucketName = "doc-example-bucket";
+
+        public static async Task Main()
+        {
+            IAmazonS3 s3Client = new AmazonS3Client();
+
+            Console.WriteLine($"Listing the objects contained in {BucketName}:\n");
+            await ListingObjectsAsync(s3Client, BucketName);
+        }
+
+        /// <summary>
+        /// This method uses a paginator to retrieve the list of objects in an
+        /// an Amazon S3 bucket.
+        /// </summary>
+        /// <param name="client">An Amazon S3 client object.</param>
+        /// <param name="bucketName">The name of the S3 bucket whose objects
+        /// you want to list.</param>
+        public static async Task ListingObjectsAsync(IAmazonS3 client, string bucketName)
+        {
+            var listObjectsV2Paginator = client.Paginators.ListObjectsV2(new ListObjectsV2Request
+            {
+                BucketName = bucketName,
+            });
+
+            await foreach (var response in listObjectsV2Paginator.Responses)
+            {
+                Console.WriteLine($"HttpStatusCode: {response.HttpStatusCode}");
+                Console.WriteLine($"Number of Keys: {response.KeyCount}");
+                foreach (var entry in response.S3Objects)
+                {
+                    Console.WriteLine($"Key = {entry.Key} Size = {entry.Size}");
+                }
+            }
+        }
+    }
+```
 +  For API details, see [ListObjects](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/ListObjects) in *AWS SDK for \.NET API Reference*\. 
 
 ------
@@ -125,22 +176,29 @@ bool AwsDoc::S3::ListObjects(const Aws::String &bucketName,
   
 
 ```
-	// List objects in the bucket.
-	// n.b. object keys in Amazon S3 do not begin with '/'. You do not need to lead your
-	// prefix with it.
-	fmt.Println("Listing the objects in the bucket:")
-	listObjsResponse, err := client.ListObjectsV2(context.TODO(), &s3.ListObjectsV2Input{
-		Bucket: aws.String(name),
-		Prefix: aws.String(""),
+// BucketBasics encapsulates the Amazon Simple Storage Service (Amazon S3) actions
+// used in the examples.
+// It contains S3Client, an Amazon S3 service client that is used to perform bucket
+// and object actions.
+type BucketBasics struct {
+	S3Client *s3.Client
+}
+
+
+
+// ListObjects lists the objects in a bucket.
+func (basics BucketBasics) ListObjects(bucketName string) ([]types.Object, error) {
+	result, err := basics.S3Client.ListObjectsV2(context.TODO(), &s3.ListObjectsV2Input{
+		Bucket: aws.String(bucketName),
 	})
-
+	var contents []types.Object
 	if err != nil {
-		panic("Couldn't list bucket contents")
+		log.Printf("Couldn't list objects in bucket %v. Here's why: %v\n", bucketName, err)
+	} else {
+		contents = result.Contents
 	}
-
-	for _, object := range listObjsResponse.Contents {
-		fmt.Printf("%s (%d bytes, class %v) \n", *object.Key, object.Size, object.StorageClass)
-	}
+	return contents, err
+}
 ```
 +  For API details, see [ListObjects](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.ListObjects) in *AWS SDK for Go API Reference*\. 
 
@@ -440,12 +498,12 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
 
 ```
     TRY.
-        oo_result = lo_s3->listobjects(         " oo_result is returned for testing purpose "
+        oo_result = lo_s3->listobjects(         " oo_result is returned for testing purposes. "
           iv_bucket = iv_bucket_name
         ).
-        MESSAGE 'Retrieved list of object(s) in S3 bucket' TYPE 'I'.
+        MESSAGE 'Retrieved list of objects in S3 bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
     ENDTRY.
 ```
 +  For API details, see [ListObjects](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 

@@ -51,6 +51,71 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
             }
         }
 ```
+Upload an object with server\-side encryption\.  
+
+```
+    using System;
+    using System.Threading.Tasks;
+    using Amazon.S3;
+    using Amazon.S3.Model;
+
+    public class ServerSideEncryption
+    {
+        public static async Task Main()
+        {
+            string bucketName = "doc-example-bucket";
+            string keyName = "samplefile.txt";
+
+            // If the AWS Region defined for your default user is different
+            // from the Region where your Amazon S3 bucket is located,
+            // pass the Region name to the Amazon S3 client object's constructor.
+            // For example: RegionEndpoint.USWest2.
+            IAmazonS3 client = new AmazonS3Client();
+
+            await WritingAnObjectAsync(client, bucketName, keyName);
+        }
+
+        /// <summary>
+        /// Upload a sample object include a setting for encryption.
+        /// </summary>
+        /// <param name="client">The initialized Amazon S3 client object used to
+        /// to upload a file and apply server-side encryption.</param>
+        /// <param name="bucketName">The name of the Amazon S3 bucket where the
+        /// encrypted object will reside.</param>
+        /// <param name="keyName">The name for the object that you want to
+        /// create in the supplied bucket.</param>
+        public static async Task WritingAnObjectAsync(IAmazonS3 client, string bucketName, string keyName)
+        {
+            try
+            {
+                var putRequest = new PutObjectRequest
+                {
+                    BucketName = bucketName,
+                    Key = keyName,
+                    ContentBody = "sample text",
+                    ServerSideEncryptionMethod = ServerSideEncryptionMethod.AES256,
+                };
+
+                var putResponse = await client.PutObjectAsync(putRequest);
+
+                // Determine the encryption state of an object.
+                GetObjectMetadataRequest metadataRequest = new GetObjectMetadataRequest
+                {
+                    BucketName = bucketName,
+                    Key = keyName,
+                };
+                GetObjectMetadataResponse response = await client.GetObjectMetadataAsync(metadataRequest);
+                ServerSideEncryptionMethod objectEncryption = response.ServerSideEncryptionMethod;
+
+                Console.WriteLine($"Encryption method used: {0}", objectEncryption.ToString());
+            }
+            catch (AmazonS3Exception ex)
+            {
+                Console.WriteLine($"Error: '{ex.Message}' when writing an object");
+            }
+        }
+    }
+```
 +  For API details, see [PutObject](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/PutObject) in *AWS SDK for \.NET API Reference*\. 
 
 ------
@@ -109,32 +174,35 @@ bool AwsDoc::S3::PutObject(const Aws::String &bucketName,
   
 
 ```
-	// Place an object in a bucket.
-	fmt.Println("Upload an object to the bucket")
-	// Get the object body to upload.
-	// Image credit: https://unsplash.com/photos/iz58d89q3ss
-	stat, err := os.Stat("image.jpg")
+// BucketBasics encapsulates the Amazon Simple Storage Service (Amazon S3) actions
+// used in the examples.
+// It contains S3Client, an Amazon S3 service client that is used to perform bucket
+// and object actions.
+type BucketBasics struct {
+	S3Client *s3.Client
+}
+
+
+
+// UploadFile reads from a file and puts the data into an object in a bucket.
+func (basics BucketBasics) UploadFile(bucketName string, objectKey string, fileName string) error {
+	file, err := os.Open(fileName)
 	if err != nil {
-		panic("Couldn't stat image: " + err.Error())
+		log.Printf("Couldn't open file %v to upload. Here's why: %v\n", fileName, err)
+	} else {
+		defer file.Close()
+		_, err := basics.S3Client.PutObject(context.TODO(), &s3.PutObjectInput{
+			Bucket: aws.String(bucketName),
+			Key:    aws.String(objectKey),
+			Body:   file,
+		})
+		if err != nil {
+			log.Printf("Couldn't upload file %v to %v:%v. Here's why: %v\n",
+				fileName, bucketName, objectKey, err)
+		}
 	}
-	file, err := os.Open("image.jpg")
-
-	if err != nil {
-		panic("Couldn't open local file")
-	}
-
-	_, err = client.PutObject(context.TODO(), &s3.PutObjectInput{
-		Bucket:        aws.String(name),
-		Key:           aws.String("path/myfile.jpg"),
-		Body:          file,
-		ContentLength: stat.Size(),
-	})
-
-	file.Close()
-
-	if err != nil {
-		panic("Couldn't upload file: " + err.Error())
-	}
+	return err
+}
 ```
 +  For API details, see [PutObject](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.PutObject) in *AWS SDK for Go API Reference*\. 
 
@@ -730,22 +798,22 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
   
 
 ```
-    "Get contents of file from application server"
+    "Get contents of file from application server."
     DATA lv_body TYPE xstring.
     OPEN DATASET iv_file_name FOR INPUT IN BINARY MODE.
     READ DATASET iv_file_name INTO lv_body.
     CLOSE DATASET iv_file_name.
 
-    "Upload/Put an object to S3 bucket"
+    "Upload/put an object to an S3 bucket."
     TRY.
         lo_s3->putobject(
             iv_bucket = iv_bucket_name
             iv_key = iv_file_name
             iv_body = lv_body
         ).
-        MESSAGE 'Object uploaded to S3 bucket' TYPE 'I'.
+        MESSAGE 'Object uploaded to S3 bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
     ENDTRY.
 ```
 +  For API details, see [PutObject](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 

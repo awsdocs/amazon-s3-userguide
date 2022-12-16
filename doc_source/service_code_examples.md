@@ -14,7 +14,58 @@ For a complete list of AWS SDK developer guides and code examples, see [Using th
 
 ## Hello Amazon S3<a name="example_s3_Hello_section"></a>
 
-The following code example shows how to get started using Amazon Simple Storage Service \(Amazon S3\)\.
+The following code examples show how to get started using Amazon Simple Storage Service \(Amazon S3\)\.
+
+------
+#### [ Go ]
+
+**SDK for Go V2**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3#code-examples)\. 
+  
+
+```
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+)
+
+// main uses the AWS SDK for Go V2 to create an Amazon Simple Storage Service
+// (Amazon S3) client and list up to 10 buckets in your account.
+// This example uses the default settings specified in your shared credentials
+// and config files.
+func main() {
+	sdkConfig, err := config.LoadDefaultConfig(context.TODO())
+	if err != nil {
+		fmt.Println("Couldn't load default configuration. Have you set up your AWS account?")
+		fmt.Println(err)
+		return
+	}
+	s3Client := s3.NewFromConfig(sdkConfig)
+	count := 10
+	fmt.Printf("Let's list up to %v buckets for your account.\n", count)
+	result, err := s3Client.ListBuckets(context.TODO(), &s3.ListBucketsInput{})
+	if err != nil {
+		fmt.Printf("Couldn't list buckets for your account. Here's why: %v\n", err)
+		return
+	}
+	if len(result.Buckets) == 0 {
+		fmt.Println("You don't have any buckets!")
+	} else {
+		if count > len(result.Buckets) {
+			count = len(result.Buckets)
+		}
+		for _, bucket := range result.Buckets[:count] {
+			fmt.Printf("\t%v\n", *bucket.Name)
+		}
+	}
+}
+```
++  For API details, see [ListBuckets](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.ListBuckets) in *AWS SDK for Go API Reference*\. 
 
 ------
 #### [ Python ]
@@ -50,6 +101,7 @@ if __name__ == '__main__':
   + [Add CORS rules to a bucket](example_s3_PutBucketCors_section.md)
   + [Add a lifecycle configuration to a bucket](example_s3_PutBucketLifecycleConfiguration_section.md)
   + [Add a policy to a bucket](example_s3_PutBucketPolicy_section.md)
+  + [Cancel multipart uploads](example_s3_CancelMultipartUpload_section.md)
   + [Complete a multipart upload](example_s3_CompleteMultipartUpload_section.md)
   + [Copy an object from one bucket to another](example_s3_CopyObject_section.md)
   + [Create a bucket](example_s3_CreateBucket_section.md)
@@ -63,8 +115,12 @@ if __name__ == '__main__':
   + [Delete the website configuration from a bucket](example_s3_DeleteBucketWebsite_section.md)
   + [Determine the existence and content type of an object](example_s3_HeadObject_section.md)
   + [Determine the existence of a bucket](example_s3_HeadBucket_section.md)
+  + [Enable logging](example_s3_ServiceAccessLogging_section.md)
+  + [Enable notifications](example_s3_PutBucketNotification_section.md)
+  + [Enable transfer acceleration](example_s3_TransferAcceleration_section.md)
   + [Get CORS rules for a bucket](example_s3_GetBucketCors_section.md)
   + [Get an object from a bucket](example_s3_GetObject_section.md)
+  + [Get an object from a bucket if it has been modified](example_s3_GetObject_IfModifiedSince_section.md)
   + [Get the ACL of a bucket](example_s3_GetBucketAcl_section.md)
   + [Get the ACL of an object](example_s3_GetObjectAcl_section.md)
   + [Get the Region location for a bucket](example_s3_GetBucketLocation_section.md)
@@ -84,7 +140,11 @@ if __name__ == '__main__':
 + [Scenarios](service_code_examples_scenarios.md)
   + [Create a presigned URL](example_s3_Scenario_PresignedUrl_section.md)
   + [Get started with buckets and objects](example_s3_Scenario_GettingStarted_section.md)
+  + [Get started with encryption](example_s3_Encryption_section.md)
+  + [Get started with tags](example_s3_Scenario_Tagging_section.md)
+  + [Manage access control lists \(ACLs\)](example_s3_Scenario_ManageACLs_section.md)
   + [Manage versioned objects in batches with a Lambda function](example_s3_Scenario_BatchObjectVersioning_section.md)
+  + [Perform a multipart copy](example_s3_MultipartCopy_section.md)
   + [Upload or download large files](example_s3_Scenario_UsingLargeFiles_section.md)
   + [Work with versioned objects](example_s3_Scenario_ObjectVersioningUsage_section.md)
 + [Cross\-service examples](service_code_examples_cross-service_examples.md)

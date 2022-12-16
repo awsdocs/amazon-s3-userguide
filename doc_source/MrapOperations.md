@@ -117,6 +117,17 @@ run()
 ```
 
 ------
+#### [ SDK for Python ]
+
+The following SDK for Python code retrieves your Multi\-Region Access Point route configuration so that you can see the current routing statuses for your buckets\. To use this example syntax, replace the `user input placeholders` with your own information\.
+
+```
+s3.get_multi_region_access_point_routes(
+        AccountId=111122223333,
+        Mrap=MultiRegionAccessPoint_ARN)['Routes']
+```
+
+------
 
 ## Update your underlying Amazon S3 bucket policy<a name="update-underlying-bucket-policy"></a>
 
@@ -246,6 +257,22 @@ run()
 ```
 
 ------
+#### [ SDK for Python ]
+
+The following SDK for Python code updates your Multi\-Region Access Point route configuration\. To use this example syntax, replace the `user input placeholders` with your own information\.
+
+```
+s3.submit_multi_region_access_point_routes(
+        AccountId=111122223333,
+        Mrap=MultiRegionAccessPoint_ARN, 
+        RouteUpdates= [{
+            'Bucket': DOC-EXAMPLE-BUCKET,
+            'Region': ap-southeast-2, 
+            'TrafficDialPercentage': 10
+        }])
+```
+
+------
 
 ## Use a presigned URL with Multi\-Region Access Points<a name="use-presigned-url-mrap"></a>
 
@@ -278,24 +305,24 @@ s3_client.generate_presigned_url(HttpMethod='PUT',ClientMethod="put_object", Par
 #### [ SDK for Java ]
 
 ```
-val s3Presigner = S3Presigner.builder()
-        .credentialsProvider(StsAssumeRoleCredentialsProvider.builder()
-            .refreshRequest(assumeRole)
-            .stsClient(stsClient)
-            .build())
-        .build()
+S3Presigner s3Presigner = S3Presigner.builder()
+    .credentialsProvider(StsAssumeRoleCredentialsProvider.builder()
+        .refreshRequest(assumeRole)
+        .stsClient(stsClient)
+        .build())
+    .build();
 
-    val getObjectRequest: GetObjectRequest = GetObjectRequest.builder()
-        .bucket("arn:aws:s3::123456789012:accesspoint/0000000000000.mrap")
-        .key("bkey")
-        .build()
+GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+    .bucket("arn:aws:s3::123456789012:accesspoint/0000000000000.mrap")
+    .key("example-file")
+    .build();
 
-    val preSignedReq = GetObjectPresignRequest.builder()
-        .getObjectRequest(getObjectRequest)
-        .signatureDuration(Duration.ofMinutes(10))
-        .build()
+GetObjectPresignRequest preSignedReq = GetObjectPresignRequest.builder()
+    .getObjectRequest(getObjectRequest)
+    .signatureDuration(Duration.ofMinutes(10))
+    .build();
 
-    val presignedGetObjectRequest: PresignedGetObjectRequest = s3Presigner.presignGetObject(preSignedReq)
+PresignedGetObjectRequest presignedGetObjectRequest = s3Presigner.presignGetObject(preSignedReq);
 ```
 
 ------

@@ -6,6 +6,33 @@ The following code examples show how to add cross\-origin resource sharing \(COR
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+  
+
+```
+        /// <summary>
+        /// Add CORS configuration to the Amazon S3 bucket.
+        /// </summary>
+        /// <param name="client">The initialized Amazon S3 client object used
+        /// to apply the CORS configuration to an Amazon S3 bucket.</param>
+        /// <param name="configuration">The CORS configuration to apply.</param>
+        private static async Task PutCORSConfigurationAsync(AmazonS3Client client, CORSConfiguration configuration)
+        {
+            PutCORSConfigurationRequest request = new()
+            {
+                BucketName = BucketName,
+                Configuration = configuration,
+            };
+
+            _ = await client.PutCORSConfigurationAsync(request);
+        }
+```
++  For API details, see [PutBucketCors](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/PutBucketCors) in *AWS SDK for \.NET API Reference*\. 
+
+------
 #### [ Java ]
 
 **SDK for Java 2\.x**  

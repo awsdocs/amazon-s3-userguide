@@ -1,11 +1,11 @@
 # Configuring an S3 Bucket Key at the object level using Batch Operations, REST API, AWS SDKs, or AWS CLI<a name="configuring-bucket-key-object"></a>
 
-When you perform a PUT or COPY operation using the REST API, AWS SDKs, or AWS CLI, you can enable or disable an S3 Bucket Key at the object level\. S3 Bucket Keys reduce the cost of server\-side encryption using AWS Key Management Service \(AWS KMS\) \(SSE\-KMS\) by decreasing request traffic from Amazon S3 to AWS KMS\. For more information, see [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)\. 
+When you perform a PUT or COPY operation using the REST API, AWS SDKs, or AWS CLI, you can enable or disable an S3 Bucket Key at the object level by adding the `x-amz-server-side-encryption-bucket-key-enabled` request header with a `true` or `false` value\. S3 Bucket Keys reduce the cost of server\-side encryption using AWS Key Management Service \(AWS KMS\) \(SSE\-KMS\) by decreasing request traffic from Amazon S3 to AWS KMS\. For more information, see [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)\. 
 
-When you configure an S3 Bucket Key for an object using a PUT or COPY operation, Amazon S3 only updates the settings for that object\. The S3 Bucket Key settings for the destination bucket do not change\. If you don't specify an S3 Bucket Key for your object, Amazon S3 applies the S3 Bucket Key settings for the destination bucket to the object\.
+When you configure an S3 Bucket Key for an object using a PUT or COPY operation, Amazon S3 only updates the settings for that object\. The S3 Bucket Key settings for the destination bucket do not change\. If you submit a PUT or COPY request for a KMS\-encrypted object into a bucket with S3 Bucket Keys enabled, your object level operation will automatically use S3 Bucket Keys unless you disable the keys in the request header\. If you don't specify an S3 Bucket Key for your object, Amazon S3 applies the S3 Bucket Key settings for the destination bucket to the object\.
 
 **Prerequisite:**  
-Before you configure your object to use an S3 Bucket Key, review [Changes to note before enabling an S3 Bucket Key](bucket-key.md#bucket-key-changes)\. 
+Before you configure your object to use an S3 Bucket Key, review  [Changes to note before enabling an S3 Bucket Key](bucket-key.md#bucket-key-changes)\. 
 
 **Topics**
 + [Amazon S3 Batch Operations](#bucket-key-object-bops)

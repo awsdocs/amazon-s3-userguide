@@ -40,6 +40,6 @@ The restore operation fails for the object if any of the following conditions ar
 S3 Initiate Restore Object jobs have the following limitations:
 + You must create the job in the same Region as the archived objects\.
 + S3 Batch Operations does not support the `EXPEDITED` retrieval tier\.
-+ S3 Batch Operations does not support restoring subsets of S3 Intelligent\-Tiering or S3 Glacier Flexible Retrieval objects\. You must call [RestoreObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html) for this purpose\.  
++ S3 Batch Operations does not support restoring subset of archives in S3 Intelligent\-Tiering or S3 Glacier Flexible Retrieval\. You must call [RestoreObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html) for this purpose\.  
 
 For more information about restoring objects, see [Restoring an archived object](restoring-objects.md)\.

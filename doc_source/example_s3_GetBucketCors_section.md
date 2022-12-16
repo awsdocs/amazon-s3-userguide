@@ -6,6 +6,34 @@ The following code examples show how to get cross\-origin resource sharing \(COR
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+  
+
+```
+        /// <summary>
+        /// Retrieve the CORS configuration applied to the Amazon S3 bucket.
+        /// </summary>
+        /// <param name="client">The initialized Amazon S3 client object used
+        /// to retrieve the CORS configuration.</param>
+        /// <returns>The created CORS configuration object.</returns>
+        private static async Task<CORSConfiguration> RetrieveCORSConfigurationAsync(AmazonS3Client client)
+        {
+            GetCORSConfigurationRequest request = new()
+            {
+                BucketName = BucketName,
+            };
+            var response = await client.GetCORSConfigurationAsync(request);
+            var configuration = response.Configuration;
+            PrintCORSRules(configuration);
+            return configuration;
+        }
+```
++  For API details, see [GetBucketCors](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/GetBucketCors) in *AWS SDK for \.NET API Reference*\. 
+
+------
 #### [ JavaScript ]
 
 **SDK for JavaScript V3**  

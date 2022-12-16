@@ -1,11 +1,11 @@
 # Using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)<a name="UsingKMSEncryption"></a>
 
-Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses AWS KMS keys to encrypt your Amazon S3 objects\. AWS KMS encrypts only the object data\. The checksum, along with the specified algorithm, are stored as part of the object's metadata\. If server\-side encryption is requested for the object, then the checksum is stored in encrypted form\.
+Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses server\-side encryption with AWS KMS \(SSE\-KMS\) to encrypt your S3 object data\. Also, when SSE\-KMS is requested for the object, the S3 checksum as part of the object's metadata, is stored in encrypted form\. For more information about checksum, see [Checking object integrity](checking-object-integrity.md)\.
 
-If you use KMS keys, you can use AWS KMS through the [AWS Management Console](https://console.aws.amazon.com/kms) or the [AWS KMS APIs](https://docs.aws.amazon.com/kms/latest/APIReference/) to do the following: 
-+ Centrally create KMS keys
-+ Define the policies that control how KMS keys can be used
-+ Audit their usage to prove that they are being used correctly
+If you use KMS keys, you can use AWS KMS through the [AWS Management Console](https://console.aws.amazon.com/kms) or the [AWS KMS API](https://docs.aws.amazon.com/kms/latest/APIReference/) to do the following: 
++ Centrally create, view, edit, monitor, enable or disable, rotate, and schedule deletion of KMS keys\.
++ Define the policies that control how and by whom KMS keys can be used\.
++ Audit their usage to prove that they are being used correctly\. Auditing is supported by the [AWS KMS API](https://docs.aws.amazon.com/kms/latest/APIReference/), but not by the [AWS KMSAWS Management Console](https://console.aws.amazon.com/kms)\.
 
 
 
@@ -21,33 +21,43 @@ To upload an object encrypted with an AWS KMS key to Amazon S3, you need `kms:Ge
 + [Amazon S3 Bucket Keys](#sse-kms-bucket-keys)
 + [Requiring server\-side encryption](#require-sse-kms)
 + [Encryption context](#encryption-context)
-+ [AWS Signature Version 4](#aws-signature-version-4-sse-kms)
++ [Sending requests for AWS KMS encrypted objects](#aws-signature-version-4-sse-kms)
 + [Specifying server\-side encryption with AWS KMS \(SSE\-KMS\)](specifying-kms-encryption.md)
 + [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)
 
 ## AWS KMS keys<a name="aws-managed-customer-managed-keys"></a>
 
-When you use server\-side encryption with AWS KMS \(SSE\-KMS\), you can use the default [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk), or you can specify a [customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) that you have already created\. AWS KMS uses *envelope encryption* to further protect your data\. Envelope encryption is the practice of encrypting your plaintext data with a data key, and then encrypting that data key with a root key\. 
+When you use server\-side encryption with AWS KMS \(SSE\-KMS\), you can use the default [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk), or you can specify a [customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) that you have already created\. AWS KMS supports *envelope encryption*\. S3 uses the AWS KMS features for *envelope encryption* to further protect your data\. Envelope encryption is the practice of encrypting your plaintext data with a data key, and then encrypting that data key with a KMS key\. For more information about envelope encryption, see [Envelope encryption](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#enveloping) in the *AWS Key Management Service Developer Guide*\.
 
-If you don't specify a customer managed key, Amazon S3 automatically creates an AWS KMS key in your AWS account the first time that you add an object encrypted with SSE\-KMS to a bucket\. By default, Amazon S3 uses this KMS key for SSE\-KMS\. 
+If you don't specify a customer managed key, Amazon S3 automatically creates an AWS managed key in your AWS account the first time that you add an object encrypted with SSE\-KMS to a bucket\. By default, Amazon S3 uses this KMS key for SSE\-KMS\. 
 
-If you want to use a customer managed key for SSE\-KMS, create the customer managed key before you configure SSE\-KMS\. Then, when you configure SSE\-KMS for your bucket, specify the existing customer managed key\. 
+If you want to use a customer managed key for SSE\-KMS, create a symmetric encryption customer managed key before you configure SSE\-KMS\. Then, when you configure SSE\-KMS for your bucket, specify the existing customer managed key\. For more information about symmetric encryption key, see [Symmetric encryption KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#symmetric-cmks) in the *AWS Key Management Service Developer Guide*\.
 
-Creating a customer managed key gives you more flexibility and control\. For example, you can create, rotate, and disable customer managed keys\. You can also define access controls and audit the customer managed key that you use to protect your data\. For more information about customer managed and AWS managed keys, see [AWS KMS concepts](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html) in the *AWS Key Management Service Developer Guide*\.
+Creating a customer managed key gives you more flexibility and control\. For example, you can create, rotate, and disable customer managed keys\. You can also define access controls and audit the customer managed key that you use to protect your data\. For more information about customer managed and AWS managed keys, see [Customer keys and AWS keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-mgmt) in the *AWS Key Management Service Developer Guide*\.
 
-If you choose to encrypt your data using a KMS key or customer managed key, AWS KMS and Amazon S3 perform the following actions:
-+ Amazon S3 requests a plaintext [ data key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) and a copy of the key encrypted under the specified KMS key\.
-+ AWS KMS generates a data key, encrypts it under the KMS key, and sends both the plaintext data key and the encrypted data key to Amazon S3\.
-+ Amazon S3 encrypts the data using the data key and removes the plaintext key from memory as soon as possible after use\.
-+ Amazon S3 stores the encrypted data key as metadata with the encrypted data\.
+**Note**  
+When you use server\-side encryption with a customer managed key that's stored in an external key store, unlike standard KMS keys, you are responsible for ensuring the availability and durability of your key material\. For more information about external key stores and how they shift the shared responsibility model, see [External key stores](https://docs.aws.amazon.com/kms/latest/developerguide/keystore-external.html) in the *AWS Key Management Service Developer Guide*\.
+
+If you choose to encrypt your data using an AWS managed key or a customer managed key, AWS KMS and Amazon S3 perform the following envelope encryption actions:
+
+1. Amazon S3 requests a plaintext [ data key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) and a copy of the key encrypted under the specified KMS key\.
+
+1. AWS KMS generates a data key, encrypts it under the KMS key, and sends both the plaintext data key and the encrypted data key to Amazon S3\.
+
+1. Amazon S3 encrypts the data using the data key and removes the plaintext key from memory as soon as possible after use\.
+
+1. Amazon S3 stores the encrypted data key as metadata with the encrypted data\.
 
 When you request that your data be decrypted, Amazon S3 and AWS KMS perform the following actions:
-+ Amazon S3 sends the encrypted data key to AWS KMS\.
-+ AWS KMS decrypts the key by using the same KMS key and returns the plaintext data key to Amazon S3\.
-+ Amazon S3 decrypts the ciphertext and removes the plaintext data key from memory as soon as possible\.
+
+1. Amazon S3 sends the encrypted data key to AWS KMS in a `Decrypt` request\.
+
+1. AWS KMS decrypts the data key by using the same KMS key and returns the plaintext data key to Amazon S3\.
+
+1. Amazon S3 decrypts the encrypted data key, using the plaintext data key, and removes the plaintext data key from memory as soon as possible\.
 
 **Important**  
-When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a symmetric encryption KMS key\. Amazon S3 supports only symmetric encryption KMS keys and not asymmetric keys\. For more information, see [Using Symmetric and Asymmetric Keys](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html) in the *AWS Key Management Service Developer Guide*\.
+When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a symmetric encryption KMS key\. Amazon S3 supports only symmetric encryption KMS keys or HMAC keys\. For more information about these keys, see [Special\-purpose keys](https://docs.aws.amazon.com/kms/latest/developerguide/key-types.html) in the *AWS Key Management Service Developer Guide*\.
 
 To identify requests that specify SSE\-KMS, you can use the **All SSE\-KMS requests** and **% all SSE\-KMS requests** metrics in Amazon S3 Storage Lens metrics\. S3 Storage Lens is a cloud\-storage analytics feature that you can use to gain organization\-wide visibility into object\-storage usage and activity\. For more information, see [ Assessing your storage activity and usage with S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html?icmpid=docs_s3_user_guide_UsingKMSEncryption.html)\. For a complete list of metrics, see [ S3 Storage Lens metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html?icmpid=docs_s3_user_guide_UsingKMSEncryption.html)\.
 
@@ -59,7 +69,7 @@ When you configure your bucket to use S3 Bucket Keys for SSE\-KMS on new objects
 
 ## Requiring server\-side encryption<a name="require-sse-kms"></a>
 
-To require server\-side encryption of all objects in a particular Amazon S3 bucket, you can use a policy\. For example, the following bucket policy denies the upload object \(`s3:PutObject`\) permission to everyone if the request does not include the `x-amz-server-side-encryption` header requesting server\-side encryption with SSE\-KMS\.
+To require server\-side encryption of all objects in a particular Amazon S3 bucket, you can use a bucket policy\. For example, the following bucket policy denies the upload object \(`s3:PutObject`\) permission to everyone if the request does not include the `x-amz-server-side-encryption` header requesting server\-side encryption with SSE\-KMS\.
 
 ```
  1. {
@@ -92,7 +102,7 @@ For a complete list of Amazon S3‐specific condition keys, see [Condition keys 
 
 An encryption context is a set of key\-value pairs that contains additional contextual information about the data\. The encryption context is not encrypted\. When an encryption context is specified for an encryption operation, Amazon S3 must specify the same encryption context for the decryption operation\. Otherwise, the decryption fails\. AWS KMS uses the encryption context as [additional authenticated data](https://docs.aws.amazon.com/crypto/latest/userguide/cryptography-concepts.html#term-aad) \(AAD\) to support [authenticated encryption](https://docs.aws.amazon.com/crypto/latest/userguide/cryptography-concepts.html#define-authenticated-encryption)\. For more information about the encryption context, see [Encryption context](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context) in the *AWS Key Management Service Developer Guide*\. 
 
-Amazon S3 automatically uses the object or bucket Amazon Resource Name \(ARN\) as the encryption context pair: 
+By default, Amazon S3 uses the object or bucket Amazon Resource Name \(ARN\) as the encryption context pair: 
 + **If you use SSE\-KMS without enabling an S3 Bucket Key**, the object ARN is used as the encryption context\.
 
   ```
@@ -124,19 +134,21 @@ When you use SSE\-KMS with the optional S3 Bucket Keys feature, the encryption c
 }
 ```
 
-## AWS Signature Version 4<a name="aws-signature-version-4-sse-kms"></a>
-
-Signature Version 4 is the process of adding authentication information to AWS requests sent by HTTP\. For security, most requests to AWS must be signed with an access key, which consists of an access key ID and secret access key\. These two keys are commonly referred to as your security credentials\. For more information, see [Authenticating Requests \(AWS Signature Version 4\)](https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html) and [Signature Version 4 signing process](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)\.
-
+## Sending requests for AWS KMS encrypted objects<a name="aws-signature-version-4-sse-kms"></a>
++ 
 **Important**  
-All GET and PUT requests for AWS KMS encrypted objects must be made using Secure Sockets Layer \(SSL\) or Transport Layer Security \(TLS\)\. Requests must also be signed using valid credentials, such as AWS Signature Version 4 \(or AWS Signature Version 2\)\.
-If your object uses SSE\-KMS, don't send encryption request headers for `GET` requests and `HEAD` requests, or you’ll get an HTTP 400 BadRequest error\.
+All `GET` and `PUT` requests for AWS KMS encrypted objects must be made using Secure Sockets Layer \(SSL\) or Transport Layer Security \(TLS\)\. Requests must also be signed using valid credentials, such as AWS Signature Version 4 \(or AWS Signature Version 2\)\.
+
+  AWS Signature Version 4 is the process of adding authentication information to AWS requests sent by HTTP\. For security, most requests to AWS must be signed with an access key, which consists of an access key ID and secret access key\. These two keys are commonly referred to as your security credentials\. For more information, see [Authenticating Requests \(AWS Signature Version 4\)](https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html) and [Signature Version 4 signing process](https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)\.
++ 
+**Important**  
+If your object uses SSE\-KMS, don't send encryption request headers for `GET` requests and `HEAD` requests\. Otherwise, you’ll get an HTTP 400 Bad Request error\.
 
 **Topics**
 + [AWS KMS keys](#aws-managed-customer-managed-keys)
 + [Amazon S3 Bucket Keys](#sse-kms-bucket-keys)
 + [Requiring server\-side encryption](#require-sse-kms)
 + [Encryption context](#encryption-context)
-+ [AWS Signature Version 4](#aws-signature-version-4-sse-kms)
++ [Sending requests for AWS KMS encrypted objects](#aws-signature-version-4-sse-kms)
 + [Specifying server\-side encryption with AWS KMS \(SSE\-KMS\)](specifying-kms-encryption.md)
 + [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)

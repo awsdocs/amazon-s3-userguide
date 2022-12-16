@@ -92,6 +92,51 @@ bool AwsDoc::S3::GetObject(const Aws::String &objectKey,
 +  For API details, see [GetObject](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/GetObject) in *AWS SDK for C\+\+ API Reference*\. 
 
 ------
+#### [ Go ]
+
+**SDK for Go V2**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3#code-examples)\. 
+  
+
+```
+// BucketBasics encapsulates the Amazon Simple Storage Service (Amazon S3) actions
+// used in the examples.
+// It contains S3Client, an Amazon S3 service client that is used to perform bucket
+// and object actions.
+type BucketBasics struct {
+	S3Client *s3.Client
+}
+
+
+
+// DownloadFile gets an object from a bucket and stores it in a local file.
+func (basics BucketBasics) DownloadFile(bucketName string, objectKey string, fileName string) error {
+	result, err := basics.S3Client.GetObject(context.TODO(), &s3.GetObjectInput{
+		Bucket: aws.String(bucketName),
+		Key:    aws.String(objectKey),
+	})
+	if err != nil {
+		log.Printf("Couldn't get object %v:%v. Here's why: %v\n", bucketName, objectKey, err)
+		return err
+	}
+	defer result.Body.Close()
+	file, err := os.Create(fileName)
+	if err != nil {
+		log.Printf("Couldn't create file %v. Here's why: %v\n", fileName, err)
+		return err
+	}
+	defer file.Close()
+	body, err := io.ReadAll(result.Body)
+	if err != nil {
+		log.Printf("Couldn't read object body from %v. Here's why: %v\n", objectKey, err)
+	}
+	_, err = file.Write(body)
+	return err
+}
+```
++  For API details, see [GetObject](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.GetObject) in *AWS SDK for Go API Reference*\. 
+
+------
 #### [ Java ]
 
 **SDK for Java 2\.x**  
@@ -472,16 +517,16 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
 
 ```
     TRY.
-        oo_result = lo_s3->getobject(           " oo_result is returned for testing purpose "
+        oo_result = lo_s3->getobject(           " oo_result is returned for testing purposes. "
                   iv_bucket = iv_bucket_name
                   iv_key = iv_object_key
                ).
         DATA(lv_object_data) = oo_result->get_body( ).
-        MESSAGE 'Object retrieved from S3 bucket' TYPE 'I'.
+        MESSAGE 'Object retrieved from S3 bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
       CATCH /aws1/cx_s3_nosuchkey.
-        MESSAGE 'Object key does not exist' TYPE 'E'.
+        MESSAGE 'Object key does not exist.' TYPE 'E'.
     ENDTRY.
 ```
 +  For API details, see [GetObject](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 

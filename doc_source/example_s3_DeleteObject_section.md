@@ -6,6 +6,151 @@ The following code examples show how to delete an S3 object\.
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+Delete an object in a non\-versioned S3 bucket\.  
+
+```
+    using System;
+    using System.Threading.Tasks;
+    using Amazon.S3;
+    using Amazon.S3.Model;
+
+    public class DeleteObject
+    {
+        /// <summary>
+        /// The Main method initializes the necessary variables and then calls
+        /// the DeleteObjectNonVersionedBucketAsync method to delete the object
+        /// named by the keyName parameter.
+        /// </summary>
+        public static async Task Main()
+        {
+            const string bucketName = "doc-example-bucket";
+            const string keyName = "testfile.txt";
+
+            // If the Amazon S3 bucket is located in an AWS Region other than the
+            // Region of the default account, define the AWS Region for the
+            // Amazon S3 bucket in your call to the AmazonS3Client constructor.
+            // For example RegionEndpoint.USWest2.
+            IAmazonS3 client = new AmazonS3Client();
+            await DeleteObjectNonVersionedBucketAsync(client, bucketName, keyName);
+        }
+
+        /// <summary>
+        /// The DeleteObjectNonVersionedBucketAsync takes care of deleting the
+        /// desired object from the named bucket.
+        /// </summary>
+        /// <param name="client">An initialized Amazon S3 client used to delete
+        /// an object from an Amazon S3 bucket.</param>
+        /// <param name="bucketName">The name of the bucket from which the
+        /// object will be deleted.</param>
+        /// <param name="keyName">The name of the object to delete.</param>
+        public static async Task DeleteObjectNonVersionedBucketAsync(IAmazonS3 client, string bucketName, string keyName)
+        {
+            try
+            {
+                var deleteObjectRequest = new DeleteObjectRequest
+                {
+                    BucketName = bucketName,
+                    Key = keyName,
+                };
+
+                Console.WriteLine($"Deleting object: {keyName}");
+                await client.DeleteObjectAsync(deleteObjectRequest);
+                Console.WriteLine($"Object: {keyName} deleted from {bucketName}.");
+            }
+            catch (AmazonS3Exception ex)
+            {
+                Console.WriteLine($"Error encountered on server. Message:'{ex.Message}' when deleting an object.");
+            }
+        }
+    }
+```
+Delete an object in a versioned S3 bucket\.  
+
+```
+    using System;
+    using System.Threading.Tasks;
+    using Amazon.S3;
+    using Amazon.S3.Model;
+
+    public class DeleteObjectVersion
+    {
+        public static async Task Main()
+        {
+            string bucketName = "doc-example-bucket";
+            string keyName = "verstioned-object.txt";
+
+            // If the AWS Region of the default user is different from the AWS
+            // Region of the Amazon S3 bucket, pass the AWS Region of the
+            // bucket region to the Amazon S3 client object's constructor.
+            // Define it like this:
+            //      RegionEndpoint bucketRegion = RegionEndpoint.USWest2;
+            IAmazonS3 client = new AmazonS3Client();
+
+            await CreateAndDeleteObjectVersionAsync(client, bucketName, keyName);
+        }
+
+        /// <summary>
+        /// This method creates and then deletes a versioned object.
+        /// </summary>
+        /// <param name="client">The initialized Amazon S3 client object used to
+        /// create and delete the object.</param>
+        /// <param name="bucketName">The name of the Amazon S3 bucket where the
+        /// object will be created and deleted.</param>
+        /// <param name="keyName">The key name of the object to create.</param>
+        public static async Task CreateAndDeleteObjectVersionAsync(IAmazonS3 client, string bucketName, string keyName)
+        {
+            try
+            {
+                // Add a sample object.
+                string versionID = await PutAnObject(client, bucketName, keyName);
+
+                // Delete the object by specifying an object key and a version ID.
+                DeleteObjectRequest request = new()
+                {
+                    BucketName = bucketName,
+                    Key = keyName,
+                    VersionId = versionID,
+                };
+
+                Console.WriteLine("Deleting an object");
+                await client.DeleteObjectAsync(request);
+            }
+            catch (AmazonS3Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// This method is used to create the temporary Amazon S3 object.
+        /// </summary>
+        /// <param name="client">The initialized Amazon S3 object which will be used
+        /// to create the temporary Amazon S3 object.</param>
+        /// <param name="bucketName">The name of the Amazon S3 bucket where the object
+        /// will be created.</param>
+        /// <param name="objectKey">The name of the Amazon S3 object co create.</param>
+        /// <returns>The Version ID of the created object.</returns>
+        public static async Task<string> PutAnObject(IAmazonS3 client, string bucketName, string objectKey)
+        {
+            PutObjectRequest request = new()
+            {
+                BucketName = bucketName,
+                Key = objectKey,
+                ContentBody = "This is the content body!",
+            };
+
+            PutObjectResponse response = await client.PutObjectAsync(request);
+            return response.VersionId;
+        }
+    }
+```
++  For API details, see [DeleteObject](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/DeleteObject) in *AWS SDK for \.NET API Reference*\. 
+
+------
 #### [ C\+\+ ]
 
 **SDK for C\+\+**  
@@ -38,26 +183,6 @@ bool AwsDoc::S3::DeleteObject(const Aws::String &objectKey,
 }
 ```
 +  For API details, see [DeleteObject](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/DeleteObject) in *AWS SDK for C\+\+ API Reference*\. 
-
-------
-#### [ Go ]
-
-**SDK for Go V2**  
- There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3#code-examples)\. 
-  
-
-```
-	// Delete a single object.
-	fmt.Println("Delete an object from a bucket")
-	_, err := client.DeleteObject(context.TODO(), &s3.DeleteObjectInput{
-		Bucket: aws.String(name),
-		Key:    aws.String("other/file.jpg"),
-	})
-	if err != nil {
-		panic("Couldn't delete object!")
-	}
-```
-+  For API details, see [DeleteObject](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.DeleteObject) in *AWS SDK for Go API Reference*\. 
 
 ------
 #### [ JavaScript ]
@@ -343,9 +468,9 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
             iv_bucket = iv_bucket_name
             iv_key = iv_object_key
         ).
-        MESSAGE 'Object deleted from S3 bucket' TYPE 'I'.
+        MESSAGE 'Object deleted from S3 bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
     ENDTRY.
 ```
 +  For API details, see [DeleteObject](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 

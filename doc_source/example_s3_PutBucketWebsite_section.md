@@ -6,6 +6,28 @@ The following code examples show how to set the website configuration for an S3 
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+  
+
+```
+                // Put the website configuration.
+                PutBucketWebsiteRequest putRequest = new PutBucketWebsiteRequest()
+                {
+                    BucketName = bucketName,
+                    WebsiteConfiguration = new WebsiteConfiguration()
+                    {
+                        IndexDocumentSuffix = indexDocumentSuffix,
+                        ErrorDocument = errorDocument,
+                    },
+                };
+                PutBucketWebsiteResponse response = await client.PutBucketWebsiteAsync(putRequest);
+```
++  For API details, see [PutBucketWebsite](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/PutBucketWebsite) in *AWS SDK for \.NET API Reference*\. 
+
+------
 #### [ C\+\+ ]
 
 **SDK for C\+\+**  

@@ -6,6 +6,68 @@ The following code examples show how to list S3 buckets\.
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+  
+
+```
+/// <summary>
+/// This example uses the AWS SDK for .NET to list the Amazon Simple Storage
+/// Service (Amazon S3) buckets belonging to the default account. This code
+/// was written using AWS SDK for .NET v3.5 and .NET Core 5.0.
+/// </summary>
+namespace ListBucketsExample
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Amazon.S3;
+    using Amazon.S3.Model;
+
+    class ListBuckets
+    {
+        private static IAmazonS3 _s3Client;
+
+        static async Task Main()
+        {
+            // The client uses the AWS Region of the default user.
+            // If the Region where the buckets were created is different,
+            // pass the Region to the client constructor. For example:
+            // _s3Client = new AmazonS3Client(RegionEndpoint.USEast1);
+            _s3Client = new AmazonS3Client();
+            var response = await GetBuckets(_s3Client);
+            DisplayBucketList(response.Buckets);
+        }
+
+        /// <summary>
+        /// Get a list of the buckets owned by the default user.
+        /// </summary>
+        /// <param name="client">An initialized Amazon S3 client object.</param>
+        /// <returns>The response from the ListingBuckets call that contains a
+        /// list of the buckets owned by the default user.</returns>
+        public static async Task<ListBucketsResponse> GetBuckets(IAmazonS3 client)
+        {
+            return await client.ListBucketsAsync();
+        }
+
+        /// <summary>
+        /// This method lists the name and creation date for the buckets in
+        /// the passed List of S3 buckets.
+        /// </summary>
+        /// <param name="bucketList">A List of S3 bucket objects.</param>
+        public static void DisplayBucketList(List<S3Bucket> bucketList)
+        {
+            bucketList
+                .ForEach(b => Console.WriteLine($"Bucket name: {b.BucketName}, created on: {b.CreationDate}"));
+        }
+    }
+}
+```
++  For API details, see [ListBuckets](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/ListBuckets) in *AWS SDK for \.NET API Reference*\. 
+
+------
 #### [ C\+\+ ]
 
 **SDK for C\+\+**  
@@ -43,15 +105,27 @@ bool AwsDoc::S3::ListBuckets(const Aws::Client::ClientConfiguration &clientConfi
   
 
 ```
-	listBucketsResult, err := client.ListBuckets(context.TODO(), &s3.ListBucketsInput{})
+// BucketBasics encapsulates the Amazon Simple Storage Service (Amazon S3) actions
+// used in the examples.
+// It contains S3Client, an Amazon S3 service client that is used to perform bucket
+// and object actions.
+type BucketBasics struct {
+	S3Client *s3.Client
+}
 
+
+
+// ListBuckets lists the buckets in the current account.
+func (basics BucketBasics) ListBuckets() ([]types.Bucket, error) {
+	result, err := basics.S3Client.ListBuckets(context.TODO(), &s3.ListBucketsInput{})
+	var buckets []types.Bucket
 	if err != nil {
-		panic("Couldn't list buckets")
+		log.Printf("Couldn't list buckets for your account. Here's why: %v\n", err)
+	} else {
+		buckets = result.Buckets
 	}
-
-	for _, bucket := range listBucketsResult.Buckets {
-		fmt.Printf("Bucket name: %s\t\tcreated at: %v\n", *bucket.Name, bucket.CreationDate)
-	}
+	return buckets, err
+}
 ```
 +  For API details, see [ListBuckets](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.ListBuckets) in *AWS SDK for Go API Reference*\. 
 

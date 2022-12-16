@@ -14,8 +14,6 @@ There are no additional charges for replicating SSE\-C objects\. For details abo
 
 ## Replicating encrypted objects \(SSE\-S3, SSE\-KMS\)<a name="replications"></a>
 
-### <a name="replication-kms-extra-permissions"></a>
-
 By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with AWS KMS keys stored in AWS KMS\. This section explains the additional configuration that you add to direct Amazon S3 to replicate these objects\. 
 
 For an example with step\-by\-step instructions, see [Replicating encrypted objects](replication-walkthrough-4.md)\. For information about creating a replication configuration, see [Replicating objects](replication.md)\. 
@@ -98,7 +96,7 @@ We recommend that you use the `s3:GetObjectVersionForReplication` action instead
 
 We recommend that you restrict these permissions only to the destination buckets and objects by using AWS KMS condition keys\. The AWS account that owns the IAM role must have permissions for these AWS KMS actions \(`kms:Encrypt` and `kms:Decrypt`\) for the KMS keys that are listed in the policy\. If the KMS keys are owned by another AWS account, the owner of the KMS keys must grant these permissions to the AWS account that owns the IAM role\. For more information about managing access to these KMS keys, see [Using IAM Policies with AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html) in the* AWS Key Management Service Developer Guide*\.
 
-### Amazon S3 Bucket Keys and replication<a name="bk-replication.title"></a>
+### Amazon S3 Bucket Keys and replication<a name="bk-replication"></a>
 
 To use replication with an S3 Bucket Key, the AWS KMS key policy for the KMS key that's used to encrypt the object replica must include `kms:Decrypt` permissions for the calling principal\. The call to `kms:Decrypt` verifies the integrity of the S3 Bucket Key before using it\. For more information, see [Using an S3 Bucket Key with replication](bucket-key.md#bucket-key-replication)\.
 

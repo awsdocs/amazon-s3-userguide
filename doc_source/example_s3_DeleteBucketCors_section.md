@@ -6,6 +6,30 @@ The following code examples show how to delete CORS rules from an S3 bucket\.
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+  
+
+```
+        /// <summary>
+        /// Deletes a CORS configuration from an Amazon S3 bucket.
+        /// </summary>
+        /// <param name="client">The initialized Amazon S3 client object used
+        /// to delete the CORS configuration from the bucket.</param>
+        private static async Task DeleteCORSConfigurationAsync(AmazonS3Client client)
+        {
+            DeleteCORSConfigurationRequest request = new()
+            {
+                BucketName = BucketName,
+            };
+            await client.DeleteCORSConfigurationAsync(request);
+        }
+```
++  For API details, see [DeleteBucketCors](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/DeleteBucketCors) in *AWS SDK for \.NET API Reference*\. 
+
+------
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  

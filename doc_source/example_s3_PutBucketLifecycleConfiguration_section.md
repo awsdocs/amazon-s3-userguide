@@ -6,6 +6,36 @@ The following code examples show how to add a lifecycle configuration to an S3 b
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+  
+
+```
+        /// <summary>
+        /// Adds lifecycle configuration information to the S3 bucket named in
+        /// the bucketName parameter.
+        /// </summary>
+        /// <param name="client">The S3 client used to call the
+        /// PutLifecycleConfigurationAsync method.</param>
+        /// <param name="bucketName">A string representing the S3 bucket to
+        /// which configuration information will be added.</param>
+        /// <param name="configuration">A LifecycleConfiguration object that
+        /// will be applied to the S3 bucket.</param>
+        public static async Task AddExampleLifecycleConfigAsync(IAmazonS3 client, string bucketName, LifecycleConfiguration configuration)
+        {
+            var request = new PutLifecycleConfigurationRequest()
+            {
+                BucketName = bucketName,
+                Configuration = configuration,
+            };
+            var response = await client.PutLifecycleConfigurationAsync(request);
+        }
+```
++  For API details, see [PutBucketLifecycleConfiguration](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/PutBucketLifecycleConfiguration) in *AWS SDK for \.NET API Reference*\. 
+
+------
 #### [ Java ]
 
 **SDK for Java 2\.x**  

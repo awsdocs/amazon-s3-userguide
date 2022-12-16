@@ -13,6 +13,7 @@ The topics in this section provide an overview of working with buckets in Amazon
 + [Buckets overview](UsingBucket.md)
 + [Bucket naming rules](bucketnamingrules.md)
 + [Creating a bucket](create-bucket-overview.md)
++ [Default settings for new S3 buckets FAQ](create-bucket-faq.md)
 + [Viewing the properties for an S3 bucket](view-bucket-properties.md)
 + [Methods for accessing a bucket](access-bucket-intro.md)
 + [Emptying a bucket](empty-bucket.md)

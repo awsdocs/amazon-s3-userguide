@@ -1,14 +1,20 @@
-# Security Best Practices for Amazon S3<a name="security-best-practices"></a>
+# Security best practices for Amazon S3<a name="security-best-practices"></a>
 
 Amazon S3 provides a number of security features to consider as you develop and implement your own security policies\. The following best practices are general guidelines and don’t represent a complete security solution\. Because these best practices might not be appropriate or sufficient for your environment, treat them as helpful considerations rather than prescriptions\. 
 
 **Topics**
-+ [Amazon S3 Preventative Security Best Practices](#security-best-practices-prevent)
-+ [Amazon S3 Monitoring and Auditing Best Practices](#security-best-practices-detect)
++ [Amazon S3 preventative security best Practices](#security-best-practices-prevent)
++ [Amazon S3 Monitoring and auditing best practices](#security-best-practices-detect)
 
-## Amazon S3 Preventative Security Best Practices<a name="security-best-practices-prevent"></a>
+## Amazon S3 preventative security best Practices<a name="security-best-practices-prevent"></a>
 
 The following best practices for Amazon S3 can help prevent security incidents\.
+
+**Disable access control lists \(ACLs\)**  
+A majority of modern use cases in Amazon S3 no longer require the use of [access control lists \(ACLs\)](acl-overview.md), and we recommend that you disable ACLs except in unusual circumstances where you must control access for each object individually\. To disable ACLs and take ownership of every object in your bucket, apply the bucket owner enforced setting for S3 Object Ownership\. When you disable ACLs, you can easily maintain a bucket with objects uploaded by different AWS accounts\. Access control for your data is based on policies, such as IAM policies, S3 bucket policies, virtual private cloud \(VPC\) endpoint policies, and AWS Organizations service control policies \(SCPs\)\.  
+Disabling ACLs simplifies permissions management and auditing\. You can disable ACLs on both newly created and already existing buckets\. In the case of an existing bucket that already has objects in it, after you disable ACLs, the object and bucket ACLs are no longer part of an access evaluation, and access is granted or denied on the basis of policies\.   
+Before you disable ACLs, we recommend that you review your bucket policy to ensure that it covers all the ways that you intend to grant access to your bucket outside of your account\. You must reset your bucket ACL to the default \(full control to the bucket owner\)\. After you disable ACLs, your bucket accepts only PUT requests that do not specify an ACL or `PUT` requests with bucket owner full control ACLs, such as the `bucket-owner-full-control` canned ACL or equivalent forms of this ACL expressed in XML\. Existing applications that support bucket owner full control ACLs see no impact\. `PUT` requests that contain other ACLs \(for example, custom grants to certain AWS accounts\) fail and return a `400` error with the error code `AccessControlListNotSupported`\.   
+For more information\. see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 
 **Ensure that your Amazon S3 buckets use the correct policies and are not publicly accessible**  
 Unless you explicitly require anyone on the internet to be able to read or write to your S3 bucket, you should ensure that your S3 bucket is not public\. The following are some of the steps you can take:  
@@ -77,7 +83,7 @@ VPC endpoints for Amazon S3 provide multiple ways to control access to your Amaz
 + You can help prevent data exfiltration by using a VPC that does not have an internet gateway\.
 For more information, see [Controlling access from VPC endpoints with bucket policies](example-bucket-policies-vpc-endpoint.md)\. 
 
-## Amazon S3 Monitoring and Auditing Best Practices<a name="security-best-practices-detect"></a>
+## Amazon S3 Monitoring and auditing best practices<a name="security-best-practices-detect"></a>
 
 The following best practices for Amazon S3 can help detect potential security weaknesses and incidents\.
 

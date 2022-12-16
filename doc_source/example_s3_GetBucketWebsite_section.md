@@ -6,6 +6,25 @@ The following code examples show how to get the website configuration for an S3 
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+  
+
+```
+                // Get the website configuration.
+                GetBucketWebsiteRequest getRequest = new GetBucketWebsiteRequest()
+                {
+                    BucketName = bucketName,
+                };
+                GetBucketWebsiteResponse getResponse = await client.GetBucketWebsiteAsync(getRequest);
+                Console.WriteLine($"Index document: {getResponse.WebsiteConfiguration.IndexDocumentSuffix}");
+                Console.WriteLine($"Error document: {getResponse.WebsiteConfiguration.ErrorDocument}");
+```
++  For API details, see [GetBucketWebsite](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/GetBucketWebsite) in *AWS SDK for \.NET API Reference*\. 
+
+------
 #### [ C\+\+ ]
 
 **SDK for C\+\+**  

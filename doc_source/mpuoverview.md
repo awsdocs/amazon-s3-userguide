@@ -110,8 +110,8 @@ You must have the necessary permissions to use the multipart upload operations\.
 
 | Action | Required permissions | 
 | --- | --- | 
-|  Create Multipart Upload  |  You must be allowed to perform the `s3:PutObject` action on an object to create multipart upload\.  The bucket owner can allow other principals to perform the `s3:PutObject` action\.  Anonymous users cannot initiate multipart uploads\. | 
-|  Initiate Multipart Upload  |  You must be allowed to perform the `s3:PutObject` action on an object to initiate multipart upload\.  The bucket owner can allow other principals to perform the `s3:PutObject` action\.  Anonymous users cannot initiate multipart uploads\. | 
+|  Create Multipart Upload  |  You must be allowed to perform the `s3:PutObject` action on an object to create multipart upload\.  The bucket owner can allow other principals to perform the `s3:PutObject` action\.   | 
+|  Initiate Multipart Upload  |  You must be allowed to perform the `s3:PutObject` action on an object to initiate multipart upload\.  The bucket owner can allow other principals to perform the `s3:PutObject` action\.   | 
 | Initiator | Container element that identifies who initiated the multipart upload\. If the initiator is an AWS account, this element provides the same information as the Owner element\. If the initiator is an IAM User, this element provides the user ARN and display name\. | 
 | Upload Part | You must be allowed to perform the `s3:PutObject` action on an object to upload a part\.  The bucket owner must allow the initiator to perform the `s3:PutObject` action on an object in order for the initiator to upload a part for that object\. | 
 | Upload Part \(Copy\) | You must be allowed to perform the `s3:PutObject` action on an object to upload a part\. Because you are uploading a part from an existing object, you must be allowed `s3:GetObject` on the source object\.  For the initiator to upload a part for an object, the owner of the bucket must allow the initiator to perform the `s3:PutObject` action on the object\. | 

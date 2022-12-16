@@ -74,15 +74,25 @@ bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName,
   
 
 ```
-	fmt.Println("Delete a bucket")
-	// Delete the bucket.
+// BucketBasics encapsulates the Amazon Simple Storage Service (Amazon S3) actions
+// used in the examples.
+// It contains S3Client, an Amazon S3 service client that is used to perform bucket
+// and object actions.
+type BucketBasics struct {
+	S3Client *s3.Client
+}
 
-	_, err = client.DeleteBucket(context.TODO(), &s3.DeleteBucketInput{
-		Bucket: aws.String(name),
-	})
+
+
+// DeleteBucket deletes a bucket. The bucket must be empty or an error is returned.
+func (basics BucketBasics) DeleteBucket(bucketName string) error {
+	_, err := basics.S3Client.DeleteBucket(context.TODO(), &s3.DeleteBucketInput{
+		Bucket: aws.String(bucketName)})
 	if err != nil {
-		panic("Couldn't delete bucket: " + err.Error())
+		log.Printf("Couldn't delete bucket %v. Here's why: %v\n", bucketName, err)
 	}
+	return err
+}
 ```
 +  For API details, see [DeleteBucket](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.DeleteBucket) in *AWS SDK for Go API Reference*\. 
 
@@ -256,9 +266,9 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
         lo_s3->deletebucket(
             iv_bucket = iv_bucket_name
         ).
-        MESSAGE 'Deleted S3 bucket' TYPE 'I'.
+        MESSAGE 'Deleted S3 bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
     ENDTRY.
 ```
 +  For API details, see [DeleteBucket](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 

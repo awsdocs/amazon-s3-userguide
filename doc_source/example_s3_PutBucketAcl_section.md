@@ -6,6 +6,50 @@ The following code examples show how to set a new access control list \(ACL\) fo
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+  
+
+```
+        /// <summary>
+        /// Creates an Amazon S3 bucket with an ACL to control access to the
+        /// bucket and the objects stored in it.
+        /// </summary>
+        /// <param name="client">The initialized client object used to create
+        /// an Amazon S3 bucket, with an ACL applied to the bucket.
+        /// </param>
+        /// <param name="region">The AWS Region where the bucket will be created.</param>
+        /// <param name="newBucketName">The name of the bucket to create.</param>
+        /// <returns>A boolean value indicating success or failure.</returns>
+        public static async Task<bool> CreateBucketUseCannedACLAsync(IAmazonS3 client, S3Region region, string newBucketName)
+        {
+            try
+            {
+                // Create a new Amazon S3 bucket with Canned ACL.
+                var putBucketRequest = new PutBucketRequest()
+                {
+                    BucketName = newBucketName,
+                    BucketRegion = region,
+                    CannedACL = S3CannedACL.LogDeliveryWrite,
+                };
+
+                PutBucketResponse putBucketResponse = await client.PutBucketAsync(putBucketRequest);
+
+                return putBucketResponse.HttpStatusCode == System.Net.HttpStatusCode.OK;
+            }
+            catch (AmazonS3Exception ex)
+            {
+                Console.WriteLine($"Amazon S3 error: {ex.Message}");
+            }
+
+            return false;
+        }
+```
++  For API details, see [PutBucketAcl](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/PutBucketAcl) in *AWS SDK for \.NET API Reference*\. 
+
+------
 #### [ Java ]
 
 **SDK for Java 2\.x**  

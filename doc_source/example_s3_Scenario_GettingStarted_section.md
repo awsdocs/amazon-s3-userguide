@@ -16,7 +16,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 #### [ \.NET ]
 
 **AWS SDK for \.NET**  
- There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3/S3_Basics#code-examples)\. 
   
 
 ```
@@ -437,28 +437,394 @@ bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName, Aws::S3::S3Client &
 #### [ Go ]
 
 **SDK for Go V2**  
- There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3/common#code-examples)\. 
-  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3#code-examples)\. 
+Define a struct that wraps bucket and object actions used by the scenario\.  
 
 ```
-	// This bucket name is 100% unique.
-	// Remember that bucket names must be globally unique among all buckets.
+// BucketBasics encapsulates the Amazon Simple Storage Service (Amazon S3) actions
+// used in the examples.
+// It contains S3Client, an Amazon S3 service client that is used to perform bucket
+// and object actions.
+type BucketBasics struct {
+	S3Client *s3.Client
+}
 
-	myBucketName := "mybucket-" + (xid.New().String())
-	fmt.Printf("Bucket name: %v\n", myBucketName)
 
-	cfg, err := config.LoadDefaultConfig(context.TODO())
 
+// ListBuckets lists the buckets in the current account.
+func (basics BucketBasics) ListBuckets() ([]types.Bucket, error) {
+	result, err := basics.S3Client.ListBuckets(context.TODO(), &s3.ListBucketsInput{})
+	var buckets []types.Bucket
 	if err != nil {
-		panic("Failed to load configuration")
+		log.Printf("Couldn't list buckets for your account. Here's why: %v\n", err)
+	} else {
+		buckets = result.Buckets
+	}
+	return buckets, err
+}
+
+
+
+// BucketExists checks whether a bucket exists in the current account.
+func (basics BucketBasics) BucketExists(bucketName string) (bool, error) {
+	_, err := basics.S3Client.HeadBucket(context.TODO(), &s3.HeadBucketInput{
+		Bucket: aws.String(bucketName),
+	})
+	exists := true
+	if err != nil {
+		var apiError smithy.APIError
+		if errors.As(err, &apiError) {
+			switch apiError.(type) {
+			case *types.NotFound:
+				log.Printf("Bucket %v is available.\n", bucketName)
+				exists = false
+				err = nil
+			default:
+				log.Printf("Either you don't have access to bucket %v or another error occurred. "+
+					"Here's what happened: %v\n", bucketName, err)
+			}
+		}
+	} else {
+		log.Printf("Bucket %v exists and you already own it.", bucketName)
 	}
 
-	s3client := s3.NewFromConfig(cfg)
+	return exists, err
+}
 
-	MakeBucket(*s3client, myBucketName)
-	BucketOps(*s3client, myBucketName)
-	AccountBucketOps(*s3client, myBucketName)
-	BucketDelOps(*s3client, myBucketName)
+
+
+// CreateBucket creates a bucket with the specified name in the specified Region.
+func (basics BucketBasics) CreateBucket(name string, region string) error {
+	_, err := basics.S3Client.CreateBucket(context.TODO(), &s3.CreateBucketInput{
+		Bucket: aws.String(name),
+		CreateBucketConfiguration: &types.CreateBucketConfiguration{
+			LocationConstraint: types.BucketLocationConstraint(region),
+		},
+	})
+	if err != nil {
+		log.Printf("Couldn't create bucket %v in Region %v. Here's why: %v\n",
+			name, region, err)
+	}
+	return err
+}
+
+
+
+// UploadFile reads from a file and puts the data into an object in a bucket.
+func (basics BucketBasics) UploadFile(bucketName string, objectKey string, fileName string) error {
+	file, err := os.Open(fileName)
+	if err != nil {
+		log.Printf("Couldn't open file %v to upload. Here's why: %v\n", fileName, err)
+	} else {
+		defer file.Close()
+		_, err := basics.S3Client.PutObject(context.TODO(), &s3.PutObjectInput{
+			Bucket: aws.String(bucketName),
+			Key:    aws.String(objectKey),
+			Body:   file,
+		})
+		if err != nil {
+			log.Printf("Couldn't upload file %v to %v:%v. Here's why: %v\n",
+				fileName, bucketName, objectKey, err)
+		}
+	}
+	return err
+}
+
+
+
+// UploadLargeObject uses an upload manager to upload data to an object in a bucket.
+// The upload manager breaks large data into parts and uploads the parts concurrently.
+func (basics BucketBasics) UploadLargeObject(bucketName string, objectKey string, largeObject []byte) error {
+	largeBuffer := bytes.NewReader(largeObject)
+	var partMiBs int64 = 10
+	uploader := manager.NewUploader(basics.S3Client, func(u *manager.Uploader) {
+		u.PartSize = partMiBs * 1024 * 1024
+	})
+	_, err := uploader.Upload(context.TODO(), &s3.PutObjectInput{
+		Bucket: aws.String(bucketName),
+		Key:    aws.String(objectKey),
+		Body:   largeBuffer,
+	})
+	if err != nil {
+		log.Printf("Couldn't upload large object to %v:%v. Here's why: %v\n",
+			bucketName, objectKey, err)
+	}
+
+	return err
+}
+
+
+
+// DownloadFile gets an object from a bucket and stores it in a local file.
+func (basics BucketBasics) DownloadFile(bucketName string, objectKey string, fileName string) error {
+	result, err := basics.S3Client.GetObject(context.TODO(), &s3.GetObjectInput{
+		Bucket: aws.String(bucketName),
+		Key:    aws.String(objectKey),
+	})
+	if err != nil {
+		log.Printf("Couldn't get object %v:%v. Here's why: %v\n", bucketName, objectKey, err)
+		return err
+	}
+	defer result.Body.Close()
+	file, err := os.Create(fileName)
+	if err != nil {
+		log.Printf("Couldn't create file %v. Here's why: %v\n", fileName, err)
+		return err
+	}
+	defer file.Close()
+	body, err := io.ReadAll(result.Body)
+	if err != nil {
+		log.Printf("Couldn't read object body from %v. Here's why: %v\n", objectKey, err)
+	}
+	_, err = file.Write(body)
+	return err
+}
+
+
+
+// DownloadLargeObject uses a download manager to download an object from a bucket.
+// The download manager gets the data in parts and writes them to a buffer until all of
+// the data has been downloaded.
+func (basics BucketBasics) DownloadLargeObject(bucketName string, objectKey string) ([]byte, error) {
+	var partMiBs int64 = 10
+	downloader := manager.NewDownloader(basics.S3Client, func(d *manager.Downloader) {
+		d.PartSize = partMiBs * 1024 * 1024
+	})
+	buffer := manager.NewWriteAtBuffer([]byte{})
+	_, err := downloader.Download(context.TODO(), buffer, &s3.GetObjectInput{
+		Bucket: aws.String(bucketName),
+		Key:    aws.String(objectKey),
+	})
+	if err != nil {
+		log.Printf("Couldn't download large object from %v:%v. Here's why: %v\n",
+			bucketName, objectKey, err)
+	}
+	return buffer.Bytes(), err
+}
+
+
+
+// CopyToFolder copies an object in a bucket to a subfolder in the same bucket.
+func (basics BucketBasics) CopyToFolder(bucketName string, objectKey string, folderName string) error {
+	_, err := basics.S3Client.CopyObject(context.TODO(), &s3.CopyObjectInput{
+		Bucket:     aws.String(bucketName),
+		CopySource: aws.String(fmt.Sprintf("%v/%v", bucketName, objectKey)),
+		Key:        aws.String(fmt.Sprintf("%v/%v", folderName, objectKey)),
+	})
+	if err != nil {
+		log.Printf("Couldn't copy object from %v:%v to %v:%v/%v. Here's why: %v\n",
+			bucketName, objectKey, bucketName, folderName, objectKey, err)
+	}
+	return err
+}
+
+
+
+// ListObjects lists the objects in a bucket.
+func (basics BucketBasics) ListObjects(bucketName string) ([]types.Object, error) {
+	result, err := basics.S3Client.ListObjectsV2(context.TODO(), &s3.ListObjectsV2Input{
+		Bucket: aws.String(bucketName),
+	})
+	var contents []types.Object
+	if err != nil {
+		log.Printf("Couldn't list objects in bucket %v. Here's why: %v\n", bucketName, err)
+	} else {
+		contents = result.Contents
+	}
+	return contents, err
+}
+
+
+
+// DeleteObjects deletes a list of objects from a bucket.
+func (basics BucketBasics) DeleteObjects(bucketName string, objectKeys []string) error {
+	var objectIds []types.ObjectIdentifier
+	for _, key := range objectKeys {
+		objectIds = append(objectIds, types.ObjectIdentifier{Key: aws.String(key)})
+	}
+	_, err := basics.S3Client.DeleteObjects(context.TODO(), &s3.DeleteObjectsInput{
+		Bucket: aws.String(bucketName),
+		Delete: &types.Delete{Objects: objectIds},
+	})
+	if err != nil {
+		log.Printf("Couldn't delete objects from bucket %v. Here's why: %v\n", bucketName, err)
+	}
+	return err
+}
+
+
+
+// DeleteBucket deletes a bucket. The bucket must be empty or an error is returned.
+func (basics BucketBasics) DeleteBucket(bucketName string) error {
+	_, err := basics.S3Client.DeleteBucket(context.TODO(), &s3.DeleteBucketInput{
+		Bucket: aws.String(bucketName)})
+	if err != nil {
+		log.Printf("Couldn't delete bucket %v. Here's why: %v\n", bucketName, err)
+	}
+	return err
+}
+```
+Run an interactive scenario that shows you how work with S3 buckets and objects\.  
+
+```
+// RunGetStartedScenario is an interactive example that shows you how to use Amazon
+// Simple Storage Service (Amazon S3) to create an S3 bucket and use it to store objects.
+//
+// 1. Create a bucket.
+// 2. Upload a local file to the bucket.
+// 3. Upload a large object to the bucket by using an upload manager.
+// 4. Download an object to a local file.
+// 5. Download a large object by using a download manager.
+// 6. Copy an object to a different folder in the bucket.
+// 7. List objects in the bucket.
+// 8. Delete all objects in the bucket.
+// 9. Delete the bucket.
+//
+// This example creates an Amazon S3 service client from the specified sdkConfig so that
+// you can replace it with a mocked or stubbed config for unit testing.
+//
+// It uses a questioner from the `demotools` package to get input during the example.
+// This package can be found in the ..\..\demotools folder of this repo.
+func RunGetStartedScenario(sdkConfig aws.Config, questioner demotools.IQuestioner) {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Something went wrong with the demo.\n", r)
+		}
+	}()
+
+	log.Println(strings.Repeat("-", 88))
+	log.Println("Welcome to the Amazon S3 getting started demo.")
+	log.Println(strings.Repeat("-", 88))
+
+	s3Client := s3.NewFromConfig(sdkConfig)
+	bucketBasics := actions.BucketBasics{S3Client: s3Client}
+
+	count := 10
+	log.Printf("Let's list up to %v buckets for your account:", count)
+	buckets, err := bucketBasics.ListBuckets()
+	if err != nil {
+		panic(err)
+	}
+	if len(buckets) == 0 {
+		log.Println("You don't have any buckets!")
+	} else {
+		if count > len(buckets) {
+			count = len(buckets)
+		}
+		for _, bucket := range buckets[:count] {
+			log.Printf("\t%v\n", *bucket.Name)
+		}
+	}
+
+	bucketName := questioner.Ask("Let's create a bucket. Enter a name for your bucket:",
+		demotools.NotEmpty{})
+	bucketExists, err := bucketBasics.BucketExists(bucketName)
+	if err != nil {
+		panic(err)
+	}
+	if !bucketExists {
+		err = bucketBasics.CreateBucket(bucketName, sdkConfig.Region)
+		if err != nil {
+			panic(err)
+		} else {
+			log.Println("Bucket created.")
+		}
+	}
+	log.Println(strings.Repeat("-", 88))
+
+	fmt.Println("Let's upload a file to your bucket.")
+	smallFile := questioner.Ask("Enter the path to a file you want to upload:",
+		demotools.NotEmpty{})
+	const smallKey = "doc-example-key"
+	err = bucketBasics.UploadFile(bucketName, smallKey, smallFile)
+	if err != nil {
+		panic(err)
+	}
+	log.Printf("Uploaded %v as %v.\n", smallFile, smallKey)
+	log.Println(strings.Repeat("-", 88))
+
+	mibs := 30
+	log.Printf("Let's create a slice of %v MiB of random bytes and upload it to your bucket. ", mibs)
+	questioner.Ask("Press Enter when you're ready.")
+	largeBytes := make([]byte, 1024*1024*mibs)
+	rand.Seed(time.Now().Unix())
+	rand.Read(largeBytes)
+	largeKey := "doc-example-large"
+	log.Println("Uploading...")
+	err = bucketBasics.UploadLargeObject(bucketName, largeKey, largeBytes)
+	if err != nil {
+		panic(err)
+	}
+	log.Printf("Uploaded %v MiB object as %v", mibs, largeKey)
+	log.Println(strings.Repeat("-", 88))
+
+	log.Printf("Let's download %v to a file.", smallKey)
+	downloadFileName := questioner.Ask("Enter a name for the downloaded file:", demotools.NotEmpty{})
+	err = bucketBasics.DownloadFile(bucketName, smallKey, downloadFileName)
+	if err != nil {
+		panic(err)
+	}
+	log.Printf("File %v downloaded.", downloadFileName)
+	log.Println(strings.Repeat("-", 88))
+
+	log.Printf("Let's download the %v MiB object.", mibs)
+	questioner.Ask("Press Enter when you're ready.")
+	log.Println("Downloading...")
+	largeDownload, err := bucketBasics.DownloadLargeObject(bucketName, largeKey)
+	if err != nil {
+		panic(err)
+	}
+	log.Printf("Downloaded %v bytes.", len(largeDownload))
+	log.Println(strings.Repeat("-", 88))
+
+	log.Printf("Let's copy %v to a folder in the same bucket.", smallKey)
+	folderName := questioner.Ask("Enter a folder name: ", demotools.NotEmpty{})
+	err = bucketBasics.CopyToFolder(bucketName, smallKey, folderName)
+	if err != nil {
+		panic(err)
+	}
+	log.Printf("Copied %v to %v/%v.\n", smallKey, folderName, smallKey)
+	log.Println(strings.Repeat("-", 88))
+
+	log.Println("Let's list the objects in your bucket.")
+	questioner.Ask("Press Enter when you're ready.")
+	objects, err := bucketBasics.ListObjects(bucketName)
+	if err != nil {
+		panic(err)
+	}
+	log.Printf("Found %v objects.\n", len(objects))
+	var objKeys []string
+	for _, object := range objects {
+		objKeys = append(objKeys, *object.Key)
+		log.Printf("\t%v\n", *object.Key)
+	}
+	log.Println(strings.Repeat("-", 88))
+
+	if questioner.AskBool("Do you want to delete your bucket and all of its "+
+		"contents? (y/n)", "y") {
+		log.Println("Deleting objects.")
+		err = bucketBasics.DeleteObjects(bucketName, objKeys)
+		if err != nil {
+			panic(err)
+		}
+		log.Println("Deleting bucket.")
+		err = bucketBasics.DeleteBucket(bucketName)
+		if err != nil {
+			panic(err)
+		}
+		log.Printf("Deleting downloaded file %v.\n", downloadFileName)
+		err = os.Remove(downloadFileName)
+		if err != nil {
+			panic(err)
+		}
+	} else {
+		log.Println("Okay. Don't forget to delete objects from your bucket to avoid charges.")
+	}
+	log.Println(strings.Repeat("-", 88))
+
+	log.Println("Thanks for watching!")
+	log.Println(strings.Repeat("-", 88))
+}
 ```
 + For API details, see the following topics in *AWS SDK for Go API Reference*\.
   + [CopyObject](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.CopyObject)
@@ -1809,22 +2175,22 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
     DATA(lo_session) = /aws1/cl_rt_session_aws=>create( cv_pfl ).
     DATA(lo_s3) = /aws1/cl_s3_factory=>create( lo_session ).
 
-    " Create S3 Bucket "
+    " Create an Amazon Simple Storage Service (Amazon S3) bucket. "
     TRY.
         lo_s3->createbucket(
             iv_bucket = iv_bucket_name
         ).
-        MESSAGE 'S3 bucket created' TYPE 'I'.
+        MESSAGE 'S3 bucket created.' TYPE 'I'.
       CATCH /aws1/cx_s3_bucketalrdyexists.
-        MESSAGE 'Bucket name already exists' TYPE 'E'.
+        MESSAGE 'Bucket name already exists.' TYPE 'E'.
       CATCH /aws1/cx_s3_bktalrdyownedbyyou.
-        MESSAGE 'Bucket already exist and is owned by you' TYPE 'E'.
+        MESSAGE 'Bucket already exists and is owned by you.' TYPE 'E'.
     ENDTRY.
 
 
-    "Upload an object to a S3 bucket"
+    "Upload an object to an S3 bucket."
     TRY.
-        "Get contents of file from application server"
+        "Get contents of file from application server."
         DATA lv_file_content TYPE xstring.
         OPEN DATASET iv_key FOR INPUT IN BINARY MODE.
         READ DATASET iv_key INTO lv_file_content.
@@ -1835,47 +2201,47 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
             iv_key = iv_key
             iv_body = lv_file_content
         ).
-        MESSAGE 'Object uploaded to S3 bucket' TYPE 'I'.
+        MESSAGE 'Object uploaded to S3 bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
     ENDTRY.
 
-    " Get an object from a bucket "
+    " Get an object from a bucket. "
     TRY.
         DATA(lo_result) = lo_s3->getobject(
                    iv_bucket = iv_bucket_name
                    iv_key = iv_key
                 ).
         DATA(lv_object_data) = lo_result->get_body( ).
-        MESSAGE 'Object retrieved from S3 bucket' TYPE 'I'.
+        MESSAGE 'Object retrieved from S3 bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
       CATCH /aws1/cx_s3_nosuchkey.
-        MESSAGE 'Object key does not exist' TYPE 'E'.
+        MESSAGE 'Object key does not exist.' TYPE 'E'.
     ENDTRY.
 
-    " Copy an object to a subfolder in a bucket "
+    " Copy an object to a subfolder in a bucket. "
     TRY.
         lo_s3->copyobject(
           iv_bucket = iv_bucket_name
           iv_key = |{ iv_copy_to_folder }/{ iv_key }|
           iv_copysource = |{ iv_bucket_name }/{ iv_key }|
         ).
-        MESSAGE 'Object copied to a subfolder' TYPE 'I'.
+        MESSAGE 'Object copied to a subfolder.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
       CATCH /aws1/cx_s3_nosuchkey.
-        MESSAGE 'Object key does not exist' TYPE 'E'.
+        MESSAGE 'Object key does not exist.' TYPE 'E'.
     ENDTRY.
 
-    " List objects in the bucket "
+    " List objects in the bucket. "
     TRY.
         DATA(lo_list) = lo_s3->listobjects(
            iv_bucket = iv_bucket_name
          ).
-        MESSAGE 'Retrieved list of object(s) in S3 bucket' TYPE 'I'.
+        MESSAGE 'Retrieved list of objects in S3 bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
     ENDTRY.
     DATA text TYPE string VALUE 'Object List - '.
     DATA lv_object_key TYPE /aws1/s3_objectkey.
@@ -1885,7 +2251,7 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
     ENDLOOP.
     MESSAGE text TYPE'I'.
 
-    " Delete the objects in a bucket "
+    " Delete the objects in a bucket. "
     TRY.
         lo_s3->deleteobject(
             iv_bucket = iv_bucket_name
@@ -1895,20 +2261,20 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
             iv_bucket = iv_bucket_name
             iv_key = |{ iv_copy_to_folder }/{ iv_key }|
         ).
-        MESSAGE 'Object(s) deleted from S3 bucket' TYPE 'I'.
+        MESSAGE 'Objects deleted from S3 bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
     ENDTRY.
 
 
-    " Delete the bucket "
+    " Delete the bucket. "
     TRY.
         lo_s3->deletebucket(
             iv_bucket = iv_bucket_name
         ).
-        MESSAGE 'Deleted S3 bucket' TYPE 'I'.
+        MESSAGE 'Deleted S3 bucket.' TYPE 'I'.
       CATCH /aws1/cx_s3_nosuchbucket.
-        MESSAGE 'Bucket does not exist' TYPE 'E'.
+        MESSAGE 'Bucket does not exist.' TYPE 'E'.
     ENDTRY.
 ```
 + For API details, see the following topics in *AWS SDK for SAP ABAP API reference*\.

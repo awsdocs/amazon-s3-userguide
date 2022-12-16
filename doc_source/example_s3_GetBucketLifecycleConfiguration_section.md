@@ -1,9 +1,38 @@
 # Get the lifecycle configuration of an Amazon S3 bucket using an AWS SDK<a name="example_s3_GetBucketLifecycleConfiguration_section"></a>
 
-The following code example shows how to get the lifecycle configuration of an S3 bucket\.
+The following code examples show how to get the lifecycle configuration of an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
+------
+#### [ \.NET ]
+
+**AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/S3#code-examples)\. 
+  
+
+```
+        /// <summary>
+        /// Returns a configuration object for the supplied bucket name.
+        /// </summary>
+        /// <param name="client">The S3 client object used to call
+        /// the GetLifecycleConfigurationAsync method.</param>
+        /// <param name="bucketName">The name of the S3 bucket for which a
+        /// configuration will be created.</param>
+        /// <returns>Returns a new LifecycleConfiguration object.</returns>
+        public static async Task<LifecycleConfiguration> RetrieveLifecycleConfigAsync(IAmazonS3 client, string bucketName)
+        {
+            var request = new GetLifecycleConfigurationRequest()
+            {
+                BucketName = bucketName,
+            };
+            var response = await client.GetLifecycleConfigurationAsync(request);
+            var configuration = response.Configuration;
+            return configuration;
+        }
+```
++  For API details, see [GetBucketLifecycleConfiguration](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/GetBucketLifecycleConfiguration) in *AWS SDK for \.NET API Reference*\. 
 
 ------
 #### [ Python ]

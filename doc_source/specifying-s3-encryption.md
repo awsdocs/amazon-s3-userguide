@@ -8,7 +8,7 @@ For a sample of how to copy an object without encryption, see [Copying objects](
 
 ## Using the S3 console<a name="add-object-encryption-s3"></a>
 
- This topic describes how to set or change the type of encryption an object using the AWS Management Console\. When you copy and object using the console, it copies the object as is\. That means if the source is encrypted, the target object is also encrypted\. The console also allows you to add or change encryption for an object\. 
+ This topic describes how to set or change the type of encryption an object using the AWS Management Console\. When you copy an object using the console, it copies the object as is\. That means if the source is encrypted, the target object is also encrypted\. The console also allows you to add or change encryption for an object\. 
 
 **Note**  
 If you change an object's encryption, a new object is created to replace the old one\. If S3 Versioning is enabled, a new version of the object is created, and the existing object becomes an older version\. The role that changes the property also becomes the owner of the new object or \(object version\)\. 
@@ -75,7 +75,7 @@ When you use the AWS SDK for Java to upload an object, you can use server\-side 
 
 You can also request server\-side encryption when uploading objects with the multipart upload API: 
 + When using the high\-level multipart upload API, you use the `TransferManager` methods to apply server\-side encryption to objects as you upload them\. You can use any of the upload methods that take `ObjectMetadata` as a parameter\. For more information, see [Uploading an object using multipart upload](mpu-upload-object.md)\.
-+ When using the low\-level multipart upload API, you specify server\-side encryption when you initiate the multipart upload\. You add the `ObjectMetadata` property by calling the `InitiateMultipartUploadRequest.setObjectMetadata()` method\. For more information, see [Using the AWS SDKs \(low\-level\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
++ When using the low\-level multipart upload API, you specify server\-side encryption when you initiate the multipart upload\. You add the `ObjectMetadata` property by calling the `InitiateMultipartUploadRequest.setObjectMetadata()` method\. For more information, see [Using the AWS SDKs \(low\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
 
 You can't directly change the encryption state of an object \(encrypting an unencrypted object or decrypting an encrypted object\)\. To change an object's encryption state, you make a copy of the object, specifying the desired encryption state for the copy, and then delete the original object\. Amazon S3 encrypts the copied object only if you explicitly request server\-side encryption\. To request encryption of the copied object through the Java API, use the `ObjectMetadata` property to specify server\-side encryption in the `CopyObjectRequest`\.
 
@@ -299,7 +299,7 @@ $result = $s3->putObject([
 In response, Amazon S3 returns the `x-amz-server-side-encryption` header with the value of the encryption algorithm that was used to encrypt your object's data\. 
 
 When you upload large objects using the multipart upload API, you can specify server\-side encryption for the objects that you are uploading, as follows: 
-+ When using the low\-level multipart upload API, specify server\-side encryption when you call the [ Aws\\S3\\S3Client::createMultipartUpload\(\)](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#createmultipartupload) method\. To add the `x-amz-server-side-encryption` request header to your request, specify the `array` parameter's `ServerSideEncryption` key with the value `AES256`\. For more information about the low\-level multipart upload API, see [Using the AWS SDKs \(low\-level\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
++ When using the low\-level multipart upload API, specify server\-side encryption when you call the [ Aws\\S3\\S3Client::createMultipartUpload\(\)](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#createmultipartupload) method\. To add the `x-amz-server-side-encryption` request header to your request, specify the `array` parameter's `ServerSideEncryption` key with the value `AES256`\. For more information about the low\-level multipart upload API, see [Using the AWS SDKs \(low\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
 + When using the high\-level multipart upload API, specify server\-side encryption using the `ServerSideEncryption` parameter of the [CreateMultipartUpload](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#createmultipartupload) method\. For an example of using the `setOption()` method with the high\-level multipart upload API, see [Uploading an object using multipart upload](mpu-upload-object.md)\.
 
 To determine the encryption state of an existing object, retrieve the object metadata by calling the [Aws\\S3\\S3Client::headObject\(\)](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#headobject) method as shown in the following PHP code example\.

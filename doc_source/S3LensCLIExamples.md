@@ -44,8 +44,8 @@ Additional charges apply for advanced metrics and recommendations\. For more inf
       "ActivityMetrics": {
         "IsEnabled":true //Mark this as false if you want only free metrics.
       },
-      "ActivityMetrics": {
-        "IsEnabled":true //Mark this as false if you want only free metrics.
+      "AdvancedDataProtectionMetrics": {
+      "IsEnabled":true //Mark this as false if you want only free metrics.
       },
       "AdvancedCostOptimizationMetrics": {
         "IsEnabled":true //Mark this as false if you want only free metrics.

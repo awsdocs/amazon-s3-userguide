@@ -4,7 +4,7 @@
 
 You can use Amazon S3 Inventory to create an inventory report and use the report to create a list of objects to copy with S3 Batch Operations\. For more information about using a CSV manifest in the source or destination account, see [Using a CSV manifest stored in the source account to copy objects across AWS accounts](specify-batchjob-manifest-xaccount-csv.md)\.
 
-Amazon S3 Inventory generates inventories of the objects in a bucket\. The resulting list is published to an output file\. The bucket that is inventoried is called the *source bucket*, and the bucket where the inventory report file is stored is called the *destination bucket*\.
+Amazon S3 Inventory generates inventories of the objects in a bucket\. The resulting list is published to an output file\. The bucket that is inventoried is called the *source bucket*, and the bucket where the inventory report file is stored is called the *destination bucket*\. 
 
 The Amazon S3 Inventory report can be configured to be delivered to another AWS account\. This allows S3 Batch Operations to read the inventory report when the job is created in the destination account\.
 
@@ -26,7 +26,7 @@ The following console procedure contains the high\-level steps for setting up pe
 
    Configure an inventory list for a source bucket\. When you do this, you specify the destination bucket where you want the list to be stored\. The inventory report for the source bucket is published to the destination bucket\. In this procedure, the *source account* is the account that owns the source bucket\.
 
-   For information about how to use the console to configure an inventory, see [Configuring Amazon S3 Inventory](configure-inventory.md)\.
+   For information about how to use the console to configure an inventory or how to encrypt an inventory list file, see [Configuring Amazon S3 Inventory](configure-inventory.md)\.
 
    Choose **CSV** for the output format\.
 

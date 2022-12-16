@@ -1,9 +1,55 @@
 # Determine the existence of an Amazon S3 bucket using an AWS SDK<a name="example_s3_HeadBucket_section"></a>
 
-The following code example shows how to determine the existence of an S3 bucket\.
+The following code examples show how to determine the existence of an S3 bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
+------
+#### [ Go ]
+
+**SDK for Go V2**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3#code-examples)\. 
+  
+
+```
+// BucketBasics encapsulates the Amazon Simple Storage Service (Amazon S3) actions
+// used in the examples.
+// It contains S3Client, an Amazon S3 service client that is used to perform bucket
+// and object actions.
+type BucketBasics struct {
+	S3Client *s3.Client
+}
+
+
+
+// BucketExists checks whether a bucket exists in the current account.
+func (basics BucketBasics) BucketExists(bucketName string) (bool, error) {
+	_, err := basics.S3Client.HeadBucket(context.TODO(), &s3.HeadBucketInput{
+		Bucket: aws.String(bucketName),
+	})
+	exists := true
+	if err != nil {
+		var apiError smithy.APIError
+		if errors.As(err, &apiError) {
+			switch apiError.(type) {
+			case *types.NotFound:
+				log.Printf("Bucket %v is available.\n", bucketName)
+				exists = false
+				err = nil
+			default:
+				log.Printf("Either you don't have access to bucket %v or another error occurred. "+
+					"Here's what happened: %v\n", bucketName, err)
+			}
+		}
+	} else {
+		log.Printf("Bucket %v exists and you already own it.", bucketName)
+	}
+
+	return exists, err
+}
+```
++  For API details, see [HeadBucket](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.HeadBucket) in *AWS SDK for Go API Reference*\. 
 
 ------
 #### [ Python ]

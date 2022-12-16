@@ -104,7 +104,6 @@ The following service control policy requires all new access points to be create
     "Statement": [
     {
         "Effect": "Deny",
-        "Principal": "*",
         "Action": "s3:CreateAccessPoint",
         "Resource": "*",
         "Condition": {

@@ -387,6 +387,287 @@ Download contents of an S3 bucket\.
             return false;
         }
 ```
+Track the progress of an upload using the TransferUtility\.  
+
+```
+    using System;
+    using System.Threading.Tasks;
+    using Amazon.S3;
+    using Amazon.S3.Transfer;
+
+    public class TrackMPUUsingHighLevelAPI
+    {
+        public static async Task Main()
+        {
+            string bucketName = "doc-example-bucket";
+            string keyName = "sample_pic.png";
+            string path = "filepath/directory/";
+            string filePath = $"{path}{keyName}";
+
+            // If the AWS Region defined for your default user is different
+            // from the Region where your Amazon S3 bucket is located,
+            // pass the Region name to the Amazon S3 client object's constructor.
+            // For example: RegionEndpoint.USWest2 or RegionEndpoint.USEast2.
+            IAmazonS3 client = new AmazonS3Client();
+
+            await TrackMPUAsync(client, bucketName, filePath, keyName);
+        }
+
+        /// <summary>
+        /// Starts an Amazon S3 multipart upload and assigns an event handler to
+        /// track the progress of the upload.
+        /// </summary>
+        /// <param name="client">The initialized Amazon S3 client object used to
+        /// perform the multipart upload.</param>
+        /// <param name="bucketName">The name of the bucket to which to upload
+        /// the file.</param>
+        /// <param name="filePath">The path, including the file name of the
+        /// file to be uploaded to the Amazon S3 bucket.</param>
+        /// <param name="keyName">The file name to be used in the
+        /// destination Amazon S3 bucket.</param>
+        public static async Task TrackMPUAsync(
+            IAmazonS3 client,
+            string bucketName,
+            string filePath,
+            string keyName)
+        {
+            try
+            {
+                var fileTransferUtility = new TransferUtility(client);
+
+                // Use TransferUtilityUploadRequest to configure options.
+                // In this example we subscribe to an event.
+                var uploadRequest =
+                    new TransferUtilityUploadRequest
+                    {
+                        BucketName = bucketName,
+                        FilePath = filePath,
+                        Key = keyName,
+                    };
+
+                uploadRequest.UploadProgressEvent +=
+                    new EventHandler<UploadProgressArgs>(
+                        UploadRequest_UploadPartProgressEvent);
+
+                await fileTransferUtility.UploadAsync(uploadRequest);
+                Console.WriteLine("Upload completed");
+            }
+            catch (AmazonS3Exception ex)
+            {
+                Console.WriteLine($"Error:: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Event handler to check the progress of the multipart upload.
+        /// </summary>
+        /// <param name="sender">The object that raised the event.</param>
+        /// <param name="e">The object that contains multipart upload
+        /// information.</param>
+        public static void UploadRequest_UploadPartProgressEvent(object sender, UploadProgressArgs e)
+        {
+            // Process event.
+            Console.WriteLine($"{e.TransferredBytes}/{e.TotalBytes}");
+        }
+    }
+```
+Upload an object with encryption\.  
+
+```
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Security.Cryptography;
+    using System.Threading.Tasks;
+    using Amazon.S3;
+    using Amazon.S3.Model;
+
+    public class SSECLowLevelMPUcopyObject
+    {
+        public static async Task Main()
+        {
+            string existingBucketName = "doc-example-bucket";
+            string sourceKeyName = "sample_file.txt";
+            string targetKeyName = "sample_file_copy.txt";
+            string filePath = $"sample\\{targetKeyName}";
+
+            // If the AWS Region defined for your default user is different
+            // from the Region where your Amazon S3 bucket is located,
+            // pass the Region name to the Amazon S3 client object's constructor.
+            // For example: RegionEndpoint.USEast1.
+            IAmazonS3 client = new AmazonS3Client();
+
+            // Create the encryption key.
+            var base64Key = CreateEncryptionKey();
+
+            await CreateSampleObjUsingClientEncryptionKeyAsync(
+                client, existingBucketName,
+                sourceKeyName, filePath, base64Key);
+        }
+
+        /// <summary>
+        /// Creates the encryption key to use with the multipart upload.
+        /// </summary>
+        /// <returns>A string containing the base64-encoded key for encrypting
+        /// the multipart upload.</returns>
+        public static string CreateEncryptionKey()
+        {
+            Aes aesEncryption = Aes.Create();
+            aesEncryption.KeySize = 256;
+            aesEncryption.GenerateKey();
+            string base64Key = Convert.ToBase64String(aesEncryption.Key);
+            return base64Key;
+        }
+
+        /// <summary>
+        /// Creates and uploads an object using a multipart upload.
+        /// </summary>
+        /// <param name="client">The initialized Amazon S3 object used to
+        /// initialize and perform the multipart upload.</param>
+        /// <param name="existingBucketName">The name of the bucket to which
+        /// the object will be uploaded.</param>
+        /// <param name="sourceKeyName">The source object name.</param>
+        /// <param name="filePath">The location of the source object.</param>
+        /// <param name="base64Key">The encryption key to use with the upload.</param>
+        public static async Task CreateSampleObjUsingClientEncryptionKeyAsync(
+            IAmazonS3 client,
+            string existingBucketName,
+            string sourceKeyName,
+            string filePath,
+            string base64Key)
+        {
+            List<UploadPartResponse> uploadResponses = new List<UploadPartResponse>();
+
+            InitiateMultipartUploadRequest initiateRequest = new InitiateMultipartUploadRequest
+            {
+                BucketName = existingBucketName,
+                Key = sourceKeyName,
+                ServerSideEncryptionCustomerMethod = ServerSideEncryptionCustomerMethod.AES256,
+                ServerSideEncryptionCustomerProvidedKey = base64Key,
+            };
+
+            InitiateMultipartUploadResponse initResponse =
+               await client.InitiateMultipartUploadAsync(initiateRequest);
+
+            long contentLength = new FileInfo(filePath).Length;
+            long partSize = 5 * (long)Math.Pow(2, 20); // 5 MB
+
+            try
+            {
+                long filePosition = 0;
+                for (int i = 1; filePosition < contentLength; i++)
+                {
+                    UploadPartRequest uploadRequest = new UploadPartRequest
+                    {
+                        BucketName = existingBucketName,
+                        Key = sourceKeyName,
+                        UploadId = initResponse.UploadId,
+                        PartNumber = i,
+                        PartSize = partSize,
+                        FilePosition = filePosition,
+                        FilePath = filePath,
+                        ServerSideEncryptionCustomerMethod = ServerSideEncryptionCustomerMethod.AES256,
+                        ServerSideEncryptionCustomerProvidedKey = base64Key,
+                    };
+
+                    // Upload part and add response to our list.
+                    uploadResponses.Add(await client.UploadPartAsync(uploadRequest));
+
+                    filePosition += partSize;
+                }
+
+                CompleteMultipartUploadRequest completeRequest = new CompleteMultipartUploadRequest
+                {
+                    BucketName = existingBucketName,
+                    Key = sourceKeyName,
+                    UploadId = initResponse.UploadId,
+
+                };
+                completeRequest.AddPartETags(uploadResponses);
+
+                CompleteMultipartUploadResponse completeUploadResponse =
+                    await client.CompleteMultipartUploadAsync(completeRequest);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"Exception occurred: {exception.Message}");
+
+                // If there was an error, abort the multipart upload.
+                AbortMultipartUploadRequest abortMPURequest = new AbortMultipartUploadRequest
+                {
+                    BucketName = existingBucketName,
+                    Key = sourceKeyName,
+                    UploadId = initResponse.UploadId,
+                };
+
+                await client.AbortMultipartUploadAsync(abortMPURequest);
+            }
+        }
+    }
+```
+
+------
+#### [ Go ]
+
+**SDK for Go V2**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/gov2/s3#code-examples)\. 
+Upload a large object by using an upload manager to break the data into parts and upload them concurrently\.  
+
+```
+// BucketBasics encapsulates the Amazon Simple Storage Service (Amazon S3) actions
+// used in the examples.
+// It contains S3Client, an Amazon S3 service client that is used to perform bucket
+// and object actions.
+type BucketBasics struct {
+	S3Client *s3.Client
+}
+
+
+
+// UploadLargeObject uses an upload manager to upload data to an object in a bucket.
+// The upload manager breaks large data into parts and uploads the parts concurrently.
+func (basics BucketBasics) UploadLargeObject(bucketName string, objectKey string, largeObject []byte) error {
+	largeBuffer := bytes.NewReader(largeObject)
+	var partMiBs int64 = 10
+	uploader := manager.NewUploader(basics.S3Client, func(u *manager.Uploader) {
+		u.PartSize = partMiBs * 1024 * 1024
+	})
+	_, err := uploader.Upload(context.TODO(), &s3.PutObjectInput{
+		Bucket: aws.String(bucketName),
+		Key:    aws.String(objectKey),
+		Body:   largeBuffer,
+	})
+	if err != nil {
+		log.Printf("Couldn't upload large object to %v:%v. Here's why: %v\n",
+			bucketName, objectKey, err)
+	}
+
+	return err
+}
+```
+Download a large object by using a download manager to get the data in parts and download them concurrently\.  
+
+```
+// DownloadLargeObject uses a download manager to download an object from a bucket.
+// The download manager gets the data in parts and writes them to a buffer until all of
+// the data has been downloaded.
+func (basics BucketBasics) DownloadLargeObject(bucketName string, objectKey string) ([]byte, error) {
+	var partMiBs int64 = 10
+	downloader := manager.NewDownloader(basics.S3Client, func(d *manager.Downloader) {
+		d.PartSize = partMiBs * 1024 * 1024
+	})
+	buffer := manager.NewWriteAtBuffer([]byte{})
+	_, err := downloader.Download(context.TODO(), buffer, &s3.GetObjectInput{
+		Bucket: aws.String(bucketName),
+		Key:    aws.String(objectKey),
+	})
+	if err != nil {
+		log.Printf("Couldn't download large object from %v:%v. Here's why: %v\n",
+			bucketName, objectKey, err)
+	}
+	return buffer.Bytes(), err
+}
+```
 
 ------
 #### [ Python ]

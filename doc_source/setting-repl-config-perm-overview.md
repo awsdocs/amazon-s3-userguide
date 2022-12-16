@@ -117,7 +117,8 @@ The permissions described here are related to the minimum replication configurat
 
 When the source and destination buckets aren't owned by the same accounts, the owner of the destination bucket must also add a bucket policy to grant the owner of the source bucket permissions to perform replication actions, as follows\. In this policy, `DOC-EXAMPLE-BUCKET2` is the destination bucket\.
 
-If creating the role manually set the role path as `role/service-role/` per the below policy\. For more information, see [IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html) in the *IAM User Guide*\. 
+**Note**  
+The ARN format of the role may appear different\. If the role was created using the console, the ARN format is arn:aws:iam::*account\-ID*:role/service\-role/*role\-name*\. If the role was created using the AWS CLI, the ARN format is arn:aws:iam::*account\-ID*:role/*role\-name* For more information, see [IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html) in the *IAM User Guide*\. 
 
 ```
 {

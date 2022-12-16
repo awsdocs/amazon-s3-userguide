@@ -89,19 +89,30 @@ bool AwsDoc::S3::CreateBucket(const Aws::String &bucketName,
   
 
 ```
-	// Create a bucket: We're going to create a bucket to hold content.
-	// Best practice is to use the preset private access control list (ACL).
-	// If you are not creating a bucket from us-east-1, you must specify a bucket location constraint.
-	// Bucket names must conform to several rules; read more at https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
-	_, err := client.CreateBucket(context.TODO(), &s3.CreateBucketInput{
-		Bucket:                    aws.String(name),
-		ACL:                       types.BucketCannedACLPrivate,
-		CreateBucketConfiguration: &types.CreateBucketConfiguration{LocationConstraint: types.BucketLocationConstraintUsWest2},
-	})
+// BucketBasics encapsulates the Amazon Simple Storage Service (Amazon S3) actions
+// used in the examples.
+// It contains S3Client, an Amazon S3 service client that is used to perform bucket
+// and object actions.
+type BucketBasics struct {
+	S3Client *s3.Client
+}
 
+
+
+// CreateBucket creates a bucket with the specified name in the specified Region.
+func (basics BucketBasics) CreateBucket(name string, region string) error {
+	_, err := basics.S3Client.CreateBucket(context.TODO(), &s3.CreateBucketInput{
+		Bucket: aws.String(name),
+		CreateBucketConfiguration: &types.CreateBucketConfiguration{
+			LocationConstraint: types.BucketLocationConstraint(region),
+		},
+	})
 	if err != nil {
-		panic("could not create bucket: " + err.Error())
+		log.Printf("Couldn't create bucket %v in Region %v. Here's why: %v\n",
+			name, region, err)
 	}
+	return err
+}
 ```
 +  For API details, see [CreateBucket](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3#Client.CreateBucket) in *AWS SDK for Go API Reference*\. 
 
@@ -432,11 +443,11 @@ This documentation is for an SDK in developer preview release\. The SDK is subje
         lo_s3->createbucket(
             iv_bucket = iv_bucket_name
         ).
-        MESSAGE 'S3 bucket created' TYPE 'I'.
+        MESSAGE 'S3 bucket created.' TYPE 'I'.
       CATCH /aws1/cx_s3_bucketalrdyexists.
-        MESSAGE 'Bucket name already exists' TYPE 'E'.
+        MESSAGE 'Bucket name already exists.' TYPE 'E'.
       CATCH /aws1/cx_s3_bktalrdyownedbyyou.
-        MESSAGE 'Bucket already exist and is owned by you' TYPE 'E'.
+        MESSAGE 'Bucket already exists and is owned by you.' TYPE 'E'.
     ENDTRY.
 ```
 +  For API details, see [CreateBucket](https://docs.aws.amazon.com/sdk-for-sap-abap/v1/api/latest/index.html) in *AWS SDK for SAP ABAP API reference*\. 

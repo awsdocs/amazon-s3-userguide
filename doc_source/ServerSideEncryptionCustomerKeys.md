@@ -260,7 +260,7 @@ public class ServerSideEncryptionUsingClientSideEncryptionKey {
 #### [ \.NET ]
 
 **Note**  
-For examples of uploading large objects using the multipart upload API, see [Uploading an object using multipart upload](mpu-upload-object.md) and [Using the AWS SDKs \(low\-level\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
+For examples of uploading large objects using the multipart upload API, see [Uploading an object using multipart upload](mpu-upload-object.md) and [Using the AWS SDKs \(low\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
 
 For information about SSE\-C, see [Using server\-side encryption with customer\-provided keys \(SSE\-C\)](#ServerSideEncryptionCustomerKeys)\. For information about creating and testing a working sample, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\. 
 
@@ -414,7 +414,7 @@ The example in the preceding section shows how to request server\-side encryptio
 
 To upload large objects, you can use multipart upload API \(see [Uploading and copying objects using multipart upload](mpuoverview.md)\)\. You can use either high\-level or low\-level APIs to upload large objects\. These APIs support encryption\-related headers in the request\.
 + When using the high\-level `TransferManager` API, you provide the encryption\-specific headers in the `PutObjectRequest` \(see [Uploading an object using multipart upload](mpu-upload-object.md)\)\. 
-+ When using the low\-level API, you provide encryption\-related information in the `InitiateMultipartUploadRequest`, followed by identical encryption information in each `UploadPartRequest`\. You do not need to provide any encryption\-specific headers in your `CompleteMultipartUploadRequest`\. For examples, see [Using the AWS SDKs \(low\-level\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\. 
++ When using the low\-level API, you provide encryption\-related information in the `InitiateMultipartUploadRequest`, followed by identical encryption information in each `UploadPartRequest`\. You do not need to provide any encryption\-specific headers in your `CompleteMultipartUploadRequest`\. For examples, see [Using the AWS SDKs \(low\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\. 
 
 The following example uses `TransferManager` to create objects and shows how to provide SSE\-C related information\. The example does the following:
 + Creates an object using the `TransferManager.upload()` method\. In the `PutObjectRequest` instance, you provide encryption key information to request\. Amazon S3 encrypts the object using the customer\-provided key\.
@@ -517,7 +517,7 @@ To upload large objects, you can use multipart upload API \(see [Uploading and c
       ServerSideEncryptionCustomerProvidedKey = base64Key,
   };
   ```
-+ When using the low\-level API, you provide encryption\-related information in the initiate multipart upload request, followed by identical encryption information in the subsequent upload part requests\. You do not need to provide any encryption\-specific headers in your complete multipart upload request\. For examples, see [Using the AWS SDKs \(low\-level\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
++ When using the low\-level API, you provide encryption\-related information in the initiate multipart upload request, followed by identical encryption information in the subsequent upload part requests\. You do not need to provide any encryption\-specific headers in your complete multipart upload request\. For examples, see [Using the AWS SDKs \(low\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
 
   The following is a low\-level multipart upload example that makes a copy of an existing large object\. In the example, the object to be copied is stored in Amazon S3 using SSE\-C, and you want to save the target object also using SSE\-C\. In the example, you do the following:
   + Initiate a multipart upload request by providing an encryption key and related information\.

@@ -73,7 +73,7 @@ It's a best practice to create the database in the same AWS Region as your S3 bu
      's3://DOC-EXAMPLE-BUCKET1-logs/prefix/'
    ```
 **Important**  
-During the next few weeks, we are adding a new field, `aclRequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclRequired` field, the rollout hasn't been completed in your Region\. 
+During the next few weeks, we are adding a new field, `aclrequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclrequired` field, the rollout hasn't been completed in your Region\. 
 
 1. In the navigation pane, under **Database**, choose your database\.
 
@@ -84,7 +84,7 @@ During the next few weeks, we are adding a new field, `aclRequired`, to Amazon S
 **Example — Show who deleted an object and when \(timestamp, IP address, and IAM user\)**  
 
 ```
-SELECT RequestDateTime, RemoteIP, Requester, Key 
+SELECT requestdatetime, remoteip, requester, key 
 FROM s3_access_logs_db.mybucket_logs 
 WHERE key = 'images/picture.jpg' AND operation like '%DELETE%';
 ```
@@ -103,22 +103,20 @@ WHERE requester='arn:aws:iam::123456789123:user/user_name';
 SELECT *
 FROM s3_access_logs_db.mybucket_logs
 WHERE Key='prefix/images/picture.jpg' 
-    AND parse_datetime(RequestDateTime,'dd/MMM/yyyy:HH:mm:ss Z')
+    AND parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z')
     BETWEEN parse_datetime('2017-02-18:07:00:00','yyyy-MM-dd:HH:mm:ss')
     AND parse_datetime('2017-02-18:08:00:00','yyyy-MM-dd:HH:mm:ss');
 ```
 
-**Example — Show how much data was transferred by a specific IP address in a specific time period**  
+**Example — Show how much data was transferred to a specific IP address in a specific time period**  
 
 ```
-SELECT SUM(bytessent) AS uploadTotal,
-      SUM(objectsize) AS downloadTotal,
-      SUM(bytessent + objectsize) AS Total
+SELECT coalesce(SUM(bytessent), 0) AS bytessenttotal,
 FROM s3_access_logs_db.mybucket_logs
-WHERE RemoteIP='1.2.3.4'
-AND parse_datetime(RequestDateTime,'dd/MMM/yyyy:HH:mm:ss Z')
-BETWEEN parse_datetime('2017-06-01','yyyy-MM-dd')
-AND parse_datetime('2017-07-01','yyyy-MM-dd');
+WHERE remoteip='1.2.3.4'
+AND parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z')
+BETWEEN parse_datetime('2022-06-01','yyyy-MM-dd')
+AND parse_datetime('2022-07-01','yyyy-MM-dd');
 ```
 
 **Note**  
@@ -134,9 +132,9 @@ We recommend that you use AWS CloudTrail data events instead of Amazon S3 access
 **Example — Show all requesters that are sending Signature Version 2 traffic**  
 
 ```
-                   SELECT requester, Sigv, Count(Sigv) as SigCount 
+                   SELECT requester, sigv, Count(sigv) as sigcount 
                    FROM s3_access_logs_db.mybucket_logs
-                   GROUP BY requester, Sigv;
+                   GROUP BY requester, sigv;
 ```
 
 ## Identifying object access requests using Amazon S3 access logs<a name="using-s3-access-logs-to-identify-objects-access"></a>
@@ -148,10 +146,10 @@ The following Amazon Athena query example shows how to get all `PUT` object requ
 **Example — Show all requesters that are sending `PUT` object requests in a certain period**  
 
 ```
-SELECT Bucket, Requester, RemoteIP, Key, HTTPStatus, ErrorCode, RequestDateTime
+SELECT bucket_name, requester, remoteip, key, httpstatus, errorcode, requestdatetime
 FROM s3_access_logs_db
-WHERE Operation='REST.PUT.OBJECT' AND
-parse_datetime(RequestDateTime,'dd/MMM/yyyy:HH:mm:ss Z') 
+WHERE operation='REST.PUT.OBJECT' AND
+parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z') 
 BETWEEN parse_datetime('2019-07-01:00:42:42','yyyy-MM-dd:HH:mm:ss')
 AND 
 parse_datetime('2019-07-02:00:42:42','yyyy-MM-dd:HH:mm:ss')
@@ -162,10 +160,10 @@ The following Amazon Athena query example shows how to get all `GET` object requ
 **Example — Show all requesters that are sending `GET` object requests in a certain period**  
 
 ```
-SELECT Bucket, Requester, RemoteIP, Key, HTTPStatus, ErrorCode, RequestDateTime
+SELECT bucket_name, requester, remoteip, key, httpstatus, errorcode, requestdatetime
 FROM s3_access_logs_db
-WHERE Operation='REST.GET.OBJECT' AND
-parse_datetime(RequestDateTime,'dd/MMM/yyyy:HH:mm:ss Z') 
+WHERE operation='REST.GET.OBJECT' AND
+parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z') 
 BETWEEN parse_datetime('2019-07-01:00:42:42','yyyy-MM-dd:HH:mm:ss')
 AND 
 parse_datetime('2019-07-02:00:42:42','yyyy-MM-dd:HH:mm:ss')
@@ -176,10 +174,10 @@ The following Amazon Athena query example shows how to get all anonymous request
 **Example — Show all anonymous requesters that are making requests to a bucket during a certain period**  
 
 ```
-SELECT Bucket, Requester, RemoteIP, Key, HTTPStatus, ErrorCode, RequestDateTime
+SELECT bucket_name, requester, remoteip, key, httpstatus, errorcode, requestdatetime
 FROM s3_access_logs_db.mybucket_logs
-WHERE Requester IS NULL AND
-parse_datetime(RequestDateTime,'dd/MMM/yyyy:HH:mm:ss Z') 
+WHERE requester IS NULL AND
+parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z') 
 BETWEEN parse_datetime('2019-07-01:00:42:42','yyyy-MM-dd:HH:mm:ss')
 AND 
 parse_datetime('2019-07-02:00:42:42','yyyy-MM-dd:HH:mm:ss')
@@ -190,16 +188,16 @@ The following Amazon Athena query shows how to identify all requests to your S3 
 **Example — Identify all requests that required an ACL for authorization**  
 
 ```
-SELECT Bucket, Requester, Key, Operation, aclRequired, RequestDateTime
+SELECT bucket_name, requester, key, operation, aclrequired, requestdatetime
 FROM s3_access_logs_db
-WHERE aclRequired = 'Yes' AND
-parse_datetime(RequestDateTime,'dd/MMM/yyyy:HH:mm:ss Z')
+WHERE aclrequired = 'Yes' AND
+parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z')
 BETWEEN parse_datetime('2022-05-10:00:00:00','yyyy-MM-dd:HH:mm:ss')
 AND parse_datetime('2022-08-10:00:00:00','yyyy-MM-dd:HH:mm:ss')
 ```
 
 **Important**  
-During the next few weeks, we are adding a new field, `aclRequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclRequired` field, the rollout hasn't been completed in your Region\. 
+During the next few weeks, we are adding a new field, `aclrequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclrequired` field, the rollout hasn't been completed in your Region\. 
 
 **Note**  
 You can modify the date range as needed to suit your needs\.

@@ -70,10 +70,18 @@ S3 Storage Lens metrics unit multiples are written with prefix symbols\. These p
 | % unencrypted bytes | \- | The percentage of bytes that are unencrypted  | Free | Data protection | Y | sum\(UnencryptedStorageBytes\)/sum\(StorageBytes\) | 
 | Unencrypted object count  | UnencryptedObjectCount | The total count of objects that are unencrypted  | Free | Data protection | Y | sum\(ObjectCount\) \- sum\(EncryptedObjectCount\) | 
 | % unencrypted objects  | \- | The percentage of unencrypted objects  | Free | Data protection | Y | sum\(UnencryptedStorageBytes\)/sum\(ObjectCount\) | 
-| Replicated storage bytes source | ReplicatedStorageBytesSource | The total number of bytes that are replicated  | Free | Data protection | N | \- | 
-| % replicated bytes source  | \- | The percentage of total bytes that are replicated  | Free | Data protection | Y | sum\(ReplicatedStorageBytesSource\)/sum\(StorageBytes\)  | 
-| Replicated object count source  | ReplicatedObjectCountSource | The count of replicated objects  | Free | Data protection | N | \- | 
-| % replicated objects source  | \- | The percentage of total objects that are replicated  | Free | Data protection | Y | sum\(ReplicatedStorageObjectCount\)/sum\(ObjectCount\) | 
+| Replicated storage bytes source | ReplicatedStorageBytesSource | The total number of bytes that are replicated from the source bucket | Free | Data protection | N | \- | 
+| % replicated bytes source  | \- | The percentage of total bytes that are replicated from the source bucket | Free | Data protection | Y | sum\(ReplicatedStorageBytesSource\)/sum\(StorageBytes\)  | 
+| Replicated object count source  | ReplicatedObjectCountSource | The count of replicated objects from the source bucket  | Free | Data protection | N | \- | 
+| % replicated objects source  | \- | The percentage of total objects that are replicated from the source bucket | Free | Data protection | Y | sum\(ReplicatedStorageObjectCount\)/sum\(ObjectCount\) | 
+| Replication storage bytes destination | ReplicatedStorageBytes | The total number of bytes that are replicated to the destination bucket | Free | Data protection | Y | sum\(UnencryptedStorageBytes\)/sum\(ObjectCount\) | 
+| % replicated bytes destination | \- | The percentage of total bytes that are replicated to the destination bucket | Free | Data protection | Y | sum\(UnencryptedStorageBytes\)/sum\(ObjectCount\) | 
+| Replicated object count destination | ReplicatedObjectCount | The count of objects that are replicated to the destination bucket  | Free | Data protection | Y | sum\(UnencryptedStorageBytes\)/sum\(ObjectCount\) | 
+| % replicated objects destination | \- | The percentage of total objects that are replicated to the destination bucket | Free | Data protection | Y | sum\(UnencryptedStorageBytes\)/sum\(ObjectCount\) | 
+| Object Lock bytes | ObjectLockEnabledStorageBytes | The total count of Object Lock enabled storage bytes | Free | Data protection | Y | sum\(UnencryptedStorageBytes\)/sum\(ObjectCount\) | 
+| % Object Lock bytes | \- | The percentage of Object Lock enabled storage bytes | Free | Data protection | Y | sum\(UnencryptedStorageBytes\)/sum\(ObjectCount\) | 
+| Object Lock object count | ObjectLockEnabledObjectCount | The total count of Object Lock objects | Free | Data protection | Y | sum\(UnencryptedStorageBytes\)/sum\(ObjectCount\) | 
+| % Object Lock objects | \- | The percentage of total objects that have Object Lock enabled | Free | Data protection | Y | sum\(UnencryptedStorageBytes\)/sum\(ObjectCount\) | 
 | Versioning\-enabled bucket count  | VersioningEnabledBucketCount | The count of buckets that have S3 Versioning enabled | Free | Data protection | N | \- | 
 | % versioning\-enabled buckets  | \- | The percentage of buckets that have S3 Versioning enabled | Free | Data protection | Y | sum\(VersioningEnabledBucketCount\)/sum\(DistinctNumberOfBuckets\)  | 
 | MFA delete\-enabled bucket count  | MFADeleteEnabledBucketCount | The count of buckets that have MFA \(multi\-factor authentication\) delete enabled | Free | Data protection | N | \- | 

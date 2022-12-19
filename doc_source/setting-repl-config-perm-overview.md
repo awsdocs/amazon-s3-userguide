@@ -88,7 +88,8 @@ This section explains the trust policy and minimum required permissions policy\.
            "Action":[
               "s3:ReplicateObject",
               "s3:ReplicateDelete",
-              "s3:ReplicateTags"
+              "s3:ReplicateTags",
+              "s3:s3:ObjectOwnerOverrideToBucketOwner"
            ],
            "Resource":"arn:aws:s3:::DOC-EXAMPLE-BUCKET2/*"
         }
@@ -133,7 +134,8 @@ The ARN format of the role may appear different\. If the role was created using 
          },
          "Action":[
             "s3:ReplicateDelete",
-            "s3:ReplicateObject"
+            "s3:ReplicateObject",
+            "s3:ObjectOwnerOverrideToBucketOwner"
          ],
          "Resource":"arn:aws:s3:::DOC-EXAMPLE-BUCKET2/*"
       },

@@ -295,7 +295,7 @@ export const bucketParams = {
 
 export const run = async () => {
   try {
-    // Get the object} from the Amazon S3 bucket. It is returned as a ReadableStream.
+    // Get the object from the Amazon S3 bucket. It is returned as a ReadableStream.
     const data = await s3Client.send(new GetObjectCommand(bucketParams));
     // Convert the ReadableStream to a string.
     return await data.Body.transformToString();

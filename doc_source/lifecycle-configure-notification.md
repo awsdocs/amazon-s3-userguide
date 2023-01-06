@@ -2,7 +2,7 @@
 
 You can set up an Amazon S3 event notification to receive notice when Amazon S3 deletes an object or transitions it to another Amazon S3 storage class following an S3 Lifecycle rule\.
 
-By using the *LifecycleExpiration* event types you can receive notifications wheneverAmazon S3 deletes an object based on your S3 Lifecycle configuration\. The `s3:LifecycleExpiration:Delete` event type notifies you when an object in an unversioned bucket is deleted\. It also notifies you when an object version is permanently deleted by an S3 Lifecycle configuration\. The `s3:LifecycleExpiration:DeleteMarkerCreated` event type notifies you when S3 Lifecycle creates a delete marker when a current version of an object in versioned bucket is deleted\. For more information, see [Delete object version](https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjectVersions.html)\.
+By using the *LifecycleExpiration* event types you can receive notifications whenever Amazon S3 deletes an object based on your S3 Lifecycle configuration\. The `s3:LifecycleExpiration:Delete` event type notifies you when an object in an unversioned bucket is deleted\. It also notifies you when an object version is permanently deleted by an S3 Lifecycle configuration\. The `s3:LifecycleExpiration:DeleteMarkerCreated` event type notifies you when S3 Lifecycle creates a delete marker when a current version of an object in versioned bucket is deleted\. For more information, see [Delete object version](https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjectVersions.html)\.
 
 By using the *s3:LifecycleTransition* event type, you can receive notification when an object is transitioned from one Amazon S3 storage class to another by an S3 Lifecycle configuration\. 
 

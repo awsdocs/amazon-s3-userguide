@@ -211,7 +211,7 @@ func (basics BucketBasics) UploadFile(bucketName string, objectKey string, fileN
 
 **SDK for Java 2\.x**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/s3#readme)\. 
-Upload an object to a bucket\.  
+Upload a file to a bucket using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
     public static String putS3Object(S3Client s3, String bucketName, String objectKey, String objectPath) {
@@ -263,7 +263,37 @@ Upload an object to a bucket\.
         return bytesArray;
     }
 ```
-Upload an object to a bucket and set tags\.  
+Use an [S3TransferManager](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/transfer/s3/S3TransferManager.html) to [upload a file](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/transfer/s3/S3TransferManager.html#uploadFile(software.amazon.awssdk.transfer.s3.UploadFileRequest)) to a bucket\. View the [complete file](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javav2/example_code/s3/src/main/java/com/example/s3/transfermanager/UploadFile.java) and [test](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javav2/example_code/s3/src/test/java/TransferManagerTest.java)\.  
+
+```
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import software.amazon.awssdk.transfer.s3.S3TransferManager;
+import software.amazon.awssdk.transfer.s3.model.CompletedFileUpload;
+import software.amazon.awssdk.transfer.s3.model.FileUpload;
+import software.amazon.awssdk.transfer.s3.model.UploadFileRequest;
+import software.amazon.awssdk.transfer.s3.progress.LoggingTransferListener;
+
+import java.net.URL;
+import java.nio.file.Paths;
+import java.util.UUID;
+
+    public String uploadFile(S3TransferManager transferManager, String bucketName,
+                             String key, String filePath) {
+        UploadFileRequest uploadFileRequest =
+            UploadFileRequest.builder()
+                .putObjectRequest(b -> b.bucket(bucketName).key(key))
+                .addTransferListener(LoggingTransferListener.create())
+                .source(Paths.get(filePath))
+                .build();
+
+        FileUpload fileUpload = transferManager.uploadFile(uploadFileRequest);
+
+        CompletedFileUpload uploadResult = fileUpload.completionFuture().join();
+        return uploadResult.response().eTag();
+    }
+```
+Upload an object to a bucket and set tags using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
     public static void putS3ObjectTags(S3Client s3, String bucketName, String objectKey, String objectPath) {
@@ -356,7 +386,7 @@ Upload an object to a bucket and set tags\.
         }
     }
 ```
-Upload an object to a bucket and set metadata\.  
+Upload an object to a bucket and set metadata using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
     public static String putS3Object(S3Client s3, String bucketName, String objectKey, String objectPath) {
@@ -410,7 +440,7 @@ Upload an object to a bucket and set metadata\.
         return bytesArray;
     }
 ```
-Upload an object to a bucket and set an object retention value\.  
+Upload an object to a bucket and set an object retention value using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
     public static void setRentionPeriod(S3Client s3, String key, String bucket) {

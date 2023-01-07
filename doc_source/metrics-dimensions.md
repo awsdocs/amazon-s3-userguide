@@ -95,19 +95,7 @@ S3 Object Lambda includes the following request metrics\.
 
 ## Amazon S3 on Outposts metrics in CloudWatch<a name="s3-outposts-cloudwatch-metrics"></a>
 
-The `S3Outposts` namespace includes the following metrics for Amazon S3 on Outposts buckets\. You can monitor the total number of S3 on Outposts bytes provisioned, the total free bytes available for objects, and the total size of all objects for a given bucket\. 
-
-**Note**  
-S3 on Outposts supports only the following metrics, and no other Amazon S3 metrics\.  
-Because S3 on Outposts has fixed capacity, you can create CloudWatch alerts that alert you when your storage utilization exceeds a certain threshold\.
-
-
-| Metric | Description | 
-| --- | --- | 
-| OutpostTotalBytes |  The total provisioned capacity in bytes for an Outpost\.  Units: Bytes Period: 5 minutes  | 
-| OutpostFreeBytes |  The count of free bytes available on an Outpost to store customer data\. Units: Bytes Period: 5 minutes  | 
-| BucketUsedBytes |  The total size of all objects for the given bucket\. Units: Counts Period: 5 minutes  | 
-| AccountUsedBytes |  The total size of all objects for the specified Outposts account\.  Units: Bytes Period: 5 minutes  | 
+For a list of metrics in CloudWatch that are used for S3 on Outposts buckets, see [CloudWatch metrics](S3OutpostsCapacity.md#S3OutpostsCloudWatchMetrics)\.
 
 ## Amazon S3 dimensions in CloudWatch<a name="s3-cloudwatch-dimensions"></a>
 

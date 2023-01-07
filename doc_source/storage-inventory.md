@@ -58,7 +58,7 @@ The inventory list contains a list of the objects in an S3 bucket and the follow
 
 We recommend that you create a lifecycle policy that deletes old inventory lists\. For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 
-The `s3:PutInventoryConfiguration` permission allows a user to both select all the metadata fields that are listed earlier for each object when configuring an inventory list and to specify the destination bucket to store the inventory\. A user with read access to objects in the destination bucket can access all object metadata fields that are available in the inventory list\. To restrict access to an inventory report, see [Restricting access to an Amazon S3 Inventory report](example-bucket-policies.md#example-bucket-policies-use-case-10)\.
+The `s3:PutInventoryConfiguration` permission allows a user to both select all the metadata fields that are listed earlier for each object when configuring an inventory list and to specify the destination bucket to store the inventory\. A user with read access to objects in the destination bucket can access all object metadata fields that are available in the inventory list\. To restrict access to an inventory report, see [Grant permissions for S3 Inventory and S3 analytics](example-bucket-policies.md#example-bucket-policies-s3-inventory-1)\.
 
 ### Inventory consistency<a name="storage-inventory-contents-consistency"></a>
 

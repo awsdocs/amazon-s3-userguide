@@ -83,7 +83,7 @@ The Amazon S3 console shows the access patterns grouped by the predefined object
 
 You can choose to have storage class analysis export analysis reports to a comma\-separated values \(CSV\) flat file\. Reports are updated daily and are based on the object age group filters you configure\. When using the Amazon S3 console you can choose the export report option when you create a filter\. When selecting data export you specify a destination bucket and optional destination prefix where the file is written\. You can export the data to a destination bucket in a different account\. The destination bucket must be in the same region as the bucket that you configure to be analyzed\.
 
-You must create a bucket policy on the destination bucket to grant permissions to Amazon S3 to verify what AWS account owns the bucket and to write objects to the bucket in the defined location\. For an example policy, see [Granting permissions for Amazon S3 Inventory and Amazon S3 analytics](example-bucket-policies.md#example-bucket-policies-use-case-9)\.
+You must create a bucket policy on the destination bucket to grant permissions to Amazon S3 to verify what AWS account owns the bucket and to write objects to the bucket in the defined location\. For an example policy, see [Grant permissions for S3 Inventory and S3 analytics](example-bucket-policies.md#example-bucket-policies-s3-inventory-1)\.
 
 After you configure storage class analysis reports, you start getting the exported report daily after 24 hours\. After that, Amazon S3 continues monitoring and providing daily exports\. 
 

@@ -41,6 +41,6 @@ For more information about configuring replication using server\-side encryption
    }
    ```
 
-Choose the bucket and add the bucket policy\. For instructions, see [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)\.
+Choose the bucket and add the bucket policy\. For instructions, see [Adding a bucket policy by using the Amazon S3 console](add-bucket-policy.md)\.
 
 In replication, the owner of the source object owns the replica by default\. When source and destination buckets are owned by different AWS accounts, you can add optional configuration settings to change replica ownership to the AWS account that owns the destination buckets\. This includes granting the `ObjectOwnerOverrideToBucketOwner` permission\. For more information, see [Changing the replica owner](replication-change-owner.md)\.

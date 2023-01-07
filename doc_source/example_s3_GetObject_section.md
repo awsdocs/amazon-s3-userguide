@@ -141,7 +141,7 @@ func (basics BucketBasics) DownloadFile(bucketName string, objectKey string, fil
 
 **SDK for Java 2\.x**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/s3#readme)\. 
-Read data as a byte array\.  
+Read data as a byte array using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
     public static void getObjectBytes (S3Client s3, String bucketName, String keyName, String path) {
@@ -171,7 +171,41 @@ Read data as a byte array\.
         }
     }
 ```
-Read tags that belong to an object\.  
+Use an [S3TransferManager](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/transfer/s3/S3TransferManager.html) to [download an object](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/transfer/s3/S3TransferManager.html#downloadFile(software.amazon.awssdk.transfer.s3.DownloadFileRequest)) in an S3 bucket to a local file\. View the [complete file](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javav2/example_code/s3/src/main/java/com/example/s3/transfermanager/DownloadFile.java) and [test](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javav2/example_code/s3/src/test/java/TransferManagerTest.java)\.  
+
+```
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.transfer.s3.S3TransferManager;
+import software.amazon.awssdk.transfer.s3.model.CompletedFileDownload;
+import software.amazon.awssdk.transfer.s3.model.DownloadFileRequest;
+import software.amazon.awssdk.transfer.s3.model.FileDownload;
+import software.amazon.awssdk.transfer.s3.progress.LoggingTransferListener;
+
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.UUID;
+
+    public Long downloadFile(S3TransferManager transferManager, String bucketName,
+                             String key, String downloadedFileWithPath) {
+        DownloadFileRequest downloadFileRequest =
+            DownloadFileRequest.builder()
+                .getObjectRequest(b -> b.bucket(bucketName).key(key))
+                .addTransferListener(LoggingTransferListener.create())
+                .destination(Paths.get(downloadedFileWithPath))
+                .build();
+
+        FileDownload downloadFile = transferManager.downloadFile(downloadFileRequest);
+
+        CompletedFileDownload downloadResult = downloadFile.completionFuture().join();
+        logger.info("Content length [{}]", downloadResult.response().contentLength());
+        return downloadResult.response().contentLength();
+    }
+```
+Read tags that belong to an object using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
     public static void listTags(S3Client s3, String bucketName, String keyName) {
@@ -196,7 +230,7 @@ Read tags that belong to an object\.
         }
     }
 ```
-Get a URL for an object\.  
+Get a URL for an object using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
     public static void getURL(S3Client s3, String bucketName, String keyName ) {
@@ -216,7 +250,7 @@ Get a URL for an object\.
         }
     }
 ```
-Get an object by using the S3Presigner client object\.  
+Get an object by using the S3Presigner client object using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
        public static void getPresignedUrl(S3Presigner presigner, String bucketName, String keyName ) {

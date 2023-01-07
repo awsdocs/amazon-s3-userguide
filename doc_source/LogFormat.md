@@ -22,9 +22,6 @@ The following is an example log consisting of five log records\.
 **Note**  
 Any field can be set to `-` to indicate that the data was unknown or unavailable, or that the field was not applicable to this request\. 
 
-**Important**  
-During the next few weeks, we are adding a new field, `aclRequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclRequired` field, the rollout hasn't been completed in your Region\. 
-
 **Topics**
 + [Log record fields](#log-record-fields)
 + [Additional logging for copy operations](#AdditionalLoggingforCopyOperations)
@@ -244,9 +241,6 @@ A string that indicates whether the request required an access control list \(AC
 Yes
 ```
 
-**Important**  
-During the next few weeks, we are adding a new field, `aclRequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclRequired` field, the rollout hasn't been completed in your Region\.
-
 ## Additional logging for copy operations<a name="AdditionalLoggingforCopyOperations"></a>
 
 A copy operation involves a `GET` and a `PUT`\. For that reason, we log two records when performing a copy operation\. The previous section describes the fields related to the `PUT` part of the operation\. The following list describes the fields in the record that relate to the `GET` part of the copy operation\.
@@ -459,9 +453,6 @@ A string that indicates whether the request required an access control list \(AC
 ```
 Yes
 ```
-
-**Important**  
-During the next few weeks, we are adding a new field, `aclRequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclRequired` field, the rollout hasn't been completed in your Region\. 
 
 ## Custom access log information<a name="LogFormatCustom"></a>
 

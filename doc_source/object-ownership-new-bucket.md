@@ -13,7 +13,10 @@ Object Ownership has three settings that you can use to control ownership of obj
 + **Bucket owner preferred** – The bucket owner owns and has full control over new objects that other accounts write to the bucket with the `bucket-owner-full-control` canned ACL\. 
 + **Object writer \(default\)** – The AWS account that uploads an object owns the object, has full control over it, and can grant other users access to it through ACLs\.
 
-**Permissions**: To create a bucket and select a setting for Object Ownership, you must have both the `s3:CreateBucket` and `s3:PutBucketOwnershipControls` permissions\. For more information about Amazon S3 permissions, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\. 
+**Permissions**: To apply the **Bucket owner enforced** setting or the **Bucket owner preferred** setting, you must have the following permissions: `s3:CreateBucket` and `s3:PutBucketOwnershipControls`\. No additional permissions are needed when creating a bucket with the **Object writer** setting applied\. For more information about Amazon S3 permissions, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\. 
+
+**Important**  
+A majority of modern use cases in Amazon S3 no longer require the use of ACLs, and we recommend that you disable ACLs except in unusual circumstances where you need to control access for each object individually\. With Object Ownership, you can disable ACLs and rely on policies for access control\. When you disable ACLs, you can easily maintain a bucket with objects uploaded by different AWS accounts\. You, as the bucket owner, own all the objects in the bucket and can manage access to them using policies\. 
 
 ## Using the S3 console<a name="object-ownership-new-bucket-console"></a>
 
@@ -93,6 +96,9 @@ This example applies the bucket owner enforced setting for a new bucket using th
 ```
 aws s3api create-bucket --bucket  DOC-EXAMPLE-BUCKET --region us-east-1 --object-ownership BucketOwnerEnforced
 ```
+
+**Important**  
+If you don’t set Object Ownership when you create a bucket using the CLI, the default setting will be ObjectWriter \(ACLs enabled\)\.
 
 ## Using the AWS SDK for Java<a name="object-ownership-new-bucket-sdk-java"></a>
 

@@ -165,7 +165,7 @@ func (basics BucketBasics) CopyToFolder(bucketName string, objectKey string, fol
 
 **SDK for Java 2\.x**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/s3#readme)\. 
-  
+Copy an object using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
     public static String copyBucketObject (S3Client s3, String fromBucket, String objectKey, String toBucket) {
@@ -193,6 +193,39 @@ func (basics BucketBasics) CopyToFolder(bucketName string, objectKey string, fol
             System.exit(1);
         }
         return "";
+    }
+```
+Use an [S3TransferManager](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/transfer/s3/S3TransferManager.html) to [copy an object](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/transfer/s3/S3TransferManager.html#copy(software.amazon.awssdk.transfer.s3.CopyRequest)) from one bucket to another\. View the [complete file](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javav2/example_code/s3/src/main/java/com/example/s3/transfermanager/ObjectCopy.java) and [test](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javav2/example_code/s3/src/test/java/TransferManagerTest.java)\.  
+
+```
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.model.CopyObjectRequest;
+import software.amazon.awssdk.transfer.s3.S3TransferManager;
+import software.amazon.awssdk.transfer.s3.model.CompletedCopy;
+import software.amazon.awssdk.transfer.s3.model.Copy;
+import software.amazon.awssdk.transfer.s3.model.CopyRequest;
+
+import java.util.UUID;
+
+    public String copyObject(S3TransferManager transferManager, String bucketName,
+                             String key, String destinationBucket, String destinationKey){
+        CopyObjectRequest copyObjectRequest = CopyObjectRequest.builder()
+            .sourceBucket(bucketName)
+            .sourceKey(key)
+            .destinationBucket(destinationBucket)
+            .destinationKey(destinationKey)
+            .build();
+
+        CopyRequest copyRequest = CopyRequest.builder()
+            .copyObjectRequest(copyObjectRequest)
+            .build();
+
+        Copy copy = transferManager.copy(copyRequest);
+
+        CompletedCopy completedCopy = copy.completionFuture().join();
+        return completedCopy.response().copyObjectResult().eTag();
     }
 ```
 +  For API details, see [CopyObject](https://docs.aws.amazon.com/goto/SdkForJavaV2/s3-2006-03-01/CopyObject) in *AWS SDK for Java 2\.x API Reference*\. 

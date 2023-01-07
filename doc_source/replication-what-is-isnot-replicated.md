@@ -52,7 +52,7 @@ By default, Amazon S3 doesn't replicate the following:
   To learn more about the Amazon S3 Glacier service, see the [Amazon S3 Glacier Developer Guide](https://docs.aws.amazon.com/amazonglacier/latest/dev/)\.
 + Objects in the source bucket that the bucket owner doesn't have sufficient permissions to replicate\. 
 
-  For information about how an object owner can grant permissions to a bucket owner, see [Granting cross\-account permissions to upload objects while ensuring the bucket owner has full control](example-bucket-policies.md#example-bucket-policies-use-case-8)\.
+  For information about how an object owner can grant permissions to a bucket owner, see [Grant cross\-account permissions to upload objects while ensuring that the bucket owner has full control](example-bucket-policies.md#example-bucket-policies-acl-2)\.
 + Updates to bucket\-level subresources\. 
 
   For example, if you change the lifecycle configuration or add a notification configuration to your source bucket, these changes are not applied to the destination bucket\. This feature makes it possible to have different configurations on source and destination buckets\. 

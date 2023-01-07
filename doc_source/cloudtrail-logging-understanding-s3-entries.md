@@ -140,9 +140,6 @@ The following example shows a CloudTrail log entry that demonstrates the [GET Se
 }
 ```
 
-**Important**  
-During the next few weeks, we are adding a new field, `aclRequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclRequired` field, the rollout hasn't been completed in your Region\. 
-
 ## Example: Amazon S3 on Outposts log file entries<a name="cloudtrail-logging-understanding-s3outposts-entries"></a>
 
 Amazon S3 on Outposts management events are available via AWS CloudTrail\. For more information, see [Logging Amazon S3 API calls using AWS CloudTrail](cloudtrail-logging.md)\. In addition, you can optionally [enable logging for data events in AWS CloudTrail](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/enable-cloudtrail-events.html)\.

@@ -24,7 +24,7 @@ The ARN format for Amazon S3 resources reduces to the following:
 For a complete list of Amazon S3 resources, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\. 
 
 To find the ARN for an S3 bucket, you can look at the Amazon S3 console **Bucket Policy** or **CORS configuration** permissions pages\. For more information, see the following topics:
-+ [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)
++ [Adding a bucket policy by using the Amazon S3 console](add-bucket-policy.md)
 + [CORS configuration](ManageCorsUsing.md)
 
 ## Amazon S3 ARN examples<a name="s3-arn-examples"></a>

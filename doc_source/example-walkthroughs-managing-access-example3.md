@@ -84,7 +84,7 @@ Using the IAM user sign\-in URL for Account A, sign in to the AWS Management Con
 
 1. Note down the Dave credentials\. 
 
-1. In the Amazon S3 console, attach the following bucket policy to `DOC-EXAMPLE-BUCKET1` bucket\. For instructions, see [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)\. Follow the steps to add a bucket policy\. For information about how to find account IDs, see [Finding your AWS account ID](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingYourAccountIdentifiers)\. 
+1. In the Amazon S3 console, attach the following bucket policy to `DOC-EXAMPLE-BUCKET1` bucket\. For instructions, see [Adding a bucket policy by using the Amazon S3 console](add-bucket-policy.md)\. Follow the steps to add a bucket policy\. For information about how to find account IDs, see [Finding your AWS account ID](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingYourAccountIdentifiers)\. 
 
    The policy grants Account B the `s3:PutObject` and `s3:ListBucket` permissions\. The policy also grants user Dave the `s3:GetObject` permission\. 
 

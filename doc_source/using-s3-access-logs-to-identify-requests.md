@@ -72,8 +72,6 @@ It's a best practice to create the database in the same AWS Region as your S3 bu
    LOCATION
      's3://DOC-EXAMPLE-BUCKET1-logs/prefix/'
    ```
-**Important**  
-During the next few weeks, we are adding a new field, `aclrequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclrequired` field, the rollout hasn't been completed in your Region\. 
 
 1. In the navigation pane, under **Database**, choose your database\.
 
@@ -195,9 +193,6 @@ parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z')
 BETWEEN parse_datetime('2022-05-10:00:00:00','yyyy-MM-dd:HH:mm:ss')
 AND parse_datetime('2022-08-10:00:00:00','yyyy-MM-dd:HH:mm:ss')
 ```
-
-**Important**  
-During the next few weeks, we are adding a new field, `aclrequired`, to Amazon S3 server access logs and AWS CloudTrail logs\. This field will indicate if your Amazon S3 requests required an access control list \(ACL\) for authorization\. You can use this information to migrate those ACL permissions to the appropriate bucket policies and disable ACLs\. This process is currently occurring across all AWS Regions, including the AWS GovCloud \(US\) Regions and the AWS China Regions\. If you don't see the `aclrequired` field, the rollout hasn't been completed in your Region\. 
 
 **Note**  
 You can modify the date range as needed to suit your needs\.

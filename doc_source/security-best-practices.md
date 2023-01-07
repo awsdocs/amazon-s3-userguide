@@ -3,10 +3,10 @@
 Amazon S3 provides a number of security features to consider as you develop and implement your own security policies\. The following best practices are general guidelines and don’t represent a complete security solution\. Because these best practices might not be appropriate or sufficient for your environment, treat them as helpful considerations rather than prescriptions\. 
 
 **Topics**
-+ [Amazon S3 preventative security best Practices](#security-best-practices-prevent)
++ [Amazon S3 security best practices](#security-best-practices-prevent)
 + [Amazon S3 Monitoring and auditing best practices](#security-best-practices-detect)
 
-## Amazon S3 preventative security best Practices<a name="security-best-practices-prevent"></a>
+## Amazon S3 security best practices<a name="security-best-practices-prevent"></a>
 
 The following best practices for Amazon S3 can help prevent security incidents\.
 
@@ -82,6 +82,13 @@ VPC endpoints for Amazon S3 provide multiple ways to control access to your Amaz
 + You can control which VPCs or VPC endpoints have access to your S3 buckets by using S3 bucket policies\.
 + You can help prevent data exfiltration by using a VPC that does not have an internet gateway\.
 For more information, see [Controlling access from VPC endpoints with bucket policies](example-bucket-policies-vpc-endpoint.md)\. 
+
+** Use managed AWS services to receive actionable findings in your AWS accounts**  
+Managed AWS services can be enabled and integrated across multiple accounts\. After you receive your findings, take action according to your incident response policy\. For each finding, determine what your required response actions will be\.  
+To receive actionable findings in your AWS accounts, you can enable one of these managed AWS services:  
++ AWS Security Hub, which gives you aggregated visibility into your security and compliance status across multiple AWS accounts\. With Security Hub, you can perform security best practice checks, aggregate alerts, and automate remediation\. You can create custom actions, which allow a customer to manually invoke a specific response or remediation action on a specific finding\. You can then send custom actions to Amazon CloudWatch Events as a specific event pattern, allowing you to create a CloudWatch Events rule that listens for these actions and sends them to a target service, such as a Lambda function or Amazon SQSqueue\. You can then export findings to an Amazon S3 bucket, and share them in a standardized format for multiple use cases across AWS services\.
++ Amazon GuardDuty, which monitors object\-level API operations to identify potential security risks for data within your S3 buckets\. GuardDuty monitors threats against your Amazon S3 resources by analyzing CloudTrail management events and CloudTrail Amazon S3 data events\. These data sources monitor different kinds of activity, for example, data events for Amazon S3 include object\-level API operations, such as `GetObject`, `ListObjects`, and `PutObject`\. For more information, see [Amazon S3 protection in Amazon GuardDuty](https://docs.aws.amazon.com/guardduty/latest/ug/s3-protection.html) in the *Amazon GuardDuty User Guide;*\.
++ AWS Identity and Access ManagementAccess Analyzer, which reviews access to your internal AWS resources and validate where you've shared access outside of your AWS accounts\. With Access Analyzer for Amazon S3, you're alerted when your buckets are configured to allow access to anyone on the internet or other AWS accounts, including accounts outside of your organization\. For each public or shared bucket, you'll receive findings into the source and level of public or shared access\. For example, Access Analyzer for Amazon S3 might show that a bucket has read or write access provided through a bucket access control list \(ACL\), a bucket policy, a Multi\-Region Access Point policy, or an access point policy\. With these findings, you can take immediate and precise corrective action to restore your bucket access to what you intended\. For more information, see [Reviewing bucket access using Access Analyzer for Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html)\.
 
 ## Amazon S3 Monitoring and auditing best practices<a name="security-best-practices-detect"></a>
 

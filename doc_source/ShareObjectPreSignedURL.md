@@ -12,6 +12,9 @@ For more information about who can create a presigned URL, see [Who can create a
 
 You can generate a presigned URL for an object without writing any code by using the S3 console or AWS Explorer for Visual Studio\. You can also generate a presigned URL programmatically using the AWS SDKs for Java, \.NET, [Ruby](https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/S3/Presigner.html), [PHP](https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.S3.S3Client.html#_createPresignedRequest), [Node\.js](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#getSignedUrl-property), [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url), and [Go](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/s3-example-presigned-urls.html)\.
 
+**Note**  
+When you generate a presigned URL, make sure that the parameters in your request match the signature exactly\. For example, if you don't specify a content type when generating the URL, you must omit the content type when uploading an object\. Also, wildcards are not supported, and using one in your presigned URL will result in an error\.
+
 ### Using the S3 console<a name="ShareObjectPreSignedURLConsole"></a>
 
  You can use the AWS Management Console to generate a presigned URL for an object by following these steps\. 

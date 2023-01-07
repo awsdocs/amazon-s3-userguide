@@ -540,6 +540,6 @@ For backward compatibility, Amazon S3 continues to support the XML V1 replicatio
   For backward compatibility, Amazon S3 continues to support the V1 configuration\. 
 + When you delete an object from your source bucket without specifying an object version ID, Amazon S3 adds a delete marker\. If you use V1 of the replication configuration XML, Amazon S3 replicates delete markers that result from user actions\. In other words, Amazon S3 replicates the delete marker only if a user deletes an object\. If an expired object is removed by Amazon S3 \(as part of a lifecycle action\), Amazon S3 does not replicate the delete marker\. 
 
-  In V2 replication configurations, you can enable delete marker replication for tag\-based rules\. For more information, see [Replicating delete markers between buckets](delete-marker-replication.md)\. 
+  In V2 replication configurations, you can enable delete marker replication for non\-tag\-based rules\. For more information, see [Replicating delete markers between buckets](delete-marker-replication.md)\. 
 
  

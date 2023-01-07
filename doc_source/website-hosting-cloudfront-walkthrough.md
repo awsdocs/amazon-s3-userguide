@@ -22,8 +22,6 @@ First, you create a CloudFront distribution\. This makes your website available 
 
 1. Choose **Create Distribution**\.
 
-1. On the **Select a delivery method for your content** page, under **Web**, choose **Get Started**\.
-
 1. On the **Create Distribution** page, in the **Origin Settings** section, for **Origin Domain Name**, enter the Amazon S3 website endpoint for your bucket—for example, **example\.com\.s3\-website\.us\-west\-1\.amazonaws\.com**\.
 
    CloudFront fills in the **Origin ID** for you\.

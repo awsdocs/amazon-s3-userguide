@@ -22,6 +22,7 @@ The following code examples demonstrate how to perform individual Amazon S3 acti
 + [Delete the website configuration from a bucket](example_s3_DeleteBucketWebsite_section.md)
 + [Determine the existence and content type of an object](example_s3_HeadObject_section.md)
 + [Determine the existence of a bucket](example_s3_HeadBucket_section.md)
++ [Download objects to a local directory](example_s3_DownloadBucketToDirectory_section.md)
 + [Enable logging](example_s3_ServiceAccessLogging_section.md)
 + [Enable notifications](example_s3_PutBucketNotification_section.md)
 + [Enable transfer acceleration](example_s3_TransferAcceleration_section.md)
@@ -44,3 +45,4 @@ The following code examples demonstrate how to perform individual Amazon S3 acti
 + [Set the website configuration for a bucket](example_s3_PutBucketWebsite_section.md)
 + [Upload a single part of a multipart upload](example_s3_UploadPart_section.md)
 + [Upload an object to a bucket](example_s3_PutObject_section.md)
++ [Upload directory to a bucket](example_s3_UploadDirectoryToBucket_section.md)

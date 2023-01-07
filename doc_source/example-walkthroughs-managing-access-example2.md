@@ -109,7 +109,7 @@ The bucket policy grants the `s3:GetLifecycleConfiguration` and `s3:ListBucket` 
 
 1. Attach the following bucket policy to `DOC-EXAMPLE-BUCKET`\. The policy grants Account B permission for the `s3:GetLifecycleConfiguration` and `s3:ListBucket` actions\.
 
-   For instructions, see [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)\. 
+   For instructions, see [Adding a bucket policy by using the Amazon S3 console](add-bucket-policy.md)\. 
 
    ```
    {

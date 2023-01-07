@@ -848,7 +848,20 @@ This is prerelease documentation for an SDK in preview release\. It is subject t
         )
 
         do {
-            _ = try await client.deleteObjects(input: input)
+            let output = try await client.deleteObjects(input: input)
+
+            // As of the last update to this example, any errors are returned
+            // in the `output` object's `errors` property. If there are any
+            // errors in this array, throw an exception. Once the error
+            // handling is finalized in later updates to the AWS SDK for
+            // Swift, this example will be updated to handle errors better.
+
+            guard let errors = output.errors else {
+                return  // No errors.
+            }
+            if errors.count != 0 {
+                throw ServiceHandlerError.deleteObjectsError
+            }
         } catch {
             throw error
         }

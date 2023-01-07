@@ -51,18 +51,24 @@ You can't edit the Block Public Access settings after the Multi\-Region Access P
 The following example Multi\-Region Access Point policy grants an AWS Identity and Access Management \(IAM\) user access to list and download files from your Multi\-Region Access Point\. To use this example policy, replace the `user input placeholders` with your own information\.
 
 ```
-{
-    "Version": "2012-10-17",
-    "Statement" : [
-    {
-      "Effect": "Allow",
-      "Principal": { "AWS": "arn:aws:iam::111122223333:JohnDoe" },
-      "Action": ["s3:ListBucket", "s3:GetObject"],
-      "Resource": [
-        "arn:aws:s3::111122223333:accesspoint/MultiRegionAccessPoint_alias",
-        "arn:aws:s3::111122223333:accesspoint/MultiRegionAccessPoint_alias/object/*"
-      ]
-   }  
+ {
+   "Version":"2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Principal":{
+            "AWS":"arn:aws:iam::111122223333:JohnDoe"
+         },
+         "Action":[
+            "s3:ListBucket",
+            "s3:GetObject"
+         ],
+         "Resource":[
+            "arn:aws:s3::111122223333:accesspoint/MultiRegionAccessPoint_alias",
+            "arn:aws:s3::111122223333:accesspoint/MultiRegionAccessPoint_alias/object/*"
+         ]
+      }
+   ]
 }
 ```
 

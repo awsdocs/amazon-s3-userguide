@@ -47,7 +47,7 @@ For information on signing requests using temporary security credentials in your
 
 For more information about IAM support for temporary security credentials, see [Temporary Security Credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html) in the *IAM User Guide*\.
 
-For added security, you can require multifactor authentication \(MFA\) when accessing your Amazon S3 resources by configuring a bucket policy\. For information, see [Adding a bucket policy to require MFA](example-bucket-policies.md#example-bucket-policies-use-case-7)\. After you require MFA to access your Amazon S3 resources, the only way you can access these resources is by providing temporary credentials that are created with an MFA key\. For more information, see the [AWS Multi\-Factor Authentication](https://aws.amazon.com/mfa/) detail page and [Configuring MFA\-Protected API Access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html) in the *IAM User Guide*\.
+For added security, you can require multifactor authentication \(MFA\) when accessing your Amazon S3 resources by configuring a bucket policy\. For information, see [Requiring MFA](example-bucket-policies.md#example-bucket-policies-MFA)\. After you require MFA to access your Amazon S3 resources, the only way you can access these resources is by providing temporary credentials that are created with an MFA key\. For more information, see the [AWS Multi\-Factor Authentication](https://aws.amazon.com/mfa/) detail page and [Configuring MFA\-Protected API Access](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_configure-api-require.html) in the *IAM User Guide*\.
 
 
 

@@ -1,6 +1,6 @@
 # Reviewing bucket access using Access Analyzer for S3<a name="access-analyzer"></a>
 
-Access Analyzer for S3 alerts you to S3 buckets that are configured to allow access to anyone on the internet or other AWS accounts, including AWS accounts outside of your organization\. For each public or shared bucket, you receive findings into the source and level of public or shared access\. For example, Access Analyzer for S3 might show that a bucket has read or write access provided through a bucket access control list \(ACL\), a bucket policy, a Multi\-Region Access Point policy, or an access point policy\. Armed with this knowledge, you can take immediate and precise corrective action to restore your bucket access to what you intended\. 
+Access Analyzer for S3 alerts you to S3 buckets that are configured to allow access to anyone on the internet or other AWS accounts, including AWS accounts outside of your organization\. For each public or shared bucket, you receive findings into the source and level of public or shared access\. For example, Access Analyzer for S3 might show that a bucket has read or write access provided through a bucket access control list \(ACL\), a bucket policy, a Multi\-Region Access Point policy, or an access point policy\. With these findings, you can take immediate and precise corrective action to restore your bucket access to what you intended\. 
 
 When reviewing an at\-risk bucket in Access Analyzer for S3, you can block all public access to the bucket with a single click\. We recommend that you block all access to your buckets unless you require public access to support a specific use case\. Before you block all public access, ensure that your applications will continue to work correctly without public access\. For more information, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
 
@@ -110,7 +110,7 @@ If you did not intend to grant access to the public or other AWS accounts, inclu
 
    1. Review or change your bucket policy as required\.
 
-      For more information, see [Adding a bucket policy using the Amazon S3 console](add-bucket-policy.md)\.
+      For more information, see [Adding a bucket policy by using the Amazon S3 console](add-bucket-policy.md)\.
 
 1. If you want to change or view a Multi\-Region Access Point policy:
 

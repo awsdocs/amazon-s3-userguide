@@ -43,7 +43,7 @@ Athena can query Amazon S3 Inventory files in ORC, Parquet, or CSV format\. When
        "projection.dt.format" = "yyyy-MM-dd-HH-mm",
        "projection.dt.range" = "2022-01-01-00-00,NOW",
        "projection.dt.interval" = "1",
-       "projection.dt.interval.unit" = "DAYS"
+       "projection.dt.interval.unit" = "HOURS"
      );
    ```
 

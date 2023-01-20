@@ -57,7 +57,7 @@ When you request that your data be decrypted, Amazon S3 and AWS KMS perform the 
 
 1. AWS KMS decrypts the data key by using the same KMS key and returns the plaintext data key to Amazon S3\.
 
-1. Amazon S3 decrypts the encrypted data key, using the plaintext data key, and removes the plaintext data key from memory as soon as possible\.
+1. Amazon S3 decrypts the encrypted data, using the plaintext data key, and removes the plaintext data key from memory as soon as possible\.
 
 **Important**  
 When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a symmetric encryption KMS key\. Amazon S3 supports only symmetric encryption KMS keys\. For more information about these keys, see [Symmetric encryption KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#symmetric-cmks) in the *AWS Key Management Service Developer Guide*\.

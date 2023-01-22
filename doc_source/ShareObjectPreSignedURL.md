@@ -184,10 +184,16 @@ Generate a presigned URL to share an object by using the SDK for Python \(Boto3\
 
 ```
 import boto3
-    url = boto3.client('s3').generate_presigned_url(
+
+s3 = boto3.client('s3')
+url = s3.generate_presigned_url(
     ClientMethod='get_object', 
-    Params={'Bucket': 'BUCKET_NAME', 'Key': 'OBJECT_KEY'},
-    ExpiresIn=3600)
+    Params={
+        'Bucket': 'BUCKET_NAME',
+        'Key': 'OBJECT_KEY'
+    },
+    ExpiresIn=3600
+)
 ```
 
 For more information about using SDK for Python \(Boto3\) to generate a presigned URL, see [Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Client.generate_presigned_url) in the *AWS SDK for Python \(Boto\) API Reference*\.

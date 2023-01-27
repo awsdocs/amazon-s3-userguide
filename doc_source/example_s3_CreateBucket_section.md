@@ -413,7 +413,11 @@ This documentation is for an SDK in preview release\. The SDK is subject to chan
   
 
 ```
-pub async fn create_bucket(client: &Client, bucket_name: &str, region: &str) -> Result<(), Error> {
+pub async fn create_bucket(
+    client: &Client,
+    bucket_name: &str,
+    region: &str,
+) -> Result<CreateBucketOutput, SdkError<CreateBucketError>> {
     let constraint = BucketLocationConstraint::from(region);
     let cfg = CreateBucketConfiguration::builder()
         .location_constraint(constraint)
@@ -423,9 +427,7 @@ pub async fn create_bucket(client: &Client, bucket_name: &str, region: &str) -> 
         .create_bucket_configuration(cfg)
         .bucket(bucket_name)
         .send()
-        .await?;
-    println!("Creating bucket named: {bucket_name}");
-    Ok(())
+        .await
 }
 ```
 +  For API details, see [CreateBucket](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 

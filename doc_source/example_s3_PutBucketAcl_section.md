@@ -50,6 +50,117 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 +  For API details, see [PutBucketAcl](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/PutBucketAcl) in *AWS SDK for \.NET API Reference*\. 
 
 ------
+#### [ C\+\+ ]
+
+**SDK for C\+\+**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/cpp/example_code/s3#code-examples)\. 
+  
+
+```
+bool AwsDoc::S3::PutBucketAcl(const Aws::String &bucketName,
+                              const Aws::String &ownerID,
+                              const Aws::String &granteePermission,
+                              const Aws::String &granteeType,
+                              const Aws::String &granteeID,
+                              const Aws::Client::ClientConfiguration &clientConfig,
+                              const Aws::String &granteeDisplayName,
+                              const Aws::String &granteeEmailAddress,
+                              const Aws::String &granteeURI) {
+    Aws::S3::S3Client s3_client(clientConfig);
+
+    Aws::S3::Model::Owner owner;
+    owner.SetID(ownerID);
+
+    Aws::S3::Model::Grantee grantee;
+    grantee.SetType(SetGranteeType(granteeType));
+
+    if (!granteeEmailAddress.empty()) {
+        grantee.SetEmailAddress(granteeEmailAddress);
+    }
+
+    if (!granteeID.empty()) {
+        grantee.SetID(granteeID);
+    }
+
+    if (!granteeDisplayName.empty()) {
+        grantee.SetDisplayName(granteeDisplayName);
+    }
+
+    if (!granteeURI.empty()) {
+        grantee.SetURI(granteeURI);
+    }
+
+    Aws::S3::Model::Grant grant;
+    grant.SetGrantee(grantee);
+    grant.SetPermission(SetGranteePermission(granteePermission));
+
+    Aws::Vector<Aws::S3::Model::Grant> grants;
+    grants.push_back(grant);
+
+    Aws::S3::Model::AccessControlPolicy acp;
+    acp.SetOwner(owner);
+    acp.SetGrants(grants);
+
+    Aws::S3::Model::PutBucketAclRequest request;
+    request.SetAccessControlPolicy(acp);
+    request.SetBucket(bucketName);
+
+    Aws::S3::Model::PutBucketAclOutcome outcome =
+            s3_client.PutBucketAcl(request);
+
+    if (!outcome.IsSuccess()) {
+        const Aws::S3::S3Error &error = outcome.GetError();
+
+        std::cerr << "Error: PutBucketAcl: " << error.GetExceptionName()
+                  << " - " << error.GetMessage() << std::endl;
+    }
+    else {
+        std::cout << "Successfully added an ACL to the bucket '" << bucketName
+                  << "'." << std::endl;
+    }
+
+    return outcome.IsSuccess();
+}
+
+//! Routine which converts a human-readable string to a built-in type enumeration.
+/*!
+ \sa SetGranteePermission()
+ \param access Human readable string.
+*/
+
+Aws::S3::Model::Permission SetGranteePermission(const Aws::String &access) {
+    if (access == "FULL_CONTROL")
+        return Aws::S3::Model::Permission::FULL_CONTROL;
+    if (access == "WRITE")
+        return Aws::S3::Model::Permission::WRITE;
+    if (access == "READ")
+        return Aws::S3::Model::Permission::READ;
+    if (access == "WRITE_ACP")
+        return Aws::S3::Model::Permission::WRITE_ACP;
+    if (access == "READ_ACP")
+        return Aws::S3::Model::Permission::READ_ACP;
+    return Aws::S3::Model::Permission::NOT_SET;
+}
+
+//! Routine which converts a human-readable string to a built-in type enumeration.
+/*!
+ \sa SetGranteeType()
+ \param type Human readable string.
+*/
+
+Aws::S3::Model::Type SetGranteeType(const Aws::String &type) {
+    if (type == "Amazon customer by email")
+        return Aws::S3::Model::Type::AmazonCustomerByEmail;
+    if (type == "Canonical user")
+        return Aws::S3::Model::Type::CanonicalUser;
+    if (type == "Group")
+        return Aws::S3::Model::Type::Group;
+    return Aws::S3::Model::Type::NOT_SET;
+}
+```
++  For API details, see [PutBucketAcl](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/PutBucketAcl) in *AWS SDK for C\+\+ API Reference*\. 
+
+------
 #### [ Java ]
 
 **SDK for Java 2\.x**  

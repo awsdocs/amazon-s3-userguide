@@ -13,19 +13,21 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
   
 
 ```
-bool AwsDoc::S3::GetBucketAcl(const Aws::String &bucketName,
+bool AwsDoc::S3::GetObjectAcl(const Aws::String &bucketName,
+                              const Aws::String &objectKey,
                               const Aws::Client::ClientConfiguration &clientConfig) {
     Aws::S3::S3Client s3_client(clientConfig);
 
-    Aws::S3::Model::GetBucketAclRequest request;
+    Aws::S3::Model::GetObjectAclRequest request;
     request.SetBucket(bucketName);
+    request.SetKey(objectKey);
 
-    Aws::S3::Model::GetBucketAclOutcome outcome =
-            s3_client.GetBucketAcl(request);
+    Aws::S3::Model::GetObjectAclOutcome outcome =
+            s3_client.GetObjectAcl(request);
 
     if (!outcome.IsSuccess()) {
         const Aws::S3::S3Error &err = outcome.GetError();
-        std::cerr << "Error: GetBucketAcl: "
+        std::cerr << "Error: GetObjectAcl: "
                   << err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
     }
     else {
@@ -33,11 +35,11 @@ bool AwsDoc::S3::GetBucketAcl(const Aws::String &bucketName,
                 outcome.GetResult().GetGrants();
 
         for (auto it = grants.begin(); it != grants.end(); it++) {
+            std::cout << "For object " << objectKey << ": "
+                      << std::endl << std::endl;
+
             Aws::S3::Model::Grant grant = *it;
             Aws::S3::Model::Grantee grantee = grant.GetGrantee();
-
-            std::cout << "For bucket " << bucketName << ": "
-                      << std::endl << std::endl;
 
             if (grantee.TypeHasBeenSet()) {
                 std::cout << "Type:          "
@@ -75,7 +77,7 @@ bool AwsDoc::S3::GetBucketAcl(const Aws::String &bucketName,
 
 //! Routine which converts a built-in type enumeration to a human-readable string.
 /*!
- \sa GetGranteeTypeString()
+ \fn GetGranteeTypeString()
  \param type Type enumeration.
 */
 
@@ -96,31 +98,27 @@ Aws::String GetGranteeTypeString(const Aws::S3::Model::Type &type) {
 
 //! Routine which converts a built-in type enumeration to a human-readable string.
 /*!
- \sa GetPermissionString()
+ \fn GetPermissionString()
  \param permission Permission enumeration.
 */
 
 Aws::String GetPermissionString(const Aws::S3::Model::Permission &permission) {
     switch (permission) {
         case Aws::S3::Model::Permission::FULL_CONTROL:
-            return "Can list objects in this bucket, create/overwrite/delete "
-                   "objects in this bucket, and read/write this "
-                   "bucket's permissions";
+            return "Can read this object's data and its metadata, "
+                   "and read/write this object's permissions";
         case Aws::S3::Model::Permission::NOT_SET:
             return "Permission not set";
         case Aws::S3::Model::Permission::READ:
-            return "Can list objects in this bucket";
+            return "Can read this object's data and its metadata";
         case Aws::S3::Model::Permission::READ_ACP:
-            return "Can read this bucket's permissions";
-        case Aws::S3::Model::Permission::WRITE:
-            return "Can create, overwrite, and delete objects in this bucket";
+            return "Can read this object's permissions";
+            // case Aws::S3::Model::Permission::WRITE // Not applicable.
         case Aws::S3::Model::Permission::WRITE_ACP:
-            return "Can write this bucket's permissions";
+            return "Can write this object's permissions";
         default:
             return "Permission unknown";
     }
-
-    return "Permission unknown";
 }
 ```
 +  For API details, see [GetObjectAcl](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/GetObjectAcl) in *AWS SDK for C\+\+ API Reference*\. 

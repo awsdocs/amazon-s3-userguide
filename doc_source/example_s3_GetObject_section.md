@@ -529,14 +529,17 @@ This documentation is for an SDK in preview release\. The SDK is subject to chan
   
 
 ```
-pub async fn download_object(client: &Client, bucket_name: &str, key: &str) -> GetObjectOutput {
-    let resp = client
+pub async fn download_object(
+    client: &Client,
+    bucket_name: &str,
+    key: &str,
+) -> Result<GetObjectOutput, SdkError<GetObjectError>> {
+    client
         .get_object()
         .bucket(bucket_name)
         .key(key)
         .send()
-        .await;
-    resp.unwrap()
+        .await
 }
 ```
 +  For API details, see [GetObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 

@@ -803,7 +803,7 @@ pub async fn upload_object(
     bucket_name: &str,
     file_name: &str,
     key: &str,
-) -> Result<(), Error> {
+) -> Result<PutObjectOutput, SdkError<PutObjectError>> {
     let body = ByteStream::from_path(Path::new(file_name)).await;
     client
         .put_object()
@@ -811,10 +811,7 @@ pub async fn upload_object(
         .key(key)
         .body(body.unwrap())
         .send()
-        .await?;
-
-    println!("Uploaded file: {}", file_name);
-    Ok(())
+        .await
 }
 ```
 +  For API details, see [PutObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 

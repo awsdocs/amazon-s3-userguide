@@ -740,7 +740,7 @@ The following sections in the *Amazon Simple Storage Service API Reference* desc
 ## Using the AWS CLI<a name="UsingCLImpUpload"></a>
 
 The following sections in the AWS Command Line Interface \(AWS CLI\) describe the operations for multipart upload\. 
-+ [Initiate Multipart Upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/create-multipart-upload.html)
++ [Initiate Multipart Upload](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/create-multipart-upload.html)
 + [Upload Part](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html)
 + [Upload Part \(Copy\)](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
 + [Complete Multipart Upload](https://docs.aws.amazon.com/cli/latest/reference/s3api/complete-multipart-upload.html)

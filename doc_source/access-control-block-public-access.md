@@ -60,13 +60,11 @@ Note that it isn't currently possible to change an access point's block public a
 
 ## The meaning of "public"<a name="access-control-block-public-access-policy-status"></a>
 
-### Buckets<a name="access-control-block-public-access-policy-status-buckets"></a>
-
-#### ACLs<a name="public-acls"></a>
+### ACLs<a name="public-acls"></a>
 
 Amazon S3 considers a bucket or object ACL public if it grants any permissions to members of the predefined `AllUsers` or `AuthenticatedUsers` groups\. For more information about predefined groups, see [Amazon S3 predefined groups](acl-overview.md#specifying-grantee-predefined-groups)\.
 
-#### Bucket policies<a name="public-bucket-policies"></a>
+### Bucket policies<a name="public-bucket-policies"></a>
 
 When evaluating a bucket policy, Amazon S3 begins by assuming that the policy is public\. It then evaluates the policy to determine whether it qualifies as non\-public\. To be considered non\-public, a bucket policy must grant access only to fixed values \(values that don't contain a wildcard or [an AWS Identity and Access Management Policy Variable](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html)\) for one or more of the following:
 + An AWS principal, user, role, or service principal \(e\.g\. `aws:PrincipalOrgID`\)
@@ -129,7 +127,7 @@ You can make these policies non\-public by including any of the condition keys l
 	}
 ```
 
-#### Example<a name="access-control-block-public-access-policy-example"></a>
+### How Amazon S3 evaluates a bucket policy that contains both public and non\-public access grants<a name="access-control-block-public-access-policy-example"></a>
 
 This example shows how Amazon S3 evaluates a bucket policy that contains both public and non\-public access grants\.
 

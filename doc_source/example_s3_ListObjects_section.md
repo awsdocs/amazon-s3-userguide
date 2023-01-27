@@ -216,6 +216,27 @@ func (basics BucketBasics) ListObjects(bucketName string) ([]types.Object, error
         return val/1024;
     }
 ```
+List objects using pagination\.  
+
+```
+    public static void listBucketObjects(S3Client s3, String bucketName ) {
+        try {
+            ListObjectsV2Request listReq = ListObjectsV2Request.builder()
+                .bucket(bucketName)
+                .maxKeys(1)
+                .build();
+
+            ListObjectsV2Iterable listRes = s3.listObjectsV2Paginator(listReq);
+            listRes.stream()
+                .flatMap(r -> r.contents().stream())
+                .forEach(content -> System.out.println(" Key: " + content.key() + " size = " + content.size()));
+
+        } catch (S3Exception e) {
+            System.err.println(e.awsErrorDetails().errorMessage());
+            System.exit(1);
+        }
+    }
+```
 +  For API details, see [ListObjects](https://docs.aws.amazon.com/goto/SdkForJavaV2/s3-2006-03-01/ListObjects) in *AWS SDK for Java 2\.x API Reference*\. 
 
 ------

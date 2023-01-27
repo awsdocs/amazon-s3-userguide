@@ -20,7 +20,7 @@ If you make an API call on an object whose current version is a delete marker an
 + A 405 \(Method Not Allowed\) error
 + A response header, `x-amz-delete-marker: true`
 
-The response header tells you that the object accessed was a delete marker\. This response header never returns `false`\. If the value is `false`, Amazon S3 does not include this response header in the response\.
+The response header tells you that the object accessed was a delete marker\. This response header never returns `false`, because when the value is `false`, Amazon S3 does not include this response header in the response\.
 
 The following figure shows how a simple `GET` on an object whose current version is a delete marker, returns a 404 No Object Found error\.
 

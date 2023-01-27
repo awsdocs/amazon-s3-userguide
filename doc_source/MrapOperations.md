@@ -12,7 +12,7 @@ The following examples demonstrate how to use Multi\-Region Access Points with c
 
 ## Multi\-Region Access Point compatibility with AWS services<a name="mrap-api-support"></a>
 
-Amazon S3 Multi\-Region Access Point Amazon Resource Names \(ARNs\) allow any application that requires an Amazon S3 bucket name to use a Multi\-Region Access Point\. You can use Amazon S3 Multi\-Region Access Point aliases anywhere that you use S3 bucket names to access data\.
+Amazon S3 Multi\-Region Access Point Amazon Resource Names \(ARNs\) allow applications \(using an AWS SDK\) that require an Amazon S3 bucket name to use a Multi\-Region Access Point\.
 
 ## Multi\-Region Access Point compatibility with S3 operations<a name="mrap-operations-support"></a>
 

@@ -50,7 +50,7 @@ When you're using Object Lambda access points, make sure that the payload does n
 
 1. \(Optional\) Under **Object Lambda Access Point policy**, set a resource policy\. Resource policies grant permissions for the specified Object Lambda access point and can control the use of the access point by resource, user, or other conditions\. For more information about Object Lambda Access Point resource policies see, [Configuring IAM policies for Object Lambda access points](olap-policies.md)\.
 
-1. Under **Block Public Access settings for this AObject Lambda Access Point**, select the block public access settings that you want to apply\. All block public access settings are enabled by default for new Object Lambda Access Points, and we recommend that you leave default settings enabled\. Amazon S3 currently doesn't support changing an Object Lambda Access Point's block public access settings after the Object Lambda Access Points has been created\.
+1. Under **Block Public Access settings for this Object Lambda Access Point**, select the block public access settings that you want to apply\. All block public access settings are enabled by default for new Object Lambda Access Points, and we recommend that you leave default settings enabled\. Amazon S3 currently doesn't support changing an Object Lambda Access Point's block public access settings after the Object Lambda Access Points has been created\.
 
    For more information about using Amazon S3 Block Public Access, see [Managing public access to access points](access-points-bpa-settings.md)\.
 

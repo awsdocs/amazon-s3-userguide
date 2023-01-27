@@ -429,6 +429,56 @@ Delete multiple objects in a versioned S3 bucket\.
 +  For API details, see [DeleteObjects](https://docs.aws.amazon.com/goto/DotNetSDKV3/s3-2006-03-01/DeleteObjects) in *AWS SDK for \.NET API Reference*\. 
 
 ------
+#### [ C\+\+ ]
+
+**SDK for C\+\+**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/cpp/example_code/s3#code-examples)\. 
+  
+
+```
+bool AwsDoc::S3::DeleteObjects(const std::vector<Aws::String> &objectKeys,
+                               const Aws::String &fromBucket,
+                               const Aws::Client::ClientConfiguration &clientConfig) {
+    Aws::S3::S3Client client(clientConfig);
+    Aws::S3::Model::DeleteObjectsRequest request;
+
+    Aws::S3::Model::Delete deleteObject;
+    for (const Aws::String& objectKey : objectKeys)
+    {
+        deleteObject.AddObjects(Aws::S3::Model::ObjectIdentifier().WithKey(objectKey));
+    }
+
+    request.SetDelete(deleteObject);
+    request.SetBucket(fromBucket);
+
+    Aws::S3::Model::DeleteObjectsOutcome outcome =
+            client.DeleteObjects(request);
+
+    if (!outcome.IsSuccess()) {
+        auto err = outcome.GetError();
+        std::cerr << "Error deleting objects. " <<
+                  err.GetExceptionName() << ": " << err.GetMessage() << std::endl;
+    }
+    else {
+        std::cout << "Successfully deleted the objects.";
+        for (size_t i = 0; i < objectKeys.size(); ++i)
+        {
+            std::cout << objectKeys[i];
+            if (i < objectKeys.size() - 1)
+            {
+                std::cout << ", ";
+            }
+        }
+
+        std::cout << " from bucket " << fromBucket << "." << std::endl;
+    }
+
+    return outcome.IsSuccess();
+}
+```
++  For API details, see [DeleteObjects](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/DeleteObjects) in *AWS SDK for C\+\+ API Reference*\. 
+
+------
 #### [ Go ]
 
 **SDK for Go V2**  
@@ -801,7 +851,7 @@ This documentation is for an SDK in preview release\. The SDK is subject to chan
   
 
 ```
-pub async fn delete_objects(client: &Client, bucket_name: &str) -> Result<(), Error> {
+pub async fn delete_objects(client: &Client, bucket_name: &str) -> Result<Vec<String>, Error> {
     let objects = client.list_objects_v2().bucket(bucket_name).send().await?;
 
     let mut delete_objects: Vec<ObjectIdentifier> = vec![];
@@ -811,6 +861,12 @@ pub async fn delete_objects(client: &Client, bucket_name: &str) -> Result<(), Er
             .build();
         delete_objects.push(obj_id);
     }
+
+    let return_keys = delete_objects
+        .iter()
+        .map(|o| o.key().unwrap().to_string())
+        .collect();
+
     client
         .delete_objects()
         .bucket(bucket_name)
@@ -819,8 +875,11 @@ pub async fn delete_objects(client: &Client, bucket_name: &str) -> Result<(), Er
         .await?;
 
     let objects: ListObjectsV2Output = client.list_objects_v2().bucket(bucket_name).send().await?;
+
+    eprintln!("{objects:?}");
+
     match objects.key_count {
-        0 => Ok(()),
+        0 => Ok(return_keys),
         _ => Err(Error::unhandled(
             "There were still objects left in the bucket.",
         )),

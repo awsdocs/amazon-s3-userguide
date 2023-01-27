@@ -495,7 +495,7 @@ pub async fn copy_object(
     bucket_name: &str,
     object_key: &str,
     target_key: &str,
-) -> Result<(), Error> {
+) -> Result<CopyObjectOutput, SdkError<CopyObjectError>> {
     let mut source_bucket_and_object: String = "".to_owned();
     source_bucket_and_object.push_str(bucket_name);
     source_bucket_and_object.push('/');
@@ -507,9 +507,7 @@ pub async fn copy_object(
         .bucket(bucket_name)
         .key(target_key)
         .send()
-        .await?;
-
-    Ok(())
+        .await
 }
 ```
 +  For API details, see [CopyObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 

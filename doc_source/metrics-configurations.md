@@ -14,8 +14,7 @@ Keep the following in mind when using metrics configurations:
 + Request metrics are reported for object\-level operations\. They are also reported for operations that list bucket contents, like [GET Bucket \(List Objects\)](https://docs.aws.amazon.com/AmazonS3/latest/API/v2-RESTBucketGET.html), [GET Bucket Object Versions](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETVersion.html), and [List Multipart Uploads](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListMPUpload.html), but they are not reported for other operations on buckets\.
 + Request metrics support filtering by prefix, object tags, or access point, but storage metrics do not\.
 
-## Best\-effort CloudWatch metrics delivery<a name="metrics-configurations-delivery"></a>
-
+**Best\-effort CloudWatch metrics delivery**  
  CloudWatch metrics are delivered on a best\-effort basis\. Most requests for an Amazon S3 object that have request metrics result in a data point being sent to CloudWatch\.
 
 The completeness and timeliness of metrics are not guaranteed\. The data point for a particular request might be returned with a timestamp that is later than when the request was actually processed\. The data point for a minute might be delayed before being available through CloudWatch, or it might not be delivered at all\. CloudWatch request metrics give you an idea of the nature of traffic against your bucket in near\-real time\. It is not meant to be a complete accounting of all requests\.
@@ -25,7 +24,6 @@ It follows from the best\-effort nature of this feature that the reports availab
 For more information about working with CloudWatch metrics in Amazon S3, see the following topics\.
 
 **Topics**
-+ [Best\-effort CloudWatch metrics delivery](#metrics-configurations-delivery)
 + [Creating a CloudWatch metrics configuration for all the objects in your bucket](configure-request-metrics-bucket.md)
 + [Creating a metrics configuration that filters by prefix, object tag, or access point](metrics-configurations-filter.md)
 + [Deleting a metrics filter](delete-request-metrics-filter.md)

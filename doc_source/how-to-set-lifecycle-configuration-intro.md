@@ -85,7 +85,7 @@ When you choose the S3 Glacier Flexible Retrieval or Glacier Deep Archive storag
 
    1. In **Days after object becomes non\-current**, enter the number of days after creation to transition the object\.
 
-1. To expire *current* versions of objects, under **Expire previous versions of objects**, in **Number of days after object creation**, enter the number of days\.
+1. To expire *current* versions of objects, under **Expire current versions of objects**, in **Number of days after object creation**, enter the number of days\.
 **Important**  
 In a non\-versioned bucket the expiration action results in Amazon S3 permanently removing the object\. For more information about lifecycle actions, see [Elements to describe lifecycle actions](intro-lifecycle-rules.md#intro-lifecycle-rules-actions)\.
 

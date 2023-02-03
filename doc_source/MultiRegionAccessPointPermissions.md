@@ -48,7 +48,7 @@ You can't edit the Block Public Access settings after the Multi\-Region Access P
 
 ## Using a Multi\-Region Access Point policy<a name="use-mrap-policy"></a>
 
-The following example Multi\-Region Access Point policy grants an AWS Identity and Access Management \(IAM\) user access to list and download files from your Multi\-Region Access Point\. To use this example policy, replace the `user input placeholders` with your own information\.
+The following example Multi\-Region Access Point policy grants an IAM user access to list and download files from your Multi\-Region Access Point\. To use this example policy, replace the `user input placeholders` with your own information\.
 
 ```
  {

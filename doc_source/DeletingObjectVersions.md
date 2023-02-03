@@ -85,7 +85,7 @@ def permanently_delete_object(bucket, object_key):
 
 ### Using the REST API<a name="delete-obj-version-enabled-bucket-rest"></a>
 
-**To a delete a specific version of an object**
+**To delete a specific version of an object**
 + In a `DELETE`, specify a version ID\.
 
 **Example — Deleting a specific version**  

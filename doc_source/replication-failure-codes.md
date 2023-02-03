@@ -20,7 +20,7 @@ These failure reasons can also be viewed in a S3 Batch Replication completion re
 | DstObjectHardDeleted | S3 Batch Replication does not support re\-replicating objects deleted with the version ID of the object from the destination bucket\. This error is specific to Batch Replication\. | 
 | DstPutAclNotPermitted | Amazon S3 is unable to replicate object ACL to the destination bucket\. The s3:ReplicateObject permission may be missing for the destination bucket\. | 
 | DstPutLegalHoldNotPermitted | Amazon S3 is unable to put an Object Lock legal hold on the destination object while replicating immutable objects\. The s3:PutObjectLegalHold permission may be missing for the destination bucket\. For more information, see [Legal holds](object-lock-overview.md#object-lock-legal-holds)\. | 
-| DstPutObjNotPermitted | Amazon S3 is unable to replicate objects to the destination bucket\. The s3:ReplicateObject permission may be missing for the destination bucket\.  | 
+| DstPutObjectNotPermitted | Amazon S3 is unable to replicate objects to the destination bucket\. The s3:ReplicateObject permission may be missing for the destination bucket\.  | 
 | DstPutTaggingNotPermitted | Amazon S3 is unable to replicate object tags to the destination bucket\. The s3:ReplicateObject permission may be missing for the destination bucket\.  | 
 | DstVersionNotFound  | Amazon S3 is unable to find the required object version in the destination bucket for which metadata needs to be replicated\.  | 
 | InitiateReplicationNotPermitted | Initiate replication on object failed\. The s3:InitiateReplication permission may be missing for the Batch Operations job\. This error is specific to Batch Replication\. | 
@@ -28,7 +28,7 @@ These failure reasons can also be viewed in a S3 Batch Replication completion re
 | SrcBucketNotFound | Amazon S3 is unable to find the source bucket\. | 
 | SrcBucketReplicationConfigMissing | Replication configuration not found for source bucket\. | 
 | SrcGetAclNotPermitted | Amazon S3 is unable to access the object in the source bucket for replication\. The s3:GetObjectVersionAcl permission may be missing for the source bucket object\.  | 
-| SrcGetObjNotPermitted | Amazon S3 is unable to access the object in the source bucket for replication\. The s3:GetObjectVersionForReplication permission may be missing for the source bucket\.  | 
+| SrcGetObjectNotPermitted | Amazon S3 is unable to access the object in the source bucket for replication\. The s3:GetObjectVersionForReplication permission may be missing for the source bucket\.  | 
 | SrcGetTaggingNotPermitted | Amazon S3 is unable to access object tag information from source bucket\. The s3:GetObjectVersionTagging permission may be missing for the source bucket\. | 
 | SrcHeadObjectNotPermitted | Amazon S3 is unable to retrieve object metadata from source bucket\. The s3:GetObjectVersionForReplication permission may be missing for the source bucket\.  | 
 | SrcKmsKeyInvalidState | The AWS Key Management Service key for the source bucket is in invalid state\. Review and enable the required AWS KMS key\. For more information on managing AWS KMS keys, see [Key states of AWS KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html) in the AWS Key Management Service Developer Guide\. | 

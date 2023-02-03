@@ -65,7 +65,7 @@ The apparent IP address of the requester\. Intermediate proxies and firewalls mi
 ```
 
 **Requester**  
-The canonical user ID of the requester, or a `-` for unauthenticated requests\. If the requester was an AWS Identity and Access Management \(IAM\) user, this field returns the requester's IAM user name along with the AWS root account that the IAM user belongs to\. This identifier is the same one used for access control purposes\.  
+The canonical user ID of the requester, or a `-` for unauthenticated requests\. If the requester was an IAM user, this field returns the requester's IAM user name along with the AWS account root user that the IAM user belongs to\. This identifier is the same one used for access control purposes\.  
 **Example entry**  
 
 ```
@@ -278,7 +278,7 @@ The apparent IP address of the requester\. Intermediate proxies and firewalls mi
 ```
 
 **Requester**  
-The canonical user ID of the requester, or a `-` for unauthenticated requests\. If the requester was an IAM user, this field will return the requester's IAM user name along with the AWS root account that the IAM user belongs to\. This identifier is the same one used for access control purposes\.  
+The canonical user ID of the requester, or a `-` for unauthenticated requests\. If the requester was an IAM user, this field will return the requester's IAM user name along with the AWS account root user that the IAM user belongs to\. This identifier is the same one used for access control purposes\.  
 **Example entry**  
 
 ```

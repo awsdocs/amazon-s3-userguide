@@ -23,6 +23,13 @@ For more information, see [Monitor S3 Storage Lens metrics in CloudWatch](storag
 
 All CloudWatch statistics are retained for a period of 15 months so that you can access historical information and gain a better perspective on how your web application or service is performing\. For more information, see [What is Amazon CloudWatch?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) in the *Amazon CloudWatch User Guide*\.
 
+**Best\-effort CloudWatch metrics delivery**  
+ CloudWatch metrics are delivered on a best\-effort basis\. Most requests for an Amazon S3 object that have request metrics result in a data point being sent to CloudWatch\.
+
+The completeness and timeliness of metrics are not guaranteed\. The data point for a particular request might be returned with a timestamp that is later than when the request was actually processed\. The data point for a minute might be delayed before being available through CloudWatch, or it might not be delivered at all\. CloudWatch request metrics give you an idea of the nature of traffic against your bucket in near\-real time\. It is not meant to be a complete accounting of all requests\.
+
+It follows from the best\-effort nature of this feature that the reports available at the [Billing & Cost Management Dashboard](https://console.aws.amazon.com/billing/home?#/) might include one or more access requests that do not appear in the bucket metrics\.
+
 For more information, see the following topics\.
 
 **Topics**

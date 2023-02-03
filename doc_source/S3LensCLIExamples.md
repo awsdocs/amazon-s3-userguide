@@ -65,7 +65,7 @@ Additional charges apply for advanced metrics and recommendations\. For more inf
       }
     }
   },
-  "Exclude": { //Replace with "Indlude" if you prefer to include Regions.
+  "Exclude": { //Replace with "Include" if you prefer to include Regions.
     "Regions": [
       "eu-west-1"
     ],

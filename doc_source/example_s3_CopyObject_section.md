@@ -170,16 +170,9 @@ Copy an object using an [S3Client](https://sdk.amazonaws.com/java/api/latest/sof
 ```
     public static String copyBucketObject (S3Client s3, String fromBucket, String objectKey, String toBucket) {
 
-        String encodedUrl = "";
-        try {
-            encodedUrl = URLEncoder.encode(fromBucket + "/" + objectKey, StandardCharsets.UTF_8.toString());
-        
-        } catch (UnsupportedEncodingException e) {
-            System.out.println("URL could not be encoded: " + e.getMessage());
-        }
-        
         CopyObjectRequest copyReq = CopyObjectRequest.builder()
-            .copySourceIfMatch(encodedUrl)
+            .sourceBucket(fromBucket)
+            .sourceKey(objectKey)
             .destinationBucket(toBucket)
             .destinationKey(objectKey)
             .build();

@@ -5,6 +5,7 @@ Amazon S3 replicates only specific items in buckets that are configured for repl
 **Topics**
 + [What is replicated with replication configurations?](#replication-what-is-replicated)
 + [What isn't replicated with replication configurations?](#replication-what-is-not-replicated)
++ [Default bucket encryption and replication](#replication-default-encryption-what-is)
 
 ## What is replicated with replication configurations?<a name="replication-what-is-replicated"></a>
 
@@ -59,3 +60,9 @@ By default, Amazon S3 doesn't replicate the following:
 + Actions performed by lifecycle configuration\. 
 
   For example, if lifecycle configuration is enabled only on your source bucket, Amazon S3 creates delete markers for expired objects but doesn't replicate those markers\. If you want the same lifecycle configuration applied to both the source and destination buckets, enable the same lifecycle configuration on both\. For more information about lifecycle configuration, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
+
+## Default bucket encryption and replication<a name="replication-default-encryption-what-is"></a>
+
+When you enable default encryption for a replication destination bucket, the following encryption behavior applies:
++ If objects in the source bucket are not encrypted, the replica objects in the destination bucket are encrypted using the default encryption settings of the destination bucket\. This results in the `ETag` of the source object being different from the `ETag` of the replica object\. You must update applications that use the `ETag` to accommodate for this difference\.
++ If objects in the source bucket are encrypted using SSE\-S3 or SSE\-KMS, the replica objects in the destination bucket use the same encryption as the source object encryption\. The default encryption settings of the destination bucket are not used\.

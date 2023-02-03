@@ -11,8 +11,15 @@ You can use multi\-Region AWS KMS keys in Amazon S3\. However, Amazon S3 current
 For an example with step\-by\-step instructions, see [Replicating encrypted objects](replication-walkthrough-4.md)\. For information about creating a replication configuration, see [Replicating objects](replication.md)\. 
 
 **Topics**
++ [Using default bucket encryption with replication](#replication-default-encryption)
 + [Replicating encrypted objects \(SSE\-C\)](#replicationSSEC)
 + [Replicating encrypted objects \(SSE\-S3, SSE\-KMS\)](#replications)
+
+## Using default bucket encryption with replication<a name="replication-default-encryption"></a>
+
+When you enable default encryption for a replication destination bucket, the following encryption behavior applies:
++ If objects in the source bucket are not encrypted, the replica objects in the destination bucket are encrypted using the default encryption settings of the destination bucket\. This results in the `ETag` of the source object being different from the `ETag` of the replica object\. You must update applications that use the `ETag` to accommodate for this difference\.
++ If objects in the source bucket are encrypted using SSE\-S3 or SSE\-KMS, the replica objects in the destination bucket use the same encryption as the source object encryption\. The default encryption settings of the destination bucket are not used\.
 
 ## Replicating encrypted objects \(SSE\-C\)<a name="replicationSSEC"></a>
 

@@ -1,6 +1,9 @@
 # Making requests through a Multi\-Region Access Point<a name="MultiRegionAccessPointRequests"></a>
 
-Like other resources, Amazon S3 Multi\-Region Access Points have Amazon Resource Names \(ARNs\)\. You can use these ARNs to direct requests to Multi\-Region Access Points by using the AWS SDKs\. You can also use these ARNs to identify Multi\-Region Access Points in access control policies\. A Multi\-Region Access Point ARN doesn't include or disclose its name\. For more information about ARNs, see [Amazon Resource Names \(ARNs\)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *AWS General Reference*\. 
+Like other resources, Amazon S3 Multi\-Region Access Points have Amazon Resource Names \(ARNs\)\. You can use these ARNs to direct requests to Multi\-Region Access Points by using the AWS SDKs\. You can also use these ARNs to identify Multi\-Region Access Points in access control policies\. A Multi\-Region Access Point ARN doesn't include or disclose its name\. For more information about ARNs, see [Amazon Resource Names \(ARNs\)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) in the *AWS General Reference*\.
+
+**Note**  
+The Multi\-Region Access Point alias and ARN cannot be used interchangeably\.
 
 Multi\-Region Access Point ARNs use the following format:
 

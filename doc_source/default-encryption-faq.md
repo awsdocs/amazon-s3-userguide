@@ -14,7 +14,7 @@ After this update is fully rolled out, we will update the Amazon S3 documentatio
 No\. There will be no changes to the default encryption configuration for an existing bucket that already has SSE\-S3 or server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\) configured\. For more information about how to set the default encryption behavior for buckets, see [Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\. For more information about SSE\-S3 and SSE\-KMS encryption settings, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.
 
 **Will default encryption be enabled on my existing buckets that don't have default encryption configured?**  
-Yes\. Amazon S3 now configures default encryption on all existing unencrypted buckets to apply server\-side encryption with S3 managed keys \(SSE\-S3\) as the base level of encryption for new objects uploaded to these buckets\. Objects that are already in an existing bucket won't be automatically encrypted\. This change in encryption status will be rolled out over the next few weeks\.
+Yes\. Amazon S3 now configures default encryption on all existing unencrypted buckets to apply server\-side encryption with S3 managed keys \(SSE\-S3\) as the base level of encryption for new objects uploaded to these buckets\. Objects that are already in an existing unencrypted bucket won't be automatically encrypted\. This change in encryption status will be rolled out over the next few weeks\.
 
 **How can I view the default encryption status of new object uploads?**  
 Currently, you can view the default encryption status of new object uploads in AWS CloudTrail logs, S3 Inventory, and S3 Storage Lens\.

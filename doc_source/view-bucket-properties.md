@@ -2,7 +2,7 @@
 
 You can view and configure the properties for an Amazon S3 bucket, including settings for versioning, tags, default encryption, logging, notifications, and more\.
 
-**To view the properties for an S3 bucket**
+## Using the S3 console<a name="view-bucket"></a>
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -21,3 +21,14 @@ You can view and configure the properties for an Amazon S3 bucket, including set
    + **Object Lock** – Use S3 Object Lock to prevent an object from being deleted or overwritten for a fixed amount of time or indefinitely\. For more information, see [Using S3 Object Lock](object-lock.md)\.
    + **Requester Pays** – Enable Requester Pays if you want the requester \(instead of the bucket owner\) to pay for requests and data transfers\. For more information, see [Using Requester Pays buckets for storage transfers and usage](RequesterPaysBuckets.md)\. 
    + **Static website hosting** – You can host a static website on Amazon S3\. To enable static website hosting, choose **Static website hosting**, and then specify the settings you want to use\. For more information, see [Hosting a static website using Amazon S3](WebsiteHosting.md)\.
+
+## Using the AWS CLI<a name="view-bucket-cli"></a>
+
+You can also use the AWS Command Line Interface \(AWS CLI\) to view the properties for an S3 bucket\. For more information, see the following commands in the *AWS CLI Command Reference*\.
++ [get\-bucket\-tagging](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-bucket-tagging.html) 
++  [get\-bucket\-versioning](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-bucket-versioning.html) 
++  [get\-bucket\-encryption](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-bucket-encryption.html) 
++  [ get\-bucket\-notification\-configuration](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-bucket-notification-configuration.html) 
++  [get\-bucket\-logging](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-bucket-logging.html) 
+
+For information about the AWS CLI, see [What is the AWS Command Line Interface?](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html) in the *AWS Command Line Interface User Guide*\. 

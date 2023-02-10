@@ -1,6 +1,6 @@
 # Viewing settings for an S3 Bucket Key<a name="viewing-bucket-key-settings"></a>
 
-You can view settings for an S3 Bucket Key at the bucket or object level using the Amazon S3 console, REST API, AWS CLI, or AWS SDKs\.
+You can view settings for an S3 Bucket Key at the bucket or object level using the Amazon S3 console, REST API, AWS CLI\.
 
 S3 Bucket Keys decrease request traffic from Amazon S3 to AWS KMS and reduce the cost of server\-side encryption using AWS Key Management Service \(SSE\-KMS\)\. For more information, see [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)\. 
 
@@ -35,6 +35,26 @@ Objects and folders in the same bucket can have different S3 Bucket Key settings
 1. On the **Details** tab, under **Server\-side encryption settings**, choose **Edit**\. 
 
    Under **Bucket Key**, you see the S3 Bucket Key setting for your object but you cannot edit it\. 
+
+## Using the AWS CLI<a name="bucket-key-settings-cli"></a>
+
+**To return bucket\-level S3 Bucket Key settings**  
+To use this example, replace each `user input placeholder` with your own information\.
+
+```
+aws s3api get-bucket-encryption --bucket DOC-EXAMPLE-BUCKET1
+```
+
+For more information, see [get\-bucket\-encryption](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/get-bucket-encryption.html) in the *AWS CLI Command Reference*\.
+
+**To return object\-level S3 Bucket Key settings**  
+To use this example, replace each `user input placeholder` with your own information\.
+
+```
+aws s3api head-object --bucket DOC-EXAMPLE-BUCKET1 --key my_images.tar.bz2
+```
+
+For more information, see [head\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/head-object.html) in the *AWS CLI Command Reference*\.
 
 ## Using the REST API<a name="bucket-key-settings-rest"></a>
 

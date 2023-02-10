@@ -20,6 +20,7 @@ The following tutorials present complete end\-to\-end procedures for common Amaz
 ## Data processing<a name="data-processing-tutorials"></a>
 + [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md)
 + [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)
++ [Tutorial: Using S3 Object Lambda to dynamically watermark images as they are retrieved](http://aws.amazon.com/getting-started/hands-on/amazon-s3-object-lambda-to-dynamically-watermark-images/?ref=docs_gateway/amazons3/tutorials.html)
 + [Tutorial: Batch\-transcoding videos with S3 Batch Operations, AWS Lambda, and AWS Elemental MediaConvert](tutorial-s3-batchops-lambda-mediaconvert-video.md)
 
 ## Protecting data<a name="protect-data-tutorials"></a>

@@ -690,6 +690,8 @@ The following is a list of common use cases for S3 Object Lambda:
 + Converting across data formats, such as converting XML to JSON for application compatibility\.
 + Compressing or decompressing files as they are being downloaded\.
 + Resizing and watermarking images\.
+
+  For more information, see [Tutorial: Using S3 Object Lambda to dynamically watermark images as they are retrieved](http://aws.amazon.com/getting-started/hands-on/amazon-s3-object-lambda-to-dynamically-watermark-images/?ref=docs_gateway/amazons3/tutorial-s3-object-lambda-uppercase.html)\.
 + Implementing custom authorization rules to access data\.
 
 For more information about S3 Object Lambda, see [Transforming objects with S3 Object Lambda](transforming-objects.md)\.

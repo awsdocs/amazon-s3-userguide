@@ -34,7 +34,7 @@ The example lists keys in the specified S3 bucket\. In the example, you obtain t
  9.   ]
 10. }
 ```
-For more information about how to create an IAM user, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.   
+For more information about how to create an IAM user, see [Creating Your First IAM user and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.   
 After creating an IAM user and attaching the preceding policy, you can run the following example\. For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.  
 
 ```
@@ -149,7 +149,7 @@ The following C\# example lists the keys in the specified bucket\. In the exampl
   10. }
   ```
 
-  The policy allows the IAM user to request temporary security credentials and access permission only to list your AWS resources\. For more information about how to create an IAM user, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\. 
+  The policy allows the IAM user to request temporary security credentials and access permission only to list your AWS resources\. For more information about how to create an IAM user, see [Creating Your IAM user User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\. 
 + Use the IAM user security credentials to test the following example\. The example sends authenticated request to Amazon S3 using temporary security credentials\. The example specifies the following policy when requesting temporary security credentials for the federated user \(User1\), which restricts access to listing objects in a specific bucket \(`YourBucketName`\)\. You must update the policy and provide your own existing bucket name\.
 
   ```
@@ -293,7 +293,7 @@ For added security when requesting temporary credentials for others, you use the
  9.   ]
 10. }
 ```
-The policy allows the IAM user to request temporary security credentials and access permission only to list your AWS resources\. For more information about how to create an IAM user, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.   
+The policy allows the IAM user to request temporary security credentials and access permission only to list your AWS resources\. For more information about how to create an IAM user, see [Creating Your First IAM user and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.   
 You can now use the IAM user security credentials to test the following example\. The example sends an authenticated request to Amazon S3 using temporary security credentials\. When requesting temporary security credentials for the federated user \(User1\), the example specifies the following policy, which restricts access to list objects in a specific bucket\. Update the policy with your bucket name\.  
 
 ```

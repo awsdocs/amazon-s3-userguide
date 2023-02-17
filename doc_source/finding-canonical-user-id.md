@@ -1,8 +1,8 @@
 # Finding the canonical user ID for your AWS account<a name="finding-canonical-user-id"></a>
 
-The canonical user ID is an alpha\-numeric identifier, such as `79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be`, that is an obfuscated form of the AWS account ID\. You can use this ID to identify an AWS account when granting cross\-account access to buckets and objects using Amazon S3\. You can retrieve the canonical user ID for your AWS account as either the root user or an IAM user\. 
+The canonical user ID is an alpha\-numeric identifier, such as `79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be`, that is an obfuscated form of the AWS account ID\. You can use this ID to identify an AWS account when granting cross\-account access to buckets and objects using Amazon S3\. You can retrieve the canonical user ID for your account as the root user, a federated user, or an IAM user\. 
 
-You can find the canonical user ID for your AWS account using the AWS Management Console or the AWS CLI\. The canonical user ID for an AWS account is specific to that account\. You can retrieve the canonical user ID for your account as the root user, a federated user, or an IAM user\. 
+You can find the canonical user ID for your AWS account using the AWS Management Console or the AWS CLI\. The canonical user ID for an AWS account is specific to that account\. 
 
 **Prerequisites**  
 If you are a federated user or are accessing the information programmatically, such as through the AWS CLI, you must have permission to list and view an Amazon S3 bucket\.

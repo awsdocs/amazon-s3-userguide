@@ -107,7 +107,7 @@ If your bucket uses the bucket owner enforced setting for S3 Object Ownership, y
 For more information about using ACLs, see [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)\.
 
 **Prefixes**  
-When trying to share specific resources from a bucket, you can replicate folder\-level permissions using prefixes\. The Amazon S3 console supports the folder concept as a means of grouping objects by using a shared name prefix for objects\. You can then specify a prefix within the conditions of an IAM user's policy to grant them explicit permission to access the resources associated with that prefix\. 
+When trying to share specific resources from a bucket, you can replicate folder\-level permissions by using prefixes\. The Amazon S3 console supports the folder concept as a means of grouping objects by using a shared name prefix for objects\. To then grant an IAM user explicit permission to access the resources associated with that prefix, you can specify that prefix within the conditions of their IAM user policy\. 
 
 For more information, see [Organizing objects in the Amazon S3 console using folders](using-folders.md)\.
 

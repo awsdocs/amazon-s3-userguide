@@ -23,7 +23,7 @@ You can disable or delete any additional dashboards that you create\.
 The following procedure shows how to view an S3 Storage Lens dashboard in the S3 console\. For use\-case based walkthroughs that show how to use your S3 Storage Lens dashboard to optimize your storage costs, implement data\-protection and security best practices, and improve the performance of applications that access your S3 buckets, see [Amazon S3 Storage Lens metrics use cases](storage-lens-use-cases.md)\.
 
 **Note**  
-You can't use your account's root user credentials to view Amazon S3 Storage Lens dashboards\. To access S3 Storage Lens dashboards, you must grant the required AWS Identity and Access Management \(IAM\) permissions to a new or existing IAM user\. Then, sign in with those user credentials to access S3 Storage Lens dashboards\. For more information, see [Amazon S3 Storage Lens permissions](storage_lens_iam_permissions.md)\.
+You can't use your account's root user credentials to view Amazon S3 Storage Lens dashboards\. To access S3 Storage Lens dashboards, you must grant the required AWS Identity and Access Management \(IAM\) permissions to a new or existing IAM user\. Then, sign in with those user credentials to access S3 Storage Lens dashboards\. For more information, see [Amazon S3 Storage Lens permissions](storage_lens_iam_permissions.md) and [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 

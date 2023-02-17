@@ -264,7 +264,7 @@ Now that Bucket Key is turned on at the bucket level, objects that are uploaded,
 
 1. Enter the path or navigate to the CSV manifest file that you created earlier from S3 Select \(or Athena\) results\. If your manifest contains version IDs, select that box\. Choose **Next**\.
 
-1. Choose the **Copy** operation, and choose the copy destination bucket\. You can keep server\-side encryption disabled\. As long as the bucket destination has Bucket Key enabled, the copy operation applies Bucket Key at the destination bucket\.
+1. Choose the **Copy** operation, and choose the copy destination bucket\. You can keep server\-side encryption disabled\. As long as the bucket destination has S3 Bucket Keys enabled, the copy operation applies S3 Bucket Keys at the destination bucket\.
 
 1. \(Optional\) Choose a storage class and the other parameters as desired\. The parameters that you specify in this step apply to all operations performed on the objects that are listed in the manifest\. Choose **Next**
 

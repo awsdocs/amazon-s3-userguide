@@ -13,7 +13,7 @@ For an ongoing record of events in your AWS account, including events for Amazon
 + [Receiving CloudTrail log files from multiple accounts](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-receive-logs-from-multiple-accounts.html)
 
 Every event or log entry contains information about who generated the request\. The identity information helps you determine the following: 
-+ Whether the request was made with root or IAM user credentials
++ Whether the request was made with root user or IAM user credentials
 + Whether the request was made with temporary security credentials for a role or federated user
 + Whether the request was made by another AWS service
 

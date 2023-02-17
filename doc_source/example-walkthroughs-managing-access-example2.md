@@ -1,5 +1,8 @@
 # Example 2: Bucket owner granting cross\-account bucket permissions<a name="example-walkthroughs-managing-access-example2"></a>
 
+**Important**  
+Granting permissions to IAM roles is a better practice than granting permissions to individual users\. To learn how to do this, see [Background: Cross\-account permissions and using IAM roles](example-walkthroughs-managing-access-example4.md#access-policies-walkthrough-example4-overview)\.
+
 **Topics**
 + [Step 0: Preparing for the walkthrough](#cross-acct-access-step0)
 + [Step 1: Do the Account A tasks](#access-policies-walkthrough-cross-account-permissions-acctA-tasks)
@@ -24,7 +27,7 @@ The following is a summary of the walkthrough steps:
 
 1. User in Account B then verifies permissions by accessing an object in the bucket owned by Account A\.
 
-For this example, you need two accounts\. The following table shows how we refer to these accounts and the administrator users in them\. Per IAM guidelines \(see [About using an administrator user to create resources and grant permissions](example-walkthroughs-managing-access.md#about-using-root-credentials)\) we do not use the account root credentials in this walkthrough\. Instead, you create an administrator user in each account and use those credentials in creating resources and granting them permissions\.
+For this example, you need two accounts\. The following table shows how we refer to these accounts and the administrator users in them\. Per the IAM guidelines \(see [About using an administrator user to create resources and grant permissions](example-walkthroughs-managing-access.md#about-using-root-credentials)\), we don't use the root user credentials in this walkthrough\. Instead, you create an administrator user in each account and use those credentials when creating resources and granting them permissions\. 
 
 
 | AWS account ID | Account referred to as | Administrator user in the account  | 
@@ -40,19 +43,13 @@ All the tasks of creating users and granting permissions are done in the AWS Man
 
    1. Sign up for an AWS account, if needed\. 
 
-      1.  Go to [https://aws\.amazon\.com/s3/](https://aws.amazon.com/s3/) and click **Create an AWS Account**\. 
-
-      1. Follow the on\-screen instructions\.
-
-         AWS will notify you by email when your account is active and available for you to use\.
-
    1. Using Account A credentials, sign in to the [IAM console](https://console.aws.amazon.com/iam/home?#home) to create the administrator user:
 
-      1. Create user AccountAadmin and note down the security credentials\. For instructions, see [Creating an IAM User in Your AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. 
+      1. Create user AccountAadmin and note down the security credentials\. For instructions, see [Creating an IAM user in Your AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. 
 
       1. Grant AccountAadmin administrator privileges by attaching a user policy giving full access\. For instructions, see [Working with Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\. 
 
-   1. While you are in the IAM console, note down the **IAM User Sign\-In URL** on the **Dashboard**\. All users in the account must use this URL when signing in to the AWS Management Console\.
+   1. While you are in the IAM console, note down the **IAM user Sign\-In URL** on the **Dashboard**\. All users in the account must use this URL when signing in to the AWS Management Console\.
 
       For more information, see [How Users Sign in to Your Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html) in *IAM User Guide*\. 
 
@@ -95,7 +92,7 @@ Using the IAM user sign\-in URL for Account A first sign in to the AWS Managemen
 
 ### Step 1\.2: Create a bucket<a name="access-policies-walkthrough-example2a-create-bucket"></a>
 
-1. In the Amazon S3 console, create a bucket\. This exercise assumes the bucket is created in the US East \(N\. Virginia\) region and is named `DOC-EXAMPLE-BUCKET`\.
+1. In the Amazon S3 console, create a bucket\. This exercise assumes the bucket is created in the US East \(N\. Virginia\) Region and is named `DOC-EXAMPLE-BUCKET`\.
 
    For instructions, see [Creating a bucket](create-bucket-overview.md)\. 
 
@@ -292,7 +289,7 @@ You can have permissions granted via an ACL, a bucket policy, and a user policy\
 1. After you are done testing, you can do the following to clean up\.
 
    1. Sign in to the AWS Management Console \([AWS Management Console](https://console.aws.amazon.com/)\) using Account A credentials, and do the following:
-     + In the Amazon S3 console, remove the bucket policy attached to *DOC\-EXAMPLE\-BUCKET*\. In the bucket **Properties**, delete the policy in the **Permissions** section\. 
+     + In the Amazon S3 console, remove the bucket policy attached to `DOC-EXAMPLE-BUCKET`\. In the bucket **Properties**, delete the policy in the **Permissions** section\. 
      + If the bucket is created for this exercise, in the Amazon S3 console, delete the objects and then delete the bucket\. 
      + In the IAM console, remove the AccountAadmin user\.
 

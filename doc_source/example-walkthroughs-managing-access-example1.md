@@ -1,5 +1,8 @@
 # Example 1: Bucket owner granting its users bucket permissions<a name="example-walkthroughs-managing-access-example1"></a>
 
+**Important**  
+Granting permissions to IAM roles is a better practice than granting permissions to individual users\. To learn how to do this, see [Background: Cross\-account permissions and using IAM roles](example-walkthroughs-managing-access-example4.md#access-policies-walkthrough-example4-overview)\.
+
 **Topics**
 + [Step 0: Preparing for the walkthrough](#grant-permissions-to-user-in-your-account-step0)
 + [Step 1: Create resources \(a bucket and an IAM user\) in account A and grant permissions](#grant-permissions-to-user-in-your-account-step1)
@@ -17,7 +20,7 @@ The following steps summarize the walkthrough:
 
 1. User then tries permissions granted via both the bucket policy and the user policy\.
 
-For this example, you will need an AWS account\. Instead of using the root credentials of the account, you will create an administrator user \(see [About using an administrator user to create resources and grant permissions](example-walkthroughs-managing-access.md#about-using-root-credentials)\)\. We refer to the AWS account and the administrator user as follows:
+For this example, you will need an AWS account\. Instead of using the root user credentials of the account, you will create an administrator user \(see [About using an administrator user to create resources and grant permissions](example-walkthroughs-managing-access.md#about-using-root-credentials)\)\. We refer to the AWS account and the administrator user as follows:
 
 
 | Account ID | Account referred to as | Administrator user in the account | 
@@ -45,13 +48,13 @@ All the tasks of creating users and granting permissions are done in the AWS Man
 
       1. Create user AccountAadmin and note down the user security credentials\. 
 
-         For instructions, see [Creating an IAM User in Your AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. 
+         For instructions, see [Creating an IAM user in Your AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. 
 
       1. Grant AccountAadmin administrator privileges by attaching a user policy giving full access\. 
 
          For instructions, see [Working with Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\. 
 
-      1. Note down the **IAM User Sign\-In URL** for AccountAadmin\. You will need to use this URL when signing in to the AWS Management Console\. For more information about where to find it, see [How Users Sign in to Your Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html) in *IAM User Guide*\. Note down the URL for each of the accounts\.
+      1. Note down the **IAM user Sign\-In URL** for AccountAadmin\. You will need to use this URL when signing in to the AWS Management Console\. For more information about where to find it, see [How Users Sign in to Your Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html) in *IAM User Guide*\. Note down the URL for each of the accounts\.
 
 1. Set up either the AWS Command Line Interface \(CLI\) or the AWS Tools for Windows PowerShell\. Make sure you save administrator user credentials as follows:
    + If using the AWS CLI, create a profile, AccountAadmin, in the config file\.
@@ -71,7 +74,7 @@ Using the credentials of user AccountAadmin in Account A, and the special IAM us
 
       1. Create a user, Dave\.
 
-         For instructions, see [Creating IAM Users \(AWS Management Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) in the *IAM User Guide*\. 
+         For instructions, see [Creating IAM users \(AWS Management Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) in the *IAM User Guide*\. 
 
       1. Note down the UserDave credentials\.
 

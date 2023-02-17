@@ -26,7 +26,7 @@ To enable versioning, you can send a request to Amazon S3 with a versioning conf
 
 To suspend versioning, you set the status value to `Suspended`\.
 
-The bucket owner and all authorized IAM users can enable versioning\. The bucket owner is the AWS account that created the bucket \(the root account\)\. For more information about permissions, see [Identity and access management in Amazon S3](s3-access-control.md)\.
+The bucket owner and all authorized users can enable versioning\. The bucket owner is the AWS account that created the bucket \(the root account\)\. For more information about permissions, see [Identity and access management in Amazon S3](s3-access-control.md)\.
 
 The following sections provide more detail about enabling S3 Versioning using the console, AWS CLI, and the AWS SDKs\.
 

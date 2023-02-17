@@ -26,12 +26,13 @@ You also learn how to use and configure a prebuilt AWS Lambda function in the [A
 
 ## Prerequisites: Create an IAM user with permissions<a name="ol-pii-prerequisites"></a>
 
-Before you start this tutorial, you must have an AWS account that you can sign in to as an AWS Identity and Access Management \(IAM\) user with correct permissions\.
+Before you start this tutorial, you must have an AWS account that you can sign in to as an AWS Identity and Access Management user \(IAM user\) with correct permissions\.
 
-You can create an IAM user for the tutorial, or you can add permissions to an existing IAM user\. To complete this tutorial, your IAM user must attach the following IAM policies to access relevant AWS resources and perform specific actions\. 
+You can create an IAM user for the tutorial\. To complete this tutorial, your IAM user must attach the following IAM policies to access relevant AWS resources and perform specific actions\. 
 
 **Note**  
-For simplicity, this tutorial uses full\-access policies\. For production use, we recommend that you instead grant only the minimum permissions necessary for your use case, in accordance with [security best practices](security-best-practices.md#security-best-practices-prevent)\.
+For simplicity, this tutorial creates and uses an IAM user\. After completing this tutorial, remember to [Delete the IAM user](#ol-pii-step8-delete-user)\. For production use, we recommend that you follow the [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\. A best practice requires human users to use federation with an identity provider to access AWS with temporary credentials\. Another best practice is to require workloads to use temporary credentials with IAM roles to access AWS\. To learn about using AWS IAM Identity Center \(successor to AWS Single Sign\-On\) to create users with temporary credentials, see [Getting started](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.   
+This tutorial also uses full\-access policies\. For production use, we recommend that you instead grant only the minimum permissions necessary for your use case, in accordance with [security best practices](security-best-practices.md#security-best-practices-prevent)\.
 
 Your IAM user requires the following AWS managed policies:
 + [AmazonS3FullAccess](https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/AmazonS3FullAccess$jsonEditor) – Grants permissions to all Amazon S3 actions, including permissions to create and use an Object Lambda access point\. 

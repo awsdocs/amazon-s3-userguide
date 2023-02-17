@@ -1,5 +1,8 @@
 # Example 3: Bucket owner granting permissions to objects it does not own<a name="example-walkthroughs-managing-access-example3"></a>
 
+**Important**  
+Granting permissions to IAM roles is a better practice than granting permissions to individual users\. To learn how to do this, see [Background: Cross\-account permissions and using IAM roles](example-walkthroughs-managing-access-example4.md#access-policies-walkthrough-example4-overview)\.
+
 **Topics**
 + [Step 0: Preparing for the walkthrough](#access-policies-walkthrough-cross-account-acl-step0)
 + [Step 1: Do the Account A tasks](#access-policies-walkthrough-cross-account-acl-acctA-tasks)
@@ -31,7 +34,7 @@ In this example, we assume the bucket owner has not applied the bucket owner enf
 
 1. User in Account A verifies by accessing objects in the bucket, regardless of who owns them\.
 
-For this example, you need two accounts\. The following table shows how we refer to these accounts and the administrator users in these accounts\. In this walkthrough, you don't use the account root credentials, according to the recommended IAM guidelines\. For more information, see [About using an administrator user to create resources and grant permissions](example-walkthroughs-managing-access.md#about-using-root-credentials)\. Instead, you create an administrator in each account and use those credentials in creating resources and granting them permissions\.
+For this example, you need two accounts\. The following table shows how we refer to these accounts and the administrator users in these accounts\. In this walkthrough, you don't use the account root user credentials, according to the recommended IAM guidelines\. For more information, see [About using an administrator user to create resources and grant permissions](example-walkthroughs-managing-access.md#about-using-root-credentials)\. Instead, you create an administrator in each account and use those credentials in creating resources and granting them permissions\.
 
 
 | AWS account ID | Account referred to as | Administrator in the account  | 
@@ -46,10 +49,6 @@ All the tasks of creating users and granting permissions are done in the AWS Man
 1. Make sure that you have two AWS accounts and each account has one administrator as shown in the table in the preceding section\.
 
    1. Sign up for an AWS account, if needed\. 
-
-      1. Open the [Amazon S3 page](https://aws.amazon.com/s3/) and choose **Create an AWS Account**\. 
-
-      1. Follow the on\-screen instructions\. AWS will notify you by email when your account is active and available for you to use\.
 
    1. Using Account A credentials, sign in to the [IAM console](https://console.aws.amazon.com/iam/home?#home) and do the following to create an administrator user:
       + Create user *AccountAadmin* and note down security credentials\. For more information about adding users, see [Creating an IAM user in your AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. 

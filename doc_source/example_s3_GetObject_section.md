@@ -590,7 +590,7 @@ Download an object from a bucket to a local file\.
         guard let body = output.body else {
             return
         }
-        let data = body.toBytes().toData()
+        let data = body.toBytes().getData()
         try data.write(to: fileUrl)
     }
 ```
@@ -609,7 +609,7 @@ Read an object into a Swift Data object\.
         guard let body = output.body else {
             return "".data(using: .utf8)!
         }
-        let data = body.toBytes().toData()
+        let data = body.toBytes().getData()
         return data
     }
 ```

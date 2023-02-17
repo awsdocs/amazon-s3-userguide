@@ -47,7 +47,7 @@ The following is a summary of the walkthrough steps:
 
 1. User in Account C first assumes the role, which returns the user temporary security credentials\. Using those temporary credentials, the user then accesses objects in the bucket\.
 
-For this example, you need three accounts\. The following table shows how we refer to these accounts and the administrator users in these accounts\. Per IAM guidelines \(see [About using an administrator user to create resources and grant permissions](example-walkthroughs-managing-access.md#about-using-root-credentials)\) we do not use the account root credentials in this walkthrough\. Instead, you create an administrator user in each account and use those credentials in creating resources and granting them permissions
+For this example, you need three accounts\. The following table shows how we refer to these accounts and the administrator users in these accounts\. Per the IAM guidelines \(see [About using an administrator user to create resources and grant permissions](example-walkthroughs-managing-access.md#about-using-root-credentials)\), we don't use the AWS account root user credentials in this walkthrough\. Instead, you create an administrator user in each account and use those credentials when creating resources and granting them permissions\.
 
 
 | AWS account ID | Account referred to as | Administrator user in the account  | 
@@ -61,22 +61,16 @@ For this example, you need three accounts\. The following table shows how we ref
 ## Step 0: Preparing for the walkthrough<a name="access-policies-walkthrough-example4-step0"></a>
 
 **Note**  
-You may want to open a text editor and write down some of the information as you walk through the steps\. In particular, you will need account IDs, canonical user IDs, IAM User Sign\-in URLs for each account to connect to the console, and Amazon Resource Names \(ARNs\) of the IAM users, and roles\. 
+You may want to open a text editor and write down some of the information as you walk through the steps\. In particular, you will need account IDs, canonical user IDs, IAM user Sign\-in URLs for each account to connect to the console, and Amazon Resource Names \(ARNs\) of the IAM users, and roles\. 
 
 1. Make sure you have three AWS accounts and each account has one administrator user as shown in the table in the preceding section\.
 
    1. Sign up for AWS accounts, as needed\. We refer to these accounts as Account A, Account B, and Account C\.
 
-      1.  Go to [https://aws\.amazon\.com/s3/](https://aws.amazon.com/s3/) and click **Create an AWS Account**\. 
-
-      1. Follow the on\-screen instructions\.
-
-         AWS will notify you by email when your account is active and available for you to use\.
-
    1. Using Account A credentials, sign in to the [IAM console](https://console.aws.amazon.com/iam/home?#home) and do the following to create an administrator user:
-      + Create user AccountAadmin and note down security credentials\. For more information about adding users, see [Creating an IAM User in Your AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. 
+      + Create user AccountAadmin and note down security credentials\. For more information about adding users, see [Creating an IAM user in Your AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. 
       + Grant AccountAadmin administrator privileges by attaching a user policy giving full access\. For instructions, see [Working with Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\. 
-      + In the IAM Console **Dashboard**, note down the** IAM User Sign\-In URL**\. Users in this account must use this URL when signing in to the AWS Management Console\. For more information, go to [How Users Sign In to Your Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html) in *IAM User Guide*\. 
+      + In the IAM Console **Dashboard**, note down the **IAM User Sign\-In URL**\. Users in this account must use this URL when signing in to the AWS Management Console\. For more information, go to [How Users Sign In to Your Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html) in *IAM User Guide*\. 
 
    1. Repeat the preceding step to create administrator users in Account B and Account C\.
 
@@ -116,19 +110,19 @@ In this example, Account A is the bucket owner\. So user AccountAadmin in Accoun
 
 ### Step 1\.1: Sign in to the AWS Management Console<a name="access-policies-walkthrough-cross-account-permissions-acctA-tasks-sign-in-example4"></a>
 
-Using the IAM User Sign\-in URL for Account A, first sign in to the AWS Management Console as AccountAadmin user\. This user will create a bucket and attach a policy to it\. 
+Using the IAM user Sign\-in URL for Account A, first sign in to the AWS Management Console as AccountAadmin user\. This user will create a bucket and attach a policy to it\. 
 
 ### Step 1\.2: Create a bucket and attach a bucket policy<a name="access-policies-walkthrough-example2d-step1-1"></a>
 
 In the Amazon S3 console, do the following:
 
-1. Create a bucket\. This exercise assumes the bucket name is `examplebucket`\.
+1. Create a bucket\. This exercise assumes the bucket name is `DOC-EXAMPLE-BUCKET1`\.
 
    For instructions, see [Creating a bucket](create-bucket-overview.md)\. 
 
 1. Attach the following bucket policy granting conditional permission to the Account B administrator permission to upload objects\.
 
-   You need to update the policy by providing your own values for *examplebucket*, *AccountB\-ID*, and the *CanonicalUserId\-of\-AWSaccountA\-BucketOwner*\. 
+   You need to update the policy by providing your own values for `DOC-EXAMPLE-BUCKET1`, `AccountB-ID`, and the `CanonicalUserId-of-AWSaccountA-BucketOwner`\. 
 
    ```
    {
@@ -141,7 +135,7 @@ In the Amazon S3 console, do the following:
                    "AWS": "arn:aws:iam::AccountB-ID:user/AccountBadmin"
                },
                "Action": "s3:PutObject",
-               "Resource": "arn:aws:s3:::awsexamplebucket1/*"
+               "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
            },
            {
                "Sid": "112",
@@ -150,7 +144,7 @@ In the Amazon S3 console, do the following:
                    "AWS": "arn:aws:iam::AccountB-ID:user/AccountBadmin"
                },
                "Action": "s3:PutObject",
-               "Resource": "arn:aws:s3:::awsexamplebucket1/*",
+               "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*",
                "Condition": {
                    "StringNotEquals": {
                        "s3:x-amz-grant-full-control": "id=CanonicalUserId-of-AWSaccountA-BucketOwner"
@@ -182,7 +176,7 @@ In the IAM console, create an IAM role \("examplerole"\) that grants Account C p
           {
             "Effect": "Allow",
             "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::awsexamplebucket1/*"
+            "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
           }
         ]
       }
@@ -245,10 +239,10 @@ In the IAM console, create an IAM role \("examplerole"\) that grants Account C p
 ## Step 2: Do the account b tasks<a name="access-policies-walkthrough-example4-step2"></a>
 
 The examplebucket owned by Account A needs objects owned by other accounts\. In this step, the Account B administrator uploads an object using the command line tools\.
-+ Using the put\-object AWS CLI command, upload an object to the `examplebucket`\. 
++ Using the `put-object` AWS CLI command, upload an object to `DOC-EXAMPLE-BUCKET1`\. 
 
   ```
-  aws s3api put-object --bucket examplebucket --key HappyFace.jpg --body HappyFace.jpg --grant-full-control id="canonicalUserId-ofTheBucketOwner" --profile AccountBadmin
+  aws s3api put-object --bucket DOC-EXAMPLE-BUCKET1 --key HappyFace.jpg --body HappyFace.jpg --grant-full-control id="canonicalUserId-ofTheBucketOwner" --profile AccountBadmin
   ```
 
   Note the following:
@@ -258,7 +252,7 @@ The examplebucket owned by Account A needs objects owned by other accounts\. In 
 
 ## Step 3: Do the account C tasks<a name="access-policies-walkthrough-example4-step3"></a>
 
-In the preceding steps, Account A has already created a role, `examplerole`, establishing trust with Account C\. This allows users in Account C to access Account A\. In this step, Account C administrator creates a user \(Dave\) and delegates him the `sts:AssumeRole` permission it received from Account A\. This will allow Dave to assume the `examplerole` and temporarily gain access to Account A\. The access policy that Account A attached to the role will limit what Dave can do when he accesses Account A—specifically, get objects in `examplebucket`\.
+In the preceding steps, Account A has already created a role, `examplerole`, establishing trust with Account C\. This allows users in Account C to access Account A\. In this step, Account C administrator creates a user \(Dave\) and delegates him the `sts:AssumeRole` permission it received from Account A\. This will allow Dave to assume the `examplerole` and temporarily gain access to Account A\. The access policy that Account A attached to the role will limit what Dave can do when he accesses Account A—specifically, get objects in `DOC-EXAMPLE-BUCKET1`\.
 
 ### Step 3\.1: Create a user in account C and delegate permission to assume `examplerole`<a name="cross-acct-access-using-role-step3-1"></a>
 
@@ -268,7 +262,7 @@ In the preceding steps, Account A has already created a role, `examplerole`, est
 
 1. In the IAM console, create a user Dave\. 
 
-   For instructions, see [Creating IAM Users \(AWS Management Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) in the *IAM User Guide*\. 
+   For instructions, see [Creating IAM users \(AWS Management Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) in the *IAM User Guide*\. 
 
 1. Note down the Dave credentials\. Dave will need these credentials to assume the `examplerole` role\.
 
@@ -343,7 +337,7 @@ Now Dave can access objects in the bucket owned by Account A as follows:
 1. At the command prompt, run the following AWS CLI command to access objects using the temporary credentials\. For example, the command specifies the head\-object API to retrieve object metadata for the `HappyFace.jpg` object\.
 
    ```
-   aws s3api get-object --bucket examplebucket --key HappyFace.jpg SaveFileAs.jpg --profile TempCred
+   aws s3api get-object --bucket DOC-EXAMPLE-BUCKET1 --key HappyFace.jpg SaveFileAs.jpg --profile TempCred
    ```
 
    Because the access policy attached to `examplerole` allows the actions, Amazon S3 processes the request\. You can try any other action on any other object in the bucket\.
@@ -351,26 +345,26 @@ Now Dave can access objects in the bucket owned by Account A as follows:
    If you try any other action—for example, `get-object-acl`—you will get permission denied because the role is not allowed that action\.
 
    ```
-   aws s3api get-object-acl --bucket examplebucket --key HappyFace.jpg --profile TempCred
+   aws s3api get-object-acl --bucket DOC-EXAMPLE-BUCKET1 --key HappyFace.jpg --profile TempCred
    ```
 
-   We used user Dave to assume the role and access the object using temporary credentials\. It could also be an application in Account C that accesses objects in `examplebucket`\. The application can obtain temporary security credentials, and Account C can delegate the application permission to assume `examplerole`\.
+   We used user Dave to assume the role and access the object using temporary credentials\. It could also be an application in Account C that accesses objects in `DOC-EXAMPLE-BUCKET1`\. The application can obtain temporary security credentials, and Account C can delegate the application permission to assume `examplerole`\.
 
 ## Step 4: Clean up<a name="access-policies-walkthrough-example4-step6"></a>
 
 1. After you are done testing, you can do the following to clean up\.
 
    1. Sign in to the AWS Management Console \([AWS Management Console](https://console.aws.amazon.com/)\) using account A credentials, and do the following:
-     + In the Amazon S3 console, remove the bucket policy attached to *examplebucket*\. In the bucket **Properties**, delete the policy in the **Permissions** section\. 
+     + In the Amazon S3 console, remove the bucket policy attached to `DOC-EXAMPLE-BUCKET1`\. In the bucket **Properties**, delete the policy in the **Permissions** section\. 
      + If the bucket is created for this exercise, in the Amazon S3 console, delete the objects and then delete the bucket\. 
      + In the IAM console, remove the `examplerole` you created in Account A\. 
      + In the IAM console, remove the AccountAadmin user\.
 
-1. Sign in to the AWS Management Console \([AWS Management Console](https://console.aws.amazon.com/)\) using Account B credentials\. In the IAM console, delete user AccountBadmin\.
+1. Sign in to the AWS Management Console \([AWS Management Console](https://console.aws.amazon.com/)\) by using Account B credentials\. In the IAM console, delete user AccountBadmin\.
 
-1. Sign in to the AWS Management Console \([AWS Management Console](https://console.aws.amazon.com/)\) using Account C credentials\. In the IAM console, delete user AccountCadmin and user Dave\.
+1. Sign in to the AWS Management Console \([AWS Management Console](https://console.aws.amazon.com/)\) by using Account C credentials\. In the IAM console, delete user AccountCadmin and user Dave\.
 
 ## Related resources<a name="RelatedResources-managing-access-example4"></a>
-+ [Creating a Role to Delegate Permissions to an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
-+ [Tutorial: Delegate Access Across AWS Accounts Using IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial-cross-account-with-roles.html) in the *IAM User Guide*\.
++ [Creating a Role to Delegate Permissions to an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
++ [Tutorial: Delegate Access Across AWS accounts Using IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial-cross-account-with-roles.html) in the *IAM User Guide*\.
 + [Working with Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage.html) in the *IAM User Guide*\.

@@ -22,7 +22,7 @@ This example uses the following departments, with each using Batch Operations in
 
 ## Controlling access by assigning tags to users and resources<a name="job-tags-examples-attaching-tags"></a>
 
-In this scenario, the administrators are using [attribute\-based access control \(ABAC\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html)\. ABAC is an IAM authorization strategy that defines permissions by attaching tags to both IAM users and AWS resources\.
+In this scenario, the administrators are using [attribute\-based access control \(ABAC\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html)\. ABAC is an IAM authorization strategy that defines permissions by attaching tags to both users and AWS resources\.
 
 Users and jobs are assigned one of the following department tags:
 
@@ -34,12 +34,12 @@ Users and jobs are assigned one of the following department tags:
 **Note**  
 Job tag keys and values are case sensitive\.
 
-Using the ABAC access control strategy, you grant a user in the Finance department permission to create and manage S3 Batch Operations jobs within their department by associating the tag `department=Finance` with their IAM user\.
+Using the ABAC access control strategy, you grant a user in the Finance department permission to create and manage S3 Batch Operations jobs within their department by associating the tag `department=Finance` with their user\.
 
 Furthermore, you can attach a managed policy to the IAM user that allows any user in their company to create or modify S3 Batch Operations jobs within their respective departments\. 
 
 The policy in this example includes three policy statements:
-+ The first statement in the policy allows the user to create a Batch Operations job provided that the job creation request includes a job tag that matches their respective department\. This is expressed using the `"${aws:PrincipalTag/department}"` syntax, which is replaced by the IAM user’s department tag at policy evaluation time\. The condition is satisfied when the value provided for the department tag in the request `("aws:RequestTag/department")` matches the user’s department\. 
++ The first statement in the policy allows the user to create a Batch Operations job provided that the job creation request includes a job tag that matches their respective department\. This is expressed using the `"${aws:PrincipalTag/department}"` syntax, which is replaced by the user’s department tag at policy evaluation time\. The condition is satisfied when the value provided for the department tag in the request `("aws:RequestTag/department")` matches the user’s department\. 
 + The second statement in the policy allows users to change the priority of jobs or update a job’s status provided that the job the user is updating matches the user’s department\. 
 + The third statement allows a user to update a Batch Operations job’s tags at any time via a `PutJobTagging` request as long as \(1\) their department tag is preserved and \(2\) the job they’re updating is within their department\. 
 

@@ -66,7 +66,7 @@ In general, you can use either a user policy or a bucket policy to manage permis
 
 With AWS Identity and Access Management \(IAM\) you can create multiple users within your AWS account and manage their permissions through user policies\. An IAM user must have permissions from the parent account to which it belongs, and from the AWS account that owns the resource that the user wants to access\. The permissions can be granted as follows:
 + **Permission from the parent account** – The parent account can grant permissions to its user by attaching a user policy\.
-+ **Permission from the resource owner** – The resource owner can grant permission to either the IAM user \(using a bucket policy\) or the parent account \(using a bucket policy, bucket ACL, or object ACL\)\.
++ **Permission from the resource owner** – The resource owner can grant permission to either the IAM user \(by using a bucket policy\) or the parent account \(by using a bucket policy, bucket ACL, or object ACL\)\.
 
 This is similar to a child who wants to play with a toy that belongs to someone else\. To play with the toy, the child must get permission from a parent and permission from the toy owner\.
 

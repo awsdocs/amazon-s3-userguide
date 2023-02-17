@@ -50,7 +50,7 @@ To prevent objects from being modified by the anonymous user, we recommend that 
 For more information about blocking public access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\. For more information about ACLs, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
 **Important**  
-We recommend that you don't use the AWS account root user credentials to make authenticated requests\. Instead, create an IAM user and grant that user full access\. We refer to these users as *administrator users*\. You can use the administrator user credentials, instead of AWS account root user credentials, to interact with AWS and perform tasks, such as create a bucket, create users, and grant permissions\. For more information, see [AWS account root user credentials and IAM user credentials](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) in the *AWS General Reference* and [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
+We recommend that you don't use the AWS account root user credentials to make authenticated requests\. Instead, create an IAM role and grant that role full access\. We refer to users with this role as *administrator users*\. You can use credentials assigned to the administrator role, instead of AWS account root user credentials, to interact with AWS and perform tasks, such as create a bucket, create users, and grant permissions\. For more information, see [AWS account root user credentials and IAM user credentials](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) in the *AWS General Reference* and [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
 ## Resource operations<a name="access-control-resource-operations-basics"></a>
 
@@ -163,7 +163,7 @@ For more information about Access Analyzer for S3, see [Reviewing bucket access 
  With the options available to write an access policy, the following questions arise:
 + When should I use which access control method? For example, to grant bucket permissions, should I use a bucket policy or bucket ACL? 
 
-  I own a bucket and the objects in the bucket\. Should I use a resource\-based access policy or an IAM user policy? 
+  I own a bucket and the objects in the bucket\. Should I use a resource\-based access policy or an IAM identity\-based policy? 
 
   If I use a resource\-based access policy, should I use a bucket policy or an object ACL to manage object permissions?
 + I own a bucket, but I don't own all of the objects in it\. How are access permissions managed for the objects that somebody else owns? 

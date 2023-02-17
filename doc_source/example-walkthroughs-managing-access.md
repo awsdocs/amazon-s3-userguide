@@ -25,12 +25,12 @@ This topic provides the following introductory walkthrough examples for granting
 
 These examples use the AWS Management Console to create resources and grant permissions\. And to test permissions, the examples use the command line tools, AWS Command Line Interface \(CLI\) and AWS Tools for Windows PowerShell, so you don't need to write any code\. To test permissions you will need to set up one of these tools\. For more information, see [Setting up the tools for the example walkthroughs](policy-eval-walkthrough-download-awscli.md)\. 
 
-In addition, when creating resources these examples don't use root credentials of an AWS account\. Instead, you create an administrator user in these accounts to perform these tasks\. 
+In addition, when creating resources these examples don't use root user credentials of an AWS account\. Instead, you create an administrator user in these accounts to perform these tasks\. 
 
 ### About using an administrator user to create resources and grant permissions<a name="about-using-root-credentials"></a>
 
-AWS Identity and Access Management \(IAM\) recommends not using the root credentials of your AWS account to make requests\. Instead, create an IAM user, grant that user full access, and then use that user's credentials to make requests\. We refer to this user as an administrator user\. For more information, go to [Root Account Credentials vs\. IAM User Credentials](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) in the *AWS General Reference* and [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
+AWS Identity and Access Management \(IAM\) recommends not using the root user credentials of your AWS account to make requests\. Instead, create an IAM user or role, grant them full access, and then use their credentials to make requests\. We refer to this as an administrative user or role\. For more information, go to [AWS account root user credentials and IAM identities](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) in the *AWS General Reference* and [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
 All example walkthroughs in this section use the administrator user credentials\. If you have not created an administrator user for your AWS account, the topics show you how\. 
 
-Note that to sign in to the AWS Management Console using the user credentials, you will need to use the IAM User Sign\-In URL\. The IAM console provides this URL for your AWS account\. The topics show you how to get the URL\.
+Note that to sign in to the AWS Management Console using the user credentials, you will need to use the IAM user sign\-In URL\. The IAM console provides this URL for your AWS account\. The topics show you how to get the URL\.

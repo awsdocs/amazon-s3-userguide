@@ -1,6 +1,6 @@
 # Controlling access to a bucket with user policies<a name="walkthrough1"></a>
 
-This walkthrough explains how user permissions work with Amazon S3\. In this example, you create a bucket with folders\. You then create AWS Identity and Access Management \(IAM\) users in your AWS account and grant those users incremental permissions on your Amazon S3 bucket and the folders in it\. 
+This walkthrough explains how user permissions work with Amazon S3\. In this example, you create a bucket with folders\. You then create AWS Identity and Access Management IAM users in your AWS account and grant those users incremental permissions on your Amazon S3 bucket and the folders in it\. 
 
 **Topics**
 + [Basics of buckets and folders](#walkthrough-background1)
@@ -121,7 +121,7 @@ Now use the IAM console to add two IAM users, Alice and Bob, to your AWS account
 **Warning**  
 When you add users and a group, do not attach any policies that grant permissions to these users\. At first, these users don't have any permissions\. In the following sections, you grant permissions incrementally\. First you must ensure that you have assigned passwords to these IAM users\. You use these user credentials to test Amazon S3 actions and verify that the permissions work as expected\.
 
-For step\-by\-step instructions for creating a new IAM user, see [Creating an IAM User in Your AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. When you create the users for this walkthrough, select **AWS Management Console access** and clear **Programmatic access**\.
+For step\-by\-step instructions for creating a new IAM user, see [Creating an IAM user in Your AWS account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) in the *IAM User Guide*\. When you create the users for this walkthrough, select **AWS Management Console access** and clear **Programmatic access**\.
 
 For step\-by\-step instructions for creating an administrative group, see [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
 

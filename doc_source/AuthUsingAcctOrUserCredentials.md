@@ -17,7 +17,7 @@ The easiest way to configure credentials for your AWS SDKs is to use an AWS cred
 
 1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
-1. Create a new user with permissions limited to the services and actions that you want your code to have access to\. For more information about creating a new IAM user, see [Creating IAM Users \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console), and follow the instructions through step 8\.
+1. Create a new user with permissions limited to the services and actions that you want your code to have access to\. For more information about creating a new user, see [Creating IAM users \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console), and follow the instructions through step 8\.
 
 1. Choose **Download \.csv** to save a local copy of your AWS credentials\.
 
@@ -35,7 +35,7 @@ The easiest way to configure credentials for your AWS SDKs is to use an AWS cred
 
 1. In the `.aws` directory, create a new file named `credentials`\.
 
-1. Open the credentials \.csv file that you downloaded from the IAM console, and copy its contents into the `credentials` file using the following format:
+1. Open the credentials `.csv` file that you downloaded from the IAM console, and copy its contents into the `credentials` file using the following format:
 
    ```
    [default]
@@ -43,7 +43,7 @@ The easiest way to configure credentials for your AWS SDKs is to use an AWS cred
    aws_secret_access_key = your_secret_access_key
    ```
 
-1. Save the `credentials` file, and delete the \.csv file that you downloaded in step 3\.
+1. Save the `credentials` file, and delete the `.csv` file that you downloaded in step 3\.
 
 Your shared credentials file is now configured on your local computer, and it's ready to be used with the AWS SDKs\.
 
@@ -127,7 +127,7 @@ For more information, see [Making requests using AWS account or IAM user credent
 
 **Note**  
 You can create the `AmazonS3Client` client without providing your security credentials\. Requests sent using this client are anonymous requests, without a signature\. Amazon S3 returns an error if you send anonymous requests for a resource that is not publicly available\.
-You can create an AWS account and create the required user accounts\. You can also manage credentials for those user accounts\. You need these credentials to perform the task in the following example\. For more informatory, see [Configure AWS credentials](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/net-dg-config-creds.html) in the *AWS SDK for \.NET Developer Guide*\.  
+You can create an AWS account and create the required users\. You can also manage credentials for those users\. You need these credentials to perform the task in the following example\. For more information, see [Configure AWS credentials](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/net-dg-config-creds.html) in the *AWS SDK for \.NET Developer Guide*\.  
 You can then also configure your application to actively retrieve profiles and credentials, and then explicitly use those credentials when creating an AWS service client\. For more information, see [Accessing credentials and profiles in an application](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/creds-locate.html) in the *AWS SDK for \.NET Developer Guide*\.
 
 The following C\# example shows how to perform the preceding tasks\. For information about running the \.NET examples in this guide and for instructions on how to store your credentials in a configuration file, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\.

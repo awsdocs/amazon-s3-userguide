@@ -1,6 +1,6 @@
 # How Amazon S3 authorizes a request for a bucket operation<a name="access-control-auth-workflow-bucket-operation"></a>
 
-When Amazon S3 receives a request for a bucket operation, Amazon S3 converts all the relevant permissions into a set of policies to evaluate at run time\. Relevant permissions include resource\-based  permissions \(for example, bucket policies and bucket access control lists\) and IAM user policies if the request is from an IAM principal\. Amazon S3 then evaluates the resulting set of policies in a series of steps according to a specific context—user context or bucket context\. 
+When Amazon S3 receives a request for a bucket operation, Amazon S3 converts all the relevant permissions into a set of policies to evaluate at run time\. Relevant permissions include resource\-based  permissions \(for example, bucket policies and bucket access control lists\) and user policies if the request is from an IAM principal\. Amazon S3 then evaluates the resulting set of policies in a series of steps according to a specific context—user context or bucket context\. 
 
 1. **User context** – If the requester is an IAM principal, the principal must have permission from the parent AWS account to which it belongs\. In this step, Amazon S3 evaluates a subset of policies owned by the parent account \(also referred to as the context authority\)\. This subset of policies includes the user policy that the parent account attaches to the principal\. If the parent also owns the resource in the request \(in this case, the bucket\), Amazon S3 also evaluates the corresponding resource policies \(bucket policy and bucket ACL\) at the same time\. Whenever a request for a bucket operation is made, the server access logs record the canonical ID of the requester\. For more information, see [Logging requests using server access logging](ServerLogs.md)\.
 
@@ -16,25 +16,25 @@ The following examples illustrate the evaluation logic\.
 
 ## Example 1: Bucket operation requested by bucket owner<a name="example1-policy-eval-logic"></a>
 
- In this example, the bucket owner sends a request for a bucket operation using the root credentials of the AWS account\. 
+ In this example, the bucket owner sends a request for a bucket operation by using the root credentials of the AWS account\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/example10-policy-eval-logic.png)
 
  Amazon S3 performs the context evaluation as follows:
 
-1.  Because the request is made by using root credentials of an AWS account, the user context is not evaluated \.
+1.  Because the request is made by using the root user credentials of an AWS account, the user context is not evaluated\.
 
 1.  In the bucket context, Amazon S3 reviews the bucket policy to determine if the requester has permission to perform the operation\. Amazon S3 authorizes the request\. 
 
 ## Example 2: Bucket operation requested by an AWS account that is not the bucket owner<a name="example2-policy-eval-logic"></a>
 
-In this example, a request is made using root credentials of AWS account 1111\-1111\-1111 for a bucket operation owned by AWS account 2222\-2222\-2222\. No IAM users are involved in this request\.
+In this example, a request is made by using the root user credentials of AWS account 1111\-1111\-1111 for a bucket operation owned by AWS account 2222\-2222\-2222\. No IAM users are involved in this request\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/example20-policy-eval-logic.png)
 
 In this case, Amazon S3 evaluates the context as follows:
 
-1.  Because the request is made using root credentials of an AWS account, the user context is not evaluated\.
+1.  Because the request is made by using the root user credentials of an AWS account, the user context is not evaluated\.
 
 1. In the bucket context, Amazon S3 examines the bucket policy\. If the bucket owner \(AWS account 2222\-2222\-2222\) has not authorized AWS account 1111\-1111\-1111 to perform the requested operation, Amazon S3 denies the request\. Otherwise, Amazon S3 grants the request and performs the operation\.
 

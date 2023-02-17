@@ -138,7 +138,7 @@ After you apply a Multi\-Region Access Point policy, the policy cannot be delete
 
 1. The **Edit Multi\-Region Access Point policy** page appears\. You can either enter the policy directly into the text field, or you can choose **Add statement** to select policy elements from a dropdown list\.
 **Note**  
-The console automatically displays the Multi\-Region Access Point Amazon Resource Name \(ARN\), which you can use in the policy\. For example Multi\-Region Access Point policies, see [Multi\-Region Access Point policy examples](https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointPermissions.html#MultiRegionAccessPointPolicyExamples)\.
+The console automatically displays the Multi\-Region Access Point Amazon Resource Name \(ARN\), which you can use in the policy\. For example Multi\-Region Access Point policies, see [Multi\-Region Access Point policy examples](#MultiRegionAccessPointPolicyExamples)\.
 
 ## Multi\-Region Access Point policy examples<a name="MultiRegionAccessPointPolicyExamples"></a>
 

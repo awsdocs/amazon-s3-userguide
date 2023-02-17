@@ -67,7 +67,7 @@ If your bucket uses the bucket owner enforced setting for S3 Object Ownership, y
    + **Objects** – **List** or **Write**
    + **Bucket ACL** – **Read** or **Write**
 
-   The *owner* refers to the AWS account root user, not an AWS Identity and Access Management \(IAM\) user\. For more information about the root user, see [The AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) in the *IAM User Guide*\.
+   The *owner* refers to the AWS account root user, not an AWS Identity and Access Management IAM user\. For more information about the root user, see [The AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) in the *IAM User Guide*\.
 
 1. To grant or undo permissions for the general public \(everyone on the internet\), beside **Everyone \(public access\)**, clear or select from the following ACL permissions:
    + **Objects** – **List**
@@ -146,7 +146,7 @@ If your bucket uses the bucket owner enforced setting for S3 Object Ownership, y
 
 **Access for object owner**
 
-      The *owner* refers to the AWS account root user, and not an AWS Identity and Access Management \(IAM\) user\. For more information about the root user, see [The AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) in the *IAM User Guide*\.
+      The *owner* refers to the AWS account root user, and not an AWS Identity and Access Management IAM user\. For more information about the root user, see [The AWS account root user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) in the *IAM User Guide*\.
 
       To change the owner's object access permissions, under **Access for object owner**, choose **Your AWS Account \(owner\)**\.
 

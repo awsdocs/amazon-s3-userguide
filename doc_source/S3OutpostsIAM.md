@@ -1,12 +1,19 @@
 # Setting up IAM with S3 on Outposts<a name="S3OutpostsIAM"></a>
 
-AWS Identity and Access Management \(IAM\) is an AWS service that helps an administrator securely control access to AWS resources\. IAM administrators control who can be authenticated \(signed in\) and authorized \(have permissions\) to use AWS resources\. IAM enables you to create users and groups under your AWS account\. You control the permissions that users have to perform tasks with AWS resources\. You can use IAM for no additional charge\.
+AWS Identity and Access Management \(IAM\) is an AWS service that helps an administrator securely control access to AWS resources\. IAM administrators control who can be authenticated \(signed in\) and authorized \(have permissions\) to use Amazon S3 on Outposts resources\. IAM is an AWS service that you can use with no additional charge\. By default, users don't have permissions for S3 on Outposts resources and operations\. To grant access permissions for S3 on Outposts resources and API operations, you can use IAM to create [users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html), [groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html), or [roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html#id_iam-roles) and attach permissions\.
 
-By default, IAM users don't have permissions for Amazon S3 on Outposts resources and operations\. To allow IAM users to manage S3 on Outposts resources, you must do the following: 
-+ Create an IAM policy that explicitly grants IAM users or groups permissions\.
-+ Attach the policy to the IAM users or groups that require those permissions\.
+To provide access, add permissions to your users, groups, or roles:
++ Users and groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\):
 
-In addition to IAM policies, S3 on Outposts supports both bucket and access point policies\. Bucket policies and access point policies are [resource\-based policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) that are attached to the S3 on Outposts resource\. 
+  Create a permission set\. Follow the instructions in [Create a permission set](https://docs.aws.amazon.com/singlesignon/latest/userguide/howtocreatepermissionset.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.
++ Users managed in IAM through an identity provider:
+
+  Create a role for identity federation\. Follow the instructions in [Creating a role for a third\-party identity provider \(federation\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp.html) in the *IAM User Guide*\.
++ IAM users:
+  + Create a role that your user can assume\. Follow the instructions in [Creating a role for an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html) in the *IAM User Guide*\.
+  + \(Not recommended\) Attach a policy directly to a user or add a user to a user group\. Follow the instructions in [Adding permissions to a user \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html#users_change_permissions-add-console) in the *IAM User Guide*\.
+
+In addition to IAM identity\-based policies, S3 on Outposts supports both bucket and access point policies\. Bucket policies and access point policies are [resource\-based policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html) that are attached to the S3 on Outposts resource\. 
 + A bucket policy is attached to the bucket and allows or denies requests to the bucket and the objects in it based on the elements in the policy\. 
 + In contrast, an access point policy is attached to the access point and allows or denies requests to the access point\.
 

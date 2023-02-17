@@ -14,7 +14,7 @@ MFA delete thus provides added security if, for example, your security credentia
 
 To identify buckets that have MFA delete enabled, you can use Amazon S3 Storage Lens metrics\. S3 Storage Lens is a cloud\-storage analytics feature that you can use to gain organization\-wide visibility into object\-storage usage and activity\. For more information, see [ Assessing your storage activity and usage with S3 Storage Lens](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens?icmpid=docs_s3_user_guide_MultiFactorAuthenticationDelete.html)\. For a complete list of metrics, see [ S3 Storage Lens metrics glossary](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_metrics_glossary.html?icmpid=docs_s3_user_guide_MultiFactorAuthenticationDelete.html)\.
 
-The bucket owner, the AWS account that created the bucket \(root account\), and all authorized IAM users can enable versioning\. However, only the bucket owner \(root account\) can enable MFA delete\. For more information, see [Securing Access to AWS Using MFA](http://aws.amazon.com/blogs/security/securing-access-to-aws-using-mfa-part-3/) on the AWS Security Blog\.
+The bucket owner, the AWS account that created the bucket \(root account\), and all authorized users can enable versioning\. However, only the bucket owner \(root account\) can enable MFA delete\. For more information, see [Securing Access to AWS Using MFA](http://aws.amazon.com/blogs/security/securing-access-to-aws-using-mfa-part-3/) on the AWS Security Blog\.
 
 **Note**  
 To use MFA delete with versioning, you enable `MFA Delete`\. However, you cannot enable `MFA Delete` using the AWS Management Console\. You must use the AWS Command Line Interface \(AWS CLI\) or the API\.   

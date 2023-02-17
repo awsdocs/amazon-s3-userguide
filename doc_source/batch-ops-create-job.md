@@ -45,7 +45,7 @@ Specify whether you want S3 Batch Operations to generate a completion report\. I
 + An optional prefix string
 
 **Tags \(optional\)**  
-You can label and control access to your S3 Batch Operations jobs by adding *tags*\. Tags can be used to identify who is responsible for a Batch Operations job\. You can create jobs with tags attached to them, and you can add tags to jobs after you create them\. For example, you could grant an IAM user permission to invoke `CreateJob` provided that the job is created with the tag `"Department=Finance"`\.   
+You can label and control access to your S3 Batch Operations jobs by adding *tags*\. Tags can be used to identify who is responsible for a Batch Operations job\. You can create jobs with tags attached to them, and you can add tags to jobs after you create them\. For example, you could grant a user permission to invoke `CreateJob` provided that the job is created with the tag `"Department=Finance"`\.   
 For more information, see [Controlling access and labeling jobs using tags](batch-ops-job-tags.md)\.
 
 **Description \(optional\)**  

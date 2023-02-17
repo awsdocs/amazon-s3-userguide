@@ -53,7 +53,7 @@ With tagging, you now have another dimension\. If you want photo1 in project x c
 
 **Additional benefits**  
 In addition to data classification, tagging offers benefits such as the following:
-+ Object tags enable fine\-grained access control of permissions\. For example, you could grant an IAM user permissions to read\-only objects with specific tags\.
++ Object tags enable fine\-grained access control of permissions\. For example, you could grant a user permissions to read\-only objects with specific tags\.
 + Object tags enable fine\-grained object lifecycle management in which you can specify a tag\-based filter, in addition to a key name prefix, in a lifecycle rule\.
 + When using Amazon S3 analytics, you can configure filters to group objects together for analysis by object tags, by key name prefix, or by both prefix and tags\.
 + You can also customize Amazon CloudWatch metrics to display information by specific tag filters\. The following sections provide details\.

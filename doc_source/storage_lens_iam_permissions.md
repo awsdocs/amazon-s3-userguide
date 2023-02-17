@@ -5,7 +5,7 @@ Amazon S3 Storage Lens requires new permissions in AWS Identity and Access Manag
 The IAM user or role must belong to the account that created or owns the dashboard or configuration, unless your account is a member of AWS Organizations, and you were given access to create organization\-level dashboards by your management account as a delegated administrator\. 
 
 **Note**  
-You can't use your account's root user credentials to view Amazon S3 Storage Lens dashboards\. To access S3 Storage Lens dashboards, you must grant the required IAM permissions to a new or existing IAM user\. Then, sign in with those user credentials to access S3 Storage Lens dashboards\. For more information, see [AWS Identity and Access Management best practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)\. 
+You can't use your account's root user credentials to view Amazon S3 Storage Lens dashboards\. To access S3 Storage Lens dashboards, you must grant the required IAM permissions to a new or existing IAM user\. Then, sign in with those user credentials to access S3 Storage Lens dashboards\. For more information, see [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\. 
 Using S3 Storage Lens on the Amazon S3 console can require multiple permissions\. For example, to edit a dashboard on the console, you need the following permissions:  
 `s3:ListStorageLensConfigurations`
 `s3:GetStorageLensConfiguration`

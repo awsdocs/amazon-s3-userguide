@@ -102,7 +102,7 @@ We highly recommend that you never grant the **All Users group** `WRITE`, `WRITE
   WRITE permission on a bucket enables this group to write server access logs \(see [Logging requests using server access logging](ServerLogs.md)\) to the bucket\.
 
 **Note**  
-When using ACLs, a grantee can be an AWS account or one of the predefined Amazon S3 groups\. However, the grantee cannot be an IAM user\. For more information about AWS users and permissions within IAM, go to [Using AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
+When using ACLs, a grantee can be an AWS account or one of the predefined Amazon S3 groups\. However, the grantee cannot be an IAM user\. For more information about AWS users and permissions within IAM, see [Using AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
 
 ## What permissions can I grant?<a name="permissions"></a>
 

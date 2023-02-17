@@ -3,7 +3,7 @@
 Amazon S3 access points support AWS Identity and Access Management \(IAM\) resource policies that you can use to control the use of the access point by resource, user, or other conditions\. You can control access through an optional resource policy on your Object Lambda access point, or a resource policy on supporting access point\. For step\-by\-step examples, see [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md) and [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)\. 
 
 The following four resources must have permissions granted to work with Object Lambda access points:
-+ The IAM user or role\.
++ The IAM identity, such as user or role\. For more information about IAM identities and best practices, see [IAM identities \(users, user groups, and roles\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html) in the *IAM User Guide*\.
 + The bucket and its associated standard access point\. When you're working with Object Lambda access points, this standard access point is known as a *supporting access point*\.
 + The Object Lambda access point\.
 + The AWS Lambda function\.

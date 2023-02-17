@@ -14,7 +14,7 @@ In order to determine whether the requester has permission to perform the specif
 
       A user must have permission from the parent account to perform the operation\.
 
-      This step applies only if the request is made by a user in an AWS account\. If the request is made using root credentials of an AWS account, Amazon S3 skips this step\.
+      This step applies only if the request is made by a user in an AWS account\. If the request is made by using the root user credentials of an AWS account, Amazon S3 skips this step\.
 
    1. **Bucket context** – In the bucket context, Amazon S3 evaluates policies owned by the AWS account that owns the bucket\. 
 
@@ -29,7 +29,7 @@ If the requester is an IAM principal, Amazon S3 must determine if the parent AWS
 
  
 
-**Example Requester is an IAM principal \- If the request is for an operation on an object that the bucket owner doesn't own\.**  
+**Example Requester is an IAM principal – If the request is for an operation on an object that the bucket owner doesn't own\.**  
 If the request is for an operation on an object that the bucket owner does not own, in addition to making sure the requester has permissions from the object owner, Amazon S3 must also check the bucket policy to ensure the bucket owner has not set explicit deny on the object\. A bucket owner \(who pays the bill\) can explicitly deny access to objects in the bucket regardless of who owns it\. The bucket owner can also delete any object in the bucket\.  
 By default, when another AWS account uploads an object to your S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through access control lists \(ACLs\)\. You can use Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies, such as IAM policies, S3 bucket policies, virtual private cloud \(VPC\) endpoint policies, and AWS Organizations service control policies \(SCPs\)\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 

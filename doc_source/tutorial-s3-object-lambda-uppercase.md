@@ -31,7 +31,7 @@ Before you start this tutorial, you must have an AWS account that you can sign i
 
 ### Create an IAM user with permissions in your AWS account \(console\)<a name="ol-upper-prerequisites-account"></a>
 
-You can create an IAM user for the tutorial, or you can add permissions to an existing IAM user\. To complete this tutorial, your IAM user must attach the following IAM policies to access relevant AWS resources and perform specific actions\. 
+You can create an IAM user for the tutorial\. To complete this tutorial, your IAM user must attach the following IAM policies to access relevant AWS resources and perform specific actions\. For more information about how to create an IAM user, see [Creating IAM users \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) in the *IAM User Guide*\.
 
 Your IAM user requires the following policies:
 + [AmazonS3FullAccess](https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/AmazonS3FullAccess$jsonEditor) – Grants permissions to all Amazon S3 actions, including permissions to create and use an Object Lambda access point\. 
@@ -41,8 +41,8 @@ Your IAM user requires the following policies:
 + [CloudWatchLogsFullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/CloudWatchLogsFullAccess$jsonEditor) – Grants full access to CloudWatch Logs\. 
 
 **Note**  
-For simplicity, this tutorial uses full\-access AWS managed policies\. For production use, we recommend that you instead grant only the minimum permissions necessary for your use case, in accordance with [security best practices](security-best-practices.md#security-best-practices-prevent)\.  
-For more information about how to create an IAM user, see [Creating IAM users \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) in the *IAM User Guide*\.
+For simplicity, this tutorial creates and uses an IAM user\. After completing this tutorial, remember to [Delete the IAM user](#ol-upper-step8-delete-user)\. For production use, we recommend that you follow the [Security best practices in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\. A best practice requires human users to use federation with an identity provider to access AWS with temporary credentials\. Another best practice is to require workloads to use temporary credentials with IAM roles to access AWS\. To learn about using AWS IAM Identity Center \(successor to AWS Single Sign\-On\) to create users with temporary credentials, see [Getting started](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide*\.   
+This tutorial also uses full\-access AWS managed policies\. For production use, we recommend that you instead grant only the minimum permissions necessary for your use case, in accordance with [security best practices](security-best-practices.md#security-best-practices-prevent)\.
 
 ### Install Python 3\.8 or later on your local machine<a name="ol-upper-prerequisites-python"></a>
 

@@ -24,7 +24,7 @@ If you obtain temporary security credentials using your AWS account security cre
 
 The following example lists a set of object keys in the specified bucket\. The example obtains temporary security credentials for a session and uses them to send an authenticated request to Amazon S3\.
 
-If you want to test the sample using IAM user credentials, you will need to create an IAM user under your AWS account\. For more information about how to create an IAM user, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
+If you want to test the sample by using IAM user credentials, you must create an IAM user under your AWS account\. For more information about how to create an IAM user, see [Creating Your First IAM user and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
 
 For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\. 
 
@@ -123,7 +123,7 @@ If you obtain temporary security credentials using your AWS account security cre
 
 The following C\# example lists object keys in the specified bucket\. For illustration, the example obtains temporary security credentials for a default one\-hour session and uses them to send authenticated request to Amazon S3\. 
 
-If you want to test the sample using IAM user credentials, you need to create an IAM user under your AWS account\. For more information about how to create an IAM user, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\. For more information about making requests, see [Making requests](MakingRequests.md)\.
+If you want to test the sample by using IAM user credentials, you must create an IAM user under your AWS account\. For more information about how to create an IAM user, see [Creating Your First IAM user and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\. For more information about making requests, see [Making requests](MakingRequests.md)\.
 
  For instructions on creating and testing a working example, see [Running the Amazon S3 \.NET Code Examples](UsingTheMPDotNetAPI.md#TestingDotNetApiSamples)\. 
 
@@ -222,7 +222,7 @@ If you obtain temporary security credentials using your AWS account security cre
 
 **Example**  
 The following PHP example lists object keys in the specified bucket using temporary security credentials\. The example obtains temporary security credentials for a default one\-hour session, and uses them to send authenticated request to Amazon S3\. For information about running the PHP examples in this guide, see [Running PHP Examples](UsingTheMPphpAPI.md#running-php-samples)\.  
-If you want to test the example using IAM user credentials, you need to create an IAM user under your AWS account\. For information about how to create an IAM user, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\. For examples of setting the session duration when using IAM user credentials to request a session, see [Making requests using IAM user temporary credentials ](#AuthUsingTempSessionToken)\.   
+If you want to test the example by using IAM user credentials, you must create an IAM user under your AWS account\. For information about how to create an IAM user, see [Creating Your First IAM user and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\. For examples of setting the session duration when using IAM user credentials to request a session, see [Making requests using IAM user temporary credentials ](#AuthUsingTempSessionToken)\.   
 
 ```
  require 'vendor/autoload.php';

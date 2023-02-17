@@ -467,7 +467,7 @@ The `aws:Referer` condition key is offered only to allow customers to protect th
 
 ### Grant users access to specific folders<a name="example-bucket-policies-folders-1"></a>
 
-Suppose that you're trying to grant users access to a specific folder\. If the IAM user and the S3 bucket belong to the same AWS account, then you can use an IAM policy to grant the user access to a specific bucket folder\. With this approach, you don't need to update your bucket policy to grant access\. You can add the IAM policy to individual IAM users, or you can attach the IAM policy to an IAM role that multiple users can switch to\.
+Suppose that you're trying to grant users access to a specific folder\. If the IAM user and the S3 bucket belong to the same AWS account, then you can use an IAM policy to grant the user access to a specific bucket folder\. With this approach, you don't need to update your bucket policy to grant access\. You can add the IAM policy to an IAM role that multiple users can switch to\. 
 
 If the IAM identity and the S3 bucket belong to different AWS accounts, then you must grant cross\-account access in both the IAM policy and the bucket policy\. For more information about granting cross\-account access, see [Bucket owner granting cross\-account bucket permissions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-walkthroughs-managing-access-example2.html)\.
 

@@ -40,7 +40,7 @@ You can download a usage report as an \.xml or a \.csv file\.
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
-1. In the title bar, choose your AWS Identity and Access Management \(IAM\) user name, and then choose **My Billing Dashboard**\. 
+1. In the title bar, choose your user name or account ID, and then choose **My Billing Dashboard**\. 
 
 1. In the navigation pane, choose **AWS Cost & Usage Reports**\.
 

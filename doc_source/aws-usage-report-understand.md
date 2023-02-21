@@ -1,6 +1,7 @@
 # Understanding your AWS billing and usage reports for Amazon S3<a name="aws-usage-report-understand"></a>
 
 Amazon S3 billing and usage reports use codes and abbreviations\. For usage types in the table that follows, replace *region*, *region1*, and *region2* with abbreviations from this list\.
++ **AFS1:** Africa \(Cape Town\)
 + **APE1:** Asia Pacific \(Hong Kong\)
 + **APN1:** Asia Pacific \(Tokyo\)
 + **APN2:** Asia Pacific \(Seoul\)
@@ -9,15 +10,19 @@ Amazon S3 billing and usage reports use codes and abbreviations\. For usage type
 + **APS2:** Asia Pacific \(Sydney\)
 + **APS3:** Asia Pacific \(Mumbai\)
 + **APS4:** Asia Pacific \(Jakarta\)
++ **APS5:** Asia Pacific \(Hyderabad\)
++ **APS6:** Asia Pacific \(Melbourne\)
 + **CAN1:** Canada \(Central\)
-+ **CPT:** Africa \(Cape Town\)
 + **EUN1:** Europe \(Stockholm\)
 + **EUC1:** Europe \(Frankfurt\)
++ **EUC2:** Europe \(Zurich\)
 + **EU:** Europe \(Ireland\)
 + **EUS1:** Europe \(Milan\)
++ **EUS2:** Europe \(Spain\)
 + **EUW2:** Europe \(London\)
 + **EUW3:** Europe \(Paris\)
 + **MES1:** Middle East \(Bahrain\)
++ **MES1:** Middle East \(UAE\)
 + **SAE1:** South America \(São Paulo\)
 + **UGW1:** AWS GovCloud \(US\-West\)
 + **UGE1:** AWS GovCloud \(US\-East\)

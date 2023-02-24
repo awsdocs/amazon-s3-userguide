@@ -51,6 +51,9 @@ Amazon S3 uses a special log delivery account to write server access logs\. Thes
 
 When you enable server access logging and grant access for access log delivery through your bucket policy, you update the bucket policy on the target bucket to allow `s3:PutObject` access for the logging service principal\. If you use the Amazon S3 console to enable server access logging on a bucket, the console automatically updates the bucket policy on the target bucket to grant these permissions to the logging service principal\. For more information about granting permissions for server access log delivery, see [Permissions for log delivery](enable-server-access-logging.md#grant-log-delivery-permissions-general)\. 
 
+**Note**  
+Amazon S3 does not support delivery of server access logs to the requester or the bucket owner for VPC endpoint requests when the VPC endpoint policy denies them\.
+
 **Bucket owner enforced setting for S3 Object Ownership**  
 If the target bucket uses the bucket owner enforced setting for Object Ownership, ACLs are disabled and no longer affect permissions\. You must update the bucket policy on the target bucket to grant access to the logging service principal\. For more information about Object Ownership, see [Grant access to S3 log delivery group for server access logging](object-ownership-migrating-acls-prerequisites.md#object-ownership-server-access-logs)\.
 

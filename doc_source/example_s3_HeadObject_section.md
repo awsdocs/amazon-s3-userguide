@@ -10,7 +10,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
 **SDK for Java 2\.x**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/s3#readme)\. 
-  
+Determine the content type of an object\.  
 
 ```
     public static void getContentType (S3Client s3, String bucketName, String keyName) {
@@ -24,6 +24,25 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
             HeadObjectResponse objectHead = s3.headObject(objectRequest);
             String type = objectHead.contentType();
             System.out.println("The object content type is "+type);
+
+        } catch (S3Exception e) {
+            System.err.println(e.awsErrorDetails().errorMessage());
+            System.exit(1);
+        }
+    }
+```
+Get the restore status of an object\.  
+
+```
+    public static void checkStatus(S3Client s3, String bucketName, String keyName) {
+        try {
+            HeadObjectRequest headObjectRequest = HeadObjectRequest.builder()
+                .bucket(bucketName)
+                .key(keyName)
+                .build();
+
+            HeadObjectResponse response = s3.headObject(headObjectRequest);
+            System.out.println("The Amazon S3 object restoration status is "+response.restore());
 
         } catch (S3Exception e) {
             System.err.println(e.awsErrorDetails().errorMessage());

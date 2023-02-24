@@ -49,7 +49,7 @@ aws s3control list-regional-buckets --region us-east-1 --endpoint-url https://vp
 
 ### AWS SDK examples<a name="s3-outposts-privatelink-aws-sdk-examples"></a>
 
-Update your SDKs to the latest version, and configure your clients to use an endpoint URL for accessing the S3 control API for S3 on Outposts interface endpoints\. For more information, see AWS SDK examples for AWS PrivateLink\.
+Update your SDKs to the latest version, and configure your clients to use an endpoint URL for accessing the S3 control API for S3 on Outposts interface endpoints\.
 
 ------
 #### [ SDK for Python \(Boto3\) ]
@@ -64,6 +64,7 @@ region_name='us-east-1',
 endpoint_url='https://vpce-1a2b3c4d-5e6f.s3-outposts.us-east-1.vpce.amazonaws.com'
 )
 ```
+For more information, see [AWS PrivateLink for Amazon S3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-privatelink.html) in the *Boto3 developer guide*\.
 
 ------
 #### [ SDK for Java 2\.x ]
@@ -78,6 +79,7 @@ s3ControlClient = S3ControlClient.builder().region(region)
                                  .endpointOverride(URI.create("https://vpce-1a2b3c4d-5e6f.s3-outposts.us-east-1.vpce.amazonaws.com"))
                                  .build()
 ```
+For more information, see [https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3control/S3ControlClient.html](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3control/S3ControlClient.html) in the *AWS SDK for Java API Reference*\.
 
 ------
 

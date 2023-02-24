@@ -107,7 +107,7 @@ This example uses the AWS prebuilt function `decompress`\. For more information 
    {
        "SupportingAccessPoint" : "arn:aws:s3:us-east-1:111122223333:accesspoint/example-ap",
        "TransformationConfigurations": [{
-           "Actions" : ["GetObject", "HeadObject", "ListObject", "ListObjectV2],
+           "Actions" : ["GetObject", "HeadObject", "ListObjects", "ListObjectsV2"],
            "ContentTransformation" : {
                "AwsLambda": {
                    "FunctionPayload" : "{\"compressionType\":\"gzip\"}",
@@ -165,7 +165,7 @@ This example uses the AWS prebuilt function `decompress`\. For more information 
    	"SupportingAccessPoint": "AccessPointArn",
    	"CloudWatchMetricsEnabled": false,
    	"TransformationConfigurations": [{
-   		"Actions": ["GetObject", "HeadObject", "ListObject", "ListObjectV2],
+   		"Actions": ["GetObject", "HeadObject", "ListObjects", "ListObjectsV2"],
    		"ContentTransformation": {
    			"AwsLambda": {
    				"FunctionArn": "FunctionArn",

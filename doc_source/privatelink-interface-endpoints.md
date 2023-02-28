@@ -219,6 +219,19 @@ s3ControlClient = S3ControlClient.builder().region(region)
 ```
 
 ------
+#### [ SDK for C# ]
+
+**Example: Use an endpoint URL to access an S3 bucket**  
+In the following example, replace the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with appropriate information\.
+
+```
+// bucket client
+AmazonS3Config config = new AmazonS3Config();
+config.ServiceURL = 'https://bucket.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com';
+AmazonS3Client client = new AmazonS3Client(config);
+```
+
+------
 
 ## Updating an on\-premises DNS configuration<a name="updating-on-premises-dns-config"></a>
 

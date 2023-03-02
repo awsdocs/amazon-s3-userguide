@@ -14,7 +14,7 @@ If you encounter unexpected behavior while accessing buckets set with the CORS c
 
    1. Verify that the Origin header in your request matches at least one of the `AllowedOrigin` elements in the specified `CORSRule`\. 
 
-      The scheme, the host, and the port values in the Origin request header must match the `AllowedOrigin` elements in the `CORSRule`\. For example, if you set the `CORSRule` to allow the origin `http://www.example.com`, then both `https://www.example.com` and `http://www.example.com:80` origins in your request don't match the allowed origin in your configuration\.
+      The scheme, the host, and the port values in the Origin request header must match the `AllowedOrigin` elements in the `CORSRule`\. For example, if you set the `CORSRule` to allow the origin `http://www.example.com`, then both `https://www.example.com` and `http://www.example.com:80` origins in your request don't match the allowed origin in your configuration\. Remember that host ends with domain not forward slash ~~`http://www.example.com/`~~ \.
 
    1.  Verify that the method in your request \(or in a preflight request, the method specified in the `Access-Control-Request-Method`\) is one of the `AllowedMethod` elements in the same `CORSRule`\. 
 

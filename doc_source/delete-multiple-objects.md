@@ -34,7 +34,7 @@ To delete an object version in a bucket with bucket versioning **enabled**, Amaz
 
 ## Using the AWS SDKs<a name="DeletingMultipleObjects"></a>
 
-Amazon S3 provides the Multi\-Object Delete API , which you can use to delete multiple objects in a single request\. The API supports two modes for the response: *verbose* and *quiet*\. By default, the operation uses verbose mode\. In verbose mode, the response includes the result of the deletion of each key that is specified in your request\. In quiet mode, the response includes only keys for which the delete operation encountered an error\. If all keys are successfully deleted when you're using quiet mode, Amazon S3 returns an empty response\. For more information, see [Delete \- Multi\-Object Delete](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html)\.
+Amazon S3 provides the Multi\-Object Delete API, which you can use to delete multiple objects in a single request\. The API supports two modes for the response: *verbose* and *quiet*\. By default, the operation uses verbose mode\. In verbose mode, the response includes the result of the deletion of each key that is specified in your request\. In quiet mode, the response includes only keys for which the delete operation encountered an error\. If all keys are successfully deleted when you're using quiet mode, Amazon S3 returns an empty response\. For more information, see [Delete \- Multi\-Object Delete](https://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html)\.
 
 To learn more about object deletion, see [Deleting Amazon S3 objects](DeletingObjects.md)\. 
 

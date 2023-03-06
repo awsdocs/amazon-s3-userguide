@@ -1,6 +1,6 @@
 # Expiring objects<a name="lifecycle-expire-general-considerations"></a>
 
-When an object reaches the end of its lifetime based on its lifecycle policy, Amazon S3 queues it for removal and removes it asynchronously\. There might be a delay between the expiration date and the date at which Amazon S3 removes an object\. You are not charged for expiration or the storage time associated with an object that has expired\. 
+When an object reaches the end of its lifetime based on its lifecycle configuration, Amazon S3 queues it for removal and removes it asynchronously\. There might be a delay between the expiration date and the date at which Amazon S3 removes an object\. You are not charged for expiration or the storage time associated with an object that has expired\. 
 
 When dealing with buckets that have versioning enabled, realize that you will need to create a transition for noncurrent versions as well to avoid being charged for objects that have noncurrent versions\. For more information about noncurrent version transitions, see [Lifecycle configuration elements](intro-lifecycle-rules.md)\.
 

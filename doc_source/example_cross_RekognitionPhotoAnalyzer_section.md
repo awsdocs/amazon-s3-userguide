@@ -32,7 +32,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  Shows how to use Amazon Rekognition with the AWS SDK for JavaScript to create an app that uses Amazon Rekognition to identify objects by category in images located in an Amazon Simple Storage Service \(Amazon S3\) bucket\. The app sends the admin an email notification with the results using Amazon Simple Email Service \(Amazon SES\)\.   
 Learn how to:  
 + Create an unauthenticated user using Amazon Cognito\.

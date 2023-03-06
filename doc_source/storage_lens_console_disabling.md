@@ -8,4 +8,4 @@
 
 1. In the **Dashboards** list, choose the dashboard that you want to disable, and then choose **Disable** at the top of the list\.
 
-1. On the confirmation page, confirm that you want to disable the dashboard by entering the name of dashboard into the text field, and then choose **Confirm**\.
+1. On the confirmation page, confirm that you want to disable the dashboard by entering the name of dashboard in the text field, and then choose **Confirm**\.

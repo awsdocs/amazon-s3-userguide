@@ -53,13 +53,13 @@ To track and monitor your job, you can also provide a description of up to 256 c
 
 ## Specifying a manifest<a name="specify-batchjob-manifest"></a>
 
- A manifest is an Amazon S3 object that contains object keys that you want Amazon S3 to act upon\. To create a manifest for a job, you specify the manifest object key, ETag, and optional version ID\. The contents of the manifest must be URL encoded\. Manifests that use server\-side encryption with customer\-provided keys \(SSE\-C\) are not supported\. Manifests that use server\-side encryption with AWS Key Management Service \(SSE\-KMS\) AWS KMS keys are only supported when using CSV\-formatted inventory reports\. Your manifest must contain the bucket name, object key, and optionally, the object version for each object\. Any other fields in the manifest are not used by S3 Batch Operations\. 
+A manifest is an Amazon S3 object that contains object keys that you want Amazon S3 to act upon\. To create a manifest for a job, you specify the manifest object key, ETag, and optional version ID\. The contents of the manifest must be URL\-encoded\. By default, Amazon S3 automatically uses server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) to encrypt a manifest uploaded to an S3 bucket Amazon S3\. Manifests that use server\-side encryption with customer\-provided keys \(SSE\-C\) are not supported\. Manifests that use server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\) are supported only when you're using CSV\-formatted inventory reports\. Your manifest must contain the bucket name, object key, and optionally, the object version for each object\. Any other fields in the manifest are not used by S3 Batch Operations\. 
 
 You can specify a manifest in a create job request using one of the following two formats\.
-+ Amazon S3 Inventory report — Must be a CSV\-formatted Amazon S3 Inventory report\. You must specify the `manifest.json` file that is associated with the inventory report\. For more information about inventory reports, see [Amazon S3 Inventory](storage-inventory.md)\. If the inventory report includes version IDs, S3 Batch Operations operates on the specific object versions\.
++ Amazon S3 Inventory report – Must be a CSV\-formatted Amazon S3 Inventory report\. You must specify the `manifest.json` file that is associated with the inventory report\. For more information about inventory reports, see [Amazon S3 Inventory](storage-inventory.md)\. If the inventory report includes version IDs, S3 Batch Operations operates on the specific object versions\.
 **Note**  
 S3 Batch Operations supports CSV *inventory reports *that are AWS KMS\-encrypted\.
-+ CSV file — Each row in the file must include the bucket name, object key, and optionally, the object version\. Object keys must be URL\-encoded, as shown in the following examples\. The manifest must either include version IDs for all objects or omit version IDs for all objects\. For more information about the CSV manifest format, see [JobManifestSpec](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_JobManifestSpec.html) in the *Amazon Simple Storage Service API Reference*\.
++ CSV file – Each row in the file must include the bucket name, object key, and optionally, the object version\. Object keys must be URL\-encoded, as shown in the following examples\. The manifest must either include version IDs for all objects or omit version IDs for all objects\. For more information about the CSV manifest format, see [JobManifestSpec](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_JobManifestSpec.html) in the *Amazon Simple Storage Service API Reference*\.
 **Note**  
 S3 Batch Operations does not support CSV *manifest files* that are AWS KMS\-encrypted\.
 
@@ -94,7 +94,7 @@ Amazon S3 gives you the option to create a manifest for the S3 Batch Replication
 
 ## Creating a job<a name="to-create-batch-ops-job"></a>
 
- You can create S3 Batch Operations jobs using the AWS Management Console, AWS CLI, Amazon SDKs, or REST API\. 
+ You can create S3 Batch Operations jobs using the AWS Management Console, AWS CLI, AWS SDKs, or REST API\. 
 
 For more information about creating a job request, see [Batch Operations job request elements](#batch-ops-create-job-request-elements)\. 
 

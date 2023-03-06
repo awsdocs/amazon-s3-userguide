@@ -71,39 +71,30 @@ bool AwsDoc::S3::GetWebsiteConfig(const Aws::String &bucketName,
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
 Get the website configuration\.  
 
 ```
-// Import required AWS SDK clients and commands for Node.js.
-import { GetBucketWebsiteCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import { GetBucketWebsiteCommand, S3Client } from "@aws-sdk/client-s3";
 
-// Create the parameters for calling
-export const bucketParams = { Bucket: "BUCKET_NAME" };
+const client = new S3Client({});
 
-export const run = async () => {
+export const main = async () => {
+  const command = new GetBucketWebsiteCommand({
+    Bucket: "test-bucket",
+  });
+
   try {
-    const data = await s3Client.send(new GetBucketWebsiteCommand(bucketParams));
-    console.log("Success", data);
-    return data; // For unit tests.
+    const { ErrorDocument, IndexDocument } = await client.send(command);
+    console.log(
+      `Your bucket is set up to host a website. It has an error document:`,
+      `${ErrorDocument.Key}, and an index document: ${IndexDocument.Suffix}.`
+    );
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-run();
 ```
 +  For API details, see [GetBucketWebsite](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/getbucketwebsitecommand.html) in *AWS SDK for JavaScript API Reference*\. 
 

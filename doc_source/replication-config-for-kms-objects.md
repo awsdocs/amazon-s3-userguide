@@ -1,9 +1,9 @@
 # Replicating objects created with server\-side encryption \(SSE\-C, SSE\-S3, SSE\-KMS\)<a name="replication-config-for-kms-objects"></a>
 
 **Important**  
-Amazon S3 now applies server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) as the base level of encryption for every bucket in Amazon S3\. Starting January 5, 2023, all new object uploads to Amazon S3 will be automatically encrypted at no additional cost and with no impact on performance\. Currently, the automatic encryption status for S3 bucket default encryption configuration and for new object uploads is available in AWS CloudTrail logs, S3 Inventory, and S3 Storage Lens\. During the next few weeks, the automatic encryption status will also be rolled out to the Amazon S3 console and as an additional Amazon S3 API response header in the AWS Command Line Interface and AWS SDKs\. When this update is complete in all AWS Regions, we will update the documentation\. For more information, see [Default encryption FAQ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html)\.
+Amazon S3 now applies server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) as the base level of encryption for every bucket in Amazon S3\. Starting January 5, 2023, all new object uploads to Amazon S3 are automatically encrypted at no additional cost and with no impact on performance\. The automatic encryption status for S3 bucket default encryption configuration and for new object uploads is available in AWS CloudTrail logs, S3 Inventory, S3 Storage Lens, the Amazon S3 console, and as an additional Amazon S3 API response header in the AWS Command Line Interface and AWS SDKs\. For more information, see [Default encryption FAQ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html)\.
 
-By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with customer managed keys stored in AWS KMS\. This section explains additional configuration that you add to direct Amazon S3 to replicate these objects\. 
+By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with customer managed keys that are stored in AWS KMS\. This section explains the additional configuration that you can add to direct Amazon S3 to replicate these objects\. 
 
 **Note**  
 You can use multi\-Region AWS KMS keys in Amazon S3\. However, Amazon S3 currently treats multi\-Region keys as though they were single\-Region keys, and does not use the multi\-Region features of the key\. For more information, see [ Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
@@ -265,7 +265,7 @@ In a cross\-account scenario, where the source and destination buckets are owned
 
 1. To change the AWS Region, use the Region selector in the upper\-right corner of the page\.
 
-1.  To view the keys in your account that you create and manage, in the navigation pane choose **Customer managed keys**\.
+1. To view the keys in your account that you create and manage, in the navigation pane choose **Customer managed keys**\.
 
 1. Choose the KMS key\.
 

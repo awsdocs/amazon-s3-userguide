@@ -142,27 +142,25 @@ public class GetObject2 {
 The following SDK for JavaScript code example retrieves an object from an Amazon S3 bucket\. When you run the code, the object inside the bucket is returned as `ReadableStream`, which is then converted into a string\. For more information about getting objects from Amazon S3, see [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html)\. For instructions on creating and testing a working sample, see [Testing the AWS SDK for JavaScript](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-aws-javascript.html)\.
 
 ```
-// Import required AWS SDK clients and commands for Node.js.
-import { GetObjectCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
-export const bucketParams = {
-  Bucket: "BUCKET_NAME",
-  Key: "KEY",
-};
+const client = new S3Client({})
 
-export const run = async () => {
+export const main = async () => {
+  const command = new GetObjectCommand({
+    Bucket: "test-bucket",
+    Key: "hello-s3.txt"
+  });
+
   try {
-    // Get the object from the Amazon S3 bucket. It is returned as a ReadableStream.
-    const data = await s3Client.send(new GetObjectCommand(bucketParams));
-    // Convert the ReadableStream to a string.
-    return await data.Body.transformToString();
+    const response = await client.send(command);
+    // The Body object also has 'transformToByteArray' and 'transformToWebStream' methods.
+    const str = await response.Body.transformToString();
+    console.log(str);
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-
-run();
 ```
 
 ------

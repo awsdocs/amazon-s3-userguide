@@ -43,7 +43,7 @@ You can analyze SSE\-KMS encryption metrics in the context of general encryption
 
 ### Step 2: Update bucket default encryption settings<a name="storage-lens-sse-kms-step2"></a>
 
-Now that you've determined which buckets use SSE\-KMS in the context of your **% encrypted bytes**, you can identify buckets that don't use SSE\-KMS\. You can then optionally navigate to these buckets within the S3 console and update their default encryption settings to use SSE\-KMS or SSE\-S3\. For more information, see [Enabling Amazon S3 default bucket encryption](default-bucket-encryption.md)\.
+Now that you've determined which buckets use SSE\-KMS in the context of your **% encrypted bytes**, you can identify buckets that don't use SSE\-KMS\. You can then optionally navigate to these buckets within the S3 console and update their default encryption settings to use SSE\-KMS or SSE\-S3\. For more information, see [Configuring default encryption](default-bucket-encryption.md)\.
 
 ## Identify buckets that have S3 Versioning enabled<a name="storage-lens-data-protection-versioning"></a>
 

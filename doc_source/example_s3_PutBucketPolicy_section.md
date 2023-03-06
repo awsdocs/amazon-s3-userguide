@@ -138,75 +138,43 @@ Aws::String GetPolicyString(const Aws::String &userArn,
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
 Add the policy\.  
 
 ```
-// Import required AWS SDK clients and commands for Node.js.
-import { CreateBucketCommand, PutBucketPolicyCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import { PutBucketPolicyCommand, S3Client } from "@aws-sdk/client-s3";
 
-const BUCKET_NAME = "BUCKET_NAME";
-export const bucketParams = {
-  Bucket: BUCKET_NAME,
-};
-// Create the policy in JSON for the S3 bucket.
-const readOnlyAnonUserPolicy = {
-  Version: "2012-10-17",
-  Statement: [
-    {
-      Sid: "AddPerm",
-      Effect: "Allow",
-      Principal: "*",
-      Action: ["s3:GetObject"],
-      Resource: [""],
-    },
-  ],
-};
+const client = new S3Client({});
 
-// Create selected bucket resource string for bucket policy.
-const bucketResource = "arn:aws:s3:::" + BUCKET_NAME + "/*"; //BUCKET_NAME
-readOnlyAnonUserPolicy.Statement[0].Resource[0] = bucketResource;
+export const main = async () => {
+  const command = new PutBucketPolicyCommand({
+    Policy: JSON.stringify({
+      Version: "2012-10-17",
+      Statement: [
+        {
+          Sid: "AllowGetObject",
+          // Allow this particular user to call GetObject on any object in this bucket.
+          Effect: "Allow",
+          Principal: {
+            AWS: "arn:aws:iam::ACCOUNT-ID:user/USERNAME",
+          },
+          Action: "s3:GetObject",
+          Resource: "arn:aws:s3:::BUCKET-NAME/*",
+        },
+      ],
+    }),
+    // Apply the preceding policy to this bucket.
+    Bucket: "BUCKET-NAME",
+  });
 
-// Convert policy JSON into string and assign into parameters.
-const bucketPolicyParams = {
-  Bucket: BUCKET_NAME,
-  Policy: JSON.stringify(readOnlyAnonUserPolicy),
-};
-
-export const run = async () => {
   try {
-    const data = await s3Client.send(
-        new CreateBucketCommand(bucketParams)
-    );
-    console.log('Success, bucket created.', data)
-    try {
-      const response = await s3Client.send(
-          new PutBucketPolicyCommand(bucketPolicyParams)
-      );
-      console.log("Success, permissions added to bucket", response);
-      return response;
-    }
-    catch (err) {
-        console.log("Error adding policy to S3 bucket.", err);
-      }
+    const response = await client.send(command);
+    console.log(response);
   } catch (err) {
-    console.log("Error creating S3 bucket.", err);
+    console.error(err);
   }
 };
-run();
 ```
 +  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-bucket-policies.html#s3-example-bucket-policies-set-policy)\. 
 +  For API details, see [PutBucketPolicy](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/putbucketpolicycommand.html) in *AWS SDK for JavaScript API Reference*\. 

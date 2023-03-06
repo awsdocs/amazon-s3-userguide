@@ -54,10 +54,10 @@ For more information about using other AWS SDKs, see [Tools for Amazon Web Servi
 
 ## Using a lifecycle configuration<a name="empty-bucket-lifecycle"></a>
 
-If you use a lifecycle policy to empty your bucket, the lifecycle policy should include [current versions, non\-current versions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html), [delete markers](https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html), and [incomplete multipart uploads](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpu-abort-incomplete-mpu-lifecycle-config.html)\.
+If you use a lifecycle configuration to empty your bucket, the configuration should include [current versions, non\-current versions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html), [delete markers](https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeleteMarker.html), and [incomplete multipart uploads](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpu-abort-incomplete-mpu-lifecycle-config.html)\.
 
 You can add lifecycle configuration rules to expire all objects or a subset of objects that have a specific key name prefix\. For example, to remove all objects in a bucket, you can set a lifecycle rule to expire objects one day after creation\.
 
-Amazon S3 supports a bucket lifecycle rule that you can use to stop multipart uploads that don't complete within a specified number of days after being initiated\. We recommend that you configure this lifecycle rule to minimize your storage costs\. For more information, see [Configuring a bucket lifecycle policy to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)\.
+Amazon S3 supports a bucket lifecycle rule that you can use to stop multipart uploads that don't complete within a specified number of days after being initiated\. We recommend that you configure this lifecycle rule to minimize your storage costs\. For more information, see [Configuring a bucket lifecycle configuration to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)\.
 
 For more information about using a lifecycle configuration to empty a bucket, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md) and [Expiring objects](lifecycle-expire-general-considerations.md)\.

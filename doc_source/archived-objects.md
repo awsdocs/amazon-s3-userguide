@@ -4,7 +4,7 @@ When you archive Amazon S3 objects to the following storage classes or tiers, th
 + The S3 Glacier Flexible Retrieval storage class
 + The S3 Glacier Deep Archive storage class
 + The S3 Intelligent\-Tiering Archive Access tier
-+ The Deep Archive Access tier
++ The S3 Intelligent\-Tiering Deep Archive Access tier
 
 To restore the objects, you must do the following:
 + For objects in the Archive Access and Deep Archive Access tiers, you must initiate the restore request and wait until the object is moved into the Frequent Access tier\. 

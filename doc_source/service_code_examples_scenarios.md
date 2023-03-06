@@ -4,6 +4,7 @@ The following code examples show you how to implement common scenarios in Amazon
 
 **Topics**
 + [Create a presigned URL](example_s3_Scenario_PresignedUrl_section.md)
++ [Create a web page that lists Amazon S3 objects](example_s3_Scenario_ListObjectsWeb_section.md)
 + [Get started with buckets and objects](example_s3_Scenario_GettingStarted_section.md)
 + [Get started with encryption](example_s3_Encryption_section.md)
 + [Get started with tags](example_s3_Scenario_Tagging_section.md)

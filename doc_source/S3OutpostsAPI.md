@@ -5,7 +5,7 @@ This topic lists the Amazon S3, Amazon S3 Control, and Amazon S3 on Outposts API
 **Topics**
 + [Amazon S3 API operations for managing objects](#S3OutpostsAPIsObject)
 + [Amazon S3 Control API operations for managing buckets](#S3OutpostsAPIsBucket)
-+ [S3 on Outposts API operations for managing endpoints](#S3OutpostsAPIs)
++ [S3 on Outposts API operations for managing Outposts](#S3OutpostsAPIs)
 
 ## Amazon S3 API operations for managing objects<a name="S3OutpostsAPIsObject"></a>
 
@@ -56,10 +56,11 @@ S3 on Outposts supports the following Amazon S3 Control API operations for worki
 + [PutBucketPolicy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html)
 + [PutBucketTagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html)
 
-## S3 on Outposts API operations for managing endpoints<a name="S3OutpostsAPIs"></a>
+## S3 on Outposts API operations for managing Outposts<a name="S3OutpostsAPIs"></a>
 
 S3 on Outposts supports the following Amazon S3 on Outposts API operations for managing endpoints\.
 + [CreateEndpoint](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html)
 + [DeleteEndpoint](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html)
 + [ListEndpoints](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListEndpoints.html)
++ [ListOutpostsWithS3](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListOutpostsWithS3.html)
 + [ListSharedEndpoints](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListSharedEndpoints.html)

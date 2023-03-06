@@ -11,7 +11,7 @@ The default setting for CloudTrail is to find only management events\. Check to 
 When you create a trail in CloudTrail, in the data events section, you can select the **Select all S3 buckets in your account** check box to log all object\-level events\. 
 
 **Note**  
-It's a best practice to create a lifecycle policy for your AWS CloudTrail data event bucket\. Configure the lifecycle policy to periodically remove log files after the period of time you believe you need to audit them\. Doing so reduces the amount of data that Athena analyzes for each query\. For more information, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)\.
+It's a best practice to create a lifecycle configuration for your AWS CloudTrail data event bucket\. Configure the lifecycle configuration to periodically remove log files after the period of time you believe you need to audit them\. Doing so reduces the amount of data that Athena analyzes for each query\. For more information, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)\.
 For more information about logging format, see [Logging Amazon S3 API calls using AWS CloudTrail](cloudtrail-logging.md)\.
 For examples of how to query CloudTrail logs, see the *AWS Big Data Blog* post [Analyze Security, Compliance, and Operational Activity Using AWS CloudTrail and Amazon Athena](http://aws.amazon.com/blogs/big-data/aws-cloudtrail-and-amazon-athena-dive-deep-to-analyze-security-compliance-and-operational-activity/)\. 
 

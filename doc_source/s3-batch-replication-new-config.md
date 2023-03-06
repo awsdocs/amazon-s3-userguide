@@ -20,9 +20,9 @@ For examples on how to set up a basic replication rule see, [Walkthroughs: Examp
 
    After you create the first rule in a new replication configuration or edit an existing configuration to add a new destination, a **Replicate existing objects?** dialog appears, giving you the option to create a Batch Replication job\.
 
-1. To create a Batch Replication job, choose **Yes, replicate existing objects**\.
+1.  If you want to run this job now, choose **Yes, replicate existing objects**\.
 
-   To run your Batch Replication job at a later time, choose **No, do not replicate existing objects**\.
+   If you want to run this job at a later time, choose **No, do not replicate existing objects**\.
 
 1. Create your S3 Batch Replication job\. The S3 Batch Replication job has several settings:   
 **Job run option**  

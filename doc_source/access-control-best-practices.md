@@ -38,7 +38,7 @@ For more information, see [Block public access settings](access-control-block-pu
 **Grant access with IAM identities**  
 When setting up accounts for new team members who require S3 access, use IAM users and roles to ensure least privileges\. You can also implement a form of IAM multi\-factor authentication \(MFA\) to support a strong identity foundation\. Using IAM identities, you can grant unique permissions to users and specify what resources they can access and what actions they can take\. IAM identities provide increased capabilities, including the ability to require users to enter login credentials before accessing shared resources and apply permission hierarchies to different objects within a single bucket\. 
 
-For more information, see [Example 1: Bucket owner granting its users bucket permissions ](example-walkthroughs-managing-access-example1.md)\.
+For more information, see [Example 1: Bucket owner granting its users bucket permissions](example-walkthroughs-managing-access-example1.md)\.
 
 **Bucket policies**  
 With bucket policies, you can personalize bucket access to help ensure that only those users you have approved can access resources and perform actions within them\. In addition to bucket policies, you should use bucket\-level Block Public Access settings to further limit public access to your data\. 
@@ -66,7 +66,7 @@ If you use the Amazon S3 console to manage buckets and objects, you should imple
 For information about S3 Versioning, see [Using versioning in S3 buckets](Versioning.md)\. For information about Object Lock, see [Using S3 Object Lock](object-lock.md)\.
 
 **Object lifecycle management for cost efficiency**  
-To manage your objects so that they are stored cost effectively throughout their lifecycle, you can pair lifecycle policies with object versioning\. Lifecycle policies define actions that you want S3 to take during an object's lifetime\. For example, you can create a lifecycle policy that will transition objects to another storage class, archive them, or delete them after a specified period of time\. You can define a lifecycle policy for all objects or a subset of objects in the bucket by using a shared prefix or tag\.
+To manage your objects so that they are stored cost effectively throughout their lifecycle, you can pair lifecycle configurations with object versioning\. Lifecycle configurations define actions that you want S3 to take during an object's lifetime\. For example, you can create a lifecycle configuration that will transition objects to another storage class, archive them, or delete them after a specified period of time\. You can define a lifecycle configuration for all objects or a subset of objects in the bucket by using a shared prefix or tag\.
 
 For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 

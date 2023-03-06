@@ -105,56 +105,39 @@ bool AwsDoc::S3::PutWebsiteConfig(const Aws::String &bucketName,
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
 Set the website configuration\.  
 
 ```
-// Import required AWS SDK clients and commands for Node.js.
-import { PutBucketWebsiteCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import { PutBucketWebsiteCommand, S3Client } from "@aws-sdk/client-s3";
 
-// Create the parameters for the bucket
-export const bucketParams = { Bucket: "BUCKET_NAME" };
-export const staticHostParams = {
-  Bucket: bucketParams,
-  WebsiteConfiguration: {
-    ErrorDocument: {
-      Key: "",
-    },
-    IndexDocument: {
-      Suffix: "",
-    },
-  },
-};
+const client = new S3Client({});
 
-export const run = async () => {
-  // Insert specified bucket name and index and error documents into parameters JSON
-  // from command line arguments
-  staticHostParams.Bucket = bucketParams;
-  staticHostParams.WebsiteConfiguration.IndexDocument.Suffix = "INDEX_PAGE"; // The index document inserted into parameters JSON.
-  staticHostParams.WebsiteConfiguration.ErrorDocument.Key = "ERROR_PAGE"; // The error document inserted into parameters JSON.
-  // Set the new website configuration on the selected bucket.
+// Set up a bucket as a static website.
+// The bucket needs to be publicly accessible.
+export const main = async () => {
+  const command = new PutBucketWebsiteCommand({
+    Bucket: "test-bucket",
+    WebsiteConfiguration: {
+      ErrorDocument: {
+        // The object key name to use when a 4XX class error occurs.
+        Key: "error.html",
+      },
+      IndexDocument: {
+        // A suffix that is appended to a request that is for a directory.
+        Suffix: "index.html",
+      },
+    },
+  });
+
   try {
-    const data = await s3Client.send(new PutBucketWebsiteCommand(staticHostParams));
-    console.log("Success", data);
-    return data;
+    const response = await client.send(command);
+    console.log(response);
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-run();
 ```
 +  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-static-web-host.html#s3-example-static-web-host-set-website)\. 
 +  For API details, see [PutBucketWebsite](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/putbucketwebsitecommand.html) in *AWS SDK for JavaScript API Reference*\. 

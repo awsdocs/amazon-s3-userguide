@@ -203,49 +203,55 @@ Aws::S3::Model::Type SetGranteeType(const Aws::String &type) {
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
 Put the bucket ACL\.  
 
 ```
-// Import required AWS SDK clients and commands for Node.js.
-import { PutBucketAclCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import {
+  PutBucketAclCommand,
+  GetBucketAclCommand,
+  S3Client,
+} from "@aws-sdk/client-s3";
 
-// Set the parameters. For more information,
-// see https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putBucketAcl-property.
-export const bucketParams = {
-  Bucket: "BUCKET_NAME",
-  // 'GrantFullControl' allows grantee the read, write, read ACP, and write ACL permissions on the bucket.
-  // Use a canonical user ID for an AWS account, formatted as follows:
-  // id=002160194XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXa7a49125274
-  GrantFullControl: "GRANTEE_1",
-  // 'GrantWrite' allows grantee to create, overwrite, and delete any object in the bucket.
-  // For example, 'uri=http://acs.amazonaws.com/groups/s3/LogDelivery'
-  GrantWrite: "GRANTEE_2",
-};
+const client = new S3Client({});
 
-export const run = async () => {
+// Most Amazon S3 use cases don't require the use of access control lists (ACLs).
+// We recommend that you disable ACLs, except in unusual circumstances where
+// you need to control access for each object individually.
+// Consider a policy instead. For more information see https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html.
+export const main = async () => {
+  // Grant a user READ access to a bucket.
+  const command = new PutBucketAclCommand({
+    Bucket: "test-bucket",
+    AccessControlPolicy: {
+      Grants: [
+        {
+          Grantee: {
+            // The canonical ID of the user. This ID is an obfuscated form of your AWS account number.
+            // It's unique to Amazon S3 and can't be found elsewhere.
+            // For more information, see https://docs.aws.amazon.com/AmazonS3/latest/userguide/finding-canonical-user-id.html.
+            ID: "canonical-id-1",
+            Type: "CanonicalUser",
+          },
+          // One of FULL_CONTROL | READ | WRITE | READ_ACP | WRITE_ACP
+          // https://docs.aws.amazon.com/AmazonS3/latest/API/API_Grant.html#AmazonS3-Type-Grant-Permission
+          Permission: "FULL_CONTROL",
+        },
+      ],
+      Owner: {
+        ID: "canonical-id-2",
+      },
+    },
+  });
+
   try {
-    const data = await s3Client.send(new PutBucketAclCommand(bucketParams));
-    console.log("Success, permissions added to bucket", data);
-    return data; // For unit tests.
+    const response = await client.send(command);
+    console.log(response);
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-run();
 ```
 +  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-access-permissions.html#s3-example-access-permissions-put-acl)\. 
 +  For API details, see [PutBucketAcl](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/putbucketaclcommand.html) in *AWS SDK for JavaScript API Reference*\. 

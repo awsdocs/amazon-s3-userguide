@@ -6,7 +6,7 @@ Use the following steps to create an Amazon S3 Storage Lens dashboard on the Ama
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
-1. In the navigation pane, choose **S3 Storage Lens**\.
+1. In the left navigation pane, under **S3 Storage Lens**, choose **Dashboards**\.
 
 1. Choose **Create dashboard**\.
 

@@ -20,7 +20,7 @@ If you change the **Storage Class**, ** Encryption**, or **Metadata** properties
 
       To change the storage class after you upload an object, choose **Storage class**\. Choose the storage class that you want, and then choose **Save**\.
 
-   1. **Server\-side encryption settings** – You can use server\-side encryption to encrypt your S3 objects\. For more information, see [Specifying server\-side encryption with AWS KMS \(SSE\-KMS\)](specifying-kms-encryption.md) or [Specifying Amazon S3 encryption](specifying-s3-encryption.md)\. 
+   1. **Server\-side encryption settings** – You can use server\-side encryption to encrypt your S3 objects\. For more information, see [Specifying server\-side encryption with AWS KMS \(SSE\-KMS\)](specifying-kms-encryption.md) or [Specifying Amazon S3 encryption with S3 managed keys \(SSE\-S3\)](specifying-s3-encryption.md)\. 
 
    1. **Metadata** – Each object in Amazon S3 has a set of name\-value pairs that represents its metadata\. For information about adding metadata to an S3 object, see [Editing object metadata in the Amazon S3 console](add-object-metadata.md)\.
 

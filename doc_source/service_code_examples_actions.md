@@ -2,7 +2,7 @@
 
 The following code examples demonstrate how to perform individual Amazon S3 actions with AWS SDKs\. These excerpts call the Amazon S3 API and are not intended to be run in isolation\. Each example includes a link to GitHub, where you can find instructions on how to set up and run the code in context\.
 
- The following examples include only the most commonly used actions\. For a complete list, see the [Amazon Simple Storage Service API Reference](https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html)\. 
+ The following examples include only the most commonly used actions\. For a complete list, see the [Amazon Simple Storage Service \(Amazon S3\) API Reference](https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html)\. 
 
 **Topics**
 + [Add CORS rules to a bucket](example_s3_PutBucketCors_section.md)

@@ -1,9 +1,15 @@
-# Using server\-side encryption with AWS Key Management Service \(SSE\-KMS\)<a name="UsingKMSEncryption"></a>
+# Protecting data using server\-side encryption with AWS Key Management Service keys \(SSE\-KMS\)<a name="UsingKMSEncryption"></a>
 
 **Important**  
-Amazon S3 now applies server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) as the base level of encryption for every bucket in Amazon S3\. Starting January 5, 2023, all new object uploads to Amazon S3 will be automatically encrypted at no additional cost and with no impact on performance\. Currently, the automatic encryption status for S3 bucket default encryption configuration and for new object uploads is available in AWS CloudTrail logs, S3 Inventory, and S3 Storage Lens\. During the next few weeks, the automatic encryption status will also be rolled out to the Amazon S3 console and as an additional Amazon S3 API response header in the AWS Command Line Interface and AWS SDKs\. When this update is complete in all AWS Regions, we will update the documentation\. For more information, see [Default encryption FAQ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html)\.
+Amazon S3 now applies server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) as the base level of encryption for every bucket in Amazon S3\. Starting January 5, 2023, all new object uploads to Amazon S3 are automatically encrypted at no additional cost and with no impact on performance\. The automatic encryption status for S3 bucket default encryption configuration and for new object uploads is available in AWS CloudTrail logs, S3 Inventory, S3 Storage Lens, the Amazon S3 console, and as an additional Amazon S3 API response header in the AWS Command Line Interface and AWS SDKs\. For more information, see [Default encryption FAQ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html)\.
 
-Server\-side encryption is the encryption of data at its destination by the application or service that receives it\. AWS Key Management Service \(AWS KMS\) is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses server\-side encryption with AWS KMS \(SSE\-KMS\) to encrypt your S3 object data\. Also, when SSE\-KMS is requested for the object, the S3 checksum as part of the object's metadata, is stored in encrypted form\. For more information about checksum, see [Checking object integrity](checking-object-integrity.md)\.
+Server\-side encryption is the encryption of data at its destination by the application or service that receives it\.
+
+Amazon S3 automatically enables server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) for new object uploads\.
+
+Unless you specify otherwise, buckets use SSE\-S3 by default to encrypt objects\. However, you can choose to configure buckets to use server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\) instead\. For more information, see [Specifying server\-side encryption with AWS KMS \(SSE\-KMS\)](specifying-kms-encryption.md)\.
+
+AWS KMS is a service that combines secure, highly available hardware and software to provide a key management system scaled for the cloud\. Amazon S3 uses server\-side encryption with AWS KMS \(SSE\-KMS\) to encrypt your S3 object data\. Also, when SSE\-KMS is requested for the object, the S3 checksum as part of the object's metadata, is stored in encrypted form\. For more information about checksum, see [Checking object integrity](checking-object-integrity.md)\.
 
 If you use KMS keys, you can use AWS KMS through the [AWS Management Console](https://console.aws.amazon.com/kms) or the [AWS KMS API](https://docs.aws.amazon.com/kms/latest/APIReference/) to do the following: 
 + Centrally create, view, edit, monitor, enable or disable, rotate, and schedule deletion of KMS keys\.
@@ -17,7 +23,7 @@ The security controls in AWS KMS can help you meet encryption\-related complianc
 There are additional charges for using AWS KMS keys\. For more information, see [AWS KMS key concepts](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#kms_keys) in the *AWS Key Management Service Developer Guide* and [AWS KMS pricing](https://aws.amazon.com/kms/pricing)\.
 
 **Permissions**  
-To upload an object encrypted with an AWS KMS key to Amazon S3, you need `kms:GenerateDataKey` permissions on the key\. To download an object encrypted with an AWS KMS key, you need `kms:Decrypt` permissions\. For information about AWS KMS permissions required for multipart upload, see [Multipart upload API and permissions](mpuoverview.md#mpuAndPermissions)\.
+To upload an object encrypted with an AWS KMS key to Amazon S3, you need `kms:GenerateDataKey` permissions on the key\. To download an object encrypted with an AWS KMS key, you need `kms:Decrypt` permissions\. For information about the AWS KMS permissions that are required for multipart uploads, see [Multipart upload API and permissions](mpuoverview.md#mpuAndPermissions)\.
 
 **Topics**
 + [AWS KMS keys](#aws-managed-customer-managed-keys)
@@ -66,13 +72,13 @@ To identify requests that specify SSE\-KMS, you can use the **All SSE\-KMS reque
 
 ## Amazon S3 Bucket Keys<a name="sse-kms-bucket-keys"></a>
 
-When you configure server\-side encryption using AWS KMS \(SSE\-KMS\), you can configure your bucket to use S3 Bucket Keys for SSE\-KMS\. Using a bucket\-level key for SSE\-KMS can reduce your AWS KMS request costs by up to 99 percent by decreasing the request traffic from Amazon S3 to AWS KMS\. 
+When you configure server\-side encryption using AWS KMS \(SSE\-KMS\), you can configure your buckets to use S3 Bucket Keys for SSE\-KMS\. Using a bucket\-level key for SSE\-KMS can reduce your AWS KMS request costs by up to 99 percent by decreasing the request traffic from Amazon S3 to AWS KMS\. 
 
-When you configure your bucket to use S3 Bucket Keys for SSE\-KMS on new objects, AWS KMS generates a bucket\-level key that is used to create unique [data keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) for objects in the bucket\. This bucket key is used for a time\-limited period within Amazon S3, further reducing the need for Amazon S3 to make requests to AWS KMS to complete encryption operations\. For more information about using S3 Bucket Keys, see [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)\.
+When you configure a bucket to use an S3 Bucket Key for SSE\-KMS on new objects, AWS KMS generates a bucket\-level key that is used to create unique [data keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) for objects in the bucket\. This S3 Bucket Key is used for a time\-limited period within Amazon S3, further reducing the need for Amazon S3 to make requests to AWS KMS to complete encryption operations\. For more information about using S3 Bucket Keys, see [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)\.
 
 ## Requiring server\-side encryption<a name="require-sse-kms"></a>
 
-To require server\-side encryption of all objects in a particular Amazon S3 bucket, you can use a bucket policy\. For example, the following bucket policy denies the upload object \(`s3:PutObject`\) permission to everyone if the request does not include the `x-amz-server-side-encryption` header requesting server\-side encryption with SSE\-KMS\.
+To require server\-side encryption of all objects in a particular Amazon S3 bucket, you can use a bucket policy\. For example, the following bucket policy denies the upload object \(`s3:PutObject`\) permission to everyone if the request does not include an `x-amz-server-side-encryption` header that requests server\-side encryption with SSE\-KMS\.
 
 ```
  1. {
@@ -94,16 +100,16 @@ To require server\-side encryption of all objects in a particular Amazon S3 buck
 17. }
 ```
 
-To require that a particular AWS KMS key be used to encrypt the objects in a bucket, you can use the `s3:x-amz-server-side-encryption-aws-kms-key-id` condition key\. To specify the KMS key, you must use a key Amazon Resource Name \(ARN\) that is in the "`arn:aws:kms:region:acct-id:key/key-id"` format\.
+To require that a particular AWS KMS key be used to encrypt the objects in a bucket, you can use the `s3:x-amz-server-side-encryption-aws-kms-key-id` condition key\. To specify the KMS key, you must use a key Amazon Resource Name \(ARN\) that is in the `arn:aws:kms:region:acct-id:key/key-id` format\.
 
 **Note**  
-When you upload an object, you can specify the KMS key using the `x-amz-server-side-encryption-aws-kms-key-id` header\. If the header is not present in the request, Amazon S3 assumes that you want to use the AWS managed key\. Regardless, the AWS KMS key ID that Amazon S3 uses for object encryption must match the AWS KMS key ID in the policy, otherwise Amazon S3 denies the request\.
+When you upload an object, you can specify the KMS key by using the `x-amz-server-side-encryption-aws-kms-key-id` header\. If the header is not present in the request, Amazon S3 assumes that you want to use the AWS managed key\. Regardless, the AWS KMS key ID that Amazon S3 uses for object encryption must match the AWS KMS key ID in the policy, otherwise Amazon S3 denies the request\.
 
-For a complete list of Amazon S3‐specific condition keys, see [Condition keys for Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/list_amazons3.html#amazons3-policy-keys)\.
+For a complete list of Amazon S3 specific condition keys, see [Condition keys for Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/list_amazons3.html#amazons3-policy-keys)\.
 
 ## Encryption context<a name="encryption-context"></a>
 
-An encryption context is a set of key\-value pairs that contains additional contextual information about the data\. The encryption context is not encrypted\. When an encryption context is specified for an encryption operation, Amazon S3 must specify the same encryption context for the decryption operation\. Otherwise, the decryption fails\. AWS KMS uses the encryption context as [additional authenticated data](https://docs.aws.amazon.com/crypto/latest/userguide/cryptography-concepts.html#term-aad) \(AAD\) to support [authenticated encryption](https://docs.aws.amazon.com/crypto/latest/userguide/cryptography-concepts.html#define-authenticated-encryption)\. For more information about the encryption context, see [Encryption context](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context) in the *AWS Key Management Service Developer Guide*\. 
+An *encryption context* is a set of key\-value pairs that contains additional contextual information about the data\. The encryption context is not encrypted\. When an encryption context is specified for an encryption operation, Amazon S3 must specify the same encryption context for the decryption operation\. Otherwise, the decryption fails\. AWS KMS uses the encryption context as [additional authenticated data](https://docs.aws.amazon.com/crypto/latest/userguide/cryptography-concepts.html#term-aad) \(AAD\) to support [authenticated encryption](https://docs.aws.amazon.com/crypto/latest/userguide/cryptography-concepts.html#define-authenticated-encryption)\. For more information about the encryption context, see [Encryption context](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context) in the *AWS Key Management Service Developer Guide*\. 
 
 By default, Amazon S3 uses the object or bucket Amazon Resource Name \(ARN\) as the encryption context pair: 
 + **If you use SSE\-KMS without enabling an S3 Bucket Key**, the object ARN is used as the encryption context\.
@@ -117,7 +123,7 @@ By default, Amazon S3 uses the object or bucket Amazon Resource Name \(ARN\) as 
   arn:aws:s3:::bucket_ARN
   ```
 
-You can optionally provide an additional encryption context pair using the `x-amz-server-side-encryption-context` header in an [ s3:PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html#API_PutObject_RequestSyntax) request\. However, because the encryption context is not encrypted, make sure it does not include sensitive information\. Amazon S3 stores this additional key pair alongside the default encryption context\. When it processes your PUT request, Amazon S3 appends the default encryption context of `aws:s3:arn` to the one that you provide\. 
+You can optionally provide an additional encryption context pair by using the `x-amz-server-side-encryption-context` header in an [ s3:PutObject](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html#API_PutObject_RequestSyntax) request\. However, because the encryption context is not encrypted, make sure it does not include sensitive information\. Amazon S3 stores this additional key pair alongside the default encryption context\. When it processes your `PUT` request, Amazon S3 appends the default encryption context of `aws:s3:arn` to the one that you provide\. 
 
 You can use the encryption context to identify and categorize your cryptographic operations\. You can also use the default encryption context ARN value to track relevant requests in AWS CloudTrail by viewing which Amazon S3 ARN was used with which encryption key\.
 

@@ -118,7 +118,7 @@ AND parse_datetime('2022-07-01','yyyy-MM-dd');
 ```
 
 **Note**  
-To reduce the time that you retain your log, you can create an Amazon S3 Lifecycle policy for your server access logs bucket\. Configure the lifecycle policy to remove log files periodically\. Doing so reduces the amount of data that Athena analyzes for each query\. For more information, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)\.
+To reduce the time that you retain your log, you can create an Amazon S3 lifecycle configuration for your server access logs bucket\. Configure the lifecycle configuration to remove log files periodically\. Doing so reduces the amount of data that Athena analyzes for each query\. For more information, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)\.
 
 ## Identifying Signature Version 2 requests using Amazon S3 access logs<a name="using-s3-access-logs-to-identify-sigv2-requests"></a>
 

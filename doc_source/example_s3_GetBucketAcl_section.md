@@ -192,39 +192,27 @@ Aws::String GetPermissionString(const Aws::S3::Model::Permission &permission) {
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
 Get the ACL permissions\.  
 
 ```
-// Import required AWS SDK clients and commands for Node.js.
-import { GetBucketAclCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import { GetBucketAclCommand, S3Client } from "@aws-sdk/client-s3";
 
-// Create the parameters.
-export const bucketParams = { Bucket: "BUCKET_NAME" };
+const client = new S3Client({});
 
-export const run = async () => {
+export const main = async () => {
+  const command = new GetBucketAclCommand({
+    Bucket: "test-bucket",
+  });
+
   try {
-    const data = await s3Client.send(new GetBucketAclCommand(bucketParams));
-    console.log("Success", data.Grants);
-    return data; // For unit tests.
+    const response = await client.send(command);
+    console.log(response);
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-run();
 ```
 +  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-access-permissions.html#s3-example-access-permissions-get-acl)\. 
 +  For API details, see [GetBucketAcl](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/getbucketaclcommand.html) in *AWS SDK for JavaScript API Reference*\. 

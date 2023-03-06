@@ -36,7 +36,7 @@ You've already added an object to a bucket and downloaded the object\. Now, you 
 
 1. In the bottom right, choose **Copy**\.
 
-   Amazon S3 moves your objects to the destination folder\.
+   Amazon S3 copies your objects to the destination folder\.
 
 **Next step**  
 To delete an object and a bucket in Amazon S3, see [Step 5: Delete your objects and bucket](deleting-object-bucket.md)\.

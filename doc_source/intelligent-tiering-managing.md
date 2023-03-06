@@ -153,7 +153,7 @@ Unlike in the S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive storage 
 
 ### Checking the restore status of an object<a name="int-tiering-archive-restore-status"></a>
 
-You can check the progress of your object's restoration on the **Object overview** page on the Amazon S3 console\. For more information, see [Viewing an object overview in the Amazon S3 console](view-object-overview.md)\. This page will show that the restoration is **In progress**\. You can use request to be notified of object restoration completion by using `s3:ObjectRestore:Completed` with the [ Amazon S3 Event Notifications](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-enable-disable-notification-intro.html) feature\. 
+You can check the progress of your object's restoration on the **Object overview** page on the Amazon S3 console\. For more information, see [Viewing an object overview in the Amazon S3 console](view-object-overview.md)\. This page will show that the restoration is **In progress**\. You can be notified of object restoration completion by using the `s3:ObjectRestore:Completed` action with the [ Amazon S3 Event Notifications](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-enable-disable-notification-intro.html) feature\.
 
 The following table summarizes archived object retrieval speeds\.
 

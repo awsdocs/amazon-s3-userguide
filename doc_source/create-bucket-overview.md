@@ -6,6 +6,8 @@ The AWS account that creates the bucket owns it\. You can upload any number of o
 
 S3 Object Ownership is an Amazon S3 bucket\-level setting that you can use to disable access control lists \(ACLs\) and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. By default, when another AWS account uploads an object to your Amazon S3 bucket, that account \(the object writer\) owns the object, has access to it, and can grant other users access to it through ACLs\. When you create a bucket, you can apply the bucket owner enforced setting for Object Ownership to change this default behavior so that ACLs are disabled and you, as the bucket owner, automatically own every object in your bucket\. As a result, access control for your data is based on policies\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 
+Server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) is the base level of encryption configuration for every bucket in Amazon S3\. All new objects uploaded to an S3 bucket are automatically encrypted with SSE\-S3 as the base level of encryption setting\. If you want to use a different type of default encryption, you can also specify server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\) or customer\-provided keys \(SSE\-C\) to encrypt your data\. For more information, see [Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\.
+
 **Important**  
 Starting in April 2023, Amazon S3 will change the default settings for S3 Block Public Access and Object Ownership \(ACLs disabled\) for all new S3 buckets\. For new buckets created after this update, all S3 Block Public Access settings will be enabled, and S3 access control lists \(ACLs\) will be disabled\. These defaults are the recommended best practices for securing data in Amazon S3\. You can adjust these settings after creating your bucket\. For more information, see [ Default settings for new S3 buckets FAQ](create-bucket-faq.md) and [Heads\-Up: Amazon S3 Security Changes Are Coming in April of 2023](http://aws.amazon.com/blogs/aws/heads-up-amazon-s3-security-changes-are-coming-in-april-of-2023/) in the * AWS News Blog*\.
 
@@ -15,44 +17,46 @@ You can use the Amazon S3 console, Amazon S3 APIs, AWS CLI, or AWS SDKs to creat
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
+1. In the left navigation pane, choose **Buckets**\.
+
 1. Choose **Create bucket**\.
 
-   The **Create bucket** wizard opens\.
+   The **Create bucket** page opens\.
 
-1. In **Bucket name**, enter a DNS\-compliant name for your bucket\.
+1. For **Bucket name**, enter a name for your bucket\.
 
    The bucket name must:
-   + Be unique across all of Amazon S3\.
+   + Be unique within a partition\. A partition is a grouping of Regions\. AWS currently has three partitions: `aws` \(Standard Regions\), `aws-cn` \(China Regions\), and `aws-us-gov` \(AWS GovCloud \[US\] Regions\)\.
    + Be between 3 and 63 characters long\.
-   + Not contain uppercase characters\.
-   + Start with a lowercase letter or number\.
+   + Consist only of lowercase letters, numbers, dots \(\.\), and hyphens \(\-\)\. For best compatibility, we recommend that you avoid using dots \(\.\) in bucket names, except for buckets that are used only for static website hosting\.
+   + Begin and end with a letter or number\.
 
-   After you create the bucket, you cannot change its name\. For information about naming buckets, see [Bucket naming rules](bucketnamingrules.md)\. 
+   After you create the bucket, you cannot change its name\. For more information about naming buckets, see [Bucket naming rules](bucketnamingrules.md)\. 
 **Important**  
-Avoid including sensitive information, such as account number, in the bucket name\. The bucket name is visible in the URLs that point to the objects in the bucket\.
+Avoid including sensitive information, such as account numbers, in the bucket name\. The bucket name is visible in the URLs that point to the objects in the bucket\.
 
-1. In **Region**, choose the AWS Region where you want the bucket to reside\. 
+1. For **Region**, choose the AWS Region where you want the bucket to reside\. 
 
-   Choose a Region close to you to minimize latency and costs and address regulatory requirements\. Objects stored in a Region never leave that Region unless you explicitly transfer them to another Region\. For a list of Amazon S3 AWS Regions, see [AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the *Amazon Web Services General Reference*\.
+   To minimize latency and costs and address regulatory requirements, choose a Region close to you\. Objects stored in a Region never leave that Region unless you explicitly transfer them to another Region\. For a list of Amazon S3 AWS Regions, see [AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the *Amazon Web Services General Reference*\.
 
 1. Under **Object Ownership**, to disable or enable ACLs and control ownership of objects uploaded in your bucket, choose one of the following settings:
 
 **ACLs disabled**
-   + **Bucket owner enforced** – ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket\. ACLs no longer affect permissions to data in the S3 bucket\. The bucket uses policies to define access control\.
+   + **Bucket owner enforced** – ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket\. ACLs no longer affect access permissions to data in the S3 bucket\. The bucket uses policies to define access control\.
 
-     To require that all new buckets are created with ACLs disabled by using IAM or AWS Organizations policies, see [Disabling ACLs for all new buckets \(bucket owner enforced\)](ensure-object-ownership.md#object-ownership-requiring-bucket-owner-enforced)\.
+     To require that all new buckets are created with ACLs disabled by using AWS Identity and Access Management \(IAM\) or AWS Organizations policies, see [Disabling ACLs for all new buckets \(bucket owner enforced\)](ensure-object-ownership.md#object-ownership-requiring-bucket-owner-enforced)\.
 
 **ACLs enabled**
    + **Bucket owner preferred** – The bucket owner owns and has full control over new objects that other accounts write to the bucket with the `bucket-owner-full-control` canned ACL\. 
 
-     If you apply the bucket owner preferred setting, to require all Amazon S3 uploads to include the `bucket-owner-full-control` canned ACL, you can [add a bucket policy](ensure-object-ownership.md#ensure-object-ownership-bucket-policy) that only allows object uploads that use this ACL\.
+     If you apply the bucket owner preferred setting, to require all Amazon S3 uploads to include the `bucket-owner-full-control` canned ACL, you can [add a bucket policy](ensure-object-ownership.md#ensure-object-ownership-bucket-policy) that allows only object uploads that use this ACL\.
    + **Object writer** – The AWS account that uploads an object owns the object, has full control over it, and can grant other users access to it through ACLs\.
 **Note**  
-To apply the **Bucket owner enforced** setting or the **Bucket owner preferred** setting, you must have the following permission: `s3:CreateBucket` and `s3:PutBucketOwnershipControls`\.
+To apply the **Bucket owner enforced** setting or the **Bucket owner preferred** setting, you must have permission to use the following actions: `s3:CreateBucket` and `s3:PutBucketOwnershipControls`\.
 
-1. In **Bucket settings for Block Public Access**, choose the Block Public Access settings that you want to apply to the bucket\. 
+1. Under **Block Public Access settings for this bucket**, choose the Block Public Access settings that you want to apply to the bucket\. 
 
-   We recommend that you keep all settings enabled unless you know that you need to turn off one or more of them for your use case, such as to host a public website\. Block Public Access settings that you enable for the bucket are also enabled for all access points that you create on the bucket\. For more information about blocking public access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
+   We recommend that you keep all settings enabled unless you know that you need to turn off one or more of them for your use case, such as to host a public website\. The Block Public Access settings that you enable for the bucket are also enabled for all access points that you create on the bucket\. For more information about blocking public access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
 
 1. \(Optional\) Under **Bucket Versioning**, you can choose if you wish to keep variants of objects in your bucket\. For more information about versioning, see [Using versioning in S3 buckets](Versioning.md)\.
 
@@ -62,11 +66,41 @@ To apply the **Bucket owner enforced** setting or the **Bucket owner preferred**
 
    To add a bucket tag, enter a **Key** and optionally a **Value** and choose **Add Tag**\.
 
-1. \(Optional\) Under **Default encryption**, you can choose to configure your bucket to use server\-side encryption with either Amazon S3\-managed keys \(SSE\-S3\) or AWS KMS keys stored in AWS Key Management Service \(AWS KMS\) \(SSE\-KMS\)\. For more information, see [Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\.
+1. Under **Default encryption**, choose **Edit**\.
 
-   To disable or enable encryption, choose either **Disable** or **Enable**\.
+1. To configure default encryption, under **Encryption key type**, choose one of the following: 
+   + **Amazon S3 managed key \(SSE\-S3\)**
+   + **AWS Key Management Service key \(SSE\-KMS\)**
+**Important**  
+If you use the SSE\-KMS option for your default encryption configuration, you are subject to the requests per second \(RPS\) quota of AWS KMS\. For more information about AWS KMS quotas and how to request a quota increase, see [Quotas](https://docs.aws.amazon.com/kms/latest/developerguide/limits.html) in the *AWS Key Management Service Developer Guide*\.
+
+   Buckets and new objects are encrypted with server\-side encryption with an **Amazon S3 managed key** as the base level of encryption configuration\. For more information about default encryption, see [Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\.
+
+   For more information about using Amazon S3 server\-side encryption to encrypt your data, see [Protecting data using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
+
+1. If you chose **AWS Key Management Service key \(SSE\-KMS\)**, do the following:
+
+   1. Under **AWS KMS key**, specify your KMS key in one of the following ways:
+      + To choose from a list of available KMS keys, choose **Choose from your AWS KMS keys**, and choose your **KMS key** from the list of available keys\.
+
+        Both the AWS managed key \(`aws/s3`\) and your customer managed keys appear in this list\. For more information about customer managed keys, see [Customer keys and AWS keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-mgmt) in the *AWS Key Management Service Developer Guide*\.
+      + To enter the KMS key ARN, choose **Enter AWS KMS key ARN**, and enter your KMS key ARN in the field that appears\. 
+      + To create a new customer managed key in the AWS KMS console, choose **Create a KMS key**\.
+
+        For more information about creating an AWS KMS key, see [Creating keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
+**Important**  
+You can use only KMS keys that are available in the same AWS Region as the bucket\. The Amazon S3 console lists only the first 100 KMS keys in the same Region as the bucket\. To use a KMS key that is not listed, you must enter your KMS key ARN\. If you want to use a KMS key that is owned by a different account, you must first have permission to use the key and then you must enter the KMS key ARN\. For more information on cross account permissions for KMS keys, see [Creating KMS keys that other accounts can use](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-console) in the *AWS Key Management Service Developer Guide*\. For more information on SSE\-KMS, see [Specifying server\-side encryption with AWS KMS \(SSE\-KMS\)](specifying-kms-encryption.md)\.  
+When you use an AWS KMS key for server\-side encryption in Amazon S3, you must choose a symmetric encryption KMS key\. Amazon S3 supports only symmetric encryption KMS keys and not asymmetric KMS keys\. For more information, see [Identifying symmetric and asymmetric KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html) in the *AWS Key Management Service Developer Guide*\.
+
+      For more information about creating an AWS KMS key, see [Creating keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\. For more information about using AWS KMS with Amazon S3, see [Protecting data using server\-side encryption with AWS Key Management Service keys \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+
+   1. When you configure your bucket to use default encryption with SSE\-KMS, you can also enable S3 Bucket Keys\. S3 Bucket Keys lower the cost of encryption by decreasing request traffic from Amazon S3 to AWS KMS\. For more information, see [Reducing the cost of SSE\-KMS with Amazon S3 Bucket Keys](bucket-key.md)\.
+
+      To use S3 Bucket Keys, under **Bucket Key**, choose **Enable**\.
 
 1. \(Optional\) If you want to enable S3 Object Lock, do the following:
+
+   \(Optional\) If you want to enable S3 Object Lock, do the following:
 
    1. Choose **Advanced settings**\.
 **Important**  
@@ -82,16 +116,16 @@ To create an Object Lock enabled bucket, you must have the following permissions
 
 ## Using the AWS SDKs<a name="create-bucket-intro"></a>
 
-When you use the AWS SDKs to create a bucket, you must create a client and then use the client to send a request to create a bucket\. As a best practice, you should create your client and bucket in the same AWS Region\. If you don't specify a Region when you create a client or a bucket, Amazon S3 uses the default Region US East \(N\. Virginia\)\. 
+When you use the AWS SDKs to create a bucket, you must create a client and then use the client to send a request to create a bucket\. As a best practice, you should create your client and bucket in the same AWS Region\. If you don't specify a Region when you create a client or a bucket, Amazon S3 uses the default Region, US East \(N\. Virginia\)\. 
 
 To create a client to access a dual\-stack endpoint, you must specify an AWS Region\. For more information, see [Dual\-stack endpoints](dual-stack-endpoints.md#dual-stack-endpoints-description)\. For a list of available AWS Regions, see [Regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\. 
 
-When you create a client, the Region maps to the Region\-specific endpoint\. The client uses this endpoint to communicate with Amazon S3: `s3.<region>.amazonaws.com`\. If your Region launched after March 20, 2019, your client and bucket must be in the same Region\. However, you can use a client in the US East \(N\. Virginia\) Region to create a bucket in any Region that launched before March 20, 2019\. For more information, see [Legacy endpoints](VirtualHosting.md#s3-legacy-endpoints)\.
+When you create a client, the Region maps to the Region\-specific endpoint\. The client uses this endpoint to communicate with Amazon S3: `s3.region.amazonaws.com`\. If your Region launched after March 20, 2019, your client and bucket must be in the same Region\. However, you can use a client in the US East \(N\. Virginia\) Region to create a bucket in any Region that launched before March 20, 2019\. For more information, see [Legacy endpoints](VirtualHosting.md#s3-legacy-endpoints)\.
 
 These AWS SDK code examples perform the following tasks:
-+ **Create a client by explicitly specifying an AWS Region** — In the example, the client uses the `s3.us-west-2.amazonaws.com` endpoint to communicate with Amazon S3\. You can specify any AWS Region\. For a list of AWS Regions, see [Regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\. 
-+ **Send a create bucket request by specifying only a bucket name** — The client sends a request to Amazon S3 to create the bucket in the Region where you created a client\. 
-+ **Retrieve information about the location of the bucket** — Amazon S3 stores bucket location information in the *location* subresource that is associated with the bucket\.
++ **Create a client by explicitly specifying an AWS Region** – In the example, the client uses the `s3.us-west-2.amazonaws.com` endpoint to communicate with Amazon S3\. You can specify any AWS Region\. For a list of AWS Regions, see [Regions and endpoints](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *AWS General Reference*\. 
++ **Send a create bucket request by specifying only a bucket name** – The client sends a request to Amazon S3 to create the bucket in the Region where you created a client\. 
++ **Retrieve information about the location of the bucket** – Amazon S3 stores bucket location information in the *location* subresource that is associated with the bucket\.
 
 ------
 #### [ Java ]

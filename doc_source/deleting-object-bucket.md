@@ -17,15 +17,13 @@ If you want to choose which objects you delete without emptying all the objects 
 
 1. In the **Buckets** list, choose the name of the bucket that you want to delete an object from\.
 
-1. Select the check box to the left of the names of the objects that you want to delete\.
+1. Select the object that you want to delete\.
 
-1. Choose **Actions** and choose **Delete** from the list of options that appears\.
+1. Choose **Delete** from the options in the upper right\. 
 
-   Alternatively, choose **Delete** from the options in the upper right\. 
+1. On the **Delete objects** page, type **delete** to confirm deletion of your objects\.
 
-1. Type **permanently delete** if asked to confirm that you want to delete these objects\.
-
-1. Choose **Delete objects** in the bottom right and Amazon S3 deletes the specified objects\.
+1. Choose **Delete objects**\.
 
 ## Emptying your bucket<a name="clean-up-empty-bucket"></a>
 

@@ -116,40 +116,28 @@ func (basics BucketBasics) DeleteBucket(bucketName string) error {
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
 Delete the bucket\.  
 
 ```
-// Import required AWS SDK clients and commands for Node.js.
-import { DeleteBucketCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import { DeleteBucketCommand, S3Client } from "@aws-sdk/client-s3";
 
-// Set the bucket parameters
-export const bucketParams = { Bucket: "BUCKET_NAME" };
+const client = new S3Client({})
 
-export const run = async () => {
+// Delete a bucket.
+export const main = async () => {
+  const command = new DeleteBucketCommand({
+    Bucket: "test-bucket",
+  });
+
   try {
-    const data = await s3Client.send(new DeleteBucketCommand(bucketParams));
-    return data; // For unit tests.
-    console.log("Success - bucket deleted");
+    const response = await client.send(command);
+    console.log(response);
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-// Invoke run() so these examples run out of the box.
-run();
 ```
 +  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-creating-buckets.html#s3-example-deleting-buckets)\. 
 +  For API details, see [DeleteBucket](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/deletebucketcommand.html) in *AWS SDK for JavaScript API Reference*\. 

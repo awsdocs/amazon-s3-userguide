@@ -132,7 +132,7 @@ For information on the relationship between ACL permissions and permissions in a
 + [AWS Command Line Interface support for multipart upload](#clisupportformpu)
 + [AWS SDK support for multipart upload](#sdksupportformpu)
 + [Multipart upload API and permissions](#mpuAndPermissions)
-+ [Configuring a bucket lifecycle policy to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)
++ [Configuring a bucket lifecycle configuration to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)
 + [Uploading an object using multipart upload](mpu-upload-object.md)
 + [Uploading a directory using the high\-level \.NET TransferUtility class](HLuploadDirDotNet.md)
 + [Listing multipart uploads](list-mpu.md)

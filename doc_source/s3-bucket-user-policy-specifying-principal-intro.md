@@ -46,7 +46,7 @@ To grant permission to an IAM user within your account, you must provide an `"AW
 "Principal":{"AWS":"arn:aws:iam::account-number-without-hyphens:user/username"}
 ```
 
-For detailed examples that provide step\-by\-step instructions, see [Example 1: Bucket owner granting its users bucket permissions ](example-walkthroughs-managing-access-example1.md) and [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)\.
+For detailed examples that provide step\-by\-step instructions, see [Example 1: Bucket owner granting its users bucket permissions](example-walkthroughs-managing-access-example1.md) and [Example 3: Bucket owner granting permissions to objects it does not own](example-walkthroughs-managing-access-example3.md)\.
 
 **Note**  
 If an IAM identity is deleted after you update your bucket policy, the bucket policy will show a unique identifier in the principal element instead of an ARN\. These unique IDs are never reused, so you can safely remove principals with unique identifiers from all of your policy statements\. For more information about unique identifiers, see [IAM identifiers](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids) in the *IAM User Guide*\.

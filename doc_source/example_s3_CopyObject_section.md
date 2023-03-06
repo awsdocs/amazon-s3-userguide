@@ -226,45 +226,29 @@ import java.util.UUID;
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
 Copy the object\.  
 
 ```
-// Get service clients module and commands using ES6 syntax.
-import { CopyObjectCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js";
+import { S3Client, CopyObjectCommand } from "@aws-sdk/client-s3";
 
-// Set the bucket parameters.
+const client = new S3Client({});
 
-export const params = {
-    Bucket: "DESTINATION_BUCKET_NAME",
-    CopySource: "/SOURCE_BUCKET_NAME/OBJECT_NAME",
-    Key: "OBJECT_NAME"
+export const main = async () => {
+  const command = new CopyObjectCommand({
+    CopySource: "SOURCE_BUCKET/SOURCE_OBJECT_KEY",
+    Bucket: "DESTINATION_BUCKET",
+    Key: "NEW_OBJECT_KEY",
+  });
+
+  try {
+    const response = await client.send(command);
+    console.log(response);
+  } catch (err) {
+    console.error(err);
+  }
 };
-
-// Create the Amazon S3 bucket.
-export const run = async () => {
-    try {
-        const data = await s3Client.send(new CopyObjectCommand(params));
-        console.log("Success", data);
-        return data; // For unit tests.
-    } catch (err) {
-        console.log("Error", err);
-    }
-};
-run();
 ```
 +  For API details, see [CopyObject](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/copyobjectcommand.html) in *AWS SDK for JavaScript API Reference*\. 
 

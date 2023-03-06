@@ -187,37 +187,28 @@ bool AwsDoc::S3::DeleteObject(const Aws::String &objectKey,
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
 Delete an object\.  
 
 ```
-import { DeleteObjectCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js" // Helper function that creates an Amazon S3 service client module.
+import { DeleteObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
-export const bucketParams = { Bucket: "BUCKET_NAME", Key: "KEY" };
+const client = new S3Client({});
 
-export const run = async () => {
+export const main = async () => {
+  const command = new DeleteObjectCommand({
+    Bucket: "test-bucket",
+    Key: "test-key.txt",
+  });
+
   try {
-    const data = await s3Client.send(new DeleteObjectCommand(bucketParams));
-    console.log("Success. Object deleted.", data);
-    return data; // For unit tests.
+    const response = await client.send(command);
+    console.log(response);
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-run();
 ```
 +  For API details, see [DeleteObject](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/deleteobjectcommand.html) in *AWS SDK for JavaScript API Reference*\. 
 

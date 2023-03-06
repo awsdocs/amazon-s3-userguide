@@ -1,59 +1,59 @@
-# Specifying Amazon S3 encryption<a name="specifying-s3-encryption"></a>
+# Specifying Amazon S3 encryption with S3 managed keys \(SSE\-S3\)<a name="specifying-s3-encryption"></a>
 
 **Important**  
-Amazon S3 now applies server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) as the base level of encryption for every bucket in Amazon S3\. Starting January 5, 2023, all new object uploads to Amazon S3 will be automatically encrypted at no additional cost and with no impact on performance\. Currently, the automatic encryption status for S3 bucket default encryption configuration and for new object uploads is available in AWS CloudTrail logs, S3 Inventory, and S3 Storage Lens\. During the next few weeks, the automatic encryption status will also be rolled out to the Amazon S3 console and as an additional Amazon S3 API response header in the AWS Command Line Interface and AWS SDKs\. When this update is complete in all AWS Regions, we will update the documentation\. For more information, see [Default encryption FAQ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html)\.
+Amazon S3 now applies server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) as the base level of encryption for every bucket in Amazon S3\. Starting January 5, 2023, all new object uploads to Amazon S3 are automatically encrypted at no additional cost and with no impact on performance\. The automatic encryption status for S3 bucket default encryption configuration and for new object uploads is available in AWS CloudTrail logs, S3 Inventory, S3 Storage Lens, the Amazon S3 console, and as an additional Amazon S3 API response header in the AWS Command Line Interface and AWS SDKs\. For more information, see [Default encryption FAQ](https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-encryption-faq.html)\.
 
- When you create an object, you can specify the use of server\-side encryption with Amazon S3\-managed encryption keys to encrypt your data\. This is true when you are either uploading a new object or copying an existing object\. This encryption is known as SSE\-S3\. 
+All Amazon S3 buckets have encryption configured by default and all new objects uploaded to an S3 bucket are automatically encrypted at rest\. Server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) is the base level of encryption configuration for every bucket in Amazon S3\. If you want to use a different type of default encryption, you can also specify server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\) or customer\-provided keys \(SSE\-C\) in your S3 `PUT` requests or set the default encryption configuration in the destination bucket to use SSE\-KMS to encrypt your data\.
 
-You can specify SSE\-S3 using the S3 console, REST APIs, AWS SDKs, and AWS CLI\. For more information, see the topics below\.
-
-For a sample of how to copy an object without encryption, see [Copying objects](copy-object.md)\.
+You can specify SSE\-S3 by using the S3 console, REST APIs, AWS SDKs, and AWS Command Line Interface \(AWS CLI\)\. For more information, see [Setting default server\-side encryption behavior for Amazon S3 buckets](bucket-encryption.md)\.
 
 ## Using the S3 console<a name="add-object-encryption-s3"></a>
 
- This topic describes how to set or change the type of encryption an object using the AWS Management Console\. When you copy an object using the console, it copies the object as is\. That means if the source is encrypted, the target object is also encrypted\. The console also allows you to add or change encryption for an object\. 
+This topic describes how to set or change the type of encryption an object by using the AWS Management Console\. When you copy an object by using the console, Amazon S3 copies the object as is\. That means that if the source object is encrypted, the target object is also encrypted\. You can use the console to add or change encryption for an object\. 
 
 **Note**  
-If you change an object's encryption, a new object is created to replace the old one\. If S3 Versioning is enabled, a new version of the object is created, and the existing object becomes an older version\. The role that changes the property also becomes the owner of the new object or \(object version\)\. 
+If you change an object's encryption, a new object is created to replace the old one\. If S3 Versioning is enabled, a new version of the object is created, and the existing object becomes an older version\. The role that changes the property also becomes the owner of the new object \(or object version\)\. 
 
-**To add or change encryption for an object**
+**To change encryption for an object**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the left navigation pane, choose **Buckets**\.
 
 1. In the **Buckets** list, choose the name of the bucket that contains the object\.
 
 1. In the **Objects** list, choose the name of the object that you want to add or change encryption for\.
 
-   The **Object overview** opens, displaying the properties for your object\.
+   The object's details page appears, with several sections that display the properties for your object\.
 
-1. Under **Server\-side encryption settings**, choose **Edit**\.
+1. Choose the **Properties** tab\.
 
-   The **Edit server\-side encryption** page opens\.
+1. Scroll down to the **Server\-side encryption settings** section, and then choose **Edit**\.
 
-1. To enable server\-side encryption for your object, under **Server\-side encryption**, choose **Enable**\.
+1. Under **Encryption settings**, choose **Use bucket default encryption settings** or **Override bucket default encryption settings**\.
 
-1. To enable server\-side encryption using an Amazon S3\-managed key, under **Encryption key type**, choose **Amazon S3 key \(SSE\-S3\)**\.
+1. If you chose **Override bucket settings for default encryption**, configure the following encryption settings\.
 
-   For more information about using Amazon S3 server\-side encryption to encrypt your data, see [Using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
+   1. Under **Encryption key type**, choose **Amazon S3 managed keys \(SSE\-S3\)**\. SSE\-S3 uses one of the strongest block ciphers—256\-bit Advanced Encryption Standard \(AES\-256\) to encrypt each object\. For more information, see [Protecting data using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\.
 
 1. Choose **Save changes**\.
 
 **Note**  
-This action applies encryption to all specified objects\. When encrypting folders, wait for the save operation to finish before adding new objects to the folder\.
+This action applies encryption to all specified objects\. When you're encrypting folders, wait for the save operation to finish before adding new objects to the folder\.
 
 ## Using the REST API<a name="SSEUsingRESTAPI"></a>
 
-At the time of object creation—that is, when you are uploading a new object or making a copy of an existing object—you can specify if you want Amazon S3 to encrypt your data by adding the `x-amz-server-side-encryption` header to the request\. Set the value of the header to the encryption algorithm `AES256` that Amazon S3 supports\. Amazon S3 confirms that your object is stored using server\-side encryption by returning the response header `x-amz-server-side-encryption`\. 
+At the time of object creation—that is, when you are uploading a new object or making a copy of an existing object—you can specify if you want Amazon S3 to encrypt your data with Amazon S3 managed keys \(SSE\-S3\) by adding the `x-amz-server-side-encryption` header to the request\. Set the value of the header to the encryption algorithm `AES256`, which Amazon S3 supports\. Amazon S3 confirms that your object is stored with SSE\-S3 by returning the response header `x-amz-server-side-encryption`\. 
 
-The following REST upload APIs accept the `x-amz-server-side-encryption` request header\.
+The following REST upload API operations accept the `x-amz-server-side-encryption` request header\.
 + [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html)
 + [PUT Object \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html)
 + [POST Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html)
 + [Initiate Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html)
 
-When uploading large objects using the multipart upload API, you can specify server\-side encryption by adding the `x-amz-server-side-encryption` header to the Initiate Multipart Upload request\. When you are copying an existing object, regardless of whether the source object is encrypted or not, the destination object is not encrypted unless you explicitly request server\-side encryption\.
+When uploading large objects by using the multipart upload API operation, you can specify server\-side encryption by adding the `x-amz-server-side-encryption` header to the Initiate Multipart Upload request\. When you're copying an existing object, regardless of whether the source object is encrypted or not, the destination object is not encrypted unless you explicitly request server\-side encryption\.
 
-The response headers of the following REST APIs return the `x-amz-server-side-encryption` header when an object is stored using server\-side encryption\. 
+The response headers of the following REST API operations return the `x-amz-server-side-encryption` header when an object is stored using SSE\-S3\. 
 + [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html)
 + [PUT Object \- Copy](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html)
 + [POST Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html)
@@ -65,26 +65,26 @@ The response headers of the following REST APIs return the `x-amz-server-side-en
 + [Head Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html)
 
 **Note**  
-Encryption request headers should not be sent for `GET` requests and `HEAD` requests if your object uses SSE\-S3 or you’ll get an HTTP 400 BadRequest error\.
+Do not send encryption request headers for `GET` requests and `HEAD` requests if your object uses SSE\-S3, or you'll get an HTTP status code 400 \(Bad Request\) error\.
 
 ## Using the AWS SDKs<a name="s3-using-sdks"></a>
 
- When using AWS SDKs, you can request Amazon S3 to use Amazon S3\-managed encryption keys\. This section provides examples of using the AWS SDKs in multiple languages\. For information about other SDKs, go to [Sample Code and Libraries](https://aws.amazon.com/code)\. 
+When using AWS SDKs, you can request Amazon S3 to use server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)\. This section provides examples of using the AWS SDKs in multiple languages\. For information about other SDKs, go to [Sample Code and Libraries](https://aws.amazon.com/code)\. 
 
 ------
 #### [ Java ]
 
-When you use the AWS SDK for Java to upload an object, you can use server\-side encryption to encrypt it\. To request server\-side encryption, use the `ObjectMetadata` property of the `PutObjectRequest` to set the `x-amz-server-side-encryption` request header\. When you call the `putObject()` method of the `AmazonS3Client`, Amazon S3 encrypts and saves the data\.
+When you use the AWS SDK for Java to upload an object, you can use SSE\-S3 to encrypt it\. To request server\-side encryption, use the `ObjectMetadata` property of the `PutObjectRequest` to set the `x-amz-server-side-encryption` request header\. When you call the `putObject()` method of the `AmazonS3Client`, Amazon S3 encrypts and saves the data\.
 
-You can also request server\-side encryption when uploading objects with the multipart upload API: 
-+ When using the high\-level multipart upload API, you use the `TransferManager` methods to apply server\-side encryption to objects as you upload them\. You can use any of the upload methods that take `ObjectMetadata` as a parameter\. For more information, see [Uploading an object using multipart upload](mpu-upload-object.md)\.
-+ When using the low\-level multipart upload API, you specify server\-side encryption when you initiate the multipart upload\. You add the `ObjectMetadata` property by calling the `InitiateMultipartUploadRequest.setObjectMetadata()` method\. For more information, see [Using the AWS SDKs \(low\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
+You can also request SSE\-S3 encryption when uploading objects with the multipart upload API operation: 
++ When using the high\-level multipart upload API operation, you use the `TransferManager` methods to apply server\-side encryption to objects as you upload them\. You can use any of the upload methods that take `ObjectMetadata` as a parameter\. For more information, see [Uploading an object using multipart upload](mpu-upload-object.md)\.
++ When using the low\-level multipart upload API operation, you specify server\-side encryption when you initiate the multipart upload\. You add the `ObjectMetadata` property by calling the `InitiateMultipartUploadRequest.setObjectMetadata()` method\. For more information, see [Using the AWS SDKs \(low\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
 
 You can't directly change the encryption state of an object \(encrypting an unencrypted object or decrypting an encrypted object\)\. To change an object's encryption state, you make a copy of the object, specifying the desired encryption state for the copy, and then delete the original object\. Amazon S3 encrypts the copied object only if you explicitly request server\-side encryption\. To request encryption of the copied object through the Java API, use the `ObjectMetadata` property to specify server\-side encryption in the `CopyObjectRequest`\.
 
 **Example**  
-The following example shows how to set server\-side encryption using the AWS SDK for Java\. It shows how to perform the following tasks:  
-+ Upload a new object using server\-side encryption\.
+The following example shows how to set server\-side encryption by using the AWS SDK for Java\. It shows how to perform the following tasks:  
++ Upload a new object by using SSE\-S3\.
 + Change an object's encryption state \(in this example, encrypting a previously unencrypted object\) by making a copy of the object\.
 + Check the encryption state of the object\.
 For more information about server\-side encryption, see [Using the REST API](#SSEUsingRESTAPI)\. For instructions on creating and testing a working sample, see [Testing the Amazon S3 Java Code Examples](UsingTheMPJavaAPI.md#TestingJavaSamples)\.   
@@ -196,7 +196,7 @@ public class SpecifyServerSideEncryption {
 ------
 #### [ \.NET ]
 
-When you upload an object, you can direct Amazon S3 to encrypt it\. To change the encryption state of an existing object, you make a copy of the object and delete the source object\. By default, the copy operation encrypts the target only if you explicitly request server\-side encryption of the target object\. To specify server\-side encryption in the `CopyObjectRequest`, add the following:
+When you upload an object, you can direct Amazon S3 to encrypt it\. To change the encryption state of an existing object, you make a copy of the object and delete the source object\. By default, the copy operation encrypts the target only if you explicitly request server\-side encryption of the target object\. To specify SSE\-S3 in the `CopyObjectRequest`, add the following:
 
 ```
  ServerSideEncryptionMethod = ServerSideEncryptionMethod.AES256
@@ -270,7 +270,7 @@ namespace Amazon.DocSamples.S3
 ------
 #### [ PHP ]
 
-This topic shows how to use classes from version 3 of the AWS SDK for PHP to add server\-side encryption to objects that you upload to Amazon Simple Storage Service \(Amazon S3\)\. It assumes that you are already following the instructions for [Using the AWS SDK for PHP and Running PHP Examples](UsingTheMPphpAPI.md) and have the AWS SDK for PHP properly installed\.
+This topic shows how to use classes from version 3 of the AWS SDK for PHP to add SSE\-S3 to objects that you upload to Amazon S3\. It assumes that you are already following the instructions for [Using the AWS SDK for PHP and Running PHP Examples](UsingTheMPphpAPI.md) and have the AWS SDK for PHP properly installed\.
 
 To upload an object to Amazon S3, use the [Aws\\S3\\S3Client::putObject\(\)](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#putobject) method\. To add the `x-amz-server-side-encryption` request header to your upload request, specify the `ServerSideEncryption` parameter with the value `AES256`, as shown in the following code example\. For information about server\-side encryption requests, see [Using the REST API](#SSEUsingRESTAPI)\.
 
@@ -301,9 +301,9 @@ $result = $s3->putObject([
 
 In response, Amazon S3 returns the `x-amz-server-side-encryption` header with the value of the encryption algorithm that was used to encrypt your object's data\. 
 
-When you upload large objects using the multipart upload API, you can specify server\-side encryption for the objects that you are uploading, as follows: 
-+ When using the low\-level multipart upload API, specify server\-side encryption when you call the [ Aws\\S3\\S3Client::createMultipartUpload\(\)](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#createmultipartupload) method\. To add the `x-amz-server-side-encryption` request header to your request, specify the `array` parameter's `ServerSideEncryption` key with the value `AES256`\. For more information about the low\-level multipart upload API, see [Using the AWS SDKs \(low\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
-+ When using the high\-level multipart upload API, specify server\-side encryption using the `ServerSideEncryption` parameter of the [CreateMultipartUpload](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#createmultipartupload) method\. For an example of using the `setOption()` method with the high\-level multipart upload API, see [Uploading an object using multipart upload](mpu-upload-object.md)\.
+When you upload large objects by using the multipart upload API operation, you can specify SSE\-S3 for the objects that you are uploading, as follows: 
++ When you're using the low\-level multipart upload API operation, specify server\-side encryption when you call the [ Aws\\S3\\S3Client::createMultipartUpload\(\)](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#createmultipartupload) method\. To add the `x-amz-server-side-encryption` request header to your request, specify the `array` parameter's `ServerSideEncryption` key with the value `AES256`\. For more information about the low\-level multipart upload API operation, see [Using the AWS SDKs \(low\-level API\)](mpu-upload-object.md#mpu-upload-low-level)\.
++ When you're using the high\-level multipart upload API operation, specify server\-side encryption by using the `ServerSideEncryption` parameter of the [CreateMultipartUpload](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#createmultipartupload) API operation\. For an example of using the `setOption()` method with the high\-level multipart upload API operation, see [Uploading an object using multipart upload](mpu-upload-object.md)\.
 
 To determine the encryption state of an existing object, retrieve the object metadata by calling the [Aws\\S3\\S3Client::headObject\(\)](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#headobject) method as shown in the following PHP code example\.
 
@@ -328,7 +328,7 @@ $result = $s3->headObject([
 echo $result['ServerSideEncryption'];
 ```
 
-To change the encryption state of an existing object, make a copy of the object using the [Aws\\S3\\S3Client::copyObject\(\)](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#copyobject) method and delete the source object\. By default, `copyObject()` does not encrypt the target unless you explicitly request server\-side encryption of the destination object using the `ServerSideEncryption` parameter with the value `AES256`\. The following PHP code example makes a copy of an object and adds server\-side encryption to the copied object\.
+To change the encryption state of an existing object, make a copy of the object by using the [Aws\\S3\\S3Client::copyObject\(\)](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#copyobject) method and delete the source object\. By default, `copyObject()` does not encrypt the target unless you explicitly request server\-side encryption of the destination object by using the `ServerSideEncryption` parameter with the value `AES256`\. The following PHP code example makes a copy of an object and adds server\-side encryption to the copied object\.
 
 ```
  require 'vendor/autoload.php';
@@ -354,15 +354,17 @@ $s3->copyObject([
     'ServerSideEncryption' => 'AES256',
 ]);
 ```
+
+For more information, see the following topics:
 + [AWS SDK for PHP for Amazon S3 Aws\\S3\\S3Client Class](https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.S3.S3Client.html) 
 + [AWS SDK for PHP Documentation](http://aws.amazon.com/documentation/sdk-for-php/)
 
 ------
 #### [ Ruby ]
 
-When using the AWS SDK for Ruby to upload an object, you can specify that the object be stored encrypted at rest with server\-side encryption \(SSE\)\. When you read the object back, it is automatically decrypted\.
+When using the AWS SDK for Ruby to upload an object, you can specify that the object be stored encrypted at rest with SSE\-S3\. When you read the object back, it is automatically decrypted\.
 
-The following AWS SDK for Ruby – Version 3 example demonstrates how to specify that a file uploaded to Amazon S3 be encrypted at rest\.
+The following AWS SDK for Ruby Version 3 example demonstrates how to specify that a file uploaded to Amazon S3 be encrypted at rest\.
 
 ```
 require "aws-sdk-s3"
@@ -399,8 +401,6 @@ end
 
 run_demo if $PROGRAM_NAME == __FILE__
 ```
-
-For an example that shows how to upload an object without SSE, see [Uploading objects](upload-objects.md)\.
 
 The following code example demonstrates how to determine the encryption state of an existing object\.
 
@@ -442,9 +442,9 @@ end
 run_demo if $PROGRAM_NAME == __FILE__
 ```
 
-If server\-side encryption is not used for the object that is stored in Amazon S3, the method returns null\.
+If server\-side encryption is not used for the object that is stored in Amazon S3, the method returns `null`\.
 
-To change the encryption state of an existing object, make a copy of the object and delete the source object\. By default, the copy methods do not encrypt the target unless you explicitly request server\-side encryption\. You can request the encryption of the target object by specifying the `server_side_encryption` value in the options hash argument as shown in the following Ruby code example\. The code example demonstrates how to copy an object and encrypt the copy\. 
+To change the encryption state of an existing object, make a copy of the object and delete the source object\. By default, the copy methods do not encrypt the target unless you explicitly request server\-side encryption\. You can request the encryption of the target object by specifying the `server_side_encryption` value in the option's hash argument, as shown in the following Ruby code example\. The code example demonstrates how to copy an object and encrypt the copy with SSE\-S3\. 
 
 ```
 require "aws-sdk-s3"
@@ -498,14 +498,14 @@ run_demo if $PROGRAM_NAME == __FILE__
 
 ## Using the AWS CLI<a name="sse-s3-aws-cli"></a>
 
-To specify SSE\-S3 when you upload an object using the AWS CLI, use the following example\.
+To specify SSE\-S3 when you upload an object by using the AWS CLI, use the following example\.
 
 ```
 aws s3api put-object --bucket DOC-EXAMPLE-BUCKET1 --key object-key-name --server-side-encryption AES256  --body file path
 ```
 
-For more information, see [put\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-object.html) in the *AWS CLI reference*\. To specify SSE\-S3 when you copy an object using the AWS CLI, see [copy\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/copy-object.html)\.
+For more information, see [put\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-object.html) in the *AWS CLI reference*\. To specify SSE\-S3 when you copy an object by using the AWS CLI, see [copy\-object](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/copy-object.html)\.
 
 ## Using AWS CloudFormation<a name="ss3-s3-cfn"></a>
 
-For examples of setting up encryption using AWS CloudFormation, see [Create a bucket with default encryption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_with_default_encryption) and [Create a bucket using AWS KMS server\-side encryption with an S3 Bucket Key](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_using_KMS_server-side_encryption_with_an_S3_Bucket_Key) in the *AWS CloudFormation User Guide*\. 
+For examples of setting up encryption using AWS CloudFormation, see [Create a bucket with default encryption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_with_default_encryption) and the [Create a bucket by using AWS KMS server\-side encryption with an S3 Bucket Key](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionrule.html#aws-properties-s3-bucket-serversideencryptionrule--examples--Create_a_bucket_using_AWS_KMS_server-side_encryption_with_an_S3_Bucket_Key) example in the `AWS::S3::Bucket ServerSideEncryptionRule` topic in the *AWS CloudFormation User Guide*\. 

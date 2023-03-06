@@ -28,7 +28,7 @@ After uploading objects, you can get the checksum value and compare it to a prec
 
 ### Using the S3 console<a name="CheckObjectIntegrityConsole"></a>
 
-To learn more about using the console and specifying checksum algorithms to use when uploading objects\. see [Uploading objects](upload-objects.md)
+To learn more about using the console and specifying checksum algorithms to use when uploading objects, see [Uploading objects](upload-objects.md)\.
 
 ### Using the AWS SDKs<a name="CheckObjectIntegritySDK"></a>
 
@@ -315,7 +315,7 @@ Supplying an MD5 digest isn't required, but you can use it to verify the integri
 The entity tag \(ETag\) for an object represents a specific version of that object\. Keep in mind that the ETag reflects changes only to the content of an object, not to its metadata\. If only the metadata of an object changes, the ETag remains the same\. 
 
 Depending on the object, the ETag of the object might be an MD5 digest of the object data:
-+ If an object is created by the `PUT Object`, `POST Object`, or `Copy` operation, or through the AWS Management Console, and that object is also plaintext or encrypted by server\-side encryption with Amazon S3\-managed keys \(SSE\-S3\), that object has an ETag that is an MD5 digest of its object data\.
++ If an object is created by the `PUT Object`, `POST Object`, or `Copy` operation, or through the AWS Management Console, and that object is also plaintext or encrypted by server\-side encryption with Amazon S3 managed keys \(SSE\-S3\), that object has an ETag that is an MD5 digest of its object data\.
 + If an object is created by the `PUT Object`, `POST Object`, or `Copy` operation, or through the AWS Management Console, and that object is encrypted by server\-side encryption with customer\-provided keys \(SSE\-C\) or server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\), that object has an ETag that is not an MD5 digest of its object data\.
 + If an object is created by either the `Multipart Upload` or `Part Copy` operation, the object's ETag is not an MD5 digest, regardless of the method of encryption\. If an object is larger than 16 MB, the AWS Management Console uploads or copies that object as a multipart upload, and therefore the ETag isn't an MD5 digest\.
 

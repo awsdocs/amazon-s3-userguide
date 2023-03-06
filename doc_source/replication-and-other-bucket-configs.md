@@ -18,11 +18,11 @@ This topic explains how bucket replication configuration affects the behavior of
 
 ## Lifecycle configuration and object replicas<a name="replica-and-lifecycle"></a>
 
-The time it takes for Amazon S3 to replicate an object depends on the size of the object\. For large objects, it can take several hours\. Although it might take a while before a replica is available in the destination, it takes the same amount of time to create the replica as it took to create the corresponding object in the source bucket\. If a lifecycle policy is enabled on a destination bucket, the lifecycle rules honor the original creation time of the object, not when the replica became available in the destination bucket\. 
+The time it takes for Amazon S3 to replicate an object depends on the size of the object\. For large objects, it can take several hours\. Although it might take a while before a replica is available in the destination, it takes the same amount of time to create the replica as it took to create the corresponding object in the source bucket\. If a lifecycle configuration is enabled on a destination bucket, the lifecycle rules honor the original creation time of the object, not when the replica became available in the destination bucket\. 
 
 Replication configuration requires the bucket to be versioning\-enabled\. When you enable versioning on a bucket, keep the following in mind:
-+ If you have an object Expiration lifecycle policy, after you enable versioning, add a `NonCurrentVersionExpiration` policy to maintain the same permanent delete behavior as before you enabled versioning\.
-+ If you have a Transition lifecycle policy, after you enable versioning, consider adding a `NonCurrentVersionTransition` policy\.
++ If you have an object Expiration lifecycle configuration, after you enable versioning, add a `NonCurrentVersionExpiration` policy to maintain the same permanent delete behavior as before you enabled versioning\.
++ If you have a Transition lifecycle configuration, after you enable versioning, consider adding a `NonCurrentVersionTransition` policy\.
 
 ## Versioning configuration and replication configuration<a name="replication-and-versioning"></a>
 

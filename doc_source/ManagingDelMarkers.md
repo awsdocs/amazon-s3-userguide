@@ -2,7 +2,7 @@
 
 ## Configuring lifecycle to clean up expired delete markers automatically<a name="LifecycleDelMarker"></a>
 
-An expired object delete marker is one where all object versions are deleted and only a single delete marker remains\. If the lifecycle policy is set to delete current versions, or the `ExpiredObjectDeleteMarker` action is explicitly set, Amazon S3 removes the expired object’s delete marker\. For an example, see [Example 7: Removing expired object delete markers](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex7)\. 
+An expired object delete marker is one where all object versions are deleted and only a single delete marker remains\. If the lifecycle configuration is set to delete current versions, or the `ExpiredObjectDeleteMarker` action is explicitly set, Amazon S3 removes the expired object’s delete marker\. For an example, see [Example 7: Removing expired object delete markers](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex7)\. 
 
 ## Removing delete markers to make an older version current<a name="RemDelMarker"></a>
 

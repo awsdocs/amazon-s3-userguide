@@ -36,39 +36,37 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
 Get the CORS policy for the bucket\.  
 
 ```
-// Import required AWS SDK clients and commands for Node.js.
-import { GetBucketCorsCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+import { GetBucketCorsCommand, S3Client } from "@aws-sdk/client-s3";
 
-// Create the parameters for calling
-export const bucketParams = { Bucket: "BUCKET_NAME" };
+const client = new S3Client({});
 
-export const run = async () => {
+export const main = async () => {
+  const command = new GetBucketCorsCommand({
+    Bucket: "test-bucket",
+  });
+
   try {
-    const data = await s3Client.send(new GetBucketCorsCommand(bucketParams));
-    console.log("Success", JSON.stringify(data.CORSRules));
-    return data; // For unit tests.
+    const { CORSRules } = await client.send(command);
+    CORSRules.forEach((cr, i) => {
+      console.log(
+        `\nCORSRule ${i + 1}`,
+        `\n${"-".repeat(10)}`,
+        `\nAllowedHeaders: ${cr.AllowedHeaders.join(" ")}`,
+        `\nAllowedMethods: ${cr.AllowedMethods.join(" ")}`,
+        `\nAllowedOrigins: ${cr.AllowedOrigins.join(" ")}`,
+        `\nExposeHeaders: ${cr.ExposeHeaders.join(" ")}`,
+        `\nMaxAgeSeconds: ${cr.MaxAgeSeconds}`
+      );
+    });
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-run();
 ```
 +  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-configuring-buckets.html#s3-example-configuring-buckets-get-cors)\. 
 +  For API details, see [GetBucketCors](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/getbucketcorscommand.html) in *AWS SDK for JavaScript API Reference*\. 

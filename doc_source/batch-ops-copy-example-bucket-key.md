@@ -13,7 +13,7 @@ Topics covered in this example include the following:
 
 ## Prerequisites<a name="bucket-key-ex-prerequisites"></a>
 
-To follow along with the steps in this procedure, you need an AWS account and at least one S3 bucket to hold your working files and encrypted results\. You might also find much of the existing S3 Batch Operations documentation useful, including the following topics:
+To follow along with the steps in this procedure, you must have an AWS account and at least one S3 bucket to hold your working files and encrypted results\. You might also find much of the existing S3 Batch Operations documentation useful, including the following topics:
 + [S3 Batch Operations basics](batch-ops.md#batch-ops-basics)
 + [Creating an S3 Batch Operations job](batch-ops-create-job.md)
 + [Operations supported by S3 Batch Operations](batch-ops-operations.md)
@@ -37,17 +37,17 @@ The easiest way to set up an inventory is by using the AWS Management Console\. 
 
 1. For **Output format**, choose **CSV**\.
 
-1. In the **Additional fields \- optional** section, choose **Encryption** and any other report fields that interest you\. Set the frequency for report deliveries to **Daily** so that the first report is delivered to your bucket sooner\.
+1. \(Optional\) In the **Additional fields – *optional*** section, choose **Encryption** and any other report fields that interest you\. Set the frequency for report deliveries to **Daily** so that the first report is delivered to your bucket sooner\.
 
 1. Choose **Create** to save your configuration\.
 
-Amazon S3 can take up to 48 hours to deliver the first report, so check back when the first report arrives\. After you receive your first report, proceed to the next section to filter your S3 Inventory report’s contents\. If you no longer want to receive inventory reports for this bucket, delete your S3 Inventory configuration\. Otherwise, S3 delivers reports on a daily or weekly schedule\.
+Amazon S3 can take up to 48 hours to deliver the first report, so check back when the first report arrives\. After you receive your first report, proceed to the next section to filter your S3 Inventory report's contents\. If you no longer want to receive inventory reports for this bucket, delete your S3 Inventory configuration\. Otherwise, S3 delivers reports on a daily or weekly schedule\.
 
 An inventory list isn't a single point\-in\-time view of all objects\. Inventory lists are a rolling snapshot of bucket items, which are eventually consistent \(for example, the list might not include recently added or deleted objects\)\. Combining S3 Inventory and S3 Batch Operations works best when you work with static objects, or with an object set that you created two or more days ago\. To work with more recent data, use the [ListObjectsV2](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html) \(GET Bucket\) API operation to build your list of objects manually\. If needed, repeat the process for the next few days or until your inventory report shows the desired status for all keys\.
 
 ## Step 2: Filter your object list with S3 Select<a name="bucket-key-ex-filter-object-list-with-s3-select"></a>
 
-After you receive your S3 Inventory report, you can filter the report’s contents to list only the objects that aren't encrypted with Bucket Keys\. If you want all your bucket’s objects encrypted with Bucket Keys, you can ignore this step\. However, filtering your S3 Inventory report at this stage saves you the time and expense of re\-encrypting objects that you previously encrypted\.
+After you receive your S3 Inventory report, you can filter the report’s contents to list only the objects that aren't encrypted with S3 Bucket Keys\. If you want all your bucket’s objects encrypted with S3 Bucket Keys, you can ignore this step\. However, filtering your S3 Inventory report at this stage saves you the time and expense of re\-encrypting objects that you previously encrypted\.
 
 Although the following steps show how to filter using [Amazon S3 Select](http://aws.amazon.com/blogs/aws/s3-glacier-select/), you can also use [Amazon Athena](http://aws.amazon.com/athena)\. To decide which tool to use, look at your S3 Inventory report’s `manifest.json` file\. This file lists the number of data files that are associated with that report\. If the number is large, use Amazon Athena because it runs across multiple S3 objects, whereas S3 Select works on one object at a time\. For more information about using Amazon S3 and Athena together, see [Querying Amazon S3 Inventory with Amazon Athena](storage-inventory-athena-query.md) and [Using Athena](http://aws.amazon.com/blogs/storage/encrypting-objects-with-amazon-s3-batch-operations/#:~:text=Using%20Athena) in the blog post [Encrypting objects with Amazon S3 Batch Operations](http://aws.amazon.com/blogs/storage/encrypting-objects-with-amazon-s3-batch-operations)\.
 
@@ -58,28 +58,28 @@ Although the following steps show how to filter using [Amazon S3 Select](http://
    The following JSON is an example `manifest.json` file for a CSV\-formatted inventory on a bucket with versioning enabled\. Depending on how you configured your inventory report, your manifest might look different\.
 
    ```
-   {
-     "sourceBucket": "batchoperationsdemo",
-     "destinationBucket": "arn:aws:s3:::testbucket",
-     "version": "2021-05-22",
-     "creationTimestamp": "1558656000000",
-     "fileFormat": "CSV",
-     "fileSchema": "Bucket, Key, VersionId, IsLatest, IsDeleteMarker, BucketKeyStatus",
-     "files": [
-       {
-         "key": "demoinv/batchoperationsdemo/DemoInventory/data/009a40e4-f053-4c16-8c75-6100f8892202.csv.gz",
-         "size": 72691,
-         "MD5checksum": "c24c831717a099f0ebe4a9d1c5d3935c"
-       }
-     ]
-   }
+     {
+       "sourceBucket": "batchoperationsdemo",
+       "destinationBucket": "arn:aws:s3:::testbucket",
+       "version": "2021-05-22",
+       "creationTimestamp": "1558656000000",
+       "fileFormat": "CSV",
+       "fileSchema": "Bucket, Key, VersionId, IsLatest, IsDeleteMarker, BucketKeyStatus",
+       "files": [
+         {
+           "key": "demoinv/batchoperationsdemo/DemoInventory/data/009a40e4-f053-4c16-8c75-6100f8892202.csv.gz",
+           "size": 72691,
+           "MD5checksum": "c24c831717a099f0ebe4a9d1c5d3935c"
+         }
+       ]
+     }
    ```
 
    If versioning isn't activated on the bucket, or if you choose to run the report for the latest versions, the `fileSchema` is `Bucket`, `Key`, and `BucketKeyStatus`\. 
 
-   If versioning *is* activated, depending on how you set up the inventory report, the `fileSchema` might include the following: `Bucket, Key, VersionId, IsLatest, IsDeleteMarker, BucketKeyStatus`\. So pay attention to columns 1, 2, 3, and 6 when you run your query\. 
+   If versioning *is* activated, depending on how you set up the inventory report, the `fileSchema` might include the following: `Bucket`, `Key`, `VersionId`, `IsLatest`, `IsDeleteMarker`, `BucketKeyStatus`\. So pay attention to columns 1, 2, 3, and 6 when you run your query\. 
 
-   S3 Batch Operations needs the bucket, key, and version ID as inputs to perform the job, in addition to the field to search by, which is Bucket Key status\. You don’t need the version ID field, but it helps to specify it when you operate on a versioned bucket\. For more information, see [Working with objects in a versioning\-enabled bucket](manage-objects-versioned-bucket.md)\.
+   S3 Batch Operations needs the bucket, key, and version ID as inputs to perform the job, in addition to the field to search by, which is `BucketKeyStatus`\. You don't need the version ID field, but it helps to specify it when you operate on a versioned bucket\. For more information, see [Working with objects in a versioning\-enabled bucket](manage-objects-versioned-bucket.md)\.
 
 1. Locate the data files for the inventory report\. The `manifest.json` object lists the data files under **files**\.
 
@@ -89,7 +89,7 @@ Although the following steps show how to filter using [Amazon S3 Select](http://
 
 1. To review your inventory report’s format before proceeding, choose **Show file preview**\.
 
-1. Enter the columns to reference in the SQL expression field, and choose **Run SQL**\. The following expression returns columns 1–3 for all objects without Bucket Key configured\.
+1. Enter the columns to reference in the SQL expression field, and choose **Run SQL**\. The following expression returns columns 1–3 for all objects without an S3 Bucket Key configured\.
 
    `select s._1, s._2, s._3 from s3object s where s._6 = 'DISABLED'`
 
@@ -139,13 +139,13 @@ As part of copying the objects, specify that Amazon S3 should encrypt the object
 
    After copying the policy example into your IAM console, replace the following:
 
-   1. Replace *\{SOURCE\_BUCKET\_FOR\_COPY\}* with the name of your source bucket\.
+   1. Replace `{SOURCE_BUCKET_FOR_COPY}` with the name of your source bucket\.
 
-   1. Replace *\{DESTINATION\_BUCKET\_FOR\_COPY\}* with the name of your destination bucket\.
+   1. Replace `{DESTINATION_BUCKET_FOR_COPY}` with the name of your destination bucket\.
 
-   1. Replace *\{MANIFEST\_KEY\}* with the name of your manifest object\.
+   1. Replace `{MANIFEST_KEY}` with the name of your manifest object\.
 
-   1. Replace *\{REPORT\_BUCKET\}* with the name of the bucket where you want to save reports\.
+   1. Replace `{REPORT_BUCKET}` with the name of the bucket where you want to save reports\.
 
    ```
      {
@@ -243,16 +243,16 @@ As part of copying the objects, specify that Amazon S3 should encrypt the object
 
 1. Under **Default encryption**, choose **Edit**\.
 
-1. Under **Server\-side encryption** options, choose **Enable**\.
+1. Under **Encryption key type**, you can choose between **Amazon S3 managed keys \(SSE\-S3\)** and **AWS Key Management Service key \(SSE\-KMS\)**\. 
 
-1. Under **Encryption key type**, choose **AWS KMS key \(SSE\-KMS\)** and choose the AWS KMS key format that you prefer:
-   + **AWS managed key \(aws/s3\)**\.
-   + **Choose from your AWS KMS keys**, and choose a symmetric encryption KMS key in the same Region as your bucket\.
-   + **AWS KMS key ARN**
+1. If you chose **AWS Key Management Service key \(SSE\-KMS\)**, under **AWS KMS key**, you can specify the AWS KMS key through one of the following options\.
+   + To choose from a list of available KMS keys, choose **Choose from your AWS KMS keys**\. From the list of available keys, choose a symmetric encryption KMS key in the same Region as your bucket\. Both the AWS managed key \(`aws/s3`\) and your customer managed keys appear in the list\.
+   + To enter the KMS key ARN, choose **Enter AWS KMS key ARN**, and then enter your KMS key ARN in the field that appears\.
+   + To create a new customer managed key in the AWS KMS console, choose **Create a KMS key**\.
 
 1. Under **Bucket Key**, choose **Enable**, and then choose **Save changes**\.
 
-Now that Bucket Key is turned on at the bucket level, objects that are uploaded, modified, or copied into this bucket will inherit this encryption configuration by default\. This includes objects copied using Amazon S3 Batch Operations\.
+Now that an S3 Bucket Key is turned on at the bucket level, objects that are uploaded, modified, or copied into this bucket will inherit this encryption configuration by default\. This includes objects that are copied by using Amazon S3 Batch Operations\.
 
 ### Create your Batch Operations job<a name="bucket-key-ex-create-job"></a>
 
@@ -266,7 +266,28 @@ Now that Bucket Key is turned on at the bucket level, objects that are uploaded,
 
 1. Choose the **Copy** operation, and choose the copy destination bucket\. You can keep server\-side encryption disabled\. As long as the bucket destination has S3 Bucket Keys enabled, the copy operation applies S3 Bucket Keys at the destination bucket\.
 
-1. \(Optional\) Choose a storage class and the other parameters as desired\. The parameters that you specify in this step apply to all operations performed on the objects that are listed in the manifest\. Choose **Next**
+1. \(Optional\) Choose a storage class and the other parameters as desired\. The parameters that you specify in this step apply to all operations performed on the objects that are listed in the manifest\. Choose **Next**\.
+
+1. To configure server\-side encryption, follow these steps: 
+
+   1. Under **Server\-side encryption**, choose one of the following:
+      + To keep the bucket settings for default server\-side encryption of objects when storing them in Amazon S3, choose **Do not specify an encryption key**\. As long as the bucket destination has S3 Bucket Keys enabled, the copy operation applies an S3 Bucket Key at the destination bucket\.
+**Note**  
+If the bucket policy for the specified destination requires objects to be encrypted before storing them in Amazon S3, you must specify an encryption key\. Otherwise, copying objects to the destination will fail\.
+      + To encrypt objects before storing them in Amazon S3, choose **Specify an encryption key**\.
+
+   1. Under **Encryption settings**, if you choose **Specify an encryption key**, you must choose either **Use destination bucket settings for default encryption** or **Override destination bucket settings for default encryption**\.
+
+   1. If you choose **Override destination bucket settings for default encryption**, you must configure the following encryption settings\.
+
+      1. Under **Encryption key type**, you must choose either **Amazon S3 managed keys \(SSE\-S3\)** or **AWS Key Management Service key \(SSE\-KMS\)**\. SSE\-S3 uses one of the strongest block ciphers—256\-bit Advanced Encryption Standard \(AES\-256\) to encrypt each object\. SSE\-KMS provides you with more control over your key\. For more information, see [Protecting data using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md) and [Protecting data using server\-side encryption with AWS Key Management Service keys \(SSE\-KMS\)](UsingKMSEncryption.md)\.
+
+      1. If you choose **AWS Key Management Service key \(SSE\-KMS\)**, under **AWS KMS key**, you can specify your AWS KMS key through one of the following options\.
+         + To choose from a list of available KMS keys, choose **Choose from your AWS KMS keys**, and then choose a symmetric encryption KMS key in the same Region as your bucket\. Both the AWS managed key \(`aws/s3`\) and your customer managed keys appear in the list\.
+         + To enter the KMS key ARN, choose **Enter AWS KMS key ARN**, and enter your KMS key ARN in the field that appears\.
+         + To create a new customer managed key in the AWS KMS console, choose **Create a KMS key**\.
+
+      1. Under **Bucket Key**, choose **Enable**\. The copy operation applies an S3 Bucket Key at the destination bucket\.
 
 1. Give your job a description \(or keep the default\), set its priority level, choose a report type, and specify the **Path to completion report destination**\.
 
@@ -294,15 +315,13 @@ The setup wizard automatically returns you to the S3 Batch Operations section of
 
 ### Things to note<a name="bucket-key-ex-things-to-note"></a>
 
-Consider the following issues when you use S3 Batch Operations to encrypt objects with Bucket Keys:
-+ You will be charged for S3 Batch Operations jobs, objects, and requests in addition to any charges associated with the operation that S3 Batch Operations performs on your behalf, including data transfer, requests, and other charges\. For more information, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing)\.
-+ If you use a versioned bucket, each S3 Batch Operations job performed creates new encrypted versions of your objects\. It also maintains the previous versions without Bucket Key configured\. To delete the old versions, set up an S3 Lifecycle expiration policy for noncurrent versions as described in [Lifecycle configuration elements](intro-lifecycle-rules.md)\.
-+ The copy operation creates new objects with new creation dates, which can affect lifecycle actions like archiving\. If you copy all objects in your bucket, 
-
-   all the new copies have identical or similar creation dates\. To further identify these objects and create different lifecycle rules for various data subsets, consider using object tags\. 
+Consider the following issues when you use S3 Batch Operations to encrypt objects with S3 Bucket Keys:
++ You will be charged for S3 Batch Operations jobs, objects, and requests in addition to any charges associated with the operation that S3 Batch Operations performs on your behalf, including data transfers, requests, and other charges\. For more information, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing)\.
++ If you use a versioned bucket, each S3 Batch Operations job performed creates new encrypted versions of your objects\. It also maintains the previous versions without an S3 Bucket Key configured\. To delete the old versions, set up an S3 Lifecycle expiration policy for noncurrent versions as described in [Lifecycle configuration elements](intro-lifecycle-rules.md)\.
++ The copy operation creates new objects with new creation dates, which can affect lifecycle actions like archiving\. If you copy all objects in your bucket, all the new copies have identical or similar creation dates\. To further identify these objects and create different lifecycle rules for various data subsets, consider using object tags\. 
 
 ## Summary<a name="bucket-key-ex-summary"></a>
 
-In this section, you sorted existing objects to filter out already encrypted data\. Then you applied the Bucket Key feature on unencrypted objects by using S3 Batch Operations to copy existing data to a bucket with Bucket Key activated\. This process can save you time and money while allowing you to complete operations such as encrypting all existing objects\.
+In this section, you sorted existing objects to filter out already encrypted data\. Then you applied the S3 Bucket Key feature on unencrypted objects by using S3 Batch Operations to copy existing data to a bucket with an S3 Bucket Key activated\. This process can save you time and money while allowing you to complete operations such as encrypting all existing objects\.
 
 For more information about S3 Batch Operations, see [Performing large\-scale batch operations on Amazon S3 objects](batch-ops.md)\.

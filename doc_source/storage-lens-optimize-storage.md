@@ -153,7 +153,7 @@ With S3 Storage Lens advanced metrics and recommendations, metrics are available
 
 ### Step 3: Add a lifecycle rule to delete incomplete multipart uploads after 7 days<a name="locate-incomplete-mpu-step3"></a>
 
-To automatically manage incomplete multipart uploads, you can use the S3 console to create a lifecycle policy to expire incomplete multipart upload bytes from a bucket after a specified number of days\. For more information, see [Configuring a bucket lifecycle policy to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)\.
+To automatically manage incomplete multipart uploads, you can use the S3 console to create a lifecycle configuration to expire incomplete multipart upload bytes from a bucket after a specified number of days\. For more information, see [Configuring a bucket lifecycle configuration to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)\.
 
 ## Reduce the number of noncurrent versions retained<a name="reduce-noncurrent-versions-retained"></a>
 

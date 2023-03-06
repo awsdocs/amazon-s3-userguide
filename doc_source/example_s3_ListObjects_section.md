@@ -242,79 +242,46 @@ List objects using pagination\.
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
+List all of the objects in your bucket\. If there is more than one object, IsTruncated and NextContinuationToken will be used to iterate over the full list\.  
 
 ```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
-List the objects\.  
+import {
+  S3Client,
+  // This command supersedes the ListObjectsCommand and is the recommended way to list objects.
+  ListObjectsV2Command,
+} from "@aws-sdk/client-s3";
 
-```
-// Import required AWS SDK clients and commands for Node.js.
-import { ListObjectsCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
+const client = new S3Client({});
 
-// Create the parameters for the bucket
-export const bucketParams = { Bucket: "BUCKET_NAME" };
+export const main = async () => {
+  const command = new ListObjectsV2Command({
+    Bucket: "my-bucket",
+    // The default and maximum number of keys returned is 1000. This limits it to
+    // one for demonstration purposes.
+    MaxKeys: 1,
+  });
 
-export const run = async () => {
   try {
-    const data = await s3Client.send(new ListObjectsCommand(bucketParams));
-    console.log("Success", data);
-    return data; // For unit tests.
+    let isTruncated = true;
+
+    console.log("Your bucket contains the following objects:\n")
+    let contents = "";
+
+    while (isTruncated) {
+      const { Contents, IsTruncated, NextContinuationToken } = await client.send(command);
+      const contentsList = Contents.map((c) => ` • ${c.Key}`).join("\n");
+      contents += contentsList + "\n";
+      isTruncated = IsTruncated;
+      command.input.ContinuationToken = NextContinuationToken;
+    }
+    console.log(contents);
+
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-run();
-```
-List 1000 or more objects\.  
-
-```
-// Import required AWS SDK clients and commands for Node.js.
-import { ListObjectsCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
-
-// Create the parameters for the bucket
-export const bucketParams = { Bucket: "BUCKET_NAME" };
-
-export async function run() {
-  // Declare truncated as a flag that the while loop is based on.
-  let truncated = true;
-  // Declare a variable to which the key of the last element is assigned to in the response.
-  let pageMarker;
-  // while loop that runs until 'response.truncated' is false.
-  while (truncated) {
-    try {
-      const response = await s3Client.send(new ListObjectsCommand(bucketParams));
-      // return response; //For unit tests
-      response.Contents.forEach((item) => {
-        console.log(item.Key);
-      });
-      // Log the key of every item in the response to standard output.
-      truncated = response.IsTruncated;
-      // If truncated is true, assign the key of the last element in the response to the pageMarker variable.
-      if (truncated) {
-        pageMarker = response.Contents.slice(-1)[0].Key;
-        // Assign the pageMarker value to bucketParams so that the next iteration starts from the new pageMarker.
-        bucketParams.Marker = pageMarker;
-      }
-      // At end of the list, response.truncated is false, and the function exits the while loop.
-    } catch (err) {
-      console.log("Error", err);
-      truncated = false;
-    }
-  }
-}
-run();
 ```
 +  For API details, see [ListObjects](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/listobjectscommand.html) in *AWS SDK for JavaScript API Reference*\. 
 

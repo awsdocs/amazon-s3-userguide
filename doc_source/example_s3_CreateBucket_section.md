@@ -153,41 +153,29 @@ func (basics BucketBasics) CreateBucket(name string, region string) error {
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
 Create the bucket\.  
 
 ```
-// Get service clients module and commands using ES6 syntax.
-import { CreateBucketCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js";
+import { CreateBucketCommand, S3Client } from "@aws-sdk/client-s3";
 
-// Set the bucket parameters.
+const client = new S3Client({});
 
-export const bucketParams = { Bucket: "BUCKET_NAME" };
+export const main = async () => {
+  const command = new CreateBucketCommand({
+    // The name of the bucket. Bucket names are unique and have several other constraints.
+    // See https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
+    Bucket: "bucket-name",
+  });
 
-// Create the Amazon S3 bucket.
-export const run = async () => {
   try {
-    const data = await s3Client.send(new CreateBucketCommand(bucketParams));
-    console.log("Success", data);
-    return data; // For unit tests.
+    const { Location } = await client.send(command);
+    console.log(`Bucket created with location ${Location}`);
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-run();
 ```
 +  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-creating-buckets.html#s3-example-creating-buckets-new-bucket-2)\. 
 +  For API details, see [CreateBucket](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/createbucketcommand.html) in *AWS SDK for JavaScript API Reference*\. 

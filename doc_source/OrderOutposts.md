@@ -1,6 +1,6 @@
 # Setting up your Outpost<a name="OrderOutposts"></a>
 
-To get started with Amazon S3 on Outposts, you will need an Outpost with Amazon S3 capacity deployed at your facility\. For information about options for ordering an Outpost and S3 capacity, see [AWS Outposts](http://aws.amazon.com/outposts)\. For specifications and to see how S3 on Outposts is different than Amazon S3, see [How is Amazon S3 on Outposts different from Amazon S3?](S3OnOutpostsRestrictionsLimitations.md)
+To get started with Amazon S3 on Outposts, you will need an Outpost with Amazon S3 capacity deployed at your facility\. For information about options for ordering an Outpost and S3 capacity, see [AWS Outposts](http://aws.amazon.com/outposts)\. To check if your Outposts has S3 capacity on it, you can use the [ListOutpostsWithS3](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListOutpostsWithS3.html) API call\. For specifications and to see how S3 on Outposts is different than Amazon S3, see [How is Amazon S3 on Outposts different from Amazon S3?](S3OnOutpostsRestrictionsLimitations.md)
 
 For more information, see the following topics\.
 

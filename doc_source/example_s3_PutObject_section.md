@@ -477,86 +477,29 @@ Upload an object to a bucket and set an object retention value using an [S3Clien
 ------
 #### [ JavaScript ]
 
-**SDK for JavaScript V3**  
+**SDK for JavaScript \(v3\)**  
  There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/s3#code-examples)\. 
-Create the client\.  
-
-```
-// Create service client module using ES6 syntax.
-import { S3Client } from "@aws-sdk/client-s3";
-// Set the AWS Region.
-const REGION = "us-east-1";
-// Create an Amazon S3 service client object.
-const s3Client = new S3Client({ region: REGION });
-export { s3Client };
-```
-Create and upload the object\.  
-
-```
-// Import required AWS SDK clients and commands for Node.js.
-import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
-
-// Set the parameters.
-export const bucketParams = {
-  Bucket: "BUCKET_NAME",
-  // Specify the name of the new object. For example, 'index.html'.
-  // To create a directory for the object, use '/'. For example, 'myApp/package.json'.
-  Key: "OBJECT_NAME",
-  // Content of the new object.
-  Body: "BODY",
-};
-
-// Create and upload the object to the S3 bucket.
-export const run = async () => {
-  try {
-    const data = await s3Client.send(new PutObjectCommand(bucketParams));
-    return data; // For unit tests.
-    console.log(
-      "Successfully uploaded object: " +
-        bucketParams.Bucket +
-        "/" +
-        bucketParams.Key
-    );
-  } catch (err) {
-    console.log("Error", err);
-  }
-};
-run();
-```
 Upload the object\.  
 
 ```
-// Import required AWS SDK clients and commands for Node.js.
-import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "./libs/s3Client.js"; // Helper function that creates an Amazon S3 service client module.
-import {path} from "path";
-import {fs} from "fs";
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
-const file = "OBJECT_PATH_AND_NAME"; // Path to and name of object. For example '../myFiles/index.js'.
-const fileStream = fs.createReadStream(file);
+const client = new S3Client({});
 
-// Set the parameters
-export const uploadParams = {
-  Bucket: "BUCKET_NAME",
-  // Add the required 'Key' parameter using the 'path' module.
-  Key: path.basename(file),
-  // Add the required 'Body' parameter
-  Body: fileStream,
-};
+export const main = async () => {
+  const command = new PutObjectCommand({
+    Bucket: "test-bucket",
+    Key: "hello-s3.txt",
+    Body: "Hello S3!",
+  });
 
-
-// Upload file to specified bucket.
-export const run = async () => {
   try {
-    const data = await s3Client.send(new PutObjectCommand(uploadParams));
-    console.log("Success", data);
-    return data; // For unit tests.
+    const response = await client.send(command);
+    console.log(response);
   } catch (err) {
-    console.log("Error", err);
+    console.error(err);
   }
 };
-run();
 ```
 +  For more information, see [AWS SDK for JavaScript Developer Guide](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/s3-example-creating-buckets.html#s3-example-creating-buckets-new-bucket-2)\. 
 +  For API details, see [PutObject](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/classes/putobjectcommand.html) in *AWS SDK for JavaScript API Reference*\. 

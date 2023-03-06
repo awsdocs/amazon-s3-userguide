@@ -1055,7 +1055,7 @@ To generate a flat file list of video objects and metadata, you must configure S
 
 1. In the **Server\-side encryption** section, choose **Disable** for this tutorial\. 
 
-   For more information, see [Configuring inventory using the S3 console](configure-inventory.md#configure-inventory-console) and [Granting Amazon S3 permission to use your AWS KMS key for encryption](configure-inventory.md#configure-inventory-kms-key-policy)\. 
+   For more information, see [Configuring inventory using the S3 console](configure-inventory.md#configure-inventory-console) and [Granting Amazon S3 permission to use your customer managed key for encryption](configure-inventory.md#configure-inventory-kms-key-policy)\. 
 
 1. In the **Additional fields \- *optional*** section, select **Size**, **Last modified**, and **Storage class**\. 
 

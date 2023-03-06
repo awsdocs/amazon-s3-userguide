@@ -91,8 +91,17 @@ If you enable prefix aggregation for your S3 Storage Lens configuration, prefix\
 
    You can choose between an [Amazon S3 managed key](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html) \(SSE\-S3\) and an [AWS Key Management Service \(AWS KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html) key \(SSE\-KMS\)\.
 
-1. \(Optional\) To specify an AWS KMS key, you must choose a KMS key or enter a key Amazon Resource Name \(ARN\)\.
+1. \(Optional\) To specify an AWS KMS key, you must choose a KMS key or enter a key Amazon Resource Name \(ARN\)\. Under **AWS KMS key**, specify your KMS key in one of the following ways:
+   + To choose from a list of available KMS keys, choose **Choose from your AWS KMS keys**, and choose your **KMS key** from the list of available keys\.
 
-   If you choose a customer managed key, you must grant S3 Storage Lens permission to encrypt in the AWS KMS key policy\. For more information, see [Using an AWS KMS key to encrypt your metrics exports](storage_lens_encrypt_permissions.md)
+     Both the AWS managed key \(`aws/s3`\) and your customer managed keys appear in this list\. For more information about customer managed keys, see [Customer keys and AWS keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-mgmt) in the *AWS Key Management Service Developer Guide*\.
+**Note**  
+The AWS managed key \(`aws/S3`\) is not supported for SSE\-KMS encryption with S3 Storage Lens\. 
+   + To enter the KMS key ARN, choose **Enter AWS KMS key ARN**, and enter your KMS key ARN in the field that appears\. 
+   + To create a new customer managed key in the AWS KMS console, choose **Create a KMS key**\.
+
+     If you choose a customer managed key, you must grant S3 Storage Lens permission to encrypt in the AWS KMS key policy\. For more information, see [Using an AWS KMS key to encrypt your metrics exports](storage_lens_encrypt_permissions.md)
+
+     For more information about creating an AWS KMS key, see [Creating Keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html) in the *AWS Key Management Service Developer Guide*\.
 
 1. Choose **Save changes**\.

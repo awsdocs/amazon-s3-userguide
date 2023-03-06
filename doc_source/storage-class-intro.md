@@ -42,7 +42,7 @@ In addition to these three tiers, S3 Intelligent\-Tiering offers two optional ar
 Only activate the Archive Access tier for 90 days if you want to bypass the Archive Instant Access tier\. The Archive Access tier delivers slightly lower\-cost storage with minute\-to\-hour retrieval times\. The Archive Instant Access tier delivers millisecond access and high\-throughput performance\.
 Activate the Archive Access and Deep Archive Access tiers only if your objects can be accessed asynchronously by your application\. If the object that you are retrieving is stored in the Archive Access or Deep Archive Access tiers, first restore the object by using `RestoreObject`\.
 
-You can configure S3 Intelligent\-Tiering as your default storage class for newly created data\. You can also choose to activate one or both of the archive access tiers by using the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) API operation, the AWS CLI, or the Amazon S3 console\. For more information about using S3 Intelligent\-Tiering and activating the archive access tiers, see [ Using S3 Intelligent\-Tiering](using-intelligent-tiering.md)\.
+You can [move newly created data to S3 Intelligent\-Tiering](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-intelligent-tiering.html#moving-data-to-int-tiering), setting it as your default storage class\. You can also choose to activate one or both of the archive access tiers by using the [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) API operation, the AWS CLI, or the Amazon S3 console\. For more information about using S3 Intelligent\-Tiering and activating the archive access tiers, see [ Using S3 Intelligent\-Tiering](using-intelligent-tiering.md)\.
 
 To access archived objects later, you first need to restore them\. For more information, see [ Restoring objects from the S3 Intelligent\-Tiering Archive Access and Deep Archive Access tiers](intelligent-tiering-managing.md#restore-data-from-int-tier-archive)\.
 
@@ -85,7 +85,7 @@ These storage classes differ as follows:
 
   For pricing information, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\. 
 
-  S3 Glacier Deep Archive is the lowest cost storage option in AWS\. Storage costs for S3 Glacier Deep Archive are less expensive than using the S3 Glacier Flexible Retrieval storage class\. You can reduce S3 Glacier Deep Archive retrieval costs by using bulk retrieval, which returns data within 48 hours\. 
+  S3 Glacier Deep Archive is the lowest\-cost storage option in AWS\. Storage costs for S3 Glacier Deep Archive are less expensive than using the S3 Glacier Flexible Retrieval storage class\. You can reduce S3 Glacier Deep Archive retrieval costs by using bulk retrieval, which returns data within 48 hours\. 
 
 ### Retrieving archived objects<a name="sc-glacier-restore"></a>
 
@@ -106,7 +106,7 @@ With Amazon S3 on Outposts, you can create S3 buckets on your AWS Outposts resou
 
 S3 on Outposts provides a new storage class, S3 Outposts \(`OUTPOSTS`\)\. The S3 Outposts storage class is available only for objects stored in buckets on Outposts\. If you try to use this storage class with an S3 bucket in an AWS Region, an `InvalidStorageClass` error occurs\. In addition, if you try to use other S3 storage classes with objects stored in S3 on Outposts buckets, the same error occurs\. 
 
-Objects stored in the S3 Outposts \(`OUTPOSTS`\) storage class are always encrypted by using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)\. For more information, see [Using server\-side encryption with Amazon S3\-managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. 
+Objects stored in the S3 Outposts \(`OUTPOSTS`\) storage class are always encrypted by using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)\. For more information, see [Protecting data using server\-side encryption with Amazon S3 managed encryption keys \(SSE\-S3\)](UsingServerSideEncryption.md)\. 
 
 You can also explicitly choose to encrypt objects stored in the S3 Outposts storage class by using server\-side encryption with customer\-provided encryption keys \(SSE\-C\)\. For more information, see [Using server\-side encryption with customer\-provided keys \(SSE\-C\)](ServerSideEncryptionCustomerKeys.md)\. 
 

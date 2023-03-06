@@ -1,4 +1,4 @@
-# Configuring a bucket lifecycle policy to abort incomplete multipart uploads<a name="mpu-abort-incomplete-mpu-lifecycle-config"></a>
+# Configuring a bucket lifecycle configuration to abort incomplete multipart uploads<a name="mpu-abort-incomplete-mpu-lifecycle-config"></a>
 
 As a best practice, we recommend that you configure a lifecycle rule by using the `AbortIncompleteMultipartUpload` action to minimize your storage costs\. For more information about aborting a multipart upload, see [Aborting a multipart upload](abort-mpu.md)\.
 
@@ -24,7 +24,7 @@ In the example, the rule doesn't specify a value for the `Prefix` element \(th
 For more information about the bucket lifecycle configuration, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 
 **Note**  
-If the multipart upload is completed within the number of days specified in the rule, the `AbortIncompleteMultipartUpload` lifecycle action does not apply \(that is, Amazon S3 doesn't take any action\)\. Also, this action doesn't apply to objects\. No objects are deleted by this lifecycle action\.
+If the multipart upload is completed within the number of days specified in the rule, the `AbortIncompleteMultipartUpload` lifecycle action does not apply \(that is, Amazon S3 doesn't take any action\)\. Also, this action doesn't apply to objects\. No objects are deleted by this lifecycle action\. Additionally, you will not incur early delete charges for S3 Lifecycle when you remove any incomplete multipart upload parts\.
 
 ## Using the S3 console<a name="mpu-abort-incomplete-mpu-lifecycle-config-console"></a>
 
@@ -72,7 +72,7 @@ To use the CLI commands in this example, replace the `user input placeholders` w
 
 1. Set up the AWS CLI\. For instructions, see [Developing with Amazon S3 using the AWS CLI](setup-aws-cli.md)\. 
 
-1. Save the following example lifecycle configuration in a file \(for example, *`lifecycle.json`*``\)\. This example configuration specifies an empty prefix, and therefore it applies to all objects in the bucket\. To restrict the policy to a subset of objects, you can specify a prefix\.
+1. Save the following example lifecycle configuration in a file \(for example, *`lifecycle.json`*``\)\. This example configuration specifies an empty prefix, and therefore it applies to all objects in the bucket\. To restrict the configuration to a subset of objects, you can specify a prefix\.
 
    ```
    {

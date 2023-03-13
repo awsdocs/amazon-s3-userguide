@@ -6,6 +6,18 @@ All objects and buckets by default are private\. The presigned URLs are useful i
 
 When you create a presigned URL, you must provide your security credentials and then specify a bucket name, an object key, an HTTP method \(PUT for uploading objects\), and an expiration date and time\. The presigned URLs are valid only for the specified duration\. That is, you must start the action before the expiration date and time\. 
 
+When uploading a file using PUT, you need to specify the 'Content-Length' HTTP header:
+
+```python
+import os
+import urllib3
+http = urllib3.PoolManager()
+fsize = os.path.getsize(PATH)
+headers = {'Content-Length': str(fsize)}
+with open(PATH, 'rb') as f:
+    r = http.request('PUT', S3_PRESIGN_URI, body=f, headers=headers)
+```
+
 If the action consists of multiple steps, such as a multipart upload, all steps must be started before the expiration\. Otherwise, you will receive an error when Amazon S3 tries to start a step with an expired URL\.
 
 You can use the presigned URL multiple times, up to the expiration date and time\.

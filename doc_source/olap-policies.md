@@ -1,11 +1,11 @@
-# Configuring IAM policies for Object Lambda access points<a name="olap-policies"></a>
+# Configuring IAM policies for Object Lambda Access Points<a name="olap-policies"></a>
 
-Amazon S3 access points support AWS Identity and Access Management \(IAM\) resource policies that you can use to control the use of the access point by resource, user, or other conditions\. You can control access through an optional resource policy on your Object Lambda access point, or a resource policy on supporting access point\. For step\-by\-step examples, see [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md) and [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)\. 
+Amazon S3 access points support AWS Identity and Access Management \(IAM\) resource policies that you can use to control the use of the access point by resource, user, or other conditions\. You can control access through an optional resource policy on your Object Lambda Access Point, or a resource policy on supporting access point\. For step\-by\-step examples, see [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md) and [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)\. 
 
-The following four resources must have permissions granted to work with Object Lambda access points:
+The following four resources must have permissions granted to work with Object Lambda Access Points:
 + The IAM identity, such as user or role\. For more information about IAM identities and best practices, see [IAM identities \(users, user groups, and roles\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html) in the *IAM User Guide*\.
-+ The bucket and its associated standard access point\. When you're working with Object Lambda access points, this standard access point is known as a *supporting access point*\.
-+ The Object Lambda access point\.
++ The bucket and its associated standard access point\. When you're working with Object Lambda Access Points, this standard access point is known as a *supporting access point*\.
++ The Object Lambda Access Point\.
 + The AWS Lambda function\.
 
 **Important**  
@@ -19,7 +19,7 @@ The following policy examples assume that you have the following resources:
 + An Amazon S3 standard access point on this bucket with the following ARN: 
 
   `arn:aws:s3:us-east-1:111122223333:accesspoint/my-access-point`
-+ An Object Lambda access point with the following ARN: 
++ An Object Lambda Access Point with the following ARN: 
 
   `arn:aws:s3-object-lambda:us-east-1:111122223333:accesspoint/my-object-lambda-ap`
 + An AWS Lambda function with the following ARN: 
@@ -53,8 +53,8 @@ The following S3 bucket policy example delegates access control for a bucket to 
 }
 ```
 
-**Example – Bucket policy that grants a user the necessary permissions to use an Object Lambda access point**  
-The following IAM policy grants a user permissions to the Lambda function, the standard access point, and the Object Lambda access point\.  
+**Example – Bucket policy that grants a user the necessary permissions to use an Object Lambda Access Point**  
+The following IAM policy grants a user permissions to the Lambda function, the standard access point, and the Object Lambda Access Point\.  
 
 ```
 {
@@ -106,7 +106,7 @@ The following IAM policy grants a user permissions to the Lambda function, the s
 
 ## Enable permissions for Lambda execution roles<a name="olap-execution-role"></a>
 
-When `GET` requests are made to an Object Lambda access point, your Lambda function needs permission to send data to S3 Object Lambda\. This permission is provided by enabling the `s3-object-lambda:WriteGetObjectResponse` permission on your Lambda function's execution role\. You can create a new execution role or update an existing one\.
+When `GET` requests are made to an Object Lambda Access Point, your Lambda function needs permission to send data to S3 Object Lambda\. This permission is provided by enabling the `s3-object-lambda:WriteGetObjectResponse` permission on your Lambda function's execution role\. You can create a new execution role or update an existing one\.
 
 **Note**  
 Your function needs the `s3-object-lambda:WriteGetObjectResponse` permission only if you're making a `GET` request\.
@@ -139,6 +139,6 @@ Your function needs the `s3-object-lambda:WriteGetObjectResponse` permission onl
 
 For more information about execution roles, see [Lambda execution role](https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html) in the *AWS Lambda Developer Guide*\.
 
-## Using context keys with Object Lambda access points<a name="olap-keys"></a>
+## Using context keys with Object Lambda Access Points<a name="olap-keys"></a>
 
 S3 Object Lambda will evaluate context keys such as `s3-object-lambda:TlsVersion` or `s3-object-lambda:AuthType` that are related to the connection or signing of the request\. All other context keys, such as `s3:prefix`, are evaluated by Amazon S3\. 

@@ -2,7 +2,7 @@
 
 When you're using Amazon S3 for shared datasets for multiple applications and users to access, it's important to restrict privileged information, such as personally identifiable information \(PII\), to only authorized entities\. For example, when a marketing application uses some data containing PII, it might need to first mask PII data to meet data privacy requirements\. Also, when an analytics application uses a production order inventory dataset, it might need to first redact customer credit card information to prevent unintended data leakage\.
 
-With [S3 Object Lambda](http://aws.amazon.com/s3/features/object-lambda) and a prebuilt AWS Lambda function powered by Amazon Comprehend, you can protect PII data retrieved from S3 before returning it to an application\. Specifically, you can use the prebuilt [Lambda function](http://aws.amazon.com/lambda/) as a redacting function and attach it to an S3 Object Lambda access point\. When an application \(for example, an analytics application\) sends [standard S3 GET requests](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html), these requests made through the S3 Object Lambda access point invoke the prebuilt redacting Lambda function to detect and redact PII data retrieved from an S3 bucket through a supporting S3 access point\. Then, the S3 Object Lambda access point returns the redacted result back to the application\.
+With [S3 Object Lambda](http://aws.amazon.com/s3/features/object-lambda) and a prebuilt AWS Lambda function powered by Amazon Comprehend, you can protect PII data retrieved from S3 before returning it to an application\. Specifically, you can use the prebuilt [Lambda function](http://aws.amazon.com/lambda/) as a redacting function and attach it to an S3 Object Lambda Access Point\. When an application \(for example, an analytics application\) sends [standard S3 GET requests](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html), these requests made through the S3 Object Lambda Access Point invoke the prebuilt redacting Lambda function to detect and redact PII data retrieved from an S3 bucket through a supporting S3 access point\. Then, the S3 Object Lambda Access Point returns the redacted result back to the application\.
 
 ![\[This is an S3 Object Lambda workflow diagram.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/ol-comprehend-image-global.png)
 
@@ -19,8 +19,8 @@ You also learn how to use and configure a prebuilt AWS Lambda function in the [A
 + [Step 2: Upload a file to the S3 bucket](#ol-pii-step2)
 + [Step 3: Create an S3 access point](#ol-pii-step3)
 + [Step 4: Configure and deploy a prebuilt Lambda function](#ol-pii-step4)
-+ [Step 5: Create an S3 Object Lambda access point](#ol-pii-step5)
-+ [Step 6: Use the S3 Object Lambda access point to retrieve the redacted file](#ol-pii-step6)
++ [Step 5: Create an S3 Object Lambda Access Point](#ol-pii-step5)
++ [Step 6: Use the S3 Object Lambda Access Point to retrieve the redacted file](#ol-pii-step6)
 + [Step 7: Clean up](#ol-pii-step7)
 + [Next steps](#ol-pii-next-steps)
 
@@ -35,7 +35,7 @@ For simplicity, this tutorial creates and uses an IAM user\. After completing th
 This tutorial also uses full\-access policies\. For production use, we recommend that you instead grant only the minimum permissions necessary for your use case, in accordance with [security best practices](security-best-practices.md#security-best-practices-prevent)\.
 
 Your IAM user requires the following AWS managed policies:
-+ [AmazonS3FullAccess](https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/AmazonS3FullAccess$jsonEditor) – Grants permissions to all Amazon S3 actions, including permissions to create and use an Object Lambda access point\. 
++ [AmazonS3FullAccess](https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/AmazonS3FullAccess$jsonEditor) – Grants permissions to all Amazon S3 actions, including permissions to create and use an Object Lambda Access Point\. 
 + [AWSLambda\_FullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AWSLambda_FullAccess$jsonEditor) – Grants permissions to all Lambda actions\. 
 + [AWSCloudFormationFullAccess](https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/AWSCloudFormationFullAccess$serviceLevelSummary) – Grants permissions to all AWS CloudFormation actions\.
 + [IAMFullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/IAMFullAccess$jsonEditor) – Grants permissions to all IAM actions\. 
@@ -151,9 +151,9 @@ email at support@anycompany.com.
 
 ## Step 3: Create an S3 access point<a name="ol-pii-step3"></a>
 
-To use an S3 Object Lambda access point to access and transform the original data, you must create an S3 access point and associate it with the S3 bucket that you created in [Step 1](#ol-pii-step1)\. The access point must be in the same AWS Region as the objects you want to transform\.
+To use an S3 Object Lambda Access Point to access and transform the original data, you must create an S3 access point and associate it with the S3 bucket that you created in [Step 1](#ol-pii-step1)\. The access point must be in the same AWS Region as the objects you want to transform\.
 
-Later in this tutorial, you'll use this access point as a supporting access point for your Object Lambda access point\. 
+Later in this tutorial, you'll use this access point as a supporting access point for your Object Lambda Access Point\. 
 
 **To create an access point**
 
@@ -187,7 +187,7 @@ Later in this tutorial, you'll use this access point as a supporting access poin
 
 ## Step 4: Configure and deploy a prebuilt Lambda function<a name="ol-pii-step4"></a>
 
-To redact PII data, configure and deploy the prebuilt AWS Lambda function `ComprehendPiiRedactionS3ObjectLambda` for use with your S3 Object Lambda access point\.
+To redact PII data, configure and deploy the prebuilt AWS Lambda function `ComprehendPiiRedactionS3ObjectLambda` for use with your S3 Object Lambda Access Point\.
 
 **To configure and deploy the Lambda function**
 
@@ -215,13 +215,13 @@ To redact PII data, configure and deploy the prebuilt AWS Lambda function `Compr
 
 1. On the new application's page, under **Resources**, choose the **Logical ID** of the Lambda function that you deployed to review the function on the Lambda function page\.
 
-## Step 5: Create an S3 Object Lambda access point<a name="ol-pii-step5"></a>
+## Step 5: Create an S3 Object Lambda Access Point<a name="ol-pii-step5"></a>
 
-An S3 Object Lambda access point provides the flexibility to invoke a Lambda function directly from an S3 GET request so that the function can redact PII data retrieved from an S3 access point\. When creating and configuring an S3 Object Lambda access point, you must specify the redacting Lambda function to invoke and provide the event context in JSON format as custom parameters for Lambda to use\. 
+An S3 Object Lambda Access Point provides the flexibility to invoke a Lambda function directly from an S3 GET request so that the function can redact PII data retrieved from an S3 access point\. When creating and configuring an S3 Object Lambda Access Point, you must specify the redacting Lambda function to invoke and provide the event context in JSON format as custom parameters for Lambda to use\. 
 
 The event context provides information about the request being made in the event passed from S3 Object Lambda to Lambda\. For more information about all the fields in the event context, see [Event context format and usage](olap-event-context.md)\.
 
-**To create an S3 Object Lambda access point**
+**To create an S3 Object Lambda Access Point**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -229,7 +229,7 @@ The event context provides information about the request being made in the event
 
 1. On the **Object Lambda Access Points** page, choose **Create Object Lambda Access Point**\.
 
-1. For **Object Lambda Access Point name**, enter the name that you want to use for the Object Lambda access point \(for example, **tutorial\-pii\-object\-lambda\-accesspoint**\)\. 
+1. For **Object Lambda Access Point name**, enter the name that you want to use for the Object Lambda Access Point \(for example, **tutorial\-pii\-object\-lambda\-accesspoint**\)\. 
 
 1. For **Supporting Access Point**, enter or browse to the standard access point that you created in [Step 3](#ol-pii-step3) \(for example, **tutorial\-pii\-access\-point**\), and then choose **Choose supporting Access Point**\. 
 
@@ -247,33 +247,33 @@ The event context provides information about the request being made in the event
 
 1. \(Optional\) Under **Payload \- *optional***, add JSON text to provide your Lambda function with additional information\.
 
-   A payload is optional JSON text that you can provide to your Lambda function as input for all invocations coming from a specific S3 Object Lambda access point\. To customize the behaviors for multiple Object Lambda access points that invoke the same Lambda function, you can configure payloads with different parameters, thereby extending the flexibility of your Lambda function\.
+   A payload is optional JSON text that you can provide to your Lambda function as input for all invocations coming from a specific S3 Object Lambda Access Point\. To customize the behaviors for multiple Object Lambda Access Points that invoke the same Lambda function, you can configure payloads with different parameters, thereby extending the flexibility of your Lambda function\.
 
    For more information about payload, see [Event context format and usage](olap-event-context.md)\.
 
-1. \(Optional\) For **Request metrics \- *optional***, choose **Disable** or **Enable** to add Amazon S3 monitoring to your Object Lambda access point\. Request metrics are billed at the standard Amazon CloudWatch rate\. For more information, see [CloudWatch pricing](http://aws.amazon.com/cloudwatch/pricing/)\.
+1. \(Optional\) For **Request metrics \- *optional***, choose **Disable** or **Enable** to add Amazon S3 monitoring to your Object Lambda Access Point\. Request metrics are billed at the standard Amazon CloudWatch rate\. For more information, see [CloudWatch pricing](http://aws.amazon.com/cloudwatch/pricing/)\.
 
 1. Under **Object Lambda Access Point policy \- *optional***, keep the default setting\. 
 
-   \(Optional\) You can set a resource policy\. This resource policy grants the `GetObject` API permission to use the specified Object Lambda access point\.
+   \(Optional\) You can set a resource policy\. This resource policy grants the `GetObject` API permission to use the specified Object Lambda Access Point\.
 
 1. Keep the remaining settings set to the defaults, and choose **Create Object Lambda Access Point**\.
 
-## Step 6: Use the S3 Object Lambda access point to retrieve the redacted file<a name="ol-pii-step6"></a>
+## Step 6: Use the S3 Object Lambda Access Point to retrieve the redacted file<a name="ol-pii-step6"></a>
 
 Now, S3 Object Lambda is ready to redact PII data from your original file\. 
 
-**To use the S3 Object Lambda access point to retrieve the redacted file**
+**To use the S3 Object Lambda Access Point to retrieve the redacted file**
 
-When you request to retrieve a file through your S3 Object Lambda access point, you make a `GetObject` API call to S3 Object Lambda\. S3 Object Lambda invokes the Lambda function to redact your PII data and returns the transformed data as the response to the standard S3 `GetObject` API call\.
+When you request to retrieve a file through your S3 Object Lambda Access Point, you make a `GetObject` API call to S3 Object Lambda\. S3 Object Lambda invokes the Lambda function to redact your PII data and returns the transformed data as the response to the standard S3 `GetObject` API call\.
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the left navigation pane, choose **Object Lambda Access Points**\.
 
-1. On the **Object Lambda Access Points** page, choose the S3 Object Lambda access point that you created in [Step 5](#ol-pii-step5) \(for example, **tutorial\-pii\-object\-lambda\-accesspoint**\)\.
+1. On the **Object Lambda Access Points** page, choose the S3 Object Lambda Access Point that you created in [Step 5](#ol-pii-step5) \(for example, **tutorial\-pii\-object\-lambda\-accesspoint**\)\.
 
-1. On the **Objects** tab of your S3 Object Lambda access point, select the file that has the same name \(for example, `tutorial.txt`\) as the one that you uploaded to the S3 bucket in [Step 2](#ol-pii-step2)\. 
+1. On the **Objects** tab of your S3 Object Lambda Access Point, select the file that has the same name \(for example, `tutorial.txt`\) as the one that you uploaded to the S3 bucket in [Step 2](#ol-pii-step2)\. 
 
    This file should contain all the transformed data\.
 
@@ -301,7 +301,7 @@ When you request to retrieve a file through your S3 Object Lambda access point, 
 If you redacted your data through S3 Object Lambda only as a learning exercise, delete the AWS resources that you allocated so that you no longer accrue charges\. 
 
 **Topics**
-+ [Delete the Object Lambda access point](#ol-pii-step8-delete-olap)
++ [Delete the Object Lambda Access Point](#ol-pii-step8-delete-olap)
 + [Delete the S3 access point](#ol-pii-step8-delete-ap)
 + [Delete the Lambda function](#ol-pii-step8-delete-lambda-function)
 + [Delete the CloudWatch log group](#ol-pii-step8-delete-cloudwatch)
@@ -311,17 +311,17 @@ If you redacted your data through S3 Object Lambda only as a learning exercise, 
 + [Delete the customer managed policy for your IAM user](#ol-pii-step8-delete-function-policy)
 + [Delete the IAM user](#ol-pii-step8-delete-user)
 
-### Delete the Object Lambda access point<a name="ol-pii-step8-delete-olap"></a>
+### Delete the Object Lambda Access Point<a name="ol-pii-step8-delete-olap"></a>
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the left navigation pane, choose **Object Lambda Access Points**\.
 
-1. On the **Object Lambda Access Points** page, choose the option button to the left of the S3 Object Lambda access point that you created in [Step 5](#ol-pii-step5) \(for example, **tutorial\-pii\-object\-lambda\-accesspoint**\)\.
+1. On the **Object Lambda Access Points** page, choose the option button to the left of the S3 Object Lambda Access Point that you created in [Step 5](#ol-pii-step5) \(for example, **tutorial\-pii\-object\-lambda\-accesspoint**\)\.
 
 1. Choose **Delete**\.
 
-1. Confirm that you want to delete your Object Lambda access point by entering its name in the text field that appears, and then choose **Delete**\.
+1. Confirm that you want to delete your Object Lambda Access Point by entering its name in the text field that appears, and then choose **Delete**\.
 
 ### Delete the S3 access point<a name="ol-pii-step8-delete-ap"></a>
 
@@ -420,13 +420,13 @@ If you redacted your data through S3 Object Lambda only as a learning exercise, 
 ## Next steps<a name="ol-pii-next-steps"></a>
 
 After completing this tutorial, you can further explore the following related use cases:
-+ You can create multiple S3 Object Lambda access points and enable them with prebuilt Lambda functions that are configured differently to redact specific types of PII depending on the data accessors' business needs\. 
++ You can create multiple S3 Object Lambda Access Points and enable them with prebuilt Lambda functions that are configured differently to redact specific types of PII depending on the data accessors' business needs\. 
 
-  Each type of user assumes an IAM role and only has access to one S3 Object Lambda access point \(managed through IAM policies\)\. Then, you attach each `ComprehendPiiRedactionS3ObjectLambda` Lambda function configured for a different redaction use case to a different S3 Object Lambda access point\. For each S3 Object Lambda access point, you can have a supporting S3 access point to read data from an S3 bucket that stores the shared dataset\. 
+  Each type of user assumes an IAM role and only has access to one S3 Object Lambda Access Point \(managed through IAM policies\)\. Then, you attach each `ComprehendPiiRedactionS3ObjectLambda` Lambda function configured for a different redaction use case to a different S3 Object Lambda Access Point\. For each S3 Object Lambda Access Point, you can have a supporting S3 access point to read data from an S3 bucket that stores the shared dataset\. 
 
   For more information about how to create an S3 bucket policy that allows users to read from the bucket only through S3 access points, see [Configuring IAM policies for using access points](access-points-policies.md)\.
 
-  For more information about how to grant a user permission to access the Lambda function, the S3 access point, and the S3 Object Lambda access point, see [Configuring IAM policies for Object Lambda access points](olap-policies.md)\.
+  For more information about how to grant a user permission to access the Lambda function, the S3 access point, and the S3 Object Lambda Access Point, see [Configuring IAM policies for Object Lambda Access Points](olap-policies.md)\.
 + You can build your own Lambda function and use S3 Object Lambda with your customized Lambda function to meet your specific data needs\.
 
   For example, to explore various data values, you can use S3 Object Lambda and your own Lambda function that uses additional [Amazon Comprehend features](http://aws.amazon.com/comprehend/features/), such as entity recognition, key phrase recognition, sentiment analysis, and document classification, to process data\. You can also use S3 Object Lambda together with [Amazon Comprehend Medical](http://aws.amazon.com/comprehend/medical/), a HIPAA\-eligible NLP service, to analyze and extract data in a context\-aware manner\.

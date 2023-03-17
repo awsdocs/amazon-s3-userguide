@@ -4,7 +4,7 @@ You can use the S3 Intelligent\-Tiering storage class to automatically optimize 
 
 ## Moving data to S3 Intelligent\-Tiering<a name="moving-data-to-int-tiering"></a>
 
-There are two ways to move data into S3 Intelligent\-Tiering\. You can directly [PUT](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html) data into S3 Intelligent\-Tiering by specifying `INTELLIGENT_TIERING` in the `x-amz-storage-class` header or configure S3 Lifecycle policies to transition objects from S3 Standard or S3 Standard\-Infrequent Access to S3 Intelligent\-Tiering\.
+There are two ways to move data into S3 Intelligent\-Tiering\. You can directly [PUT](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html) data into S3 Intelligent\-Tiering by specifying `INTELLIGENT_TIERING` in the `x-amz-storage-class` header or configure S3 Lifecycle configurations to transition objects from S3 Standard or S3 Standard\-Infrequent Access to S3 Intelligent\-Tiering\.
 
 ### Uploading data to S3 Intelligent\-Tiering using Direct PUT<a name="moving-data-to-int-tiering-directPUT"></a>
 
@@ -29,7 +29,7 @@ x-amz-storage-class: INTELLIGENT_TIERING
 
 You can add rules to an S3 Lifecycle configuration to tell Amazon S3 to transition objects from one storage class to another\. For information on supported transitions and related constraints, see [ Transitioning objects using S3 Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html)\. 
 
-You can specify S3 Lifecycle policies at the bucket or prefix level\. In this S3 Lifecycle configuration rule, the filter specifies a key prefix \(`documents/`\)\. Therefore, the rule applies to objects with key name prefix `documents/`, such as `documents/doc1.txt` and `documents/doc2.txt`\. The rule specifies a `Transition` action directing Amazon S3 to transition objects to the S3 Intelligent\-Tiering storage class 0 days after creation\. In this case, objects are eligible for transition to S3 Intelligent\-Tiering at midnight UTC following creation\.
+You can specify S3 Lifecycle configurations at the bucket or prefix level\. In this S3 Lifecycle configuration rule, the filter specifies a key prefix \(`documents/`\)\. Therefore, the rule applies to objects with key name prefix `documents/`, such as `documents/doc1.txt` and `documents/doc2.txt`\. The rule specifies a `Transition` action directing Amazon S3 to transition objects to the S3 Intelligent\-Tiering storage class 0 days after creation\. In this case, objects are eligible for transition to S3 Intelligent\-Tiering at midnight UTC following creation\.
 
 **Example**  
 

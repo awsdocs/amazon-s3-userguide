@@ -120,7 +120,7 @@ If you did not intend to grant access to the public or other AWS accounts, inclu
 
    1. Review or change your Multi\-Region Access Point policy as required\.
 
-      For more information, see [Multi\-Region Access Point permissions](MultiRegionAccessPointPermissions.md)\.
+      For more information, see [Permissions](MultiRegionAccessPointPermissions.md)\.
 
 1. If you want to review or change an access point policy:
 

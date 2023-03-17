@@ -86,9 +86,9 @@ To see activity metrics in your S3 Storage Lens dashboard, you must enable S3 St
 
 ### Step 2: Investigate cold buckets<a name="storage-lens-investigate-buckets"></a>
 
-From here, you can identify the owners of cold buckets in your account or organization and find out if that storage is still needed\. You can then optimize costs by configuring [lifecycle expiration policies](object-lifecycle-mgmt.md) for these buckets or archiving the data in one of the [Amazon S3 Glacier storage classes](https://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html)\. 
+From here, you can identify the owners of cold buckets in your account or organization and find out if that storage is still needed\. You can then optimize costs by configuring [lifecycle expiration configurations](object-lifecycle-mgmt.md) for these buckets or archiving the data in one of the [Amazon S3 Glacier storage classes](https://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html)\. 
 
-To avoid the problem of cold buckets going forward, you can [automatically transition your data by using S3 Lifecycle policies](lifecycle-configuration-examples.md) for your buckets, or you can enable [auto\-archiving with S3 Intelligent\-Tiering](archived-objects.md)\.
+To avoid the problem of cold buckets going forward, you can [automatically transition your data by using S3 Lifecycle configurations](lifecycle-configuration-examples.md) for your buckets, or you can enable [auto\-archiving with S3 Intelligent\-Tiering](archived-objects.md)\.
 
 You can also use step 1 to identify hot buckets\. Then, you can ensure that these buckets use the correct [S3 storage class](storage-class-intro.md) to ensure that they serve their requests most effectively in terms of performance and cost\.
 
@@ -153,7 +153,7 @@ With S3 Storage Lens advanced metrics and recommendations, metrics are available
 
 ### Step 3: Add a lifecycle rule to delete incomplete multipart uploads after 7 days<a name="locate-incomplete-mpu-step3"></a>
 
-To automatically manage incomplete multipart uploads, you can use the S3 console to create a lifecycle configuration to expire incomplete multipart upload bytes from a bucket after a specified number of days\. For more information, see [Configuring a bucket lifecycle configuration to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)\.
+To automatically manage incomplete multipart uploads, you can use the S3 console to create a lifecycle configuration to expire incomplete multipart upload bytes from a bucket after a specified number of days\. For more information, see [Configuring a bucket lifecycle configuration to delete incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)\.
 
 ## Reduce the number of noncurrent versions retained<a name="reduce-noncurrent-versions-retained"></a>
 

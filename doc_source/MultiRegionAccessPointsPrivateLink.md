@@ -79,12 +79,3 @@ And of course, the individual buckets would each need a policy to support access
 ```
 
  For more information about editing a VPC endpoint policy, see [Control access to services with VPC endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html) in the *VPC User Guide*\. 
-
-## Removing access to a Multi\-Region Access Point from a VPC endpoint<a name="RemovingMultiRegionAccessPointAccess"></a>
-
- If you own a Multi\-Region Access Point and want to remove access to it from an interface endpoint, you must supply a new access policy to the Multi\-Region Access Point that prevents access for requests coming through VPC endpoints\. Keep in mind that if the buckets in your Multi\-Region Access Point support requests through VPC endpoints, they will continue to support these requests\. If you want to prevent that support, you must also update the policies for the buckets\. Supplying a new access policy to the Multi\-Region Access Point only prevents access to the Multi\-Region Access Point\. 
-
-**Note**  
-You can't delete an access policy for a Multi\-Region Access Point\. To remove access to a Multi\-Region Access Point, you must provide a new access policy with the modified access that you want\. 
-
- As an alternative, you could update the bucket policies to prevent requests through VPC endpoints\. In this case, the user could still access the Multi\-Region Access Point through the VPC endpoint\. But if the request is routed to a bucket where the bucket policy prevents access, it would generate an error message\. 

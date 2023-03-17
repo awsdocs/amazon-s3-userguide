@@ -45,7 +45,16 @@ The following procedure shows how to use the Amazon S3 console to configure a Cl
 If you use the CloudTrail console or the Amazon S3 console to configure a trail to log data events for an S3 bucket, the Amazon S3 console shows that object\-level logging is enabled for the bucket\. 
 
 **To disable CloudTrail data events logging for objects in an S3 bucket**
-+ To disable object\-level logging for the bucket, you must open the CloudTrail console and remove the bucket name from the trail's **Data events**\.
+
+1. Sign in to the AWS Management Console and open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
+
+1. In the left navigation pane, choose **Trails**\.
+
+1. Choose the name of the trail that you created to log events for your bucket\.
+
+1. On the details page for your trail, choose **Stop logging** in the upper\-right corner\.
+
+1. In the dialog box that appears, choose **Stop logging**\. 
 
 For information about enabling object\-level logging when you create an S3 bucket, see [Creating a bucket](create-bucket-overview.md)\.
 

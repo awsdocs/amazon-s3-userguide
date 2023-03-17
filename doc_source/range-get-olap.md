@@ -5,20 +5,20 @@ When working with large objects in Amazon S3 Object Lambda, you can use the `Ran
 Because there are multiple ways that you might want to handle a request that includes the `Range` or `partNumber` parameters, S3 Object Lambda doesn't apply these parameters to the transformed object\. Instead, your AWS Lambda function must implement this functionality as needed for your application\.
 
 To use the `Range` and `partNumber` parameters with S3 Object Lambda, you do the following: 
-+ Enable these parameters in your Object Lambda access point configuration\.
++ Enable these parameters in your Object Lambda Access Point configuration\.
 + Write a Lambda function that can handle requests that include these parameters\.
 
 The following steps describe how to accomplish this\.
 
-## Step 1: Configure your Object Lambda access point<a name="range-get-olap-step-1"></a>
+## Step 1: Configure your Object Lambda Access Point<a name="range-get-olap-step-1"></a>
 
-By default, Object Lambda access points respond with an HTTP status code 501 \(Not Implemented\) error to any `GetObject` or `HeadObject` request that contains a `Range` or `partNumber` parameter, either in the headers or query parameters\. 
+By default, Object Lambda Access Points respond with an HTTP status code 501 \(Not Implemented\) error to any `GetObject` or `HeadObject` request that contains a `Range` or `partNumber` parameter, either in the headers or query parameters\. 
 
-To enable an Object Lambda access point to accept such requests, you must update your Object Lambda access point configuration by using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), or AWS SDKs\. For more information about updating your Object Lambda access point configuration, see [Creating Object Lambda access points](olap-create.md)\. 
+To enable an Object Lambda Access Point to accept such requests, you must update your Object Lambda Access Point configuration by using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), or AWS SDKs\. For more information about updating your Object Lambda Access Point configuration, see [Creating Object Lambda Access Points](olap-create.md)\. 
 
 ## Step 2: Implement `Range` or `partNumber` handling in your Lambda function<a name="range-get-olap-step-2"></a>
 
-When your Object Lambda access point invokes your Lambda function with a ranged `GetObject` or `HeadObject` request, the `Range` or `partNumber` parameter is included in the event context\. The location of the parameter in the event context depends on which parameter was used and how it was included in the original request to the Object Lambda access point, as explained in the following table\. 
+When your Object Lambda Access Point invokes your Lambda function with a ranged `GetObject` or `HeadObject` request, the `Range` or `partNumber` parameter is included in the event context\. The location of the parameter in the event context depends on which parameter was used and how it was included in the original request to the Object Lambda Access Point, as explained in the following table\. 
 
 
 | Parameter | Event context location | 
@@ -28,7 +28,7 @@ When your Object Lambda access point invokes your Lambda function with a ranged 
 |  `partNumber`  |  `userRequest.url` \(query parameter `partNumber`\)  | 
 
 **Important**  
-The provided presigned URL for your Object Lambda access point doesn't contain the `Range` or `partNumber` parameter from the original request\. If you want to retrieve only the specified range from Amazon S3, you must add the necessary parameter to the presigned URL\.
+The provided presigned URL for your Object Lambda Access Point doesn't contain the `Range` or `partNumber` parameter from the original request\. If you want to retrieve only the specified range from Amazon S3, you must add the necessary parameter to the presigned URL\.
 
 After you extract the `Range` or `partNumber` value, you can take one of the following approaches, based on your application's needs:
 

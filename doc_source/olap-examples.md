@@ -1,6 +1,6 @@
 # Using AWS built Lambda functions<a name="olap-examples"></a>
 
-AWS provides some prebuilt AWS Lambda functions that you can use with Amazon S3 Object Lambda to detect and redact personally identifiable information \(PII\) and decompress S3 objects\. These Lambda functions are available in the AWS Serverless Application Repository\. You can select these functions through the AWS Management Console when you create your Object Lambda access point\. 
+AWS provides some prebuilt AWS Lambda functions that you can use with Amazon S3 Object Lambda to detect and redact personally identifiable information \(PII\) and decompress S3 objects\. These Lambda functions are available in the AWS Serverless Application Repository\. You can select these functions through the AWS Management Console when you create your Object Lambda Access Point\. 
 
 For more information about how to deploy serverless applications from the AWS Serverless Application Repository, see [Deploying Applications](https://docs.aws.amazon.com/serverlessrepo/latest/devguide/serverlessrepo-consuming-applications.html) in the *AWS Serverless Application Repository Developer Guide*\.
 
@@ -11,7 +11,7 @@ The following examples can be used only with `GetObject` requests\.
 
 This Lambda function uses Amazon Comprehend, a natural language processing \(NLP\) service that uses machine learning to find insights and relationships in text\. This function automatically detects personally identifiable information \(PII\), such as names, addresses, dates, credit card numbers, and social security numbers in documents in your Amazon S3 bucket\. If you have documents in your bucket that include PII, you can configure the PII Access Control function to detect these PII entity types and restrict access to unauthorized users\.
 
-To get started, deploy the following Lambda function in your account and add the Amazon Resource Name \(ARN\) for the function to your Object Lambda access point configuration\.
+To get started, deploy the following Lambda function in your account and add the Amazon Resource Name \(ARN\) for the function to your Object Lambda Access Point configuration\.
 
 The following is an example ARN for this function:
 
@@ -29,7 +29,7 @@ This Lambda function uses Amazon Comprehend, a natural language processing \(NLP
 
 If you have documents in your bucket that include information such as credit card numbers or bank account information, you can configure the PII Redaction S3 Object Lambda function to detect PII and then return a copy of these documents in which PII entity types are redacted\.
 
-To get started, deploy the following Lambda function in your account and add the ARN for the function to your Object Lambda access point configuration\.
+To get started, deploy the following Lambda function in your account and add the ARN for the function to your Object Lambda Access Point configuration\.
 
 The following is an example ARN for this function:
 
@@ -47,7 +47,7 @@ To learn about complete end\-to\-end procedures for some S3 Object Lambda tasks 
 
 The Lambda function `S3ObjectLambdaDecompression` can decompress objects that are stored in Amazon S3 in one of six compressed file formats: `bzip2`, `gzip`, `snappy`, `zlib`, `zstandard`, and `ZIP`\. 
 
-To get started, deploy the following Lambda function in your account and add the ARN for the function to your Object Lambda access point configuration\.
+To get started, deploy the following Lambda function in your account and add the ARN for the function to your Object Lambda Access Point configuration\.
 
 The following is an example ARN for this function:
 

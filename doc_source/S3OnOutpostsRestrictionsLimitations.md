@@ -42,7 +42,6 @@ The following Amazon S3 features are currently not supported by Amazon S3 on Out
 + S3 Object Lock legal hold
 + Object Lock retention
 + Server\-side encryption with AWS Key Management Service \(AWS KMS\) keys \(SSE\-KMS\)
-+ S3 Replication
 + S3 Replication Time Control \(S3 RTC\)
 + Amazon CloudWatch request metrics
 + Metrics configuration

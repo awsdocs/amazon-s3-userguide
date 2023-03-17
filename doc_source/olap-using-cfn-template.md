@@ -1,15 +1,15 @@
 # Automate S3 Object Lambda setup with a CloudFormation template<a name="olap-using-cfn-template"></a>
 
-You can use an AWS CloudFormation template to quickly create an Amazon S3 Object Lambda access point\. The CloudFormation template automatically creates relevant resources, configures AWS Identity and Access Management \(IAM\) roles, and sets up an AWS Lambda function that automatically handles requests through the Object Lambda access point\. With the CloudFormation template, you can implement best practices, improve your security posture, and reduce errors caused by manual processes\.
+You can use an AWS CloudFormation template to quickly create an Amazon S3 Object Lambda Access Point\. The CloudFormation template automatically creates relevant resources, configures AWS Identity and Access Management \(IAM\) roles, and sets up an AWS Lambda function that automatically handles requests through the Object Lambda Access Point\. With the CloudFormation template, you can implement best practices, improve your security posture, and reduce errors caused by manual processes\.
 
-This [GitHub repository](https://github.com/aws-samples/amazon-s3-object-lambda-default-configuration) contains the CloudFormation template and Lambda function source code\. For instructions on how to use the template, see [Creating Object Lambda access points](olap-create.md)\.
+This [GitHub repository](https://github.com/aws-samples/amazon-s3-object-lambda-default-configuration) contains the CloudFormation template and Lambda function source code\. For instructions on how to use the template, see [Creating Object Lambda Access Points](olap-create.md)\.
 
-The Lambda function provided in the template does not run any transformation\. Instead, it returns your objects as\-is from your S3 bucket\. You can clone the function and add your own transformation code to modify and process data as it is returned to an application\. For more information about modifying your function, see [Modifying the Lambda function](#modifying-lambda-function) and [Writing Lambda functions for S3 Object Lambda access points](olap-writing-lambda.md)\. 
+The Lambda function provided in the template does not run any transformation\. Instead, it returns your objects as\-is from your S3 bucket\. You can clone the function and add your own transformation code to modify and process data as it is returned to an application\. For more information about modifying your function, see [Modifying the Lambda function](#modifying-lambda-function) and [Writing Lambda functions for S3 Object Lambda Access Points](olap-writing-lambda.md)\. 
 
 ## Modifying the template<a name="modifying-cfn-template"></a>
 
 **Creating a new supporting access point**  
-S3 Object Lambda uses two access points, an Object Lambda access point and a standard S3 access point, which is referred to as the *supporting access point*\. When you make a request to an Object Lambda access point, S3 either invokes Lambda on your behalf, or it delegates the request to the supporting access point, depending upon the S3 Object Lambda configuration\. You can create a new supporting access point by passing the following parameter as part of the `aws cloudformation deploy` command when deploying the template\.
+S3 Object Lambda uses two access points, an Object Lambda Access Point and a standard S3 access point, which is referred to as the *supporting access point*\. When you make a request to an Object Lambda Access Point, S3 either invokes Lambda on your behalf, or it delegates the request to the supporting access point, depending upon the S3 Object Lambda configuration\. You can create a new supporting access point by passing the following parameter as part of the `aws cloudformation deploy` command when deploying the template\.
 
 ```
 CreateNewSupportingAccessPoint=true
@@ -29,14 +29,14 @@ You can enable CloudWatch monitoring by passing the following parameter as part 
 EnableCloudWatchMonitoring=true
 ```
 
-This parameter enables your Object Lambda access point for Amazon S3 request metrics and creates two CloudWatch alarms to monitor client\-side and server\-side errors\.
+This parameter enables your Object Lambda Access Point for Amazon S3 request metrics and creates two CloudWatch alarms to monitor client\-side and server\-side errors\.
 
 **Note**  
 Amazon CloudWatch usage will incur additional costs\. For more information about Amazon S3 request metrics, see [Monitoring and logging access points](access-points-monitoring-logging.md)\.  
 For pricing details, see [CloudWatch pricing](http://aws.amazon.com/cloudwatch/pricing/)\. 
 
 **Configuring provisioned concurrency**  
-To reduce latency, you can configure provisioned concurrency for the Lambda function that's backing the Object Lambda access point by editing the template to include the following lines under `Resources`\.
+To reduce latency, you can configure provisioned concurrency for the Lambda function that's backing the Object Lambda Access Point by editing the template to include the following lines under `Resources`\.
 
 ```
 LambdaFunctionVersion:
@@ -128,12 +128,12 @@ async function writeResponse (s3Client: S3, requestContext: GetObjectContext, tr
 For a full list of supported status codes, see [https://docs.aws.amazon.com/AmazonS3/latest/API/API_WriteGetObjectResponse.html#API_WriteGetObjectResponse_RequestSyntax](https://docs.aws.amazon.com/AmazonS3/latest/API/API_WriteGetObjectResponse.html#API_WriteGetObjectResponse_RequestSyntax) in the *Amazon Simple Storage Service API Reference*\.
 
 **Applying `Range` and `partNumber` parameters to the source object**  
-By default, the Object Lambda access point created by the CloudFormation template can handle the `Range` and `partNumber` parameters\. The Lambda function applies the range or part number requested to the transformed object\. To do so, the function must download the whole object and run the transformation\. In some cases, your transformed object ranges might map exactly to your source object ranges\. This means that requesting byte range A\-B on your source object and running the transformation might produce the same result as requesting the whole object, running the transformation, and returning byte range A\-B on the transformed object\.
+By default, the Object Lambda Access Point created by the CloudFormation template can handle the `Range` and `partNumber` parameters\. The Lambda function applies the range or part number requested to the transformed object\. To do so, the function must download the whole object and run the transformation\. In some cases, your transformed object ranges might map exactly to your source object ranges\. This means that requesting byte range A\-B on your source object and running the transformation might produce the same result as requesting the whole object, running the transformation, and returning byte range A\-B on the transformed object\.
 
 In such cases, you can change the Lambda function implementation to apply the range or part number directly to the source object\. This approach reduces the overall function latency and memory required\. For more information, see [Working with Range and partNumber headers](range-get-olap.md)\.
 
 **Disabling `Range` and `partNumber` handling**  
-By default, the Object Lambda access point created by the CloudFormation template can handle the `Range` and `partNumber` parameters\. If you don't need this behavior, you can disable it by removing the following lines from the template:
+By default, the Object Lambda Access Point created by the CloudFormation template can handle the `Range` and `partNumber` parameters\. If you don't need this behavior, you can disable it by removing the following lines from the template:
 
 ```
 AllowedFeatures:

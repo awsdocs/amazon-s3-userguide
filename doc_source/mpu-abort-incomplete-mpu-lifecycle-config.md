@@ -1,4 +1,4 @@
-# Configuring a bucket lifecycle configuration to abort incomplete multipart uploads<a name="mpu-abort-incomplete-mpu-lifecycle-config"></a>
+# Configuring a bucket lifecycle configuration to delete incomplete multipart uploads<a name="mpu-abort-incomplete-mpu-lifecycle-config"></a>
 
 As a best practice, we recommend that you configure a lifecycle rule by using the `AbortIncompleteMultipartUpload` action to minimize your storage costs\. For more information about aborting a multipart upload, see [Aborting a multipart upload](abort-mpu.md)\.
 

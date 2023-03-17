@@ -50,7 +50,7 @@ aws s3api get-object --bucket my-access-point-aqfqprnstn7aefdfbarligizwgyfouse1a
 }
 ```
 
-**Limitations**
+### Limitations<a name="use-ap-alias-limitations"></a>
 + Aliases cannot be configured by customers\.
 + Aliases cannot be deleted or modified or disabled on an access point\.
 + You can use this access point alias name instead of an Amazon S3 bucket name in some data plane operations\. For a list of these operations, see [Access point compatibility with S3 operations](access-points-usage-examples.md#access-points-operations-support)\.

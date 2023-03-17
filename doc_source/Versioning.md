@@ -25,7 +25,7 @@ The versioning state applies to all \(never some\) of the objects in that bucket
 
 ## Using S3 Versioning with S3 Lifecycle<a name="versioning-lifecycle"></a>
 
-To customize your data retention approach and control storage costs, use object versioning with S3 Lifecycle\. For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\. For information about creating S3 Lifecycle policies using the AWS Management Console, AWS CLI, AWS SDKs, or the REST API, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)\.
+To customize your data retention approach and control storage costs, use object versioning with S3 Lifecycle\. For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\. For information about creating S3 Lifecycle configurations using the AWS Management Console, AWS CLI, AWS SDKs, or the REST API, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)\.
 
 **Important**  
 If you have an object expiration lifecycle configuration in your unversioned bucket and you want to maintain the same permanent delete behavior when you enable versioning, you must add a noncurrent expiration configuration\. The noncurrent expiration lifecycle configuration manages the deletes of the noncurrent object versions in the version\-enabled bucket\. \(A version\-enabled bucket maintains one current, and zero or more noncurrent, object versions\.\) For more information, see [Setting lifecycle configuration on a bucket](how-to-set-lifecycle-configuration-intro.md)\.

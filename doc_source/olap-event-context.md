@@ -53,10 +53,10 @@ The following fields are included in the request:
   + `inputS3Url` – A presigned URL that can be used to fetch the original object from Amazon S3\. The URL is signed by using the original caller's identity, and that user's permissions will apply when the URL is used\. If there are signed headers in the URL, the Lambda function must include these headers in the call to Amazon S3, except for the `Host` header\.
   + `outputRoute` – A routing token that is added to the S3 Object Lambda URL when the Lambda function calls `WriteGetObjectResponse`\.
   + `outputToken` – An opaque token that's used by S3 Object Lambda to match the `WriteGetObjectResponse` call with the original caller\.
-+ `configuration` – Configuration information about the Object Lambda access point\.
-  + `accessPointArn` – The Amazon Resource Name \(ARN\) of the Object Lambda access point that received this request\.
-  + `supportingAccessPointArn` – The ARN of the supporting access point that is specified in the Object Lambda access point configuration\.
-  + `payload` – Custom data that is applied to the Object Lambda access point configuration\. S3 Object Lambda treats this data as an opaque string, so it might need to be decoded before use\.
++ `configuration` – Configuration information about the Object Lambda Access Point\.
+  + `accessPointArn` – The Amazon Resource Name \(ARN\) of the Object Lambda Access Point that received this request\.
+  + `supportingAccessPointArn` – The ARN of the supporting access point that is specified in the Object Lambda Access Point configuration\.
+  + `payload` – Custom data that is applied to the Object Lambda Access Point configuration\. S3 Object Lambda treats this data as an opaque string, so it might need to be decoded before use\.
 + `userRequest` – Information about the original call to S3 Object Lambda\.
   + `url` – The decoded URL of the request as received by S3 Object Lambda, excluding any authorization\-related query parameters\.
   + `headers` – A map of string to strings containing the HTTP headers and their values from the original call, excluding any authorization\-related headers\. If the same header appears multiple times, the values from each instance of the same header are combined into a comma\-delimited list\. The case of the original headers is retained in this map\.

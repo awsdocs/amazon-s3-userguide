@@ -1,4 +1,4 @@
-# Multi\-Region Access Point permissions<a name="MultiRegionAccessPointPermissions"></a>
+# Permissions<a name="MultiRegionAccessPointPermissions"></a>
 
 Amazon S3 Multi\-Region Access Points can simplify data access for Amazon S3 buckets in multiple AWS Regions\. Multi\-Region Access Points are named global endpoints that you can use to perform Amazon S3 data\-access object operations, such as `GetObject` and `PutObject`\. Each Multi\-Region Access Point can have distinct permissions and network controls for any request that is made through the global endpoint\.
 
@@ -11,34 +11,38 @@ You can configure any Multi\-Region Access Point policy to accept requests only 
 
 For example, suppose that you make a `GetObject` request through a Multi\-Region Access Point by using a user called `AppDataReader` in your AWS account\. To help ensure that the request won't be denied, the `AppDataReader` user must be granted the `s3:GetObject` permission by the Multi\-Region Access Point and by each bucket underlying the Multi\-Region Access Point\. `AppDataReader` won't be able to retrieve data from any bucket that doesn't grant this permission\.
 
-In most cases, underlying buckets that have individual S3 Block Public Access settings, policies, and access control lists \(ACLs, including object ACLs\) will still remain in effect\.
+In most cases, the individual S3 Block Public Access settings, policies, and access control lists \(ACLs, including object ACLs\) for the underlying buckets will still remain in effect\.
 
 ## Managing public access to a Multi\-Region Access Point<a name="MultiRegionAccessPointPublicAccess"></a>
 
 Multi\-Region Access Points support independent Block Public Access settings for each Multi\-Region Access Point\. When you create a Multi\-Region Access Point, you can specify the Block Public Access settings that apply to that Multi\-Region Access Point\. 
 
+**Note**  
+Any Block Public Access settings that are enabled under **Block Public Access settings for this account** \(in your own account\) or **Block Public Settings for external buckets** still apply even if the independent Block Public Access settings for your Multi\-Region Access Point are disabled\.
+
 For any request that is made through a Multi\-Region Access Point, Amazon S3 evaluates the Block Public Access settings for:
 + The Multi\-Region Access Point
-+ The underlying buckets
-+ The account that owns both the Multi\-Region Access Point and the underlying buckets
++ The underlying buckets \(including external buckets\)
++ The account that owns the Multi\-Region Access Point
++ The account that owns the underlying buckets \(including external accounts\)
 
 If any of these settings indicate that the request should be blocked, Amazon S3 rejects the request\. For more information about the Amazon S3 Block Public Access feature, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\. 
 
 **Important**  
 By default, all Block Public Access settings are enabled for Multi\-Region Access Points\. You must explicitly turn off any settings that you don't want to apply to a Multi\-Region Access Point\.   
-Amazon S3 doesn't currently support changing the Block Public Access settings for a Multi\-Region Access Point after it has been created\. 
+You can't change the Block Public Access settings for a Multi\-Region Access Point after it has been created\. 
 
 ## Viewing Block Public Access settings for a Multi\-Region Access Point<a name="viewing-bpa-mrap-settings"></a>
 
 **To view the Block Public Access settings for a Multi\-Region Access Point**
 
-1. Sign in to the AWS Management Console\.
+1. 
 
-1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+   Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the left navigation pane, choose **Multi\-Region Access Points**\.
 
-1. Choose the Multi\-Region Access Point that you want to review\.
+1. Choose the name of the Multi\-Region Access Point that you want to review\.
 
 1. Choose the **Permissions** tab\.
 
@@ -72,7 +76,7 @@ The following example Multi\-Region Access Point policy grants an IAM user acces
 }
 ```
 
-To associate your Multi\-Region Access Point policy with the specified Multi\-Region Access Point, use the following syntax\. Each Multi\-Region Access Point can have only one policy, so a request made to this action replaces any existing policy that is associated with the specified Multi\-Region Access Point\.
+To associate your Multi\-Region Access Point policy with the specified Multi\-Region Access Point by using the AWS Command Line Interface \(AWS CLI\), use the following `put-multi-region-access-point-policy` command\. To use this example command, replace the `user input placeholders` with your own information\. Each Multi\-Region Access Point can have only one policy, so a request made to the `put-multi-region-access-point-policy` action replaces any existing policy that is associated with the specified Multi\-Region Access Point\.
 
 ------
 #### [ AWS CLI ]
@@ -85,7 +89,7 @@ aws s3control put-multi-region-access-point-policy
 
 ------
 
-To query your results for the previous operation, use the following syntax:
+To query your results for the previous operation, use the following command:
 
 ------
 #### [ AWS CLI ]
@@ -98,7 +102,7 @@ aws s3control describe-multi-region-access-point-operation
 
 ------
 
-To retrieve your Multi\-Region Access Point policy, use the following syntax:
+To retrieve your Multi\-Region Access Point policy, use the following command:
 
 ------
 #### [ AWS CLI ]
@@ -116,7 +120,7 @@ aws s3control get-multi-region-access-point-policy
 The Multi\-Region Access Point policy \(written in JSON\) provides storage access to the Amazon S3 buckets that are used with this Multi\-Region Access Point\. You can allow or deny specific principals to perform various actions on your Multi\-Region Access Point\. When a request is routed to a bucket through the Multi\-Region Access Point, both the access policies for the Multi\-Region Access Point and the bucket apply\. The more restrictive access policy always takes precedence\. 
 
 **Note**  
-Multi\-Region Access Point policies can't be applied to objects that are owned by other AWS accounts\.
+If a bucket contains objects that are owned by other accounts, the Multi\-Region Access Point policy doesn't apply to the objects that are owned by other AWS accounts\.
 
 After you apply a Multi\-Region Access Point policy, the policy cannot be deleted\. You can either edit the policy or create a new policy that overwrites the existing one\.
 
@@ -124,13 +128,11 @@ After you apply a Multi\-Region Access Point policy, the policy cannot be delete
 
 
 
-1. Sign in to the AWS Management Console\.
-
-1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the left navigation pane, choose **Multi\-Region Access Points**\.
 
-1. Choose the Multi\-Region Access Point that you want to edit the policy for\.
+1. Choose the name of the Multi\-Region Access Point that you want to edit the policy for\.
 
 1. Choose the **Permissions** tab\.
 
@@ -142,7 +144,7 @@ The console automatically displays the Multi\-Region Access Point Amazon Resourc
 
 ## Multi\-Region Access Point policy examples<a name="MultiRegionAccessPointPolicyExamples"></a>
 
-Amazon S3 Multi\-Region Access Points support AWS Identity and Access Management \(IAM\) resource policies, allowing you to control the use of the Multi\-Region Access Point by resource, user, or other conditions\. For an application or user to be able to access objects through a Multi\-Region Access Point, both the Multi\-Region Access Point and the underlying bucket must allow the same access\.
+Amazon S3 Multi\-Region Access Points support AWS Identity and Access Management \(IAM\) resource policies\. You can use these policies to control the use of the Multi\-Region Access Point by resource, user, or other conditions\. For an application or user to be able to access objects through a Multi\-Region Access Point, both the Multi\-Region Access Point and the underlying bucket must allow the same access\.
 
 To allow the same access to both the Multi\-Region Access Point and the underlying bucket, do one of the following:
 + **\(Recommended\)** To simplify access controls when using an Amazon S3 Multi\-Region Access Point, delegate access control for the Amazon S3 bucket to the Multi\-Region Access Point\. For an example of how to do this, see Example 1 in this section\. 
@@ -151,8 +153,8 @@ To allow the same access to both the Multi\-Region Access Point and the underlyi
 **Important**  
 Delegating access control for a bucket to a Multi\-Region Access Point policy doesn't change the bucket's behavior when the bucket is accessed directly through its bucket name or Amazon Resource Name \(ARN\)\. All operations made directly against the bucket will continue to work as before\. Restrictions that you include in a Multi\-Region Access Point policy apply only to requests made through that Multi\-Region Access Point\.
 
-**Example 1 – Delegating access to specific Multi\-Region Access Points in your bucket policy**  
-The following example bucket policy allows full access to specific Multi\-Region Access Points\. This means that all access to this bucket is controlled by the policies that are attached to the Multi\-Region Access Points\. We recommend configuring your buckets this way for all use cases that don't require direct access to the bucket\.  
+**Example 1 – Delegating access to specific Multi\-Region Access Points in your bucket policy \(for the same account or cross\-account\)**  
+The following example bucket policy grants full bucket access to a specific Multi\-Region Access Point\. This means that all access to this bucket is controlled by the policies that are attached to the Multi\-Region Access Point\. We recommend configuring your buckets this way for all use cases that don't require direct access to the bucket\. You can use this bucket policy structure for Multi\-Region Access Points in either the same account or in another account\.  
 
 ```
 {
@@ -169,10 +171,10 @@ The following example bucket policy allows full access to specific Multi\-Region
     }]
 }
 ```
-If there are multiple Multi\-Region Access Points in the bucket owner's account that you're granting access to, make sure to list each Multi\-Region Access Point\.
+If there are multiple Multi\-Region Access Points that you're granting access to, make sure to list each Multi\-Region Access Point\.
 
-**Example 2 – Granting access to a Multi\-Region Access Point in your Multi\-Region Access Point policy**  
-The following Multi\-Region Access Point policy allows account `123456789012` permission to view the objects contained in the Multi\-Region Access Point *`021345abcdef6.mrap`*\.  
+**Example 2 – Granting an account access to a Multi\-Region Access Point in your Multi\-Region Access Point policy**  
+The following Multi\-Region Access Point policy allows account `123456789012` permission to view the objects contained in the Multi\-Region Access Point *`MultiRegionAccessPoint_ARN`*\.  
 
 ```
 {
@@ -184,7 +186,7 @@ The following Multi\-Region Access Point policy allows account `123456789012` pe
         "AWS": "arn:aws:iam::123456789012:user/JohnDoe"
         },
         "Action": "s3:ListBucket",
-        "Resource": "arn:aws:s3::123456789012:accesspoint/zzzzzzzzzzzzz.mrap"
+        "Resource": "arn:aws:s3::123456789012:accesspoint/MultiRegionAccessPoint_ARN"
        }
     ]
 }

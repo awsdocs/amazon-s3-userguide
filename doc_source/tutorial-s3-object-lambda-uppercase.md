@@ -2,7 +2,7 @@
 
 When you store data in Amazon S3, you can easily share it for use by multiple applications\. However, each application might have unique data format requirements, and might need modification or processing of your data for a specific use case\. For example, a dataset created by an ecommerce application might include personally identifiable information \(PII\)\. When the same data is processed for analytics, this PII is not needed and should be redacted\. However, if the same dataset is used for a marketing campaign, you might need to enrich the data with additional details, such as information from the customer loyalty database\.
 
-With [S3 Object Lambda](http://aws.amazon.com/s3/features/object-lambda), you can add your own code to process data retrieved from S3 before returning it to an application\. Specifically, you can configure an AWS Lambda function and attach it to an S3 Object Lambda access point\. When an application sends [standard S3 GET requests](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html) through the S3 Object Lambda access point, the specified Lambda function is invoked to process any data retrieved from an S3 bucket through the supporting S3 access point\. Then, the S3 Object Lambda access point returns the transformed result back to the application\. You can author and execute your own custom Lambda functions, tailoring the S3 Object Lambda data transformation to your specific use case, all with no changes required to your applications\.
+With [S3 Object Lambda](http://aws.amazon.com/s3/features/object-lambda), you can add your own code to process data retrieved from S3 before returning it to an application\. Specifically, you can configure an AWS Lambda function and attach it to an S3 Object Lambda Access Point\. When an application sends [standard S3 GET requests](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html) through the S3 Object Lambda Access Point, the specified Lambda function is invoked to process any data retrieved from an S3 bucket through the supporting S3 access point\. Then, the S3 Object Lambda Access Point returns the transformed result back to the application\. You can author and execute your own custom Lambda functions, tailoring the S3 Object Lambda data transformation to your specific use case, all with no changes required to your applications\.
 
 ![\[This is an S3 Object Lambda workflow diagram.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/ol-example-image-global.png)
 
@@ -16,7 +16,7 @@ In this tutorial, you learn how to add custom code to standard S3 GET requests t
 + [Step 3: Create an S3 access point](#ol-upper-step3)
 + [Step 4: Create a Lambda function](#ol-upper-step4)
 + [Step 5: Configure an IAM policy for your Lambda function's execution role](#ol-upper-step5)
-+ [Step 6: Create an S3 Object Lambda access point](#ol-upper-step6)
++ [Step 6: Create an S3 Object Lambda Access Point](#ol-upper-step6)
 + [Step 7: View the transformed data](#ol-upper-step7)
 + [Step 8: Clean up](#ol-upper-step8)
 + [Next steps](#ol-upper-next-steps)
@@ -34,7 +34,7 @@ Before you start this tutorial, you must have an AWS account that you can sign i
 You can create an IAM user for the tutorial\. To complete this tutorial, your IAM user must attach the following IAM policies to access relevant AWS resources and perform specific actions\. For more information about how to create an IAM user, see [Creating IAM users \(console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) in the *IAM User Guide*\.
 
 Your IAM user requires the following policies:
-+ [AmazonS3FullAccess](https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/AmazonS3FullAccess$jsonEditor) – Grants permissions to all Amazon S3 actions, including permissions to create and use an Object Lambda access point\. 
++ [AmazonS3FullAccess](https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/AmazonS3FullAccess$jsonEditor) – Grants permissions to all Amazon S3 actions, including permissions to create and use an Object Lambda Access Point\. 
 + [AWSLambda\_FullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AWSLambda_FullAccess$jsonEditor) – Grants permissions to all Lambda actions\. 
 + [IAMFullAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/IAMFullAccess$jsonEditor) – Grants permissions to all IAM actions\. 
 + [IAMAccessAnalyzerReadOnlyAccess](https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/IAMAccessAnalyzerReadOnlyAccess$jsonEditor) – Grants permissions to read all access information provided by IAM Access Analyzer\. 
@@ -144,9 +144,9 @@ returning it to an application.
 
 ## Step 3: Create an S3 access point<a name="ol-upper-step3"></a>
 
-To use an S3 Object Lambda access point to access and transform the original data, you must create an S3 access point and associate it with the S3 bucket that you created in [Step 1](#ol-upper-step1)\. The access point must be in the same AWS Region as the objects that you want to transform\.
+To use an S3 Object Lambda Access Point to access and transform the original data, you must create an S3 access point and associate it with the S3 bucket that you created in [Step 1](#ol-upper-step1)\. The access point must be in the same AWS Region as the objects that you want to transform\.
 
-Later in this tutorial, you'll use this access point as a supporting access point for your Object Lambda access point\. 
+Later in this tutorial, you'll use this access point as a supporting access point for your Object Lambda Access Point\. 
 
 **To create an access point**
 
@@ -182,7 +182,7 @@ Later in this tutorial, you'll use this access point as a supporting access poin
 
 ## Step 4: Create a Lambda function<a name="ol-upper-step4"></a>
 
-To transform original data, create a Lambda function for use with your S3 Object Lambda access point\. 
+To transform original data, create a Lambda function for use with your S3 Object Lambda Access Point\. 
 
 **Topics**
 + [Write Lambda function code and create a deployment package with a virtual environment](#ol-upper-step4-write-lambda)
@@ -231,9 +231,9 @@ To transform original data, create a Lambda function for use with your S3 Object
        return {'status_code': 200}
    ```
 **Note**  
-The preceding example Lambda function loads the entire requested object into memory before transforming it and returning it to the client\. Alternatively, you can stream the object from S3 to avoid loading the entire object into memory\. This approach can be useful when working with large objects\. For more information about streaming responses with Object Lambda access points, see the streaming examples in [Working with `GetObject` requests in Lambda](olap-writing-lambda.md#olap-getobject-response)\.
+The preceding example Lambda function loads the entire requested object into memory before transforming it and returning it to the client\. Alternatively, you can stream the object from S3 to avoid loading the entire object into memory\. This approach can be useful when working with large objects\. For more information about streaming responses with Object Lambda Access Points, see the streaming examples in [Working with `GetObject` requests in Lambda](olap-writing-lambda.md#olap-getobject-response)\.
 
-   When you're writing a Lambda function for use with an S3 Object Lambda access point, the function is based on the input event context that S3 Object Lambda provides to the Lambda function\. The event context provides information about the request being made in the event passed from S3 Object Lambda to Lambda\. It contains the parameters that you use to create the Lambda function\.
+   When you're writing a Lambda function for use with an S3 Object Lambda Access Point, the function is based on the input event context that S3 Object Lambda provides to the Lambda function\. The event context provides information about the request being made in the event passed from S3 Object Lambda to Lambda\. It contains the parameters that you use to create the Lambda function\.
 
    The fields used to create the preceding Lambda function are as follows: 
 
@@ -242,7 +242,7 @@ The preceding example Lambda function loads the entire requested object into mem
    + `outputRoute` – A routing token that is added to the S3 Object Lambda URL when the Lambda function calls `WriteGetObjectResponse` to send back the transformed object\.
    + `outputToken` – A token used by S3 Object Lambda to match the `WriteGetObjectResponse` call with the original caller when sending back the transformed object\.
 
-   For more information about all the fields in the event context, see [Event context format and usage](olap-event-context.md) and [Writing Lambda functions for S3 Object Lambda access points](olap-writing-lambda.md)\.
+   For more information about all the fields in the event context, see [Event context format and usage](olap-event-context.md) and [Writing Lambda functions for S3 Object Lambda Access Points](olap-writing-lambda.md)\.
 
 1. In your local terminal, enter the following command to install the `virtualenv` package:
 
@@ -427,11 +427,11 @@ To enable your Lambda function to provide customized data and response headers t
 
 1. Choose **Attach policies**\. 
 
-## Step 6: Create an S3 Object Lambda access point<a name="ol-upper-step6"></a>
+## Step 6: Create an S3 Object Lambda Access Point<a name="ol-upper-step6"></a>
 
-An S3 Object Lambda access point provides the flexibility to invoke a Lambda function directly from an S3 GET request so that the function can process data retrieved from an S3 access point\. When creating and configuring an S3 Object Lambda access point, you must specify the Lambda function to invoke and provide the event context in JSON format as custom parameters for Lambda to use\.
+An S3 Object Lambda Access Point provides the flexibility to invoke a Lambda function directly from an S3 GET request so that the function can process data retrieved from an S3 access point\. When creating and configuring an S3 Object Lambda Access Point, you must specify the Lambda function to invoke and provide the event context in JSON format as custom parameters for Lambda to use\.
 
-**To create an S3 Object Lambda access point**
+**To create an S3 Object Lambda Access Point**
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -439,7 +439,7 @@ An S3 Object Lambda access point provides the flexibility to invoke a Lambda fun
 
 1. On the **Object Lambda Access Points** page, choose **Create Object Lambda Access Point**\.
 
-1. For **Object Lambda Access Point name**, enter the name that you want to use for the Object Lambda access point \(for example, **tutorial\-object\-lambda\-accesspoint**\)\. 
+1. For **Object Lambda Access Point name**, enter the name that you want to use for the Object Lambda Access Point \(for example, **tutorial\-object\-lambda\-accesspoint**\)\. 
 
 1. For **Supporting Access Point**, enter or browse to the standard access point that you created in [Step 3](#ol-upper-step3) \(for example, **tutorial\-access\-point**\), and then choose **Choose supporting Access Point**\. 
 
@@ -457,15 +457,15 @@ An S3 Object Lambda access point provides the flexibility to invoke a Lambda fun
 
 1. \(Optional\) Under **Payload \- *optional***, add JSON text to provide your Lambda function with additional information\.
 
-   A payload is optional JSON text that you can provide to your Lambda function as input for all invocations coming from a specific S3 Object Lambda access point\. To customize the behaviors for multiple Object Lambda access points that invoke the same Lambda function, you can configure payloads with different parameters, thereby extending the flexibility of your Lambda function\.
+   A payload is optional JSON text that you can provide to your Lambda function as input for all invocations coming from a specific S3 Object Lambda Access Point\. To customize the behaviors for multiple Object Lambda Access Points that invoke the same Lambda function, you can configure payloads with different parameters, thereby extending the flexibility of your Lambda function\.
 
    For more information about payload, see [Event context format and usage](olap-event-context.md)\.
 
-1. \(Optional\) For **Request metrics \- *optional***, choose **Disable** or **Enable** to add Amazon S3 monitoring to your Object Lambda access point\. Request metrics are billed at the standard Amazon CloudWatch rate\. For more information, see [CloudWatch pricing](http://aws.amazon.com/cloudwatch/pricing/)\.
+1. \(Optional\) For **Request metrics \- *optional***, choose **Disable** or **Enable** to add Amazon S3 monitoring to your Object Lambda Access Point\. Request metrics are billed at the standard Amazon CloudWatch rate\. For more information, see [CloudWatch pricing](http://aws.amazon.com/cloudwatch/pricing/)\.
 
 1. Under **Object Lambda Access Point policy \- *optional***, keep the default setting\. 
 
-   \(Optional\) You can set a resource policy\. This resource policy grants the `GetObject` API permission to use the specified Object Lambda access point\.
+   \(Optional\) You can set a resource policy\. This resource policy grants the `GetObject` API permission to use the specified Object Lambda Access Point\.
 
 1. Keep the remaining settings set to the defaults, and choose **Create Object Lambda Access Point**\.
 
@@ -474,20 +474,20 @@ An S3 Object Lambda access point provides the flexibility to invoke a Lambda fun
 Now, S3 Object Lambda is ready to transform your data for your use case\. In this tutorial, S3 Object Lambda transforms all the text in your object to uppercase\.
 
 **Topics**
-+ [View the transformed data in your S3 Object Lambda access point](#ol-upper-step7-check-data)
++ [View the transformed data in your S3 Object Lambda Access Point](#ol-upper-step7-check-data)
 + [Run a Python script to print the original and transformed data](#ol-upper-step7-python-print)
 
-### View the transformed data in your S3 Object Lambda access point<a name="ol-upper-step7-check-data"></a>
+### View the transformed data in your S3 Object Lambda Access Point<a name="ol-upper-step7-check-data"></a>
 
-When you request to retrieve a file through your S3 Object Lambda access point, you make a `GetObject` API call to S3 Object Lambda\. S3 Object Lambda invokes the Lambda function to transform your data, and then returns the transformed data as the response to the standard S3 `GetObject` API call\.
+When you request to retrieve a file through your S3 Object Lambda Access Point, you make a `GetObject` API call to S3 Object Lambda\. S3 Object Lambda invokes the Lambda function to transform your data, and then returns the transformed data as the response to the standard S3 `GetObject` API call\.
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the left navigation pane, choose **Object Lambda Access Points**\.
 
-1. On the **Object Lambda Access Points** page, choose the S3 Object Lambda access point that you created in [Step 6](#ol-upper-step6) \(for example, **tutorial\-object\-lambda\-accesspoint**\)\.
+1. On the **Object Lambda Access Points** page, choose the S3 Object Lambda Access Point that you created in [Step 6](#ol-upper-step6) \(for example, **tutorial\-object\-lambda\-accesspoint**\)\.
 
-1. On the **Objects** tab of your S3 Object Lambda access point, select the file that has the same name \(for example, `tutorial.txt`\) as the one that you uploaded to the S3 bucket in [Step 2](#ol-upper-step2)\. 
+1. On the **Objects** tab of your S3 Object Lambda Access Point, select the file that has the same name \(for example, `tutorial.txt`\) as the one that you uploaded to the S3 bucket in [Step 2](#ol-upper-step2)\. 
 
    This file should contain all the transformed data\.
 
@@ -495,21 +495,21 @@ When you request to retrieve a file through your S3 Object Lambda access point, 
 
 ### Run a Python script to print the original and transformed data<a name="ol-upper-step7-python-print"></a>
 
-You can use S3 Object Lambda with your existing applications\. To do so, update your application configuration to use the new S3 Object Lambda access point ARN that you created in [Step 6](#ol-upper-step6) to retrieve data from S3\.
+You can use S3 Object Lambda with your existing applications\. To do so, update your application configuration to use the new S3 Object Lambda Access Point ARN that you created in [Step 6](#ol-upper-step6) to retrieve data from S3\.
 
-The following example Python script prints both the original data from the S3 bucket and the transformed data from the S3 Object Lambda access point\. 
+The following example Python script prints both the original data from the S3 bucket and the transformed data from the S3 Object Lambda Access Point\. 
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the left navigation pane, choose **Object Lambda Access Points**\.
 
-1. On the **Object Lambda Access Points** page, choose the radio button to the left of the S3 Object Lambda access point that you created in [Step 6](#ol-upper-step6) \(for example, **tutorial\-object\-lambda\-accesspoint**\)\.
+1. On the **Object Lambda Access Points** page, choose the radio button to the left of the S3 Object Lambda Access Point that you created in [Step 6](#ol-upper-step6) \(for example, **tutorial\-object\-lambda\-accesspoint**\)\.
 
 1. Choose **Copy ARN**\.
 
 1. Save the ARN for use later\.
 
-1. Write a Python script on your local machine to print both the original data \(for example, `tutorial.txt`\) from your S3 Bucket and the transformed data \(for example, `tutorial.txt`\) from your S3 Object Lambda access point\)\. You can use the following example script\. 
+1. Write a Python script on your local machine to print both the original data \(for example, `tutorial.txt`\) from your S3 Bucket and the transformed data \(for example, `tutorial.txt`\) from your S3 Object Lambda Access Point\)\. You can use the following example script\. 
 
    ```
    import boto3
@@ -531,7 +531,7 @@ The following example Python script prints both the original data from the S3 bu
    
    print('Object transformed by S3 Object Lambda:')
    # Replace the two input parameters of getObject() below with 
-   # the ARN of your S3 Object Lambda access point that you saved earlier and
+   # the ARN of your S3 Object Lambda Access Point that you saved earlier and
    # the name of the file with the transformed data (which in this case is
    # the same as the name of the file that you uploaded to the S3 bucket 
    # in Step 2)
@@ -566,7 +566,7 @@ The following example Python script prints both the original data from the S3 bu
 If you transformed your data through S3 Object Lambda only as a learning exercise, delete the AWS resources that you allocated so that you no longer accrue charges\. 
 
 **Topics**
-+ [Delete the Object Lambda access point](#ol-upper-step8-delete-olap)
++ [Delete the Object Lambda Access Point](#ol-upper-step8-delete-olap)
 + [Delete the S3 access point](#ol-upper-step8-delete-ap)
 + [Delete the execution role for your Lambda function](#ol-upper-step8-delete-lambda-role)
 + [Delete the Lambda function](#ol-upper-step8-delete-lambda-function)
@@ -575,17 +575,17 @@ If you transformed your data through S3 Object Lambda only as a learning exercis
 + [Delete the S3 source bucket](#ol-upper-step8-delete-bucket)
 + [Delete the IAM user](#ol-upper-step8-delete-user)
 
-### Delete the Object Lambda access point<a name="ol-upper-step8-delete-olap"></a>
+### Delete the Object Lambda Access Point<a name="ol-upper-step8-delete-olap"></a>
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
 1. In the left navigation pane, choose **Object Lambda Access Points**\.
 
-1. On the **Object Lambda Access Points** page, choose the radio button to the left of the S3 Object Lambda access point that you created in [Step 6](#ol-upper-step6) \(for example, **tutorial\-object\-lambda\-accesspoint**\)\.
+1. On the **Object Lambda Access Points** page, choose the radio button to the left of the S3 Object Lambda Access Point that you created in [Step 6](#ol-upper-step6) \(for example, **tutorial\-object\-lambda\-accesspoint**\)\.
 
 1. Choose **Delete**\.
 
-1. Confirm that you want to delete your Object Lambda access point by entering its name in the text field that appears, and then choose **Delete**\.
+1. Confirm that you want to delete your Object Lambda Access Point by entering its name in the text field that appears, and then choose **Delete**\.
 
 ### Delete the S3 access point<a name="ol-upper-step8-delete-ap"></a>
 

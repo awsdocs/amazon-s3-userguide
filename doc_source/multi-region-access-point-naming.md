@@ -1,0 +1,11 @@
+# Rules for naming Amazon S3 Multi\-Region Access Points<a name="multi-region-access-point-naming"></a>
+
+When you create a Multi\-Region Access Point, you give it a name, which is a string that you choose\. You can't change the name of the Multi\-Region Access Point after it is created\. The name must be unique in your AWS account, and it must conform to the naming requirements listed in [Multi\-Region Access Point restrictions and limitations](MultiRegionAccessPointRestrictions.md)\. To help you identify the Multi\-Region Access Point, use a name that is meaningful to you, to your organization, or that reflects the scenario\. 
+
+You use this name when invoking Multi\-Region Access Point management operations, such as `GetMultiRegionAccessPoint` and `PutMultiRegionAccessPointPolicy`\. The name is not used to send requests to the Multi\-Region Access Point, and it doesn’t need to be exposed to clients who make requests by using the Multi\-Region Access Point\. 
+
+When Amazon S3 creates a Multi\-Region Access Point, it automatically assigns an alias to it\. This alias is a unique alphanumeric string that ends in `.mrap`\. The alias is used to construct the hostname and the Amazon Resource Name \(ARN\) for a Multi\-Region Access Point\. The fully qualified name is also based on the alias for the Multi\-Region Access Point\.
+
+You can’t determine the name of a Multi\-Region Access Point from its alias, so you can disclose an alias without risk of exposing the name, purpose, or owner of the Multi\-Region Access Point\. Amazon S3 selects the alias for each new Multi\-Region Access Point, and the alias can’t be changed\. For more information about addressing a Multi\-Region Access Point, see [Making requests through a Multi\-Region Access Point](MultiRegionAccessPointRequests.md)\. 
+
+Multi\-Region Access Point aliases are unique throughout time and aren’t based on the name or configuration of a Multi\-Region Access Point\. If you create a Multi\-Region Access Point, and then delete it and create another one with the same name and configuration, the second Multi\-Region Access Point will have a different alias than the first\. New Multi\-Region Access Points can never have the same alias as a previous Multi\-Region Access Point\.

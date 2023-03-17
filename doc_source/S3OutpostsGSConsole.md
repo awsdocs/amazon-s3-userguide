@@ -70,7 +70,7 @@ Avoid including sensitive information such as account numbers in the bucket name
 
 1. Choose **Create Outposts bucket**\.
 **Note**  
-It can take up to 5 minutes for your Outposts endpoint to be created and your bucket to be ready to use\. To configure additional bucket settings, choose **View details**\.
+It can take up to 5 minutes for your Outpost endpoint to be created and your bucket to be ready to use\. To configure additional bucket settings, choose **View details**\.
 
 ## Next steps<a name="S3OutpostsGSConsoleNext"></a>
 

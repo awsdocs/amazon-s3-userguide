@@ -49,7 +49,7 @@ aws s3control list-regional-buckets --region us-east-1 --endpoint-url https://vp
 
 ### AWS SDK examples<a name="s3-outposts-privatelink-aws-sdk-examples"></a>
 
-Update your SDKs to the latest version, and configure your clients to use an endpoint URL for accessing the S3 control API for S3 on Outposts interface endpoints\.
+Update your SDKs to the latest version, and configure your clients to use an endpoint URL for accessing the S3 control API for S3 on Outposts interface endpoints\. For more information, see [AWS SDK examples for AWS PrivateLink](privatelink-interface-endpoints.md#privatelink-aws-sdk-examples)\.
 
 ------
 #### [ SDK for Python \(Boto3\) ]

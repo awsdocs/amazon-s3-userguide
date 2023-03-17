@@ -1,6 +1,6 @@
-# Writing Lambda functions for S3 Object Lambda access points<a name="olap-writing-lambda"></a>
+# Writing Lambda functions for S3 Object Lambda Access Points<a name="olap-writing-lambda"></a>
 
-This section details how to write AWS Lambda functions for use with Amazon S3 Object Lambda access points\.
+This section details how to write AWS Lambda functions for use with Amazon S3 Object Lambda Access Points\.
 
 To learn about complete end\-to\-end procedures for some S3 Object Lambda tasks, see the following:
 + [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md)
@@ -17,7 +17,7 @@ To learn about complete end\-to\-end procedures for some S3 Object Lambda tasks,
 
 ## Working with `GetObject` requests in Lambda<a name="olap-getobject-response"></a>
 
-This section assumes that your Object Lambda access point is configured to call the Lambda function for `GetObject`\. S3 Object Lambda includes the Amazon S3 API operation, `WriteGetObjectResponse`, which enables the Lambda function to provide customized data and response headers to the `GetObject` caller\. 
+This section assumes that your Object Lambda Access Point is configured to call the Lambda function for `GetObject`\. S3 Object Lambda includes the Amazon S3 API operation, `WriteGetObjectResponse`, which enables the Lambda function to provide customized data and response headers to the `GetObject` caller\. 
 
 `WriteGetObjectResponse` gives you extensive control over the status code, response headers, and response body, based on your processing needs\. You can use `WriteGetObjectResponse` to respond with the whole transformed object, portions of the transformed object, or other responses based on the context of your application\. The following section shows unique examples of using the `WriteGetObjectResponse` API operation\.
 + **Example 1:** Respond with HTTP status code 403 \(Forbidden\) 
@@ -503,7 +503,7 @@ The route and request token parameters are required to connect the `WriteGetObje
 
 ## Working with `HeadObject` requests in Lambda<a name="olap-headobject"></a>
 
-This section assumes that your Object Lambda access point is configured to call the Lambda function for `HeadObject`\. Lambda will receive a JSON payload that contains a key called `headObjectContext`\. Inside the context, there is a single property called `inputS3Url`, which is a presigned URL for the supporting access point for `HeadObject`\.
+This section assumes that your Object Lambda Access Point is configured to call the Lambda function for `HeadObject`\. Lambda will receive a JSON payload that contains a key called `headObjectContext`\. Inside the context, there is a single property called `inputS3Url`, which is a presigned URL for the supporting access point for `HeadObject`\.
 
 The presigned URL will include the following properties if they're specified: 
 + `versionId` \(in the query parameters\)
@@ -650,7 +650,7 @@ def lambda_handler(event, context):
 
 ## Working with `ListObjects` requests in Lambda<a name="olap-listobjects"></a>
 
-This section assumes that your Object Lambda access point is configured to call the Lambda function for `ListObjects`\. Lambda will receive the JSON payload with a new object named `listObjectsContext`\. `listObjectsContext`contains a single property, `inputS3Url`, which is a presigned URL for the supporting access point for `ListObjects`\.
+This section assumes that your Object Lambda Access Point is configured to call the Lambda function for `ListObjects`\. Lambda will receive the JSON payload with a new object named `listObjectsContext`\. `listObjectsContext`contains a single property, `inputS3Url`, which is a presigned URL for the supporting access point for `ListObjects`\.
 
 Unlike `GetObject` and `HeadObject`, the presigned URL will include the following properties if they're specified:
 + All the query parameters
@@ -827,7 +827,7 @@ The following example shows the structure of the Lambda response JSON for `ListO
 
 ## Working with `ListObjectsV2` requests in Lambda<a name="olap-listobjectsv2"></a>
 
-This section assumes that your Object Lambda access point is configured to call the Lambda function for `ListObjectsV2`\. Lambda will receive the JSON payload with a new object named `listObjectsV2Context`\. `listObjectsV2Context` contains a single property, `inputS3Url`, which is a presigned URL for the supporting access point for `ListObjectsV2`\.
+This section assumes that your Object Lambda Access Point is configured to call the Lambda function for `ListObjectsV2`\. Lambda will receive the JSON payload with a new object named `listObjectsV2Context`\. `listObjectsV2Context` contains a single property, `inputS3Url`, which is a presigned URL for the supporting access point for `ListObjectsV2`\.
 
 Unlike `GetObject` and `HeadObject`, the presigned URL will include the following properties, if they're specified: 
 + All the query parameters

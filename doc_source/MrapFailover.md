@@ -8,12 +8,6 @@ For example, to perform failover to an AWS Region of your choice, you shift traf
 
 If you have S3 Cross\-Region Replication \(CRR\) enabled with two\-way replication rules, you can keep your buckets synchronized during a failover\. In addition, if you have CRR enabled in an active\-active configuration, Amazon S3 Multi\-Region Access Points can also fetch data from the bucket location of closest proximity, which improves application performance\. 
 
-## Amazon S3 Multi\-Region Access Points routing states<a name="FailoverConfiguration"></a>
-
-Your Amazon S3 Multi\-Region Access Points failover configuration determines the routing status of the AWS Regions that are used with the Multi\-Region Access Point\. You can configure your Amazon S3 Multi\-Region Access Point to be in an active\-active state or active\-passive state\.
-+ **Active\-active** – In an active\-active configuration, all requests are automatically sent to the closest proximity AWS Region in your Multi\-Region Access Point\. After the Multi\-Region Access Point has been configured to be in an active\-active state, all Regions can receive traffic\. If traffic disruption occurs in an active\-active configuration, network traffic will automatically be redirected to one of the active Regions\.
-+ **Active\-passive** – In an active\-passive configuration, the active Regions in your Multi\-Region Access Point receive traffic and the passive ones do not\. If you intend to use S3 failover controls to initiate failover in a disaster situation, set up your Multi\-Region Access Points in an active\-passive configuration while you're testing and performing disaster\-recovery planning\.
-
 ## AWS Region support<a name="RegionSupport"></a>
 
 With Amazon S3 Multi\-Region Access Points failover controls, your S3 buckets can be in any of the [17 Regions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointRestrictions.html) where Multi\-Region Access Points are supported\. You can initiate failover across any two Regions at one time\.
@@ -24,6 +18,7 @@ Although failover is initiated between only two Regions at one time, you can sep
 The following topics demonstrate how to use and manage Amazon S3 Multi\-Region Access Point failover controls\.
 
 **Topics**
-+ [Amazon S3 Multi\-Region Access Points routing states](#FailoverConfiguration)
 + [AWS Region support](#RegionSupport)
++ [Amazon S3 Multi\-Region Access Points routing states](FailoverConfiguration.md)
 + [Using Amazon S3 Multi\-Region Access Point failover controls](UsingFailover.md)
++ [Amazon S3 Multi\-Region Access Point failover controls errors](mrap-failover-errors.md)

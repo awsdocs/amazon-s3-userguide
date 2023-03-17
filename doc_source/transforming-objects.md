@@ -5,21 +5,21 @@ With Amazon S3 Object Lambda, you can add your own code to Amazon S3 `GET`, `LIS
 **How S3 Object Lambda works**  
 S3 Object Lambda uses AWS Lambda functions to automatically process the output of standard S3 `GET`, `LIST`, or `HEAD` requests\. AWS Lambda is a serverless compute service that runs customer\-defined code without requiring management of underlying compute resources\. You can author and run your own custom Lambda functions, tailoring the data transformation to your specific use cases\. 
 
-After you configure a Lambda function, you attach it to an S3 Object Lambda service endpoint, known as an *Object Lambda access point*\. The Object Lambda access point uses a standard S3 access point, known as a *supporting access point*, to access Amazon S3\. 
+After you configure a Lambda function, you attach it to an S3 Object Lambda service endpoint, known as an *Object Lambda Access Point*\. The Object Lambda Access Point uses a standard S3 access point, known as a *supporting access point*, to access Amazon S3\. 
 
-When you send a request to your Object Lambda access point, Amazon S3 automatically calls your Lambda function\. Any data retrieved by using an S3 `GET`, `LIST`, or `HEAD` request through the Object Lambda access point returns a transformed result back to the application\. All other requests are processed as normal, as illustrated in the following diagram\. 
+When you send a request to your Object Lambda Access Point, Amazon S3 automatically calls your Lambda function\. Any data retrieved by using an S3 `GET`, `LIST`, or `HEAD` request through the Object Lambda Access Point returns a transformed result back to the application\. All other requests are processed as normal, as illustrated in the following diagram\. 
 
 
 
-![\[S3 Object Lambda diagram, showing how GET, LIST, or HEAD requests from a client application are transformed when they're made through Object Lambda access points.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/ObjectLamdaDiagram.png)
+![\[S3 Object Lambda diagram, showing how GET, LIST, or HEAD requests from a client application are transformed when they're made through Object Lambda Access Points.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/ObjectLamdaDiagram.png)
 
 The topics in this section describe how to work with S3 Object Lambda\.
 
 **Topics**
-+ [Creating Object Lambda access points](olap-create.md)
++ [Creating Object Lambda Access Points](olap-create.md)
 + [Using Amazon S3 Object Lambda Access Points](olap-use.md)
-+ [Security considerations for S3 Object Lambda access points](olap-security.md)
-+ [Writing Lambda functions for S3 Object Lambda access points](olap-writing-lambda.md)
++ [Security considerations for S3 Object Lambda Access Points](olap-security.md)
++ [Writing Lambda functions for S3 Object Lambda Access Points](olap-writing-lambda.md)
 + [Using AWS built Lambda functions](olap-examples.md)
 + [Best practices and guidelines for S3 Object Lambda](olap-best-practices.md)
 + [S3 Object Lambda tutorials](olap-tutorials.md)

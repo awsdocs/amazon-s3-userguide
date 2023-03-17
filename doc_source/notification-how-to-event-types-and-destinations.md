@@ -1,6 +1,6 @@
 # Event notification types and destinations<a name="notification-how-to-event-types-and-destinations"></a>
 
-Amazon S3 supports several event notification types and destinations where the notifications can be published\. You can specify the event type and destination when configuring your event notifications\.
+Amazon S3 supports several event notification types and destinations where the notifications can be published\. You can specify the event type and destination when configuring your event notifications\. Only one destination can be specified for each event notification\.
 
 **Topics**
 + [Supported event destinations](#supported-notification-destinations)
@@ -15,12 +15,14 @@ Amazon S3 can send event notification messages to the following destinations\.
 + AWS Lambda
 + Amazon EventBridge
 
+However, only one destination type can be specified for each event notification\.
+
 **Note**  
 You must grant Amazon S3 permissions to post messages to an Amazon SNS topic or an Amazon SQS queue\. You must also grant Amazon S3 permission to invoke an AWS Lambda function on your behalf\. For instructions on how to grant these permissions, see [Granting permissions to publish event notification messages to a destination](grant-destinations-permissions-to-s3.md)\. 
 
 ### Amazon SNS topic<a name="amazon-sns-topic"></a>
 
-Amazon SNS is a flexible, fully managed push messaging service\. You can use this service to push messages to mobile devices or distributed services\. With SNS,you can publish a message once, and deliver it one or more times\. Currently, Standard SNS is only allowed as an S3 event notification destination, whereas SNS FIFO is not allowed\.
+Amazon SNS is a flexible, fully managed push messaging service\. You can use this service to push messages to mobile devices or distributed services\. With SNS, you can publish a message once, and deliver it one or more times\. Currently, Standard SNS is only allowed as an S3 event notification destination, whereas SNS FIFO is not allowed\.
 
 Amazon SNS both coordinates and manages sending and delivering messages to subscribing endpoints or clients\. You can use the Amazon SNS console to create an Amazon SNS topic that your notifications can be sent to\. 
 

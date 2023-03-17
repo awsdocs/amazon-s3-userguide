@@ -116,7 +116,7 @@ You can temporarily disable a S3 Lifecycle rule\. The following S3 Lifecycle con
 + Rule 1 directs Amazon S3 to transition objects with the `logs/` prefix to the S3 Glacier Flexible Retrieval storage class soon after creation\. 
 + Rule 2 directs Amazon S3 to transition objects with the `documents/` prefix to the S3 Glacier Flexible Retrieval storage class soon after creation\. 
 
-In the policy, Rule 1 is enabled and Rule 2 is disabled\. Amazon S3 ignores disabled rules\.
+In the configuration, Rule 1 is enabled and Rule 2 is disabled\. Amazon S3 ignores disabled rules\.
 
 ```
 <LifecycleConfiguration>
@@ -332,7 +332,7 @@ For the subset of objects with the `logs/` key name prefix, S3 Lifecycle actions
 In this case, Amazon S3 chooses to transition them 10 days after creation\. 
 
 **Example 4: Tag\-based filtering and resulting conflicting lifecycle actions**  
-Suppose that you have the following S3 Lifecycle policy that has two rules, each specifying a tag filter:  
+Suppose that you have the following S3 Lifecycle configuration that has two rules, each specifying a tag filter:  
 + Rule 1 specifies a tag\-based filter \(`tag1/value1`\)\. This rule directs Amazon S3 to transition objects to the S3 Glacier Flexible Retrieval storage class 365 days after creation\.
 + Rule 2 specifies a tag\-based filter \(`tag2/value2`\)\. This rule directs Amazon S3 to expire objects 14 days after creation\.
 The S3 Lifecycle configuration is shown in following example\.  
@@ -415,7 +415,7 @@ A versioning\-enabled bucket has one current version and zero or more noncurrent
 
 This example shows a scenario that can create expired object delete markers in your bucket, and how you can use S3 Lifecycle configuration to direct Amazon S3 to remove the expired object delete markers\.
 
-Suppose that you write a S3 Lifecycle policy that uses the `NoncurrentVersionExpiration` action to remove the noncurrent versions 30 days after they become noncurrent and retains at most 10 noncurrent versions, as shown in the following example\.
+Suppose that you write a S3 Lifecycle configuration that uses the `NoncurrentVersionExpiration` action to remove the noncurrent versions 30 days after they become noncurrent and retains at most 10 noncurrent versions, as shown in the following example\.
 
 ```
 <LifecycleConfiguration>
@@ -434,7 +434,7 @@ The `NoncurrentVersionExpiration` action does not apply to the current object ve
 For current object versions, you have the following options to manage their lifetime, depending on whether the current object versions follow a well\-defined lifecycle: 
 + **The current object versions follow a well\-defined lifecycle\.**
 
-  In this case, you can use an S3 Lifecycle policy with the `Expiration` action to direct Amazon S3 to remove the current versions, as shown in the following example\.
+  In this case, you can use an S3 Lifecycle configuration with the `Expiration` action to direct Amazon S3 to remove the current versions, as shown in the following example\.
 
   ```
   <LifecycleConfiguration>

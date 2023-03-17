@@ -4,7 +4,7 @@ After you initiate a multipart upload, you begin uploading parts\. Amazon S3 sto
 
 You are billed for all storage associated with uploaded parts\. For more information, see [Multipart upload and pricing](mpuoverview.md#mpuploadpricing)\. So it's important that you either complete the multipart upload to have the object created or stop the multipart upload to remove any uploaded parts\.
 
-You can stop an in\-progress multipart upload in Amazon S3 using the AWS Command Line Interface \(AWS CLI\), REST API, or AWS SDKs\. You can also stop an incomplete multipart upload using a bucket lifecycle policy\.
+You can stop an in\-progress multipart upload in Amazon S3 using the AWS Command Line Interface \(AWS CLI\), REST API, or AWS SDKs\. You can also stop an incomplete multipart upload using a bucket lifecycle configuration\.
 
 ## Using the AWS SDKs \(high\-level API\)<a name="abort-mpu-high-level"></a>
 

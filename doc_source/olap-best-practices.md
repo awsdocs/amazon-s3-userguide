@@ -11,7 +11,7 @@ When using S3 Object Lambda, follow these best practices and guidelines to optim
 
 ## Working with S3 Object Lambda<a name="olap-working-with"></a>
 
-S3 Object Lambda supports processing only `GET`, `LIST`, and `HEAD` requests\. Any other requests don't invoke AWS Lambda and instead return standard, non\-transformed API responses\. You can create a maximum of 1,000 Object Lambda access points per AWS account per Region\. The AWS Lambda function that you use must be in the same AWS account and Region as the Object Lambda access point\.
+S3 Object Lambda supports processing only `GET`, `LIST`, and `HEAD` requests\. Any other requests don't invoke AWS Lambda and instead return standard, non\-transformed API responses\. You can create a maximum of 1,000 Object Lambda Access Points per AWS account per Region\. The AWS Lambda function that you use must be in the same AWS account and Region as the Object Lambda Access Point\.
 
 S3 Object Lambda allows up to 60 seconds to stream a complete response to its caller\. Your function is also subject to AWS Lambda default quotas\. For more information, see [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) in the *AWS Lambda Developer Guide*\. 
 
@@ -19,7 +19,7 @@ When S3 Object Lambda invokes your specified Lambda function, you are responsibl
 
 You can use S3 Object Lambda only to perform operations on objects\. You cannot use S3 Object Lambda to perform other Amazon S3 operations, such as modifying or deleting buckets\. For a complete list of S3 operations that support access points, see [Access point compatibility with S3 operations](access-points-usage-examples.md#access-points-operations-support)\.
 
-In addition to this list, Object Lambda access points do not support the [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html), [https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html) \(as the source\), and [https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html) API operations\.
+In addition to this list, Object Lambda Access Points do not support the [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOST.html), [https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html) \(as the source\), and [https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html) API operations\.
 
 ## AWS services used in connection with S3 Object Lambda<a name="olap-services"></a>
 
@@ -33,7 +33,7 @@ For more information see, [Working with Range and partNumber headers](range-get-
 
 ## Transforming the `expiry-date`<a name="olap-console-download"></a>
 
-You can open or download transformed objects from your Object Lambda access point on the AWS Management Console\. These objects must be non\-expired\. If your Lambda function transforms the `expiry-date` of your objects, you might see expired objects that cannot be opened or downloaded\. This behavior applies only to S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive restored objects\.
+You can open or download transformed objects from your Object Lambda Access Point on the AWS Management Console\. These objects must be non\-expired\. If your Lambda function transforms the `expiry-date` of your objects, you might see expired objects that cannot be opened or downloaded\. This behavior applies only to S3 Glacier Flexible Retrieval and S3 Glacier Deep Archive restored objects\.
 
 ## Working with the AWS CLI and AWS SDKs<a name="olap-cli-sdk"></a>
 

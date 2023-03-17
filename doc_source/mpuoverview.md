@@ -68,6 +68,9 @@ It is possible for some other request received between the time you initiated a 
 
 After you initiate a multipart upload, Amazon S3 retains all the parts until you either complete or stop the upload\. Throughout its lifetime, you are billed for all storage, bandwidth, and requests for this multipart upload and its associated parts\. If you stop the multipart upload, Amazon S3 deletes upload artifacts and any parts that you have uploaded, and you are no longer billed for them\. For more information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 
+**Note**  
+To minimize your storage costs, we recommend that you configure a lifecycle rule to delete incomplete multipart uploads after a specified number of days by using the `AbortIncompleteMultipartUpload` action\. For more information about creating a lifecycle rule to delete incomplete multipart uploads, see [Configuring a bucket lifecycle configuration to delete incomplete multipart uploads](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/mpu-abort-incomplete-mpu-lifecycle-config.html)\.
+
 ## API support for multipart upload<a name="apisupportformpu"></a>
 
 These libraries provide a high\-level abstraction that makes uploading multipart objects easy\. However, if your application requires, you can use the REST API directly\. The following sections in the *Amazon Simple Storage Service API Reference* describe the REST API for multipart upload\. 
@@ -132,7 +135,7 @@ For information on the relationship between ACL permissions and permissions in a
 + [AWS Command Line Interface support for multipart upload](#clisupportformpu)
 + [AWS SDK support for multipart upload](#sdksupportformpu)
 + [Multipart upload API and permissions](#mpuAndPermissions)
-+ [Configuring a bucket lifecycle configuration to abort incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)
++ [Configuring a bucket lifecycle configuration to delete incomplete multipart uploads](mpu-abort-incomplete-mpu-lifecycle-config.md)
 + [Uploading an object using multipart upload](mpu-upload-object.md)
 + [Uploading a directory using the high\-level \.NET TransferUtility class](HLuploadDirDotNet.md)
 + [Listing multipart uploads](list-mpu.md)

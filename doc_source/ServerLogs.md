@@ -61,9 +61,9 @@ If the target bucket uses the bucket owner enforced setting for Object Ownership
 
 Server access log records are delivered on a best effort basis\. Most requests for a bucket that is properly configured for logging result in a delivered log record\. Most log records are delivered within a few hours of the time that they are recorded, but they can be delivered more frequently\. 
 
-The completeness and timeliness of server logging is not guaranteed\. The log record for a particular request might be delivered long after the request was actually processed, or *it might not be delivered at all*\. The purpose of server logs is to give you an idea of the nature of traffic against your bucket\. It is rare to lose log records, but server logging is not meant to be a complete accounting of all requests\. 
+The completeness and timeliness of server logging is not guaranteed\. The log record for a particular request might be delivered long after the request was actually processed, or *it might not be delivered at all*\. It is possible that you might even see a duplication of a log record\. The purpose of server logs is to give you an idea of the nature of traffic against your bucket\. While it is rare to lose log records or to see a duplication of log records, be aware that server logging is not meant to be a complete accounting of all requests\.
 
-It follows from the best\-effort nature of the server logging feature that the usage reports available at the AWS portal \(Billing and Cost Management reports on the [AWS Management Console](https://console.aws.amazon.com/)\) might include one or more access requests that do not appear in a delivered server log\. 
+As a result, the best\-effort nature of the server logging feature that the usage reports might include one or more access requests that do not appear in a delivered server log\. You can find this usage report under **Cost & usage reports** in the AWS Billing and Cost Management console\.
 
 ## Bucket logging status changes take effect over time<a name="BucketLoggingStatusChanges"></a>
 

@@ -28,6 +28,9 @@ Amazon S3 can send event notification messages to the following destinations\. Y
 
 For more information, see [Supported event destinations](notification-how-to-event-types-and-destinations.md#supported-notification-destinations)\.
 
+**Note**  
+Amazon Simple Queue Service FIFO \(First\-In\-First\-Out\) queues aren't supported as an Amazon S3 event notification destination\. To send a notification for an Amazon S3 event to an Amazon SQS FIFO queue, you can use Amazon EventBridge\. For more information, see [Enabling Amazon EventBridge](enable-event-notifications-eventbridge.md)\.
+
 **Warning**  
 If your notification writes to the same bucket that triggers the notification, it could cause an execution loop\. For example, if the bucket triggers a Lambda function each time an object is uploaded, and the function uploads an object to the bucket, then the function indirectly triggers itself\. To avoid this, use two buckets, or configure the trigger to only apply to a prefix used for incoming objects\.  
 For more information and an example of using Amazon S3 notifications with AWS Lambda, see [Using AWS Lambda with Amazon S3](https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html) in the *AWS Lambda Developer Guide*\. 

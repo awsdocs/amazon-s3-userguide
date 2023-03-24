@@ -36,6 +36,9 @@ https://s3.us-west-2.amazonaws.com/DOC-EXAMPLE-BUCKET1/puppy.jpg
 **Important**  
 Update \(September 23, 2020\) – To make sure that customers have the time that they need to transition to virtual\-hosted–style URLs, we have decided to delay the deprecation of path\-style URLs\. For more information, see [Amazon S3 Path Deprecation Plan – The Rest of the Story](https://aws.amazon.com/blogs/aws/amazon-s3-path-deprecation-plan-the-rest-of-the-story/) in the *AWS News Blog*\.
 
+**Warning**  
+When hosting website content that will be accessed from a web browser, avoid using path\-style URLs, which might interfere with the browser same origin security model\. To host website content, we recommend that you use either S3 website endpoints or a CloudFront distribution\. For more information, see [Website endpoints](WebsiteEndpoints.md) and [ Deploy a React\-based single\-page application to Amazon S3 and CloudFront](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/deploy-a-react-based-single-page-application-to-amazon-s3-and-cloudfront.html) in the *AWS Perspective Guidance Patterns*\.
+
 ## Virtual\-hosted–style requests<a name="virtual-hosted-style-access"></a>
 
 In a virtual\-hosted–style URI, the bucket name is part of the domain name in the URL\.

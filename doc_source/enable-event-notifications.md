@@ -4,6 +4,9 @@ You can enable certain Amazon S3 bucket events to send a notification message to
 
 **Prerequisites**: Before you can enable event notifications for your bucket, you must set up one of the destination types and then configure permissions\. For more information, see [Supported event destinations](notification-how-to-event-types-and-destinations.md#supported-notification-destinations) and [Granting permissions to publish event notification messages to a destination](grant-destinations-permissions-to-s3.md)\.
 
+**Note**  
+Amazon Simple Queue Service FIFO \(First\-In\-First\-Out\) queues aren't supported as an Amazon S3 event notification destination\. To send a notification for an Amazon S3 event to an Amazon SQS FIFO queue, you can use Amazon EventBridge\. For more information, see [Enabling Amazon EventBridge](enable-event-notifications-eventbridge.md)\.
+
 **Topics**
 + [Enabling Amazon SNS, Amazon SQS, or Lambda notifications using the Amazon S3 console](#enable-event-notifications-sns-sqs-lam)
 

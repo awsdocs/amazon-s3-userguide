@@ -40,6 +40,8 @@ The examples for uploading objects in nonversioned and versioning\-enabled bucke
 
 For examples of downloading objects using AWS SDKs for Java, \.NET, and PHP, see [Downloading objects](https://docs.aws.amazon.com/AmazonS3/latest/userguide/download-objects.html)\.
 
+For examples of listing the version of objects using AWS SDKs for \.NET and Rust, see [List the version of objects in an Amazon S3 bucket](https://docs.aws.amazon.com/code-library/latest/ug/s3_example_s3_ListObjectVersions_section.html)\.
+
 ## Using the REST API<a name="retrieve-obj-version-rest"></a>
 
 **To retrieve a specific object version**

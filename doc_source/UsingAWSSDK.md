@@ -130,7 +130,7 @@ The following table lists the SDKs with the necessary minimum version to use Sig
 
 | If you use this SDK/Product | Upgrade to this SDK version | Code change needed to the client to use Sigv4? | Link to SDK documentation | 
 | --- | --- | --- | --- | 
-|  AWS SDK for Java v1  | Upgrade to Java 1\.11\.201\+ or v2 in Q4 2018\. | Yes | [Specifying the Signature Version in Request Authentication](#specify-signature-version) | 
+|  AWS SDK for Java v1  | Upgrade to Java 1\.11\.201\+ or v2\. | Yes | [Specifying the Signature Version in Request Authentication](#specify-signature-version) | 
 |  AWS SDK for Java v2  | No SDK upgrade is needed\. | No | [AWS SDK for Java](https://aws.amazon.com/sdk-for-java/) | 
 |  AWS SDK for \.NET v1   | Upgrade to 3\.1\.10 or later\. | Yes | [AWS SDK for \.NET](https://github.com/aws/aws-sdk-net/tree/aws-sdk-net-v1/) | 
 |  AWS SDK for \.NET v2   | Upgrade to 3\.1\.10 or later\. | No | [AWS SDK for \.NET v2](https://github.com/aws/aws-sdk-net/tree/aws-sdk-net-v2/) | 

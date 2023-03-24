@@ -2,7 +2,7 @@
 
 The following code example shows how to:
 + Use Amazon Polly to synthesize a plain text \(UTF\-8\) input file to an audio file\.
-+ Upload the audio file to an Amazon Simple Storage Service \(Amazon S3\) bucket\.
++ Upload the audio file to an Amazon S3 bucket\.
 + Use Amazon Transcribe to convert the audio file to text\.
 + Display the text\.
 
@@ -14,7 +14,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
 **SDK for Rust**  
 This documentation is for an SDK in preview release\. The SDK is subject to change and should not be used in production\.
- Use Amazon Polly to synthesize a plain text \(UTF\-8\) input file to an audio file, upload the audio file to an Amazon Simple Storage Service bucket, use Amazon Transcribe to convert that audio file to text, and display the text\.   
+ Use Amazon Polly to synthesize a plain text \(UTF\-8\) input file to an audio file, upload the audio file to an Amazon S3 bucket, use Amazon Transcribe to convert that audio file to text, and display the text\.   
  For complete source code and instructions on how to set up and run, see the full example on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/rust_dev_preview/cross_service#code-examples)\.   
 
 **Services used in this example**

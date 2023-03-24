@@ -59,4 +59,3 @@ For more information about using a presigned URL to share or upload objects, see
 + [When does Amazon S3 check the expiration date and time of a presigned URL?](#presigned-url-when-checked)
 + [Sharing objects using presigned URLs](ShareObjectPreSignedURL.md)
 + [Generating a presigned URL to upload an object](PresignedUrlUploadObject.md)
-+ [Deleting an object using a presigned URL with the AWS SDK for JavaScript](PresignedUrlDelete.md)

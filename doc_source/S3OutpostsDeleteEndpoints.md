@@ -1,6 +1,6 @@
 # Deleting an Amazon S3 on Outposts endpoint<a name="S3OutpostsDeleteEndpoints"></a>
 
-To route requests to an Amazon S3 on Outposts access point, you must create and configure an S3 on Outposts endpoint\. Each virtual private cloud \(VPC\) on your Outpost can have one associated endpoint\. For more information about endpoint quotas, see [ S3 on Outposts network requirements](S3OnOutpostsRestrictionsLimitations.md#S3OnOutpostsConnectivityRestrictions)\. You must create these endpoints to be able to access your Outposts buckets and perform object operations\. For more information, see [Endpoints](S3OutpostsWorkingBuckets.md#S3OutpostsEP)\.
+To route requests to an Amazon S3 on Outposts access point, you must create and configure an S3 on Outposts endpoint\. In order to create an endpoint, you will need an active connection with your service link to your Outposts home region\. Each virtual private cloud \(VPC\) on your Outpost can have one associated endpoint\. For more information about endpoint quotas, see [ S3 on Outposts network requirements](S3OnOutpostsRestrictionsLimitations.md#S3OnOutpostsConnectivityRestrictions)\. You must create an endpoint to be able to access your Outposts buckets and perform object operations\. For more information, see [Endpoints](S3OutpostsWorkingBuckets.md#S3OutpostsEP)\.
 
 The following examples show you how to delete your S3 on Outposts endpoints by using the AWS Management Console, AWS Command Line Interface \(AWS CLI\), and AWS SDK for Java\.
 

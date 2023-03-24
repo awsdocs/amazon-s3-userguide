@@ -19,6 +19,9 @@ When the Batch Replication job finishes, you receive a completion report\. For m
 + Batch Replication does not support re\-replicating objects that were deleted with the version ID of the object from the destination bucket\. To re\-replicate these objects you can copy the source objects in place with a Batch Copy job\. Copying those objects in place will create new versions of the object in the source bucket and initiate replication automatically to the destination\. Deleting and recreating the destination bucket will not initiate replication\.
 
   For more information on Batch Copy, see, [Examples that use Batch Operations to copy objects](batch-ops-examples-copy.md)\.
++ If you’re using a replication rule on the S3 bucket, make sure to [update your replication configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-walkthrough-2.html), granting the IAM role attached to the replication rule, proper permissions to replicate objects\. The IAM role must have permissions to perform the S3 action on both the source and destination bucket\.
++ If you submit multiple Batch Replication jobs for the same bucket within a short time frame, S3 will run those jobs concurrently\.
++ If you submit multiple Batch Replication jobs for two different buckets, be aware that S3 might not run all jobs concurrently\. If you exceed the number of Batch Replication jobs that can run at one time on your account, S3 will pause the lower priority jobs to work on the higher priority ones\. After the higher priority items have completed, any paused jobs will become active again\.
 
 ## Specifying a manifest for a Batch Replication job<a name="batch-replication-manifest"></a>
 

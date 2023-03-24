@@ -259,7 +259,7 @@ The following is a complete IAM policy that grants the necessary permissions to 
 
 In a cross\-account scenario, where the source and destination buckets are owned by different AWS accounts, you can use a KMS key to encrypt object replicas\. However, the KMS key owner must grant the source bucket owner permission to use the KMS key\. <a name="cross-acct-kms-key-permission"></a>
 
-**To grant the source bucket owner permission to use the KMS key \(AWS KMSconsole\)**
+**To grant the source bucket owner permission to use the KMS key \(AWS KMS console\)**
 
 1. Sign in to the AWS Management Console and open the AWS KMS console at [https://console\.aws\.amazon\.com/kms](https://console.aws.amazon.com/kms)\.
 

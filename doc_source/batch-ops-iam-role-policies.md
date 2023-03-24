@@ -220,11 +220,7 @@ Before you configure permissions, note the following:
     {
       "Effect":"Allow",
       "Action":[
-          "s3:RestoreObject",
-          "s3:ListObjects",
-          "s3:ListObjectVersion",
-          "s3:ListBucket",
-          "s3:ListBucketVersions"
+          "s3:RestoreObject"
       ],
       "Resource": "arn:aws:s3:::TargetResource/*"
     },

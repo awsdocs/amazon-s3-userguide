@@ -14,7 +14,7 @@ The following examples demonstrate how to use access points with compatible oper
 
 ## Access point compatibility with AWS services<a name="access-points-service-api-support"></a>
 
-Amazon S3 access points aliases allow any application that requires an S3 bucket name to easily use an access point\. You can use S3 access point aliases anywhere you use S3 bucket names to access data in S3\.
+Amazon S3 access point aliases allow applications that require an S3 bucket name to easily use an access point\. You can use S3 access point aliases where you use S3 bucket names to access data in S3\. For more information, see [Access point alias use cases and limitations](access-points-alias.md#access-points-alias-use-case)\.
 
 ## Access point compatibility with S3 operations<a name="access-points-operations-support"></a>
 

@@ -37,4 +37,3 @@ For more information about using CORS, see the following topics\.
 + [How does Amazon S3 evaluate the CORS configuration on a bucket?](#cors-eval-criteria)
 + [CORS configuration](ManageCorsUsing.md)
 + [Configuring cross\-origin resource sharing \(CORS\)](enabling-cors-examples.md)
-+ [Troubleshooting CORS](cors-troubleshooting.md)

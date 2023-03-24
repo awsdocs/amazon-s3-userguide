@@ -1,13 +1,11 @@
 # Get started with Amazon S3 buckets and objects using an AWS SDK<a name="example_s3_Scenario_GettingStarted_section"></a>
 
 The following code examples show how to:
-+ Create a bucket\.
-+ Upload a file to the bucket\.
++ Create a bucket and upload a file to it\.
 + Download an object from a bucket\.
 + Copy an object to a subfolder in a bucket\.
 + List the objects in a bucket\.
-+ Delete the objects in a bucket\.
-+ Delete a bucket\.
++ Delete the bucket objects and the bucket\.
 
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
@@ -2071,7 +2069,7 @@ Code for the binary crate which runs the scenario\.
 
 ```
 use aws_config::meta::region::RegionProviderChain;
-use aws_sdk_s3::{Client, Region};
+use aws_sdk_s3::{config::Region, Client};
 use s3_service::error::Error;
 use uuid::Uuid;
 
@@ -2126,15 +2124,17 @@ async fn run_s3_operations(
 A library crate with common actions called by the binary\.  
 
 ```
-use aws_sdk_s3::error::{CopyObjectError, CreateBucketError, GetObjectError, PutObjectError};
-use aws_sdk_s3::model::{
+use aws_sdk_s3::operation::{
+    copy_object::{CopyObjectError, CopyObjectOutput},
+    create_bucket::{CreateBucketError, CreateBucketOutput},
+    get_object::{GetObjectError, GetObjectOutput},
+    list_objects_v2::ListObjectsV2Output,
+    put_object::{PutObjectError, PutObjectOutput},
+};
+use aws_sdk_s3::types::{
     BucketLocationConstraint, CreateBucketConfiguration, Delete, ObjectIdentifier,
 };
-use aws_sdk_s3::output::{
-    CopyObjectOutput, CreateBucketOutput, GetObjectOutput, ListObjectsV2Output, PutObjectOutput,
-};
-use aws_sdk_s3::types::{ByteStream, SdkError};
-use aws_sdk_s3::Client;
+use aws_sdk_s3::{error::SdkError, primitives::ByteStream, Client};
 use error::Error;
 use std::path::Path;
 use std::str;

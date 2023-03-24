@@ -1,8 +1,8 @@
 # Detect faces in an image using an AWS SDK<a name="example_cross_DetectFaces_section"></a>
 
 The following code example shows how to:
-+ Save an image in an Amazon Simple Storage Service Amazon S3\) bucket\.
-+ Use Amazon Rekognition \(Amazon Rekognition\) to detect facial details, such as age range, gender, and emotion \(smiling, etc\.\)\.
++ Save an image in an Amazon S3 bucket\.
++ Use Amazon Rekognition to detect facial details, such as age range, gender, and emotion \(such as smiling\)\.
 + Display those details\.
 
 **Note**  
@@ -13,7 +13,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 
 **SDK for Rust**  
 This documentation is for an SDK in preview release\. The SDK is subject to change and should not be used in production\.
- Save the image in an Amazon Simple Storage Service bucket with an **uploads** prefix, use Amazon Rekognition to detect facial details, such as age range, gender, and emotion \(smiling, etc\.\), and display those details\.   
+ Save the image in an Amazon S3 bucket with an **uploads** prefix, use Amazon Rekognition to detect facial details, such as age range, gender, and emotion \(smiling, etc\.\), and display those details\.   
  For complete source code and instructions on how to set up and run, see the full example on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/rust_dev_preview/cross_service/detect_faces/src/main.rs)\.   
 
 **Services used in this example**

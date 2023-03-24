@@ -2,6 +2,9 @@
 
 You can receive Amazon S3 notifications using Amazon Simple Notification Service \(Amazon SNS\) or Amazon Simple Queue Service \(Amazon SQS\)\. In this walkthrough, you add a notification configuration to your bucket using an Amazon SNS topic and an Amazon SQS queue\.
 
+**Note**  
+Amazon Simple Queue Service FIFO \(First\-In\-First\-Out\) queues aren't supported as an Amazon S3 event notification destination\. To send a notification for an Amazon S3 event to an Amazon SQS FIFO queue, you can use Amazon EventBridge\. For more information, see [Enabling Amazon EventBridge](enable-event-notifications-eventbridge.md)\.
+
 **Topics**
 + [Walkthrough summary](#notification-walkthrough-summary)
 + [Step 1: Create an Amazon SQS queue](#step1-create-sqs-queue-for-notification)
@@ -176,7 +179,7 @@ Using the Amazon S3 console, add a notification configuration requesting Amazon 
 
 After you save the notification configuration, Amazon S3 posts a test message, which you get via email\. 
 
-For instructions, see [Enabling and configuring event notifications using the Amazon S3 consoleEnabling Amazon EventBridge](enable-event-notifications.md)\. 
+For instructions, see [Enabling and configuring event notifications using the Amazon S3 console](enable-event-notifications.md)\. 
 
 ### Option B: Enable notifications on a bucket using the AWS SDKs<a name="step2-enable-notification-using-awssdk-dotnet"></a>
 

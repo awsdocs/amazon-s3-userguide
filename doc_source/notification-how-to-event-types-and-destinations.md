@@ -41,6 +41,9 @@ The Amazon SQS queue must be in the same AWS Region as your Amazon S3 bucket\. F
 Before you can use the Amazon SQS queue as an event notification destination, you need the following:
 + The Amazon Resource Name \(ARN\) for the Amazon SQS queue
 
+**Note**  
+Amazon Simple Queue Service FIFO \(First\-In\-First\-Out\) queues aren't supported as an Amazon S3 event notification destination\. To send a notification for an Amazon S3 event to an Amazon SQS FIFO queue, you can use Amazon EventBridge\. For more information, see [Enabling Amazon EventBridge](enable-event-notifications-eventbridge.md)\.
+
 ### Lambda function<a name="lambda-function"></a>
 
 You can use AWS Lambda to extend other AWS services with custom logic, or create your own backend that operates at AWS scale, performance, and security\. With Lambda, you can create discrete, event\-driven applications that run only when needed\. You can also use it to scale these applications automatically from a few requests a day to thousands a second\. 

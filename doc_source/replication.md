@@ -24,7 +24,6 @@ To get detailed metrics for S3 Replication, including replication rule count met
 + [Replicating existing objects with S3 Batch Replication](s3-batch-replication-batch.md)
 + [Additional replication configurations](replication-additional-configs.md)
 + [Getting replication status information](replication-status.md)
-+ [Troubleshooting replication](replication-troubleshoot.md)
 + [Additional considerations](replication-and-other-bucket-configs.md)
 
 ## Why use replication<a name="replication-scenario"></a>

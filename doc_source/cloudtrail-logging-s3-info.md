@@ -31,7 +31,7 @@ CloudTrail logs account\-level actions\. Amazon S3 records are written together 
 
 The tables in this section list the Amazon S3 account\-level actions that are supported for logging by CloudTrail\.
 
-Amazon S3 account\-level API actions tracked by CloudTrail logging appear as the following event names:
+Amazon S3 account\-level API actions tracked by CloudTrail logging appear as the following event names\. The CloudTrail event names differ from the API action name\. For example, DeletePublicAccessBlock is DeleteAccountPublicAccessBlock\.
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeletePublicAccessBlock.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeletePublicAccessBlock.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html)
@@ -42,7 +42,7 @@ By default, CloudTrail logs bucket\-level actions\. Amazon S3 records are writte
 
 The tables in this section list the Amazon S3 bucket\-level actions that are supported for logging by CloudTrail\.
 
-Amazon S3 bucket\-level API actions tracked by CloudTrail logging appear as the following event names:
+Amazon S3 bucket\-level API actions tracked by CloudTrail logging appear as the following event names\. In some cases, the CloudTrail event name differs from the API action name\. For example, PutBucketLifecycleConfiguration is PutBucketLifecycle\.
 +  [https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html) 
 +  [https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html) 
 +  [https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketCors.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketCors.html) 

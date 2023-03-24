@@ -10,7 +10,7 @@ You must grant the Amazon S3 principal the necessary permissions to call the rel
 
 Amazon S3 publishes event messages to AWS Lambda by invoking a Lambda function and providing the event message as an argument\.
 
-When you use the Amazon S3 console to configure event notifications on an Amazon S3 bucket for a Lambda function, the console sets up the necessary permissions on the Lambda function\. This is so that Amazon S3 has permissions to invoke the function from the bucket\. For more information, see [Enabling and configuring event notifications using the Amazon S3 consoleEnabling Amazon EventBridge](enable-event-notifications.md)\. 
+When you use the Amazon S3 console to configure event notifications on an Amazon S3 bucket for a Lambda function, the console sets up the necessary permissions on the Lambda function\. This is so that Amazon S3 has permissions to invoke the function from the bucket\. For more information, see [Enabling and configuring event notifications using the Amazon S3 console](enable-event-notifications.md)\. 
 
 You can also grant Amazon S3 permissions from AWS Lambda to invoke your Lambda function\. For more information, see [Tutorial: Using AWS Lambda with Amazon S3](https://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html) in the *AWS Lambda Developer Guide*\.
 

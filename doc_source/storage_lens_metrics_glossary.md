@@ -121,7 +121,7 @@ S3 Storage Lens metrics unit multiples are written with prefix symbols\. These p
 | Put requests  | PutRequests |  The total number of `PUT` requests made  | Advanced | Activity | N | \- | 
 | Head requests  | HeadRequests | The total number of HEAD requests made | Advanced | Activity | N | \- | 
 | Delete requests  | DeleteRequests | The total number of DELETE requests made | Advanced | Activity | N | \- | 
-| List requests  | ListRequests | The total number of PUT requests made | Advanced | Activity | N | \- | 
+| List requests  | ListRequests | The total number of LIST requests made | Advanced | Activity | N | \- | 
 | Post requests  | PostRequests | The total number of POST requests made | Advanced | Activity | N | \- | 
 | Select requests  | SelectRequests | The total number of S3 Select requests | Advanced | Activity | N | \- | 
 | Select scanned bytes  | SelectScannedBytes | The number of S3 Select bytes scanned  | Advanced | Activity | N | \- | 

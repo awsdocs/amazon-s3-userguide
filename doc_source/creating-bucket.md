@@ -90,8 +90,6 @@ When you use an AWS KMS key for server\-side encryption in Amazon S3, you must c
 
 1. \(Optional\) If you want to enable S3 Object Lock, do the following:
 
-   \(Optional\) If you want to enable S3 Object Lock, do the following:
-
    1. Choose **Advanced settings**\.
 **Important**  
 You can only enable Object Lock for a bucket when you create it, and you cannot disable it later\. Enabling Object Lock also enables versioning for the bucket\. After enabling you must configure the Object Lock default retention and legal hold settings to protect new objects from being deleted or overwritten\.

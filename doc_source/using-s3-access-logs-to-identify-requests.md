@@ -109,7 +109,7 @@ WHERE Key='prefix/images/picture.jpg'
 **Example — Show how much data was transferred to a specific IP address in a specific time period**  
 
 ```
-SELECT coalesce(SUM(bytessent), 0) AS bytessenttotal,
+SELECT coalesce(SUM(bytessent), 0) AS bytessenttotal
 FROM s3_access_logs_db.mybucket_logs
 WHERE remoteip='1.2.3.4'
 AND parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z')

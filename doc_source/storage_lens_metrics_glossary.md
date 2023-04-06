@@ -14,15 +14,19 @@ The **Metric name** column in the following table provides the name of each S3 S
 **Derived metric formulas**  
 Derived metrics are not available for the metrics export and the CloudWatch publishing option\. However, you can use the metrics formulas shown in the **Derived metrics formula** column to compute them\.
 
-**Interpreting Amazon S3 Storage Lens metrics unit multiples prefix symbols \(K, M, G, and so on\)**  
+**Interpreting the Amazon S3 Storage Lens prefix symbols for metrics unit multiples \(K, M, G, and so on\)**  
 S3 Storage Lens metrics unit multiples are written with prefix symbols\. These prefix symbols match the International System of Units \(SI\) symbols that are standardized by the International Bureau of Weights and Measures \(BIPM\)\. These symbols are also used in the Unified Code for Units of Measure \(UCUM\)\. For more information, see [List of SI prefix symbols](https://www.bipm.org/en/measurement-units/#si-prefixes)\. 
+
+**Note**  
+The unit of measurement for S3 storage bytes is in binary gigabytes \(GB\), where 1 GB is 230 bytes, 1 TB is 240 bytes, and 1 PB is 250 bytes\. This unit of measurement is also known as a gibibyte \(GiB\), as defined by the International Electrotechnical Commission \(IEC\)\.
+When an object reaches the end of its lifetime based on its lifecycle configuration, Amazon S3 queues the object for removal and removes it asynchronously\. Therefore, there might be a delay between the expiration date and the date when Amazon S3 removes an object\. S3 Storage Lens doesn't include metrics for the objects that have expired but haven't been removed\. For more information about expiration actions in S3 Lifecycle, see [Expiring objects](lifecycle-expire-general-considerations.md)\.
 
 
 **S3 Storage Lens metrics glossary**  
 
 | Metric name | CloudWatch and export | Description | Tier | Category | Derived | Derived metric formula | 
 | --- | --- | --- | --- | --- | --- | --- | 
-| Total storage | StorageBytes | The total storage | Free | Summary | N | \- | 
+| Total storage | StorageBytes | The total storage, inclusive of incomplete multipart uploads, object metadata, and delete markers | Free | Summary | N | \- | 
 | Object count  | ObjectCount | The total object count | Free | Summary | N | \- | 
 | Average object size  | \- | The average object size | Free | Summary | Y | sum\(StorageBytes\)/sum\(ObjectCount\)  | 
 | Active buckets  | \- | The total number of buckets in active usage with storage > 0 bytes | Free | Summary | Y | \- | 
@@ -49,7 +53,7 @@ S3 Storage Lens metrics unit multiples are written with prefix symbols\. These p
 | Incomplete multipart upload object count greater than 7 days old | IncompleteMPUObjectCountOlderThan7Days  | The number of objects that are incomplete multipart uploads more than 7 days old | Free | Cost optimization | N | \- | 
 | % incomplete multipart upload object count greater than 7 days old | \- | The percentage of objects that are incomplete multipart uploads more than 7 days old | Free | Cost optimization | Y | sum\(IncompleteMPUObjectCountOlderThan7Days\)/sum\(ObjectCount\)  | 
 | Transition lifecycle rule count | TransitionLifecycleRuleCount  | The count of lifecycle rules to transition objects to another storage class | Advanced | Cost optimization | N | \- | 
-| Average transition lifecycle rules per bucket | \- | The average number of lifecycle rules to transition objects to another storage class | Advanced | Cost optimization | Y | sum\(TransitionLifecycleRuleCount \)/sum\(DistinctNumberOfBuckets\)  | 
+| Average transition lifecycle rules per bucket | \- | The average number of lifecycle rules to transition objects to another storage class | Advanced | Cost optimization | Y | sum\(TransitionLifecycleRuleCount\)/sum\(DistinctNumberOfBuckets\)  | 
 | Expiration lifecycle rule count | ExpirationLifecycleRuleCount  | The count of lifecycle rules to expire objects | Advanced | Cost optimization | N | \- | 
 | Average expiration lifecycle rules per bucket | \- | The average number of lifecycle rules to expire objects | Advanced | Cost optimization | Y | sum\(ExpirationLifecycleRuleCount\)/sum\(DistinctNumberOfBuckets\)  | 
 | Noncurrent version transition lifecycle rule count | NoncurrentVersionTransitionLifecycleRuleCount  | The count of lifecycle rules to transition noncurrent object versions to another storage class | Advanced | Cost optimization | N |  | 

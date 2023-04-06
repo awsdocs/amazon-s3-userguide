@@ -20,16 +20,21 @@ The following permissions policy limits a user to only reading objects that have
 {
   "Version": "2012-10-17",
   "Statement": [
-     {"Principal":{"AWS":[
-            "arn:aws:iam::111122223333:role/JohnDoe"
-      "Effect":     "Allow",
-      "Action":     ["s3:GetObject","s3:GetObjectVersion"],
-      "Resource":    "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
-                                      ]
-                        }
-      "Condition": {  "StringEquals": {"s3:ExistingObjectTag/environment": "production" } }
-          }
+  {
+    "Principal": {
+      "AWS": [
+        "arn:aws:iam::111122223333:role/JohnDoe"
       ]
+    },
+    "Effect": "Allow",
+    "Action": ["s3:GetObject", "s3:GetObjectVersion"],
+    "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*",
+    "Condition": {
+      "StringEquals": 
+        {"s3:ExistingObjectTag/environment": "production"}
+    }
+  }
+  ]
 }
 ```
 

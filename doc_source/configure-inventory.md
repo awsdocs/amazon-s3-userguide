@@ -28,7 +28,7 @@ The easiest way to set up an inventory is by using the AWS Management Console, b
 
    You can specify that the inventory list file be encrypted by using server\-side encryption with Amazon S3 managed keys \(SSE\-S3\) or with AWS Key Management Service \(AWS KMS\) customer managed keys \(SSE\-KMS\)\. 
 **Note**  
-The AWS managed key \(`aws/S3`\) is not supported for SSE\-KMS encryption with S3 Inventory\. 
+The AWS managed key \(`aws/s3`\) is not supported for SSE\-KMS encryption with S3 Inventory\. 
 
    For more information about SSE\-S3 and SSE\-KMS, see [Protecting data using server\-side encryption](serv-side-encryption.md)\. If you plan to use SSE\-KMS encryption, see Step 3\.
    + For information about how to use the console to configure an inventory list, see [Configuring Amazon S3 Inventory](#configure-inventory)\.
@@ -154,12 +154,12 @@ To encrypt the inventory list file with SSE\-KMS, you must grant Amazon S3 permi
    1. If you chose **AWS Key Management Service key \(SSE\-KMS\)**, under **AWS KMS key**, you can specify your AWS KMS key through one of the following options\.
       + To choose from a list of available KMS keys, choose **Choose from your AWS KMS keys**, and choose a symmetric encryption KMS key in the same Region as your bucket from the list of available keys\. 
 **Note**  
-Both the AWS managed key \(`aws/s3`\) and your customer managed keys appear in the list\. However, the AWS managed key \(`aws/S3`\) is not supported for SSE\-KMS encryption with S3 Inventory\. 
+Both the AWS managed key \(`aws/s3`\) and your customer managed keys appear in the list\. However, the AWS managed key \(`aws/s3`\) is not supported for SSE\-KMS encryption with S3 Inventory\. 
       + To enter the KMS key ARN, choose **Enter AWS KMS key ARN**, and enter your KMS key ARN in the filed that appears\.
       + To create a new customer managed key in the AWS KMS console, choose **Create a KMS key**\.
 
 1. For **Additional fields**, select one or more of the following to add to the inventory report:
-   + **Size** – The object size in bytes\.
+   + **Size** – The object size in bytes, not including the size of incomplete multipart uploads, object metadata, and delete markers\.
    + **Last modified date** – The object creation date or the last modified date, whichever is the latest\.
    + **Storage class** – The storage class used for storing the object\. 
    + **ETag** – The entity tag \(ETag\) is a hash of the object\. The ETag reflects changes only to the contents of an object, and not its metadata\. The ETag might or might not be an MD5 digest of the object data\. Whether it is depends on how the object was created and how it is encrypted\. For more information, see [Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html) in the *Amazon Simple Storage Service API Reference*\.

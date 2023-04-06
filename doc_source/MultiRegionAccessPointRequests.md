@@ -41,7 +41,7 @@ Making requests through a Multi\-Region Access Point is similar to making reques
   + Multi\-Region Access Point hostnames don't include the owner's AWS account ID\. 
   + Multi\-Region Access Point hostnames don't include an AWS Region\. 
   + Multi\-Region Access Point hostnames include `s3-global.amazonaws.com` instead of `s3.amazonaws.com`\. 
-+ Multi\-Region Access Point requests must be signed by using Signature Version 4A \(SigV4A\)\. When you use the AWS SDKs, the SDK automatically converts a SigV4 to SigV4A\. Therefore, that your [AWS SDK supports](https://docs.aws.amazon.com/sdkref/latest/guide/feature-s3-mrap.html) SigV4A as the signing implementation that is used to sign the global AWS Region requests\. For more information about SigV4A, see [Signing AWS API requests](https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html) in the *AWS General Reference*\. 
++ Multi\-Region Access Point requests must be signed by using Signature Version 4A \(SigV4A\)\. When you use the AWS SDKs, the SDK automatically converts a SigV4 to SigV4A\. Therefore, make sure that your [AWS SDK supports](https://docs.aws.amazon.com/sdkref/latest/guide/feature-s3-mrap.html) SigV4A as the signing implementation that is used to sign the global AWS Region requests\. For more information about SigV4A, see [Signing AWS API requests](https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html) in the *AWS General Reference*\. 
 
 ## Multi\-Region Access Points and Amazon S3 Transfer Acceleration<a name="MultiRegionAccessPointsAndTransferAcceleration"></a>
 
@@ -53,6 +53,7 @@ Multi\-Region Access Points use a similar accelerated transfer mechanism as Tran
 + [Multi\-Region Access Point hostnames](#MultiRegionAccessPointHostnames)
 + [Multi\-Region Access Points and Amazon S3 Transfer Acceleration](#MultiRegionAccessPointsAndTransferAcceleration)
 + [Permissions](MultiRegionAccessPointPermissions.md)
++ [Multi\-Region Access Point restrictions and limitations](MultiRegionAccessPointRestrictions.md)
 + [Multi\-Region Access Point request routing](MultiRegionAccessPointRequestRouting.md)
 + [Amazon S3 Multi\-Region Access Points failover controls](MrapFailover.md)
 + [Configuring replication for use with Multi\-Region Access Points](MultiRegionAccessPointBucketReplication.md)

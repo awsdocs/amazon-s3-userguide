@@ -13,6 +13,8 @@ If the size of an object is less than 128 KB, it is not monitored and is not eli
 
 ## S3 Intelligent\-Tiering access tiers<a name="intel-tiering-tier-definition"></a>
 
+The following explains different automatic and optional access tiers\. When objects move between access tiers the storage class remains same\.
+
 Frequent Access tier \(automatic\)  
 This is the default access tier that any object created or transitioned to S3 Intelligent\-Tiering begins its lifecycle in\. An object remains in this tier as long as it is being accessed\. The Frequent Access tier provides low latency and high throughput performance\.
 

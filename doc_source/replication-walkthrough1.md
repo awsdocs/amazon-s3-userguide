@@ -89,7 +89,7 @@ When you use an AWS KMS key for server\-side encryption in Amazon S3, you must c
 
 1. You have the following additional options while setting the **Additional replication options**:
    + If you want to enable S3 Replication Time Control \(S3 RTC\) in your replication configuration, select **Replication Time Control \(RTC\)**\. For more information about this option, see [Meeting compliance requirements using S3 Replication Time Control \(S3 RTC\)](replication-time-control.md)\.
-   + If you want to enable S3 Replication metrics in your replication configuration, select **Replication metrics and events**\. For more information see, [Monitoring progress with replication metrics and Amazon S3 event notifications](replication-metrics.md)\.
+   + If you want to enable S3 Replication metrics in your replication configuration, select **Replication metrics and events**\. For more information see, [Monitoring progress with replication metrics and S3 Event Notifications](replication-metrics.md)\.
    + If you want to enable delete marker replication in your replication configuration, select **Delete marker replication**\. For more information see, [Replicating delete markers between buckets](delete-marker-replication.md)\.
    + If you want to enable Amazon S3 replica modification sync in your replication configuration, select **Replica modification sync**\. For more information see, [Replicating metadata changes with Amazon S3 replica modification sync](replication-for-metadata-changes.md)\.
 **Note**  

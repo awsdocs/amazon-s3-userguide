@@ -5,10 +5,10 @@ Amazon S3 now applies server\-side encryption with Amazon S3 managed keys \(SSE\
 
 By default, Amazon S3 doesn't replicate objects that are stored at rest using server\-side encryption with customer managed keys that are stored in AWS KMS\. This section explains the additional configuration that you can add to direct Amazon S3 to replicate these objects\. 
 
+For an example with step\-by\-step instructions, see [Replicating encrypted objects](replication-walkthrough-4.md)\. For information about creating a replication configuration, see [Replicating objects](replication.md)\. 
+
 **Note**  
 You can use multi\-Region AWS KMS keys in Amazon S3\. However, Amazon S3 currently treats multi\-Region keys as though they were single\-Region keys, and does not use the multi\-Region features of the key\. For more information, see [ Using multi\-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in *AWS Key Management Service Developer Guide*\.
-
-For an example with step\-by\-step instructions, see [Replicating encrypted objects](replication-walkthrough-4.md)\. For information about creating a replication configuration, see [Replicating objects](replication.md)\. 
 
 **Topics**
 + [Using default bucket encryption with replication](#replication-default-encryption)
@@ -257,7 +257,10 @@ The following is a complete IAM policy that grants the necessary permissions to 
 
 ### Granting additional permissions for cross\-account scenarios<a name="replication-kms-cross-acct-scenario"></a>
 
-In a cross\-account scenario, where the source and destination buckets are owned by different AWS accounts, you can use a KMS key to encrypt object replicas\. However, the KMS key owner must grant the source bucket owner permission to use the KMS key\. <a name="cross-acct-kms-key-permission"></a>
+In a cross\-account scenario, where the source and destination buckets are owned by different AWS accounts, you can use a KMS key to encrypt object replicas\. However, the KMS key owner must grant the source bucket owner permission to use the KMS key\. 
+
+**Note**  
+Objects encrypted via [AWS managed keys](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) cannot be shared cross\-account because you cannot modify the key policies\. If you need to replicate SSE\-KMS data cross\-account, you should use a [customer managed key](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) from AWS KMS\. <a name="cross-acct-kms-key-permission"></a>
 
 **To grant the source bucket owner permission to use the KMS key \(AWS KMS console\)**
 

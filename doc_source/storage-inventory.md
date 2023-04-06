@@ -5,7 +5,7 @@ Amazon S3 now applies server\-side encryption with Amazon S3 managed keys \(SSE\
 
 Amazon S3 Inventory is one of the tools Amazon S3 provides to help manage your storage\. You can use it to audit and report on the replication and encryption status of your objects for business, compliance, and regulatory needs\. You can also simplify and speed up business workflows and big data jobs using Amazon S3 Inventory, which provides a scheduled alternative to the Amazon S3 synchronous `List` API operation\. Amazon S3 Inventory does not use the `List` API to audit your objects and does not affect the request rate of your bucket\.
 
-Amazon S3 Inventory provides comma\-separated values \(CSV\), [Apache optimized row columnar \(ORC\)](https://orc.apache.org/) or [Apache Parquet](https://parquet.apache.org/) output files that list your objects and their corresponding metadata on a daily or weekly basis for an S3 bucket or a shared prefix \(that is, objects that have names that begin with a common string\)\. If weekly, a report is generated every Sunday \(UTC\) after the initial report\. For information about Amazon S3 Inventory pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
+Amazon S3 Inventory provides comma\-separated values \(CSV\), [Apache optimized row columnar \(ORC\)](https://orc.apache.org/), or [Apache Parquet](https://parquet.apache.org/) output files that list your objects and their corresponding metadata on a daily or weekly basis for an S3 bucket or a shared prefix \(that is, objects that have names that begin with a common string\)\. If weekly, a report is generated every Sunday \(UTC\) after the initial report\. For information about Amazon S3 Inventory pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 
 You can configure multiple inventory lists for a bucket\. You can configure what object metadata to include in the inventory, whether to list all object versions or only current versions, where to store the inventory list file output, and whether to generate the inventory on a daily or weekly basis\. You can also specify that the inventory list file be encrypted\.
 
@@ -45,7 +45,7 @@ The inventory list contains a list of the objects in an S3 bucket and the follow
 + **Version ID** – The object version ID\. When you enable versioning on a bucket, Amazon S3 assigns a version number to objects that are added to the bucket\. For more information, see [Using versioning in S3 buckets](Versioning.md)\. \(This field is not included if the list is only for the current version of objects\.\)
 + **IsLatest** – Set to `True` if the object is the current version of the object\. \(This field is not included if the list is only for the current version of objects\.\)
 + **Delete marker** – Set to `True` if the object is a delete marker\. For more information, see [Using versioning in S3 buckets](Versioning.md)\. \(This field is automatically added to your report if you've configured the report to include all versions of your objects\)\.
-+ **Size** – The object size in bytes\.
++ **Size** – The object size in bytes, not including the size of incomplete multipart uploads, object metadata, and delete markers\.
 + **Last modified date** – The object creation date or the last modified date, whichever is the latest\.
 + **ETag** – The entity tag is a hash of the object\. The ETag reflects changes only to the contents of an object, not its metadata\. The ETag can be an MD5 digest of the object data\. Whether it is depends on how the object was created and how it is encrypted\.
 + **Storage class** – The storage class used for storing the object\. For more information, see [Using Amazon S3 storage classes](storage-class-intro.md)\.
@@ -54,10 +54,13 @@ The inventory list contains a list of the objects in an S3 bucket and the follow
 + **Encryption status** – Set to `SSE-S3`, `SSE-C`, `SSE-KMS`, or `NOT-SSE`\. The server\-side encryption status for SSE\-S3, SSE\-KMS, and SSE with customer\-provided keys \(SSE\-C\)\. A status of `NOT-SSE` means that the object is not encrypted with server\-side encryption\. For more information, see [Protecting data using encryption](UsingEncryption.md)\.
 + **S3 Object Lock Retain until date** – The date until which the locked object cannot be deleted\. For more information, see [Using S3 Object Lock](object-lock.md)\.
 + **S3 Object Lock Mode** – Set to `Governance` or `Compliance` for objects that are locked\. For more information, see [Using S3 Object Lock](object-lock.md)\.
-+ **S3 Object Lock Legal hold status ** – Set to `On` if a legal hold has been applied to an object\. Otherwise, it is set to `Off`\. For more information, see [Using S3 Object Lock](object-lock.md)\.
++ **S3 Object Lock Legal hold status** – Set to `On` if a legal hold has been applied to an object\. Otherwise, it is set to `Off`\. For more information, see [Using S3 Object Lock](object-lock.md)\.
 + **S3 Intelligent\-Tiering access tier** – Access tier \(frequent or infrequent\) of the object if stored in S3 Intelligent\-Tiering\. For more information, see [Storage class for automatically optimizing data with changing or unknown access patterns](storage-class-intro.md#sc-dynamic-data-access)\.
 + **S3 Bucket Key status** – Set to `ENABLED` or `DISABLED`\. Indicates whether the object uses S3 Bucket Key for server\-side encryption\. For more information, see [Using Amazon S3 Bucket Keys](bucket-key.md)\.
-+ **Checksum algorithm** – Indicates the algorithm used to create the checksum for the object\.
++ **Checksum algorithm** – Indicates the algorithm that's used to create the checksum for the object\.
+
+**Note**  
+When an object reaches the end of its lifetime based on its lifecycle configuration, Amazon S3 queues the object for removal and removes it asynchronously\. Therefore, there might be a delay between the expiration date and the date when Amazon S3 removes an object\. The inventory report includes the objects that have expired but haven't been removed yet\. For more information about expiration actions in S3 Lifecycle, see [Expiring objects](lifecycle-expire-general-considerations.md)\.
 
 We recommend that you create a lifecycle configuration that deletes old inventory lists\. For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 

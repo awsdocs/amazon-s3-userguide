@@ -56,7 +56,7 @@ You have the following options for protecting data at rest in Amazon S3:
   For more information, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.
 + **Client\-Side Encryption** – Encrypt data client\-side and upload the encrypted data to Amazon S3\. In this case, you manage the encryption process, the encryption keys, and related tools\. As with server\-side encryption, client\-side encryption can help reduce risk by encrypting the data with a key that is stored in a different mechanism than the mechanism that stores the data itself\. 
 
-  Amazon S3 provides multiple client\-side encryption options\. For more information, see [Protecting data using client\-side encryption](UsingClientSideEncryption.md)\.
+  Amazon S3 provides multiple client\-side encryption options\. For more information, see [Protecting data by using client\-side encryption](UsingClientSideEncryption.md)\.
 
 **Enforce encryption of data in transit**  
 You can use HTTPS \(TLS\) to help prevent potential attackers from eavesdropping on or manipulating network traffic using person\-in\-the\-middle or similar attacks\. You should allow only encrypted connections over HTTPS \(TLS\) using the [aws:SecureTransport](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition_operators.html#Conditions_Boolean) condition on Amazon S3 bucket policies\.  

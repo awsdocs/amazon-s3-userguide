@@ -128,7 +128,7 @@ Amazon S3 offers several object encryption options that protect data in transit 
 
 For more information, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.
 
-Client\-side encryption is the act of encrypting data before sending it to Amazon S3\. For more information, see [Protecting data using client\-side encryption](UsingClientSideEncryption.md)\.
+Client\-side encryption is the act of encrypting data before sending it to Amazon S3\. For more information, see [Protecting data by using client\-side encryption](UsingClientSideEncryption.md)\.
 
 **Signing methods**  
 Signature Version 4 is the process of adding authentication information to AWS requests sent by HTTP\. For security, most requests to AWS must be signed with an access key, which consists of an access key ID and secret access key\. These two keys are commonly referred to as your security credentials\.

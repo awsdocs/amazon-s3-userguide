@@ -63,6 +63,8 @@ When using a `POST` operation to upload an object, instead of providing the requ
 
 The AWS SDKs also provide wrapper APIs that you can use to request server\-side encryption\. You can also use the AWS Management Console to upload objects and request server\-side encryption\.
 
+For more general information, see [AWS KMS concepts](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html) in the *AWS Key Management Service Developer Guide*\.
+
 **Topics**
 + [API support for server\-side encryption](#APISupportforServer-SideEncryption)
 + [Specifying Amazon S3 encryption with S3 managed keys \(SSE\-S3\)](specifying-s3-encryption.md)

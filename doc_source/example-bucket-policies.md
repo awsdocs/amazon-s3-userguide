@@ -574,7 +574,7 @@ If your AWS Region does not appear in the supported Elastic Load Balancing Regio
           },
       "Effect": "Allow",
       "Action": "s3:PutObject",
-      "Resource": "arn:aws:s3::DOC-EXAMPLE-BUCKET/prefix/AWSLogs/111122223333/*"
+      "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/prefix/AWSLogs/111122223333/*"
     }
   ]
 }

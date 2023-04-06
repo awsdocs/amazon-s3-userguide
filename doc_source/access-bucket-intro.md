@@ -9,6 +9,14 @@ Amazon S3 supports both virtual\-hosted–style and path\-style URLs to access a
 **Note**  
 Virtual\-hosted\-style and path\-style requests use the S3 dot Region endpoint structure \(`s3.Region`\), for example, `https://my-bucket.s3.us-west-2.amazonaws.com`\. However, some older Amazon S3 Regions also support S3 dash Region endpoints `s3-Region`, for example, `https://my-bucket.s3-us-west-2.amazonaws.com`\. If your bucket is in one of these Regions, you might see `s3-Region` endpoints in your server access logs or AWS CloudTrail logs\. We recommend that you do not use this endpoint structure in your requests\. 
 
+## AWS Management Console bucket access<a name="access-bucket-console-ex"></a>
+
+You can access your bucket using the Amazon S3 console\.
+
+1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the **Buckets** list, choose the name of the bucket that you want to view\.
+
 ## Virtual\-hosted–style access<a name="virtual-host-style-url-ex"></a>
 
 In a virtual\-hosted–style request, the bucket name is part of the domain name in the URL\.

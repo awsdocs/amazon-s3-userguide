@@ -64,9 +64,10 @@ You can enable alarms for your replication metrics in Amazon CloudWatch\. When y
 
 | Metric | Description | 
 | --- | --- | 
-| ReplicationLatency |  The maximum number of seconds by which the replication destination Region is behind the source Region for a given replication rule\.  Units: Seconds Valid statistics: Max  | 
+| ReplicationLatency |  The maximum number of seconds by which the replication destination AWS Region is behind the source AWS Region for a given replication rule\.  Units: Seconds Valid statistics: Max  | 
 | BytesPendingReplication |  The total number of bytes of objects pending replication for a given replication rule\. Units: Bytes Valid statistics: Max  | 
 | OperationsPendingReplication |  The number of operations pending replication for a given replication rule\. Units: Count Valid statistics: Max  | 
+| OperationsFailedReplication |  The number of operations that failed to replicate for a given replication rule\. Units: Count  Valid statistics: Sum \(total number of failed operations\), Average \(failure rate\), Sample Count \(total number of replication operations\)  | 
 
 ## S3 Storage Lens metrics in CloudWatch<a name="storage-lens-metrics-cloudwatch-publish"></a>
 

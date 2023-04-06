@@ -10,4 +10,3 @@ If you establish an AWS PrivateLink connection to an S3 Multi\-Region Access Poi
 **Topics**
 + [Configuring a Multi\-Region Access Point for use with AWS PrivateLink](MultiRegionAccessPointsPrivateLink.md)
 + [Removing access to a Multi\-Region Access Point from a VPC endpoint](RemovingMultiRegionAccessPointAccess.md)
-+ [Multi\-Region Access Point restrictions and limitations](MultiRegionAccessPointRestrictions.md)

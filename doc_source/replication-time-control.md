@@ -29,7 +29,7 @@ Replication rules with S3 Replication Time Control \(S3 RTC\) enabled publishes 
 
 Replication metrics are available within 15 minutes of enabling S3 RTC\. Replication metrics are available through the [Amazon S3 console](https://console.aws.amazon.com/s3/), the [Amazon S3 API](https://docs.aws.amazon.com/AmazonS3/latest/API/), the AWS SDKs, the [AWS Command Line Interface \(AWS CLI\)](https://docs.aws.amazon.com/cli/latest/reference/), and [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/)\. For more information, see [Monitoring metrics with Amazon CloudWatch](cloudwatch-monitoring.md)\.
 
-For more information about finding replication metrics via the Amazon S3 console, see [Viewing replication metrics using the Amazon S3 console](viewing-replication-metrics.md)\.
+For more information about finding replication metrics via the Amazon S3 console, see [Viewing replication metrics by using the Amazon S3 console](viewing-replication-metrics.md)\.
 
 ## Using Amazon S3 event notifications to track replication objects<a name="using-s3-events-to-track-rtc"></a>
 

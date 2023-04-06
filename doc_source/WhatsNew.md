@@ -5,6 +5,7 @@ The following table describes the important changes in each release of the *Amaz
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [S3 Replication Operations Failed metric](#WhatsNew) | Amazon S3 adds new Amazon CloudWatch metric to monitor S3 Replication failures\. For more information, see [Monitoring progress with replication metrics](https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-metrics.html)\. | April 5, 2023 | 
 | [Private DNS](#WhatsNew) | AWS PrivateLink for Amazon S3 now supports Private DNS\. For more information, see [Private DNS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/privatelink-interface-endpoints.html#private-dns)\. | March 14, 2023 | 
 | [Cross\-account access points support in the Amazon S3 console](#WhatsNew) | Amazon S3 now supports creating cross\-account access points with the Amazon S3 console\. For more information, see [Creating access points](https://docs.aws.amazon.com/AmazonS3/latest/userguide/creating-access-points.html)\. | March 14, 2023 | 
 | [Amazon S3 on Outposts supports S3 Replication on Outposts](#WhatsNew) | With local S3 Replication, you can automatically replicate objects to a single Outposts destination bucket or to multiple destination buckets\. The destination buckets can be in different AWS Outposts or within the same Outposts as the source bucket\. For more information, see [Replicating objects for S3 on Outposts](https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OutpostsReplication.html)\. | March 14, 2023 | 

@@ -2,6 +2,8 @@
 
 You must grant the Amazon S3 principal the necessary permissions to call the relevant API to publish messages to an SNS topic, an SQS queue, or a Lambda function\. This is so that Amazon S3 can publish event notification messages to a destination\.
 
+To troubleshoot publishing event notification messages to a destination, see [ Troubleshoot to publish Amazon S3 event notifications to an Amazon Simple Notification Service topic ](https://repost.aws/knowledge-center/sns-not-receiving-s3-event-notifications)\.
+
 **Topics**
 + [Granting permissions to invoke an AWS Lambda function](#grant-lambda-invoke-permission-to-s3)
 + [Granting permissions to publish messages to an SNS topic or an SQS queue](#grant-sns-sqs-permission-for-s3)

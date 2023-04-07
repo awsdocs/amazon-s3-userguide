@@ -76,12 +76,15 @@ You can get started with step\-by\-step tutorials to learn more about Amazon S3\
 + [Tutorial: Getting started using the Amazon S3 Glacier storage classes](http://aws.amazon.com/getting-started/hands-on/getting-started-using-amazon-s3-glacier-storage-classes/?ref=docs_gateway/amazons3/tutorials.html)
 + [Tutorial: Optimizing costs and gaining visibility into usage with S3 Storage Lens](http://aws.amazon.com/getting-started/hands-on/amazon-s3-storage-lens/?ref=docs_gateway/amazons3/tutorials.html)
 
+### Managing storage<a name="storage-management-tutorials"></a>
++ [Tutorial: Getting started with Amazon S3 Multi\-Region Access Points](http://aws.amazon.com/getting-started/hands-on/getting-started-with-amazon-s3-multi-region-access-points/?ref=docs_gateway/amazons3/tutorials.html)
+
 ### Hosting videos and websites<a name="host-web-video-tutorials"></a>
 + [Tutorial: Hosting on\-demand streaming video with Amazon S3, Amazon CloudFront, and Amazon Route 53](tutorial-s3-cloudfront-route53-video-streaming.md)
 + [Tutorial: Configuring a static website on Amazon S3](HostingWebsiteOnS3Setup.md)
 + [Tutorial: Configuring a static website using a custom domain registered with Route 53](website-hosting-custom-domain-walkthrough.md)
 
-### Data processing<a name="data-processing-tutorials"></a>
+### Processing data<a name="data-processing-tutorials"></a>
 + [Tutorial: Transforming data for your application with S3 Object Lambda](tutorial-s3-object-lambda-uppercase.md)
 + [Tutorial: Detecting and redacting PII data with S3 Object Lambda and Amazon Comprehend](tutorial-s3-object-lambda-redact-pii.md)
 + [Tutorial: Using S3 Object Lambda to dynamically watermark images as they are retrieved](http://aws.amazon.com/getting-started/hands-on/amazon-s3-object-lambda-to-dynamically-watermark-images/?ref=docs_gateway/amazons3/tutorials.html)

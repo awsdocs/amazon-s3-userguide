@@ -14,6 +14,8 @@ For example, if you were storing information about cities, you might naturally o
 
 If you stored data for every city in the world in this manner, it would become awkward to manage a flat key namespace\. By using `Prefix` and `Delimiter` with the list operation, you can use the hierarchy that you've created to list your data\. For example, to list all the states in USA, set `Delimiter='/'` and `Prefix='North America/USA/'`\. To list all the provinces in Canada for which you have data, set `Delimiter='/'` and `Prefix='North America/Canada/'`\.
 
+For more information about delimiters, prefixes, and nested folders, see [Difference between prefixes and nested folders](https://repost.aws/knowledge-center/s3-prefix-nested-folders-difference)\.
+
 ## Listing objects using prefixes and delimiters<a name="prefixes-list-example"></a>
 
 If you issue a list request with a delimiter, you can browse your hierarchy at only one level, skipping over and summarizing the \(possibly millions of\) keys nested at deeper levels\. For example, assume that you have a bucket \(*DOC\-EXAMPLE\-BUCKET*\) with the following keys:

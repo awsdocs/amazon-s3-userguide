@@ -8,9 +8,9 @@ After you've recovered these logs, copy and retain those two values, because you
 
 ## Using HTTP to obtain request IDs<a name="http-request-id"></a>
 
-You can obtain your request IDs, `x-amz-request-id` and `x-amz-id-2`, by logging the bits of an HTTP request before it reaches the target application\. There are a variety of third\-party tools that you can use to recover verbose logs for HTTP requests\. When you run the tool, listen on the port that your Amazon S3 traffic travels on, as you send out another Amazon S3 HTTP request\.
+You can obtain your request IDs, `x-amz-request-id` and `x-amz-id-2` by logging the bits of an HTTP request before it reaches the target application\. There are a variety of third\-party tools that can be used to recover verbose logs for HTTP requests\. Choose one that you trust, and then run the tool to listen on the port that your Amazon S3 traffic travels on, as you send out another Amazon S3 HTTP request\.
 
-For HTTP requests, the pair of request IDs will look like the following examples\.
+For HTTP requests, the pair of request IDs will look like the following:
 
 ```
 x-amz-request-id: 79104EXAMPLEB723 
@@ -88,7 +88,7 @@ logger.info("HostId: %s", response['ResponseMetadata']['HostId'])
 logger.info("Date: %s", response['ResponseMetadata']['HTTPHeaders']['date'])
 ```
 
-You can also catch exceptions and log relevant information when an exception is raised\. For details, see [Discerning useful information from error responses](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/error-handling.html#discerning-useful-information-from-error-responses) in the *AWS SDK for Python \(Boto\) API Reference*\.
+You can also catch exceptions and log relevant information when an exception is raised\. For more information, see [Discerning useful information from error responses](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/error-handling.html#discerning-useful-information-from-error-responses) in the *AWS SDK for Python \(Boto\) API Reference*\.
 
 Additionally, you can configure Boto3 to output verbose debugging logs by using the following code:
 
@@ -101,7 +101,7 @@ For more information, see [https://boto3.amazonaws.com/v1/documentation/api/late
 
 ### Using the SDK for Ruby to obtain request IDs<a name="ruby-request-id"></a>
 
-You can get your request IDs by using either the AWS SDK for Ruby \- Version 1, Version 2, or Version 3\.
+You can get your request IDs using the SDK for Ruby Versions 1, 2, or 3\.
 + **Using the SDK for Ruby \- Version 1**– You can enable HTTP wire logging globally with the following line of code\.
 
   ```

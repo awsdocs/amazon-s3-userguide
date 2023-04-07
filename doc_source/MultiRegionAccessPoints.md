@@ -12,6 +12,8 @@ The following image is a graphical representation of an Amazon S3 Multi\-Region 
 
 ![\[How manual failover between Regions works with an Amazon S3 Multi-Region Access Point in an active-passive configuration.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/MultiRegionAccessPointsFailover.png)
 
+To learn more about how to use Multi\-Region Access Points, see [Tutorial: Getting started with Amazon S3 Multi\-Region Access Points](http://aws.amazon.com/getting-started/hands-on/getting-started-with-amazon-s3-multi-region-access-points/?ref=docs_gateway/amazons3/MultiRegionAccessPoints.html)\.
+
 **Topics**
 + [Creating Multi\-Region Access Points](CreatingMultiRegionAccessPoints.md)
 + [Configuring a Multi\-Region Access Point for use with AWS PrivateLink](MultiRegionAccessConfiguration.md)

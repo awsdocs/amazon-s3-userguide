@@ -1,6 +1,6 @@
 # AWS usage report for Amazon S3<a name="aws-usage-report"></a>
 
-When you download a usage report, you can choose to aggregate usage data by hour, day, or month\. The Amazon S3 usage report lists operations by usage type and AWS Region\. For more detailed reports about your Amazon S3 storage usage, download dynamically generated AWS usage reports\. You can choose which usage type, operation, and time period to include\. You can also choose how the data is aggregated\. 
+When you download a usage report, you can choose to aggregate usage data by hour, day, or month\. The Amazon S3 usage report lists operations by usage type and AWS Region\. For more detailed reports about your Amazon S3 storage usage, download dynamically generated AWS usage reports\. You can choose which usage type, operation, and time period to include\. You can also choose how the data is aggregated\. For more information about usage reports, see [AWS Usage Report](https://docs.aws.amazon.com/cur/latest/userguide/usage-report.html) in the *AWS Cost and Usage Reports User Guide*\.
 
 The Amazon S3 usage report includes the following information:
 + **Service** – Amazon S3
@@ -40,11 +40,11 @@ You can download a usage report as an \.xml or a \.csv file\.
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
-1. In the title bar, choose your user name or account ID, and then choose **My Billing Dashboard**\. 
+1. In the title bar, choose your user name or account ID, and then choose **Billing Dashboard**\. 
 
-1. In the navigation pane, choose **AWS Cost & Usage Reports**\.
+1. In the navigation pane, choose **Cost & usage reports**\.
 
-1. In the **Other Reports** section, choose **AWS Usage Report**\.
+1. Under AWS Usage Report, choose **Create a Usage Report**\.
 
 1. For **Services**, choose **Amazon Simple Storage Service**\.
 

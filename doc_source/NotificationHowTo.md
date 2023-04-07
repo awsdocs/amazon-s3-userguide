@@ -19,7 +19,7 @@ Currently, Amazon S3 can publish notifications for the following events:
 + Object tagging events
 + Object ACL PUT events
 
-For full descriptions of all the supported event types, see [Supported event types for SQS, SNS, and Lambda](notification-how-to-event-types-and-destinations.md#supported-notification-event-types)\.
+For full descriptions of all the supported event types, see [Supported event types for SQS, SNS, and Lambda](notification-how-to-event-types-and-destinations.md#supported-notification-event-types)\. 
 
 Amazon S3 can send event notification messages to the following destinations\. You specify the Amazon Resource Name \(ARN\) value of these destinations in the notification configuration\.
 + Amazon Simple Notification Service \(Amazon SNS\) topics

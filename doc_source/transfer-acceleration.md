@@ -22,13 +22,22 @@ The following are required when you are using Transfer Acceleration on an S3 buc
 
   After you enable Transfer Acceleration on a bucket, it might take up to 20 minutes before the data transfer speed to the bucket increases\.
 **Note**  
-Transfer Acceleration is currently not supported for buckets located in the following Regions:  
-Africa \(Cape Town\) \(af\-south\-1\)
-Asia Pacific \(Hong Kong\) \(ap\-east\-1\)
-Asia Pacific \(Osaka\) \(ap\-northeast\-3\)
-Europe \(Stockholm\) \(eu\-north\-1\)
-Europe \(Milan\) \(eu\-south\-1\)
-Middle East \(Bahrain\) \(me\-south\-1\)
+Transfer Acceleration is currently supported for buckets located in the following Regions:  
+Asia Pacific \(Tokyo\) \(ap\-northeast\-1\)
+Asia Pacific \(Seoul\) \(ap\-northeast\-2\)
+Asia Pacific \(Mumbai\) \(ap\-south\-1\)
+Asia Pacific \(Singapore\) \(ap\-southeast\-1\)
+Asia Pacific \(Sydney\) \(ap\-southeast\-2\)
+Canada \(Central\) \(ca\-central\-1\)
+Europe \(Frankfurt\) \(eu\-central\-1\)
+Europe \(Ireland\) \(eu\-west\-1\)
+Europe \(London\) \(eu\-west\-2\)
+Europe \(Paris\) \(eu\-west\-3\)
+South America \(São Paulo\) \(sa\-east\-1\)
+US East \(N\. Virginia\) \(us\-east\-1\)
+US East \(Ohio\) \(us\-east\-2\)
+US West \(N\. California\) \(us\-west\-1\)
+US West \(Oregon\) \(us\-west\-2\)
 + To access the bucket that is enabled for Transfer Acceleration, you must use the endpoint `bucketname.s3-accelerate.amazonaws.com`\. Or, use the dual\-stack endpoint `bucketname.s3-accelerate.dualstack.amazonaws.com` to connect to the enabled bucket over IPv6\. 
 + You must be the bucket owner to set the transfer acceleration state\. The bucket owner can assign permissions to other users to allow them to set the acceleration state on a bucket\. The `s3:PutAccelerateConfiguration` permission permits users to enable or disable Transfer Acceleration on a bucket\. The `s3:GetAccelerateConfiguration` permission permits users to return the Transfer Acceleration state of a bucket, which is either `Enabled` or `Suspended.` For more information about these permissions, see [Example — Bucket subresource operations](using-with-s3-actions.md#using-with-s3-actions-related-to-bucket-subresources) and [Identity and access management in Amazon S3](s3-access-control.md)\.
 

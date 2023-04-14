@@ -71,7 +71,7 @@ There are several reasons that your bill might increase after transitioning obje
   Some S3 storage classes have minimum storage\-duration requirements\. Objects that are deleted, overwritten, or transitioned from those classes before the minimum duration is satisfied are charged a prorated early transition or deletion fee\. These minimum storage\-duration requirements are as follows: 
   + S3 Standard\-IA and S3 One Zone\-IA – 30 days
   + S3 Glacier Flexible Retrieval and S3 Glacier Instant Retrieval – 90 days
-  + S3 Glacier Deep Archive – 1800 days
+  + S3 Glacier Deep Archive – 180 days
 
   For more information about these requirements, see the *Constraints* section of [Transitioning objects using S3 Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html)\. For general S3 pricing information, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/) and the [AWS Pricing Calculator](https://calculator.aws/#/addService/S3)\.
 + Lifecycle transition costs

@@ -163,12 +163,36 @@ In the following example, replace the Region `us-east-1`, the DNS name of the VP
 aws s3 --region us-east-1 --endpoint-url https://bucket.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com ls s3://my-bucket/
 ```
 
-**Example: Use an endpoint URL to list objects from an access point**  
-In the following example, replace the Amazon Resource Name \(ARN\) `us-east-1:123456789012:accesspoint/test`, the Region `us-east-1`, and the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with your own information\.
+**Example: Use an endpoint URL to list objects from an access point**
++ **Method 1** – Using the Amazon Resource Name \(ARN\) of the access point with the access point endpoint
 
-```
-aws s3api list-objects-v2 --bucket arn:aws:s3:us-east-1:123456789012:accesspoint/test --region us-east-1 --endpoint-url https://accesspoint.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com
-```
+  Replace the ARN `us-east-1:123456789012:accesspoint/accesspointexamplename`, the Region `us-east-1`, and the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with your own information\.
+
+  ```
+  aws s3api list-objects-v2 --bucket arn:aws:s3:us-east-1:123456789012:accesspoint/accesspointexamplename --region us-east-1 --endpoint-url https://accesspoint.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com
+  ```
+
+  If you can't run the command successfully, update your AWS CLI to the latest version and try again\. For more information on the update instructions, see [ Installing or updating the latest version of the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#getting-started-install-instructions) in the *AWS Command Line Interface User Guide*\.
++ **Method 2** – Using the alias of the access point with the regional bucket endpoint
+
+  In the following example, replace the access point alias `accesspointexamplename-8tyekmigicmhun8n9kwpfur39dnw4use1a-s3alias`, the Region `us-east-1`, and the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with your own information\.
+
+  ```
+  aws s3api list-objects-v2 --bucket accesspointexamplename-8tyekmigicmhun8n9kwpfur39dnw4use1a-s3alias --region us-east-1 --endpoint-url https://bucket.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com
+  ```
++ **Method 3** – Using the alias of the access point with the access point endpoint
+
+  First, to construct an S3 endpoint with the bucket included as part of the hostname, set the addressing style to `virtual` for `aws s3api` to use\. For more information about `AWS configure`, see [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) in the *AWS Command Line Interface User Guide*\. 
+
+  ```
+  aws configure set default.s3.addressing_style virtual
+  ```
+
+  Then, in the following example, replace the access point alias `accesspointexamplename-8tyekmigicmhun8n9kwpfur39dnw4use1a-s3alias`, the Region `us-east-1`, and the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with your own information\. For more information about access point alias, see [Using a bucket\-style alias for your S3 bucket access point](access-points-alias.md)
+
+  ```
+  aws s3api list-objects-v2 --bucket accesspointexamplename-8tyekmigicmhun8n9kwpfur39dnw4use1a-s3alias --region us-east-1 --endpoint-url https://accesspoint.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com
+  ```
 
 **Example: Use an endpoint URL to list jobs with an S3 control API operation**  
 In the following example, replace the Region `us-east-1`, the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com`, and the account ID `12345678` with your own information\.

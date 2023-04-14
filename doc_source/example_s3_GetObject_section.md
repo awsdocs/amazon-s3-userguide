@@ -516,17 +516,28 @@ This documentation is for an SDK in preview release\. The SDK is subject to chan
   
 
 ```
-pub async fn download_object(
-    client: &Client,
-    bucket_name: &str,
-    key: &str,
-) -> Result<GetObjectOutput, SdkError<GetObjectError>> {
-    client
+async fn get_object(client: Client, opt: Opt) -> Result<usize, anyhow::Error> {
+    trace!("bucket:      {}", opt.bucket);
+    trace!("object:      {}", opt.object);
+    trace!("destination: {}", opt.destination.display());
+
+    let mut file = File::create(opt.destination.clone())?;
+
+    let mut object = client
         .get_object()
-        .bucket(bucket_name)
-        .key(key)
+        .bucket(opt.bucket)
+        .key(opt.object)
         .send()
-        .await
+        .await?;
+
+    let mut byte_count = 0_usize;
+    while let Some(bytes) = object.body.try_next().await? {
+        let bytes = file.write(&bytes)?;
+        byte_count += bytes;
+        trace!("Intermediate write of {bytes}");
+    }
+
+    Ok(byte_count)
 }
 ```
 +  For API details, see [GetObject](https://docs.rs/releases/search?query=aws-sdk) in *AWS SDK for Rust API reference*\. 

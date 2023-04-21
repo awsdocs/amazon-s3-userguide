@@ -352,7 +352,7 @@ Before using this policy, replace the *`192.0.2.0/24`* IP address range in this 
  9.             "Action": "s3:*",
 10.             "Resource": [
 11.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET",
-12.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
+12.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
 13.             ],
 14.             "Condition": {
 15.                 "NotIpAddress": {
@@ -387,7 +387,7 @@ Replace the IP address ranges in this example with appropriate values for your u
  9.             "Action": "s3:*",
 10.             "Resource": [
 11.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET",
-12.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
+12.                 "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
 13.             ],
 14.             "Condition": {
 15.                 "IpAddress": {
@@ -427,7 +427,7 @@ In the following example, the bucket policy explicitly denies access to HTTP req
         "Effect": "Deny",
         "Resource": [
             "arn:aws:s3:::DOC-EXAMPLE-BUCKET",
-            "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*"
+            "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
         ],
         "Condition": {
             "Bool": {

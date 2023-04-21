@@ -214,8 +214,8 @@ func (basics BucketBasics) UploadFile(bucketName string, objectKey string, fileN
 Upload a file to a bucket using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
-    public static String putS3Object(S3Client s3, String bucketName, String objectKey, String objectPath) {
-
+    // This example uses RequestBody.fromFile to avoid loading the whole file into memory.
+    public static void putS3Object(S3Client s3, String bucketName, String objectKey, String objectPath) {
         try {
             Map<String, String> metadata = new HashMap<>();
             metadata.put("x-amz-meta-myVal", "test");
@@ -225,42 +225,13 @@ Upload a file to a bucket using an [S3Client](https://sdk.amazonaws.com/java/api
                 .metadata(metadata)
                 .build();
 
-            PutObjectResponse response = s3.putObject(putOb, RequestBody.fromBytes(getObjectFile(objectPath)));
-            return response.eTag();
+            s3.putObject(putOb, RequestBody.fromFile(new File(objectPath)));
+            System.out.println("Successfully placed " + objectKey +" into bucket "+bucketName);
 
         } catch (S3Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);
         }
-
-        return "";
-    }
-
-    // Return a byte array.
-    private static byte[] getObjectFile(String filePath) {
-
-        FileInputStream fileInputStream = null;
-        byte[] bytesArray = null;
-
-        try {
-            File file = new File(filePath);
-            bytesArray = new byte[(int) file.length()];
-            fileInputStream = new FileInputStream(file);
-            fileInputStream.read(bytesArray);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fileInputStream != null) {
-                try {
-                    fileInputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return bytesArray;
     }
 ```
 Use an [S3TransferManager](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/transfer/s3/S3TransferManager.html) to [upload a file](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/transfer/s3/S3TransferManager.html#uploadFile(software.amazon.awssdk.transfer.s3.UploadFileRequest)) to a bucket\. View the [complete file](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javav2/example_code/s3/src/main/java/com/example/s3/transfermanager/UploadFile.java) and [test](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javav2/example_code/s3/src/test/java/TransferManagerTest.java)\.  
@@ -389,8 +360,8 @@ Upload an object to a bucket and set tags using an [S3Client](https://sdk.amazon
 Upload an object to a bucket and set metadata using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  
 
 ```
-    public static String putS3Object(S3Client s3, String bucketName, String objectKey, String objectPath) {
-
+    // This example uses RequestBody.fromFile to avoid loading the whole file into memory.
+    public static void putS3Object(S3Client s3, String bucketName, String objectKey, String objectPath) {
         try {
             Map<String, String> metadata = new HashMap<>();
             metadata.put("author", "Mary Doe");
@@ -402,42 +373,13 @@ Upload an object to a bucket and set metadata using an [S3Client](https://sdk.am
                 .metadata(metadata)
                 .build();
 
-            PutObjectResponse response = s3.putObject(putOb, RequestBody.fromBytes(getObjectFile(objectPath)));
-            return response.eTag();
+            s3.putObject(putOb, RequestBody.fromFile(new File(objectPath)));
+            System.out.println("Successfully placed " + objectKey +" into bucket "+bucketName);
 
         } catch (S3Exception e) {
             System.err.println(e.getMessage());
             System.exit(1);
         }
-
-        return "";
-    }
-
-    // Return a byte array.
-    private static byte[] getObjectFile(String filePath) {
-
-        FileInputStream fileInputStream = null;
-        byte[] bytesArray = null;
-
-        try {
-            File file = new File(filePath);
-            bytesArray = new byte[(int) file.length()];
-            fileInputStream = new FileInputStream(file);
-            fileInputStream.read(bytesArray);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fileInputStream != null) {
-                try {
-                    fileInputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return bytesArray;
     }
 ```
 Upload an object to a bucket and set an object retention value using an [S3Client](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/s3/S3Client.html)\.  

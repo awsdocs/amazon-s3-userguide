@@ -160,7 +160,7 @@ To access S3 buckets, S3 access points, or Amazon S3 Control API operations thro
 In the following example, replace the Region `us-east-1`, the DNS name of the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com`, and the bucket name `my-bucket` with your own information\.
 
 ```
-aws s3 --region us-east-1 --endpoint-url https://bucket.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com ls s3://my-bucket/
+aws s3 ls s3://my-bucket/ --region us-east-1 --endpoint-url https://bucket.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com
 ```
 
 **Example: Use an endpoint URL to list objects from an access point**

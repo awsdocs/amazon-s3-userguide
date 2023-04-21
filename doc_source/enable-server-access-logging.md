@@ -9,6 +9,7 @@ An access log record contains details about the requests that are made to a buck
 **Important**  
 There is no extra charge for enabling server access logging on an Amazon S3 bucket\. However, any log files that the system delivers to you will accrue the usual charges for storage\. \(You can delete the log files at any time\.\) We do not assess data transfer charges for log file delivery, but we do charge the normal data transfer rate for accessing the log files\.
 Your target bucket should not have server access logging enabled\. You can have logs delivered to any bucket that you own that is in the same Region as the source bucket, including the source bucket itself\. However, this would cause an infinite loop of logs and is not recommended\. For simpler log management, we recommend that you save access logs in a different bucket\. For more information, see [How do I enable log delivery?](ServerLogs.md#server-access-logging-overview)
+S3 buckets with S3 Object Lock can't be used as destination buckets for server access logs\.
 
 You can enable or disable server access logging by using the Amazon S3 console, Amazon S3 API, the AWS Command Line Interface \(AWS CLI\), or AWS SDKs\. 
 

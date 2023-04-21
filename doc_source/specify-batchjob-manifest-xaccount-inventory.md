@@ -116,4 +116,4 @@ The following console procedure contains the high\-level steps for setting up pe
 
    For general information about creating a job, see [Creating an S3 Batch Operations job](batch-ops-create-job.md)\.
 
-   For information about creating a job using the console, see [Creating an S3 Batch Operations job](batch-ops-create-job.md)\.
+   For information about creating a job using the console, see [Creating an S3 Batch Operations job using the s3 console](batch-ops-create-job.md#using-the-s3-console)\.

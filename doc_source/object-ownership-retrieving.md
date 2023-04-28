@@ -1,15 +1,15 @@
 # Viewing the Object Ownership setting for an S3 bucket<a name="object-ownership-retrieving"></a>
 
-S3 Object Ownership is an Amazon S3 bucket\-level setting that you can use to disable [access control lists \(ACLs\)](acl-overview.md) and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. We recommend that you disable ACLs unless you to need to control access at the individual object level\. 
+S3 Object Ownership is an Amazon S3 bucket\-level setting that you can use to disable [access control lists \(ACLs\)](acl-overview.md) and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. By default, S3 Object Ownership is set to the bucket owner enforced setting, and ACLs are disabled for new buckets\. With ACLs disabled, the bucket owner owns every object in the bucket and manages access to data exclusively by using access\-management policies\. We recommend that you keep ACLs disabled, except in unusual circumstances where you must control access for each object individually\. 
 
 Object Ownership has three settings that you can use to control ownership of objects uploaded to your bucket and to disable or enable ACLs:
 
 **ACLs disabled**
-+ **Bucket owner enforced \(recommended\)** – ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket\. ACLs no longer affect permissions to data in the S3 bucket\. The bucket uses policies to define access control\.
++ **Bucket owner enforced \(default\)** – ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket\. ACLs no longer affect permissions to data in the S3 bucket\. The bucket uses policies to define access control\.
 
 **ACLs enabled**
 + **Bucket owner preferred** – The bucket owner owns and has full control over new objects that other accounts write to the bucket with the `bucket-owner-full-control` canned ACL\. 
-+ **Object writer \(default\)** – The AWS account that uploads an object owns the object, has full control over it, and can grant other users access to it through ACLs\.
++ **Object writer** – The AWS account that uploads an object owns the object, has full control over it, and can grant other users access to it through ACLs\.
 
 You can view the S3 Object Ownership settings for an Amazon S3 bucket\. To set Object Ownership for a new bucket, see [Setting Object Ownership when you create a bucket](object-ownership-new-bucket.md)\. To set Object Ownership for an existing bucket, see [Setting Object Ownership on an existing bucket](object-ownership-existing-bucket.md)\.
 

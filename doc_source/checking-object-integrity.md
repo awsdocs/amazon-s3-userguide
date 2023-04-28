@@ -28,7 +28,7 @@ After uploading objects, you can get the checksum value and compare it to a prec
 
 ### Using the S3 console<a name="CheckObjectIntegrityConsole"></a>
 
-To learn more about using the console and specifying checksum algorithms to use when uploading objects, see [Uploading objects](upload-objects.md)\.
+To learn more about using the console and specifying checksum algorithms to use when uploading objects, see [Uploading objects](upload-objects.md) and [Tutorial: Checking the integrity of data in Amazon S3 with additional checksums](http://aws.amazon.com/getting-started/hands-on/amazon-s3-with-additional-checksums/?ref=docs_gateway/amazons3/checking-object-integrity.html)\.
 
 ### Using the AWS SDKs<a name="CheckObjectIntegritySDK"></a>
 

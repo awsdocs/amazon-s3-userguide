@@ -26,6 +26,7 @@ Amazon S3 on Outposts supports the following Amazon S3 API operations:
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html)
++ [https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectVersions.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectVersions.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html)
@@ -51,6 +52,7 @@ S3 on Outposts supports the following Amazon S3 Control API operations for worki
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html)
 +  [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketReplication.html) 
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html)
++  [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketVersioning.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketVersioning.html) 
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html)
@@ -58,6 +60,7 @@ S3 on Outposts supports the following Amazon S3 Control API operations for worki
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html)
 +  [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketReplication.html) 
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html)
++ [https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketVersioning.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketVersioning.html)
 
 ## S3 on Outposts API operations for managing Outposts<a name="S3OutpostsAPIs"></a>
 
@@ -65,6 +68,5 @@ S3 on Outposts supports the following Amazon S3 on Outposts API operations for m
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_CreateEndpoint.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_DeleteEndpoint.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListEndpoints.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListEndpoints.html)
-+ [ListOutpostsWithS3](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListOutpostsWithS3.html)
 + [ListOutpostsWithS3](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListOutpostsWithS3.html)
 + [https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListSharedEndpoints.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_s3outposts_ListSharedEndpoints.html)

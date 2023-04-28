@@ -84,7 +84,7 @@ The following example shows a CloudTrail log entry that demonstrates the [GET Se
               "Owner": {
                   "ID": "d25639fbe9c19cd30a4c0f43fbf00e2d3f96400a9aa8dabfbbebe1906Example"
               }
-          }
+          },
           "host": [
               "s3.us-west-2.amazonaws.com"
           ],
@@ -132,7 +132,7 @@ The following example shows a CloudTrail log entry that demonstrates the [GET Se
       "additionalEventData": {
           "SignatureVersion": "SigV4",
           "CipherSuite": "ECDHE-RSA-AES128-SHA",
-          "AuthenticationMethod": "AuthHeader",
+          "AuthenticationMethod": "AuthHeader"
     },
       "requestID": "07D681279BD94AED",
       "eventID": "f2b287f3-0df1-4961-a2f4-c4bdfed47657",

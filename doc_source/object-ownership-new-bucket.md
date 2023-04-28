@@ -2,16 +2,16 @@
 
 When you create a bucket, you can configure S3 Object Ownership\. To set Object Ownership for an existing bucket, see [Setting Object Ownership on an existing bucket](object-ownership-existing-bucket.md)\.
 
-S3 Object Ownership is an Amazon S3 bucket\-level setting that you can use to disable [access control lists \(ACLs\)](acl-overview.md) and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. We recommend that you disable ACLs unless you to need to control access at the individual object level\. 
+S3 Object Ownership is an Amazon S3 bucket\-level setting that you can use to disable [access control lists \(ACLs\)](acl-overview.md) and take ownership of every object in your bucket, simplifying access management for data stored in Amazon S3\. By default, S3 Object Ownership is set to the bucket owner enforced setting, and ACLs are disabled for new buckets\. With ACLs disabled, the bucket owner owns every object in the bucket and manages access to data exclusively by using access\-management policies\. We recommend that you keep ACLs disabled, except in unusual circumstances where you must control access for each object individually\. 
 
 Object Ownership has three settings that you can use to control ownership of objects uploaded to your bucket and to disable or enable ACLs:
 
 **ACLs disabled**
-+ **Bucket owner enforced \(recommended\)** – ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket\. ACLs no longer affect permissions to data in the S3 bucket\. The bucket uses policies to define access control\.
++ **Bucket owner enforced \(default\)** – ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket\. ACLs no longer affect permissions to data in the S3 bucket\. The bucket uses policies to define access control\.
 
 **ACLs enabled**
 + **Bucket owner preferred** – The bucket owner owns and has full control over new objects that other accounts write to the bucket with the `bucket-owner-full-control` canned ACL\. 
-+ **Object writer \(default\)** – The AWS account that uploads an object owns the object, has full control over it, and can grant other users access to it through ACLs\.
++ **Object writer** – The AWS account that uploads an object owns the object, has full control over it, and can grant other users access to it through ACLs\.
 
 **Permissions**: To apply the **Bucket owner enforced** setting or the **Bucket owner preferred** setting, you must have the following permissions: `s3:CreateBucket` and `s3:PutBucketOwnershipControls`\. No additional permissions are needed when creating a bucket with the **Object writer** setting applied\. For more information about Amazon S3 permissions, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\. 
 
@@ -31,7 +31,7 @@ A majority of modern use cases in Amazon S3 no longer require the use of ACLs, a
 1. For **Bucket name**, enter a name for your bucket\.
 
    The bucket name must:
-   + Be unique within a partition\. A partition is a grouping of Regions\. AWS currently has three partitions: `aws` \(Standard Regions\), `aws-cn` \(China Regions\), and `aws-us-gov` \(AWS GovCloud \[US\] Regions\)\.
+   + Be unique within a partition\. A partition is a grouping of Regions\. AWS currently has three partitions: `aws` \(Standard Regions\), `aws-cn` \(China Regions\), and `aws-us-gov` \(AWS GovCloud \(US\) Regions\)\.
    + Be between 3 and 63 characters long\.
    + Consist only of lowercase letters, numbers, dots \(\.\), and hyphens \(\-\)\. For best compatibility, we recommend that you avoid using dots \(\.\) in bucket names, except for buckets that are used only for static website hosting\.
    + Begin and end with a letter or number\.
@@ -47,21 +47,23 @@ Avoid including sensitive information, such as account numbers, in the bucket na
 1. Under **Object Ownership**, to disable or enable ACLs and control ownership of objects uploaded in your bucket, choose one of the following settings:
 
 **ACLs disabled**
-   + **Bucket owner enforced** – ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket\. ACLs no longer affect access permissions to data in the S3 bucket\. The bucket uses policies to define access control\.
+   +  **Bucket owner enforced \(default\)** – ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket\. ACLs no longer affect access permissions to data in the S3 bucket\. The bucket uses policies exclusively to define access control\.
 
-     To require that all new buckets are created with ACLs disabled by using AWS Identity and Access Management \(IAM\) or AWS Organizations policies, see [Disabling ACLs for all new buckets \(bucket owner enforced\)](ensure-object-ownership.md#object-ownership-requiring-bucket-owner-enforced)\.
+     By default, ACLs are disabled\. A majority of modern use cases in Amazon S3 no longer require the use of ACLs\. We recommend that you keep ACLs disabled, except in unusual circumstances where you must control access for each object individually\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 
 **ACLs enabled**
    + **Bucket owner preferred** – The bucket owner owns and has full control over new objects that other accounts write to the bucket with the `bucket-owner-full-control` canned ACL\. 
 
-     If you apply the bucket owner preferred setting, to require all Amazon S3 uploads to include the `bucket-owner-full-control` canned ACL, you can [add a bucket policy](ensure-object-ownership.md#ensure-object-ownership-bucket-policy) that allows only object uploads that use this ACL\.
+     If you apply the **Bucket owner preferred** setting, to require all Amazon S3 uploads to include the `bucket-owner-full-control` canned ACL, you can [add a bucket policy](ensure-object-ownership.md#ensure-object-ownership-bucket-policy) that allows only object uploads that use this ACL\.
    + **Object writer** – The AWS account that uploads an object owns the object, has full control over it, and can grant other users access to it through ACLs\.
 **Note**  
-To apply the **Bucket owner enforced** setting or the **Bucket owner preferred** setting, you must have permission to use the following actions: `s3:CreateBucket` and `s3:PutBucketOwnershipControls`\.
+The default setting is **Bucket owner enforced**\. To apply the default setting and keep ACLs disabled, only the `s3:CreateBucket` permission is needed\. To enable ACLs, you must have the `s3:PutBucketOwnershipControls` permission\.
 
 1. Under **Block Public Access settings for this bucket**, choose the Block Public Access settings that you want to apply to the bucket\. 
 
-   We recommend that you keep all settings enabled unless you know that you need to turn off one or more of them for your use case, such as to host a public website\. The Block Public Access settings that you enable for the bucket are also enabled for all access points that you create on the bucket\. For more information about blocking public access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
+   By default, all four Block Public Access settings are enabled\. We recommend that you keep all settings enabled, unless you know that you need to turn off one or more of them for your specific use case\. For more information about blocking public access, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
+**Note**  
+To enable all Block Public Access settings, only the `s3:CreateBucket` permission is required\. To turn off any Block Public Access settings, you must have the `s3:PutBucketPublicAccessBlock` permission\.
 
 1. \(Optional\) Under **Bucket Versioning**, you can choose if you wish to keep variants of objects in your bucket\. For more information about versioning, see [Using versioning in S3 buckets](Versioning.md)\.
 

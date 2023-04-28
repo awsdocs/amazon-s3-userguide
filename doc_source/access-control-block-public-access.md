@@ -6,9 +6,6 @@ With S3 Block Public Access, account administrators and bucket owners can easily
 
 For instructions on configuring public block access, see [Configuring block public access](#configuring-block-public-access)\.
 
-**Important**  
-Starting in April 2023, Amazon S3 will change the default settings for S3 Block Public Access and Object Ownership \(ACLs disabled\) for all new S3 buckets\. For new buckets created after this update, all S3 Block Public Access settings will be enabled, and S3 access control lists \(ACLs\) will be disabled\. These defaults are the recommended best practices for securing data in Amazon S3\. You can adjust these settings after creating your bucket\. For more information, see [ Default settings for new S3 buckets FAQ](create-bucket-faq.md) and [Heads\-Up: Amazon S3 Security Changes Are Coming in April of 2023](http://aws.amazon.com/blogs/aws/heads-up-amazon-s3-security-changes-are-coming-in-april-of-2023/) in the * AWS News Blog*\.
-
 When Amazon S3 receives a request to access a bucket or an object, it determines whether the bucket or the bucket owner's account has a block public access setting applied\. If the request was made through an access point, Amazon S3 also checks for block public access settings for the access point\. If there is an existing block public access setting that prohibits the requested access, Amazon S3 rejects the request\. 
 
 Amazon S3 Block Public Access provides four settings\. These settings are independent and can be used in any combination\. Each setting can be applied to an access point, a bucket, or an entire AWS account\. If the block public access settings for the access point, bucket, or account differ, then Amazon S3 applies the most restrictive combination of the access point, bucket, and account settings\. 
@@ -27,7 +24,7 @@ When you apply block public access settings to an account, the settings apply to
 + [Block public access settings](#access-control-block-public-access-options)
 + [Performing block public access operations on an access point](#access-control-block-public-access-examples-access-point)
 + [The meaning of "public"](#access-control-block-public-access-policy-status)
-+ [Using Access Analyzer for S3 to review public buckets](#access-analyzer-public-info)
++ [Using IAM Access Analyzer for S3 to review public buckets](#access-analyzer-public-info)
 + [Permissions](#access-control-block-public-access-permissions)
 + [Configuring block public access](#configuring-block-public-access)
 + [Configuring block public access settings for your account](configuring-block-public-access-account.md)
@@ -149,15 +146,15 @@ Amazon S3 evaluates block public access settings slightly differently for access
 + An access point that has a VPC network origin is always considered non\-public, regardless of the contents of its access point policy\.
 + An access point policy that grants access to a set of access points using `s3:DataAccessPointArn` is considered public\. Note that this behavior is different than for bucket policies\. For example, a bucket policy that grants access to values of `s3:DataAccessPointArn` that match `arn:aws:s3:us-west-2:123456789012:accesspoint/*` is not considered public\. However, the same statement in an access point policy would render the access point public\.
 
-## Using Access Analyzer for S3 to review public buckets<a name="access-analyzer-public-info"></a>
+## Using IAM Access Analyzer for S3 to review public buckets<a name="access-analyzer-public-info"></a>
 
-You can use Access Analyzer for S3 to review buckets with bucket ACLs, bucket policies, or access point policies that grant public access\. Access Analyzer for S3 alerts you to buckets that are configured to allow access to anyone on the internet or other AWS accounts, including AWS accounts outside of your organization\. For each public or shared bucket, you receive findings that report the source and level of public or shared access\. 
+You can use IAM Access Analyzer for S3 to review buckets with bucket ACLs, bucket policies, or access point policies that grant public access\. IAM Access Analyzer for S3 alerts you to buckets that are configured to allow access to anyone on the internet or other AWS accounts, including AWS accounts outside of your organization\. For each public or shared bucket, you receive findings that report the source and level of public or shared access\. 
 
-In Access Analyzer for S3, you can block all public access to a bucket with a single click\. You can also drill down into bucket\-level permission settings to configure granular levels of access\. For specific and verified use cases that require public or shared access, you can acknowledge and record your intent for the bucket to remain public or shared by archiving the findings for the bucket\.
+In IAM Access Analyzer for S3, you can block all public access to a bucket with a single click\. You can also drill down into bucket\-level permission settings to configure granular levels of access\. For specific and verified use cases that require public or shared access, you can acknowledge and record your intent for the bucket to remain public or shared by archiving the findings for the bucket\.
 
-In rare events, Access Analyzer for S3 might report no findings for a bucket that an Amazon S3 block public access evaluation reports as public\. This happens because Amazon S3 block public access reviews policies for current actions and any potential actions that might be added in the future, leading to a bucket becoming public\. On the other hand, Access Analyzer for S3 only analyzes the current actions specified for the Amazon S3 service in the evaluation of access status\.
+In rare events, IAM Access Analyzer for S3 might report no findings for a bucket that an Amazon S3 block public access evaluation reports as public\. This happens because Amazon S3 block public access reviews policies for current actions and any potential actions that might be added in the future, leading to a bucket becoming public\. On the other hand, IAM Access Analyzer for S3 only analyzes the current actions specified for the Amazon S3 service in the evaluation of access status\.
 
-For more information about Access Analyzer for S3, see [Reviewing bucket access using Access Analyzer for S3](access-analyzer.md)\.
+For more information about IAM Access Analyzer for S3, see [Reviewing bucket access using IAM Access Analyzer for S3](access-analyzer.md)\.
 
 ## Permissions<a name="access-control-block-public-access-permissions"></a>
 

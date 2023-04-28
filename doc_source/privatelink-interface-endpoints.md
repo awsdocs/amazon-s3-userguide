@@ -157,7 +157,7 @@ For more information about how to view your endpoint\-specific DNS names, see [V
 To access S3 buckets, S3 access points, or Amazon S3 Control API operations through S3 interface endpoints in AWS CLI commands, use the `--region` and `--endpoint-url` parameters\. 
 
 **Example: Use an endpoint URL to list objects in your bucket**  
-In the following example, replace the Region `us-east-1`, the DNS name of the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com`, and the bucket name `my-bucket` with your own information\.
+In the following example, replace the bucket name `my-bucket`, Region `us-east-1`, and the DNS name of the VPC endpoint ID `vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com` with your own information\.
 
 ```
 aws s3 ls s3://my-bucket/ --region us-east-1 --endpoint-url https://bucket.vpce-1a2b3c4d-5e6f.s3.us-east-1.vpce.amazonaws.com

@@ -1,6 +1,6 @@
 # Troubleshooting<a name="object-ownership-error-responses"></a>
 
-When you apply the bucket owner enforced setting for S3 Object Ownership, access control lists \(ACLs\) are disabled and you, as the bucket owner, automatically own all objects in your bucket\. ACLs no longer affect permissions for the objects in your bucket\. You can use policies to grant permissions\. All S3 PUT requests must specify bucket owner full control ACLs or not specify an ACL, or they fail\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
+When you apply the bucket owner enforced setting for S3 Object Ownership, access control lists \(ACLs\) are disabled and you, as the bucket owner, automatically own all objects in your bucket\. ACLs no longer affect permissions for the objects in your bucket\. You can use policies to grant permissions\. All S3 `PUT` requests must either specify the `bucket-owner-full-control` canned ACL or not specify an ACL, or these requests will fail\. For more information, see [Controlling ownership of objects and disabling ACLs for your bucket](about-object-ownership.md)\.
 
 If an invalid ACL is specified or bucket ACL permissions grant access outside of your AWS account, you might see the following error responses\.
 

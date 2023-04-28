@@ -146,17 +146,17 @@ Access policy describes who has access to what\. You can associate an access pol
 
 When Amazon S3 receives a request, it must evaluate all the access policies to determine whether to authorize or deny the request\. For more information about how Amazon S3 evaluates these policies, see [How Amazon S3 authorizes a request](how-s3-evaluates-access-control.md)\.
 
-### Access Analyzer for S3<a name="access-analyzer-s3-info"></a>
+### IAM Access Analyzer for S3<a name="access-analyzer-s3-info"></a>
 
-On the Amazon S3 console, you can use Access Analyzer for S3 to review all buckets that have bucket access control lists \(ACLs\), bucket policies, or access point policies that grant public or shared access\. Access Analyzer for S3 alerts you to buckets that are configured to allow access to anyone on the internet or other AWS accounts, including AWS accounts outside of your organization\. For each public or shared bucket, you receive findings that report the source and level of public or shared access\. 
+On the Amazon S3 console, you can use IAM Access Analyzer for S3 to review all buckets that have bucket access control lists \(ACLs\), bucket policies, or access point policies that grant public or shared access\. IAM Access Analyzer for S3 alerts you to buckets that are configured to allow access to anyone on the internet or other AWS accounts, including AWS accounts outside of your organization\. For each public or shared bucket, you receive findings that report the source and level of public or shared access\. 
 
-In Access Analyzer for S3, you can block all public access to a bucket with a single click\. We recommend that you block all access to your buckets unless you require public access to support a specific use case\. Before you block all public access, ensure that your applications will continue to work correctly without public access\. For more information, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
+In IAM Access Analyzer for S3, you can block all public access to a bucket with a single click\. We recommend that you block all access to your buckets unless you require public access to support a specific use case\. Before you block all public access, ensure that your applications will continue to work correctly without public access\. For more information, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
 
 You can also drill down into bucket\-level permission settings to configure granular levels of access\. For specific and verified use cases that require public or shared access, you can acknowledge and record your intent for the bucket to remain public or shared by archiving the findings for the bucket\. You can revisit and modify these bucket configurations at any time\. You can also download your findings as a CSV report for auditing purposes\.
 
-Access Analyzer for S3 is available at no extra cost on the Amazon S3 console\. Access Analyzer for S3 is powered by AWS Identity and Access Management \(IAM\) Access Analyzer\. To use Access Analyzer for S3 on the Amazon S3 console, you must visit the IAM console and create an account\-level analyzer in IAM Access Analyzer on a per\-Region basis\. 
+IAM Access Analyzer for S3 is available at no extra cost on the Amazon S3 console\. IAM Access Analyzer for S3 is powered by AWS Identity and Access Management \(IAM\) IAM Access Analyzer\. To use IAM Access Analyzer for S3 on the Amazon S3 console, you must visit the IAM console and create an account\-level analyzer in IAM IAM Access Analyzer on a per\-Region basis\. 
 
-For more information about Access Analyzer for S3, see [Reviewing bucket access using Access Analyzer for S3](access-analyzer.md)\.
+For more information about IAM Access Analyzer for S3, see [Reviewing bucket access using IAM Access Analyzer for S3](access-analyzer.md)\.
 
 ## Which access control method should I use?<a name="so-which-one-should-i-use"></a>
 

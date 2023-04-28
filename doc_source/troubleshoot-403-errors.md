@@ -67,9 +67,6 @@ To check whether the requester has proper permissions to perform an Amazon S3 op
 
 ## Amazon S3 ACL settings<a name="troubleshoot-403-acl-settings"></a>
 
-**Important**  
-A majority of use cases in Amazon S3 no longer require the use of access control lists \(ACLs\)\. We recommend that you disable ACLs, except in unusual circumstances where you need to control access for each object individually\. Starting in April 2023, Amazon S3 will change the default setting for S3 Object Ownership for all new buckets\. For new buckets created after this update, ACLs will be disabled\. This new default follows the recommended best practices for securing data in Amazon S3\. You can adjust the Object Ownership setting after creating your bucket\. For more information, see [ Default settings for new S3 buckets FAQ](create-bucket-faq.md) and [Heads\-up: Amazon S3 security changes are coming in April of 2023](http://aws.amazon.com/blogs/aws/heads-up-amazon-s3-security-changes-are-coming-in-april-of-2023/) in the *AWS News Blog*\. 
-
 When checking your ACL settings, first [review your Object Ownership setting](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-ownership-retrieving.html) to check whether ACLs are enabled on the bucket\. Be aware that ACL permissions can be used only to grant permissions and cannot be used to reject requests\. ACLs also cannot be used to grant access to requesters that are rejected by explicit denials in bucket policies or IAM user policies\.
 
 ### The Object Ownership setting is set to bucket owner enforced<a name="troubleshoot-403-object-ownership-1"></a>

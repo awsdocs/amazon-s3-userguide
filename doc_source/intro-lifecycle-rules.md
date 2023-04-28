@@ -203,13 +203,13 @@ You can direct Amazon S3 to perform specific actions in an object's lifetime by 
 
   For a versioned bucket \(versioning\-enabled or versioning\-suspended bucket\), the `Transition` action applies to the current object version\. To manage noncurrent versions, Amazon S3 defines the `NoncurrentVersionTransition` action \(described later in this topic\)\.
 + **Expiration action element** – The `Expiration` action expires objects identified in the rule and applies to eligible objects in any of the Amazon S3 storage classes\. For more information about storage classes, see [Using Amazon S3 storage classes](storage-class-intro.md)\. Amazon S3 makes all expired objects unavailable\. Whether the objects are permanently removed depends on the versioning state of the bucket\. 
-**Important**  
-Object expiration lifecycle configurations do not remove incomplete multipart uploads\. To remove incomplete multipart uploads, you must use the **AbortIncompleteMultipartUpload** Lifecycle configuration action that is described later in this section\. 
   + **Non\-versioned bucket** – The `Expiration` action results in Amazon S3 permanently removing the object\. 
-  + **Versioned bucket** – For a versioned bucket \(that is, versioning\-enabled or versioning\-suspended\), there are several considerations that guide how Amazon S3 handles the `Expiration` action\. For more information, see [Using versioning in S3 buckets](Versioning.md)\. Regardless of the versioning state, the following applies:
+  + **Versioned bucket** – For a versioned bucket \(that is, versioning\-enabled or versioning\-suspended\), there are several considerations that guide how Amazon S3 handles the `Expiration` action\. For versioning\-enabled or versioning\-suspended buckets, the following applies:
     + The `Expiration` action applies only to the current version \(it has no impact on noncurrent object versions\)\.
     + Amazon S3 doesn't take any action if there are one or more object versions and the delete marker is the current version\.
     + If the current object version is the only object version and it is also a delete marker \(also referred as an *expired object delete marker*, where all object versions are deleted and you only have a delete marker remaining\), Amazon S3 removes the expired object delete marker\. You can also use the expiration action to direct Amazon S3 to remove any expired object delete markers\. For an example, see [Example 7: Removing expired object delete markers](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex7)\. 
+
+    For more information, see [Using versioning in S3 buckets](Versioning.md)\.
 
     Also consider the following when setting up Amazon S3 to manage expiration:
     + **Versioning\-enabled bucket** 
@@ -228,7 +228,7 @@ In addition, Amazon S3 provides the following actions that you can use to manage
   Delayed removal of noncurrent objects can be helpful when you need to correct any accidental deletes or overwrites\. For example, you can configure an expiration rule to delete noncurrent versions five days after they become noncurrent\. For example, suppose that on 1/1/2014 10:30 AM UTC, you create an object called `photo.gif` \(version ID 111111\)\. On 1/2/2014 11:30 AM UTC, you accidentally delete `photo.gif` \(version ID 111111\), which creates a delete marker with a new version ID \(such as version ID 4857693\)\. You now have five days to recover the original version of `photo.gif` \(version ID 111111\) before the deletion is permanent\. On 1/8/2014 00:00 UTC, the Lifecycle rule for expiration executes and permanently deletes `photo.gif` \(version ID 111111\), five days after it became a noncurrent version\. 
 
   For details about how Amazon S3 calculates the date when you specify the number of days in an `NoncurrentVersionExpiration` action, see [Lifecycle rules: Based on an object's age](#intro-lifecycle-rules-number-of-days)\.
-**Important**  
+**Note**  
 Object expiration lifecycle configurations do not remove incomplete multipart uploads\. To remove incomplete multipart uploads, you must use the **AbortIncompleteMultipartUpload** Lifecycle configuration action that is described later in this section\. 
 
 In addition to the transition and expiration actions, you can use the following Lifecycle configuration action to direct Amazon S3 to stop incomplete multipart uploads\. 

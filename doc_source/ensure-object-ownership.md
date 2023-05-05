@@ -1,6 +1,6 @@
 # Disabling ACLs for all new buckets and enforcing Object Ownership<a name="ensure-object-ownership"></a>
 
-We recommend that you disable ACLs on your Amazon S3 buckets\. You can do this by applying the bucket owner enforced setting for S3 Object Ownership\. When you apply this setting, ACLs are disabled and you automatically own and have full control over all objects in your bucket\. You can require that all new buckets are created with ACLs disabled by using AWS Identity and Access Management \(IAM\) policies or AWS Organizations service control policies \(SCPs\), as described in the next section\.
+We recommend that you disable ACLs on your Amazon S3 buckets\. You can do this by applying the Bucket owner enforced setting for S3 Object Ownership\. When you apply this setting, ACLs are disabled and you automatically own and have full control over all objects in your bucket\. You can require that all new buckets are created with ACLs disabled by using AWS Identity and Access Management \(IAM\) policies or AWS Organizations service control policies \(SCPs\), as described in the next section\.
 
 To enforce object ownership for new objects without disabling ACLs, you can apply the bucket owner preferred setting\. When you apply this setting, we strongly recommend that you update your bucket policy to require the `bucket-owner-full-control` canned ACL for all PUT requests to your bucket\. Clients should also be updated to send the `bucket-owner-full-control` canned ACL to your bucket from other accounts\.
 
@@ -10,7 +10,7 @@ To enforce object ownership for new objects without disabling ACLs, you can appl
 
 ## Disabling ACLs for all new buckets \(bucket owner enforced\)<a name="object-ownership-requiring-bucket-owner-enforced"></a>
 
-The following example IAM policy denies the `s3:CreateBucket` permission for a specific IAM user or role unless the bucket owner enforced setting is applied for Object Ownership\. The key\-value pair in the `Condition` block specifies `s3:x-amz-object-ownership` as its key and the `BucketOwnerEnforced` setting as its value\. In other words, the IAM user can create buckets only if they set the bucket owner enforced setting for Object Ownership and disable ACLs\. You can also use this policy as a boundary SCP for your AWS organization\.
+The following example IAM policy denies the `s3:CreateBucket` permission for a specific IAM user or role unless the Bucket owner enforced setting is applied for Object Ownership\. The key\-value pair in the `Condition` block specifies `s3:x-amz-object-ownership` as its key and the `BucketOwnerEnforced` setting as its value\. In other words, the IAM user can create buckets only if they set the Bucket owner enforced setting for Object Ownership and disable ACLs\. You can also use this policy as a boundary SCP for your AWS organization\.
 
 ```
 {
@@ -36,7 +36,7 @@ The following example IAM policy denies the `s3:CreateBucket` permission for a s
 With the bucket owner preferred setting for Object Ownership, you, as the bucket owner, own and have full control over new objects that other accounts write to your bucket with the `bucket-owner-full-control` canned ACL\. However, if other accounts write objects to your bucket without the `bucket-owner-full-control` canned ACL, the object writer maintains full control access\. You, as the bucket owner, can implement a bucket policy that allows writes only if they specify the `bucket-owner-full-control` canned ACL\.
 
 **Note**  
-If you have ACLs disabled with the bucket owner enforced setting, you, as the bucket owner, automatically own and have full control over all the objects in your bucket\. You don't need to use this section to update your bucket policy to enforce object ownership for the bucket owner\.
+If you have ACLs disabled with the Bucket owner enforced setting, you, as the bucket owner, automatically own and have full control over all the objects in your bucket\. You don't need to use this section to update your bucket policy to enforce object ownership for the bucket owner\.
 
 The following bucket policy specifies that account *`111122223333`* can upload objects to *`DOC-EXAMPLE-BUCKET`* only when the object's ACL is set to `bucket-owner-full-control`\. Be sure to replace *`111122223333`* with your account and *`DOC-EXAMPLE-BUCKET`* with the name of your bucket\.
 

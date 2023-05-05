@@ -123,7 +123,7 @@ To create an Object Lock enabled bucket, you must have the following permissions
 
 To set Object Ownership when you create a new bucket, use the `create-bucket` AWS CLI command with the `--object-ownership` parameter\. 
 
-This example applies the bucket owner enforced setting for a new bucket using the AWS CLI:
+This example applies the Bucket owner enforced setting for a new bucket using the AWS CLI:
 
 ```
 aws s3api create-bucket --bucket  DOC-EXAMPLE-BUCKET --region us-east-1 --object-ownership BucketOwnerEnforced
@@ -134,7 +134,7 @@ If you don’t set Object Ownership when you create a bucket using the CLI, the 
 
 ## Using the AWS SDK for Java<a name="object-ownership-new-bucket-sdk-java"></a>
 
-This example sets the bucket owner enforced setting for a new bucket using the AWS SDK for Java:
+This example sets the Bucket owner enforced setting for a new bucket using the AWS SDK for Java:
 
 ```
     // Build the ObjectOwnership for CreateBucket
@@ -153,7 +153,7 @@ To use the `AWS::S3::Bucket` AWS CloudFormation resource to set Object Ownership
 
 ## Using the REST API<a name="object-ownership-new-bucket-rest-api"></a>
 
-To apply the bucket owner enforced setting for S3 Object Ownership, use the `CreateBucket` API operation with the `x-amz-object-ownership` request header set to `BucketOwnerEnforced`\. For information and examples, see [CreateBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html) in the *Amazon Simple Storage Service API Reference*\.
+To apply the Bucket owner enforced setting for S3 Object Ownership, use the `CreateBucket` API operation with the `x-amz-object-ownership` request header set to `BucketOwnerEnforced`\. For information and examples, see [CreateBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html) in the *Amazon Simple Storage Service API Reference*\.
 
 **Next steps**: After you apply the bucket owner enforced or bucket owner preferred settings for Object Ownership, you can further take the following steps:
 + [Bucket owner enforced](ensure-object-ownership.md#object-ownership-requiring-bucket-owner-enforced) – Require that all new buckets are created with ACLs disabled by using an IAM or Organizations policy\. 

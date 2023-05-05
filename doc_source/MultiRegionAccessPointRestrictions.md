@@ -30,7 +30,14 @@ To use SigV4A with temporary security credentials—for example, when using AWS 
   + There is a limit of 17 Regions for a single Multi\-Region Access Point\.
 + After you create a Multi\-Region Access Point, you can’t add, modify, or remove buckets from the Multi\-Region Access Point configuration\. To change the buckets, you must delete the entire Multi\-Region Access Point and create a new one\. If a cross\-account bucket in your Multi\-Region Access Point is deleted, the only way to reconnect this bucket is to recreate the bucket, using the same name and Region in that account\.
 + Underlying buckets \(in the same account\) that are used in a Multi\-Region Access Point can be deleted only after a Multi\-Region Access Point is deleted\.
-+  Only the following AWS Regions are supported:
++ All control plane requests to create or maintain Multi\-Region Access Points must be routed to the `US West (Oregon)` Region\. For Multi\-Region Access Point data plane requests, Regions don't need to be specified\. 
++ For the Multi\-Region Access Point failover control plane, requests must be routed to one of these five supported Regions:
+  + `US East (N. Virginia)`
+  + `US West (Oregon)`
+  + `Asia Pacific (Sydney)`
+  + `Asia Pacific (Tokyo)`
+  + `Europe (Ireland)`
++ Your Multi\-Region Access Point only supports buckets in the following AWS Regions:
   + `US East (N. Virginia)`
   + `US East (Ohio)`
   + `US West (N. California)`

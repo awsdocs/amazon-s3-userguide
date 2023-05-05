@@ -19,6 +19,17 @@ When optimizing performance, look at network throughput, CPU, and DRAM requireme
 
 It’s also helpful to look at DNS lookup time, latency, and data transfer speed using HTTP analysis tools when measuring performance\.
 
+ To understand the performance requirements and optimize the performance of your application, you can also monitor the 503 error responses that you receive\. Monitoring certain performance metrics may incur additional expenses\. For more information, see [Amazon S3 pricing](http://aws.amazon.com/s3/pricing/)\. 
+
+### Monitor the number of 503 \(Slow Down\) status error responses<a name="optimizing-performance-guidelines-measure-503"></a>
+
+ To monitor the number of 503 status error responses that you get, you can use one of the following options:
++ Use Amazon CloudWatch request metrics for Amazon S3\. The CloudWatch request metrics include a metric for 5xx status responses\. For more information about CloudWatch request metrics, see [Monitoring metrics with Amazon CloudWatch](cloudwatch-monitoring.md)\.
++ Use the 503 \(Service Unavailable\) error count available in the advanced metrics section of Amazon S3 Storage Lens\. For more information, see [Using S3 Storage Lens metrics to improve performance](storage-lens-detailed-status-code.md)\.
++ Use Amazon S3 server access logging\. With server access logging, you can filter and review all requests that receive 503 \(Internal Error\) responses\. You can also use Amazon Athena to parse logs\. For more information about server access logging, see [Logging requests using server access logging](ServerLogs.md)\.
+
+ By monitoring the number of HTTP 503 status error code, you can often gain valuable insights into which prefixes, keys, or buckets are getting the most throttling requests\. 
+
 ## Scale Storage Connections Horizontally<a name="optimizing-performance-guidelines-scale"></a>
 
 Spreading requests across many connections is a common design pattern to horizontally scale performance\. When you build high performance applications, think of Amazon S3 as a very large distributed system, not as a single network endpoint like a traditional storage server\. You can achieve the best performance by issuing multiple concurrent requests to Amazon S3\. Spread these requests over separate connections to maximize the accessible bandwidth from Amazon S3\. Amazon S3 doesn't have any limits for the number of connections made to your bucket\. 

@@ -1,6 +1,6 @@
 # Prerequisites for disabling ACLs<a name="object-ownership-migrating-acls-prerequisites"></a>
 
-If your bucket ACL grants access outside of your AWS account, before you disable ACLs, you must migrate your bucket ACL permissions to your bucket policy and reset your bucket ACL to the default private ACL\. If you don't migrate these bucket ACLs, your request to apply the bucket owner enforced setting to disable ACLs fails and returns the [InvalidBucketAclWithObjectOwnership](object-ownership-error-responses.md#object-ownership-error-responses-invalid-acl) error code\. We also recommend that you review your object ACL permissions and migrate them to your bucket policy\. For more information about other suggested prerequisites, see [Prerequisites for disabling ACLs](about-object-ownership.md#object-ownership-considerations)\. 
+If your bucket ACL grants access outside of your AWS account, before you disable ACLs, you must migrate your bucket ACL permissions to your bucket policy and reset your bucket ACL to the default private ACL\. If you don't migrate these bucket ACLs, your request to apply the Bucket owner enforced setting to disable ACLs fails and returns the [InvalidBucketAclWithObjectOwnership](object-ownership-error-responses.md#object-ownership-error-responses-invalid-acl) error code\. We also recommend that you review your object ACL permissions and migrate them to your bucket policy\. For more information about other suggested prerequisites, see [Prerequisites for disabling ACLs](about-object-ownership.md#object-ownership-considerations)\. 
 
 Each of your existing bucket and object ACLs has an equivalent in an IAM policy\. The following bucket policy examples show you how `READ` and `WRITE` permissions for bucket and object ACLs map to IAM permissions\. For more information about how each ACL translates to IAM permissions, see [Mapping of ACL permissions and access policy permissions](acl-overview.md#acl-access-policy-permission-mapping)\.
 
@@ -137,7 +137,7 @@ If your bucket has a write ACL that grants AWS account `111122223333` permission
 
 1. [Update your bucket ACL](managing-acls.md) to remove ACL grants to other groups or AWS accounts\.
 
-1. [Apply the bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership\.
+1. [Apply the Bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership\.
 
 ## Using the AWS CLI to review and migrate ACL permissions<a name="review-migrate-acl-cli"></a>
 
@@ -147,7 +147,7 @@ If your bucket has a write ACL that grants AWS account `111122223333` permission
    aws s3api get-bucket-acl --bucket DOC-EXAMPLE-BUCKET
    ```
 
-   For example, this bucket ACL grants `WRITE` and `READ` access to a third\-party account\. In this ACL, the third\-party account is identified by the [canonical user ID](finding-canonical-user-id.md)\. To apply the bucket owner enforced setting and disable ACLs, you must migrate these permissions for the third\-party account to a bucket policy\. 
+   For example, this bucket ACL grants `WRITE` and `READ` access to a third\-party account\. In this ACL, the third\-party account is identified by the [canonical user ID](finding-canonical-user-id.md)\. To apply the Bucket owner enforced setting and disable ACLs, you must migrate these permissions for the third\-party account to a bucket policy\. 
 
    ```
    {
@@ -239,7 +239,7 @@ If your bucket has a write ACL that grants AWS account `111122223333` permission
    aws s3api put-bucket-acl --bucket DOC-EXAMPLE-BUCKET --acl private
    ```
 
-1. [Apply the bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership\.
+1. [Apply the Bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership\.
 
 ## Example walkthroughs<a name="object-ownership-migrating-acls"></a>
 
@@ -252,7 +252,7 @@ The following examples show you how to migrate ACL permissions to bucket policie
 
 ### Grant access to S3 log delivery group for server access logging<a name="object-ownership-server-access-logs"></a>
 
-If you want to apply the bucket owner enforced setting to disable ACLs for a server access logging target bucket, you must migrate bucket ACL permissions for the S3 log delivery group to the logging service principal \(`logging.s3.amazonaws.com`\) in a bucket policy\. For more information about log delivery permissions, see [Permissions for log delivery](enable-server-access-logging.md#grant-log-delivery-permissions-general)\.
+If you want to apply the Bucket owner enforced setting to disable ACLs for a server access logging target bucket, you must migrate bucket ACL permissions for the S3 log delivery group to the logging service principal \(`logging.s3.amazonaws.com`\) in a bucket policy\. For more information about log delivery permissions, see [Permissions for log delivery](enable-server-access-logging.md#grant-log-delivery-permissions-general)\.
 
 This bucket ACL grants `WRITE` and `READ_ACP` access to the S3 log delivery group:
 
@@ -329,7 +329,7 @@ This bucket ACL grants `WRITE` and `READ_ACP` access to the S3 log delivery grou
    aws s3api put-bucket-acl --bucket DOC-EXAMPLE-BUCKET --acl private
    ```
 
-1. [Apply the bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership to your target bucket\.
+1. [Apply the Bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership to your target bucket\.
 
 ### Grant public read access to the objects in a bucket<a name="object-ownership-public-read"></a>
 
@@ -401,11 +401,11 @@ This object ACL grants public read access to an object in a bucket:
    "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/PREFIX/*"
    ```
 
-1. [Apply the bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership\.
+1. [Apply the Bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership\.
 
 ### Grant Amazon ElastiCache for Redis access to your S3 bucket<a name="object-ownership-elasticache-redis"></a>
 
-You can [export your ElastiCache for Redis backup](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html) to an S3 bucket, which gives you access to the backup from outside ElastiCache\. To export your backup to an S3 bucket, you must grant ElastiCache permissions to copy a snapshot to the bucket\. If you've granted permissions to ElastiCache in a bucket ACL, you must migrate these permissions to a bucket policy before you apply the bucket owner enforced setting to disable ACLs\. For more information, see [Grant ElastiCache access to your Amazon S3 bucket](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-grant-access) in the *Amazon ElastiCache User Guide*\.
+You can [export your ElastiCache for Redis backup](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html) to an S3 bucket, which gives you access to the backup from outside ElastiCache\. To export your backup to an S3 bucket, you must grant ElastiCache permissions to copy a snapshot to the bucket\. If you've granted permissions to ElastiCache in a bucket ACL, you must migrate these permissions to a bucket policy before you apply the Bucket owner enforced setting to disable ACLs\. For more information, see [Grant ElastiCache access to your Amazon S3 bucket](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-grant-access) in the *Amazon ElastiCache User Guide*\.
 
 The following example shows the bucket ACL permissions that grant permissions to ElastiCache\. 
 
@@ -491,4 +491,4 @@ The following example shows the bucket ACL permissions that grant permissions to
    aws s3api put-bucket-acl --bucket DOC-EXAMPLE-BUCKET --acl private
    ```
 
-1. [Apply the bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership\.
+1. [Apply the Bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership\.

@@ -131,13 +131,15 @@ The following table compares the storage classes, including their availability, 
 |  S3 Intelligent\-Tiering  |  Data with unknown, changing, or unpredictable access patterns  |  99\.999999999%  |  99\.9%  |  >= 3  |  None  |  None  |  Monitoring and automation fees per object apply\. No retrieval fees\.  | 
 |  S3 One Zone\-IA  |  Recreatable, infrequently accessed data \(once a month\) with millisecond access  |  99\.999999999%   |  99\.5%  |  1  |  30 days  |  128 KB  |  Per\-GB retrieval fees apply\. Not resilient to the loss of the Availability Zone\.  | 
 |  S3 Glacier Instant Retrieval  | Long\-lived, archive data accessed once a quarter with millisecond access | 99\.999999999%  |  99\.9%  |  >= 3  |  90 days  |  128 KB  | Per\-GB retrieval fees apply\. | 
-|  S3 Glacier Flexible Retrieval  | Long\-lived archive data accessed once a year with retrieval times of minutes to hours | 99\.999999999%  |  99\.99% \(after you restore objects\)  |  >= 3  |  90 days  |  40 KB  | Per\-GB retrieval fees apply\. You must first restore archived objects before you can access them\. For information, see [Restoring an archived object](restoring-objects.md)\. | 
-|  S3 Glacier Deep Archive  | Long\-lived archive data accessed less than once a year with retrieval times of hours | 99\.999999999%  |  99\.99% \(after you restore objects\)  |  >= 3  |  180 days  |  40 KB  | Per\-GB retrieval fees apply\. You must first restore archived objects before you can access them\. For information, see [Restoring an archived object](restoring-objects.md)\. | 
+|  S3 Glacier Flexible Retrieval  | Long\-lived archive data accessed once a year with retrieval times of minutes to hours | 99\.999999999%  |  99\.99% \(after you restore objects\)  |  >= 3  |  90 days  |  40 KB\*  | Per\-GB retrieval fees apply\. You must first restore archived objects before you can access them\. For information, see [Restoring an archived object](restoring-objects.md)\. | 
+|  S3 Glacier Deep Archive  | Long\-lived archive data accessed less than once a year with retrieval times of hours | 99\.999999999%  |  99\.99% \(after you restore objects\)  |  >= 3  |  180 days  |  40 KB\*\*  | Per\-GB retrieval fees apply\. You must first restore archived objects before you can access them\. For information, see [Restoring an archived object](restoring-objects.md)\. | 
 |  RRS \(not recommended\)  |  Noncritical, frequently accessed data with millisecond access  |  99\.99%   |  99\.99%  |  >= 3  |  None  |  None  |  None  | 
 
-All of the storage classes except for S3 One Zone\-IA are designed to be resilient to the physical loss of an Availability Zone resulting from disasters\. 
+\* S3 Glacier Flexible Retrieval requires 40 KB of additional metadata for each archived object\. This includes 32 KB of metadata charged at the S3 Glacier Flexible Retrieval rate \(required to identify and retrieve your data\), and an additional 8 KB data charged at the S3 Standard rate\. The S3 Standard rate is required to maintain the user\-defined name and metadata for objects archived to S3 Glacier Flexible Retrieval\. For more information about storage classes, see [Amazon S3 storage classes](https://aws.amazon.com/s3/storage-classes/)\.
 
-In addition to the performance requirements of your application scenario, consider costs\. For storage class pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
+\*\* S3 Glacier Deep Archive requires 40 KB of additional metadata for each archived objects\. This includes 32 KB of metadata charged at the S3 Glacier Deep Archive rate \(required to identify and retrieve your data\), and an additional 8 KB data charged at the S3 Standard rate\. The S3 Standard rate is required to maintain the user\-defined name and metadata for objects archived to Amazon S3 Glacier Deep Archive\. For more information about storage classes, see [Amazon S3 storage classes](https://aws.amazon.com/s3/storage-classes/)\.
+
+Be aware that all of the storage classes except for S3 One Zone\-IA are designed to be resilient to the physical loss of an Availability Zone resulting from disasters\. Also, consider costs, in addition to the performance requirements of your application scenario\. For storage class pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 
 ## Setting the storage class of an object<a name="sc-howtoset"></a>
 
@@ -152,6 +154,7 @@ Amazon S3 API operations support setting \(or updating\) the storage class of ob
   + Set the `x-amz-storage-class` header to the storage class that you want to use\. 
 
   In a versioning\-enabled bucket, you can't change the storage class of a specific version of an object\. When you copy the object, Amazon S3 gives it a new version ID\.
++ You can change an object's storage class using the Amazon S3 console if the object size is less than 160GB\. If larger, we recommend adding an S3 Lifecycle configuration to change the object's storage class\.
 + You can direct Amazon S3 to change the storage class of objects by adding an S3 Lifecycle configuration to a bucket\. For more information, see [Managing your storage lifecycle](object-lifecycle-mgmt.md)\.
 + When setting up a replication configuration, you can set the storage class for replicated objects to any other storage class\. However, you can't replicate objects that are stored in the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes\. For more information, see [Replication configuration](replication-add-config.md)\.
 

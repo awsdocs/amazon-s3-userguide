@@ -14,9 +14,9 @@ Amazon S3 must have permissions to perform S3 Batch Operations on your behalf\. 
 
 In your IAM policies, you can also use condition keys to filter access permissions for S3 Batch Operations jobs\. For more information and a complete list of Amazon S3 specific condition keys, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\.
 
-The following video shows how to set up IAM permissions for Batch Operations jobs using the AWS Management Console\.
+The following video includes how to set up IAM permissions for Batch Operations jobs using the AWS Management Console\.
 
-[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/GrxlP39ye20//0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/GrxlP39ye20/)
+[![AWS Videos](http://img.youtube.com/vi/https://www.youtube.com/embed/qpwHUrwAiUI//0.jpg)](http://www.youtube.com/watch?v=https://www.youtube.com/embed/qpwHUrwAiUI/)
 
 ### Trust policy<a name="batch-ops-iam-role-policies-trust"></a>
 

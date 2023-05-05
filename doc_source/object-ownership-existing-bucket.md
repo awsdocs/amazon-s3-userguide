@@ -13,7 +13,7 @@ Object Ownership has three settings that you can use to control ownership of obj
 + **Bucket owner preferred** – The bucket owner owns and has full control over new objects that other accounts write to the bucket with the `bucket-owner-full-control` canned ACL\. 
 + **Object writer** – The AWS account that uploads an object owns the object, has full control over it, and can grant other users access to it through ACLs\.
 
-**Prerequisites**: Before you apply the bucket owner enforced setting to disable ACLs, you must migrate bucket ACL permissions to bucket policies and reset your bucket ACLs to the default private ACL\. We also recommend that you migrate object ACL permissions to bucket policies and edit bucket policies that require ACLs other than bucket owner full control ACLs\. For more information, see [Prerequisites for disabling ACLs](object-ownership-migrating-acls-prerequisites.md)\.
+**Prerequisites**: Before you apply the Bucket owner enforced setting to disable ACLs, you must migrate bucket ACL permissions to bucket policies and reset your bucket ACLs to the default private ACL\. We also recommend that you migrate object ACL permissions to bucket policies and edit bucket policies that require ACLs other than bucket owner full control ACLs\. For more information, see [Prerequisites for disabling ACLs](object-ownership-migrating-acls-prerequisites.md)\.
 
 **Permissions**: To use this operation, you must have the `s3:PutBucketOwnershipControls` permission\. For more information about Amazon S3 permissions, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\. 
 
@@ -46,7 +46,7 @@ Object Ownership has three settings that you can use to control ownership of obj
 
 To apply an Object Ownership setting for an existing bucket, use the `put-bucket-ownership-controls` command with the `--ownership-controls` parameter\. Valid values for ownership are `BucketOwnerEnforced`, `BucketOwnerPreferred`, or `ObjectWriter`\.
 
-This example applies the bucket owner enforced setting for an existing bucket using the AWS CLI:
+This example applies the Bucket owner enforced setting for an existing bucket using the AWS CLI:
 
 ```
 aws s3api put-bucket-ownership-controls --bucket DOC-EXAMPLE-BUCKET --ownership-controls="Rules=[{ObjectOwnership=BucketOwnerEnforced}]"

@@ -142,12 +142,12 @@ The following example policy shows statements for using SSE\-KMS with separate d
         "StringLike": {
             "kms:ViaService": "s3.source-bucket-region.amazonaws.com",
             "kms:EncryptionContext:aws:s3:arn": [
-                "arn:aws:s3:::source-bucket-name/key-prefix1*",
+                "arn:aws:s3:::source-bucket-name/key-prefix1*"
             ]
         }
     },
     "Resource": [
-        "List of AWS KMS key ARNs used to encrypt source objects.", 
+        "List of AWS KMS key ARNs used to encrypt source objects." 
     ]
 },
 {
@@ -157,12 +157,12 @@ The following example policy shows statements for using SSE\-KMS with separate d
         "StringLike": {
             "kms:ViaService": "s3.destination-bucket-1-region.amazonaws.com",
             "kms:EncryptionContext:aws:s3:arn": [
-                "arn:aws:s3:::destination-bucket-name-1/key-prefix1*",
+                "arn:aws:s3:::destination-bucket-name-1/key-prefix1*"
             ]
         }
     },
     "Resource": [
-         "AWS KMS key ARNs (for the AWS Region of the destination bucket 1). Used to encrypt object replicas created in destination bucket 1.", 
+         "AWS KMS key ARNs (for the AWS Region of the destination bucket 1). Used to encrypt object replicas created in destination bucket 1." 
     ]
 },
 {
@@ -172,12 +172,12 @@ The following example policy shows statements for using SSE\-KMS with separate d
         "StringLike": {
             "kms:ViaService": "s3.destination-bucket-2-region.amazonaws.com",
             "kms:EncryptionContext:aws:s3:arn": [
-                "arn:aws:s3:::destination-bucket-2-name/key-prefix1*",
+                "arn:aws:s3:::destination-bucket-2-name/key-prefix1*"
             ]
         }
     },
     "Resource": [
-         "AWS KMS key ARNs (for the AWS Region of destination bucket 2). Used to encrypt object replicas created in destination bucket 2.",
+         "AWS KMS key ARNs (for the AWS Region of destination bucket 2). Used to encrypt object replicas created in destination bucket 2."
     ]
 }
 ```

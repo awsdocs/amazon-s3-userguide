@@ -22,7 +22,7 @@ The Amazon S3 data model is a flat structure: You create a bucket, and the bucke
 
 
 
-![\[Console screenshot showing a hierarchy of buckets, folders, and objects.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/walkthrough-10.png)
+
 
 The console shows that a bucket named `companybucket` has three folders, `Private`, `Development`, and `Finance`, and an object, `s3-dg.pdf`\. The console uses the object names \(keys\) to create a logical hierarchy with folders and subfolders\. Consider the following examples:
 + When you create the `Development` folder, the console creates an object with the key `Development/`\. Note the trailing slash \(`/`\) delimiter\.
@@ -31,7 +31,7 @@ The console shows that a bucket named `companybucket` has three folders, `Privat
   In the key, `Development` is the [prefix](https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#keyprefix) and `/` is the delimiter\. The Amazon S3 API supports prefixes and delimiters in its operations\. For example, you can get a list of all objects from a bucket with a specific prefix and delimiter\. On the console, when you open the `Development` folder, the console lists the objects in that folder\. In the following example, the `Development` folder contains one object\. 
 
      
-![\[Console screenshot showing a hierarchy of buckets, folders, and objects.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/walkthrough-50.png)
+
 
    
 
@@ -50,7 +50,7 @@ Before you start, be sure that you are familiar with the concept of the *root\-l
 
 These object keys create a logical hierarchy with `Private`, `Development`, and the `Finance` as root\-level folders and `s3-dg.pdf` as a root\-level object\. When you choose the bucket name on the Amazon S3 console, the root\-level items appear as shown in the following image\. The console shows the top\-level prefixes \(`Private/`, `Development/`, and `Finance/`\) as root\-level folders\. The object key `s3-dg.pdf` has no prefix, and so it appears as a root\-level item\.
 
-![\[Console screenshot of the objects tab with the s3-dg.pdf object in the list.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/walkthrough-10.png)
+
 
 
 
@@ -136,7 +136,7 @@ If you are using two browsers, you can now use the second browser to sign in to 
 1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
     Verify the following console message telling you that access is denied\.   
-![\[Console screenshot showing an access denied error message.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/walkthrough-20.png)
+
 
 Now, you can begin granting incremental permissions to the users\. First, you attach a group policy that grants permissions that both users must have\. 
 
@@ -197,13 +197,13 @@ The **Summary** entry displays a message stating that the policy does not grant 
    1. Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
       The console should now list all the buckets but not the objects in any of the buckets\.  
-![\[Console screenshot showing a list of buckets.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/walkthrough-30.png)
+
 
 ### Step 4\.2: Enable users to list root\-level content of a bucket<a name="walkthrough1-grant-permissions-step2"></a>
 
 Next, you allow all users in the `Consultants` group to list the root\-level `companybucket` bucket items\. When a user chooses the company bucket on the Amazon S3 console, the user can see the root\-level items in the bucket\.
 
-![\[Console screenshot showing the contents of companybucket.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/walkthrough-10.png)
+
 
 **Note**  
 This example uses `companybucket` for illustration\. You must use the name of the bucket that you created\.
@@ -251,7 +251,7 @@ The key `s3-dg.pdf` object does not contain the slash \(`/`\) delimiter, and Ama
 
 The console interprets this result and displays the root\-level items as three folders and one object key\. 
 
-![\[Console screenshot showing the contents of companybucket with three folders and one pdf file.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/walkthrough-10.png)
+
 
 If Bob or Alice opens the **Development** folder, the console sends the [GET Bucket \(List Objects\)](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGET.html) request to Amazon S3 with the `prefix` and the `delimiter` parameters set to the following values:
 + The `prefix` parameter with the value `Development/`\.
@@ -278,7 +278,7 @@ In response, Amazon S3 returns the object keys that start with the specified pre
 
 The console shows the object keys\.
 
-![\[Console screenshot showing the development folder containing two xls files.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/walkthrough-60.png)
+
 
 Now, return to granting users permission to list the root\-level bucket items\. To list bucket content, users need permission to call the `s3:ListBucket` action, as shown in the following policy statement\. To ensure that they see only the root\-level content, you add a condition that users must specify an empty `prefix` in the request—that is, they are not allowed to double\-click any of the root\-level folders\. Finally, you add a condition to require folder\-style access by requiring user requests to include the `delimiter` parameter with the value "`/`"\. 
 
@@ -349,7 +349,7 @@ When you choose a bucket on the Amazon S3 console, the console first sends the [
       Open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
    1. Choose the bucket that you created, and the console shows the root\-level bucket items\. If you choose any folders in the bucket, you won't be able to see the folder content because you haven't yet granted those permissions\.  
-![\[Console screenshot showing the company bucket containing three folders.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/walkthrough-10.png)
+
 
 This test succeeds when users use the Amazon S3 console\. When you choose a bucket on the console, the console implementation sends a request that includes the `prefix` parameter with an empty string as its value and the `delimiter` parameter with "`/`" as its value\.
 
@@ -416,7 +416,7 @@ For Alice to list the `Development` folder content, you must apply a policy to t
    1. On the Amazon S3 console, verify that Alice can see the list of objects in the `Development/` folder in the bucket\. 
 
       When the user chooses the `/Development` folder to see the list of objects in it, the Amazon S3 console sends the `ListObjects` request to Amazon S3 with the prefix `/Development`\. Because the user is granted permission to see the object list with the prefix `Development` and delimiter `/`, Amazon S3 returns the list of objects with the key prefix `Development/`, and the console displays the list\.  
-![\[Console screenshot showing the development folder containing two xls files.\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/images/walkthrough-60.png)
+
 
 ### Step 5\.2: Grant IAM user Alice permissions to get and put objects in the development folder<a name="walkthrough-grant-user1-permissions-get-put-object"></a>
 

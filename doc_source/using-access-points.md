@@ -18,3 +18,5 @@ ARNs for objects accessed through an access point use the format `arn:aws:s3:reg
 + [Using Amazon S3 access points with the Amazon S3 console](access-points-manage.md)
 + [Using a bucket\-style alias for your S3 bucket access point](access-points-alias.md)
 + [Using access points with compatible Amazon S3 operations](access-points-usage-examples.md)
+
+If you have a Virtual Private Cloud \(VPC\), see [Managing Amazon S3 access with VPC endpoints and S3 Access Points](https://aws.amazon.com/blogs/storage/managing-amazon-s3-access-with-vpc-endpoints-and-s3-access-points/)\.

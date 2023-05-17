@@ -145,7 +145,7 @@ The following Amazon Athena query example shows how to get all `PUT` object requ
 
 ```
 SELECT bucket_name, requester, remoteip, key, httpstatus, errorcode, requestdatetime
-FROM s3_access_logs_db
+FROM s3_access_logs_db.mybucket_logs
 WHERE operation='REST.PUT.OBJECT' AND
 parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z') 
 BETWEEN parse_datetime('2019-07-01:00:42:42','yyyy-MM-dd:HH:mm:ss')
@@ -159,7 +159,7 @@ The following Amazon Athena query example shows how to get all `GET` object requ
 
 ```
 SELECT bucket_name, requester, remoteip, key, httpstatus, errorcode, requestdatetime
-FROM s3_access_logs_db
+FROM s3_access_logs_db.mybucket_logs
 WHERE operation='REST.GET.OBJECT' AND
 parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z') 
 BETWEEN parse_datetime('2019-07-01:00:42:42','yyyy-MM-dd:HH:mm:ss')
@@ -187,7 +187,7 @@ The following Amazon Athena query shows how to identify all requests to your S3 
 
 ```
 SELECT bucket_name, requester, key, operation, aclrequired, requestdatetime
-FROM s3_access_logs_db
+FROM s3_access_logs_db.mybucket_logs
 WHERE aclrequired = 'Yes' AND
 parse_datetime(requestdatetime,'dd/MMM/yyyy:HH:mm:ss Z')
 BETWEEN parse_datetime('2022-05-10:00:00:00','yyyy-MM-dd:HH:mm:ss')

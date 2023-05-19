@@ -36,15 +36,15 @@ The following IAM policy statement requires the principal to access AWS only fro
 
 Anyone with valid security credentials can create a presigned URL\. But for someone to successfully access an object, the presigned URL must be created by someone who has permission to perform the operation that the presigned URL is based upon\.
 
-The following are credentials that you can use to create a presigned URL:
+The following are the types of credentials that you can use to create a presigned URL and their corresponding maximum URL lifetime:
 + IAM instance profile: Valid up to 6 hours\.
-+ AWS Security Token Service: Valid up to 36 hours when signed with permanent credentials, such as the credentials of the AWS account root user or an IAM user\.
++ AWS Security Token Service: Valid up to the credential lifetime\. See [Comparing the AWS STS API operations](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#stsapi_comparison)\.
 + IAM user: Valid up to 7 days when using AWS Signature Version 4\.
 
   To create a presigned URL that's valid for up to 7 days, first designate IAM user credentials \(the access key and secret key\) to the SDK that you're using\. Then, generate a presigned URL using AWS Signature Version 4\.
 
 **Note**  
-If you created a presigned URL using a temporary token, the URL expires when the token expires, even if the URL was created with a later expiration time\.
+If you created a presigned URL using a temporary credential, the URL expires when the credential expires, even if the URL was created with a later expiration time\.
 Because presigned URLs grant access to your Amazon S3 buckets to whoever has the URL, we recommend that you protect them appropriately\.
 
 ## When does Amazon S3 check the expiration date and time of a presigned URL?<a name="presigned-url-when-checked"></a>

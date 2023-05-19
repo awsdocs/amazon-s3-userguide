@@ -181,6 +181,13 @@ The following S3 Lifecycle configuration specifies a rule that applies to object
 **Note**  
 You can use one rule to describe all S3 Lifecycle actions if all actions apply to the same set of objects \(identified by the filter\)\. Otherwise, you can add multiple rules with each specifying a different filter\.
 
+**Important**  
+When you have multiple rules in an S3 Lifecycle configuration, an object can become eligible for multiple S3 Lifecycle actions\. In such cases, Amazon S3 follows these general rules:  
+Permanent deletion takes precedence over transition\.
+Transition takes precedence over creation of delete markers\.
+When an object is eligible for both a S3 Glacier Flexible Retrieval and S3 Standard\-IA \(or S3 One Zone\-IA\) transition, Amazon S3 chooses the S3 Glacier Flexible Retrieval transition\.
+ For examples, see [Example 5: Overlapping filters, conflicting lifecycle actions, and what Amazon S3 does with nonversioned buckets](#lifecycle-config-conceptual-ex5)\. 
+
 ## Example 4: Specifying multiple rules<a name="lifecycle-config-conceptual-ex4"></a>
 
 
@@ -221,6 +228,13 @@ You can specify multiple rules if you want different S3 Lifecycle actions of dif
     </Rule>
 </LifecycleConfiguration>
 ```
+
+**Important**  
+When you have multiple rules in an S3 Lifecycle configuration, an object can become eligible for multiple S3 Lifecycle actions\. In such cases, Amazon S3 follows these general rules:  
+Permanent deletion takes precedence over transition\.
+Transition takes precedence over creation of delete markers\.
+When an object is eligible for both a S3 Glacier Flexible Retrieval and S3 Standard\-IA \(or S3 One Zone\-IA\) transition, Amazon S3 chooses the S3 Glacier Flexible Retrieval transition\.
+ For examples, see [Example 5: Overlapping filters, conflicting lifecycle actions, and what Amazon S3 does with nonversioned buckets](#lifecycle-config-conceptual-ex5)\. 
 
 ## Example 5: Overlapping filters, conflicting lifecycle actions, and what Amazon S3 does with nonversioned buckets<a name="lifecycle-config-conceptual-ex5"></a>
 
@@ -373,6 +387,13 @@ If an object has both tags, then Amazon S3 has to decide which rule to follow\. 
 
 
 
+
+**Important**  
+When you have multiple rules in an S3 Lifecycle configuration, an object can become eligible for multiple S3 Lifecycle actions\. In such cases, Amazon S3 follows these general rules:  
+Permanent deletion takes precedence over transition\.
+Transition takes precedence over creation of delete markers\.
+When an object is eligible for both a S3 Glacier Flexible Retrieval and S3 Standard\-IA \(or S3 One Zone\-IA\) transition, Amazon S3 chooses the S3 Glacier Flexible Retrieval transition\.
+ For examples, see [Example 5: Overlapping filters, conflicting lifecycle actions, and what Amazon S3 does with nonversioned buckets](#lifecycle-config-conceptual-ex5)\. 
 
 ## Example 6: Specifying a lifecycle rule for a versioning\-enabled bucket<a name="lifecycle-config-conceptual-ex6"></a>
 

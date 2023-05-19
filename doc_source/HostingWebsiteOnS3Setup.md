@@ -5,6 +5,9 @@ Amazon S3 now applies server\-side encryption with Amazon S3 managed keys \(SSE\
 
 You can configure an Amazon S3 bucket to function like a website\. This example walks you through the steps of hosting a website on Amazon S3\.
 
+**Important**  
+The following tutorial requires disabling Block Public Access\. We recommend keeping Block Public Access enabled\. If you want to keep all four Block Public Access settings enabled and host a static website, you can use Amazon CloudFront origin access control \(OAC\)\. Amazon CloudFront provides the capabilities required to set up a secure static website\. Amazon S3 static websites support only HTTP endpoints\. Amazon CloudFront uses the durable storage of Amazon S3 while providing additional security headers, such as HTTPS\. HTTPS adds security by encrypting a normal HTTP request and protecting against common cyberattacks\. For more information, see [Getting started with a secure static website](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/getting-started-secure-static-website-cloudformation-template.html) in the *Amazon CloudFront Developer Guide*\. 
+
 **Topics**
 + [Step 1: Create a bucket](#step1-create-bucket-config-as-website)
 + [Step 2: Enable static website hosting](#step2-create-bucket-config-as-website)

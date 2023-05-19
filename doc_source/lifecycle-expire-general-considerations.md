@@ -12,6 +12,13 @@ For a versioned bucket \(that is, versioning\-enabled or versioning\-suspended\)
 
 For more information, see [Using versioning in S3 buckets](Versioning.md)\.
 
+**Important**  
+When you have multiple rules in an S3 Lifecycle configuration, an object can become eligible for multiple S3 Lifecycle actions\. In such cases, Amazon S3 follows these general rules:  
+Permanent deletion takes precedence over transition\.
+Transition takes precedence over creation of delete markers\.
+When an object is eligible for both a S3 Glacier Flexible Retrieval and S3 Standard\-IA \(or S3 One Zone\-IA\) transition, Amazon S3 chooses the S3 Glacier Flexible Retrieval transition\.
+ For examples, see [Example 5: Overlapping filters, conflicting lifecycle actions, and what Amazon S3 does with nonversioned buckets](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex5)\. 
+
 ## How to find when objects will expire<a name="lifecycle-expire-when"></a>
 
 To find when an object is scheduled to expire, use the [HEAD Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectHEAD.html) or [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html) API operation\. These API operations return response headers that provide the date and time at which the object is no longer cacheable\. 

@@ -4,13 +4,13 @@ Amazon S3 Block Public Access provides settings for access points, buckets, and 
 
 For more information, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
 
-You can use the S3 console, AWS CLI, AWS SDKs, and REST API to configure block public access settings for your bucket\. For more information, see the sections below\.
+You can use the S3 console, AWS CLI, AWS SDKs, and REST API to grant public access to one or more buckets\. You can also block public access to buckets that are already public\. For more information, see the sections below\.
 
-To configure block public access settings for all the buckets in your account, see [Configuring block public access settings for your account](configuring-block-public-access-account.md)\. For information about configuring block public access for access points, see [Performing block public access operations on an access point](access-control-block-public-access.md#access-control-block-public-access-examples-access-point)\.
+To configure block public access settings for every bucket in your account, see [Configuring block public access settings for your account](configuring-block-public-access-account.md)\. For information about configuring block public access for access points, see [Performing block public access operations on an access point](access-control-block-public-access.md#access-control-block-public-access-examples-access-point)\.
 
 ## Using the AWS CLI<a name="configuring-block-public-access-bucket-cli"></a>
 
-To perform block public access operations on a bucket, use the AWS CLI service `s3api`\. The bucket\-level operations that use this service are as follows:
+To block public access on a bucket or to delete the public access block, use the AWS CLI service `s3api`\. The bucket\-level operations that use this service are as follows:
 + PUT PublicAccessBlock \(for a bucket\)
 + GET PublicAccessBlock \(for a bucket\)
 + DELETE PublicAccessBlock \(for a bucket\)

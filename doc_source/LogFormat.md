@@ -218,7 +218,7 @@ s3.us-west-2.amazonaws.com
 Some earlier Regions support legacy endpoints\. You might see these endpoints in your server access logs or AWS CloudTrail logs\. For more information, see [Legacy endpoints](VirtualHosting.md#s3-legacy-endpoints)\. For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *Amazon Web Services General Reference*\.
 
 **TLS version**  
-The Transport Layer Security \(TLS\) version negotiated by the client\. The value is one of following: `TLSv1`, `TLSv1.1`, `TLSv1.2`, or `-` if TLS wasn't used\.  
+The Transport Layer Security \(TLS\) version negotiated by the client\. The value is one of following: `TLSv1.1`, `TLSv1.2`, `TLSv1.3`, or `-` if TLS wasn't used\.  
 **Example entry**  
 
 ```
@@ -431,7 +431,7 @@ s3.us-west-2.amazonaws.com
 Some earlier Regions support legacy endpoints\. You might see these endpoints in your server access logs or AWS CloudTrail logs\. For more information, see [Legacy endpoints](VirtualHosting.md#s3-legacy-endpoints)\. For a complete list of Amazon S3 Regions and endpoints, see [Amazon S3 endpoints and quotas](https://docs.aws.amazon.com/general/latest/gr/s3.html) in the *Amazon Web Services General Reference*\.
 
 **TLS version**  
-The Transport Layer Security \(TLS\) version negotiated by the client\. The value is one of following: `TLSv1`, `TLSv1.1`, `TLSv1.2`, or `-` if TLS wasn't used\.  
+The Transport Layer Security \(TLS\) version negotiated by the client\. The value is one of following: `TLSv1.1`, `TLSv1.2`, `TLSv1.3`, or `-` if TLS wasn't used\.  
 **Example entry**  
 
 ```

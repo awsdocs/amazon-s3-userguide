@@ -59,6 +59,7 @@ You can specify a manifest in a create job request using one of the following tw
 + Amazon S3 Inventory report – Must be a CSV\-formatted Amazon S3 Inventory report\. You must specify the `manifest.json` file that is associated with the inventory report\. For more information about inventory reports, see [Amazon S3 Inventory](storage-inventory.md)\. If the inventory report includes version IDs, S3 Batch Operations operates on the specific object versions\.
 **Note**  
 S3 Batch Operations supports CSV *inventory reports *that are AWS KMS\-encrypted\.
+If you submit an inventory report manifest encrypted with AWS KMS, your IAM policy must include the permissions `"kms:Decrypt"` and `"kms:GenerateDataKey"` for the manifest\.json object and all associated CSV data files\.
 + CSV file – Each row in the file must include the bucket name, object key, and optionally, the object version\. Object keys must be URL\-encoded, as shown in the following examples\. The manifest must either include version IDs for all objects or omit version IDs for all objects\. For more information about the CSV manifest format, see [JobManifestSpec](https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_JobManifestSpec.html) in the *Amazon Simple Storage Service API Reference*\.
 **Note**  
 S3 Batch Operations does not support CSV *manifest files* that are AWS KMS\-encrypted\.

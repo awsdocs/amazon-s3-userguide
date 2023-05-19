@@ -15,7 +15,7 @@ The **Metric name** column in the following table provides the name of each S3 S
 Derived metrics are not available for the metrics export and the CloudWatch publishing option\. However, you can use the metrics formulas shown in the **Derived metrics formula** column to compute them\.
 
 **Interpreting the Amazon S3 Storage Lens prefix symbols for metrics unit multiples \(K, M, G, and so on\)**  
-S3 Storage Lens metrics unit multiples are written with prefix symbols\. These prefix symbols match the International System of Units \(SI\) symbols that are standardized by the International Bureau of Weights and Measures \(BIPM\)\. These symbols are also used in the Unified Code for Units of Measure \(UCUM\)\. For more information, see [List of SI prefix symbols](https://www.bipm.org/en/measurement-units/#si-prefixes)\. 
+S3 Storage Lens metrics unit multiples are written with prefix symbols\. These prefix symbols match the International System of Units \(SI\) symbols that are standardized by the International Bureau of Weights and Measures \(BIPM\)\. These symbols are also used in the Unified Code for Units of Measure \(UCUM\)\. For more information, see [List of SI prefix symbols](https://www.bipm.org/en/measurement-units/si-prefixes)\. 
 
 **Note**  
 The unit of measurement for S3 storage bytes is in binary gigabytes \(GB\), where 1 GB is 230 bytes, 1 TB is 240 bytes, and 1 PB is 250 bytes\. This unit of measurement is also known as a gibibyte \(GiB\), as defined by the International Electrotechnical Commission \(IEC\)\.

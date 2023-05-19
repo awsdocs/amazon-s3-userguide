@@ -1,6 +1,6 @@
-# User policy examples<a name="example-policies-s3"></a>
+# User and role policy examples<a name="example-policies-s3"></a>
 
-This section shows several example AWS Identity and Access Management \(IAM\) user policies for controlling user access to Amazon S3\. For example *bucket policies*, see [Using bucket policies](bucket-policies.md)\. For information about IAM policy language, see [Bucket policies and user policies](using-iam-policies.md)\.
+This section shows several example AWS Identity and Access Management \(IAM\) user and role policies for controlling access to Amazon S3\. For example *bucket policies*, see [Using bucket policies](bucket-policies.md)\. For information about IAM policy language, see [Bucket policies and user policies](using-iam-policies.md)\.
 
 The following example policies will work if you use them programmatically\. However, to use them with the Amazon S3 console, you must grant additional permissions that are required by the console\. For information about using policies such as these with the Amazon S3 console, see [Controlling access to a bucket with user policies](walkthrough1.md)\. 
 

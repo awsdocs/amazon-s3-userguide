@@ -44,4 +44,4 @@ To upgrade the speed of an in\-progress restoration, issue another restore reque
 **Note**  
 Standard and bulk retrievals for S3 Intelligent\-Tiering are free of charge\. However, subsequent restore requests called on an object that is already being restored are billed as `GET` requests\.
 
-You can be notified when your restore is complete by using Amazon S3 Event Notifications\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\. Restores are charged at the price of the upgraded tier\. For information about restore pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
+You can be notified when your restore is complete by using Amazon S3 Event Notifications\. For more information, see [Amazon S3 Event Notifications](EventNotifications.md)\. Restores are charged at the price of the upgraded tier\. For information about restore pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.

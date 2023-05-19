@@ -61,6 +61,6 @@ S3 Replication metrics are billed at the same rate as Amazon CloudWatch custom m
 
 ## Receiving replication failure events with Amazon S3 Event Notifications<a name="replication-metrics-events"></a>
 
-S3 Event Notifications can notify you in instances when objects don't replicate to their destination AWS Region\. Amazon S3 events are available through Amazon Simple Queue Service \(Amazon SQS\), Amazon Simple Notification Service \(Amazon SNS\), or AWS Lambda\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
+S3 Event Notifications can notify you in instances when objects don't replicate to their destination AWS Region\. Amazon S3 events are available through Amazon Simple Queue Service \(Amazon SQS\), Amazon Simple Notification Service \(Amazon SNS\), or AWS Lambda\. For more information, see [Amazon S3 Event Notifications](EventNotifications.md)\.
 
 For a list of failure codes captured by S3 Event Notifications, see [Amazon S3 replication failure reasons](replication-failure-codes.md)\.

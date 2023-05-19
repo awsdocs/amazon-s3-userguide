@@ -4,6 +4,9 @@ Amazon S3 Block Public Access provides settings for access points, buckets, and 
 
 For more information, see [Blocking public access to your Amazon S3 storage](access-control-block-public-access.md)\.
 
+**Note**  
+Account level settings override settings on individual objects\. Configuring your account to block public access will override any public access settings made to individual objects within your account\. 
+
 You can use the S3 console, AWS CLI, AWS SDKs, and REST API to configure block public access settings for all the buckets in your account\. For more information, see the sections below\.
 
 To configure block public access settings for your buckets, see [Configuring block public access settings for your S3 buckets](configuring-block-public-access-bucket.md)\. For information about access points, see [Performing block public access operations on an access point](access-control-block-public-access.md#access-control-block-public-access-examples-access-point)\.

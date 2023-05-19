@@ -29,3 +29,4 @@ This documentation will help you understand how to apply the shared responsibili
 + [Infrastructure security in Amazon S3](network-isolation.md)
 + [Configuration and vulnerability analysis in Amazon S3](vulnerability-analysis-and-management.md)
 + [Security best practices for Amazon S3](security-best-practices.md)
++ [Monitoring data security with managed AWS security services](monitoring-data-security.md)

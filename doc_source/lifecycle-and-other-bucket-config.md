@@ -10,6 +10,13 @@ A versioning\-enabled bucket maintains one current object version, and zero or m
 
 For more information, see [Lifecycle configuration elements](intro-lifecycle-rules.md)\.
 
+**Important**  
+When you have multiple rules in an S3 Lifecycle configuration, an object can become eligible for multiple S3 Lifecycle actions\. In such cases, Amazon S3 follows these general rules:  
+Permanent deletion takes precedence over transition\.
+Transition takes precedence over creation of delete markers\.
+When an object is eligible for both a S3 Glacier Flexible Retrieval and S3 Standard\-IA \(or S3 One Zone\-IA\) transition, Amazon S3 chooses the S3 Glacier Flexible Retrieval transition\.
+ For examples, see [Example 5: Overlapping filters, conflicting lifecycle actions, and what Amazon S3 does with nonversioned buckets](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex5)\. 
+
 ## Lifecycle configuration on MFA\-enabled buckets<a name="lifecycle-general-considerations-mfa-enabled-bucket"></a>
 
 Lifecycle configuration on multi\-factor authentication \(MFA\)\-enabled buckets is not supported\.

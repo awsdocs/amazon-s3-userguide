@@ -16,4 +16,4 @@ For more information about logging and monitoring in Amazon S3, see the followin
 + [Logging Amazon S3 API calls using AWS CloudTrail](cloudtrail-logging.md)
 + [Logging requests using server access logging](ServerLogs.md)
 + [Monitoring metrics with Amazon CloudWatch](cloudwatch-monitoring.md)
-+ [Amazon S3 Event Notifications](NotificationHowTo.md)
++ [Amazon S3 Event Notifications](EventNotifications.md)

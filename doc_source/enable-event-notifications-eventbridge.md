@@ -23,7 +23,7 @@ After you enable EventBridge, it takes around five minutes for the changes to ta
 The following example creates a bucket notification configuration for bucket `DOC-EXAMPLE-BUCKET1` with Amazon EventBridge enabled\.
 
 ```
-aws s3api put-bucket-notification-configuration --bucket DOC-EXAMPLE-BUCKET1 --notification-configuration '{ "EventBridgeConfiguration": {} }'
+aws s3api put-bucket-notification-configuration --bucket DOC-EXAMPLE-BUCKET1 --notification-configuration='{ "EventBridgeConfiguration": {} }'
 ```
 
 ## Using the REST API<a name="eventbridge-api"></a>

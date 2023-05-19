@@ -53,8 +53,15 @@ When you transition objects from the S3 Standard or S3 Standard\-IA storage clas
 **Note**  
 You can filter lifecycle rules based on object size\.
 
-**Minimum Days for Transition from S3 Standard or S3 Standard\-IA to S3 Standard\-IA or S3 One Zone\-IA**  
-Before you transition objects from the S3 Standard or S3 Standard\-IA storage classes to S3 Standard\-IA or S3 One Zone\-IA, you must store them at least 30 days in the S3 Standard storage class\. For example, you cannot create a Lifecycle rule to transition objects to the S3 Standard\-IA storage class one day after you create them\. Amazon S3 doesn't transition objects within the first 30 days because newer objects are often accessed more frequently or deleted sooner than is suitable for S3 Standard\-IA or S3 One Zone\-IA storage\.
+**Important**  
+When you have multiple rules in an S3 Lifecycle configuration, an object can become eligible for multiple S3 Lifecycle actions\. In such cases, Amazon S3 follows these general rules:  
+Permanent deletion takes precedence over transition\.
+Transition takes precedence over creation of delete markers\.
+When an object is eligible for both a S3 Glacier Flexible Retrieval and S3 Standard\-IA \(or S3 One Zone\-IA\) transition, Amazon S3 chooses the S3 Glacier Flexible Retrieval transition\.
+ For examples, see [Example 5: Overlapping filters, conflicting lifecycle actions, and what Amazon S3 does with nonversioned buckets](lifecycle-configuration-examples.md#lifecycle-config-conceptual-ex5)\. 
+
+**Minimum Days for Transition to S3 Standard\-IA or S3 One Zone\-IA**  
+Before you transition objects to S3 Standard\-IA or S3 One Zone\-IA, you must store them for at least 30 days in Amazon S3\. For example, you cannot create a Lifecycle rule to transition objects to the S3 Standard\-IA storage class one day after you create them\. Amazon S3 doesn't support this transition within the first 30 days because newer objects are often accessed more frequently or deleted sooner than is suitable for S3 Standard\-IA or S3 One Zone\-IA storage\.
 
 Similarly, if you are transitioning noncurrent objects \(in versioned buckets\), you can transition only objects that are at least 30 days noncurrent to S3 Standard\-IA or S3 One Zone\-IA storage\. 
 

@@ -28,7 +28,7 @@ If a temporary copy of the restored object is created, the object's storage clas
 
 The time it takes a restore job to finish depends on which archive storage class or storage tier you use and which retrieval option you specify: `Expedited` \(only available for S3 Glacier Flexible Retrieval and S3 Intelligent\-Tiering Archive Access\), `Standard`, or `Bulk`\. For more information, see [Archive retrieval options](restoring-objects-retrieval-options.md)\.
 
-You can be notified when your restore is complete by using Amazon S3 Event Notifications\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
+You can be notified when your restore is complete by using Amazon S3 Event Notifications\. For more information, see [Amazon S3 Event Notifications](EventNotifications.md)\.
 
 **Using S3 Batch Operations with restore requests**  
 To restore more than one Amazon S3 object with a single request, you can use S3 Batch Operations\. You provide S3 Batch Operations with a list of objects to operate on\. S3 Batch Operations calls the respective API to perform the specified operation\. A single Batch Operations job can perform the specified operation on billions of objects containing exabytes of data\. 

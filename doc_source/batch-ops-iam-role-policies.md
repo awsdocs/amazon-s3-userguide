@@ -46,6 +46,7 @@ Before you configure permissions, note the following:
 + For Amazon S3 Inventory report manifests, S3 Batch Operations requires permission to read the manifest\.json object and all associated CSV data files\.
 + Version\-specific permissions such as `s3:GetObjectVersion` are only required when you are specifying the version ID of the objects\.
 + If you are running S3 Batch Operations on encrypted objects, the IAM role must also have access to the AWS KMS keys used to encrypt them\.
++ If you submit an inventory report manifest encrypted with AWS KMS, your IAM policy must include the permissions `"kms:Decrypt"` and `"kms:GenerateDataKey"` for the manifest\.json object and all associated CSV data files\.
 
 ### Copy objects: PutObject<a name="batch-ops-put-copy-object-policy"></a>
 

@@ -10,6 +10,7 @@ The following code examples show you how to implement common scenarios in Amazon
 + [Get started with tags](example_s3_Scenario_Tagging_section.md)
 + [Manage access control lists \(ACLs\)](example_s3_Scenario_ManageACLs_section.md)
 + [Manage versioned objects in batches with a Lambda function](example_s3_Scenario_BatchObjectVersioning_section.md)
++ [Parse URIs](example_s3_Scenario_URIParsing_section.md)
 + [Perform a multipart copy](example_s3_MultipartCopy_section.md)
 + [Upload or download large files](example_s3_Scenario_UsingLargeFiles_section.md)
 + [Work with versioned objects](example_s3_Scenario_ObjectVersioningUsage_section.md)

@@ -6,7 +6,7 @@ By using the *LifecycleExpiration* event types you can receive notifications whe
 
 By using the *s3:LifecycleTransition* event type, you can receive notification when an object is transitioned from one Amazon S3 storage class to another by an S3 Lifecycle configuration\. 
 
-Amazon S3 can publish event notifications to an Amazon Simple Notification Service \(Amazon SNS\) topic, an Amazon Simple Queue Service \(Amazon SQS\) queue, or an AWS Lambda function\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
+Amazon S3 can publish event notifications to an Amazon Simple Notification Service \(Amazon SNS\) topic, an Amazon Simple Queue Service \(Amazon SQS\) queue, or an AWS Lambda function\. For more information, see [Amazon S3 Event Notifications](EventNotifications.md)\.
 
 For instructions on how to configure Amazon S3 Event Notifications, see [ Enabling event notifications](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-enable-disable-notification-intro.html)\.
 

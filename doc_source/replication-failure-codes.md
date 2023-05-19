@@ -1,6 +1,6 @@
 # Amazon S3 replication failure reasons<a name="replication-failure-codes"></a>
 
-The following table lists Amazon S3 Replication failure reasons\. You can view these reasons by receiving the **failureReason** event with Amazon S3 Event Notifications\. You can receive S3 Event Notifications through Amazon Simple Queue Service \(Amazon SQS\), Amazon Simple Notification Service \(Amazon SNS\), or AWS Lambda\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
+The following table lists Amazon S3 Replication failure reasons\. You can view these reasons by receiving the **failureReason** event with Amazon S3 Event Notifications\. You can receive S3 Event Notifications through Amazon Simple Queue Service \(Amazon SQS\), Amazon Simple Notification Service \(Amazon SNS\), or AWS Lambda\. For more information, see [Amazon S3 Event Notifications](EventNotifications.md)\.
 
 You can also view these failure reasons in an S3 Batch Replication completion report\. For more information, see [Batch Replication completion report](s3-batch-replication-batch.md#batch-replication-completion-report)\.
 

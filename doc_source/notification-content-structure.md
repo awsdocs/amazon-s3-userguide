@@ -2,7 +2,7 @@
 
 The notification message that Amazon S3 sends to publish an event is in the JSON format\.
 
-For a general overview and instructions on configuring event notifications, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
+For a general overview and instructions on configuring event notifications, see [Amazon S3 Event Notifications](EventNotifications.md)\.
 
 This example shows *version 2\.2* of the event notification JSON structure\. Amazon S3 uses *versions 2\.1*, *2\.2*, and *2\.3* of this event structure\. Amazon S3 uses version 2\.2 for cross\-Region replication event notifications\. It uses version 2\.3 for S3 Lifecycle, S3 Intelligent\-Tiering, object ACL, object tagging, and object restoration delete events\. These versions contain extra information specific to these operations\. Versions 2\.2 and 2\.3 are otherwise compatible with version 2\.1, which Amazon S3 currently uses for all other event notification types\.
 

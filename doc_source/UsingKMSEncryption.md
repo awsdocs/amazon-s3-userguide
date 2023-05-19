@@ -100,7 +100,7 @@ To require server\-side encryption of all objects in a particular Amazon S3 buck
 17. }
 ```
 
-To require that a particular AWS KMS key be used to encrypt the objects in a bucket, you can use the `s3:x-amz-server-side-encryption-aws-kms-key-id` condition key\. To specify the KMS key, you must use a key Amazon Resource Name \(ARN\) that is in the `arn:aws:kms:region:acct-id:key/key-id` format\.
+To require that a particular AWS KMS key be used to encrypt the objects in a bucket, you can use the `s3:x-amz-server-side-encryption-aws-kms-key-id` condition key\. To specify the KMS key, you must use a key Amazon Resource Name \(ARN\) that is in the `arn:aws:kms:region:acct-id:key/key-id` format\. AWS Identity and Access Management does not validate if the string for `s3:x-amz-server-side-encryption-aws-kms-key-id` exists\. 
 
 **Note**  
 When you upload an object, you can specify the KMS key by using the `x-amz-server-side-encryption-aws-kms-key-id` header\. If the header is not present in the request, Amazon S3 assumes that you want to use the AWS managed key\. Regardless, the AWS KMS key ID that Amazon S3 uses for object encryption must match the AWS KMS key ID in the policy, otherwise Amazon S3 denies the request\.

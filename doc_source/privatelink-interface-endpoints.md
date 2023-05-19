@@ -43,7 +43,7 @@ AWS PrivateLink for Amazon S3 does not support the following:
 + [Website endpoints](WebsiteEndpoints.md)
 + [Legacy global endpoints](VirtualHosting.md#deprecated-global-endpoint)
 + Using [https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html) or [https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html) between buckets in different AWS Regions
-+ Transport Layer Security \(TLS\) 1\.0
++ Transport Layer Security \(TLS\) 1\.1
 
 ## Creating a VPC endpoint<a name="s3-creating-vpc"></a>
 

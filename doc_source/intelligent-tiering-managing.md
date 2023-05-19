@@ -16,7 +16,7 @@ You can use [Amazon S3 Inventory](https://docs.aws.amazon.com/AmazonS3/latest/us
 
 You can set up an Amazon S3 event notification to receive notice when an object within the S3 Intelligent\-Tiering storage class has moved to either the Archive Access tier or the Deep Archive Access tier\. For more information, see [Enabling event notifications](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-enable-disable-notification-intro.html)\.
 
-Amazon S3 can publish event notifications to an Amazon Simple Notification Service \(Amazon SNS\) topic, an Amazon Simple Queue Service \(Amazon SQS\) queue, or an AWS Lambda function\. For more information, see [Amazon S3 Event Notifications](NotificationHowTo.md)\.
+Amazon S3 can publish event notifications to an Amazon Simple Notification Service \(Amazon SNS\) topic, an Amazon Simple Queue Service \(Amazon SQS\) queue, or an AWS Lambda function\. For more information, see [Amazon S3 Event Notifications](EventNotifications.md)\.
 
 The following is an example of a message that Amazon S3 sends to publish an `s3:IntelligentTiering` event\. For more information, see [ Event message structure](https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-content-structure.html)\.
 

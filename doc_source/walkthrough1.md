@@ -18,9 +18,7 @@ This walkthrough explains how user permissions work with Amazon S3\. In this exa
 
 ## Basics of buckets and folders<a name="walkthrough-background1"></a>
 
-The Amazon S3 data model is a flat structure: You create a bucket, and the bucket stores objects\. There is no hierarchy of subbuckets or subfolders, but you can emulate a folder hierarchy\. Tools like the Amazon S3 console can present a view of these logical folders and subfolders in your bucket, as shown in the following image\.
-
-
+The Amazon S3 data model is a flat structure: You create a bucket, and the bucket stores objects\. There is no hierarchy of subbuckets or subfolders, but you can emulate a folder hierarchy\. Tools like the Amazon S3 console can present a view of these logical folders and subfolders in your bucket\.
 
 
 
@@ -48,9 +46,7 @@ Before you start, be sure that you are familiar with the concept of the *root\-l
 + `Finance/Tax2011/document2.pdf`
 + `s3-dg.pdf`
 
-These object keys create a logical hierarchy with `Private`, `Development`, and the `Finance` as root\-level folders and `s3-dg.pdf` as a root\-level object\. When you choose the bucket name on the Amazon S3 console, the root\-level items appear as shown in the following image\. The console shows the top\-level prefixes \(`Private/`, `Development/`, and `Finance/`\) as root\-level folders\. The object key `s3-dg.pdf` has no prefix, and so it appears as a root\-level item\.
-
-
+These object keys create a logical hierarchy with `Private`, `Development`, and the `Finance` as root\-level folders and `s3-dg.pdf` as a root\-level object\. When you choose the bucket name on the Amazon S3 console, the root\-level items appear\. The console shows the top\-level prefixes \(`Private/`, `Development/`, and `Finance/`\) as root\-level folders\. The object key `s3-dg.pdf` has no prefix, and so it appears as a root\-level item\.
 
 
 

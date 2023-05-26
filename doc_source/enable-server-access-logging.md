@@ -464,31 +464,31 @@ This script works only if all of your buckets are in the same Region\. If you ha
      
      # Create Logging bucket
      aws s3 mb s3://$loggingBucket --region $region
-     
+
      aws s3api put-bucket-acl --bucket $loggingBucket --grant-write URI=http://acs.amazonaws.com/groups/s3/LogDelivery --grant-read-acp URI=http://acs.amazonaws.com/groups/s3/LogDelivery
-     
+
      # List buckets in this account
      buckets="$(aws s3 ls | awk '{print $3}')"
-     
+
      # Put bucket logging on each bucket
      for bucket in $buckets
-         do 
-           #this if statement excludes the logging bucket
-           if [ "$bucket" != "$loggingBucket" ] ; then
-               continue;
-           fi
+       do
+       #this if statement excludes the logging bucket
+         if [ "$bucket" != "$loggingBucket" ]
+         then
            printf '{
              "LoggingEnabled": {
                "TargetBucket": "%s",
                "TargetPrefix": "%s/"
-           }
-         }' "$loggingBucket" "$bucket"  > logging.json
+             }
+       }' "$loggingBucket" "$bucket"  > logging.json
          aws s3api put-bucket-logging --bucket $bucket --bucket-logging-status file://logging.json
          echo "$bucket done"
+       fi
      done
-     
+
      rm logging.json
-     
+
      echo "Complete"
    ```
 

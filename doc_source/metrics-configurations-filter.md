@@ -55,14 +55,6 @@ You cannot enter an access point alias\. You must enter the ARN for the access p
 
    You can also configure request metrics at the bucket level\. For information, see [Creating a CloudWatch metrics configuration for all the objects in your bucket](configure-request-metrics-bucket.md)\.
 
-## Using the REST API<a name="configure-cw-filter-rest"></a>
-
-You can also add metrics configurations programmatically with the Amazon S3 REST API\. For more information about adding and working with metrics configurations, see the following topics in the *Amazon Simple Storage Service API Reference*:
-+ [PUT Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html)
-+ [GET Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETMetricConfiguration.html)
-+ [List Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTListBucketMetricsConfiguration.html)
-+ [DELETE Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTDeleteBucketMetricsConfiguration.html)
-
 ## Using the AWS CLI<a name="add-metrics-configurations"></a>
 
 1. Install and set up the AWS CLI\. For instructions, see [Installing, updating, and uninstalling the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\.
@@ -73,17 +65,17 @@ You can also add metrics configurations programmatically with the Amazon S3 REST
 **Example : To filter by prefix**  
 
    ```
-   aws s3api put-bucket-metrics-configuration --bucket DOC-EXAMPLE-BUCKET1 --id metrics-config-id --metrics-configuration '{"Id":"metrics-config-id," "Filter":{"Prefix":"prefix1"}}" '
+   aws s3api put-bucket-metrics-configuration --bucket DOC-EXAMPLE-BUCKET1 --id metrics-config-id --metrics-configuration '{"Id":"metrics-config-id", "Filter":{"Prefix":"prefix1"}} '
    ```  
 **Example : To filter by tags**  
 
    ```
-   aws s3api put-bucket-metrics-configuration --bucket DOC-EXAMPLE-BUCKET1 --id metrics-config-id --metrics-configuration '{"Id":"metrics-config-id", "Filter":{"Tag": {"Key": "string", "Value": "string"}}" '
+   aws s3api put-bucket-metrics-configuration --bucket DOC-EXAMPLE-BUCKET1 --id metrics-config-id --metrics-configuration '{"Id":"metrics-config-id", "Filter":{"Tag": {"Key": "string", "Value": "string"}} '
    ```  
 **Example : To filter by access point**  
 
    ```
-   aws s3api put-bucket-metrics-configuration --bucket DOC-EXAMPLE-BUCKET1 --id metrics-config-id --metrics-configuration '{"Id":"metrics-config-id", "Filter":{"AccessPointArn":"arn:aws:s3:Region:account-id:accesspoint/access-point-name"}}" '
+   aws s3api put-bucket-metrics-configuration --bucket DOC-EXAMPLE-BUCKET1 --id metrics-config-id --metrics-configuration '{"Id":"metrics-config-id", "Filter":{"AccessPointArn":"arn:aws:s3:Region:account-id:accesspoint/access-point-name"}} '
    ```  
 **Example : To filter by prefix, tags, and access point**  
 
@@ -105,3 +97,11 @@ You can also add metrics configurations programmatically with the Amazon S3 REST
        }
    }'
    ```
+
+## Using the REST API<a name="configure-cw-filter-rest"></a>
+
+You can also add metrics configurations programmatically with the Amazon S3 REST API\. For more information about adding and working with metrics configurations, see the following topics in the *Amazon Simple Storage Service API Reference*:
++ [PUT Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html)
++ [GET Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETMetricConfiguration.html)
++ [List Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTListBucketMetricsConfiguration.html)
++ [DELETE Bucket Metric Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTDeleteBucketMetricsConfiguration.html)

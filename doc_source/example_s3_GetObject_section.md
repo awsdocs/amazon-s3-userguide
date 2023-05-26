@@ -92,6 +92,57 @@ bool AwsDoc::S3::GetObject(const Aws::String &objectKey,
 +  For API details, see [GetObject](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/GetObject) in *AWS SDK for C\+\+ API Reference*\. 
 
 ------
+#### [ CLI ]
+
+**AWS CLI**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/aws-cli/bash-linux/s3#code-examples)\. 
+  
+
+```
+###############################################################################
+# function errecho
+#
+# This function outputs everything sent to it to STDERR (standard error output).
+###############################################################################
+function errecho() {
+  printf "%s\n" "$*" 2>&1
+}
+
+###############################################################################
+# function download_object_from_bucket
+#
+# This function downloads an object in a bucket to a file.
+#
+# Parameters:
+#       $1 - The name of the bucket to download the object from.
+#       $2 - The path and file name to store the downloaded bucket.
+#       $3 - The key (name) of the object in the bucket.
+#
+# Returns:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function download_object_from_bucket() {
+  local bucket_name=$1
+  local destination_file_name=$2
+  local object_name=$3
+  local response
+
+  response=$(aws s3api get-object \
+    --bucket "$bucket_name" \
+    --key "$object_name" \
+    "$destination_file_name")
+
+  # shellcheck disable=SC2181
+  if [[ ${?} -ne 0 ]]; then
+    errecho "ERROR: AWS reports put-object operation failed.\n$response"
+    return 1
+  fi
+}
+```
++  For API details, see [GetObject](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/GetObject) in *AWS CLI Command Reference*\. 
+
+------
 #### [ Go ]
 
 **SDK for Go V2**  

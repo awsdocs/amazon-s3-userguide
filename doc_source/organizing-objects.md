@@ -9,6 +9,6 @@ For more information about listing and organizing your data in Amazon S3, see th
 **Topics**
 + [Organizing objects using prefixes](using-prefixes.md)
 + [Listing object keys programmatically](ListingKeysUsingAPIs.md)
-+ [Organizing objects in the Amazon S3 console using folders](using-folders.md)
++ [Organizing objects in the Amazon S3 console by using folders](using-folders.md)
 + [Viewing an object overview in the Amazon S3 console](view-object-overview.md)
 + [Viewing object properties in the Amazon S3 console](view-object-properties.md)

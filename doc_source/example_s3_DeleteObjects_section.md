@@ -479,6 +479,63 @@ bool AwsDoc::S3::DeleteObjects(const std::vector<Aws::String> &objectKeys,
 +  For API details, see [DeleteObjects](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/DeleteObjects) in *AWS SDK for C\+\+ API Reference*\. 
 
 ------
+#### [ CLI ]
+
+**AWS CLI**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/aws-cli/bash-linux/s3#code-examples)\. 
+  
+
+```
+###############################################################################
+# function errecho
+#
+# This function outputs everything sent to it to STDERR (standard error output).
+###############################################################################
+function errecho() {
+  printf "%s\n" "$*" 2>&1
+}
+
+###############################################################################
+# function delete_items_in_bucket
+#
+# This function deletes the specified list of keys from the specified bucket.
+#
+# Parameters:
+#       $1 - The name of the bucket.
+#       $2 - A list of keys in the bucket to delete.
+
+# Returns:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function delete_items_in_bucket() {
+  local bucket_name=$1
+  local keys=$2
+  local response
+
+  # Create the JSON for the items to delete.
+  local delete_items
+  delete_items="{\"Objects\":["
+  for key in $keys; do
+    delete_items="$delete_items{\"Key\": \"$key\"},"
+  done
+  delete_items=${delete_items%?} # Remove the final comma.
+  delete_items="$delete_items]}"
+
+  response=$(aws s3api delete-objects \
+    --bucket "$bucket_name" \
+    --delete "$delete_items")
+
+  # shellcheck disable=SC2181
+  if [[ $? -ne 0 ]]; then
+    errecho "ERROR:  AWS reports s3api delete-object operation failed.\n$response"
+    return 1
+  fi
+}
+```
++  For API details, see [DeleteObjects](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/DeleteObjects) in *AWS CLI Command Reference*\. 
+
+------
 #### [ Go ]
 
 **SDK for Go V2**  

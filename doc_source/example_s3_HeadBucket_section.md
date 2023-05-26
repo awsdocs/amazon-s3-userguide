@@ -6,6 +6,47 @@ The following code examples show how to determine the existence of an S3 bucket\
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
+#### [ CLI ]
+
+**AWS CLI**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/aws-cli/bash-linux/s3#code-examples)\. 
+  
+
+```
+###############################################################################
+# function bucket_exists
+#
+# This function checks to see if the specified bucket already exists.
+#
+# Parameters:
+#       $1 - The name of the bucket to check.
+#
+# Returns:
+#       0 - If the bucket already exists.
+#       1 - If the bucket doesn't exist.
+###############################################################################
+function bucket_exists() {
+  local bucket_name
+  bucket_name=$1
+
+  # Check whether the bucket already exists.
+  # We suppress all output - we're interested only in the return code.
+
+  aws s3api head-bucket \
+    --bucket "$bucket_name" \
+    >/dev/null 2>&1
+
+  # shellcheck disable=SC2181
+  if [[ ${?} -eq 0 ]]; then
+    return 0 # 0 in Bash script means true.
+  else
+    return 1 # 1 in Bash script means false.
+  fi
+}
+```
++  For API details, see [HeadBucket](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/HeadBucket) in *AWS CLI Command Reference*\. 
+
+------
 #### [ Go ]
 
 **SDK for Go V2**  

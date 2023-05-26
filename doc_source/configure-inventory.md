@@ -1,6 +1,6 @@
 # Configuring Amazon S3 Inventory<a name="configure-inventory"></a>
 
-Amazon S3 Inventory provides a flat file list of your objects and metadata, on a schedule that you define\. You can use S3 Inventory as a scheduled alternative to the Amazon S3 synchronous `List` API operation\. S3 Inventory provides comma\-separated values \(CSV\), [Apache optimized row columnar \(ORC\)](https://orc.apache.org/), or [Apache Parquet \(Parquet\)](https://parquet.apache.org/) output files that list your objects and their corresponding metadata\. You can configure S3 Inventory to create inventory lists on a daily or weekly basis for an S3 bucket or for objects that share a prefix \(objects that have names that begin with the same string\)\. For more information, see [Amazon S3 Inventory](storage-inventory.md)\.
+Amazon S3 Inventory provides a flat file list of your objects and metadata, on a schedule that you define\. You can use S3 Inventory as a scheduled alternative to the Amazon S3 synchronous `List` API operation\. S3 Inventory provides comma\-separated values \(CSV\), [Apache optimized row columnar \(ORC\)](https://orc.apache.org/), or [https://parquet.apache.org/](https://parquet.apache.org/) output files that list your objects and their corresponding metadata\. You can configure S3 Inventory to create inventory lists on a daily or weekly basis for an S3 bucket or for objects that share a prefix \(objects that have names that begin with the same string\)\. For more information, see [Amazon S3 Inventory](storage-inventory.md)\.
 
 This section describes how to configure an inventory, including details about the inventory source and destination buckets\.
 
@@ -8,7 +8,7 @@ This section describes how to configure an inventory, including details about th
 + [Overview](#storage-inventory-setting-up)
 + [Creating a destination bucket policy](#configure-inventory-destination-bucket-policy)
 + [Granting Amazon S3 permission to use your customer managed key for encryption](#configure-inventory-kms-key-policy)
-+ [Configuring inventory using the S3 console](#configure-inventory-console)
++ [Configuring inventory by using the S3 console](#configure-inventory-console)
 
 ## Overview<a name="storage-inventory-setting-up"></a>
 
@@ -38,7 +38,7 @@ The AWS managed key \(`aws/s3`\) is not supported for SSE\-KMS encryption with S
 
    You can configure encryption for the inventory list file by using the AWS Management Console, REST API, AWS CLI, or AWS SDKs\. Whichever way you choose, you must grant Amazon S3 permission to use the customer managed key to encrypt the inventory file\. You grant Amazon S3 permission by modifying the key policy for the customer managed key that you want to use to encrypt the inventory file\. For more information, see the next section, [Granting Amazon S3 permission to use your customer managed key for encryption](#configure-inventory-kms-key-policy)\.
 
-1. **To configure inventory, see [Configuring inventory using the S3 console](#configure-inventory-console)\.**
+1. **To configure inventory, see [Configuring inventory by using the S3 console](#configure-inventory-console)\.**
 
    If you use encryption for cross\-account operations of Amazon S3 inventory configuration in the destination bucket, you should use fully qualified KMS key ARN\. For more information, see [Using SSE\-KMS encryption for cross\-account operations](bucket-encryption.md#bucket-encryption-update-bucket-policy) and [ServerSideEncryptionByDefault](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ServerSideEncryptionByDefault.html)\.
 
@@ -100,11 +100,11 @@ For more information about creating customer managed keys and using key policies
 + [Getting Started](https://docs.aws.amazon.com/kms/latest/developerguide/getting-started.html)
 + [Using Key Policies in AWS KMS](https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
 
-## Configuring inventory using the S3 console<a name="configure-inventory-console"></a>
+## Configuring inventory by using the S3 console<a name="configure-inventory-console"></a>
 
-Use these instructions to configure inventory using the S3 console\.
+Use these instructions to configure inventory by using the S3 console\.
 **Note**  
-It may take up to 48 hours to deliver the first report\.
+It might take up to 48 hours to deliver the first report\.
 
 1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
 
@@ -162,7 +162,7 @@ Both the AWS managed key \(`aws/s3`\) and your customer managed keys appear in t
    + **Size** – The object size in bytes, not including the size of incomplete multipart uploads, object metadata, and delete markers\.
    + **Last modified date** – The object creation date or the last modified date, whichever is the latest\.
    + **Storage class** – The storage class used for storing the object\. 
-   + **ETag** – The entity tag \(ETag\) is a hash of the object\. The ETag reflects changes only to the contents of an object, and not its metadata\. The ETag might or might not be an MD5 digest of the object data\. Whether it is depends on how the object was created and how it is encrypted\. For more information, see [Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html) in the *Amazon Simple Storage Service API Reference*\.
+   + **ETag** – The entity tag \(ETag\) is a hash of the object\. The ETag reflects changes only to the contents of an object, and not its metadata\. The ETag might or might not be an MD5 digest of the object data\. Whether it is depends on how the object was created and how it is encrypted\. For more information, see [https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html) in the *Amazon Simple Storage Service API Reference*\.
    +  **Multipart upload** – Specifies that the object was uploaded as a multipart upload\. For more information, see [Uploading and copying objects using multipart upload](mpuoverview.md)\.
    + **Replication status** – The replication status of the object\. For more information, see [Using the S3 console](replication-walkthrough1.md#enable-replication)\.
    + **Encryption status** – The server\-side encryption used to encrypt the object\. For more information, see [Protecting data using server\-side encryption](serv-side-encryption.md)\.
@@ -179,3 +179,5 @@ Both the AWS managed key \(`aws/s3`\) and your customer managed keys appear in t
    For more information about the contents of an inventory report, see [Amazon S3 Inventory list](storage-inventory.md#storage-inventory-contents)\.
 
 1. Choose **Create**\.
+
+When an inventory list is published, you can query the inventory list file with Amazon S3 Select\. For more information about how to locate your inventory list and query the inventory list file with Amazon S3 Select, see [Locating your inventory list](storage-inventory-location.md)\.

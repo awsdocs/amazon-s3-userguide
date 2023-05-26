@@ -1,6 +1,26 @@
 # Examples of using Amazon S3 Select on objects<a name="using-select"></a>
 
-You can use S3 Select with the Amazon S3 REST API and the AWS SDK to select content from objects\. 
+You can use S3 Select with the Amazon S3 console, REST API, and the AWS SDK to select content from objects\. 
+
+## Using the S3 console<a name="s3-select-objects-console"></a>
+
+**To select content from an object in the Amazon S3 console**
+
+1. Sign in to the AWS Management Console and open the Amazon S3 console at [https://console\.aws\.amazon\.com/s3/](https://console.aws.amazon.com/s3/)\.
+
+1. In the left navigation pane, choose **Buckets**\.
+
+1. Choose the bucket that contains the object that you want to select content from, and then choose the name of the object\.
+
+1. Choose **Object actions**, and choose **Query with S3 Select**\.
+
+1. Configure **Input settings**, based on the format of your input data\.
+
+1. Configure **Output settings**, based on the format of the output that you want to receive\.
+
+1. To extract records from the chosen object, under **SQL query**, enter the SELECT SQL commands\. For more information on how to write SQL commands, see [SQL reference for Amazon S3 Select](s3-select-sql-reference.md)\.
+
+1. After you enter SQL queries, choose **Run SQL query**\. Then, under **Query results**, you can see the results of your SQL queries\.
 
 ## Using the REST API<a name="SelectObjectContentUsingRestApi"></a>
 

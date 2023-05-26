@@ -432,6 +432,408 @@ bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName, Aws::S3::S3Client &
   + [PutObject](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/PutObject)
 
 ------
+#### [ CLI ]
+
+**AWS CLI**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/aws-cli/bash-linux/s3#code-examples)\. 
+  
+
+```
+###############################################################################
+# function s3_getting_started
+#
+# This function creates, copies, and deletes S3 buckets and objects.
+#
+# Returns:
+#       0 - If successful.
+#       1 - If an error occurred.
+###############################################################################
+function s3_getting_started() {
+  {
+    if [ "$BUCKET_OPERATIONS_SOURCED" != "True" ]; then
+      cd bucket-lifecycle-operations || exit
+      # shellcheck disable=SC1091
+      source ./bucket_operations.sh
+      cd ..
+    fi
+  }
+
+  echo_repeat "*" 88
+  echo "Welcome to the Amazon S3 getting started demo."
+  echo_repeat "*" 88
+
+  local bucket_name
+  bucket_name=$(generate_random_name "doc-example-bucket")
+
+  local region_code
+  region_code=$(aws configure get region)
+
+  if create_bucket -b "$bucket_name" -r "$region_code"; then
+    echo "Created demo bucket named $bucket_name"
+  else
+    errecho "The bucket failed to create. This demo will exit."
+    return 1
+  fi
+
+  local file_name
+  while [ -z "$file_name" ]; do
+    echo -n "Enter a file you want to upload to your bucket: "
+    get_input
+    file_name=$get_input_result
+
+    if [ ! -f "$file_name" ]; then
+      echo "Could not find file $file_name. Are you sure it exists?"
+      file_name=""
+    fi
+  done
+
+  local key
+  key="$(basename "$file_name")"
+
+  local result=0
+  if copy_file_to_bucket "$bucket_name" "$file_name" "$key"; then
+    echo "Uploaded file $file_name into bucket $bucket_name with key $key."
+  else
+    result=1
+  fi
+
+  local destination_file
+  destination_file="$file_name.download"
+  if yes_no_input "Would you like to download $key to the file $destination_file? (y/n) "; then
+    if download_object_from_bucket "$bucket_name" "$destination_file" "$key"; then
+      echo "Downloaded $key in the bucket $bucket_name to the file $destination_file."
+    else
+      result=1
+    fi
+  fi
+
+  if yes_no_input "Would you like to copy $key a new object key in your bucket? (y/n) "; then
+    local to_key
+    to_key="demo/$key"
+    if copy_item_in_bucket "$bucket_name" "$key" "$to_key"; then
+      echo "Copied $key in the bucket $bucket_name to the  $to_key."
+    else
+      result=1
+    fi
+  fi
+
+  local bucket_items
+  bucket_items=$(list_items_in_bucket "$bucket_name")
+
+  if [[ $? -ne 0 ]]; then
+    result=1
+  fi
+
+  echo "Your bucket contains the following items."
+  echo -e "Name\t\tSize"
+  echo "$bucket_items"
+
+  if yes_no_input "Delete the bucket, $bucket_name, as well as the objects in it? (y/n) "; then
+    bucket_items=$(echo "$bucket_items" | cut -f 1)
+
+    if delete_items_in_bucket "$bucket_name" "$bucket_items"; then
+      echo "The following items were deleted from the bucket $bucket_name"
+      echo "$bucket_items"
+    else
+      result=1
+    fi
+
+    if delete_bucket "$bucket_name"; then
+      echo "Deleted the bucket $bucket_name"
+    else
+      result=1
+    fi
+  fi
+
+  return $result
+}
+
+###############################################################################
+# function create-bucket
+#
+# This function creates the specified bucket in the specified AWS Region, unless
+# it already exists.
+#
+# Parameters:
+#       -b bucket_name  -- The name of the bucket to create.
+#       -r region_code  -- The code for an AWS Region in which to
+#                          create the bucket.
+#
+# Returns:
+#       The URL of the bucket that was created.
+#     And:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function create_bucket() {
+  local bucket_name region_code response
+  local option OPTARG # Required to use getopts command in a function.
+
+  # bashsupport disable=BP5008
+  function usage() {
+    echo "function create_bucket"
+    echo "Creates an Amazon S3 bucket. You must supply a bucket name:"
+    echo "  -b bucket_name    The name of the bucket. It must be globally unique."
+    echo "  [-r region_code]    The code for an AWS Region in which the bucket is created."
+    echo ""
+  }
+
+  # Retrieve the calling parameters.
+  while getopts "b:r:h" option; do
+    case "${option}" in
+      b) bucket_name="${OPTARG}" ;;
+      r) region_code="${OPTARG}" ;;
+      h)
+        usage
+        return 0
+        ;;
+      \?)
+        echo "Invalid parameter"
+        usage
+        return 1
+        ;;
+    esac
+  done
+
+  if [[ -z "$bucket_name" ]]; then
+    errecho "ERROR: You must provide a bucket name with the -b parameter."
+    usage
+    return 1
+  fi
+
+  local bucket_config_arg
+  # A location constraint for "us-east-1" returns an error.
+  if [[ -n "$region_code" ]] && [[ "$region_code" != "us-east-1" ]]; then
+    bucket_config_arg="--create-bucket-configuration LocationConstraint=$region_code"
+  fi
+
+  iecho "Parameters:\n"
+  iecho "    Bucket name:   $bucket_name"
+  iecho "    Region code:   $region_code"
+  iecho ""
+
+  # If the bucket already exists, we don't want to try to create it.
+  if (bucket_exists "$bucket_name"); then
+    errecho "ERROR: A bucket with that name already exists. Try again."
+    return 1
+  fi
+
+  # shellcheck disable=SC2086
+  response=$(aws s3api create-bucket \
+    --bucket "$bucket_name" \
+    $bucket_config_arg)
+
+  # shellcheck disable=SC2181
+  if [[ ${?} -ne 0 ]]; then
+    errecho "ERROR: AWS reports create-bucket operation failed.\n$response"
+    return 1
+  fi
+}
+
+###############################################################################
+# function copy_file_to_bucket
+#
+# This function creates a file in the specified bucket.
+#
+# Parameters:
+#       $1 - The name of the bucket to copy the file to.
+#       $2 - The path and file name of the local file to copy to the bucket.
+#       $3 - The key (name) to call the copy of the file in the bucket.
+#
+# Returns:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function copy_file_to_bucket() {
+  local response bucket_name source_file destination_file_name
+  bucket_name=$1
+  source_file=$2
+  destination_file_name=$3
+
+  response=$(aws s3api put-object \
+    --bucket "$bucket_name" \
+    --body "$source_file" \
+    --key "$destination_file_name")
+
+  # shellcheck disable=SC2181
+  if [[ ${?} -ne 0 ]]; then
+    errecho "ERROR: AWS reports put-object operation failed.\n$response"
+    return 1
+  fi
+}
+
+###############################################################################
+# function download_object_from_bucket
+#
+# This function downloads an object in a bucket to a file.
+#
+# Parameters:
+#       $1 - The name of the bucket to download the object from.
+#       $2 - The path and file name to store the downloaded bucket.
+#       $3 - The key (name) of the object in the bucket.
+#
+# Returns:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function download_object_from_bucket() {
+  local bucket_name=$1
+  local destination_file_name=$2
+  local object_name=$3
+  local response
+
+  response=$(aws s3api get-object \
+    --bucket "$bucket_name" \
+    --key "$object_name" \
+    "$destination_file_name")
+
+  # shellcheck disable=SC2181
+  if [[ ${?} -ne 0 ]]; then
+    errecho "ERROR: AWS reports put-object operation failed.\n$response"
+    return 1
+  fi
+}
+
+###############################################################################
+# function copy_item_in_bucket
+#
+# This function creates a copy of the specified file in the same bucket.
+#
+# Parameters:
+#       $1 - The name of the bucket to copy the file from and to.
+#       $2 - The key of the source file to copy.
+#       $3 - The key of the destination file.
+#
+# Returns:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function copy_item_in_bucket() {
+  local bucket_name=$1
+  local source_key=$2
+  local destination_key=$3
+  local response
+
+  response=$(aws s3api copy-object \
+    --bucket "$bucket_name" \
+    --copy-source "$bucket_name/$source_key" \
+    --key "$destination_key")
+
+  # shellcheck disable=SC2181
+  if [[ $? -ne 0 ]]; then
+    errecho "ERROR:  AWS reports s3api copy-object operation failed.\n$response"
+    return 1
+  fi
+}
+
+###############################################################################
+# function list_items_in_bucket
+#
+# This function displays a list of the files in the bucket with each file's
+# size. The function uses the --query parameter to retrieve only the key and
+# size fields from the Contents collection.
+#
+# Parameters:
+#       $1 - The name of the bucket.
+#
+# Returns:
+#       The list of files in text format.
+#     And:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function list_items_in_bucket() {
+  local bucket_name=$1
+  local response
+
+  response=$(aws s3api list-objects \
+    --bucket "$bucket_name" \
+    --output text \
+    --query 'Contents[].{Key: Key, Size: Size}')
+
+  # shellcheck disable=SC2181
+  if [[ ${?} -eq 0 ]]; then
+    echo "$response"
+  else
+    errecho "ERROR: AWS reports s3api list-objects operation failed.\n$response"
+    return 1
+  fi
+}
+
+###############################################################################
+# function delete_items_in_bucket
+#
+# This function deletes the specified list of keys from the specified bucket.
+#
+# Parameters:
+#       $1 - The name of the bucket.
+#       $2 - A list of keys in the bucket to delete.
+
+# Returns:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function delete_items_in_bucket() {
+  local bucket_name=$1
+  local keys=$2
+  local response
+
+  # Create the JSON for the items to delete.
+  local delete_items
+  delete_items="{\"Objects\":["
+  for key in $keys; do
+    delete_items="$delete_items{\"Key\": \"$key\"},"
+  done
+  delete_items=${delete_items%?} # Remove the final comma.
+  delete_items="$delete_items]}"
+
+  response=$(aws s3api delete-objects \
+    --bucket "$bucket_name" \
+    --delete "$delete_items")
+
+  # shellcheck disable=SC2181
+  if [[ $? -ne 0 ]]; then
+    errecho "ERROR:  AWS reports s3api delete-object operation failed.\n$response"
+    return 1
+  fi
+}
+
+###############################################################################
+# function delete_bucket
+#
+# This function deletes the specified bucket.
+#
+# Parameters:
+#       $1 - The name of the bucket.
+
+# Returns:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function delete_bucket() {
+  local bucket_name=$1
+  local response
+
+  response=$(aws s3api delete-bucket \
+    --bucket "$bucket_name")
+
+  # shellcheck disable=SC2181
+  if [[ $? -ne 0 ]]; then
+    errecho "ERROR: AWS reports s3api delete-bucket failed.\n$response"
+    return 1
+  fi
+}
+```
++ For API details, see the following topics in *AWS CLI Command Reference*\.
+  + [CopyObject](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/CopyObject)
+  + [CreateBucket](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/CreateBucket)
+  + [DeleteBucket](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/DeleteBucket)
+  + [DeleteObjects](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/DeleteObjects)
+  + [GetObject](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/GetObject)
+  + [ListObjects](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/ListObjects)
+  + [PutObject](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/PutObject)
+
+------
 #### [ Go ]
 
 **SDK for Go V2**  

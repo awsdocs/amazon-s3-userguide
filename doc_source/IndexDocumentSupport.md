@@ -36,6 +36,9 @@ However, if you exclude the trailing slash from the preceding URL, Amazon S3 fir
 
 To configure an index document using the S3 console, use the following procedure\. You can also configure an index document using the REST API, the AWS SDKs, the AWS CLI, or AWS CloudFormation\. 
 
+**Note**  
+In a versioning\-enabled bucket, you may upload multiple copies of the `index.html` but only the newest version will be resolved to\. For more information about using S3 Versioning see, [Using versioning in S3 buckets](Versioning.md)\.
+
 When you enable static website hosting for your bucket, you enter the name of the index document \(for example, **index\.html**\)\. After you enable static website hosting for the bucket, you upload an HTML file with this index document name to your bucket\.
 
 **To configure the index document**

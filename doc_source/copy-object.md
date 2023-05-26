@@ -43,6 +43,7 @@ In the Amazon S3 console, you can copy or move an object\. For more information,
 **Note**  
 Objects encrypted with customer\-provided encryption keys \(SSE\-C\) cannot be copied or moved using the S3 console\. To copy or move objects encrypted with SSE\-C, use the AWS CLI, AWS SDK, or the Amazon S3 REST API\.
 When copying an object by using the Amazon S3 console, you must grant permission `s3:ListAllMyBuckets`\. The console needs this permission to validate the copy operation\.
+Cross\-region copying of AWS KMS encrypted objects is not supported on the Amazon S3 console\.
 
 **To copy an object**
 

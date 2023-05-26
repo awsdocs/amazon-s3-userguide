@@ -26,6 +26,8 @@ The inventory lists are published daily or weekly to the following location in t
 + `source-bucket` is the source bucket that the inventory list is for\. It is added to prevent collisions when multiple inventory reports from different source buckets are sent to the same destination bucket\.
 + `example-file-name``.csv.gz` is one of the CSV inventory files\. ORC inventory names end with the file name extension `.orc`, and Parquet inventory names end with the file name extension `.parquet`\.
 
+  You can query an inventory list file with Amazon S3 Select\. In the Amazon S3 console, choose the name of the inventory list \(for example, *destination\-prefix*/*source\-bucket*/*config\-ID*/data/*example\-file\-name\.csv\.gz*\)\. Then, choose **Object actions** and **Query with S3 Select**\. For an example of how to use an S3 Select aggregate function to query an inventory list file, see [SUM example](s3-select-sql-reference-aggregate.md#s3-select-sql-reference-aggregate-case-examples)\.
+
 ## Inventory manifest<a name="storage-inventory-location-manifest"></a>
 
 The manifest files `manifest.json` and `symlink.txt` describe where the inventory files are located\. Whenever a new inventory list is delivered, it is accompanied by a new set of manifest files\. These files may overwrite each other\. In versioning\-enabled buckets, Amazon S3 creates new versions of the manifest files\. 
@@ -99,6 +101,6 @@ The following is an example of a manifest in a `manifest.json` file for a Parque
     ]
 }
 ```
-The `symlink.txt` file is an Apache Hive\-compatible manifest file that allows Hive to automatically discover inventory files and their associated data files\. The Hive\-compatible manifest works with the Hive\-compatible services Athena and Amazon Redshift Spectrum\. It also works with Hive\-compatible applications, including [Presto](https://prestodb.io/), [Apache Hive](https://hive.apache.org/), [Apache Spark](https://databricks.com/spark/about/), and many others\.  
+The `symlink.txt` file is an Apache Hive\-compatible manifest file that allows Hive to automatically discover inventory files and their associated data files\. The Hive\-compatible manifest works with the Hive\-compatible services Athena and Amazon Redshift Spectrum\. It also works with Hive\-compatible applications, including [Presto](https://prestodb.io/), [https://hive.apache.org/](https://hive.apache.org/), [https://databricks.com/spark/about/](https://databricks.com/spark/about/), and many others\.  
 The `symlink.txt` Apache Hive\-compatible manifest file does not currently work with AWS Glue\.  
-Reading `symlink.txt` with [Apache Hive](https://hive.apache.org/) and [Apache Spark](https://databricks.com/spark/about/) is not supported for ORC and Parquet\-formatted inventory files\. 
+Reading `symlink.txt` with [https://hive.apache.org/](https://hive.apache.org/) and [https://databricks.com/spark/about/](https://databricks.com/spark/about/) is not supported for ORC and Parquet\-formatted inventory files\. 

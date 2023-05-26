@@ -127,6 +127,57 @@ bool AwsDoc::S3::CopyObject(const Aws::String &objectKey, const Aws::String &fro
 +  For API details, see [CopyObject](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/CopyObject) in *AWS SDK for C\+\+ API Reference*\. 
 
 ------
+#### [ CLI ]
+
+**AWS CLI**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/aws-cli/bash-linux/s3#code-examples)\. 
+  
+
+```
+###############################################################################
+# function errecho
+#
+# This function outputs everything sent to it to STDERR (standard error output).
+###############################################################################
+function errecho() {
+  printf "%s\n" "$*" 2>&1
+}
+
+###############################################################################
+# function copy_item_in_bucket
+#
+# This function creates a copy of the specified file in the same bucket.
+#
+# Parameters:
+#       $1 - The name of the bucket to copy the file from and to.
+#       $2 - The key of the source file to copy.
+#       $3 - The key of the destination file.
+#
+# Returns:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function copy_item_in_bucket() {
+  local bucket_name=$1
+  local source_key=$2
+  local destination_key=$3
+  local response
+
+  response=$(aws s3api copy-object \
+    --bucket "$bucket_name" \
+    --copy-source "$bucket_name/$source_key" \
+    --key "$destination_key")
+
+  # shellcheck disable=SC2181
+  if [[ $? -ne 0 ]]; then
+    errecho "ERROR:  AWS reports s3api copy-object operation failed.\n$response"
+    return 1
+  fi
+}
+```
++  For API details, see [CopyObject](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/CopyObject) in *AWS CLI Command Reference*\. 
+
+------
 #### [ Go ]
 
 **SDK for Go V2**  

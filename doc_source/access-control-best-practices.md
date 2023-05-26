@@ -113,7 +113,7 @@ For more information about using ACLs, see [Example 3: Bucket owner granting per
 **Prefixes**  
 When trying to share specific resources from a bucket, you can replicate folder\-level permissions by using prefixes\. The Amazon S3 console supports the folder concept as a means of grouping objects by using a shared name prefix for objects\. To then grant an IAM user explicit permission to access the resources associated with that prefix, you can specify that prefix within the conditions of their IAM user policy\. 
 
-For more information, see [Organizing objects in the Amazon S3 console using folders](using-folders.md)\.
+For more information, see [Organizing objects in the Amazon S3 console by using folders](using-folders.md)\.
 
 **Tagging**  
 If you use object tagging to categorize storage, you can share objects that have been tagged with a specific value with specified users\. Resource tagging allows you to control access to objects based on the tags associated with the resource that a user is trying to access\. To allow access to the tagged resources, use the `ResourceTag/key-name` condition within an IAM user policy\. 

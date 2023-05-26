@@ -185,6 +185,54 @@ bool AwsDoc::S3::DeleteObject(const Aws::String &objectKey,
 +  For API details, see [DeleteObject](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/DeleteObject) in *AWS SDK for C\+\+ API Reference*\. 
 
 ------
+#### [ CLI ]
+
+**AWS CLI**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/aws-cli/bash-linux/s3#code-examples)\. 
+  
+
+```
+###############################################################################
+# function errecho
+#
+# This function outputs everything sent to it to STDERR (standard error output).
+###############################################################################
+function errecho() {
+  printf "%s\n" "$*" 2>&1
+}
+
+###############################################################################
+# function delete_item_in_bucket
+#
+# This function deletes the specified file from the specified bucket.
+#
+# Parameters:
+#       $1 - The name of the bucket.
+#       $2 - The key (file name) in the bucket to delete.
+
+# Returns:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function delete_item_in_bucket() {
+  local bucket_name=$1
+  local key=$2
+  local response
+
+  response=$(aws s3api delete-object \
+    --bucket "$bucket_name" \
+    --key "$key")
+
+  # shellcheck disable=SC2181
+  if [[ $? -ne 0 ]]; then
+    errecho "ERROR:  AWS reports s3api delete-object operation failed.\n$response"
+    return 1
+  fi
+}
+```
++  For API details, see [DeleteObject](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/DeleteObject) in *AWS CLI Command Reference*\. 
+
+------
 #### [ JavaScript ]
 
 **SDK for JavaScript \(v3\)**  

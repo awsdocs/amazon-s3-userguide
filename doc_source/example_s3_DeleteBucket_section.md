@@ -67,6 +67,51 @@ bool AwsDoc::S3::DeleteBucket(const Aws::String &bucketName,
 +  For API details, see [DeleteBucket](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/DeleteBucket) in *AWS SDK for C\+\+ API Reference*\. 
 
 ------
+#### [ CLI ]
+
+**AWS CLI**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/aws-cli/bash-linux/s3#code-examples)\. 
+  
+
+```
+###############################################################################
+# function errecho
+#
+# This function outputs everything sent to it to STDERR (standard error output).
+###############################################################################
+function errecho() {
+  printf "%s\n" "$*" 2>&1
+}
+
+###############################################################################
+# function delete_bucket
+#
+# This function deletes the specified bucket.
+#
+# Parameters:
+#       $1 - The name of the bucket.
+
+# Returns:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function delete_bucket() {
+  local bucket_name=$1
+  local response
+
+  response=$(aws s3api delete-bucket \
+    --bucket "$bucket_name")
+
+  # shellcheck disable=SC2181
+  if [[ $? -ne 0 ]]; then
+    errecho "ERROR: AWS reports s3api delete-bucket failed.\n$response"
+    return 1
+  fi
+}
+```
++  For API details, see [DeleteBucket](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/DeleteBucket) in *AWS CLI Command Reference*\. 
+
+------
 #### [ Go ]
 
 **SDK for Go V2**  

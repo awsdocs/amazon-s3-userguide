@@ -169,6 +169,59 @@ bool AwsDoc::S3::ListObjects(const Aws::String &bucketName,
 +  For API details, see [ListObjects](https://docs.aws.amazon.com/goto/SdkForCpp/s3-2006-03-01/ListObjects) in *AWS SDK for C\+\+ API Reference*\. 
 
 ------
+#### [ CLI ]
+
+**AWS CLI**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/aws-cli/bash-linux/s3#code-examples)\. 
+  
+
+```
+###############################################################################
+# function errecho
+#
+# This function outputs everything sent to it to STDERR (standard error output).
+###############################################################################
+function errecho() {
+  printf "%s\n" "$*" 2>&1
+}
+
+###############################################################################
+# function list_items_in_bucket
+#
+# This function displays a list of the files in the bucket with each file's
+# size. The function uses the --query parameter to retrieve only the key and
+# size fields from the Contents collection.
+#
+# Parameters:
+#       $1 - The name of the bucket.
+#
+# Returns:
+#       The list of files in text format.
+#     And:
+#       0 - If successful.
+#       1 - If it fails.
+###############################################################################
+function list_items_in_bucket() {
+  local bucket_name=$1
+  local response
+
+  response=$(aws s3api list-objects \
+    --bucket "$bucket_name" \
+    --output text \
+    --query 'Contents[].{Key: Key, Size: Size}')
+
+  # shellcheck disable=SC2181
+  if [[ ${?} -eq 0 ]]; then
+    echo "$response"
+  else
+    errecho "ERROR: AWS reports s3api list-objects operation failed.\n$response"
+    return 1
+  fi
+}
+```
++  For API details, see [ListObjects](https://docs.aws.amazon.com/goto/aws-cli/s3-2006-03-01/ListObjects) in *AWS CLI Command Reference*\. 
+
+------
 #### [ Go ]
 
 **SDK for Go V2**  

@@ -14,6 +14,8 @@ For more information about configuring replication using server\-side encryption
 
 1. In the console, add the following bucket policy on the *destination* bucket to allow the owner of the *source* bucket to replicate objects\. Be sure to edit the policy by providing the AWS account ID of the *source* bucket owner and the *destination* bucket name\.
 
+   If you're creating the IAM service role manually, set the role path as `role/service-role/`, as shown in the following policy example\. For more information, see [IAM ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns) in the *IAM User Guide*\. 
+
    ```
    {
       "Version":"2012-10-17",

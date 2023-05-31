@@ -139,7 +139,7 @@ In the permissions policy, you specify the AWS KMS key IDs that will be used for
                      "StringLike":{
                         "kms:ViaService":"s3.us-east-1.amazonaws.com",
                         "kms:EncryptionContext:aws:s3:arn":[
-                           "arn:aws:s3:::source/*"
+                           "arn:aws:s3:::source"
                         ]
                      }
                   },
@@ -156,7 +156,7 @@ In the permissions policy, you specify the AWS KMS key IDs that will be used for
                      "StringLike":{
                         "kms:ViaService":"s3.us-west-2.amazonaws.com",
                         "kms:EncryptionContext:aws:s3:arn":[
-                           "arn:aws:s3:::destination/*"
+                           "arn:aws:s3:::destination"
                         ]
                      }
                   },

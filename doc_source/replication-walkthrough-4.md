@@ -267,4 +267,4 @@ In the replication configuration you specify the IAM role that Amazon S3 can ass
 
  For a code example to add replication configuration, see [Using the AWS SDKs](replication-walkthrough1.md#replication-ex1-sdk)\. You need to modify the replication configuration appropriately\. 
 
-For conceptual information, see [Replicating objects created with server\-side encryption \(SSE\-C, SSE\-S3, SSE\-KMS\)](replication-config-for-kms-objects.md)\. 
+For conceptual information, see [Replicating objects created with server\-side encryption \(SSE\-C, SSE\-S3, SSE\-KMS\)](replication-config-for-kms-objects.md)\.

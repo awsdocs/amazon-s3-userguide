@@ -38,11 +38,12 @@ The first column in the following table lists usage types that appear in your bi
 |  `region1-region2-AWS-In-ABytes`  |  GB  |  Hourly  | The amount of accelerated data transferred to AWS Region1 from AWS Region2 | 
 |  `region1-region2-AWS-In-ABytes-T1`  |  GB  |  Hourly  | The amount of T1 accelerated data transferred to AWS Region1 from AWS Region2, where T1 refers to CloudFront requests to POPs in the United States, Europe, and Japan | 
 |  `region1-region2-AWS-In-ABytes-T2`  |  GB  |  Hourly  | The amount of T2 accelerated data transferred to AWS Region1 from AWS Region2, where T2 refers to CloudFront requests to POPs in all other AWS edge locations | 
-|  `region1-region2-AWS-In-Bytes`  |  GB  |  Hourly  |  The amount of data transferred to AWS Region1 from AWS Region2  | 
+|  `region1-region2-AWS-In-Bytes`  |  GB  |  Hourly  |  The amount of data transferred to AWS Region1 from AWS Region2  |
 |  `region1-region2-AWS-Out-ABytes`  |  GB  |  Hourly  | The amount of accelerated data transferred from AWS Region1 to AWS Region2 | 
 |  `region1-region2-AWS-Out-ABytes-T1`  |  GB  |  Hourly  | The amount of T1 accelerated data transferred from AWS Region1 from AWS Region2, where T1 refers to CloudFront requests to POPs in the United States, Europe, and Japan | 
 |  `region1-region2-AWS-Out-ABytes-T2`  |  GB  |  Hourly  | The amount of T2 accelerated data transferred from AWS Region1 to AWS Region2, where T2 refers to CloudFront requests to POPs in all other AWS edge locations | 
-|  `region1-region2-AWS-Out-Bytes`  |  GB  |  Hourly  |  The amount of data transferred from AWS Region1 to AWS Region2  | 
+|  `region1-region2-AWS-Out-Bytes`  |  GB  |  Hourly  |  The amount of data transferred from AWS Region1 to AWS Region2  |
+|  `region-AMZN-Out-Bytes`  |  GB  |  Hourly  |  The amount of data transferred to an Amazon-owned IP address, where it is unknown what AWS region the IP address is located in | 
 |  `region-BatchOperations-Jobs `  |  Count   |  Hourly  |  The number of S3 Batch Operations jobs performed  | 
 |  `region-BatchOperations-Objects `  |  Count   |  Hourly  |  The number of object operations performed by S3 Batch Operations  | 
 |  `region-Bulk-Retrieval-Bytes`  |  GB  |  Hourly  |  The amount of data retrieved with Bulk S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive requests  | 
@@ -162,6 +163,8 @@ The first column in the following table lists usage types that appear in your bi
 1. There is no minimum billable object size for objects in the S3 Intelligent\-Tiering storage class\. Objects that are smaller than 128 KB are not monitored or eligible for auto\-tiering\. Smaller objects are always stored in the S3 Intelligent\-Tiering Frequent Access tier\.
 
 1. When you initiate an “InitiateMultipartUpload,” “UploadPart,” or “CopyPart” request to either the S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive storage classes, requests are billed at S3 Standard request rates until you complete the multipart upload\. Once the upload completes, the single “CompleteMultipartUpload” request is billed at the PUT rate for the destination S3 Glacier storage\. In\-progress multipart parts for a PUT to the S3 Glacier Flexible Retrieval storage class are billed as S3 Glacier Staging Storage at S3 Standard storage rates until the upload completes\. Similarly, in\-progress multipart parts for a PUT to the S3 Glacier Deep Archive storage class are billed as S3 Glacier Deep Archive Staging Storage at S3 Standard storage rates until the upload completes\.
+
+1. Regional outgoing data transfer costs vary depending on the destination region (see [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)). In the event that outgoing data transfer goes to an Amazon-owned IP address that is not configured in an AWS regional range, S3 is unable to quantify the regional data transfer cost. When this occurs, a `region-AMZN-Out-Bytes` usage type appears in the billing and usage report and there is no outgoing data transfer cost for these transfers.
 
 ## Tracking Operations in Your Usage Reports<a name="aws-usage-report-understand-operations"></a>
 

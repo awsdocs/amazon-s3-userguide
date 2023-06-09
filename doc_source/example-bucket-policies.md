@@ -414,9 +414,9 @@ Replace the IP address ranges in this example with appropriate values for your u
 
 If you want to prevent potential attackers from manipulating network traffic, you can use HTTPS \(TLS\) to only allow encrypted connections while restricting HTTP requests from accessing your bucket\. To determine whether the request is HTTP or HTTPS, use the [https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-securetransport](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-securetransport) global condition key in your S3 bucket policy\. The `aws:SecureTransport` condition key checks whether a request was sent by using HTTP\.
 
-If a request returns `true`, then the request was sent through HTTP\. If the request returns `false`, then the request was sent through HTTPS\. You can then allow or deny access to your bucket based on the desired request scheme\.
+If a request returns `true`, then the request was sent through HTTPS\. If the request returns `false`, then the request was sent through HTTP\. You can then allow or deny access to your bucket based on the desired request scheme\.
 
-In the following example, the bucket policy explicitly denies access to HTTP requests\. 
+In the following example, the bucket policy explicitly denies HTTP requests\. 
 
 ```
 {
@@ -553,7 +553,7 @@ In the following example, the bucket policy grants Elastic Load Balancing \(ELB\
       },
       "Effect": "Allow",
       "Action": "s3:PutObject",
-      "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/prefix/AWSLogs/111122223333/*"
+      "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/prefix/AWSLogs/111122223333/*"
     }
   ]
 }

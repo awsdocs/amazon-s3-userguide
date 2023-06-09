@@ -20,5 +20,5 @@ With Amazon S3, you pay only for what you use\. For more information about Amazo
 + [Checking object integrity](checking-object-integrity.md)
 + [Deleting Amazon S3 objects](DeletingObjects.md)
 + [Organizing, listing, and working with your objects](organizing-objects.md)
-+ [Using presigned URLs](using-presigned-url.md)
++ [Working with presigned URLs](using-presigned-url.md)
 + [Transforming objects with S3 Object Lambda](transforming-objects.md)

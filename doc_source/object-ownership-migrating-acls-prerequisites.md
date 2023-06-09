@@ -16,8 +16,8 @@ To review and migrate ACL permissions to bucket policies, see the following topi
 
 These example bucket policies show you how to migrate `READ` and `WRITE` bucket and object ACL permissions for a third\-party AWS account to a bucket policy\. `READ_ACP` and `WRITE_ACP` ACLs are less relevant for policies because they grant ACL\-related permissions \(`s3:GetBucketAcl`, `s3:GetObjectAcl`, `s3:PutBucketAcl`, and `s3:PutObjectAcl`\)\.
 
-**Example – READ ACL for a bucket**  
-If your bucket had a READ ACL that grants AWS account `111122223333` permission to list the contents of your bucket, you can write a bucket policy that grants `s3:ListBucket`, `s3:ListBucketVersions`, `s3:ListBucketMultipartUploads` permissions for your bucket\.   
+**Example – `READ` ACL for a bucket**  
+If your bucket had a `READ` ACL that grants AWS account `111122223333` permission to list the contents of your bucket, you can write a bucket policy that grants `s3:ListBucket`, `s3:ListBucketVersions`, `s3:ListBucketMultipartUploads` permissions for your bucket\.   
 
 ```
 {
@@ -43,8 +43,8 @@ If your bucket had a READ ACL that grants AWS account `111122223333` permission 
 }
 ```
 
-**Example – READ ACLs for every object in a bucket**  
-If every object in your bucket has a READ ACL that grants access to AWS account `111122223333`, you can write a bucket policy that grants `s3:GetObject` and `s3:GetObjectVersion` permissions to this account for every object in your bucket\.  
+**Example – `READ` ACLs for every object in a bucket**  
+If every object in your bucket has a `READ` ACL that grants access to AWS account `111122223333`, you can write a bucket policy that grants `s3:GetObject` and `s3:GetObjectVersion` permissions to this account for every object in your bucket\.  
 
 ```
 {
@@ -73,8 +73,8 @@ This example resource element grants access to a specific object\.
 "Resource": "arn:aws:s3:::DOC-EXAMPLE-BUCKET/OBJECT-KEY"
 ```
 
-**Example – Write ACL that grants permissions to write objects to a bucket**  
-If your bucket has a write ACL that grants AWS account `111122223333` permission to write objects to your bucket, you can write a bucket policy that grants `s3:PutObject` permission for your bucket\.  
+**Example – `WRITE` ACL that grants permissions to write objects to a bucket**  
+If your bucket has a `WRITE` ACL that grants AWS account `111122223333` permission to write objects to your bucket, you can write a bucket policy that grants `s3:PutObject` permission for your bucket\.  
 
 ```
 {
@@ -137,7 +137,7 @@ If your bucket has a write ACL that grants AWS account `111122223333` permission
 
 1. [Update your bucket ACL](managing-acls.md) to remove ACL grants to other groups or AWS accounts\.
 
-1. [Apply the Bucket owner enforced setting](object-ownership-existing-bucket.md) for Object Ownership\.
+1. [Apply the **Bucket owner enforced** setting](object-ownership-existing-bucket.md) for Object Ownership\.
 
 ## Using the AWS CLI to review and migrate ACL permissions<a name="review-migrate-acl-cli"></a>
 

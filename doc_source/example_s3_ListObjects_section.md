@@ -5,6 +5,10 @@ The following code examples show how to list objects in an S3 bucket\.
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
+Action examples are code excerpts from larger programs and must be run in context\. You can see this action in context in the following code examples: 
++  [Get started with buckets and objects](example_s3_Scenario_GettingStarted_section.md) 
++  [Create a web page that lists Amazon S3 objects](example_s3_Scenario_ListObjectsWeb_section.md) 
+
 ------
 #### [ \.NET ]
 

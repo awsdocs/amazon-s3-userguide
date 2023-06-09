@@ -83,4 +83,4 @@ Amazon S3 can publish events of the following types\. You specify these event ty
 
 ## Supported event types for Amazon EventBridge<a name="supported-notification-event-types-eventbridge"></a>
 
-For a list of event types Amazon S3 will send to Amazon EventBridge, see [Using EventBridge](EventBridge.md)
+For a list of event types Amazon S3 will send to Amazon EventBridge, see [Using EventBridge](EventBridge.md)\.

@@ -130,7 +130,7 @@ aws s3api create-bucket --bucket  DOC-EXAMPLE-BUCKET --region us-east-1 --object
 ```
 
 **Important**  
-If you don’t set Object Ownership when you create a bucket using the CLI, the default setting will be ObjectWriter \(ACLs enabled\)\.
+If you don’t set Object Ownership when you create a bucket by using the AWS CLI, the default setting will be `ObjectWriter` \(ACLs enabled\)\.
 
 ## Using the AWS SDK for Java<a name="object-ownership-new-bucket-sdk-java"></a>
 
@@ -153,7 +153,7 @@ To use the `AWS::S3::Bucket` AWS CloudFormation resource to set Object Ownership
 
 ## Using the REST API<a name="object-ownership-new-bucket-rest-api"></a>
 
-To apply the Bucket owner enforced setting for S3 Object Ownership, use the `CreateBucket` API operation with the `x-amz-object-ownership` request header set to `BucketOwnerEnforced`\. For information and examples, see [CreateBucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html) in the *Amazon Simple Storage Service API Reference*\.
+To apply the Bucket owner enforced setting for S3 Object Ownership, use the `CreateBucket` API operation with the `x-amz-object-ownership` request header set to `BucketOwnerEnforced`\. For information and examples, see [https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html) in the *Amazon Simple Storage Service API Reference*\.
 
 **Next steps**: After you apply the bucket owner enforced or bucket owner preferred settings for Object Ownership, you can further take the following steps:
 + [Bucket owner enforced](ensure-object-ownership.md#object-ownership-requiring-bucket-owner-enforced) – Require that all new buckets are created with ACLs disabled by using an IAM or Organizations policy\. 

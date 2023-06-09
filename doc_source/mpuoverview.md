@@ -24,7 +24,7 @@ When you send a request to initiate a multipart upload, Amazon S3 returns a resp
 **Parts upload**  
 When uploading a part, in addition to the upload ID, you must specify a part number\. You can choose any part number between 1 and 10,000\. A part number uniquely identifies a part and its position in the object you are uploading\. The part number that you choose doesn’t need to be in a consecutive sequence \(for example, it can be 1, 5, and 14\)\. If you upload a new part using the same part number as a previously uploaded part, the previously uploaded part is overwritten\. 
 
-Whenever you upload a part, Amazon S3 returns an *entity tag \(ETag\)* header in its response\. For each part upload, you must record the part number and the ETag value\. You must include these values in the subsequent request to complete the multipart upload\.
+Whenever you upload a part, Amazon S3 returns an *entity tag \(ETag\)* header in its response\. For each part upload, you must record the part number and the ETag value\. The ETag value for all object part uploads will remain the same, but each part will be assigned a different part number\. You must include these values in the subsequent request to complete the multipart upload\.
 
 **Note**  
 After you initiate a multipart upload and upload one or more parts, you must either complete or stop the multipart upload to stop getting charged for storage of the uploaded parts\. Only *after* you either complete or stop a multipart upload will Amazon S3 free up the parts storage and stop charging you for the parts storage\.  
@@ -66,7 +66,11 @@ It is possible for some other request received between the time you initiated a 
 
 ## Multipart upload and pricing<a name="mpuploadpricing"></a>
 
-After you initiate a multipart upload, Amazon S3 retains all the parts until you either complete or stop the upload\. Throughout its lifetime, you are billed for all storage, bandwidth, and requests for this multipart upload and its associated parts\. If you stop the multipart upload, Amazon S3 deletes upload artifacts and any parts that you have uploaded, and you are no longer billed for them\. For more information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
+After you initiate a multipart upload, Amazon S3 retains all the parts until you either complete or stop the upload\. Throughout its lifetime, you are billed for all storage, bandwidth, and requests for this multipart upload and its associated parts\. 
+
+These parts are charged according to the storage class specified when the parts were uploaded\. An exception to this are parts uploaded to S3 Glacier Flexible Retrieval or S3 Glacier Deep Archive\. In\-progress multipart parts for a PUT to the S3 Glacier Flexible Retrieval storage class are billed as S3 Glacier Flexible Retrieval Staging Storage at S3 Standard storage rates until the upload completes\. In addition, both CreateMultipartUpload and UploadPart are billed at S3 Standard rates\. Only the CompleteMultipartUpload request is billed at the S3 Glacier Flexible Retrieval rate\. Similarly, in\-progress multipart parts for a PUT to the S3 Glacier Deep Archive storage class are billed as S3 Glacier Flexible Retrieval Staging Storage at S3 Standard storage rates until the upload completes, with only the CompleteMultipartUpload request charged at S3 Glacier Deep Archive rates\.
+
+If you stop the multipart upload, Amazon S3 deletes upload artifacts and any parts that you have uploaded, and you are no longer billed for them\. There are no early delete charges for deleting incomplete multipart uploads regardless of storage class specified\. For more information about pricing, see [Amazon S3 pricing](https://aws.amazon.com/s3/pricing/)\.
 
 **Note**  
 To minimize your storage costs, we recommend that you configure a lifecycle rule to delete incomplete multipart uploads after a specified number of days by using the `AbortIncompleteMultipartUpload` action\. For more information about creating a lifecycle rule to delete incomplete multipart uploads, see [Configuring a bucket lifecycle configuration to delete incomplete multipart uploads](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/mpu-abort-incomplete-mpu-lifecycle-config.html)\.

@@ -26,9 +26,9 @@ Amazon S3 automatically encrypts all new objects that are copied to an S3 bucket
 
 When copying objects, you can choose to use a different checksum algorithm for the object\. Whether you choose to use the same algorithm or a new one, Amazon S3 calculates a new checksum value after the object is copied\. Amazon S3 does not directly copy the value of the checksum\. The checksum value of objects that were loaded using multipart uploads might change\. For more information about how the checksum is calculated, see [Using part\-level checksums for multipart uploads](checking-object-integrity.md#large-object-checksums)\.
 
-To copy more than one Amazon S3 object with a single request, you can use Amazon S3 batch operations\. You provide S3 Batch Operations with a list of objects to operate on\. S3 Batch Operations calls the respective API to perform the specified operation\. A single Batch Operations job can perform the specified operation on billions of objects containing exabytes of data\. 
+To copy more than one Amazon S3 object with a single request, you can use Amazon S3 batch operations\. You provide S3 Batch Operations with a list of objects to operate on\. S3 Batch Operations calls the respective API operation to perform the specified operation\. A single Batch Operations job can perform the specified operation on billions of objects containing exabytes of data\. 
 
-The S3 Batch Operations feature tracks progress, sends notifications, and stores a detailed completion report of all actions, providing a fully managed, auditable, serverless experience\. You can use S3 Batch Operations through the AWS Management Console, AWS CLI, AWS SDKs, or REST API\. For more information, see [S3 Batch Operations basics](batch-ops.md#batch-ops-basics)\.
+The S3 Batch Operations feature tracks progress, sends notifications, and stores a detailed completion report of all actions, providing a fully managed, auditable, serverless experience\. You can use S3 Batch Operations through the Amazon S3 console, AWS CLI, AWS SDKs, or REST API\. For more information, see [S3 Batch Operations basics](batch-ops.md#batch-ops-basics)\.
 
 
 

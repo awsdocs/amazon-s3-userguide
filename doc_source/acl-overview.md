@@ -33,7 +33,7 @@ When you create a bucket or an object, Amazon S3 creates a default ACL that gran
 17. </AccessControlPolicy>
 ```
 
-The sample ACL includes an `Owner` element that identifies the owner by the AWS account's canonical user ID\. For instructions on finding your canonical user id, see [Finding an AWS account canonical user ID](#finding-canonical-id)\. The `Grant` element identifies the grantee \(either an AWS account or a predefined group\) and the permission granted\. This default ACL has one `Grant` element for the owner\. You grant permissions by adding `Grant` elements, with each grant identifying the grantee and the permission\. 
+The sample ACL includes an `Owner` element that identifies the owner by the AWS account's canonical user ID\. For instructions on finding your canonical user ID, see [Finding an AWS account canonical user ID](#finding-canonical-id)\. The `Grant` element identifies the grantee \(either an AWS account or a predefined group\) and the permission granted\. This default ACL has one `Grant` element for the owner\. You grant permissions by adding `Grant` elements, with each grant identifying the grantee and the permission\. 
 
 **Note**  
 An ACL can have up to 100 grants\.
@@ -41,17 +41,18 @@ An ACL can have up to 100 grants\.
 **Topics**
 + [Who is a grantee?](#specifying-grantee)
 + [What permissions can I grant?](#permissions)
++ [`aclRequired` values for common Amazon S3 requests](#aclrequired-s3)
 + [Sample ACL](#sample-acl)
 + [Canned ACL](#canned-acl)
 
 ## Who is a grantee?<a name="specifying-grantee"></a>
 
-A grantee can be an AWS account or one of the predefined Amazon S3 groups\. You grant permission to an AWS account using the email address or the canonical user ID\. However, if you provide an email address in your grant request, Amazon S3 finds the canonical user ID for that account and adds it to the ACL\. The resulting ACLs always contain the canonical user ID for the AWS account, not the AWS account's email address\.
+A grantee can be an AWS account or one of the predefined Amazon S3 groups\. You grant permission to an AWS account using the email address or the canonical user ID\. However, if you provide an email address in your grant request, Amazon S3 finds the canonical user ID for that account and adds it to the ACL\. The resulting ACLs always contain the canonical user ID for the AWS account, not the email address of the AWS account\.
 
-When you grant access rights, you specify each grantee as a type=value pair, where the type is one of the following:
-+ `id` – if the value specified is the canonical user ID of an AWS account
-+ `uri` – if you are granting permissions to a predefined group
-+ `emailAddress` – if the value specified is the email address of an AWS account
+When you grant access rights, you specify each grantee as a `type="value"` pair, where `type` is one of the following:
++ `id` – If the value specified is the canonical user ID of an AWS account
++ `uri` – If you are granting permissions to a predefined group
++ `emailAddress` – If the value specified is the email address of an AWS account
 
 **Important**  
 Using email addresses to specify a grantee is only supported in the following AWS Regions:  
@@ -65,11 +66,11 @@ Europe \(Ireland\)
 South America \(São Paulo\)
 For a list of all the Amazon S3 supported regions and endpoints, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the *Amazon Web Services General Reference*\.
 
-**Example: Email Address**  
+**Example: Email address**  
 For example, the following `x-amz-grant-read` header grants the AWS accounts identified by email addresses permissions to read object data and its metadata:  
 
 ```
-x-amz-grant-read: emailAddress="xyz@amazon.com", emailAddress="abc@amazon.com"
+x-amz-grant-read: emailAddress="xyz@example.com", emailAddress="abc@example.com"
 ```
 
 **Warning**  
@@ -77,21 +78,25 @@ When you grant other AWS accounts access to your resources, be aware that the AW
 
 ### Finding an AWS account canonical user ID<a name="finding-canonical-id"></a>
 
-The canonical user ID is associated with your AWS account\. This ID is a long string of characters, such as `79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be`\. For information about how to find the canonical user ID for your account, see [Finding the canonical user ID for your AWS account](finding-canonical-user-id.md)\. 
+The canonical user ID is associated with your AWS account\. This ID is a long string of characters, such as:
+
+`79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be`
+
+For information about how to find the canonical user ID for your account, see [Finding the canonical user ID for your AWS account](finding-canonical-user-id.md)\. 
 
 You can also look up the canonical user ID of an AWS account by reading the ACL of a bucket or an object to which the AWS account has access permissions\. When an individual AWS account is granted permissions by a grant request, a grant entry is added to the ACL with the account's canonical user ID\. 
 
 **Note**  
-If you make your bucket public \(not recommended\) any unauthenticated user can upload objects to the bucket\. These anonymous users don't have an AWS account\. When an anonymous user uploads an object to your bucket Amazon S3 adds a special canonical user ID \(`65a011a29cdf8ec533ec3d1ccaae921c`\) as the object owner in the ACL\. For more information, see [Amazon S3 bucket and object ownership](access-control-overview.md#about-resource-owner)\.
+If you make your bucket public \(not recommended\), any unauthenticated user can upload objects to the bucket\. These anonymous users don't have an AWS account\. When an anonymous user uploads an object to your bucket, Amazon S3 adds a special canonical user ID \(`65a011a29cdf8ec533ec3d1ccaae921c`\) as the object owner in the ACL\. For more information, see [Amazon S3 bucket and object ownership](access-control-overview.md#about-resource-owner)\.
 
 ### Amazon S3 predefined groups<a name="specifying-grantee-predefined-groups"></a>
 
-Amazon S3 has a set of predefined groups\. When granting account access to a group, you specify one of our URIs instead of a canonical user ID\. We provide the following predefined groups:
+Amazon S3 has a set of predefined groups\. When granting account access to a group, you specify one of the Amazon S3 URIs instead of a canonical user ID\. Amazon S3 provides the following predefined groups:
 + ****Authenticated Users group**** – Represented by `http://acs.amazonaws.com/groups/global/AuthenticatedUsers`\.
 
   This group represents all AWS accounts\. **Access permission to this group allows any AWS account to access the resource\.** However, all requests must be signed \(authenticated\)\.
 **Warning**  
-When you grant access to the **Authenticated Users group** any AWS authenticated user in the world can access your resource\.
+When you grant access to the **Authenticated Users group**, any AWS authenticated user in the world can access your resource\.
 + ****All Users group**** – Represented by `http://acs.amazonaws.com/groups/global/AllUsers`\.
 
   **Access permission to this group allows anyone in the world access to the resource\.** The requests can be signed \(authenticated\) or unsigned \(anonymous\)\. Unsigned requests omit the Authentication header in the request\.
@@ -99,7 +104,7 @@ When you grant access to the **Authenticated Users group** any AWS authenticated
 We highly recommend that you never grant the **All Users group** `WRITE`, `WRITE_ACP`, or `FULL_CONTROL` permissions\. For example, while `WRITE` permissions do not allow non\-owners to overwrite or delete existing objects, `WRITE` permissions still allow anyone to store objects in your bucket, for which you are billed\. For more details about these permissions, see the following section [What permissions can I grant?](#permissions)\.
 + ****Log Delivery group**** – Represented by `http://acs.amazonaws.com/groups/s3/LogDelivery`\.
 
-  WRITE permission on a bucket enables this group to write server access logs \(see [Logging requests using server access logging](ServerLogs.md)\) to the bucket\.
+  `WRITE` permission on a bucket enables this group to write server access logs \(see [Logging requests using server access logging](ServerLogs.md)\) to the bucket\.
 
 **Note**  
 When using ACLs, a grantee can be an AWS account or one of the predefined Amazon S3 groups\. However, the grantee cannot be an IAM user\. For more information about AWS users and permissions within IAM, see [Using AWS Identity and Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/)\.
@@ -115,18 +120,18 @@ For more information about ACL permissions in the Amazon S3 console, see [Config
 
 | Permission | When granted on a bucket | When granted on an object | 
 | --- | --- | --- | 
-| READ | Allows grantee to list the objects in the bucket\. | Allows grantee to read the object data and its metadata | 
-| WRITE | Allows grantee to create new objects in the bucket\. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects\. | Not applicable | 
+| READ | Allows grantee to list the objects in the bucket | Allows grantee to read the object data and its metadata | 
+| WRITE | Allows grantee to create new objects in the bucket\. For the bucket and object owners of existing objects, also allows deletions and overwrites of those objects | Not applicable | 
 | READ\_ACP | Allows grantee to read the bucket ACL | Allows grantee to read the object ACL | 
 | WRITE\_ACP | Allows grantee to write the ACL for the applicable bucket | Allows grantee to write the ACL for the applicable object | 
 | FULL\_CONTROL | Allows grantee the READ, WRITE, READ\_ACP, and WRITE\_ACP permissions on the bucket | Allows grantee the READ, READ\_ACP, and WRITE\_ACP permissions on the object | 
 
 **Warning**  
-Use caution when granting access permissions to your S3 buckets and objects\. For example, granting `WRITE` access to a bucket allows the grantee to create objects in the bucket\. We highly recommend that you read through this entire [Access control list \(ACL\) overview](#acl-overview) section before granting permissions\.
+Use caution when granting access permissions to your S3 buckets and objects\. For example, granting `WRITE` access to a bucket allows the grantee to create objects in the bucket\. We highly recommend that you read through the entire [Access control list \(ACL\) overview](#acl-overview) section before granting permissions\.
 
 ### Mapping of ACL permissions and access policy permissions<a name="acl-access-policy-permission-mapping"></a>
 
-As shown in the preceding table, an ACL allows only a finite set of permissions, compared to the number of permissions you can set in an access policy \(see [Amazon S3 actions](using-with-s3-actions.md)\)\. Each of these permissions allows one or more Amazon S3 operations\.
+As shown in the preceding table, an ACL allows only a finite set of permissions, compared to the number of permissions that you can set in an access policy \(see [Amazon S3 actions](using-with-s3-actions.md)\)\. Each of these permissions allows one or more Amazon S3 operations\.
 
 The following table shows how each ACL permission maps to the corresponding access policy permissions\. As you can see, access policy allows more permissions than an ACL does\. You use ACLs primarily to grant basic read/write permissions, similar to file system permissions\. For more information about when to use an ACL, see [Access policy guidelines](access-policy-alternatives-guidelines.md)\.
 
@@ -141,9 +146,9 @@ For more information about ACL permissions in the Amazon S3 console, see [Config
 | WRITE\_ACP | s3:PutBucketAcl | s3:PutObjectAcl and s3:PutObjectVersionAcl | 
 | FULL\_CONTROL | Equivalent to granting READ, WRITE, READ\_ACP, and WRITE\_ACP ACL permissions\. Accordingly, this ACL permission maps to a combination of corresponding access policy permissions\. | Equivalent to granting READ, READ\_ACP, and WRITE\_ACP ACL permissions\. Accordingly, this ACL permission maps to a combination of corresponding access policy permissions\. | 
 
-#### Condition keys<a name="acl-specific-condition-keys"></a>
+### Condition keys<a name="acl-specific-condition-keys"></a>
 
-When you grant access policy permissions, you can use condition keys to constrain the value for the ACL on an object using a bucket policy\. The context keys below correspond to ACLs\. You can use these context keys to mandate the use of a specific ACL in a request:
+When you grant access policy permissions, you can use condition keys to constrain the value for the ACL on an object using a bucket policy\. The following context keys correspond to ACLs\. You can use these context keys to mandate the use of a specific ACL in a request:
 + `s3:x-amz-grant-read` ‐ Require read access\.
 + `s3:x-amz-grant-write` ‐ Require write access\.
 + `s3:x-amz-grant-read-acp` ‐ Require read access to the bucket ACL\.
@@ -151,7 +156,29 @@ When you grant access policy permissions, you can use condition keys to constrai
 + `s3:x-amz-grant-full-control` ‐ Require full control\.
 + `s3:x-amz-acl` ‐ Require a [Canned ACL](#canned-acl)\.
 
-For example policies that involves ACL\-specific headers, see [Example 1: Granting s3:PutObject permission with a condition requiring the bucket owner to get full control](amazon-s3-policy-keys.md#grant-putobject-conditionally-1)\. For a complete list of Amazon S3‐specific condition keys, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\.
+For example policies that involve ACL\-specific headers, see [Example 1: Granting s3:PutObject permission with a condition requiring the bucket owner to get full control](amazon-s3-policy-keys.md#grant-putobject-conditionally-1)\. For a complete list of Amazon S3 specific condition keys, see [Actions, resources, and condition keys for Amazon S3](list_amazons3.md)\.
+
+## `aclRequired` values for common Amazon S3 requests<a name="aclrequired-s3"></a>
+
+To identify Amazon S3 requests that required ACLs for authorization, you can use the `aclRequired` value in Amazon S3 server access logs or AWS CloudTrail\. The `aclRequired` value that appears in CloudTrail or Amazon S3 server access logs depends on which operations were called and certain information about the requester, object owner, and bucket owner\. If no ACLs were required, or if you are setting the `bucket-owner-full-control` canned ACL, or if the requests are allowed by your bucket policy, the `aclRequired` value string is "`-`" in Amazon S3 server access logs and is absent in CloudTrail\.
+
+The following tables list the expected `aclRequired` values in CloudTrail or Amazon S3 server access logs for the various Amazon S3 API operations\. You can use this information to understand which Amazon S3 operations depend on ACLs for authorization\. In the following tables, A, B, and C represent the different accounts associated with the requester, object owner, and bucket owner\. Entries with an asterisk \(\*\) indicate any of accounts A, B, or C\. 
+
+**Note**  
+`PutObject` operations in the following table, unless specified otherwise, indicate requests that do not set an ACL, unless the ACL is a `bucket-owner-full-control` ACL\. A null value for `aclRequired` indicates that `aclRequired` is absent in AWS CloudTrail logs\.
+
+
+**`aclRequired` values for CloudTrail**  
+<a name="table-aclrequired-ct"></a>[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html)
+
+ 
+
+**Note**  
+`REST.PUT.OBJECT` operations in the following table, unless specified otherwise, indicate requests that do not set an ACL, unless the ACL is a `bucket-owner-full-control` ACL\. An `aclRequired` value string of "`-`" indicates a null value in Amazon S3 server access logs\.
+
+
+**`aclRequired` values for Amazon S3 server access logs**  
+<a name="table-aclrequired-s3"></a>[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html)
 
 ## Sample ACL<a name="sample-acl"></a>
 
@@ -227,4 +254,4 @@ Amazon S3 supports a set of predefined grants, known as *canned ACLs*\. Each can
 **Note**  
 You can specify only one of these canned ACLs in your request\.
 
-You specify a canned ACL in your request using the `x-amz-acl` request header\. When Amazon S3 receives a request with a canned ACL in the request, it adds the predefined grants to the ACL of the resource\. 
+You specify a canned ACL in your request by using the `x-amz-acl` request header\. When Amazon S3 receives a request with a canned ACL in the request, it adds the predefined grants to the ACL of the resource\. 

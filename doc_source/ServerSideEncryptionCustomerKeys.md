@@ -93,7 +93,7 @@ You can generate a presigned URL that can be used for operations such as uploadi
 For non\-SSE\-C objects, you can generate a presigned URL and directly paste that URL into a browser to access the data\.   
 However, you cannot do this for SSE\-C objects, because in addition to the presigned URL, you also must include HTTP headers that are specific to SSE\-C objects\. Therefore, you can use presigned URLs for SSE\-C objects only programmatically\.
 
-For more information about presigned URLs, see [Using presigned URLs](using-presigned-url.md)\.
+For more information about presigned URLs, see [Working with presigned URLs](using-presigned-url.md)\.
 
 ## Specifying server\-side encryption with customer\-provided keys \(SSE\-C\)<a name="specifying-s3-c-encryption"></a>
 

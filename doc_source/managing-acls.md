@@ -18,7 +18,7 @@ If your bucket uses the bucket owner enforced setting for S3 Object Ownership, y
 **Warning**  
 We highly recommend that you avoid granting write access to the **Everyone \(public access\)** or **Authenticated Users group \(all AWS authenticated users\)** groups\. For more information about the effects of granting write access to these groups, see [Amazon S3 predefined groups](acl-overview.md#specifying-grantee-predefined-groups)\.
 
-## Using the S3 console to set ACL permissions for a bucket<a name="set-bucket-permissions"></a>
+### Using the S3 console to set ACL permissions for a bucket<a name="set-bucket-permissions"></a>
 
 The console displays combined access grants for duplicate grantees\. To see the full list of ACLs, use the Amazon S3 REST API, AWS CLI, or AWS SDKs\.
 
@@ -101,7 +101,7 @@ When you grant other AWS accounts access to your resources, be aware that the AW
 
 1. To save your changes, choose **Save changes**\.
 
-## Using the S3 console to set ACL permissions for an object<a name="set-object-permissions"></a>
+### Using the S3 console to set ACL permissions for an object<a name="set-object-permissions"></a>
 
 The console displays combined access grants for duplicate grantees\. To see the full list of ACLs, use the Amazon S3 REST API, AWS CLI, or AWS SDKs\. The following table shows the ACL permissions that you can configure for objects in the Amazon S3 console\.
 
@@ -171,7 +171,7 @@ If your bucket uses the bucket owner enforced setting for S3 Object Ownership, y
 Use caution when granting the **Everyone** group anonymous access to your Amazon S3 objects\. When you grant access to this group, anyone in the world can access your object\. If you need to grant access to everyone, we highly recommend that you only grant permissions to **Read objects**\.
 We highly recommend that you *do not* grant the **Everyone** group write object permissions\. Doing so allows anyone to overwrite the ACL permissions for the object\.
 
-## Using the AWS SDKs<a name="acl-using-sdk"></a>
+### Using the AWS SDKs<a name="acl-using-sdk"></a>
 
 This section provides examples of how to configure access control list \(ACL\) grants on buckets and objects\.
 
@@ -460,7 +460,7 @@ namespace Amazon.DocSamples.S3
 
 ------
 
-## Using the REST API<a name="acl-using-rest-api"></a>
+### Using the REST API<a name="acl-using-rest-api"></a>
 
 Amazon S3 APIs enable you to set an ACL when you create a bucket or an object\. Amazon S3 also provides API to set an ACL on an existing bucket or an object\. These APIs provide the following methods to set an ACL:
 + **Set ACL using request headers—** When you send a request to create a resource \(bucket or object\), you set an ACL using the request headers\. Using these headers, you can either specify a canned ACL or specify grants explicitly \(identifying grantee and permissions explicitly\)\. 
@@ -479,7 +479,7 @@ For information on the REST API support for managing ACLs, see the following sec
 **Important**  
 If your bucket uses the bucket owner enforced setting for S3 Object Ownership, you must use policies to grant access to your bucket and the objects in it\. With the bucket owner enforced setting enabled, requests to set access control lists \(ACLs\) or update ACLs fail and return the `AccessControlListNotSupported` error code\. Requests to read ACLs are still supported\.
 
-### Access Control List \(ACL\)\-Specific Request Headers<a name="acl-headers-rest-api"></a>
+#### Access Control List \(ACL\)\-Specific Request Headers<a name="acl-headers-rest-api"></a>
 
 You can use headers to grant access control list \(ACL\)\-based permissions\. By default, all objects are private\. Only the owner has full access control\. When adding a new object, you can grant permissions to individual AWS accounts or to predefined groups defined by Amazon S3\. These permissions are then added to the Access Control List \(ACL\) on the object\. For more information, see [Access control list \(ACL\) overview](acl-overview.md)\.
 
@@ -492,7 +492,7 @@ With this operation, you can grant access permissions using one these two method
   + x\-amz\-grant\-write\-acp
   + x\-amz\-grant\-full\-control
 
-## Using the AWS CLI<a name="using-acl-cli"></a>
+### Using the AWS CLI<a name="using-acl-cli"></a>
 
 For more information about managing ACLs using the AWS CLI, see [put\-bucket\-acl](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-acl.html) in the *AWS CLI Command Reference*\.
 

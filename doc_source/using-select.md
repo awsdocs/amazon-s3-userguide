@@ -1,6 +1,6 @@
 # Examples of using Amazon S3 Select on objects<a name="using-select"></a>
 
-You can use S3 Select with the Amazon S3 console, REST API, and the AWS SDK to select content from objects\. 
+You can use S3 Select with the Amazon S3 console, the REST API, and the AWS SDKs to select content from objects\. 
 
 ## Using the S3 console<a name="s3-select-objects-console"></a>
 
@@ -24,11 +24,11 @@ You can use S3 Select with the Amazon S3 console, REST API, and the AWS SDK to s
 
 ## Using the REST API<a name="SelectObjectContentUsingRestApi"></a>
 
-You can use the AWS SDK to select content from objects\. However, if your application requires it, you can send REST requests directly\. For more information about the request and response format, see [SELECT Object Content](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html)\.
+You can use the AWS SDKs to select content from objects\. However, if your application requires it, you can send REST requests directly\. For more information about the request and response format, see [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html)\.
 
 ## Using the AWS SDKs<a name="SelectObjectContentUsingSDK"></a>
 
-You can use Amazon S3 Select to select contents of an object using the `selectObjectContent` method, which on success returns the results of the SQL expression\.
+You can use Amazon S3 Select to select the contents of an object by using the `selectObjectContent` method\. If this method is successful, it returns the results of the SQL expression\.
 
 ------
 #### [ Java ]
@@ -139,11 +139,11 @@ public class RecordInputStreamExample {
 ------
 #### [ JavaScript ]
 
-For a JavaScript example using the AWS SDK for JavaScript with the S3 SelectObjectContent API to select records from JSON and CSV files stored in Amazon S3, see the blog post [ Introducing support for Amazon S3 Select in the AWS SDK for JavaScript](http://aws.amazon.com/blogs/developer/introducing-support-for-amazon-s3-select-in-the-aws-sdk-for-javascript/)\. 
+For a JavaScript example that uses the AWS SDK for JavaScript with the S3 `SelectObjectContent` API operation to select records from JSON and CSV files that are stored in Amazon S3, see the blog post [ Introducing support for Amazon S3 Select in the AWS SDK for JavaScript](http://aws.amazon.com/blogs/developer/introducing-support-for-amazon-s3-select-in-the-aws-sdk-for-javascript/)\. 
 
 ------
 #### [ Python ]
 
-For a Python example on using structured query language \(SQL\) queries to search through data loaded to Amazon S3 as a comma\-separated value \(CSV\) file using S3 Select, see the blog post [ Querying data without servers or databases using Amazon S3 Select](http://aws.amazon.com/blogs/storage/querying-data-without-servers-or-databases-using-amazon-s3-select/)\. 
+For a Python example of using SQL queries to search through data that was loaded to Amazon S3 as a comma\-separated value \(CSV\) file by using S3 Select, see the blog post [ Querying data without servers or databases using Amazon S3 Select](http://aws.amazon.com/blogs/storage/querying-data-without-servers-or-databases-using-amazon-s3-select/)\. 
 
 ------

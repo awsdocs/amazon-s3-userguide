@@ -209,7 +209,7 @@ If the JSON syntax used in the example results in an error on a Windows client, 
 --restore-request Days=25,GlacierJobParameters={"Tier"="Standard"}
 ```
 
-To monitor the status of your `restore-object` request, use the following command:
+To monitor the status of your `restore-object` request, use the following `head-object` command:
 
 ```
 aws s3api head-object --bucket DOC-EXAMPLE-BUCKET --key dir1/example.obj

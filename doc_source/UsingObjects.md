@@ -24,7 +24,7 @@ You can control access to the objects you store in Amazon S3\. Amazon S3 support
 + [Access policy guidelines](access-policy-alternatives-guidelines.md)
 + [Identity and access management in Amazon S3](s3-access-control.md)
 + [Configuring ACLs](managing-acls.md)
-Your Amazon S3 resources \(for example, buckets and objects\) are private by default\. You must explicitly grant permission for others to access these resources\. For more information about sharing objects, see [Sharing objects using presigned URLs](ShareObjectPreSignedURL.md)\.
+Your Amazon S3 resources \(for example, buckets and objects\) are private by default\. You must explicitly grant permission for others to access these resources\. For more information about sharing objects, see [Sharing objects with presigned URLs](ShareObjectPreSignedURL.md)\.
 
 ## Object subresources<a name="ObjectAndSubResource"></a>
 

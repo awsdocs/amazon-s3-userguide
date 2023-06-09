@@ -15,5 +15,3 @@ For more information about ACLs, see the following topics\.
 
 **Topics**
 + [Access control list \(ACL\) overview](acl-overview.md)
-+ [Finding the canonical user ID for your AWS account](finding-canonical-user-id.md)
-+ [Configuring ACLs](managing-acls.md)

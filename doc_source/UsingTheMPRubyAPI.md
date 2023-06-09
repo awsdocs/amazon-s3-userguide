@@ -4,7 +4,7 @@ The AWS SDK for Ruby provides an API for Amazon S3 bucket and object operations\
 
 ## The Ruby API Organization<a name="RubyAPIOrganization"></a>
 
-When creating Amazon S3 applications using the AWS SDK for Ruby, you must install the SDK for Ruby gem\. For more information, see the [AWS SDK for Ruby \- Version 3](https://docs.aws.amazon.com/sdkforruby/api/index.html)\. Once installed, you can access the API, including the following key classes: 
+When creating Amazon S3 applications using the AWS SDK for Ruby, you must install the SDK for Ruby gem\. For more information, see the [AWS SDK for Ruby \- Version 3](https://docs.aws.amazon.com/sdk-for-ruby/v3/api/index.html)\. Once installed, you can access the API, including the following key classes: 
 + **Aws::S3::Resource—**Represents the interface to Amazon S3 for the Ruby SDK and provides methods for creating and enumerating buckets\. 
 
   The `S3` class provides the `#buckets` instance method for accessing existing buckets or creating new ones\.

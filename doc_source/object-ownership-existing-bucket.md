@@ -46,17 +46,17 @@ Object Ownership has three settings that you can use to control ownership of obj
 
 To apply an Object Ownership setting for an existing bucket, use the `put-bucket-ownership-controls` command with the `--ownership-controls` parameter\. Valid values for ownership are `BucketOwnerEnforced`, `BucketOwnerPreferred`, or `ObjectWriter`\.
 
-This example applies the Bucket owner enforced setting for an existing bucket using the AWS CLI:
+This example applies the Bucket owner enforced setting for an existing bucket by using the AWS CLI:
 
 ```
 aws s3api put-bucket-ownership-controls --bucket DOC-EXAMPLE-BUCKET --ownership-controls="Rules=[{ObjectOwnership=BucketOwnerEnforced}]"
 ```
 
-For information about `put-bucket-ownership-controls`, see [put\-bucket\-ownership\-controls](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-ownership-controls.html) in the *AWS Command Line Interface User Guide*\. 
+For information about `put-bucket-ownership-controls`, see [https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-ownership-controls.html](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3api/put-bucket-ownership-controls.html) in the *AWS Command Line Interface User Guide*\. 
 
 ## Using the AWS SDK for Java<a name="object-ownership-existing-bucket-sdk-java"></a>
 
-This example applies the `BucketOwnerEnforced` setting for Object Ownership on an existing bucket using the AWS SDK for Java:
+This example applies the `BucketOwnerEnforced` setting for Object Ownership on an existing bucket by using the AWS SDK for Java:
 
 ```
          // Build the ObjectOwnership for BucketOwnerEnforced

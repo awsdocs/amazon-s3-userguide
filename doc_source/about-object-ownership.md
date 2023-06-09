@@ -73,7 +73,7 @@ Before you disable ACLs for an existing bucket, complete the following prerequis
 
 ### Review bucket and object ACLs and migrate ACL permissions<a name="object-ownership-acl-permissions"></a>
 
-When you disable ACLs, permissions granted by bucket and object ACLs no longer affect access\. Before you disable ACLs, review your bucket and object ACLs\. To identify Amazon S3 requests that required ACLs for authorization, you can use the `aclRequired` field in Amazon S3 server access logs or AWS CloudTrail\. For more information, see [Using Amazon S3 access logs to identify requests](using-s3-access-logs-to-identify-requests.md) and [Identifying Amazon S3 requests using CloudTrail](cloudtrail-request-identification.md)\. 
+When you disable ACLs, permissions granted by bucket and object ACLs no longer affect access\. Before you disable ACLs, review your bucket and object ACLs\. 
 
 If your bucket ACLs grant read or write permissions to others outside of your account, you must migrate these permissions to your bucket policy before you can apply the Bucket owner enforced setting\. If you don't migrate bucket ACLs that grant read or write access outside of your account, your request to apply the Bucket owner enforced setting fails and returns the [InvalidBucketAclWithObjectOwnership](object-ownership-error-responses.md#object-ownership-error-responses-invalid-acl) error code\. 
 
@@ -82,6 +82,19 @@ For example, if you want to disable ACLs for a bucket that receives server acces
 If you want the object writer to maintain full control of the object that they upload, object writer is the best Object Ownership setting for your use case\. If you want to control access at the individual object level, bucket owner preferred is the best choice\. These use cases are uncommon\.
 
 To review ACLs and migrate ACL permissions to bucket policies, see [Prerequisites for disabling ACLs](object-ownership-migrating-acls-prerequisites.md)\.
+
+### Identify requests that required an ACL for authorization<a name="object-ownership-acl-identify"></a>
+
+To identify Amazon S3 requests that required ACLs for authorization, you can use the `aclRequired` value in Amazon S3 server access logs or AWS CloudTrail\. If the request required an ACL for authorization or if you have `PUT` requests that specify an ACL, the string is `Yes`\. If no ACLs were required, or if you are setting a `bucket-owner-full-control` canned ACL, or if the requests are allowed by your bucket policy, the `aclRequired` value string is "`-`" in Amazon S3 server access logs and is absent in CloudTrail\. For more information about the expected `aclRequired` values, see [`aclRequired` values for common Amazon S3 requests](acl-overview.md#aclrequired-s3)\.
+
+If you have `PutBucketAcl` or `PutObjectAcl` requests with headers that grant ACL\-based permissions, with the exception of the `bucket-owner-full-control` canned ACL, you must remove those headers before you can disable ACLs\. Otherwise, your requests will fail\.
+
+For all other requests that required an ACL for authorization, migrate those ACL permissions to bucket policies\. Then, remove any bucket ACLs before you enable the bucket owner enforced setting\. 
+
+**Note**  
+Do not remove object ACLs\. Otherwise, applications that rely on object ACLs for permissions will lose access\.
+
+If you see that no requests required an ACL for authorization, you can proceed to disable ACLs\. For more information about identifying requests, see [Using Amazon S3 access logs to identify requests](using-s3-access-logs-to-identify-requests.md) and [Identifying Amazon S3 requests using CloudTrail](cloudtrail-request-identification.md)\.
 
 ### Review and update bucket policies that use ACL\-related condition keys<a name="object-ownership-bucket-policies"></a>
 
@@ -148,7 +161,7 @@ To apply, update, or delete an Object Ownership setting for a bucket, you need t
 
 ## Disabling ACLs for all new buckets<a name="requiring-bucket-owner-enforced"></a>
 
-By default, all new buckets are created with the Bucket owner enforced setting applied and ACLs are disabled\. We recommend keeping ACLs disabled\. As a general rule, we recommend using S3 resource\-based policies \(bucket policies and access point policies\) or IAM policies for access control instead of ACLs\. Policies are a simplified and more flexible access control option\. With bucket policies and access point policies, you can define rules which apply broadly across all requests to your Amazon S3 resources\. 
+By default, all new buckets are created with the Bucket owner enforced setting applied and ACLs are disabled\. We recommend keeping ACLs disabled\. As a general rule, we recommend using S3 resource\-based policies \(bucket policies and access point policies\) or IAM policies for access control instead of ACLs\. Policies are a simplified and more flexible access control option\. With bucket policies and access point policies, you can define rules that apply broadly across all requests to your Amazon S3 resources\. 
 
 ## Replication and Object Ownership<a name="object-ownership-replication"></a>
 
@@ -156,7 +169,7 @@ When you use S3 replication and the source and destination buckets are owned by 
 
 ## Setting Object Ownership<a name="object-ownership-setting"></a>
 
-You can apply an Object Ownership setting using the S3 console, AWS CLI, AWS SDKs, Amazon S3 REST API, or AWS CloudFormation\. The following REST API and AWS CLI commands support Object Ownership:
+You can apply an Object Ownership setting by using the Amazon S3 console, AWS CLI, AWS SDKs, Amazon S3 REST API, or AWS CloudFormation\. The following REST API and AWS CLI commands support Object Ownership:
 
 
 | REST API | AWS CLI | Description | 

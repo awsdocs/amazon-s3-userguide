@@ -2,7 +2,7 @@
 
 The following code examples show how to use Amazon S3 with an AWS software development kit \(SDK\)\. 
 
-*Actions* are code excerpts that show you how to call individual service functions\.
+*Actions* are code excerpts from larger programs and must be run in context\. While actions show you how to call individual service functions, you can see actions in context in their related scenarios and cross\-service examples\.
 
 *Scenarios* are code examples that show you how to accomplish a specific task by calling multiple functions within the same service\.
 
@@ -117,7 +117,7 @@ if __name__ == '__main__':
   + [Determine the existence of a bucket](example_s3_HeadBucket_section.md)
   + [Download objects to a local directory](example_s3_DownloadBucketToDirectory_section.md)
   + [Enable logging](example_s3_ServiceAccessLogging_section.md)
-  + [Enable notifications](example_s3_SetBucketNotification_section.md)
+  + [Enable notifications](example_s3_PutBucketNotification_section.md)
   + [Enable transfer acceleration](example_s3_TransferAcceleration_section.md)
   + [Get CORS rules for a bucket](example_s3_GetBucketCors_section.md)
   + [Get an object from a bucket](example_s3_GetObject_section.md)

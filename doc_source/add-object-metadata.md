@@ -1,6 +1,6 @@
 # Editing object metadata in the Amazon S3 console<a name="add-object-metadata"></a>
 
-You can use the Amazon S3 console to edit metadata of existing S3 objects\. Some metadata is set by Amazon S3 when you upload the object\. For example, `Content-Length` is the *key* \(name\) and the *value* is the size of the object in bytes\.
+You can use the Amazon S3 console to edit metadata of existing S3 objects\. Some metadata is set by Amazon S3 when you upload the object\. For example, `Content-Length` and `Last-Modified` are system\-defined object metadata fields that can't be modified by a user\.
 
 You can also set some metadata when you upload the object and later edit it as your needs change\. For example, you might have a set of objects that you initially store in the `STANDARD` storage class\. Over time, you might no longer need this data to be highly available\. So you change the storage class to `GLACIER` by editing the value of the `x-amz-storage-class` key from `STANDARD` to `GLACIER`\.
 

@@ -5,6 +5,9 @@ The following code examples show how to delete an S3 object\.
 **Note**  
 The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
+Action examples are code excerpts from larger programs and must be run in context\. You can see this action in context in the following code example: 
++  [Work with versioned objects](example_s3_Scenario_ObjectVersioningUsage_section.md) 
+
 ------
 #### [ \.NET ]
 
